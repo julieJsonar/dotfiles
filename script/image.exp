@@ -1,0 +1,22 @@
+#!/bin/expect -f
+if { $argc != 2 } {
+	puts "Usage: image.exp 123 image.out\r"
+	exit
+}
+
+source ~/script/boxlogin.sh
+
+set file [lindex $argv 1]
+puts "telnet 172.16.80.$box with $file"
+
+send "\r"
+expect "#"
+send "exec restore image tftp $file 172.16.80.121\r"
+expect "continue?"
+send "y"
+
+set timeout -1
+expect "continue?"
+send "y"
+
+interact

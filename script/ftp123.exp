@@ -1,0 +1,7 @@
+#!./expect -f
+spawn ftp 172.16.80.123
+expect "Name"
+send "anonymous@172.16.80.127\r"
+expect "Password:"
+send "\r"
+interact

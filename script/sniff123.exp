@@ -1,0 +1,11 @@
+#!/bin/expect -f
+spawn /bin/sh -c "plink -telnet 172.16.80.123 | tee ~/tmp/sniff.123"
+expect "login:" 
+send "admin\r"
+expect "Password:"
+send "\r"
+expect "#"
+send "diag test app wad_disk 3\r"
+expect "#"
+send "diag sniff packet wan1 '' 3\r"
+interact

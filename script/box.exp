@@ -1,0 +1,6 @@
+#!/usr/bin/expect -f
+
+source ~/script/boxlogin.sh
+source ~/script/boxdebug.sh
+
+interact

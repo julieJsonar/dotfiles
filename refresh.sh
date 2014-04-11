@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 cp ~/.vimrc .
 cp ~/.Xdefaults .
 cp ~/.Xresources .

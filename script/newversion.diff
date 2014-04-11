@@ -1,0 +1,9 @@
+Index: daemon/wad/wad_debug.c
+===================================================================
+--- daemon/wad/wad_debug.c	(revision 108595)
++++ daemon/wad/wad_debug.c	(working copy)
+@@ -893,3 +893,4 @@
+ }
+ 
+ #endif
++
