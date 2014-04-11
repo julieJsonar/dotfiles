@@ -1,4 +1,6 @@
-!** XTerm **
+!***********************************************************************
+!*************************** XTerm *************************************
+!***********************************************************************
 XTerm*loginShell: true
 
 ! solve screen switch flicker
@@ -81,10 +83,10 @@ XTerm.VT100.faceName: Liberation Mono
 !XTerm*faceName: Liberation Mono
 !XTerm.VT100.fontdefault: -*-terminus-*-*-*-13-*-*-*-*-*-*-*
 !XTerm.VT100.font1: -*-terminus-*-*-*-12-*-*-*-*-*-*-*
-!XTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*
-!XTerm.VT100.font3: -*-terminus-*-*-*-20-*-*-*-*-*-*-*
+!XTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*                          
+!XTerm.VT100.font3: -*-terminus-*-*-*-20-*-*-*-*-*-*-*                          
 !XTerm.VT100.font4: -*-terminus-*-*-*-24-*-*-*-*-*-*-*
-!XTerm.VT100.font5: -*-terminus-*-*-*-28-*-*-*-*-*-*-*
+!XTerm.VT100.font5: -*-terminus-*-*-*-28-*-*-*-*-*-*-*                          
 !XTerm.VT100.font6: -*-terminus-*-*-*-32-*-*-*-*-*-*-*
 !XTerm*font: fixed
 !XTerm*boldFont: fixed
@@ -99,4 +101,6 @@ XTerm*allowBoldFonts: false
 
 XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 XTerm*selectToClipboard: true
+
+
 

@@ -20,6 +20,7 @@
 " <leader><space>open file in preview window, then <c-w>H adjust layout
 " <leader>m		color word, :MarkClear to clear all colors
 " <leader>j		color word and count it
+" <leader>e		dictionary
 " <leader>l		view function name
 " <leader>a		switch .c/.h
 " <leader>t		command-T: search file
@@ -103,6 +104,8 @@ Bundle 'millermedeiros/vim-statline'
 Bundle 'Lokaltog/vim-easymotion'
 " yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
 Bundle 'wincent/Command-T'
+Bundle 'elzr/vim-json'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 "Bundle 'Shougo/vimproc.vim'
 "Bundle 'Shougo/unite.vim'
 "Bundle 'fholgado/minibufexpl.vim'
@@ -267,6 +270,7 @@ command! -nargs=* -complete=shellcmd R tabnew
 nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
 vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 nmap <leader>c  :tabclose<CR>
+nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -279,7 +283,7 @@ let g:AutoComplPop_Behavior = {
 " CommandT
 let g:CommandTHighlightColor = 'Ptext'
 let g:CommandTNeverShowDotFiles = 1
-let g:CommandTScanDotDirectories = 1
+let g:CommandTScanDotDirectories = 0
 
 " taglist plugin
 map <leader>n :TagbarToggle<cr>
@@ -686,19 +690,21 @@ endfunction
 " svn|git blame
 function! GitBlameCurrent()
   "execute("!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p"))
-  let loc_blame_offset = winheight(0)/2 - 2
-  let loc_start = line('.') - loc_blame_offset
-  let loc_end = line('.') + loc_blame_offset
-  if (loc_start < 0)
-    let loc_start = 0
-  endif
-  if (loc_end > line('$'))
-    let loc_end = line('$')
-  endif
+  return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
 
-  return   "!echo '======================================================' && " .
-           \ "git --no-pager blame -L" . loc_start . "," . loc_end .
-           \ " HEAD -- " . expand("%p")
+  "let loc_blame_offset = winheight(0)/2 - 2
+  "let loc_start = line('.') - loc_blame_offset
+  "let loc_end = line('.') + loc_blame_offset
+  "if (loc_start < 0)
+  "  let loc_start = 0
+  "endif
+  "if (loc_end > line('$'))
+  "  let loc_end = line('$')
+  "endif
+
+  "return   "!echo '======================================================' && " .
+  "         \ "git --no-pager blame -L" . loc_start . "," . loc_end .
+  "         \ " HEAD -- " . expand("%p")
 endfunction
 
 function! SvnBlameCurrent()
