@@ -1,6 +1,15 @@
 #!/bin/sh
 
+# QuickStart
+# ==========
+#
+# ./install.sh -a pull                       # sync from remote github
+# ... change ...
+# ./install.sh -da push -m "commit message"  # dryrun review
+# ./install.sh -a push -m "commit message"   # sync to remote github
+#
 # Usage info
+# ==========
 function show_help(){
 cat << EOF
 Usage: ${0##*/} [-hv] [-a ACTION(pull|push)] [-d DEBUG(just dryrun)] [-m NOTE]
@@ -30,7 +39,7 @@ if [ $# -eq 0 ]; then
 fi
 
 OPTIND=1 # Reset is necessary if getopts was used previously in the script. It is a good idea to make this local in a function.
-while getopts ":h:v:d:a:m:" opt; do
+while getopts "hvda:m:" opt; do
     case "$opt" in
         h)
             show_help
