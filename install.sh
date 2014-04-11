@@ -96,6 +96,7 @@ do
 	if [ $f == $self ] || \
 	   [ -z $f ] || \
 	   [ $f == '.git' ] || \
+	   [ $f == 'README.md' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ] ; then
 		echo "Skipping $f"
