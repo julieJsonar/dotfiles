@@ -3,13 +3,14 @@
 # Usage info
 function show_help(){
 cat << EOF
-Usage: ${0##*/} [-hv] [-a ACTION(pull|push)] [-m MODE(*run|dryrun)]
-Do stuff like git pull|push.
+Usage: ${0##*/} [-hv] [-a ACTION(pull|push)] [-d DEBUG(just dryrun)] [-m NOTE]
+Do stuff like git pull|push, but also refresh the file between git and our pc's home
 
     -h          display this help and exit
     -a ACTION   pull action. pull from github, then copy override our local working env
                 push action. copy from local pc to here, then push to github
-    -m MODE     default run, or we can choose dryrun
+    -d DEBUG    just dry run
+    -m NOTE     git commit message
     -v          verbose mode. Can be used multiple times for increased
                 verbosity.
 EOF
@@ -21,6 +22,7 @@ self=`basename $0`
 action_mode=""
 verbose=0
 dryrun="run"
+commit_msg="script auto commit"
 
 if [ $# -eq 0 ]; then
 	show_help >&2
@@ -28,7 +30,7 @@ if [ $# -eq 0 ]; then
 fi
 
 OPTIND=1 # Reset is necessary if getopts was used previously in the script. It is a good idea to make this local in a function.
-while getopts ":h:v:m:a:" opt; do
+while getopts ":h:v:d:a:m:" opt; do
     case "$opt" in
         h)
             show_help
@@ -38,7 +40,9 @@ while getopts ":h:v:m:a:" opt; do
             ;;
         a)  action_mode=$OPTARG
             ;;
-        m)  dryrun=$OPTARG
+        d)  dryrun="dryrun"
+            ;;
+        m)  commit_msg=$OPTARG
             ;;
         '?')
             show_help >&2
@@ -51,17 +55,18 @@ shift "$((OPTIND-1))" # Shift off the options and optional --.
 echo "================"
 echo "* Action $action_mode"
 echo "* Mode   $dryrun"
+echo "* Commit $commit_msg"
 echo "================"
 
 
 function execute(){
 	#echo "$@"
-	if [ $dryrun == "dryrun" ]; then
-		echo "$@"
+	if [ $dryrun == "run" ]; then
+		eval "$@"
+	else
+		echo "DRYRUN> $@"
 		return 0
 	fi
-
-	eval "$@"
 }
 
 
@@ -111,7 +116,7 @@ do
 done
 
 if [ $action_mode == 'push' ]; then
-	execute "git commit -am 'script auto push' && git push origin master"
+	execute "git commit -am \"$commit_msg\" && git push origin master"
 fi
 
 # End of file
