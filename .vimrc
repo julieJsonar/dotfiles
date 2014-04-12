@@ -251,7 +251,15 @@ set nowrap
 
 let mapleader = ";"
 map Q <Nop>			" diable Ex mode
+
 vmap <leader>y   "+y
+" delete/paste without overwriting the last yank
+"" delete without yanking
+"nnoremap <leader>d "_d
+"vnoremap <leader>d "_d
+" replace currently selected text with default register without yanking it
+vnoremap <leader>p "_dP
+
 "vmap <leader>y   :<c-u>!echo '<c-r>*' \| tr -d '\n' \| xsel <cr><cr>
 " make p in Visual mode replace the selected text with the yank register
 "vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -289,6 +297,8 @@ let g:CommandTScanDotDirectories = 0
 map <leader>n :TagbarToggle<cr>
 let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
+
+let g:vim_json_syntax_conceal = 0
 
 " split normal
 set splitbelow
