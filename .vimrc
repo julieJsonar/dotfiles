@@ -39,6 +39,7 @@
 "
 " <C-n|p>; <leader>,|;> 	jumps quickfix
 " <F2>			use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
+" <leader>i 	use plantuml gen uml as acsii
 " <F3>			redirect g command output tabn
 "
 " <leader>f[f|g|s|  c|d]		cs find seriese, :!cscope -[R]kbq; :cs reset
@@ -350,6 +351,17 @@ function! GenUml()
   return   startuml . "," . enduml . ":w !java -jar ~/script/plantuml.jar -pipe > /tmp/uml.png && display -window 1 -remote /tmp/uml.png || display /tmp/uml.png"
 endfunction
 nnoremap <silent> <F2> ::<C-\>eGenUml() <CR><CR><CR>
+
+function! GenUmlAscii()
+  " remember pos
+  exec ":normal mz"
+  let startuml = search("@startuml", 'bW')
+  let enduml = search("@enduml", 'W')
+  " jump back
+  exec ":normal `z"
+  return   startuml . "," . enduml . ":w !java -jar ~/script/plantuml.jar -p -ttxt"
+endfunction
+nnoremap <silent> <leader>i ::<C-\>eGenUmlAscii() <CR>
 
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
