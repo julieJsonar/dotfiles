@@ -763,6 +763,10 @@ let g:html_use_css = 0
 "   'f'   file:   open the filename under cursor
 "   'i'   includes: find files that include the filename under cursor
 "   'd'   called: find functions that function under cursor calls
+" +ctags
+"         :tags   see where you currently are in the tag stack
+"         :tag sys_<TAB>  auto-complete
+" http://www.fsl.cs.sunysb.edu/~rick/rick_vimrc
 nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -772,6 +776,8 @@ nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 "set cscopeprg=gtags-cscope
+" 0 for c, 1 for c++
+set csto=0
 
 " move last to make sure valid
 set cindent
