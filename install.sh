@@ -13,6 +13,12 @@
 function show_help(){
 cat << EOF
 Usage: ${0##*/} [-hv] [-a ACTION(pull|push)] [-d DEBUG(just dryrun)] [-m NOTE]
+Examples:
+$ ./install.sh -a pull                       # sync from remote github
+$ ... change ...
+$ ./install.sh -da push -m "commit message"  # dryrun review
+$ ./install.sh -a push -m "commit message"   # sync to remote github
+
 Do stuff like git pull|push, but also refresh the file between git and our pc's home
 
     -h          display this help and exit
