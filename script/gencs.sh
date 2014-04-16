@@ -1,15 +1,13 @@
 #!/bin/sh
 function show_help(){
 cat << EOF
-Usage: ${0##*/} [-hv] [-a ACTION(pull|push)] [-d DEBUG(just dryrun)] [-m NOTE]
+Usage: ${0##*/} [-hv] [-a ACTION(wad|daemon|all)] [-d DEBUG(just dryrun)]
     -h          display this help and exit
-    -a ACTION   pull action. pull from github, then copy override our local working env
-                push action. copy from local pc to here, then push to github
+    -a ACTION   wad|daemon|all
     -d DEBUG    just dry run
-    -m NOTE     git commit message
     -v          verbose mode.
 Examples:
-$ ./install.sh -a pull
+$ ./gencs.sh -a all
 EOF
 }
 
@@ -86,7 +84,11 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 elif [ $action_mode == 'all' ]; then
-	execute "find . -name "*.c" -o -name "*.h" > cscope.files"
+	execute "find . -name '*.c' -o -name '*.h' | \
+		grep -v 'wad/ui/stdin/' | \
+		grep -v 'wad/test/' | \
+		grep -v 'wad/redirect/socket/' \
+		> cscope.files"
 	execute "sort cscope.files > cscope.files.sorted"
 	execute "mv cscope.files.sorted cscope.files"
 	execute "cscope -kbq"
