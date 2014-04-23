@@ -82,38 +82,35 @@ Bundle 'gmarik/vundle'
 " ****non github repos
 " ****git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
-
-" Just leave keymap:
-"nmap <unique> <Leader>m <Plug>MarkSet
-"nmap <unique> <Leader>x <Plug>MarkClear
-"nmap <unique> <Leader>> <Plug>MarkSearchCurrentNext
-"nmap <unique> <Leader>< <Plug>MarkSearchCurrentPrev
-Bundle 'Mark'
-
 Bundle 'darkspectrum'
 Bundle 'holokai'
+Bundle 'tomasr/molokai'
+
 Bundle 'a.vim'
 Bundle 'file-line'
 Bundle 'DrawIt'
 "Bundle 'netrw.vim'
-"Bundle 'AnsiEsc.vim'
 "Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
-Bundle 'tomasr/molokai'
-Bundle 'aklt/plantuml-syntax'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'millermedeiros/vim-statline'
 Bundle 'Lokaltog/vim-easymotion'
-" yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
-Bundle 'wincent/Command-T'
+"Bundle 'Shougo/vimproc.vim'
+
+Bundle 'Mark'
+"Bundle 'AnsiEsc.vim'
+"Bundle 'scrooloose/syntastic'
+Bundle 'aklt/plantuml-syntax'
 Bundle 'elzr/vim-json'
 Bundle 'Glench/Vim-Jinja2-Syntax'
-"Bundle 'Shougo/vimproc.vim'
+Bundle 'plasticboy/vim-markdown'
+
 "Bundle 'Shougo/unite.vim'
-"Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'scrooloose/syntastic'
 "Bundle 'OmniCppComplete'
 "Bundle 'L9'
 "Bundle 'AutoComplPop'
+" yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
+Bundle 'wincent/Command-T'
 
 " ...
 " Not very good, slower your vim
@@ -130,7 +127,6 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 "    let g:ycm_autoclose_preview_window_after_completion=1
 "    nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "Bundle 'Valloric/YouCompleteMe'
-
 
 filetype plugin indent on     " required!
 "
