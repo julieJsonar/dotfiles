@@ -103,7 +103,8 @@ Bundle 'Mark'
 Bundle 'aklt/plantuml-syntax'
 Bundle 'elzr/vim-json'
 Bundle 'Glench/Vim-Jinja2-Syntax'
-Bundle 'plasticboy/vim-markdown'
+"Bundle 'plasticboy/vim-markdown'
+Bundle 'tpope/vim-markdown'
 
 "Bundle 'Shougo/unite.vim'
 "Bundle 'OmniCppComplete'
@@ -139,15 +140,17 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
-"
-" Wilson's config from here:
+" our config from here:
+let mapleader = ";"
+" diable Ex mode
+map Q <Nop>
+
 set nocompatible
-hi CursorLine guibg=Grey40
-set nomodeline
-set hidden
 set guifont=Liberation\ Mono\ 13
 " Disable any use of bold fonts
 set t_md=
+set t_vb=
+set hidden
 
 syntax enable
 "colorscheme darkspectrum
@@ -155,12 +158,8 @@ syntax enable
 colorscheme holokai
 set background=dark
 
-" support mouse click-jump and window-active
-set mouse=a	
+set mouse=a
 set mousefocus
-
-set noshowmatch
-set nolist
 set clipboard+=unnamed
 set foldmethod=manual
 
@@ -170,15 +169,40 @@ set wildignorecase
 set smartcase
 set hlsearch
 set incsearch
-set nowrapscan
 set history=1000
 set undolevels=1000
+set shortmess+=a
+set scrolloff=1
+set wildignore+=.hg,*.pyc
+set tabstop=4
+set shiftwidth=4
+set textwidth=79
+
 set visualbell
 set noerrorbells
 set nobackup
+set noshowmode
+set nomodeline
+set nowrap
+set nowrapscan
 set noswapfile
-set t_vb=
-set nostartofline	" keep cursor position when switch buffers
+set nostartofline
+set noshowmatch
+
+" c developer
+set nonumber
+set cindent
+set autoindent
+set smartindent
+set list
+set paste
+"set showcmd
+set splitbelow
+set splitright
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 "set autochdir       " if work with shell or cscope, please not change work-dir
 set sessionoptions-=options    " do not store global and local values in a session
@@ -186,6 +210,12 @@ set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
 
+" vimgrep exclude dir
+set wildignore+=*/kernel/**
+set wildignore+=*/linux-2.4.25/**
+set wildignore+=*/linuxatm/**
+set wildignore+=*/cooked/**
+set wildignore+=*/router/**
 
 "set path=~/nbapp/**	" allows me to search in my project directory and subdirectories
 "set backupdir=~/nbapp/temp		" makes vim create backup files in a special temporary folder
@@ -194,6 +224,7 @@ set ssop+=sesdir     " work under current dir as relative path
 "hi MatchParen cterm=none ctermbg=green ctermfg=none
 "hi MatchParen cterm=none ctermbg=green ctermfg=blue
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+hi CursorLine guibg=Grey40
 
 " change highlight color for search hits
 "hi Search guibg=peru guifg=wheat
@@ -204,67 +235,23 @@ hi Search ctermfg=Red ctermbg=NONE cterm=NONE
 hi TabLine ctermfg=DarkBlue ctermbg=NONE cterm=NONE
 hi TabLineSel ctermfg=Red ctermbg=NONE cterm=NONE
 hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
+"hi NonText ctermfg=7 guifg=Gray
+hi NonText ctermfg=DarkGrey guifg=DarkGrey
+hi clear SpecialKey
+hi link SpecialKey NonText
 
 "set listchars=nbsp:.,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=tab:>.,trail:~,extends:<,nbsp:.
 " The characters after tab is U+2002. in vim with Ctrl-v u 2 0 0 2 (in insert mode).
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
-"hi NonText ctermfg=7 guifg=Gray
-hi NonText ctermfg=DarkGrey guifg=DarkGrey
-hi clear SpecialKey
-hi link SpecialKey NonText
 
 filetype plugin indent on
 cmap w!! w !sudo tee % >/dev/null
 autocmd InsertEnter,InsertLeave * set cul!
 
-" abbrev. of messages (avoids 'hit enter')
-set shortmess+=a
-
-" do not display the current mode
-set noshowmode
-
-" min num of lines to keep above/below the cursor
-set scrolloff=1
-
-" disable the line numbering column
-"set nonumber
-
-" also ignore these while opening and filtering
-set wildignore+=.hg,*.pyc
-
-" a tab is 4 spaces
-set tabstop=4
-
-" autoindent is 4 spaces
-set shiftwidth=4
-
-" the text width
-set textwidth=79
-
-" nowrap long lines
-set nowrap
-
-let mapleader = ";"
-map Q <Nop>			" diable Ex mode
-
 vmap <leader>y   "+y
-" delete/paste without overwriting the last yank
-"" delete without yanking
-"nnoremap <leader>d "_d
-"vnoremap <leader>d "_d
-" replace currently selected text with default register without yanking it
 vnoremap <leader>p "_dP
-
-"vmap <leader>y   :<c-u>!echo '<c-r>*' \| tr -d '\n' \| xsel <cr><cr>
-" make p in Visual mode replace the selected text with the yank register
-"vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-" switch between tabs
-"let g:lasttab = 1
-"nmap <Leader>t :exe "tabn ".g:lasttab<CR>
-"au TabLeave * let g:lasttab = tabpagenr()
 
 " :R !ls -l   grab command output int new buffer
 command! -nargs=* -complete=shellcmd R tabnew
@@ -297,37 +284,17 @@ let g:miniBufExplorerAutoStart = 1
 
 let g:vim_json_syntax_conceal = 0
 
-" split normal
-set splitbelow
-set splitright
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
 " ctags -R *;  ctags -L cscope.files
 nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>, :ptnext<cr>
 nmap <silent> <leader>. :ptprevious<cr>
-" open function declare in preview windows
-" open function declare in the side windows
-" copy word to other windows new line
 nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
-"nmap <silent> ;l mxviw<c-w>lmx:<c-u>cs f g <c-r>*<cr>zz<c-w><c-p>`x
-"nmap <silent> ;h mxviw<c-w>hmx:<c-u>cs f g <c-r>*<cr>zz<c-w><c-p>`x
-"nmap <silent> ;p mxviwy<c-w>lmxo<ESC>p<c-w><c-p>`x
 
 " TAB conflict with ctrl-i
 nnoremap <silent> <leader>q :e #<cr>
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
 nnoremap <silent> <leader>a :A<cr>
 
-" vimgrep exclude dir
-set wildignore+=*/kernel/**
-set wildignore+=*/linux-2.4.25/**
-set wildignore+=*/linuxatm/**
-set wildignore+=*/cooked/**
-set wildignore+=*/router/**
 
 set grepprg=grep
 function! GrepCurrent()
@@ -775,10 +742,3 @@ nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 0 for c, 1 for c++
 set csto=0
 
-" move last to make sure valid
-set cindent
-set autoindent
-set smartindent
-set list
-set paste
-"set showcmd
