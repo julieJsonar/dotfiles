@@ -158,9 +158,10 @@ syntax enable
 colorscheme holokai
 set background=dark
 
-set mouse=a
-set mousefocus
-set clipboard+=unnamed
+if has('mouse')
+	set mouse=a
+	set mousefocus
+endif
 set foldmethod=manual
 
 set backspace=indent,eol,start
@@ -250,6 +251,8 @@ filetype plugin indent on
 cmap w!! w !sudo tee % >/dev/null
 autocmd InsertEnter,InsertLeave * set cul!
 
+set clipboard+=unnamed
+set clipboard+=unnamedplus
 vmap <leader>y   "+y
 vnoremap <leader>p "_dP
 
