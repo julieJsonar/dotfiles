@@ -296,8 +296,7 @@ nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
 " TAB conflict with ctrl-i
 nnoremap <silent> <leader>q :e #<cr>
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
-nnoremap <silent> <leader>a :A<cr>
-
+nnoremap <silent> <leader>a :FSHere<cr>
 
 set grepprg=grep
 function! GrepCurrent()
