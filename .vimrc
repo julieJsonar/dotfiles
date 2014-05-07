@@ -86,7 +86,7 @@ Bundle 'darkspectrum'
 Bundle 'holokai'
 Bundle 'tomasr/molokai'
 
-Bundle 'a.vim'
+Bundle 'derekwyatt/vim-fswitch'
 Bundle 'file-line'
 Bundle 'DrawIt'
 "Bundle 'netrw.vim'
