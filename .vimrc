@@ -102,7 +102,7 @@ Bundle 'Mark'
 "Bundle 'scrooloose/syntastic'
 Bundle 'aklt/plantuml-syntax'
 "Bundle 'elzr/vim-json'
-Bundle 'leshill/vim-json'
+"Bundle 'leshill/vim-json'
 Bundle 'Glench/Vim-Jinja2-Syntax'
 "Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-markdown'
@@ -251,6 +251,7 @@ set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 filetype plugin indent on
 cmap w!! w !sudo tee % >/dev/null
 autocmd InsertEnter,InsertLeave * set cul!
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
