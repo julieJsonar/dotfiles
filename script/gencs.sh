@@ -85,6 +85,7 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 elif [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h' | \
+		grep -v '/_' | \
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/test/' | \
