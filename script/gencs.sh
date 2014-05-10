@@ -75,7 +75,7 @@ if [ $action_mode == 'wad' ]; then
 	execute "ctags -e --c-kinds=+defgpstuxm -L ~/script/trace.files"
 elif [ $action_mode == 'daemon' ]; then
 	execute "find daemon cmf migadmin migbase proxy include -name '*.c' -o -name '*.h' | \
-		grep -v 'wad/ui/stdin/' | \
+		grep -v '^_' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
 		> cscope.files"
@@ -85,6 +85,7 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 elif [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h' | \
+		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
