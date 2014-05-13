@@ -86,6 +86,7 @@ Bundle 'darkspectrum'
 Bundle 'holokai'
 Bundle 'tomasr/molokai'
 
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'derekwyatt/vim-fswitch'
 Bundle 'file-line'
 Bundle 'DrawIt'
@@ -202,10 +203,6 @@ set paste
 "set showcmd
 set splitbelow
 set splitright
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
 
 "set autochdir       " if work with shell or cscope, please not change work-dir
 set sessionoptions-=options    " do not store global and local values in a session
@@ -259,6 +256,19 @@ set clipboard+=unnamedplus
 vmap <leader>y   "+y
 vnoremap <leader>p "_dP
 
+" https://github.com/christoomey/vim-tmux-navigator
+"nnoremap <c-h> <c-w>h
+"nnoremap <c-j> <c-w>j
+"nnoremap <c-k> <c-w>k
+"nnoremap <c-l> <c-w>l
+"nnoremap <silent> <leader>q :e #<cr>
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
+nnoremap <silent> <c-q>  :TmuxNavigatePrevious<cr>
+
 " :R !ls -l   grab command output int new buffer
 command! -nargs=* -complete=shellcmd R tabnew
 			\| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
@@ -297,7 +307,6 @@ nmap <silent> <leader>. :ptprevious<cr>
 nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
 
 " TAB conflict with ctrl-i
-nnoremap <silent> <leader>q :e #<cr>
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
 nnoremap <silent> <leader>a :FSHere<cr>
 

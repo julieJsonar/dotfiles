@@ -57,7 +57,6 @@ alias mywadfull='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/
 alias mycrash='~/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog'
 alias vi='gvim -v'
 alias vim='gvim -v'
-alias gitme='git --no-pager'
 alias eclipse='nohup ~/tools/eclipse/eclipse > /dev/null 2>&1 &'
 alias xnview='nohup ~/tools/XnView/XnView > /dev/null 2>&1 &'
 alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}'
