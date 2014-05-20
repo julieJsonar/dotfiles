@@ -169,7 +169,6 @@ set foldmethod=manual
 
 set backspace=indent,eol,start
 set ignorecase
-set wildignorecase
 set smartcase
 set hlsearch
 set incsearch
@@ -177,7 +176,6 @@ set history=1000
 set undolevels=1000
 set shortmess+=a
 set scrolloff=1
-set wildignore+=.hg,*.pyc
 set tabstop=4
 set shiftwidth=4
 set textwidth=79
@@ -210,7 +208,15 @@ set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
 
-" vimgrep exclude dir
+" vimgrep, ctrlp exclude dir
+set wildignorecase
+if exists("g:ctrl_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=.hg,*.pyc
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,coverage/*,vendor
+
 set wildignore+=*/kernel/**
 set wildignore+=*/linux-2.4.25/**
 set wildignore+=*/linuxatm/**
