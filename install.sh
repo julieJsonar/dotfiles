@@ -131,6 +131,7 @@ do
 done
 
 if [ $action_mode == 'push' ]; then
+	execute "git add ."
 	execute "git commit -am \"$commit_msg\" && git push origin master"
 fi
 
