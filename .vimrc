@@ -213,9 +213,9 @@ set wildignorecase
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=.hg,*.pyc
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,coverage/*,vendor
+set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
+set wildignore+=*.gif,*.png,*.map
 
 set wildignore+=*/kernel/**
 set wildignore+=*/linux-2.4.25/**
