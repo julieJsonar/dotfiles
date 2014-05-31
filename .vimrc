@@ -513,8 +513,8 @@ fun! InsertTraceAll(action)
 		endif
 
 		exec ":wa"
-		exec ":qa"
-		echo "All Done!"
+		"exec ":qa"
+		echo "Traceadjust() Finish!"
 		return
 	endif
 
