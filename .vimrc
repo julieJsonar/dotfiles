@@ -513,8 +513,8 @@ fun! InsertTraceAll(action)
 		endif
 
 		exec ":wa"
-		exec ":qa"
-		echo "All Done!"
+		"exec ":qa"
+		echo "Traceadjust() Finish!"
 		return
 	endif
 
@@ -637,8 +637,9 @@ fun! InsertTraceAll(action)
 	endif
 
 	exec ":wa"
-	exec ":qa"
-	echo "All Done!"
+	"exec ":qa"
+	echo "Traceadd() Finish!"
+	echo "Cont. :call Traceadjust() after gen cscope and ctags index"
 endfun
 
 fun! Traceadd()
