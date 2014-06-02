@@ -1,0 +1,13 @@
+#!/bin/expect -f
+spawn /bin/sh -c "plink -telnet 192.168.1.125 | tee ~/tmp/log.125"
+expect "login:" 
+send "admin\r"
+expect "Password:"
+send "\r"
+expect "#"
+send "diag debug enable\r"
+expect "#"
+send "diag debug app wad -1\r"
+expect "#"
+send "diag test app wad_disk 3\r"
+interact

@@ -1,0 +1,11 @@
+#!/bin/expect -f
+spawn telnet 172.16.80.125
+expect "login:" 
+send "admin\r"
+expect "Password:"
+send "\r"
+expect "#"
+send "exec restore image tftp image.out 172.16.80.121\r"
+expect "continue?"
+send "y"
+interact
