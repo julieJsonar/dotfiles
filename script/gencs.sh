@@ -64,7 +64,7 @@ else
 fi
 
 if [ $action_mode == 'wad' ]; then
-	execute "find daemon/wad -name '*.c' -o -name '*.h' | \
+	execute "find daemon/wad -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
@@ -74,7 +74,7 @@ if [ $action_mode == 'wad' ]; then
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L ~/script/trace.files"
 elif [ $action_mode == 'daemon' ]; then
-	execute "find daemon cmf migadmin migbase proxy include -name '*.c' -o -name '*.h' | \
+	execute "find daemon cmf migadmin migbase proxy include -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v '^_' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
@@ -84,7 +84,7 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 elif [ $action_mode == 'all' ]; then
-	execute "find . -name '*.c' -o -name '*.h' | \
+	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v '/_' | \
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/ui/stdin/' | \
