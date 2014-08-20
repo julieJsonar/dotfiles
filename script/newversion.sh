@@ -7,8 +7,8 @@ readonly NEWDIR
 rm -fr ${NEWDIR}
 mkdir ${NEWDIR}
 cd ${NEWDIR}
-svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/branches/5.x/trunk/FortiOS/fortinet 5tr >/dev/null
-cd 5tr
+svn checkout http://scm-yvr.fortinet.com:8080/svn/svnfos/FortiOS/branches/5.x/5.2/trunk/FortiOS/fortinet 5.2 >/dev/null
+cd 5.2
 ./Configure -m FGT_111C -k -d y -c
 patch -p0 < ~/script/newversion.diff
-make -s > log.build 2>&1
+make image -s > log.build 2>&1

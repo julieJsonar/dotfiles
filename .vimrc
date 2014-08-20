@@ -60,7 +60,7 @@
 " > Draw topoligy:
 " DrawIt:		use \di to start (\ds to stop)
 "
-" CrashLog		:call Tracecrash()	resolve fgt's crashlog
+" CrashLog		mark 'a, 'b, then :call Tracecrash()	resolve fgt's crashlog
 "
 " > Save workplace:
 " :mksession! log.vim.session	<<< Save Session
@@ -147,6 +147,7 @@ filetype plugin indent on     " required!
 let mapleader = ";"
 " diable Ex mode
 map Q <Nop>
+nnoremap <C-c> <silent> <C-c>
 
 set nocompatible
 set guifont=Liberation\ Mono\ 13
@@ -193,9 +194,9 @@ set noshowmatch
 
 " c developer
 set nonumber
-set cindent
 set autoindent
 set smartindent
+set cindent
 set list
 set paste
 "set showcmd
