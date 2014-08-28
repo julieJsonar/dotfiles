@@ -79,3 +79,4 @@ export PERL_MM_OPT="INSTALL_BASE=/home/wilson/perl5";
 export PERL5LIB="/home/wilson/perl5/lib/perl5:$PERL5LIB";
 export PYTHONPATH="/home/wilson/work/autotest-robot/library"
 export AWKPATH="/home/wilson/script/awk:/home/wilson/script/awk/awk-libs";
+export EDITOR='vim'
