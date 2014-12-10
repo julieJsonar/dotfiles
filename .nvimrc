@@ -1,13 +1,6 @@
 " Installation:
 " =============
-" 1. Vim plugin manager:
-"	<https://github.com/gmarik/vundle>
-"	$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"	... copy vimrc from vundle's page ...
-"	... open vim to sure everything OK! ...
-" 2. update the basic vimrc to this one
-"	... then, open vim, command :BundleInstall ...
-"	... Done! ...
+" Vim plugin manager vundle: [https://github.com/gmarik/Vundle.vim]
 "
 " Usage:
 " ======
