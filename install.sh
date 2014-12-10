@@ -2,7 +2,7 @@
 
 # QuickStart
 # ==========
-#
+# Help
 # ./install.sh -a pull                       # sync from remote github
 # ... change ...
 # ./install.sh -da push -m "commit message"  # dryrun review
