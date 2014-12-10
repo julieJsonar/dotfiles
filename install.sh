@@ -109,6 +109,10 @@ fi
 
 if [ $action_mode == 'pull' ]; then
 	execute "git pull --all"
+
+# special commands
+	execute "mkdir -p ~/.vim/plugin"
+	execute "cp log.vim ~/.vim/plugin/log.vim"
 fi
 
 for f in .* *
@@ -131,6 +135,7 @@ do
 done
 
 if [ $action_mode == 'push' ]; then
+# special commands
 	execute "cp ~/.vim/plugin/log.vim ."
 
 	execute "git add ."
