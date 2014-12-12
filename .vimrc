@@ -152,7 +152,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " My local plugins
-source /home/wilson/.vim/plugin/log.vim
+"source /home/wilson/.vim/plugin/log.vim
 
 let mapleader = ";"
 " diable Ex mode
