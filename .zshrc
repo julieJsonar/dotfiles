@@ -75,7 +75,6 @@ alias xnview='nohup ~/tools/XnView/XnView > /dev/null 2>&1 &'
 alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}'
 alias traceadd='vi . -c "call Traceadd()" ; cswad ; vi . -c "call Traceadjust()"'
 alias tracedel='vi . -c "call Tracedel()"'
-alias tmux='TERM=xterm-256color tmux'
 
 # export MYTYPESCRIPT=~/script/`date +%Y%m%d`
 # exec /usr/bin/script -q -a -f -t 2>${MYTYPESCRIPT}.time ${MYTYPESCRIPT}.lst
