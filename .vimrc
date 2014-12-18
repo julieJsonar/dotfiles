@@ -114,9 +114,10 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'L9'
 "Bundle 'AutoComplPop'
 
+Bundle 'vim-scripts/gtags.vim'
+"Bundle 'Shougo/unite.vim'
 " yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
 "Bundle 'wincent/Command-T'
-
 
 " ...
 " Not very good, slower your vim
@@ -773,7 +774,22 @@ nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-"set cscopeprg=gtags-cscope
+
+" Using gnu-global replace cscope&ctags
+" $ find . -name '*.[ch]' > tags.files
+" $ gtags -f tags.files
+" $ global -u    <<< incremental update
+" $ vim -c 'cs add GTAGS'
+" have gtags.vim, the name can be partial
+"   :Gtags funcname
+"   :Gtags -P filename
+"   :Gtags -r funcname    <<< called
+"   :GtagsCurrent
+set cscopeprg=gtags-cscope
+
+" gtags which come from gnu-global + gtags.vim
+" http://www.gnu.org/software/global/manual/global.html
+nmap <leader>] :GtagsCursor<CR>
+
 " 0 for c, 1 for c++
 set csto=0
-

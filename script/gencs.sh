@@ -93,8 +93,9 @@ elif [ $action_mode == 'all' ]; then
 		> cscope.files"
 	execute "sort cscope.files > cscope.files.sorted"
 	execute "mv cscope.files.sorted cscope.files"
-	execute "cscope -kbq"
-	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
+	execute "/usr/bin/time gtags -f cscope.files"
+#	execute "/usr/bin/time cscope -kbq"
+#	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 fi
 
 # End of file
