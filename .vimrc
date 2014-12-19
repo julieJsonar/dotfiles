@@ -330,7 +330,7 @@ nnoremap <silent> <leader>a :FSHere<cr>
 
 set grepprg=grep
 function! GrepCurrent()
-  return   "R !grep -Enr --include='*.[ch]' -- '" . @* . "' daemon/wad"
+  return   "R !grep -Enr --include='*.[ch]' -- '" . @" . "' daemon/wad"
 endfunction
 map <leader>g :<C-\>eGrepCurrent() <CR>
 map <leader>s :<c-u>R !grep-malloc.sh <c-r>*

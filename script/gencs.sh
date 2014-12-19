@@ -68,9 +68,9 @@ if [ $action_mode == 'wad' ]; then
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
-		> cscope.files"
-	execute "sort cscope.files > cscope.files.sorted"
-	execute "mv cscope.files.sorted cscope.files"
+		> tags.files"
+	execute "sort tags.files > tags.files.sorted"
+	execute "mv tags.files.sorted tags.files"
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L ~/script/trace.files"
 elif [ $action_mode == 'daemon' ]; then
@@ -78,11 +78,11 @@ elif [ $action_mode == 'daemon' ]; then
 		grep -v '^_' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
-		> cscope.files"
-	execute "sort cscope.files > cscope.files.sorted"
-	execute "mv cscope.files.sorted cscope.files"
+		> tags.files"
+	execute "sort tags.files > tags.files.sorted"
+	execute "mv tags.files.sorted tags.files"
 	execute "cscope -kbq"
-	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
+	execute "ctags -e --c-kinds=+defgpstuxm -L tags.files"
 elif [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v '/_' | \
@@ -90,12 +90,12 @@ elif [ $action_mode == 'all' ]; then
 		grep -v 'wad/ui/stdin/' | \
 		grep -v 'wad/test/' | \
 		grep -v 'wad/redirect/socket/' \
-		> cscope.files"
-	execute "sort cscope.files > cscope.files.sorted"
-	execute "mv cscope.files.sorted cscope.files"
-	execute "/usr/bin/time gtags -f cscope.files"
+		> tags.files"
+	execute "sort tags.files > tags.files.sorted"
+	execute "mv tags.files.sorted tags.files"
+	execute "/usr/bin/time gtags -f tags.files"
 #	execute "/usr/bin/time cscope -kbq"
-#	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L cscope.files"
+#	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L tags.files"
 fi
 
 # End of file
