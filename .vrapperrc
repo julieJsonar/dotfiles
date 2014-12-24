@@ -2,6 +2,6 @@ set smartindent
 set autoindent
 set ignorecase
 set smartcase
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus,exclude:console
 set hlsearch
 set incsearch
