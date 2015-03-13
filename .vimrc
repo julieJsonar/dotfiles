@@ -797,6 +797,9 @@ nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
+
+
 " Using gnu-global replace cscope&ctags
 ""Using gtags.vim
 "" $ find . -name '*.[ch]' > tags.files
