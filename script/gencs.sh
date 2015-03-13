@@ -94,8 +94,10 @@ elif [ $action_mode == 'all' ]; then
 	execute "sort tags.files > tags.files.sorted"
 	execute "mv tags.files.sorted tags.files"
 	execute "/usr/bin/time gtags -f tags.files"
+#	execute "/usr/bin/time global -u -L tags.files"
+
 #	execute "/usr/bin/time cscope -kbq"
-#	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L tags.files"
+	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L tags.files"
 fi
 
 # End of file

@@ -114,7 +114,9 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'L9'
 "Bundle 'AutoComplPop'
 
-Bundle 'vim-scripts/gtags.vim'
+Bundle 'vim-scripts/EasyGrep'
+"Bundle 'vim-scripts/gtags.vim'
+Bundle 'mvalkon/gtags-cscope'
 "Bundle 'Shougo/unite.vim'
 " yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
 "Bundle 'wincent/Command-T'
@@ -220,6 +222,19 @@ set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
 
+"Status Line {
+    set laststatus=2                             " always show statusbar
+    set statusline=
+    set statusline+=%-10.3n\                     " buffer number
+    set statusline+=%f\                          " filename
+    set statusline+=%h%m%r%w                     " status flags
+    set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+    set statusline+=%=                           " right align remainder
+    set statusline+=0x%-8B                       " character value
+    set statusline+=%-14(%l,%c%V%)               " line, character
+    set statusline+=%<%P                         " file position
+"}
+
 " vimgrep, ctrlp exclude dir
 set wildignorecase
 if exists("g:ctrl_user_command")
@@ -287,6 +302,12 @@ nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
 
+" vim local list
+"nnoremap <silent> gn  :lnext<cr>
+"nnoremap <silent> gp  :lpre<cr>
+nnoremap <silent> gn  :cnew<cr>
+nnoremap <silent> gp  :cold<cr>
+
 " :R !ls -l   grab command output int new buffer
 command! -nargs=* -complete=shellcmd R tabnew
 			\| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
@@ -322,7 +343,8 @@ let g:vim_json_syntax_conceal = 0
 nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>, :ptnext<cr>
 nmap <silent> <leader>. :ptprevious<cr>
-nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
+"nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
+nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
 
 " TAB conflict with ctrl-i
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
@@ -770,26 +792,36 @@ nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR>
 nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Using gnu-global replace cscope&ctags
-" $ find . -name '*.[ch]' > tags.files
-" $ gtags -f tags.files
-" $ global -u    <<< incremental update
-" $ vim -c 'cs add GTAGS'
-" have gtags.vim, the name can be partial
-"   :Gtags funcname
-"   :Gtags -P filename
-"   :Gtags -r funcname    <<< called
-"   :GtagsCurrent
-set cscopeprg=gtags-cscope
+""Using gtags.vim
+"" $ find . -name '*.[ch]' > tags.files
+"" $ gtags -f tags.files
+"" $ global -u    <<< incremental update
+"" $ vim -c 'cs add GTAGS'
+"" have gtags.vim, the name can be partial
+""   :Gtags funcname
+""   :Gtags -P filename
+""   :Gtags -r funcname    <<< called
+""   :GtagsCurrent
+"set cscopeprg=gtags-cscope
+"
+"" gtags which come from gnu-global + gtags.vim
+"" http://www.gnu.org/software/global/manual/global.html
+"nmap <leader>] :GtagsCursor<CR>
+"
+"" 0 for c, 1 for c++
+"set csto=0
 
-" gtags which come from gnu-global + gtags.vim
-" http://www.gnu.org/software/global/manual/global.html
-nmap <leader>] :GtagsCursor<CR>
 
-" 0 for c, 1 for c++
-set csto=0
+"Using gtags-cscope.vim
+"<C-space>t  open define in horizon window
+"<C-space><C-space>t  open define in vertical window
+let GtagsCscope_Auto_Load = 1
+let GtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
+set cscopetag
