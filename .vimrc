@@ -116,7 +116,7 @@ Bundle 'tpope/vim-markdown'
 
 Bundle 'vim-scripts/EasyGrep'
 "Bundle 'vim-scripts/gtags.vim'
-Bundle 'mvalkon/gtags-cscope'
+Bundle 'huawenyu/gtags-cscope'
 "Bundle 'Shougo/unite.vim'
 " yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
 "Bundle 'wincent/Command-T'
