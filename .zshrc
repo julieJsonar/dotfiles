@@ -71,6 +71,7 @@ alias mycrash='~/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi c
 alias vi='vim'
 alias vim='vim'
 alias eclipse='nohup ~/tools/eclipse/eclipse -showlocation > /dev/null 2>&1 &'
+alias eclipse='nohup ~/tools/meld/bin/meld > /dev/null 2>&1 &'
 alias xnview='nohup ~/tools/XnView/XnView > /dev/null 2>&1 &'
 alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}'
 alias traceadd='vi . -c "call Traceadd()" ; cswad ; vi . -c "call Traceadjust()"'
