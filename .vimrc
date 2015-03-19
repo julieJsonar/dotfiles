@@ -1,71 +1,78 @@
+"======================================================================
 " Installation:
 " =============
-" 1. Vim plugin manager:
-"	<https://github.com/gmarik/vundle>
-"	$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"	... copy vimrc from vundle's page ...
-"	... open vim to sure everything OK! ...
+" 1. [Vim plugin manager](https://github.com/gmarik/vundle)
+"    $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"    ... copy vimrc from vundle's page ...
+"    ... open vim to sure everything OK! ...
 " 2. update the basic vimrc to this one
-"	... then, open vim, command :BundleInstall ...
-"	... Done! ...
+"    ... then, open vim, command :BundleInstall ...
+"    ... Done! ...
 "
 " Usage:
 " ======
 " <leader> is ";"
 "
-" R !ls -l		grab command output into new tab/buffer
-" gd <or> D		goto declare <or> global declare
-" g; <or> g,	navigate changelist
-" <space>		open preview window, then <c-w>H adjust layout
+" R !ls -l        grab command output into new tab/buffer
+" gd <or> D        goto declare <or> global declare
+" g; <or> g,    navigate changelist
+" <space>        open preview window, then <c-w>H adjust layout
 " <leader><space>open file in preview window, then <c-w>H adjust layout
-" <leader>m		color word, :MarkClear to clear all colors
-" <leader>j		color word and count it
-" <leader>e		dictionary
-" <leader>l		view function name
-" <leader>a		switch .c/.h
-" <leader>t		command-T: search file
-" <leader>g		grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>s		grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>y		copy to clipboard, paste use shift+insert
-" <leader>n		toggle taglist
-" <leader>z		syntax log file: toggle comment
-" <leader>w		notes on source, then view by :cfile log.marks as quickfix
-" <leader>rr	R run current line or selected, <leader>c to close current tab
-" <leader>g ,.	preview definition with ctags: pta, ptn, ptp
+" <leader>m        color word, :MarkClear to clear all colors
+" <leader>j        color word and count it
+" <leader>e        dictionary
+" <leader>l        view function name
+" <leader>a        switch .c/.h
+" <leader>t        command-T: search file
+" <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
+" <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
+" <leader>y        copy to clipboard, paste use shift+insert
+" <leader>n        toggle taglist
+" <leader>z        syntax log file: toggle comment
+" <leader>w        notes on source, then view by :cfile log.marks as quickfix
+" <leader>rr    R run current line or selected, <leader>c to close current tab
+" <leader>g ,.    preview definition with ctags: pta, ptn, ptp
 "
-" call Asm()	disassembly current function
-" <leader>bs	svn blame	
-" <leader>bg	git blame
+" call Asm()    disassembly current function
+" <leader>bs    svn blame    
+" <leader>bg    git blame
 "
-" <C-n|p>; <leader>,|;> 	jumps quickfix
-" <F2>			use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
-" <leader>i 	use plantuml gen uml as acsii
-" <F3>			redirect g command output tabn
+" <C-n|p>; <leader>,|;>     jumps quickfix
+" <F2>            use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
+" <leader>i     use plantuml gen uml as acsii
+" <F3>            redirect g command output tabn
 "
-" <leader>f[f|g|s|  c|d]		cs find seriese, :!cscope -[R]kbq; :cs reset
-" <leader><leader>w|b <or> fx	easy motion to word
-" :g/regex/t$					copy match lines append to tail
+" <leader>f[f|g|s|  c|d]        cs find seriese, :!cscope -[R]kbq; :cs reset
+" <leader><leader>w|b <or> fx    easy motion to word
+" :g/regex/t$                    copy match lines append to tail
 "
 " Howtos:
 " =======
-" > Access register from command or script:
-" :@+		<<< have @ as prefix, then add register's name
+"   Register:
+"   :@+        <<< have @ as prefix, then add register's name
 "
-" > commandline using vimscript's function:
-" :<C-\>eYourFunc() <CR>		<<< use YourFunc() return to replace all current command
+"   Function:
+"   :<C-\>eYourFunc() <CR>   <<< use YourFunc() return to replace all current command
 "
-" > Batch process files:
-" :Traceadd|adjust|clear()		_WAD_TRACE_
+"   Batchfiles:
+"   :Traceadd|adjust|clear()        _WAD_TRACE_
 "
-" > Draw topoligy:
-" DrawIt:		use \di to start (\ds to stop)
+"   DrawIt:        use \di to start (\ds to stop)
+"   CrashLog:        mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "
-" CrashLog		mark 'a, 'b, then :call Tracecrash()	resolve fgt's crashlog
-"
-" > Save workplace:
-" :mksession! log.vim.session	<<< Save Session
-" $ vi -S log.vim.session		<<< Load Session
+"   SaveSession:
+"   :mksession! log.vim.session    <<< Save Session
+"   $ vi -S log.vim.session        <<< Load Session
+
+"   W3m:
+"   :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
+"   <backspace> Back page
+"   <enter> Open link under the cursor
+"   f Hit-A-Hint.
+"   s Toggle Syntax On/Off
+"   c Toggle Cookie On/Off.
 "======================================================================
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -137,6 +144,7 @@ Bundle 'huawenyu/gtags-cscope'
 "    let g:ycm_autoclose_preview_window_after_completion=1
 "    nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "Bundle 'Valloric/YouCompleteMe'
+Bundle 'yuratomo/w3m.vim'
 
 
 
@@ -191,9 +199,6 @@ set history=1000
 set undolevels=1000
 set shortmess+=a
 set scrolloff=1
-set tabstop=4
-set shiftwidth=4
-set textwidth=79
 
 set visualbell
 set noerrorbells
@@ -206,11 +211,25 @@ set noswapfile
 set nostartofline
 set noshowmatch
 
-" c developer
+" indent
+set tabstop=4
+set shiftwidth=4
+set textwidth=78
+
+" C indent
 set nonumber
 set autoindent
 set smartindent
 set cindent
+set expandtab
+
+" DetectIndent using :DetectIndent command
+let g:detectindent_preferred_expandtab = 0
+let g:detectindent_preferred_indent = 4
+let g:detectindent_preferred_when_mixed = 4
+let g:detectindent_max_lines_to_analyse = 1024
+autocmd VimEnter * DetectIndent
+
 set list
 set paste
 "set showcmd
@@ -235,6 +254,10 @@ set ssop+=sesdir     " work under current dir as relative path
     set statusline+=%-14(%l,%c%V%)               " line, character
     set statusline+=%<%P                         " file position
 "}
+
+" w3m
+let g:w3m#command = '/usr/bin/w3m'
+let g:w3m#lang = 'en_US'
 
 " vimgrep, ctrlp exclude dir
 set wildignorecase
