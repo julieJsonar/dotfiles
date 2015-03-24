@@ -11,13 +11,12 @@
 "
 " Usage:
 " ======
-" <leader> is ";"
-"
-" R !ls -l        grab command output into new tab/buffer
-" gd <or> D        goto declare <or> global declare
-" g; <or> g,    navigate changelist
-" <space>        open preview window, then <c-w>H adjust layout
-" <leader><space>open file in preview window, then <c-w>H adjust layout
+" <leader>         ";"
+"  R !ls -l        grab command output into new tab/buffer
+"  gd <or> D       goto declare <or> global declare
+"  g; <or> g,      navigate changelist
+" <space>          open preview window, then <c-w>H adjust layout
+" <leader><space>  open file in preview window, then <c-w>H adjust layout
 " <leader>m        color word, :MarkClear to clear all colors
 " <leader>j        color word and count it
 " <leader>e        dictionary
@@ -30,47 +29,42 @@
 " <leader>n        toggle taglist
 " <leader>z        syntax log file: toggle comment
 " <leader>w        notes on source, then view by :cfile log.marks as quickfix
-" <leader>rr    R run current line or selected, <leader>c to close current tab
-" <leader>g ,.    preview definition with ctags: pta, ptn, ptp
+" <leader>rr       R run current line or selected, <leader>c to close current tab
+" <leader>g ,.     preview definition with ctags: pta, ptn, ptp
 "
-" call Asm()    disassembly current function
-" <leader>bs    svn blame    
-" <leader>bg    git blame
+" call Asm()       disassembly current function
+" <leader>bs       svn blame
+" <leader>bg       git blame
 "
-" <C-n|p>; <leader>,|;>     jumps quickfix
-" <F2>            use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
-" <leader>i     use plantuml gen uml as acsii
-" <F3>            redirect g command output tabn
+" <C-n|p>; <leader>,|;>         jumps quickfix
+" <F2>             use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
+" <leader>i        use plantuml gen uml as acsii
+" <F3>             redirect g command output tabn
 "
 " <leader>f[f|g|s|  c|d]        cs find seriese, :!cscope -[R]kbq; :cs reset
-" <leader><leader>w|b <or> fx    easy motion to word
-" :g/regex/t$                    copy match lines append to tail
+" <leader><leader>w|b <or> fx   easy motion to word
+" :g/regex/t$      copy match lines append to tail
 "
 " Howtos:
 " =======
 "   Register:
-"   :@+        <<< have @ as prefix, then add register's name
-"
+"       :@+                          # have @ as prefix, then add register's name
 "   Function:
-"   :<C-\>eYourFunc() <CR>   <<< use YourFunc() return to replace all current command
-"
+"       :<C-\>eYourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
-"   :Traceadd|adjust|clear()        _WAD_TRACE_
-"
-"   DrawIt:        use \di to start (\ds to stop)
-"   CrashLog:        mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
-"
+"       :Traceadd|adjust|clear()     # _WAD_TRACE_
+"   DrawIt:                          # use \di to start (\ds to stop)
+"   CrashLog:                        # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "   SaveSession:
-"   :mksession! log.vim.session    <<< Save Session
-"   $ vi -S log.vim.session        <<< Load Session
-
+"       :mksession! log.vim.session  # Save Session
+"       $ vi -S log.vim.session      # Load Session
 "   W3m:
-"   :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
-"   <backspace> Back page
-"   <enter> Open link under the cursor
-"   f Hit-A-Hint.
-"   s Toggle Syntax On/Off
-"   c Toggle Cookie On/Off.
+"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
+"       <backspace>                  # Back page
+"       <enter>                      # Open link under the cursor
+"       f                            # Hit-A-Hint.
+"       s                            # Toggle Syntax On/Off
+"       c                            # Toggle Cookie On/Off.
 "======================================================================
 
 set nocompatible              " be iMproved, required
