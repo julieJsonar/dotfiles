@@ -173,10 +173,10 @@ set t_vb=
 set hidden
 
 syntax enable
+"set background=dark
 "colorscheme darkspectrum
 "colorscheme molokai
 colorscheme holokai
-set background=dark
 
 if has('mouse')
 	set mouse=a
