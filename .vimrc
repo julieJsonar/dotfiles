@@ -796,11 +796,11 @@ let g:html_use_css = 0
 "   's'   symbol: find all references to the token under cursor
 "   'g'   global: find global definition(s) of the token under cursor
 "   'c'   calls:  find all calls to the function name under cursor
+"   'd'   called: find functions that function under cursor calls
 "   't'   text:   find all instances of the text under cursor
 "   'e'   egrep:  egrep search for the word under cursor
 "   'f'   file:   open the filename under cursor
 "   'i'   includes: find files that include the filename under cursor
-"   'd'   called: find functions that function under cursor calls
 " +ctags
 "         :tags   see where you currently are in the tag stack
 "         :tag sys_<TAB>  auto-complete
@@ -808,11 +808,11 @@ let g:html_use_css = 0
 nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR>
 nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
 
