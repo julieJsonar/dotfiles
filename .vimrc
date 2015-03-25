@@ -117,8 +117,7 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'AutoComplPop'
 
 Bundle 'vim-scripts/EasyGrep'
-"Bundle 'vim-scripts/gtags.vim'
-Bundle 'huawenyu/gtags-cscope'
+"Bundle 'huawenyu/gtags-cscope'
 "Bundle 'Shougo/unite.vim'
 " yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
 "Bundle 'wincent/Command-T'
@@ -839,10 +838,10 @@ nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
 "set csto=0
 
 
-"Using gtags-cscope.vim
-"<C-space>t  open define in horizon window
-"<C-space><C-space>t  open define in vertical window
-let GtagsCscope_Auto_Load = 1
-let GtagsCscope_Auto_Map = 1
-let GtagsCscope_Quiet = 1
-set cscopetag
+""Using gtags-cscope.vim
+""<C-space>t  open define in horizon window
+""<C-space><C-space>t  open define in vertical window
+"let GtagsCscope_Auto_Load = 1
+"let GtagsCscope_Auto_Map = 1
+"let GtagsCscope_Quiet = 1
+"set cscopetag
