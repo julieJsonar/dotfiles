@@ -46,23 +46,6 @@
 "       <C-n>              # popup selector or navigate next
 "       <C-p>              # popup selector or navigate previous
 "       hit any            # select current and enter your hit also
-"   Grep:                  # grepprg=grep, using outer grep tool
-"       regex              # rules:
-"                           ^ begin-with $ end-with
-"                           . any-one-char * any-char .* any-char-list
-"                           \<~ \>~ words-end
-"                           \w~ words \W~ no-words
-"                           []~char-set [^]~no-match-char-set
-"                           \(xxx\)~match-group
-"                           x/{m/}~ x/{m,n/}~
-"       samples
-"       grep -inr 'string' --include='*.[ch]' dirs
-"       grep -w 'word1\|word2' files
-"       grep '[a-z]\{5\}' files
-"
-"       :grep '^POST /\(idle\|send\)/CzHmd' log
-"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
-"
 "   Vimgrep:               # Also lvimgrep, short as: vim, lvim
 "        vimregex          # rules:
 "                           . any-char \s whitespace \d digit \x hex \o octal
@@ -76,14 +59,30 @@
 "                           * 0-more \+  1-more \=  0or1-more \{n,m} \{n} \{,m} \{n,}
 "       samples
 "       :vim /some/gj **/*.c **/*.h
+"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
 "
 "       /^joe.*fred.*bill/ # AND
-"       /fred\|joe         # OR
-"       /.*fred\&.*joe     # AND no-order
+"       /fred\|joe/        # OR
+"       /.*fred\&.*joe/    # AND no-order
 "       /\<fred\>/         # whole word
-"       /begin\_.*end      # search over possible multiple lines
+"       /begin\_.*end/     # search over possible multiple lines
 "       /fred\_s*joe/      # any whitespace including newline [C]
-"       /^\n\{3}           # find 3 empty lines
+"       /^\n\{3}/          # find 3 empty lines
+"
+"   Grep:                  # grepprg=grep, using outer grep tool
+"       regex              # rules:
+"                           ^ begin-with $ end-with
+"                           . any-one-char * any-char .* any-char-list
+"                           \<~ \>~ words-end
+"                           \w~ words \W~ no-words
+"                           []~char-set [^]~no-match-char-set
+"                           \(xxx\)~match-group
+"                           x/{m/}~ x/{m,n/}~
+"       samples
+"       :grep -inr 'string' --include='*.[ch]' dirs
+"       :grep -w 'word1\|word2' files
+"       :grep '[a-z]\{5\}' files
+"       :grep '^POST /\(idle\|send\)/CzHmd' log
 "
 "   EasyGrep:
 "       <leader>vv         # Search whole current word
