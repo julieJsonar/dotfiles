@@ -17,14 +17,14 @@
 "  g; <or> g,      navigate changelist
 " <space>          open preview window, then <c-w>H adjust layout
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
-" <leader>e        dictionary
 " <leader>l        show current function name
 " <leader>a        switch .c/.h
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>n        toggle taglist
-" <leader>z        syntax log file: toggle comment
+" <leader>z        syntax log file
 " <leader>g ,.     preview definition with ctags: pta, ptn, ptp
+" <leader>e        dictionary
 "
 " call Asm()       disassembly current function
 "
