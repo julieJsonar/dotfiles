@@ -17,54 +17,72 @@
 "  g; <or> g,      navigate changelist
 " <space>          open preview window, then <c-w>H adjust layout
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
-" <leader>m        color word, :MarkClear to clear all colors
-" <leader>j        color word and count it
 " <leader>e        dictionary
-" <leader>l        view function name
+" <leader>l        show current function name
 " <leader>a        switch .c/.h
-" <leader>t        command-T: search file
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>y        copy to clipboard, paste use shift+insert
 " <leader>n        toggle taglist
 " <leader>z        syntax log file: toggle comment
-" <leader>w        notes on source, then view by :cfile log.marks as quickfix
 " <leader>rr       R run current line or selected, <leader>c to close current tab
 " <leader>g ,.     preview definition with ctags: pta, ptn, ptp
 "
 " call Asm()       disassembly current function
-" <leader>bs       svn blame
-" <leader>bg       git blame
 "
 " <C-n|p>; <leader>,|;>         jumps quickfix
-" <F2>             use plantuml gen uml image and display image: the block between @startuml and @enduml, Pre-install plantuml.jar, java, ImageMagic
-" <leader>i        use plantuml gen uml as acsii
 " <F3>             redirect g command output tabn
 "
-" <leader>f[f|g|s|  c|d]        cs find seriese, :!cscope -[R]kbq; :cs reset
-" <leader><leader>w|b <or> fx   easy motion to word
 " :g/regex/t$      copy match lines append to tail
 "
 " Howtos:
 " =======
+"   Notes:
+"       <leader>w          # notes on source
+"       :cfile log.marks   # view as quickfix
+"   EasyGrep:
+"       <leader>vv         # Search whole current word
+"       <leader>va         # Append search whole current word
+"       <leader>vr         # Replace whole current word
+"   Mark:
+"       <leader>mm         # MarkToggle
+"       <leader>mr         # MarkRegex
+"       <leader>mx         # MarkClearAll
+"   Cscope:
+"        :!cscope -[R]kbq;
+"        :cs reset
+"       <leader>ff         # find file
+"       <leader>fg         # Jump definition
+"       <leader>fs         # List All symbol
+"       <leader>fc         # List All call current function
+"       <leader>fd         # List current function called
 "   Register:
-"       :@+                          # have @ as prefix, then add register's name
+"       :@+                # have @ as prefix, then add register's name
+"   SvnGitBlame:
+"       <leader>bs         # svn blame
+"       <leader>bg         # git blame
+"   SaveSession:
+"       :mks!              # Save to Session.vim
+"       :mks! log.vim      # Save Session to log.vim
+"       $ vi -S log.vim    # Load Session
+"
+" Tools:
+" ======
+"   DrawIt:                # use \di to start (\ds to stop)
+"   W3m:
+"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
+"       <backspace>        # Back page
+"       <enter>            # Open link under the cursor
+"       f                  # Hit-A-Hint.
+"       s                  # Toggle Syntax On/Off
+"       c                  # Toggle Cookie On/Off.
+"
+" Self:
+" =====
 "   Function:
 "       :<C-\>eYourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
 "       :Traceadd|adjust|clear()     # _WAD_TRACE_
-"   DrawIt:                          # use \di to start (\ds to stop)
 "   CrashLog:                        # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
-"   SaveSession:
-"       :mksession! log.vim.session  # Save Session
-"       $ vi -S log.vim.session      # Load Session
-"   W3m:
-"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
-"       <backspace>                  # Back page
-"       <enter>                      # Open link under the cursor
-"       f                            # Hit-A-Hint.
-"       s                            # Toggle Syntax On/Off
-"       c                            # Toggle Cookie On/Off.
 "======================================================================
 
 set nocompatible              " be iMproved, required
@@ -90,56 +108,21 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'derekwyatt/vim-fswitch'
 Bundle 'ciaranm/detectindent'
 Bundle 'file-line'
-Bundle 'DrawIt'
 "Bundle 'netrw.vim'
 "Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'millermedeiros/vim-statline'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Shougo/vimproc.vim'
 
-Bundle 'Mark'
+Bundle 'huawenyu/vim-mark'
 "Bundle 'AnsiEsc.vim'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'aklt/plantuml-syntax'
-"Bundle 'fatih/vim-go.git'
-"Bundle 'elzr/vim-json'
-"Bundle 'leshill/vim-json'
-"Bundle 'pangloss/vim-javascript'
-"Bundle 'Glench/Vim-Jinja2-Syntax'
-"Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-markdown'
 
-"Bundle 'Shougo/unite.vim'
-"Bundle 'OmniCppComplete'
-"Bundle 'L9'
-"Bundle 'AutoComplPop'
-
-Bundle 'vim-scripts/EasyGrep'
-"Bundle 'huawenyu/gtags-cscope'
-"Bundle 'Shougo/unite.vim'
-" yum -y install rake ruby-devel rubygems; cd ~/.vim/bundle/Command-T; rake make
-"Bundle 'wincent/Command-T'
-
-" ...
-" Not very good, slower your vim
-" https://github.com/Valloric/YouCompleteMe
-" 0. install python-devel, cmake
-" 1. install ycm plugin
-" 2. download llvm3.3. binary from http://llvm.org/releases/download.html#3.3
-" 3. unzip into ~/ycm_temp/llvm_root_dir; ls | grep lib
-" 4. mkdir ~/ycm_build; cd ~/ycm_build;
-"    cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/cpp
-"    make ycm_support_libs
-" 5. vimrc:
-"    let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-"    let g:ycm_autoclose_preview_window_after_completion=1
-"    nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'huawenyu/vim-easygrep'
 Bundle 'yuratomo/w3m.vim'
-
-
+Bundle 'DrawIt'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -815,6 +798,9 @@ nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>; :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>i <C-I>
+nmap <leader>o <C-O>
 
 
 " Using gnu-global replace cscope&ctags
