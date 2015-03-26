@@ -54,11 +54,14 @@
 "   Cscope:
 "        :!cscope -[R]kbq;
 "        :cs reset
-"       <leader>ff         # find file
+"       <leader>;          # Jump definition
+"       <leader>i          # <C-I>
+"       <leader>o          # <C-O>
 "       <leader>fg         # Jump definition
-"       <leader>fs         # List All symbol
 "       <leader>fc         # List All call current function
 "       <leader>fd         # List current function called
+"       <leader>ff         # find file
+"       <leader>fs         # List All symbol
 "   Register:
 "       :@+                # have @ as prefix, then add register's name
 "   SvnGitBlame:
