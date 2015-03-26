@@ -60,6 +60,9 @@
 "       grep -w 'word1\|word2' files
 "       grep '[a-z]\{5\}' files
 "
+"       :grep '^POST /\(idle\|send\)/CzHmd' log
+"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
+"
 "   Vimgrep:               # Also lvimgrep, short as: vim, lvim
 "        vimregex          # rules:
 "                           . any-char \s whitespace \d digit \x hex \o octal
