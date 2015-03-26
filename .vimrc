@@ -43,6 +43,7 @@
 "       <leader>vv         # Search whole current word
 "       <leader>va         # Append search whole current word
 "       <leader>vr         # Replace whole current word
+"       <leader>vo         # Set grep option
 "   Mark:
 "       <leader>mm         # MarkToggle
 "       <leader>mr         # MarkRegex
