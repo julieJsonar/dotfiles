@@ -42,6 +42,10 @@
 "   Notes:
 "       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
+"   AutoComplete:
+"       <C-n>              # popup selector or navigate next
+"       <C-p>              # popup selector or navigate previous
+"       hit any            # select current and enter your hit also
 "   EasyGrep:
 "       <leader>vv         # Search whole current word
 "       <leader>va         # Append search whole current word
@@ -120,8 +124,9 @@ Bundle 'file-line'
 Bundle 'majutsushi/tagbar'
 "Bundle 'fholgado/minibufexpl.vim'
 
-"Bundle 'millermedeiros/vim-statline'
-Bundle 'bling/vim-airline'
+Bundle 'millermedeiros/vim-statline'
+"Bundle 'maciakl/vim-neatstatus'
+"Bundle 'bling/vim-airline'
 
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Shougo/vimproc.vim'
@@ -130,6 +135,7 @@ Bundle 'huawenyu/vim-mark'
 "Bundle 'AnsiEsc.vim'
 Bundle 'tpope/vim-markdown'
 
+"Bundle 'ervandew/supertab'
 Bundle 'huawenyu/vim-easygrep'
 Bundle 'yuratomo/w3m.vim'
 Bundle 'DrawIt'
@@ -239,6 +245,12 @@ set ssop+=sesdir     " work under current dir as relative path
     set statusline+=0x%-8B                       " character value
     set statusline+=%-14(%l,%c%V%)               " line, character
     set statusline+=%<%P                         " file position
+
+" vim-airline
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
 "}
 
 " w3m
