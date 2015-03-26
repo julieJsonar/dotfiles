@@ -38,7 +38,7 @@
 "   R:
 "       R !ls -l           # grab shell cmd output into new tab/buffer
 "       <leader>rr         # R run current line or selected,
-        <leader>c          # close current tab
+"       <leader>c          # close current tab
 "   Notes:
 "       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
