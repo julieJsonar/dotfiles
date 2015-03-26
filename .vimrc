@@ -12,7 +12,7 @@
 " Usage:
 " ======
 " <leader>         ";"
-"  R !ls -l        grab command output into new tab/buffer
+"
 "  gd <or> D       goto declare <or> global declare
 "  g; <or> g,      navigate changelist
 " <space>          open preview window, then <c-w>H adjust layout
@@ -24,7 +24,6 @@
 " <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>n        toggle taglist
 " <leader>z        syntax log file: toggle comment
-" <leader>rr       R run current line or selected, <leader>c to close current tab
 " <leader>g ,.     preview definition with ctags: pta, ptn, ptp
 "
 " call Asm()       disassembly current function
@@ -36,6 +35,10 @@
 "
 " Howtos:
 " =======
+"   R:
+"       R !ls -l           # grab shell cmd output into new tab/buffer
+"       <leader>rr         # R run current line or selected,
+        <leader>c          # close current tab
 "   Notes:
 "       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
