@@ -119,7 +119,10 @@ Bundle 'file-line'
 "Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
 "Bundle 'fholgado/minibufexpl.vim'
-Bundle 'millermedeiros/vim-statline'
+
+"Bundle 'millermedeiros/vim-statline'
+Bundle 'bling/vim-airline'
+
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Shougo/vimproc.vim'
 
