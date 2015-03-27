@@ -42,6 +42,12 @@
 "   Notes:
 "       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
+"   Quckfix:
+"       :cw                # open
+"       <C-n>              # next
+"       <C-p>              # previous
+"       :colder N          # last result list
+"       :cnewer N          # next result list
 "   AutoComplete:
 "       <C-n>              # popup selector or navigate next
 "       <C-p>              # popup selector or navigate previous
@@ -300,7 +306,7 @@ set wildignorecase
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 
@@ -848,6 +854,11 @@ let g:html_use_css = 0
 "         :tags   see where you currently are in the tag stack
 "         :tag sys_<TAB>  auto-complete
 " http://www.fsl.cs.sunysb.edu/~rick/rick_vimrc
+
+":help cscope-options
+set cscopetag
+set cscopequickfix=s+,c+,d+,i+,t+,e+
+
 nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
