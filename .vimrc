@@ -35,10 +35,11 @@
 "
 " Howtos:
 " =======
-"   R:
+"   RunShellCmd:
 "       R !ls -l           # grab shell cmd output into new tab/buffer
 "       <leader>rr         # R run current line or selected,
 "       <leader>c          # close current tab
+"       :new|0read !ls -l  # grab cmd output into new window
 "   Notes:
 "       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
