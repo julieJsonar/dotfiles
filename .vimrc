@@ -25,6 +25,7 @@
 " <leader>z        syntax log file
 " <leader>g ,.     preview definition with ctags: pta, ptn, ptp
 " <leader>e        dictionary
+"  :<C-r><C-w>     get current word under cursor
 "
 " call Asm()       disassembly current function
 "
@@ -35,6 +36,8 @@
 "
 " Howtos:
 " =======
+"   Register:
+"       :@+                # have @ as prefix, then add register's name
 "   RunShellCmd:
 "       R !ls -l           # grab shell cmd output into new tab/buffer
 "       <leader>rr         # R run current line or selected,
@@ -111,8 +114,6 @@
 "       <leader>fd         # List current function called
 "       <leader>ff         # find file
 "       <leader>fs         # List All symbol
-"   Register:
-"       :@+                # have @ as prefix, then add register's name
 "   SvnGitBlame:
 "       <leader>bs         # svn blame
 "       <leader>bg         # git blame
