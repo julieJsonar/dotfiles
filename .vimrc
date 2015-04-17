@@ -14,6 +14,7 @@
 " <leader>         ";"
 "
 "  gd <or> D       goto declare <or> global declare
+"  [I              list all occurence
 "  g; <or> g,      navigate changelist
 " <space>          open preview window, then <c-w>H adjust layout
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
@@ -112,7 +113,8 @@
 "       <leader>fg         # Jump definition
 "       <leader>fc         # List All call current function
 "       <leader>fd         # List current function called
-"       <leader>ff         # find file
+"       <leader>ff         # find file, use . represent any char
+"                            :cs f f my_conn.<Enter> will show my_conn.c my_conn_impl.h
 "       <leader>fs         # List All symbol
 "   SvnGitBlame:
 "       <leader>bs         # svn blame
