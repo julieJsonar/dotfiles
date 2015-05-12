@@ -170,3 +170,6 @@ wad_http_clt_scan_req_proc_region
 wad_http_scan_append_region
 wad_http_ipsscan_send_pending_data
 wad_hc_copy_buf
+wad_http_etag_end
+wad_port_output_buff2_add_rgn
+__wad_tcp_port_sched_write

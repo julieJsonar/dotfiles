@@ -34,6 +34,7 @@
 " <F3>             redirect g command output tabn
 "
 " :g/regex/t$      copy match lines append to tail
+" s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
 "
 " Howtos:
 " =======
@@ -176,6 +177,7 @@ Bundle 'millermedeiros/vim-statline'
 "Bundle 'maciakl/vim-neatstatus'
 "Bundle 'bling/vim-airline'
 
+Bundle 'justinmk/vim-sneak'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Shougo/vimproc.vim'
 
@@ -408,6 +410,9 @@ let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
 
 let g:vim_json_syntax_conceal = 0
+
+" sneek motion: conflict with leader ';'
+let g:sneak#s_next = 1
 
 " ctags -R *;  ctags -L cscope.files
 nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
