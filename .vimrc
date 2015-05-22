@@ -38,8 +38,14 @@
 "
 " Howtos:
 " =======
+"   OpenFile:
+"       $ ls | vi -        # shell command output to vi
+"       $ vi $(ls)         # open all file which is shell command output
+"       $ vi $(!!)         # open all file which come from the last command's output
 "   Register:
 "       :@+                # have @ as prefix, then add register's name
+"       :@/                # the last search word
+"       :@"                # the yank word
 "   RunShellCmd:
 "       R !ls -l           # grab shell cmd output into new tab/buffer
 "       <leader>rr         # R run current line or selected,
@@ -91,7 +97,7 @@
 "                           \(xxx\)~match-group
 "                           x/{m/}~ x/{m,n/}~
 "       samples
-"       :grep -inr 'string' --include='*.[ch]' dirs
+"       :grep -Iinr 'string' --include='*.[ch]' dirs
 "       :grep -w 'word1\|word2' files
 "       :grep '[a-z]\{5\}' files
 "       :grep '^POST /\(idle\|send\)/CzHmd' log
@@ -100,7 +106,6 @@
 "       <leader>vv         # Search whole current word
 "       <leader>va         # Append search whole current word
 "       <leader>vr         # Replace whole current word
-"       <leader>vo         # Set grep option
 "   Mark:
 "       <leader>mm         # MarkToggle
 "       <leader>mr         # MarkRegex
@@ -141,7 +146,7 @@
 "   Function:
 "       :<C-\>eYourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
-"       :Traceadd|adjust|clear()     # _WAD_TRACE_
+"       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:                        # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
 
