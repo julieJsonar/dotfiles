@@ -186,7 +186,7 @@ Bundle 'huawenyu/vim-mark'
 Bundle 'tpope/vim-markdown'
 
 "Bundle 'ervandew/supertab'
-Bundle 'huawenyu/vim-easygrep'
+"Bundle 'huawenyu/vim-easygrep'
 Bundle 'yuratomo/w3m.vim'
 Bundle 'DrawIt'
 
@@ -273,6 +273,12 @@ let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 4
 let g:detectindent_max_lines_to_analyse = 1024
 autocmd VimEnter * DetectIndent
+
+augroup qf
+    autocmd!
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
+augroup END
 
 set list
 set paste
@@ -437,6 +443,29 @@ endfunction
 map <leader>g :<C-\>eGrepCurrent() <CR>
 map <leader>s :<c-u>R !grep-malloc.sh <c-r>*
 nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
+
+" easygrep {
+
+  " autocmd QuickfixCmdPost make,grep,vimgrep copen
+  function! LocalEasyGrep(add)
+    if a:add
+      let l:cmd = "grepadd"
+    else
+      let l:cmd = "grep"
+    endif
+  
+    return l:cmd . "! -Inr --include='*.[ch]' -- '" . expand('<cword>') . "' ."
+  endfunction
+
+  function! LocalEasyReplace()
+    return "bufdo! %s/\\<" . expand('<cword>') . "\\>/???/gc"
+  endfunction
+
+  map <leader>vv :<C-\>e LocalEasyGrep(0) <CR><CR><CR>
+  map <leader>va :<C-\>e LocalEasyGrep(1) <CR><CR><CR>
+  map <leader>vr :<C-\>e LocalEasyReplace() <CR>
+
+"}
 
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
