@@ -324,15 +324,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 
-set wildignore+=*/kernel/**
-set wildignore+=*/linux-2.4.25/**
-set wildignore+=*/linuxatm/**
-set wildignore+=*/cooked/**
-set wildignore+=*/router/**
-
-"set path=~/nbapp/**	" allows me to search in my project directory and subdirectories
-"set backupdir=~/nbapp/temp		" makes vim create backup files in a special temporary folder
-
 "hi MatchParen cterm=bold ctermfg=cyan
 "hi MatchParen cterm=none ctermbg=green ctermfg=none
 "hi MatchParen cterm=none ctermbg=green ctermfg=blue
