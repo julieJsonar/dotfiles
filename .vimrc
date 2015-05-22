@@ -432,15 +432,13 @@ nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
 nnoremap <silent> <leader>a :FSHere<cr>
 
-set grepprg=grep
-function! GrepCurrent()
-  return   "R !grep -Enr --include='*.[ch]' -- '" . @" . "' daemon/wad"
-endfunction
-map <leader>g :<C-\>eGrepCurrent() <CR>
-map <leader>s :<c-u>R !grep-malloc.sh <c-r>*
-nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-
 " easygrep {
+
+  set grepprg=grep
+
+  function! LocalGrepYankToNewTab()
+    return   "R !grep -Inr --include='*.[ch]' -- '" . @" . "' ."
+  endfunction
 
   " autocmd QuickfixCmdPost make,grep,vimgrep copen
   function! LocalEasyGrep(add)
@@ -457,9 +455,14 @@ nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
     return "bufdo! %s/\\<" . expand('<cword>') . "\\>/???/gc"
   endfunction
 
+  " maps
   map <leader>vv :<C-\>e LocalEasyGrep(0) <CR><CR><CR>
   map <leader>va :<C-\>e LocalEasyGrep(1) <CR><CR><CR>
   map <leader>vr :<C-\>e LocalEasyReplace() <CR>
+
+  map <leader>g :<C-\>eLocalGrepYankToNewTab() <CR>
+  map <leader>s :<c-u>R !grep-malloc.sh <c-r>*
+  nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
 "}
 
@@ -468,32 +471,38 @@ function! OpenFileInPreviewWindow()
 endfunction
 map <leader><space> :<C-\>eOpenFileInPreviewWindow() <CR><CR>
 
-fun! AppendQuickfix()
-	call inputsave()
-	let msg = input('log.marks msg: ')
-	call inputrestore()
-	if(empty(msg))
-		return
-	endif
+" note on source {
 
-	redir => msg2 | call ShowFuncName() | redir END
+  fun! AppendNoteOnSource()
+    call inputsave()
+    let msg = input('log.marks msg: ')
+    call inputrestore()
+    if(empty(msg))
+    	return
+    endif
+    
+    redir => msg2 | call ShowFuncName() | redir END
+    
+    let msg2 = substitute(msg2, '^\n', '', '')
+    let msg2 = substitute(msg2, '^\s*\(.\{-}\)\s*$', '\1', '')
+    let msg2 = substitute(msg2, '\n$', '', '')
+    let line = line(".")
+    
+    redir >> log.marks
+    echo strftime("%Y-%m-%d %H:%M") . " '" . msg . "' in " . msg2
+    "echo expand('%') . ' ' . (line-1) . '  ' . getline(line-1)
+    echo expand('%') . ':' .  line    . ': ' . getline(line)
+    "echo expand('%') . ' ' . (line+1) . ': ' . getline(line+1)
+    redir END
+    
+    "silent cfile log.marks
+    "silent clast
+  endfun
 
-	let msg2 = substitute(msg2, '^\n', '', '')
-	let msg2 = substitute(msg2, '^\s*\(.\{-}\)\s*$', '\1', '')
-	let msg2 = substitute(msg2, '\n$', '', '')
-	let line = line(".")
+  " maps
+  nnoremap <silent> <leader>w :call AppendNoteOnSource() <CR>
 
-	redir >> log.marks
-	echo strftime("%Y-%m-%d %H:%M") . " '" . msg . "' in " . msg2
-	"echo expand('%') . ' ' . (line-1) . '  ' . getline(line-1)
-	echo expand('%') . ':' .  line    . ': ' . getline(line)
-	"echo expand('%') . ' ' . (line+1) . ': ' . getline(line+1)
-	redir END
-
-	"silent cfile log.marks
-	"silent clast
-endfun
-nnoremap <silent> <leader>w :call AppendQuickfix() <CR>
+"}
 
 function! GotoFileWithLineNum()
     " filename under the cursor
@@ -546,7 +555,7 @@ endfun
 
 " syntax=log
 nnoremap <leader>z :call HideCommentToggle()<cr>
-function! HideCommentToggle()
+fun! HideCommentToggle()
 	let logfilename=expand("%")
 	if match(logfilename,"log") >= 0
 		"if exists("b:hidecomment_is_open")
@@ -567,42 +576,29 @@ function! HideCommentToggle()
 	else
 		set syntax=c
 	endif
-endfunction
+endfun
 
 " disassembly current function
-function! Asm()
+fun! Asm()
   execute("new|r !gdb -batch sysinit/init -ex 'disas /m " . expand("<cword>") . "'")
-endfunction
+endfun
 "map <leader>ds :call Asm() <CR>
 
-" svn|git blame
-function! GitBlameCurrent()
-  "execute("!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p"))
-  return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
+" svn|git blame {
 
-  "let loc_blame_offset = winheight(0)/2 - 2
-  "let loc_start = line('.') - loc_blame_offset
-  "let loc_end = line('.') + loc_blame_offset
-  "if (loc_start < 0)
-  "  let loc_start = 0
-  "endif
-  "if (loc_end > line('$'))
-  "  let loc_end = line('$')
-  "endif
+  fun! GitBlameCurrent()
+    return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
+  endfun
+  
+  fun! SvnBlameCurrent()
+    execute("!svn blame " . expand("%p") . "|sed -n '" . (line(".") - 5) . "," . (line(".") + 5)  . "p'")
+  endfun
 
-  "return   "!echo '======================================================' && " .
-  "         \ "git --no-pager blame -L" . loc_start . "," . loc_end .
-  "         \ " HEAD -- " . expand("%p")
-endfunction
+  " maps
+  map <leader>bs :call SvnBlameCurrent() <CR>
+  map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
 
-function! SvnBlameCurrent()
-  execute("!svn blame " . expand("%p")
-			  \. "|sed -n '" . (line(".") - 5) . "," . (line(".") + 5)  . "p'")
-endfunction
-map <leader>bs :call SvnBlameCurrent() <CR>
-map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
-command! GitBlameCurrent call GitBlameCurrent()
-command! SvnBlameCurrent call SvnBlameCurrent()
+"}
 
 " quickfix
 nmap <silent> <c-n> :cn<cr>
@@ -619,68 +615,69 @@ endfunction
 let g:html_ignore_folding = 1
 let g:html_use_css = 0
 
-" golang
-"let g:go_disable_autoinstall = 1
+" cscope & tags {
 
-" cscope
-" The following maps all invoke one of the following cscope search types:
-"   's'   symbol: find all references to the token under cursor
-"   'g'   global: find global definition(s) of the token under cursor
-"   'c'   calls:  find all calls to the function name under cursor
-"   'd'   called: find functions that function under cursor calls
-"   't'   text:   find all instances of the text under cursor
-"   'e'   egrep:  egrep search for the word under cursor
-"   'f'   file:   open the filename under cursor
-"   'i'   includes: find files that include the filename under cursor
-" +ctags
-"         :tags   see where you currently are in the tag stack
-"         :tag sys_<TAB>  auto-complete
-" http://www.fsl.cs.sunysb.edu/~rick/rick_vimrc
+  " The following maps all invoke one of the following cscope search types:
+  "   's'   symbol: find all references to the token under cursor
+  "   'g'   global: find global definition(s) of the token under cursor
+  "   'c'   calls:  find all calls to the function name under cursor
+  "   'd'   called: find functions that function under cursor calls
+  "   't'   text:   find all instances of the text under cursor
+  "   'e'   egrep:  egrep search for the word under cursor
+  "   'f'   file:   open the filename under cursor
+  "   'i'   includes: find files that include the filename under cursor
+  " +ctags
+  "         :tags   see where you currently are in the tag stack
+  "         :tag sys_<TAB>  auto-complete
+  " http://www.fsl.cs.sunysb.edu/~rick/rick_vimrc
+  
+  ":help cscope-options
+  set cscopetag
+  set cscopequickfix=s0,c0,d0,i0,t-,e-
+  
+  nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR>
+  nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR>
+  nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
+  nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  
+  nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>; :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>i <C-I>
+  nmap <leader>o <C-O>
+  
+  
+  " Using gnu-global replace cscope&ctags
+  ""Using gtags.vim
+  "" $ find . -name '*.[ch]' > tags.files
+  "" $ gtags -f tags.files
+  "" $ global -u    <<< incremental update
+  "" $ vim -c 'cs add GTAGS'
+  "" have gtags.vim, the name can be partial
+  ""   :Gtags funcname
+  ""   :Gtags -P filename
+  ""   :Gtags -r funcname    <<< called
+  ""   :GtagsCurrent
+  "set cscopeprg=gtags-cscope
+  "
+  "" gtags which come from gnu-global + gtags.vim
+  "" http://www.gnu.org/software/global/manual/global.html
+  "nmap <leader>] :GtagsCursor<CR>
+  "
+  "" 0 for c, 1 for c++
+  "set csto=0
+  
+  
+  ""Using gtags-cscope.vim
+  ""<C-space>t  open define in horizon window
+  ""<C-space><C-space>t  open define in vertical window
+  "let GtagsCscope_Auto_Load = 1
+  "let GtagsCscope_Auto_Map = 1
+  "let GtagsCscope_Quiet = 1
+  "set cscopetag
 
-":help cscope-options
-set cscopetag
-set cscopequickfix=s0,c0,d0,i0,t-,e-
+"}
 
-nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR>
-nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR>
-nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
-nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-
-nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>; :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>i <C-I>
-nmap <leader>o <C-O>
-
-
-" Using gnu-global replace cscope&ctags
-""Using gtags.vim
-"" $ find . -name '*.[ch]' > tags.files
-"" $ gtags -f tags.files
-"" $ global -u    <<< incremental update
-"" $ vim -c 'cs add GTAGS'
-"" have gtags.vim, the name can be partial
-""   :Gtags funcname
-""   :Gtags -P filename
-""   :Gtags -r funcname    <<< called
-""   :GtagsCurrent
-"set cscopeprg=gtags-cscope
-"
-"" gtags which come from gnu-global + gtags.vim
-"" http://www.gnu.org/software/global/manual/global.html
-"nmap <leader>] :GtagsCursor<CR>
-"
-"" 0 for c, 1 for c++
-"set csto=0
-
-
-""Using gtags-cscope.vim
-""<C-space>t  open define in horizon window
-""<C-space><C-space>t  open define in vertical window
-"let GtagsCscope_Auto_Load = 1
-"let GtagsCscope_Auto_Map = 1
-"let GtagsCscope_Quiet = 1
-"set cscopetag
