@@ -96,7 +96,7 @@ elif [ $action_mode == 'all' ]; then
 #	execute "/usr/bin/time gtags -f cscope.files"
 #	execute "/usr/bin/time global -u -L cscope.files"
 
-	execute "/usr/bin/time cscope -kbq"
+	execute "cscope -kbq > /dev/null 2>&1"
 #	execute "/usr/bin/time ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 fi
 
