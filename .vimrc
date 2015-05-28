@@ -1,13 +1,22 @@
 "======================================================================
 " Installation:
 " =============
-" 1. [Vim plugin manager](https://github.com/gmarik/vundle)
-"    $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"    ... copy vimrc from vundle's page ...
-"    ... open vim to sure everything OK! ...
-" 2. update the basic vimrc to this one
-"    ... then, open vim, command :BundleInstall ...
-"    ... Done! ...
+" 1. [vim-plugin](https://github.com/junegunn/vim-plug)
+"    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
+"    $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"    $ cat > .vimrc <<DELIM
+"      call plug#begin('~/.vim/plugged')
+"      Plug 'holokai'
+"      call plug#end()
+"      # Our vimrc begin here
+"      DELIM
+"    $ vi -c 'PlugInstall'
+"
+" 2. work with nvim
+"    $ cd
+"    $ ln -s .vim .nvim
+"    $ ln -s .vimrc .nvimrc
+"    $ nvim -c 'PlugStatus'
 "
 " Usage:
 " ======
@@ -150,67 +159,44 @@
 "   CrashLog:                        # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Bundle 'darkspectrum'
-Bundle 'holokai'
-Bundle 'tomasr/molokai'
+Plug 'darkspectrum'
+Plug 'holokai'
+Plug 'tomasr/molokai'
 
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'derekwyatt/vim-fswitch'
-Bundle 'ciaranm/detectindent'
-Bundle 'file-line'
-"Bundle 'netrw.vim'
-"Bundle 'Raimondi/delimitMate'
-Bundle 'majutsushi/tagbar'
-"Bundle 'fholgado/minibufexpl.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'ciaranm/detectindent'
+Plug 'file-line'
+"Plug 'netrw.vim'
+"Plug 'Raimondi/delimitMate'
+Plug 'majutsushi/tagbar'
+"Plug 'fholgado/minibufexpl.vim'
 
-Bundle 'millermedeiros/vim-statline'
-"Bundle 'maciakl/vim-neatstatus'
-"Bundle 'bling/vim-airline'
+Plug 'millermedeiros/vim-statline'
+"Plug 'maciakl/vim-neatstatus'
+"Plug 'bling/vim-airline'
 
-Bundle 'justinmk/vim-sneak'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Shougo/vimproc.vim'
+Plug 'justinmk/vim-sneak'
+"Plug 'Lokaltog/vim-easymotion'
+"Plug 'Shougo/vimproc.vim'
 
-Bundle 'huawenyu/vim-mark'
-"Bundle 'AnsiEsc.vim'
-Bundle 'tpope/vim-markdown'
+Plug 'huawenyu/vim-mark'
+"Plug 'AnsiEsc.vim'
+Plug 'tpope/vim-markdown'
 
-"Bundle 'ervandew/supertab'
-"Bundle 'huawenyu/vim-easygrep'
-Bundle 'yuratomo/w3m.vim'
-Bundle 'DrawIt'
+"Plug 'ervandew/supertab'
+"Plug 'huawenyu/vim-easygrep'
+Plug 'yuratomo/w3m.vim'
+Plug 'DrawIt'
 
-Bundle 'huawenyu/tracelog.vim'
+Plug 'huawenyu/tracelog.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 " My local plugins
 "source /home/wilson/.vim/plugin/log.vim

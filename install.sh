@@ -122,7 +122,7 @@ do
 	   [ $f == '.git' ] || \
 	   [ $f == 'README.md' ] || \
 	   [ $f == '.' ] || \
-	   [ $f == '..' ] ; then
+	   [ $f == '..' ]; then
 		echo "Skipping $f"
 	elif [ -d $f ]; then
 		copy_file -r $f
@@ -140,6 +140,22 @@ if [ $action_mode == 'push' ]; then
 
 	execute "git add ."
 	execute "git commit -am \"$commit_msg\" && git push origin master"
+elif [ $action_mode == 'pull' ]; then
+	gvimrc = "~/.gvimrc"
+	nvimrc = "~/.nvimrc"
+	nvim = "~/.nvim"
+
+	if ! (( [ -f $gvimrc ] || [ -L $gvimrc ] )); then
+		ln -s ~/.vimrc $gvimrc
+	fi
+
+	if ! (( [ -f $nvimrc ] || [ -L $nvimrc ] )); then
+		ln -s ~/.vimrc $nvimrc
+	fi
+
+	if ! (( [ -d $nvim ] || [ -L $nvim ] )); then
+		ln -s ~/.vim $nvim
+	fi
 fi
 
 # End of file
