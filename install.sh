@@ -141,20 +141,24 @@ if [ $action_mode == 'push' ]; then
 	execute "git add ."
 	execute "git commit -am \"$commit_msg\" && git push origin master"
 elif [ $action_mode == 'pull' ]; then
-	gvimrc = "~/.gvimrc"
-	nvimrc = "~/.nvimrc"
-	nvim = "~/.nvim"
+#	test file exists cannot use '~' to replace $HOME
+	gvimrc="$HOME/.gvimrc"
+	nvimrc="$HOME/.nvimrc"
+	nvim="$HOME/.nvim"
 
-	if ! (( [ -f $gvimrc ] || [ -L $gvimrc ] )); then
-		ln -s ~/.vimrc $gvimrc
+	if [ ! -f "$gvimrc" ] && [ ! -L "$gvimrc" ]
+	then
+		execute "ln -s ~/.vimrc $gvimrc"
 	fi
 
-	if ! (( [ -f $nvimrc ] || [ -L $nvimrc ] )); then
-		ln -s ~/.vimrc $nvimrc
+	if [ ! -f "$nvimrc" ] && [ ! -L "$nvimrc" ]
+	then
+		execute "ln -s ~/.vimrc $nvimrc"
 	fi
 
-	if ! (( [ -d $nvim ] || [ -L $nvim ] )); then
-		ln -s ~/.vim $nvim
+	if [ ! -d "$nvim" ] && [ ! -L "$nvim" ]
+	then
+		execute "ln -s ~/.vim $nvim"
 	fi
 fi
 
