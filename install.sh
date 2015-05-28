@@ -141,7 +141,7 @@ if [ $action_mode == 'push' ]; then
 	execute "git add ."
 	execute "git commit -am \"$commit_msg\" && git push origin master"
 elif [ $action_mode == 'pull' ]; then
-#	test file exists cannot use '~' to replace $HOME
+#	test file exists cannot use '~' to replace $HOME, and should have double-quote
 	gvimrc="$HOME/.gvimrc"
 	nvimrc="$HOME/.nvimrc"
 	nvim="$HOME/.nvim"
