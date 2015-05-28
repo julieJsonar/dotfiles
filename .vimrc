@@ -12,7 +12,7 @@
 "      DELIM
 "    $ vi -c 'PlugInstall'
 "
-" 2. work with nvim
+" 2. work with nvim(Cannot support cscope???)
 "    $ cd
 "    $ ln -s .vim .nvim
 "    $ ln -s .vimrc .nvimrc
