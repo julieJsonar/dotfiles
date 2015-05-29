@@ -191,6 +191,7 @@ Plug 'huawenyu/vim-mark'
 "Plug 'AnsiEsc.vim'
 Plug 'tpope/vim-markdown'
 Plug 'huawenyu/vim-log-syntax'
+Plug 'pangloss/vim-javascript'
 
 "Plug 'ervandew/supertab'
 "Plug 'huawenyu/vim-easygrep'
@@ -219,10 +220,9 @@ set hidden
 " syntax enable
 syntax on
 "set background=dark
-
 "set t_Co=256
-"colorscheme distinguished
 
+"colorscheme distinguished
 "colorscheme darkspectrum
 "colorscheme molokai
 colorscheme holokai
