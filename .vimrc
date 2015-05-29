@@ -12,7 +12,7 @@
 "      DELIM
 "    $ vi -c 'PlugInstall'
 "
-" 2. work with nvim(Cannot support cscope???)
+" 2. work with nvim(load db to support cscope)
 "    $ cd
 "    $ ln -s .vim .nvim
 "    $ ln -s .vimrc .nvimrc
@@ -547,30 +547,6 @@ fun! Tracecrash()
 	exec ":'a,'b normal Il *"
 endfun
 
-" syntax=log
-nnoremap <leader>z :call HideCommentToggle()<cr>
-fun! HideCommentToggle()
-	let logfilename=expand("%")
-	if match(logfilename,"log") >= 0
-		"if exists("b:hidecomment_is_open")
-		"	unlet b:hidecomment_is_open
-
-		"	"set syntax=unknown
-		"	syntax reset
-		"	hi! clear Comment
-		"	hi! link Comment Ignore
-		"	hi MatchParen cterm=none ctermbg=green ctermfg=none
-		"else
-			let b:hidecomment_is_open = 1
-
-		"	syntax on
-			set syntax=log
-			hi MatchParen cterm=none ctermbg=green ctermfg=none
-		"endif
-	else
-		set syntax=c
-	endif
-endfun
 
 " disassembly current function
 fun! Asm()
@@ -578,7 +554,8 @@ fun! Asm()
 endfun
 "map <leader>ds :call Asm() <CR>
 
-" svn|git blame {
+
+" Svn|Git blame {
 
   fun! GitBlameCurrent()
     return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
@@ -594,22 +571,44 @@ endfun
 
 "}
 
-" quickfix
-nmap <silent> <c-n> :cn<cr>
-nmap <silent> <c-p> :cp<cr>
 
-" quickfix autofit
-nnoremap <buffer> <Enter> <C-W><Enter>
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+" QuickFix {
+
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
+
+  " autofit
+  nnoremap <buffer> <Enter> <C-W><Enter>
+  au FileType qf call AdjustWindowHeight(3, 10)
+  function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+  endfunction
+
+"}
+
 
 " vimdiff output to html ignore the same line
 let g:html_ignore_folding = 1
 let g:html_use_css = 0
 
 " cscope & tags {
+
+  "nvim should load cscope db by script
+  set tags=tags;/
+
+  function! LoadCscope()
+    " Searches from the directory of the current file upwards until /
+    "let db = findfile("cscope.out", ".;")
+
+    let db = findfile("cscope.out", ".")
+    if (!empty(db))
+      let path = strpart(db, 0, match(db, "/cscope.out$"))
+      set nocscopeverbose " suppress 'duplicate connection' error
+      exe "cs add " . db . " " . path
+      set cscopeverbose
+    endif
+  endfunction
+  au BufEnter /* call LoadCscope()
 
   " The following maps all invoke one of the following cscope search types:
   "   's'   symbol: find all references to the token under cursor
