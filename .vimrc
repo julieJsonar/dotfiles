@@ -265,7 +265,7 @@ let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 4
 let g:detectindent_max_lines_to_analyse = 1024
-autocmd VimEnter * DetectIndent
+autocmd BufNewFile,BufRead * DetectIndent
 
 augroup qf
     autocmd!
