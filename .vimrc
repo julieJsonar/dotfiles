@@ -197,6 +197,7 @@ Plug 'pangloss/vim-javascript'
 "Plug 'huawenyu/vim-easygrep'
 Plug 'yuratomo/w3m.vim'
 Plug 'DrawIt'
+Plug 'bruno-/vim-man'
 
 Plug 'huawenyu/tracelog.vim'
 
