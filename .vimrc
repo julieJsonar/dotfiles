@@ -164,9 +164,10 @@ call plug#begin('~/.vim/plugged')
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plug 'darkspectrum'
+
 Plug 'holokai'
-Plug 'tomasr/molokai'
+"Plug 'darkspectrum'
+"Plug 'tomasr/molokai'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-fswitch'
@@ -188,6 +189,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'huawenyu/vim-mark'
 "Plug 'AnsiEsc.vim'
 Plug 'tpope/vim-markdown'
+Plug 'huawenyu/vim-log-syntax'
 
 "Plug 'ervandew/supertab'
 "Plug 'huawenyu/vim-easygrep'

@@ -109,10 +109,6 @@ fi
 
 if [ $action_mode == 'pull' ]; then
 	execute "git pull --all"
-
-# special commands
-	execute "mkdir -p ~/.vim/syntax"
-	execute "cp log.vim ~/.vim/syntax/log.vim"
 fi
 
 for f in .* *
