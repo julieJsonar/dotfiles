@@ -168,6 +168,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'holokai'
 "Plug 'darkspectrum'
 "Plug 'tomasr/molokai'
+Plug 'Lokaltog/vim-distinguished'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-fswitch'
@@ -215,8 +216,13 @@ set t_md=
 set t_vb=
 set hidden
 
-syntax enable
+" syntax enable
+syntax on
 "set background=dark
+
+"set t_Co=256
+"colorscheme distinguished
+
 "colorscheme darkspectrum
 "colorscheme molokai
 colorscheme holokai
