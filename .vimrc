@@ -176,6 +176,7 @@ Plug 'ciaranm/detectindent'
 Plug 'file-line'
 "Plug 'netrw.vim'
 "Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 "Plug 'fholgado/minibufexpl.vim'
 
@@ -269,7 +270,7 @@ set textwidth=78
 "}
 
 set list
-set paste
+"set paste           " conflict with auto-pairs, delimitmate, auto-close plugin
 "set showcmd
 set splitbelow
 set splitright
@@ -350,6 +351,9 @@ augroup END
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "}
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:AutoPairsFlyMode = 1
 
 " w3m
 let g:w3m#command = '/usr/bin/w3m'
@@ -636,9 +640,7 @@ let g:html_use_css = 0
 
   function! LoadCscope()
     " Searches from the directory of the current file upwards until /
-    "let db = findfile("cscope.out", ".;")
-
-    let db = findfile("cscope.out", ".")
+    let db = findfile("cscope.out", ".;")
     if (!empty(db))
       let path = strpart(db, 0, match(db, "/cscope.out$"))
       set nocscopeverbose " suppress 'duplicate connection' error
