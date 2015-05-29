@@ -254,31 +254,19 @@ set nowrapscan
 set noswapfile
 set nostartofline
 set noshowmatch
+set nonumber
+set noexpandtab
 
 " indent
 set tabstop=4
 set shiftwidth=4
 set textwidth=78
 
-" C indent
-set nonumber
-set autoindent
-set smartindent
-set cindent
-set expandtab
-
-" DetectIndent using :DetectIndent command
-let g:detectindent_preferred_expandtab = 0
-let g:detectindent_preferred_indent = 4
-let g:detectindent_preferred_when_mixed = 4
-let g:detectindent_max_lines_to_analyse = 1024
-autocmd BufNewFile,BufRead * DetectIndent
-
-augroup qf
-    autocmd!
-    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
-    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
-augroup END
+" C indent {
+"set autoindent
+"set smartindent
+"set cindent
+"}
 
 set list
 set paste
@@ -291,6 +279,58 @@ set sessionoptions-=options    " do not store global and local values in a sessi
 set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
+
+
+" Restore cursor to file {
+
+ " Tell vim to remember certain things when we exit
+ "  '10  :  marks will be remembered for up to 10 previously edited files
+ "  "100 :  will save up to 100 lines for each register
+ "  :20  :  up to 20 lines of command-line history will be remembered
+ "  %    :  saves and restores the buffer list
+ "  n... :  where to save the viminfo files
+ set viminfo='10,\"100,:20,%,n~/.viminfo
+ 
+ function! ResCur()
+   if line("'\"") <= line("$")
+     normal! g`"
+     return 1
+   endif
+ endfunction
+ 
+ augroup resCur
+   autocmd!
+   autocmd BufWinEnter * call ResCur()
+ augroup END
+
+"}
+
+
+filetype plugin indent on
+" DetectIndent using :DetectIndent command
+let g:detectindent_preferred_expandtab = 0
+let g:detectindent_preferred_indent = 4
+let g:detectindent_preferred_when_mixed = 4
+let g:detectindent_max_lines_to_analyse = 1024
+
+" Autocmd {
+
+  autocmd InsertEnter,InsertLeave * set cul!
+
+  autocmd BufNewFile,BufRead * DetectIndent
+  autocmd BufNewFile,BufRead *.json set ft=javascript
+  autocmd FileType c,cpp,c++,java,c+,javascript
+          \ set cindent |
+          \ set autoindent |
+          \ set smartindent |
+
+"}
+
+augroup qf
+    autocmd!
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
+augroup END
 
 "Status Line {
     set laststatus=2                             " always show statusbar
@@ -350,10 +390,7 @@ hi link SpecialKey NonText
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 
-filetype plugin indent on
 cmap w!! w !sudo tee % >/dev/null
-autocmd InsertEnter,InsertLeave * set cul!
-autocmd BufNewFile,BufRead *.json set ft=javascript
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
@@ -580,7 +617,7 @@ endfun
 
   " autofit
   nnoremap <buffer> <Enter> <C-W><Enter>
-  au FileType qf call AdjustWindowHeight(3, 10)
+  autocmd FileType qf call AdjustWindowHeight(3, 10)
   function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
@@ -609,7 +646,7 @@ let g:html_use_css = 0
       set cscopeverbose
     endif
   endfunction
-  au BufEnter /* call LoadCscope()
+  autocmd BufEnter /* call LoadCscope()
 
   " The following maps all invoke one of the following cscope search types:
   "   's'   symbol: find all references to the token under cursor
