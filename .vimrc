@@ -639,16 +639,20 @@ let g:html_use_css = 0
   set tags=tags;/
 
   function! LoadCscope()
-    " Searches from the directory of the current file upwards until /
-    let db = findfile("cscope.out", ".;")
-    if (!empty(db))
-      let path = strpart(db, 0, match(db, "/cscope.out$"))
-      set nocscopeverbose " suppress 'duplicate connection' error
-      exe "cs add " . db . " " . path
-      set cscopeverbose
-    endif
+    "" Searches from the directory of the current file upwards until root '/'
+    "let db = findfile("cscope.out", ".;")
+    "if (!empty(db))
+    "  let path = strpart(db, 0, match(db, "/cscope.out$"))
+    "  set nocscopeverbose " suppress 'duplicate connection' error
+    "  exe "cs add " . db . " " . path
+    "  set cscopeverbose
+    "endif
+
+    set nocscopeverbose
+    exe "cs add cscope.out"
+    set cscopeverbose
   endfunction
-  autocmd BufEnter /* call LoadCscope()
+  autocmd BufEnter * call LoadCscope()
 
   " The following maps all invoke one of the following cscope search types:
   "   's'   symbol: find all references to the token under cursor
