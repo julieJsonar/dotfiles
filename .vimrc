@@ -179,6 +179,7 @@ Plug 'Raimondi/delimitMate'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 "Plug 'fholgado/minibufexpl.vim'
+Plug 'myusuf3/numbers.vim'
 
 Plug 'millermedeiros/vim-statline'
 "Plug 'maciakl/vim-neatstatus'
@@ -536,8 +537,13 @@ map <leader><space> :<C-\>eOpenFileInPreviewWindow() <CR><CR>
   endfun
 
   " maps
-  nnoremap <silent> <leader>w :call AppendNoteOnSource() <CR>
+  "nnoremap <silent> <leader>w :call AppendNoteOnSource() <CR>
 
+"}
+
+" Numbers {
+  let g:enable_numbers = 0
+  nnoremap <silent> <leader>w :NumbersToggle<CR>
 "}
 
 function! GotoFileWithLineNum()
