@@ -29,6 +29,7 @@
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
 " <leader>l        show current function name
 " <leader>a        switch .c/.h
+" <leader>w        toggle relative line number
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>n        toggle taglist
