@@ -1,0 +1,42 @@
+#!/usr/lib/expect -f
+
+source [file dirname [info script]]/debug.tcl
+dputs [info script]
+
+proc box_open {host} {
+	global HOSTS
+
+	expect "login:"; send "$HOSTS($host,user)\r";
+	expect "Password:"; send "$HOSTS($host,password)\r\r";
+	expect "Welcome";
+
+	expect -re ".*\n(\[A-Za-z0-9_].*) #"
+	set HOSTS($host,prompt) $expect_out(1,string)
+
+	box_sys_status $host
+	!# host
+}
+
+proc box_sys_status {host} {
+	log_user 0
+	send "\r"; expect " #"; expect *;
+	send "get system status\r";
+
+	expect -re "Version: (.*)\n";
+	set HOSTS($host,"Version") $expect_out(1,string)
+
+	expect -re "Virus-DB: (.*)\n";
+	set HOSTS($host,"Virus-DB") $expect_out(1,string)
+
+	expect -re "Log hard disk: (.*)\n";
+	set HOSTS($host,"Log-hard-disk") $expect_out(1,string)
+	
+	expect -re "Hostname: (.*)\n";
+	set HOSTS($host,"Hostname") $expect_out(1,string)
+	
+	expect -re "Operation Mode: (.*)\n";
+	set HOSTS($host,"Operation Mode") $expect_out(1,string)
+	
+	expect *
+	log_user 1
+}

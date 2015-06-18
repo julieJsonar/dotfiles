@@ -29,7 +29,7 @@
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
 " <leader>l        show current function name
 " <leader>a        switch .c/.h
-" <leader>w        toggle relative line number
+" <leader>;w        toggle relative line number
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>n        toggle taglist
@@ -263,7 +263,7 @@ set noexpandtab
 " indent
 set tabstop=4
 set shiftwidth=4
-set textwidth=78
+set textwidth=160
 
 " C indent {
 "set autoindent
@@ -538,13 +538,13 @@ map <leader><space> :<C-\>eOpenFileInPreviewWindow() <CR><CR>
   endfun
 
   " maps
-  "nnoremap <silent> <leader>w :call AppendNoteOnSource() <CR>
+  "nnoremap <silent> <leader>;w :call AppendNoteOnSource() <CR>
 
 "}
 
 " Numbers {
   let g:enable_numbers = 0
-  nnoremap <silent> <leader>w :NumbersToggle<CR>
+  nnoremap <silent> <leader>;w :NumbersToggle<CR>
 "}
 
 function! GotoFileWithLineNum()

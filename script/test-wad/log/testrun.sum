@@ -1,0 +1,34 @@
+Test Run By wilson on Thu Jun 18 10:21:15 2015
+Native configuration is x86_64-unknown-linux-gnu
+
+		===  tests ===
+
+Schedule of variations:
+    unix
+
+Running target unix
+Running /home/wilson/script/test-wad/echo.test/echo.test/echo.exp ...
+PASS: box name
+PASS: Local Hello World
+ERROR: tcl error sourcing /home/wilson/script/test-wad/echo.test/echo.test/echo.exp.
+ERROR: wrong # args: should be "set varName ?newValue?"
+    while executing
+"set HOSTS($host,"Operation Mode") $expect_out(1,string)"
+    (procedure "box_sys_status" line 19)
+    invoked from within
+"box_sys_status $host"
+    (procedure "box_open" line 11)
+    invoked from within
+"box_open box"
+    (file "/home/wilson/script/test-wad/echo.test/echo.test/echo.exp" line 18)
+    invoked from within
+"source /home/wilson/script/test-wad/echo.test/echo.test/echo.exp"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel #0 source /home/wilson/script/test-wad/echo.test/echo.test/echo.exp"
+    invoked from within
+"catch "uplevel #0 source $test_file_name""
+
+		===  Summary ===
+
+# of expected passes		2
