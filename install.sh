@@ -141,6 +141,9 @@ elif [ $action_mode == 'pull' ]; then
 	gvimrc="$HOME/.gvimrc"
 	nvimrc="$HOME/.nvimrc"
 	nvim="$HOME/.nvim"
+	rm $gvimrc
+	rm $nvimrc
+	rm $nvim
 
 	if [ ! -f "$gvimrc" ] && [ ! -L "$gvimrc" ]
 	then
