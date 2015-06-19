@@ -1,27 +1,3 @@
-Opening log files in /home/wilson/script/test-wad/log
-Test Run By wilson on Fri Jun 19 11:00:53 2015
-Native configuration is x86_64-unknown-linux-gnu
-
-		===  tests ===
-
-setting trap for SIGTERM to terminated
-setting trap for SIGINT to interrupted by user
-setting trap for SIGQUIT to interrupted by user
-dirlist is /usr/local/share/dejagnu/baseboards
-pushing config for build, name is localhost
-dirlist is /usr/local/share/dejagnu/baseboards
-pushing config for host, name is localhost
-Schedule of variations:
-    unix
-
-target is unix
-Running target unix
-dirlist is /usr/local/share/dejagnu/baseboards/localhost /usr/local/share/dejagnu/baseboards
-Using /usr/local/share/dejagnu/baseboards/unix.exp as board description file for target.
-Using /usr/local/share/dejagnu/config/unix.exp as generic interface file for target.
-Using /home/wilson/script/test-wad/wad.test/config/unix.exp as tool-and-target-specific interface file.
-spawn /bin/zsh -c ssh wilson@localhost | tee /home/wilson/script/test-wad/log/log.pc
-spawn /bin/zsh -c plink -telnet 192.168.1.99 | tee /home/wilson/script/test-wad/log/log.box
 
 VM64 login: admin
 Password: 
@@ -56,9 +32,7 @@ Release Version Information: Interim
 FortiOS x86-64: Yes
 System time: Fri Jun 19 11:00:53 2015
 
-VM64 # pushing config for target, name is unix
-Running /home/wilson/script/test-wad/wad.test/wad.test/wad.exp ...
-
+VM64 # 
 VM64 # 
 VM64 # diag debug console no en
 
@@ -130,8 +104,4 @@ VM64 # exec log filter device memory
 VM64 # exec log filter cat 3
 
 VM64 # 
-VM64 # testcase /home/wilson/script/test-wad/wad.test/wad.test/wad.exp completed in 2 seconds
-
-		===  Summary ===
-
-runtest completed at Fri Jun 19 11:00:55 2015
+VM64 # 
