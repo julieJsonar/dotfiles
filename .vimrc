@@ -157,7 +157,10 @@
 "       :<C-\>eYourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
-"   CrashLog:                        # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
+"   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
+"   Shortkeys:             # beginwith <leader>;
+"       w                  # relative number line
+"       r                  # replace
 "======================================================================
 
 call plug#begin('~/.vim/plugged')
@@ -432,6 +435,15 @@ nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
 vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 nmap <leader>c  :tabclose<CR>
 nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
+
+" Shortkeys {
+  function! CurrentReplace()
+    return "%s/\\<" . expand("<cword>") . "\\>/" . expand("<cword>") . "/gi"
+  endfunction
+
+  " maps
+  map <leader>;r :<C-\>e CurrentReplace() <CR>
+"}
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
