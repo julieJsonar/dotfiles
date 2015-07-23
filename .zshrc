@@ -59,9 +59,9 @@ function git_prompt_info() {
 # wilson
 export USESUDO=sudo
 
-# export HISTCONTROL=erasedups
-export HISTCONTROL=ignoredups
-export HISTIGNORE="hisotry:cd ..:cd ~:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:pwd:ls:ls -l:ls –ltr:"
+export HISTCONTROL=erasedups
+#export HISTCONTROL=ignoredups
+export HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:hisotry:cd ..:cd ~:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:ls -l:ls –ltr:"
 
 alias dict='~/tools/dict'
 alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && ~/script/image.exp'
