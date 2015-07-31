@@ -185,10 +185,11 @@ Plug 'majutsushi/tagbar'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'myusuf3/numbers.vim'
 
-Plug 'millermedeiros/vim-statline'
+"Plug 'millermedeiros/vim-statline'
 "Plug 'maciakl/vim-neatstatus'
-"Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
+Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-sneak'
 "Plug 'Lokaltog/vim-easymotion'
 "Plug 'Shougo/vimproc.vim'
@@ -198,6 +199,10 @@ Plug 'huawenyu/vim-mark'
 Plug 'tpope/vim-markdown'
 Plug 'huawenyu/vim-log-syntax'
 Plug 'pangloss/vim-javascript'
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'mhinz/vim-startify'
 
 "Plug 'ervandew/supertab'
 "Plug 'huawenyu/vim-easygrep'
@@ -373,6 +378,14 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 
+" CtrlP
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 "hi MatchParen cterm=bold ctermfg=cyan
 "hi MatchParen cterm=none ctermbg=green ctermfg=none
 "hi MatchParen cterm=none ctermbg=green ctermfg=blue
@@ -453,6 +466,12 @@ let g:AutoComplPop_Behavior = {
 \      ]
 \}
 
+" Vim-session
+let g:session_directory = "."
+let g:session_autoload = "no"
+let g:session_autosave = "yes"
+let g:session_command_aliases = 1
+
 " CommandT
 let g:CommandTHighlightColor = 'Ptext'
 let g:CommandTNeverShowDotFiles = 1
@@ -502,7 +521,7 @@ nnoremap <silent> <leader>a :FSHere<cr>
   endfunction
 
   function! LocalEasyReplace()
-    return "bufdo! %s/\\<" . expand('<cword>') . "\\>/???/gc"
+    return "bufdo! %s/\\<" . expand('<cword>') . "\\>/" . expand('<cword>') . "/gc"
   endfunction
 
   " maps
