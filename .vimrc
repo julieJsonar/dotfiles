@@ -185,9 +185,9 @@ Plug 'majutsushi/tagbar'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'myusuf3/numbers.vim'
 
-"Plug 'millermedeiros/vim-statline'
+Plug 'millermedeiros/vim-statline'
 "Plug 'maciakl/vim-neatstatus'
-Plug 'bling/vim-airline'
+"Plug 'bling/vim-airline'
 
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-sneak'
@@ -213,9 +213,6 @@ Plug 'bruno-/vim-man'
 Plug 'huawenyu/tracelog.vim'
 
 call plug#end()
-
-" My local plugins
-"source /home/wilson/.vim/plugin/log.vim
 
 let mapleader = ";"
 " diable Ex mode
