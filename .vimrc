@@ -687,8 +687,8 @@ let g:html_use_css = 0
     exe "cs add cscope.out"
     set cscopeverbose
   endfunction
-  "autocmd BufEnter * call LoadCscope()
-  autocmd BufNewFile,BufRead * call LoadCscope()
+  autocmd BufEnter * call LoadCscope()
+  "autocmd BufNewFile,BufRead * call LoadCscope()
 
   " The following maps all invoke one of the following cscope search types:
   "   's'   symbol: find all references to the token under cursor
