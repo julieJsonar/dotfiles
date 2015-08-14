@@ -85,11 +85,22 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
 elif [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
-		grep -v '/_' | \
-		grep -v 'wad/ui/stdin/' | \
-		grep -v 'wad/ui/stdin/' | \
-		grep -v 'wad/test/' | \
-		grep -v 'wad/redirect/socket/' \
+		grep -v 'wad/ui/stdin/'        | \
+		grep -v 'wad/ui/stdin/'        | \
+		grep -v 'wad/test/'            | \
+		grep -v 'wad/redirect/socket/' | \
+		grep -v 'kernel/'              | \
+		grep -v 'linux-3.2.16/'        | \
+		grep -v 'linux-2.4.25/'        | \
+		grep -v 'compress/'            | \
+		grep -v 'cooked/'              | \
+		grep -v 'router/'              | \
+		grep -v 'fortitest/'           | \
+		grep -v 'linuxatm/'            | \
+		grep -v 'sysctl/'              | \
+		grep -v 'tests/gtest/'         | \
+		grep -v 'tools/'               | \
+		grep -v '/_' \
 		> cscope.files"
 	execute "sort cscope.files > cscope.files.sorted"
 	execute "mv cscope.files.sorted cscope.files"
@@ -97,7 +108,7 @@ elif [ $action_mode == 'all' ]; then
 #	execute "/usr/bin/time global -u -L cscope.files"
 
 	execute "cscope -kbq > /dev/null 2>&1"
-	execute "ctags -L cscope.files > /dev/null 2>&1"
+	execute "ctags -L cscope.files > /dev/null 2>&1 &"
 #	execute "ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1 &"
 fi
 
