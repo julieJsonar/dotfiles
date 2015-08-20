@@ -13,9 +13,16 @@
 "    $ vi -c 'PlugInstall'
 "
 " 2. work with nvim(load db to support cscope)
-"    $ cd
+"    $ sudo dnf -y install dnf-plugins-core
+"    $ sudo dnf -y copr enable dperson/neovim
+"    $ sudo dnf -y install neovim
+"
+"    $ cd ~
+"
 "    $ ln -s .vim .nvim
 "    $ ln -s .vimrc .nvimrc
+"    $ ln -s .vimrc .gvimrc
+"
 "    $ nvim -c 'PlugStatus'
 "
 " Usage:
@@ -66,8 +73,8 @@
 "       :cfile log.marks   # view as quickfix
 "   Quckfix:
 "       :cw                # open
-"       <C-n>              # next
-"       <C-p>              # previous
+"       <C-n>              # :cnext
+"       <C-p>              # :cprevious
 "       :colder N          # last result list
 "       :cnewer N          # next result list
 "   AutoComplete:
@@ -120,6 +127,11 @@
 "       <leader>mm         # MarkToggle
 "       <leader>mr         # MarkRegex
 "       <leader>mx         # MarkClearAll
+"   CtrlP:
+"        <leader>fp        :CtrlP<CR>
+"        <leader>fb        :CtrlPBuffer<CR>
+"        <leader>fm        :CtrlPMRUFiles<CR>
+"        <leader>ft        :CtrlPTag<CR>
 "   Cscope:
 "        :!cscope -[R]kbq;
 "        :cs reset
@@ -189,7 +201,7 @@ Plug 'millermedeiros/vim-statline'
 "Plug 'maciakl/vim-neatstatus'
 "Plug 'bling/vim-airline'
 
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-sneak'
 "Plug 'Lokaltog/vim-easymotion'
 "Plug 'Shougo/vimproc.vim'
@@ -376,6 +388,12 @@ set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 
 " CtrlP
+let g:crtlp_map='<F11>'
+nnoremap <leader>fp :CtrlP<CR>
+nnoremap <leader>fb :CtrlPBuffer<CR>
+nnoremap <leader>fm :CtrlPMRUFiles<CR>
+nnoremap <leader>ft :CtrlPTag<CR>
+
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -412,8 +430,8 @@ cmap w!! w !sudo tee % >/dev/null
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
-vmap <leader>y   "+y
-vnoremap <leader>p "_dP
+"vmap <leader>y   "+y
+"vnoremap <leader>p "_dP
 
 " https://github.com/christoomey/vim-tmux-navigator
 "nnoremap <c-h> <c-w>h
@@ -431,8 +449,8 @@ nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
 " vim local list
 "nnoremap <silent> gn  :lnext<cr>
 "nnoremap <silent> gp  :lpre<cr>
-nnoremap <silent> gn  :cnew<cr>
-nnoremap <silent> gp  :cold<cr>
+"nnoremap <silent> gn  :cnew<cr>
+"nnoremap <silent> gp  :cold<cr>
 
 " :R !ls -l   grab command output int new buffer
 command! -nargs=* -complete=shellcmd R tabnew
