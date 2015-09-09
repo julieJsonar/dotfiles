@@ -81,7 +81,7 @@ alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-
 unsetopt correct_all
 unsetopt nomatch
 
-GREP_OPTIONS="--color --exclude=\*.svn\* --exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.*"
+GREP_OPTIONS="--color --exclude=\*.svn\* --exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.* "
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 unset GREP_OPTIONS
 

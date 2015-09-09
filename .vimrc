@@ -515,6 +515,16 @@ nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
 nnoremap <silent> <leader>a :FSHere<cr>
 
+command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(values(buffer_numbers))
+endfunction
+
 " easygrep {
 
   set grepprg=grep
@@ -535,12 +545,12 @@ nnoremap <silent> <leader>a :FSHere<cr>
   endfunction
 
   function! LocalEasyReplace()
-    return "bufdo! %s/\\<" . expand('<cword>') . "\\>/" . expand('<cword>') . "/gc"
+    return "Qargs | argdo %s/\\<" . expand('<cword>') . "\\>/" . expand('<cword>') . "/gc | update"
   endfunction
 
   " maps
-  map <leader>vv :<C-\>e LocalEasyGrep(0) <CR><CR><CR>
-  map <leader>va :<C-\>e LocalEasyGrep(1) <CR><CR><CR>
+  map <leader>vv :<C-\>e LocalEasyGrep(0) <CR>
+  map <leader>va :<C-\>e LocalEasyGrep(1) <CR>
   map <leader>vr :<C-\>e LocalEasyReplace() <CR>
 
   map <leader>g :<C-\>eLocalGrepYankToNewTab() <CR>
