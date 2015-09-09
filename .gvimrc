@@ -535,13 +535,18 @@ endfunction
 
   " autocmd QuickfixCmdPost make,grep,vimgrep copen
   function! LocalEasyGrep(add)
-    if a:add
+    if a:add == 0
       let l:cmd = "grepadd"
-    else
+      let l:param = "! -Inr --include='*.[ch]' -- '"
+    elseif a:add == 1
       let l:cmd = "grep"
+      let l:param = "! -Inr --include='*.[ch]' -- '"
+    elseif a:add == 2
+      let l:cmd = "grep"
+      let l:param = "! -Inr --exclude='patch.*' --exclude='cscope.*' --exclude='tags' --exclude='TAGS' -w '"
     endif
-  
-    return l:cmd . "! -Inr --include='*.[ch]' -- '" . expand('<cword>') . "' ."
+
+    return l:cmd . l:param . expand('<cword>') . "' ."
   endfunction
 
   function! LocalEasyReplace()
@@ -549,8 +554,9 @@ endfunction
   endfunction
 
   " maps
-  map <leader>vv :<C-\>e LocalEasyGrep(0) <CR>
-  map <leader>va :<C-\>e LocalEasyGrep(1) <CR>
+  map <leader>va :<C-\>e LocalEasyGrep(0) <CR>
+  map <leader>vv :<C-\>e LocalEasyGrep(1) <CR>
+  map <leader>vV :<C-\>e LocalEasyGrep(2) <CR>
   map <leader>vr :<C-\>e LocalEasyReplace() <CR>
 
   map <leader>g :<C-\>eLocalGrepYankToNewTab() <CR>
