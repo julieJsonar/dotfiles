@@ -325,6 +325,42 @@ set ssop+=sesdir     " work under current dir as relative path
 
 "}
 
+"Status Line
+" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" format markers:
+"   %< truncation point
+"   %= split point for left and right justification
+"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
+"
+"   %n buffer number
+"   %f relative path to file
+"   %r readonly flag [RO]
+"   %y filetype [ruby]
+"   %-35. width specification
+"   %l current line number
+"   %L number of lines in buffer
+"   %c current column number
+"   %V current virtual column number (-n), if different from %c
+"   %P percentage through buffer
+"   %) end of width specification
+function! Statusline_set_me()
+    set laststatus=2                             " always show statusbar
+
+    set statusline=
+    set statusline+=[%{StatlineBufCount()}:%n]\ %P\ "space
+    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\   "space
+    set statusline+=%02.2c[%02.2B]L%l/%L\           "space
+
+    "set statusline+=%h%m%r%w                     " status flags
+    "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+
+    set statusline+=%<
+    set statusline+=%=
+    set statusline+=%m
+
+    set statusline+=%f:
+    set statusline+=%{tagbar#currenttag('%s','')} " function name, depend on tagbar
+endfunction
 
 filetype plugin indent on
 " DetectIndent using :DetectIndent command
@@ -343,6 +379,7 @@ let g:detectindent_max_lines_to_analyse = 1024
           \ set cindent |
           \ set autoindent |
           \ set smartindent |
+          \ call Statusline_set_me() |
 
 "}
 
@@ -351,25 +388,6 @@ augroup qf
     autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
     autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
 augroup END
-
-"Status Line {
-    set laststatus=2                             " always show statusbar
-    set statusline=
-    set statusline+=%-10.3n\                     " buffer number
-    set statusline+=%f\                          " filename
-    set statusline+=%h%m%r%w                     " status flags
-    set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-    set statusline+=%=                           " right align remainder
-    set statusline+=0x%-8B                       " character value
-    set statusline+=%-14(%l,%c%V%)               " line, character
-    set statusline+=%<%P                         " file position
-
-" vim-airline
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-
-"}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:AutoPairsFlyMode = 1
@@ -491,8 +509,11 @@ let g:CommandTHighlightColor = 'Ptext'
 let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
-" taglist plugin
+" taglist tagbar plugin
 map <leader>n :TagbarToggle<cr>
+let g:tagbar_left = 1
+let g:tagbar_width = 30
+
 let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
 
