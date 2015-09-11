@@ -543,7 +543,15 @@ endfunction
       let l:param = "! -Inr --include='*.[ch]' -- '"
     elseif a:add == 2
       let l:cmd = "grep"
-      let l:param = "! -Inr --exclude='patch.*' --exclude='cscope.*' --exclude='tags' --exclude='TAGS' -w '"
+      let l:param = "! -Inr
+                    \ --exclude='patch.*'
+                    \ --exclude='cscope.*'
+                    \ --exclude='tags'
+                    \ --exclude='TAGS'
+                    \ --exclude='\*.svn\*'
+                    \ --exclude='.svn'
+                    \ --exclude='.git'
+                    \ -w '"
     endif
 
     return l:cmd . l:param . expand('<cword>') . "' ."
