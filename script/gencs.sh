@@ -94,7 +94,6 @@ elif [ $action_mode == 'all' ]; then
 		grep -v 'linux-2.4.25/'        | \
 		grep -v 'compress/'            | \
 		grep -v 'cooked/'              | \
-		grep -v 'router/'              | \
 		grep -v 'fortitest/'           | \
 		grep -v 'linuxatm/'            | \
 		grep -v 'sysctl/'              | \
@@ -102,6 +101,10 @@ elif [ $action_mode == 'all' ]; then
 		grep -v 'tools/'               | \
 		grep -v '/_' \
 		> cscope.files"
+
+#		grep -v 'router/'              | \
+#
+
 	execute "sort cscope.files > cscope.files.sorted"
 	execute "mv cscope.files.sorted cscope.files"
 #	execute "/usr/bin/time gtags -f cscope.files"
