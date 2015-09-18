@@ -359,7 +359,8 @@ function! Statusline_set_me()
     set statusline+=%m
 
     set statusline+=%f:
-    set statusline+=%{tagbar#currenttag('%s','')} " function name, depend on tagbar
+    "set statusline+=%{tagbar#currenttag('%s','')} " function name, depend on tagbar
+    set statusline+=%{GetFuncName()}
 endfunction
 
 filetype plugin indent on
@@ -674,6 +675,14 @@ fun! ShowFuncName()
   echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
   echohl None
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+
+fun! GetFuncName()
+  let lnum = line(".")
+  let col = col(".")
+  let l:cmd = getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
+  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+  return substitute(l:cmd, "(.*", "()", "")
 endfun
 map <leader>l :call ShowFuncName() <CR>
 
