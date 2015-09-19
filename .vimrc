@@ -510,10 +510,22 @@ let g:CommandTHighlightColor = 'Ptext'
 let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
-" taglist tagbar plugin
-map <leader>n :TagbarToggle<cr>
-let g:tagbar_left = 1
-let g:tagbar_width = 30
+"{ taglist tagbar plugin
+	map <leader>n :TagbarToggle<cr>
+	let g:tagbar_width = 30
+	
+	function! IsLeftMostWindow()
+	    let curNr = winnr()
+	    wincmd h
+	    if winnr() == curNr
+	        return 1
+	    endif
+	    wincmd p " Move back.
+	    return 0
+	endfunction
+	
+	autocmd WinEnter * if !IsLeftMostWindow() | let g:tagbar_left = 0 | else | let g:tagbar_left = 1 | endif
+"}
 
 let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
