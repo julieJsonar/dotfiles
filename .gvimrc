@@ -186,7 +186,7 @@ Plug 'holokai'
 "Plug 'tomasr/molokai'
 Plug 'Lokaltog/vim-distinguished'
 
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'ciaranm/detectindent'
 Plug 'file-line'
@@ -452,18 +452,19 @@ set clipboard+=unnamedplus
 "vmap <leader>y   "+y
 "vnoremap <leader>p "_dP
 
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <silent> <leader>q :e #<cr>
+
 " https://github.com/christoomey/vim-tmux-navigator
-"nnoremap <c-h> <c-w>h
-"nnoremap <c-j> <c-w>j
-"nnoremap <c-k> <c-w>k
-"nnoremap <c-l> <c-w>l
-"nnoremap <silent> <leader>q :e #<cr>
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
+"let g:tmux_navigator_no_mappings = 1
+"nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
+"nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
+"nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
+"nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
+"nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
 
 " vim local list
 "nnoremap <silent> gn  :lnext<cr>
