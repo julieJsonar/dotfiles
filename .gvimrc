@@ -205,6 +205,7 @@ Plug 'millermedeiros/vim-statline'
 Plug 'justinmk/vim-sneak'
 "Plug 'Lokaltog/vim-easymotion'
 "Plug 'Shougo/vimproc.vim'
+Plug 'tpope/vim-fugitive'
 
 Plug 'huawenyu/vim-mark'
 "Plug 'AnsiEsc.vim'
@@ -276,6 +277,7 @@ set nostartofline
 set noshowmatch
 set nonumber
 set noexpandtab
+set virtualedit=all
 
 " indent
 set tabstop=4
@@ -721,14 +723,37 @@ endfun
   fun! GitBlameCurrent()
     return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
   endfun
-  
+
   fun! SvnBlameCurrent()
     execute("!svn blame " . expand("%p") . "|sed -n '" . (line(".") - 5) . "," . (line(".") + 5)  . "p'")
   endfun
 
+  function s:svnBlame()
+     let line = line(".")
+     setlocal nowrap
+     " create a new window at the left-hand side
+     aboveleft 18vnew
+     " blame, ignoring white space changes
+     %!svn blame -x-w "#"
+     setlocal nomodified readonly buftype=nofile nowrap winwidth=1
+     setlocal nonumber
+     if has('&relativenumber') | setlocal norelativenumber | endif
+     " return to original line
+     exec "normal " . line . "G"
+     " synchronize scrolling, and return to original window
+     setlocal scrollbind
+     wincmd p
+     setlocal scrollbind
+     syncbind
+  endfunction
+  map gb :call <SID>svnBlame()<CR>
+  command Blame call s:svnBlame()
+
   " maps
-  map <leader>bs :call SvnBlameCurrent() <CR>
-  map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
+  "map <leader>bs :call SvnBlameCurrent() <CR>
+  "map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
+  map <leader>bs :call s:svnBlame() <CR>
+  map <leader>bg :Gblame <CR>
 
 "}
 
