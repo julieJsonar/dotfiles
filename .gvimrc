@@ -277,7 +277,6 @@ set nostartofline
 set noshowmatch
 set nonumber
 set noexpandtab
-set virtualedit=all
 
 " indent
 set tabstop=4
@@ -728,7 +727,7 @@ endfun
     execute("!svn blame " . expand("%p") . "|sed -n '" . (line(".") - 5) . "," . (line(".") + 5)  . "p'")
   endfun
 
-  function s:svnBlame()
+  function SvnBlame()
      let line = line(".")
      setlocal nowrap
      " create a new window at the left-hand side
@@ -746,13 +745,13 @@ endfun
      setlocal scrollbind
      syncbind
   endfunction
-  map gb :call <SID>svnBlame()<CR>
-  command Blame call s:svnBlame()
+  "map gb :call <SID>svnBlame()<CR>
+  "command Blame call s:svnBlame()
 
   " maps
-  "map <leader>bs :call SvnBlameCurrent() <CR>
+  map <leader>bs :call SvnBlameCurrent() <CR>
   "map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
-  map <leader>bs :call s:svnBlame() <CR>
+  "map <leader>bs :call SvnBlame() <CR>
   map <leader>bg :Gblame <CR>
 
 "}
