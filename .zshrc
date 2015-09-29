@@ -81,8 +81,8 @@ alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-
 unsetopt correct_all
 unsetopt nomatch
 
-GREP_OPTIONS="--color --exclude=\*.svn\* --exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.* "
-alias grep="/usr/bin/grep $GREP_OPTIONS"
+GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.\* "
+alias grep='function _mygrep(){/usr/bin/grep --color=always "$@" $GREP_OPTIONS}; _mygrep'
 unset GREP_OPTIONS
 
 # Customize to your needs...
