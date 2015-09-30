@@ -348,9 +348,9 @@ function! Statusline_set_me()
     set laststatus=2                             " always show statusbar
 
     set statusline=
-    set statusline+=[%{StatlineBufCount()}:%n]\ %P\ "space
-    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\   "space
-    set statusline+=%02.2c[%02.2B]L%l/%L\           "space
+    set statusline+=[%{StatlineBufCount()}:%n]\   "space
+    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
+    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]\     "space
 
     "set statusline+=%h%m%r%w                     " status flags
     "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
