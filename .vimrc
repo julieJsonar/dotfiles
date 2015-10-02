@@ -77,6 +77,7 @@
 "       <C-p>              # :cprevious
 "       :colder N          # last result list
 "       :cnewer N          # next result list
+"       :Qfilter pattern   # filter the result
 "   AutoComplete:
 "       <C-n>              # popup selector or navigate next
 "       <C-p>              # popup selector or navigate previous
@@ -144,6 +145,7 @@
 "       <leader>ff         # find file, use . represent any char
 "                            :cs f f my_conn.<Enter> will show my_conn.c my_conn_impl.h
 "       <leader>fs         # List All symbol
+"       <leader>fS         # List All symbol and add to quickfix, then :Qfilter again
 "   SvnGitBlame:
 "       <leader>bs         # svn blame
 "       <leader>bg         # git blame
@@ -772,6 +774,13 @@ endfun
   function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
+
+  " filter  :Qfilter pattern  <OR>  :Qfilter! pattern
+  function! s:FilterQuickfixList(bang, pattern)
+    let cmp = a:bang ? '!~#' : '=~#'
+    call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
+  endfunction
+  command! -bang -nargs=1 -complete=file Qfilter call s:FilterQuickfixList(<bang>0, <q-args>)
 
 "}
 
