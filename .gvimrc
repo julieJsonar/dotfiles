@@ -216,9 +216,9 @@ Plug 'tpope/vim-markdown'
 Plug 'huawenyu/vim-log-syntax'
 Plug 'pangloss/vim-javascript'
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'mhinz/vim-startify'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"Plug 'mhinz/vim-startify'
 
 "Plug 'ervandew/supertab'
 "Plug 'huawenyu/vim-easygrep'
@@ -503,11 +503,11 @@ let g:AutoComplPop_Behavior = {
 \      ]
 \}
 
-" Vim-session
-let g:session_directory = "."
-let g:session_autoload = "no"
-let g:session_autosave = "yes"
-let g:session_command_aliases = 1
+"" Vim-session
+"let g:session_directory = "."
+"let g:session_autoload = "no"
+"let g:session_autosave = "yes"
+"let g:session_command_aliases = 1
 
 " CommandT
 let g:CommandTHighlightColor = 'Ptext'
