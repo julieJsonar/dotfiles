@@ -194,6 +194,7 @@ Plug 'file-line'
 Plug 'Raimondi/delimitMate'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
+"Plug 'vim-scripts/taglist.vim'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'myusuf3/numbers.vim'
 
@@ -360,7 +361,6 @@ function! Statusline_set_me()
     set statusline+=%m
 
     set statusline+=%f:
-    "set statusline+=%{tagbar#currenttag('%s','')} " function name, depend on tagbar
     set statusline+=%{GetFuncName()}
 endfunction
 
@@ -514,7 +514,11 @@ let g:CommandTScanDotDirectories = 0
 
 "{ taglist tagbar plugin
 	map <leader>n :TagbarToggle<cr>
+
 	let g:tagbar_width = 30
+	let g:tagbar_compact = 1
+	let g:tagbar_indent = 0
+	let g:tagbar_iconchars = ['+', '-']
 	
 	function! IsLeftMostWindow()
 	    let curNr = winnr()
@@ -812,11 +816,11 @@ let g:html_use_css = 0
   "         :tags   see where you currently are in the tag stack
   "         :tag sys_<TAB>  auto-complete
   " http://www.fsl.cs.sunysb.edu/~rick/rick_vimrc
-  
+
   ":help cscope-options
   set cscopetag
   set cscopequickfix=s0,c0,d0,i0,t-,e-
-  
+
   nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
   nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
   nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -825,13 +829,24 @@ let g:html_use_css = 0
   nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR>
   nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR>
   nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  
+
   nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
   nmap <leader>; :cs find g <C-R>=expand("<cword>")<CR><CR>
   nmap <leader>i <C-I>
   nmap <leader>o <C-O>
-  
-  
+
+  " Find symbol and add to quickfix
+  function CscopeSymbol()
+     let l:old_cscopeflag = &cscopequickfix
+
+     set cscopequickfix=s-,c0,d0,i0,t-,e-
+     exec ':cs find s ' . expand("<cword>")
+     exec ':copen'
+
+     let &cscopequickfix = l:old_cscopeflag
+  endfunction
+  nmap <leader>fS :call CscopeSymbol() <CR>
+
   " Using gnu-global replace cscope&ctags
   ""Using gtags.vim
   "" $ find . -name '*.[ch]' > tags.files
@@ -851,8 +866,8 @@ let g:html_use_css = 0
   "
   "" 0 for c, 1 for c++
   "set csto=0
-  
-  
+
+
   ""Using gtags-cscope.vim
   ""<C-space>t  open define in horizon window
   ""<C-space><C-space>t  open define in vertical window
