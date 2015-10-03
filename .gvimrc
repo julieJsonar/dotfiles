@@ -32,8 +32,12 @@
 "  gd <or> D       goto declare <or> global declare
 "  [I              list all occurence
 "  g; <or> g,      navigate changelist
+"
 " <space>          open preview window, then <c-w>H adjust layout
 " <leader><space>  open file in preview window, then <c-w>H adjust layout
+" :Layout          open layout
+" :on              close all other's windows
+"
 " <leader>l        show current function name
 " <leader>a        switch .c/.h
 " <leader>;w        toggle relative line number
@@ -764,7 +768,7 @@ endfun
 
   " autofit
   nnoremap <buffer> <Enter> <C-W><Enter>
-  autocmd FileType qf call AdjustWindowHeight(3, 10)
+  autocmd FileType qf call AdjustWindowHeight(3, 8)
   function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
@@ -790,15 +794,19 @@ endfun
 " Layout {
 
   function! s:DefaultLayout()
-	exec ":pclose"
-	exec ":cclose"
-	exec ":ps / /"
-	exec normal<C-W>H
-	exec ":copen"
-	exec normal<C-W>J
-	restore cursor pos
+    exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%p')
+    exec ":silent pclose"
+    exec ":silent cclose"
+    exec ":silent psearch " . expand('<cword>')
+    exec "normal \<C-W>H"
+    exec ":silent copen"
+    exec "normal \<C-W>J"
+    exec "normal \<C-W>k"
   endfunction
+
+  " :on[ly][!]  close all other windows, but keep buffer
   command! Layout call s:DefaultLayout()
+  nmap <leader>;l :Layout <CR><CR>
 
 "}
 
