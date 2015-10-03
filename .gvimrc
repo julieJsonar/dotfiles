@@ -387,12 +387,6 @@ let g:detectindent_max_lines_to_analyse = 1024
 
 "}
 
-augroup qf
-    autocmd!
-    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
-    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
-augroup END
-
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:AutoPairsFlyMode = 1
 
@@ -775,12 +769,36 @@ endfun
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
 
+  " auto command
+  augroup qf
+    autocmd!
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
+  augroup END
+
+
   " filter  :Qfilter pattern  <OR>  :Qfilter! pattern
   function! s:FilterQuickfixList(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
   endfunction
   command! -bang -nargs=1 -complete=file Qfilter call s:FilterQuickfixList(<bang>0, <q-args>)
+
+"}
+
+
+" Layout {
+
+  function! s:DefaultLayout()
+	exec ":pclose"
+	exec ":cclose"
+	exec ":ps / /"
+	exec normal<C-W>H
+	exec ":copen"
+	exec normal<C-W>J
+	restore cursor pos
+  endfunction
+  command! Layout call s:DefaultLayout()
 
 "}
 
