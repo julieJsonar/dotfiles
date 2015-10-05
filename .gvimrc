@@ -807,8 +807,8 @@ endfun
   " :on[ly][!]  close all other windows, but keep buffer
   command! Layout call s:DefaultLayout()
   nmap <leader>;l :Layout <CR><CR>
-  nmap <leader>n :cnewer <CR><CR>
-  nmap <leader>p :colder <CR><CR>
+  nmap <leader>n :silent! cnewer <CR><CR>
+  nmap <leader>p :silent! colder <CR><CR>
 
 "}
 
@@ -874,13 +874,14 @@ let g:html_use_css = 0
 
   " Find symbol and add to quickfix
   function CscopeSymbol()
-     let l:old_cscopeflag = &cscopequickfix
+    let l:old_cscopeflag = &cscopequickfix
 
-     set cscopequickfix=s-,c0,d0,i0,t-,e-
-     exec ':cs find s ' . expand("<cword>")
-     exec ':copen'
+    set cscopequickfix=s-,c0,d0,i0,t-,e-
+    exec ':cs find s ' . expand("<cword>")
+    exec ':silent copen'
+    exec "normal \<C-W>k"
 
-     let &cscopequickfix = l:old_cscopeflag
+    let &cscopequickfix = l:old_cscopeflag
   endfunction
   nmap <leader>;s :call CscopeSymbol() <CR>
 
