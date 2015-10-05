@@ -513,7 +513,7 @@ let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
 "{ taglist tagbar plugin
-	map <leader>n :TagbarToggle<cr>
+	map <leader>;n :TagbarToggle<cr>
 
 	let g:tagbar_width = 30
 	let g:tagbar_compact = 1
@@ -772,6 +772,13 @@ endfun
   function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
+
+  function! s:FunctionList()
+    let l:cmd='exctags -x '.bufname('%')." | awk '{print $4\"|\"$3\"|\",$1}'"
+    cexpr system(l:cmd)
+  endfunction
+  command! Functions call s:FunctionList()
+  nmap <leader>;f :Layout <CR><CR>
 
   " auto command
   augroup qf
