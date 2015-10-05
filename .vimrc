@@ -28,6 +28,7 @@
 " Usage:
 " ======
 " <leader>         ";"
+" <leader>;*       my shortkey
 "
 "  gd <or> D       goto declare <or> global declare
 "  [I              list all occurence
@@ -40,10 +41,9 @@
 "
 " <leader>l        show current function name
 " <leader>a        switch .c/.h
-" <leader>;w        toggle relative line number
+" <leader>;w       toggle relative line number
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>s        grep struct malloc, conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>n        toggle taglist
+" <leader>;n       toggle taglist
 " <leader>z        syntax log file
 " <leader>g ,.     preview definition with ctags: pta, ptn, ptp
 " <leader>e        dictionary
@@ -807,6 +807,8 @@ endfun
   " :on[ly][!]  close all other windows, but keep buffer
   command! Layout call s:DefaultLayout()
   nmap <leader>;l :Layout <CR><CR>
+  nmap <leader>n :cnewer <CR><CR>
+  nmap <leader>p :colder <CR><CR>
 
 "}
 
@@ -880,7 +882,7 @@ let g:html_use_css = 0
 
      let &cscopequickfix = l:old_cscopeflag
   endfunction
-  nmap <leader>fS :call CscopeSymbol() <CR>
+  nmap <leader>;s :call CscopeSymbol() <CR>
 
   " Using gnu-global replace cscope&ctags
   ""Using gtags.vim
