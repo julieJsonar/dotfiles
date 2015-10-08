@@ -87,7 +87,6 @@ function _mygrep()
   if [ -t 0 ]; then
     /usr/bin/grep --color=always "$@" $GREP_OPTIONS
   else
-    echo "Input coming from stdin"
     /usr/bin/grep --color=always $@
   fi
 };
