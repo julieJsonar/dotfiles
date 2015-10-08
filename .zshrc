@@ -82,7 +82,16 @@ unsetopt correct_all
 unsetopt nomatch
 
 GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.\* "
-alias grep='function _mygrep(){/usr/bin/grep --color=always "$@" $GREP_OPTIONS}; _mygrep'
+function _mygrep()
+{
+  if [ -t 0 ]; then
+    /usr/bin/grep --color=always "$@" $GREP_OPTIONS
+  else
+    echo "Input coming from stdin"
+    /usr/bin/grep --color=always $@
+  fi
+};
+alias grep='_mygrep'
 unset GREP_OPTIONS
 
 # Customize to your needs...
