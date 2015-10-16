@@ -773,13 +773,6 @@ endfun
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
 
-  function! s:FunctionList()
-    let l:cmd='exctags -x '.bufname('%')." | awk '{print $4\"|\"$3\"|\",$1}'"
-    cexpr system(l:cmd)
-  endfunction
-  command! Functions call s:FunctionList()
-  nmap <leader>;f :Layout <CR><CR>
-
   " auto command
   augroup qf
     autocmd!
