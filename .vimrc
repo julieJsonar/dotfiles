@@ -421,11 +421,13 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+hi CursorLine guibg=Grey40
+hi Visual term=reverse cterm=reverse guibg=Grey
+
 "hi MatchParen cterm=bold ctermfg=cyan
 "hi MatchParen cterm=none ctermbg=green ctermfg=none
 "hi MatchParen cterm=none ctermbg=green ctermfg=blue
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-hi CursorLine guibg=Grey40
 
 " change highlight color for search hits
 "hi Search guibg=peru guifg=wheat
@@ -436,6 +438,7 @@ hi Search ctermfg=Red ctermbg=NONE cterm=NONE
 hi TabLine ctermfg=DarkBlue ctermbg=NONE cterm=NONE
 hi TabLineSel ctermfg=Red ctermbg=NONE cterm=NONE
 hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
+
 "hi NonText ctermfg=7 guifg=Gray
 hi NonText ctermfg=DarkGrey guifg=DarkGrey
 hi clear SpecialKey
