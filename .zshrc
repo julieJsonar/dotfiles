@@ -88,9 +88,9 @@ GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tag
 function _mygrep()
 {
   if [ -t 0 ]; then
-    /usr/bin/grep --color=always "$@" $GREP_OPTIONS
+    /usr/bin/grep "$@" $GREP_OPTIONS
   else
-    /usr/bin/grep --color=always $@
+    /usr/bin/grep $@
   fi
 };
 alias grep='_mygrep'

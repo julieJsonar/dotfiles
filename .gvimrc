@@ -188,9 +188,10 @@ call plug#begin('~/.vim/plugged')
 " plugin on GitHub repo
 
 Plug 'holokai'
-"Plug 'darkspectrum'
-"Plug 'tomasr/molokai'
+Plug 'darkspectrum'
+Plug 'tomasr/molokai'
 Plug 'Lokaltog/vim-distinguished'
+Plug 'nanotech/jellybeans.vim'
 
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-fswitch'
@@ -215,7 +216,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-fugitive'
 
 Plug 'huawenyu/vim-mark'
-"Plug 'AnsiEsc.vim'
+Plug 'AnsiEsc.vim'
 Plug 'tpope/vim-markdown'
 Plug 'huawenyu/vim-log-syntax'
 Plug 'pangloss/vim-javascript'
@@ -868,7 +869,6 @@ let g:html_use_css = 0
   nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
   nmap <leader>] :cs find g <C-R>=expand("<cword>")<CR><CR>
-  nmap <leader>; :cs find g <C-R>=expand("<cword>")<CR><CR>
   nmap <leader>i <C-I>
   nmap <leader>o <C-O>
 
