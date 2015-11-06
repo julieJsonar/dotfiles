@@ -1,0 +1,9 @@
+[user]
+	name = Huawen Yu
+	email = hyu@fortinet.com
+[core]
+	excludesfile = ~/.gitignore
+[format]
+	pretty = format:%h %ad %8.8s(%an)
+[log]
+	date = short
