@@ -7,3 +7,5 @@
 	pretty = format:%h %ad %8.8s(%an)
 [log]
 	date = short
+[github]
+	user = huawenyu
