@@ -892,7 +892,8 @@ let g:html_use_css = 0
 
     let &cscopequickfix = l:old_cscopeflag
   endfunction
-  nmap <leader>;s :call CscopeSymbol() <CR>
+  nmap <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
+  nmap <leader>fS :call CscopeSymbol() <CR>
 
   " Using gnu-global replace cscope&ctags
   ""Using gtags.vim

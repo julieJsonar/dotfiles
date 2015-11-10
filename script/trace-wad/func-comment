@@ -186,3 +186,6 @@ wad_rtmp_amf_debug
 wad_rtmp_amf_is_compatible_type
 wad_rtmpt_port_clt_read_region
 __wad_rtmpt_port_write_region
+wad_scan_on_alarm
+netlink_on_event
+wad_wanopt_profile_config_proto
