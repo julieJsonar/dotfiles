@@ -3,27 +3,8 @@
 " =============
 " 1. [vim-plugin](https://github.com/junegunn/vim-plug)
 "    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
-"    $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"    $ cat > .vimrc <<DELIM
-"      call plug#begin('~/.vim/plugged')
-"      Plug 'holokai'
-"      call plug#end()
-"      # Our vimrc begin here
-"      DELIM
-"    $ vi -c 'PlugInstall'
-"
-" 2. work with nvim(load db to support cscope)
-"    $ sudo dnf -y install dnf-plugins-core
-"    $ sudo dnf -y copr enable dperson/neovim
-"    $ sudo dnf -y install neovim
-"
-"    $ cd ~
-"
-"    $ ln -s .vim .nvim
-"    $ ln -s .vimrc .nvimrc
-"    $ ln -s .vimrc .gvimrc
-"
-"    $ nvim -c 'PlugStatus'
+"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    $ vi -c 'PluginInstall'
 "
 " Usage:
 " ======
@@ -181,62 +162,66 @@
 "       r                  # replace
 "======================================================================
 
-call plug#begin('~/.vim/plugged')
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 
-Plug 'holokai'
-Plug 'darkspectrum'
-Plug 'tomasr/molokai'
-Plug 'Lokaltog/vim-distinguished'
-Plug 'nanotech/jellybeans.vim'
+Plugin 'holokai'
+Plugin 'darkspectrum'
+Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'nanotech/jellybeans.vim'
 
-"Plug 'christoomey/vim-tmux-navigator'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'ciaranm/detectindent'
-Plug 'file-line'
-"Plug 'netrw.vim'
-Plug 'Raimondi/delimitMate'
-"Plug 'jiangmiao/auto-pairs'
-Plug 'majutsushi/tagbar'
-"Plug 'vim-scripts/taglist.vim'
-"Plug 'fholgado/minibufexpl.vim'
-Plug 'myusuf3/numbers.vim'
+"Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'ciaranm/detectindent'
+Plugin 'file-line'
+"Plugin 'netrw.vim'
+Plugin 'Raimondi/delimitMate'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/taglist.vim'
+"Plugin 'fholgado/minibufexpl.vim'
+Plugin 'myusuf3/numbers.vim'
 
-Plug 'millermedeiros/vim-statline'
-"Plug 'maciakl/vim-neatstatus'
-"Plug 'bling/vim-airline'
+Plugin 'millermedeiros/vim-statline'
+"Plugin 'maciakl/vim-neatstatus'
+"Plugin 'bling/vim-airline'
 
-"Plug 'kien/ctrlp.vim'
-Plug 'justinmk/vim-sneak'
-"Plug 'Lokaltog/vim-easymotion'
-Plug 'tpope/vim-fugitive'
+"Plugin 'kien/ctrlp.vim'
+Plugin 'justinmk/vim-sneak'
+"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
 
-"Plug 'Shougo/vimproc.vim'
-"Plug 'Shougo/deoplete.nvim'
-Plug 'benekastah/neomake'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/deoplete.nvim'
+"Plugin 'benekastah/neomake'
 
-Plug 'huawenyu/vim-mark'
-Plug 'AnsiEsc.vim'
-Plug 'tpope/vim-markdown'
-Plug 'huawenyu/vim-log-syntax'
-Plug 'pangloss/vim-javascript'
+Plugin 'huawenyu/vim-mark'
+Plugin 'AnsiEsc.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'huawenyu/vim-log-syntax'
+Plugin 'pangloss/vim-javascript'
 
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-session'
-"Plug 'mhinz/vim-startify'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
+"Plugin 'mhinz/vim-startify'
 
-"Plug 'ervandew/supertab'
-"Plug 'huawenyu/vim-easygrep'
-Plug 'yuratomo/w3m.vim'
-Plug 'DrawIt'
-Plug 'bruno-/vim-man'
+"Plugin 'ervandew/supertab'
+"Plugin 'huawenyu/vim-easygrep'
+Plugin 'yuratomo/w3m.vim'
+Plugin 'DrawIt'
+Plugin 'bruno-/vim-man'
 
-Plug 'huawenyu/tracelog.vim'
+Plugin 'huawenyu/tracelog.vim'
 
-call plug#end()
+call vundle#end()
+filetype plugin indent on
 
 let mapleader = ";"
 " diable Ex mode

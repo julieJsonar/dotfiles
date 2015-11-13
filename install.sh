@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # QuickStart
 # ==========
@@ -150,15 +150,15 @@ elif [ $action_mode == 'pull' ]; then
 		execute "ln -s ~/.vimrc $gvimrc"
 	fi
 
-	if [ ! -f "$nvimrc" ] && [ ! -L "$nvimrc" ]
-	then
-		execute "ln -s ~/.vimrc $nvimrc"
-	fi
+	#if [ ! -f "$nvimrc" ] && [ ! -L "$nvimrc" ]
+	#then
+	#	execute "ln -s ~/.vimrc $nvimrc"
+	#fi
 
-	if [ ! -d "$nvim" ] && [ ! -L "$nvim" ]
-	then
-		execute "ln -s ~/.vim $nvim"
-	fi
+	#if [ ! -d "$nvim" ] && [ ! -L "$nvim" ]
+	#then
+	#	execute "ln -s ~/.vim $nvim"
+	#fi
 fi
 
 # End of file

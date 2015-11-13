@@ -68,8 +68,6 @@ alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib
 alias mywad='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && strip -s /var/lib/tftpboot/init'
 alias mywadfull='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && chmod 777 /var/lib/tftpboot/init'
 alias mycrash='~/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog'
-alias vi='nvim'
-alias vim='nvim'
 alias eclipse='nohup ~/tools/eclipse/eclipse > /dev/null 2>&1 &'
 alias meld='nohup ~/tools/meld/bin/meld > /dev/null 2>&1 &'
 alias xnview='nohup ~/tools/XnView/XnView > /dev/null 2>&1 &'
@@ -88,9 +86,9 @@ GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tag
 function _mygrep()
 {
   if [ -t 0 ]; then
-    /usr/bin/grep "$@" $GREP_OPTIONS
+    /bin/grep "$@" $GREP_OPTIONS
   else
-    /usr/bin/grep $@
+    /bin/grep $@
   fi
 };
 alias grep='_mygrep'
