@@ -169,5 +169,6 @@ export PYTHONPATH="/home/wilson/work/autotest-robot/library"
 export AWKPATH="/home/wilson/script/awk:/home/wilson/script/awk/awk-libs";
 export TERM=xterm-256color
 export EDITOR='nvim'
-export JAVA_HOME="/usr/java/latest"
+# export JAVA_HOME="/usr/java/latest"
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 

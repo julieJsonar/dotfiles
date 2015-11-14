@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 function show_help(){
 cat << EOF
 Usage: ${0##*/} [-hv] [-a ACTION(wad|daemon|all)] [-d DEBUG(just dryrun)]
