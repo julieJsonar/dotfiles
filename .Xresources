@@ -2,6 +2,7 @@
 !*************************** XTerm *************************************
 !***********************************************************************
 XTerm*loginShell: true
+xTerm*locale:     true
 
 ! solve screen switch flicker
 XTerm*visualBell: false
@@ -73,6 +74,7 @@ XTerm*color15:     #ffffff
 *xterm*color15: #d0d0d0
 
 XTerm*utf8: true
+XTerm*utf8: 2
 
 XTerm.VT100.renderFont: true
 XTerm*faceSize: 13.5
@@ -101,6 +103,114 @@ XTerm*allowBoldFonts: false
 
 XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 XTerm*selectToClipboard: true
+
+
+
+!***********************************************************************
+!*************************** UXTerm *************************************
+!***********************************************************************
+UXTerm*loginShell: true
+UXTerm*locale:     true
+
+! solve screen switch flicker
+UXTerm*visualBell: false
+
+UXTerm*saveLines: 10000
+UXTerm*cutNewline: true
+UXTerm*allowTitleOps: false
+
+!UXTerm*fastScroll: True
+UXTerm*scrollBar: False
+UXTerm*scrollBar.DrawBorder: False
+!UXTerm*ScrollBar.Background: gray
+!UXTerm*ScrollBar.Background: black
+!UXTerm*ScrollBar.thickness: 0
+!UXTerm*ScrollBar.foreground: gray
+UXTerm*reverseVideo: false
+UXTerm*reverseWrap: true
+!UXTerm*fullCursor: true
+UXTerm*scrollTtyOutput: on
+UXTerm*scrollKey: on
+UXTerm*eightBitInput: false
+!UXTerm*pointerColor: white
+!UXTerm*pointerShape: left_ptr 
+UXTerm*charClass:     37:48,45-47:48,58:48,64:48,126:48
+
+!UXTerm*cursorBlink:   on
+!UXTerm*cursorOffTime: 300
+!UXTerm*cursorOnTime:  900
+
+! my theme
+UXTerm*background:  #000000
+UXTerm*foreground:  #9f9f9f
+UXTerm*color0:      #000000
+UXTerm*color1:      #9e1828
+UXTerm*color2:      #aece92
+UXTerm*color3:      #968a38
+UXTerm*color4:      #414171
+UXTerm*color5:      #963c59
+UXTerm*color6:      #418179
+UXTerm*color7:      #bebebe
+UXTerm*color8:      #666666
+UXTerm*color9:      #cf6171
+UXTerm*color10:     #c5f779
+UXTerm*color11:     #fff796
+UXTerm*color12:     #4186be
+UXTerm*color13:     #cf9ebe
+UXTerm*color14:     #71bebe
+UXTerm*color15:     #ffffff
+
+! Molokai theme
+!*xterm*background: #101010
+!*xterm*foreground: #d0d0d0
+!*xterm*cursorColor: #d0d0d0
+!*xterm*color0: #101010
+!*xterm*color1: #960050
+!*xterm*color2: #66aa11
+!*xterm*color3: #c47f2c
+!*xterm*color4: #30309b
+!*xterm*color5: #7e40a5
+!*xterm*color6: #3579a8
+!*xterm*color7: #9999aa
+!*xterm*color8: #303030
+!*xterm*color9: #ff0090
+!*xterm*color10: #80ff00
+!*xterm*color11: #ffba68
+!*xterm*color12: #5f5fee
+!*xterm*color13: #bb88dd
+!*xterm*color14: #4eb4fa
+*xterm*color15: #d0d0d0
+
+UXTerm*utf8: true
+UXTerm*utf8:  2
+
+UXTerm.VT100.renderFont: true
+UXTerm*faceSize: 13.5
+UXTerm.VT100.faceName: Liberation Mono
+!UXTerm*faceSize: 12.5
+!UXTerm.VT100.faceName: terminus
+!UXTerm.VT100.faceName: Monospace
+!UXTerm*faceName: Liberation Mono
+!UXTerm.VT100.fontdefault: -*-terminus-*-*-*-13-*-*-*-*-*-*-*
+!UXTerm.VT100.font1: -*-terminus-*-*-*-12-*-*-*-*-*-*-*
+!UXTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*                          
+!UXTerm.VT100.font3: -*-terminus-*-*-*-20-*-*-*-*-*-*-*                          
+!UXTerm.VT100.font4: -*-terminus-*-*-*-24-*-*-*-*-*-*-*
+!UXTerm.VT100.font5: -*-terminus-*-*-*-28-*-*-*-*-*-*-*                          
+!UXTerm.VT100.font6: -*-terminus-*-*-*-32-*-*-*-*-*-*-*
+!UXTerm*font: fixed
+!UXTerm*boldFont: fixed
+UXTerm*allowBoldFonts: false
+
+!UXTerm*fontdefault: xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
+!UXTerm*boldFont: xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
+
+!UXTerm*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!UXTerm*font: -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
+!UXTerm*font: DejaVu Sans Mono:pixelsize=13
+
+UXTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+UXTerm*selectToClipboard: true
 
 
 
