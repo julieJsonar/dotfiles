@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
-sudo apt-get install -y curl zsh xterm tmux
+sudo apt-get install -y curl zsh xterm tmux ruby
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion

@@ -61,16 +61,19 @@ export USESUDO=sudo
 
 export HISTCONTROL=erasedups
 #export HISTCONTROL=ignoredups
-export HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:hisotry:cd ..:cd ~:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:ls -l:ls –ltr:"
+export HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:hisotry:cd ..:cd ~:cd /data:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:ls -l:ls –ltr:"
 
-alias dict='~/tools/dict'
-alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && ~/script/image.exp'
+mydata='/media/wilson/data'
+myhome='/home/wilson'
+
+alias dict='$mydata/tools/dict'
+alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $mydata/script/image.exp'
 alias mywad='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && strip -s /var/lib/tftpboot/init'
 alias mywadfull='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && chmod 777 /var/lib/tftpboot/init'
-alias mycrash='~/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog'
-alias eclipse='nohup ~/tools/eclipse/eclipse > /dev/null 2>&1 &'
-alias meld='nohup ~/tools/meld/bin/meld > /dev/null 2>&1 &'
-alias xnview='nohup ~/tools/XnView/XnView > /dev/null 2>&1 &'
+alias mycrash='$mydata/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog'
+alias eclipse='nohup $mydata/tools/eclipse/eclipse > /dev/null 2>&1 &'
+alias meld='nohup $mydata/tools/meld/bin/meld > /dev/null 2>&1 &'
+alias xnview='nohup $mydata/tools/XnView/XnView > /dev/null 2>&1 &'
 alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}'
 
 # export MYTYPESCRIPT=~/script/`date +%Y%m%d`
@@ -159,16 +162,16 @@ all-panes-bg_()
 
 
 # Customize to your needs...
-export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/home/wilson/bin:/usr/local/sbin:/usr/sbin
-export PATH="/home/wilson/perl5/bin:/home/wilson/script:/home/wilson/script/git-scripts:$PATH";
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/home/wilson/perl5";
-export PERL_MB_OPT="--install_base /home/wilson/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/wilson/perl5";
-export PERL5LIB="/home/wilson/perl5/lib/perl5:$PERL5LIB";
-export PYTHONPATH="/home/wilson/work/autotest-robot/library"
-export AWKPATH="/home/wilson/script/awk:/home/wilson/script/awk/awk-libs";
+export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:$myhome/bin:/usr/local/sbin:/usr/sbin
+export PATH="$myhome/perl5/bin:$myhome/script:$myhome/script/git-scripts:$PATH";
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$myhome/perl5";
+export PERL_MB_OPT="--install_base $myhome/perl5";
+export PERL_MM_OPT="INSTALL_BASE=$myhome/perl5";
+export PERL5LIB="$myhome/perl5/lib/perl5:$PERL5LIB";
+export PYTHONPATH="$myhome/work/autotest-robot/library"
+export AWKPATH="$myhome/script/awk:$myhome/script/awk/awk-libs";
 export TERM=xterm-256color
-export EDITOR='nvim'
+export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 

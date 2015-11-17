@@ -2,7 +2,7 @@
 	name = Huawen Yu
 	email = hyu@fortinet.com
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /home/wilson/.gitignore_global
 [format]
 	pretty = format:%h %ad %s(%an)
 [log]

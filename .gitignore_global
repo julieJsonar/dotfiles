@@ -1,0 +1,7 @@
+# Maybe run the following command to make it valid:
+#   git config --global core.excludesfile ~/.gitignore_global
+
+Session.vim
+log.*
+patch.*
+tags*
