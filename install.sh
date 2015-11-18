@@ -39,6 +39,7 @@ sudo service xinetd restart
 
 # Samba
 # https://help.ubuntu.com/community/Samba/SambaServerGuide
+# Assume linux already have a username <wilson>, otherwise please add it first.
 sudo apt-get install -y samba smbclient
 sudo smbpasswd -a wilson
 sudo patch -p0 /etc/samba/smb.conf patch.smbconf
