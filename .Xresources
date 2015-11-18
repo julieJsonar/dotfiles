@@ -27,6 +27,7 @@ XTerm*eightBitInput: false
 !XTerm*pointerColor: white
 !XTerm*pointerShape: left_ptr 
 XTerm*charClass:     37:48,45-47:48,58:48,64:48,126:48
+XTerm*font: -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
 
 !XTerm*cursorBlink:   on
 !XTerm*cursorOffTime: 300
@@ -77,12 +78,16 @@ XTerm*utf8: true
 XTerm*utf8: 2
 
 XTerm.VT100.renderFont: true
+
 XTerm*faceSize: 13.5
-XTerm.VT100.faceName: Liberation Mono
+XTerm*faceName: DejaVu Sans Mono
+!XTerm*faceName: Liberation Mono
+!XTerm.VT100.faceName: Liberation Mono
 !XTerm*faceSize: 12.5
 !XTerm.VT100.faceName: terminus
 !XTerm.VT100.faceName: Monospace
 !XTerm*faceName: Liberation Mono
+!
 !XTerm.VT100.fontdefault: -*-terminus-*-*-*-13-*-*-*-*-*-*-*
 !XTerm.VT100.font1: -*-terminus-*-*-*-12-*-*-*-*-*-*-*
 !XTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*                          
@@ -186,7 +191,8 @@ UXTerm*utf8:  2
 
 UXTerm.VT100.renderFont: true
 UXTerm*faceSize: 13.5
-UXTerm.VT100.faceName: Liberation Mono
+UXTerm*faceName: DejaVu Sans Mono
+!UXTerm.VT100.faceName: Liberation Mono
 !UXTerm*faceSize: 12.5
 !UXTerm.VT100.faceName: terminus
 !UXTerm.VT100.faceName: Monospace

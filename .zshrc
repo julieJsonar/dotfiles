@@ -12,6 +12,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
+DISABLE_UPDATE_PROMPT=true
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -57,6 +58,8 @@ function git_prompt_info() {
 
 # Customize to your needs...
 # wilson
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export USESUDO=sudo
 
 export HISTCONTROL=erasedups
