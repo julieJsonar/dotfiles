@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
-sudo apt-get install build-essential
+sudo apt-get install -y build-essential
 # Gcc Compile: check header not found error
 # sudo updatedb
 # locate stdio.h

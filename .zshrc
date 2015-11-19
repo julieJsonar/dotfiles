@@ -66,7 +66,7 @@ export HISTCONTROL=erasedups
 #export HISTCONTROL=ignoredups
 export HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:hisotry:cd ..:cd ~:cd /data:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:ls -l:ls –ltr:"
 
-mydata='/media/wilson/data'
+mydata='/data'
 myhome='/home/wilson'
 
 alias dict='$mydata/tools/dict'

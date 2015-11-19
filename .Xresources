@@ -1,222 +1,90 @@
 !***********************************************************************
 !*************************** XTerm *************************************
 !***********************************************************************
-XTerm*loginShell: true
-xTerm*locale:     true
+XTerm*loginShell:     true
+XTerm*locale:         true
 
 ! solve screen switch flicker
-XTerm*visualBell: false
+XTerm*visualBell:     false
 
-XTerm*saveLines: 10000
-XTerm*cutNewline: true
-XTerm*allowTitleOps: false
+XTerm*saveLines:      10000
+XTerm*cutNewline:     true
+XTerm*allowTitleOps:  false
+XTerm*termName:       xterm-color
+XTerm*allowSendEvents:true
 
-!XTerm*fastScroll: True
-XTerm*scrollBar: False
-XTerm*scrollBar.DrawBorder: False
-!XTerm*ScrollBar.Background: gray
-!XTerm*ScrollBar.Background: black
-!XTerm*ScrollBar.thickness: 0
-!XTerm*ScrollBar.foreground: gray
-XTerm*reverseVideo: false
-XTerm*reverseWrap: true
-!XTerm*fullCursor: true
-XTerm*scrollTtyOutput: on
-XTerm*scrollKey: on
-XTerm*eightBitInput: false
-!XTerm*pointerColor: white
-!XTerm*pointerShape: left_ptr 
-XTerm*charClass:     37:48,45-47:48,58:48,64:48,126:48
-XTerm*font: -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
+XTerm*selectToClipboard: true
+xterm*charClass:      33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+
+!XTerm*fastScroll:    True
+XTerm*scrollBar:      false
+XTerm*scrollBar.DrawBorder: false
+XTerm*reverseVideo:   false
+XTerm*reverseWrap:    true
+!XTerm*fullCursor:    true
+XTerm*scrollTtyOutput:on
+XTerm*scrollKey:      on
+XTerm*eightBitInput:  false
 
 !XTerm*cursorBlink:   on
 !XTerm*cursorOffTime: 300
 !XTerm*cursorOnTime:  900
 
-! my theme
-XTerm*background:  #000000
-XTerm*foreground:  #9f9f9f
-XTerm*color0:      #000000
-XTerm*color1:      #9e1828
-XTerm*color2:      #aece92
-XTerm*color3:      #968a38
-XTerm*color4:      #414171
-XTerm*color5:      #963c59
-XTerm*color6:      #418179
-XTerm*color7:      #bebebe
-XTerm*color8:      #666666
-XTerm*color9:      #cf6171
-XTerm*color10:     #c5f779
-XTerm*color11:     #fff796
-XTerm*color12:     #4186be
-XTerm*color13:     #cf9ebe
-XTerm*color14:     #71bebe
-XTerm*color15:     #ffffff
+!! my theme
+!XTerm*background:    #000000
+!XTerm*foreground:    #9f9f9f
+!XTerm*color0:        #000000
+!XTerm*color1:        #9e1828
+!XTerm*color2:        #aece92
+!XTerm*color3:        #968a38
+!XTerm*color4:        #414171
+!XTerm*color5:        #963c59
+!XTerm*color6:        #418179
+!XTerm*color7:        #bebebe
+!XTerm*color8:        #666666
+!XTerm*color9:        #cf6171
+!XTerm*color10:       #c5f779
+!XTerm*color11:       #fff796
+!XTerm*color12:       #4186be
+!XTerm*color13:       #cf9ebe
+!XTerm*color14:       #71bebe
+!XTerm*color15:       #ffffff
 
 ! Molokai theme
-!*xterm*background: #101010
-!*xterm*foreground: #d0d0d0
-!*xterm*cursorColor: #d0d0d0
-!*xterm*color0: #101010
-!*xterm*color1: #960050
-!*xterm*color2: #66aa11
-!*xterm*color3: #c47f2c
-!*xterm*color4: #30309b
-!*xterm*color5: #7e40a5
-!*xterm*color6: #3579a8
-!*xterm*color7: #9999aa
-!*xterm*color8: #303030
-!*xterm*color9: #ff0090
-!*xterm*color10: #80ff00
-!*xterm*color11: #ffba68
-!*xterm*color12: #5f5fee
-!*xterm*color13: #bb88dd
-!*xterm*color14: #4eb4fa
-*xterm*color15: #d0d0d0
+XTerm*background:     #101010
+XTerm*foreground:     #d0d0d0
+XTerm*cursorColor:    #d0d0d0
+XTerm*color0:         #101010
+XTerm*color1:         #960050
+XTerm*color2:         #66aa11
+XTerm*color3:         #c47f2c
+XTerm*color4:         #30309b
+XTerm*color5:         #7e40a5
+XTerm*color6:         #3579a8
+XTerm*color7:         #9999aa
+XTerm*color8:         #303030
+XTerm*color9:         #ff0090
+XTerm*color10:        #80ff00
+XTerm*color11:        #ffba68
+XTerm*color12:        #5f5fee
+XTerm*color13:        #bb88dd
+XTerm*color14:        #4eb4fa
+XTerm*color15:        #d0d0d0
 
-XTerm*utf8: true
-XTerm*utf8: 2
-
-XTerm.VT100.renderFont: true
-
-XTerm*faceSize: 13.5
-XTerm*faceName: DejaVu Sans Mono
-!XTerm*faceName: Liberation Mono
-!XTerm.VT100.faceName: Liberation Mono
-!XTerm*faceSize: 12.5
-!XTerm.VT100.faceName: terminus
-!XTerm.VT100.faceName: Monospace
-!XTerm*faceName: Liberation Mono
-!
-!XTerm.VT100.fontdefault: -*-terminus-*-*-*-13-*-*-*-*-*-*-*
-!XTerm.VT100.font1: -*-terminus-*-*-*-12-*-*-*-*-*-*-*
-!XTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*                          
-!XTerm.VT100.font3: -*-terminus-*-*-*-20-*-*-*-*-*-*-*                          
-!XTerm.VT100.font4: -*-terminus-*-*-*-24-*-*-*-*-*-*-*
-!XTerm.VT100.font5: -*-terminus-*-*-*-28-*-*-*-*-*-*-*                          
-!XTerm.VT100.font6: -*-terminus-*-*-*-32-*-*-*-*-*-*-*
-!XTerm*font: fixed
-!XTerm*boldFont: fixed
+XTerm*utf8:           true
 XTerm*allowBoldFonts: false
+XTerm*renderFont:     true
+XTerm*faceSize:       13.5
+XTerm*faceName:       DejaVu Sans Mono
+!XTerm*faceName:      Liberation Mono
+!XTerm*faceSize:      12.5
+!XTerm*faceName:      Liberation Mono
+!XTerm*fontdefault:   xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
+!XTerm*boldFont:      xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
+!XTerm*font:          fixed
+!XTerm*font:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*font:          -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
+!XTerm*font:          -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
+!XTerm*font:          DejaVu Sans Mono:pixelsize=13
 
-!XTerm*fontdefault: xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
-!XTerm*boldFont: xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
-
-!XTerm*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!XTerm*font: -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
-!XTerm*font: DejaVu Sans Mono:pixelsize=13
-
-XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
-XTerm*selectToClipboard: true
-
-
-
-!***********************************************************************
-!*************************** UXTerm *************************************
-!***********************************************************************
-UXTerm*loginShell: true
-UXTerm*locale:     true
-
-! solve screen switch flicker
-UXTerm*visualBell: false
-
-UXTerm*saveLines: 10000
-UXTerm*cutNewline: true
-UXTerm*allowTitleOps: false
-
-!UXTerm*fastScroll: True
-UXTerm*scrollBar: False
-UXTerm*scrollBar.DrawBorder: False
-!UXTerm*ScrollBar.Background: gray
-!UXTerm*ScrollBar.Background: black
-!UXTerm*ScrollBar.thickness: 0
-!UXTerm*ScrollBar.foreground: gray
-UXTerm*reverseVideo: false
-UXTerm*reverseWrap: true
-!UXTerm*fullCursor: true
-UXTerm*scrollTtyOutput: on
-UXTerm*scrollKey: on
-UXTerm*eightBitInput: false
-!UXTerm*pointerColor: white
-!UXTerm*pointerShape: left_ptr 
-UXTerm*charClass:     37:48,45-47:48,58:48,64:48,126:48
-
-!UXTerm*cursorBlink:   on
-!UXTerm*cursorOffTime: 300
-!UXTerm*cursorOnTime:  900
-
-! my theme
-UXTerm*background:  #000000
-UXTerm*foreground:  #9f9f9f
-UXTerm*color0:      #000000
-UXTerm*color1:      #9e1828
-UXTerm*color2:      #aece92
-UXTerm*color3:      #968a38
-UXTerm*color4:      #414171
-UXTerm*color5:      #963c59
-UXTerm*color6:      #418179
-UXTerm*color7:      #bebebe
-UXTerm*color8:      #666666
-UXTerm*color9:      #cf6171
-UXTerm*color10:     #c5f779
-UXTerm*color11:     #fff796
-UXTerm*color12:     #4186be
-UXTerm*color13:     #cf9ebe
-UXTerm*color14:     #71bebe
-UXTerm*color15:     #ffffff
-
-! Molokai theme
-!*xterm*background: #101010
-!*xterm*foreground: #d0d0d0
-!*xterm*cursorColor: #d0d0d0
-!*xterm*color0: #101010
-!*xterm*color1: #960050
-!*xterm*color2: #66aa11
-!*xterm*color3: #c47f2c
-!*xterm*color4: #30309b
-!*xterm*color5: #7e40a5
-!*xterm*color6: #3579a8
-!*xterm*color7: #9999aa
-!*xterm*color8: #303030
-!*xterm*color9: #ff0090
-!*xterm*color10: #80ff00
-!*xterm*color11: #ffba68
-!*xterm*color12: #5f5fee
-!*xterm*color13: #bb88dd
-!*xterm*color14: #4eb4fa
-*xterm*color15: #d0d0d0
-
-UXTerm*utf8: true
-UXTerm*utf8:  2
-
-UXTerm.VT100.renderFont: true
-UXTerm*faceSize: 13.5
-UXTerm*faceName: DejaVu Sans Mono
-!UXTerm.VT100.faceName: Liberation Mono
-!UXTerm*faceSize: 12.5
-!UXTerm.VT100.faceName: terminus
-!UXTerm.VT100.faceName: Monospace
-!UXTerm*faceName: Liberation Mono
-!UXTerm.VT100.fontdefault: -*-terminus-*-*-*-13-*-*-*-*-*-*-*
-!UXTerm.VT100.font1: -*-terminus-*-*-*-12-*-*-*-*-*-*-*
-!UXTerm.VT100.font2: -*-terminus-*-*-*-14-*-*-*-*-*-*-*                          
-!UXTerm.VT100.font3: -*-terminus-*-*-*-20-*-*-*-*-*-*-*                          
-!UXTerm.VT100.font4: -*-terminus-*-*-*-24-*-*-*-*-*-*-*
-!UXTerm.VT100.font5: -*-terminus-*-*-*-28-*-*-*-*-*-*-*                          
-!UXTerm.VT100.font6: -*-terminus-*-*-*-32-*-*-*-*-*-*-*
-!UXTerm*font: fixed
-!UXTerm*boldFont: fixed
-UXTerm*allowBoldFonts: false
-
-!UXTerm*fontdefault: xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
-!UXTerm*boldFont: xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
-
-!UXTerm*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!UXTerm*font: -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
-!UXTerm*font: DejaVu Sans Mono:pixelsize=13
-
-UXTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
-UXTerm*selectToClipboard: true
-
-
-
+XTerm*translations:   #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
