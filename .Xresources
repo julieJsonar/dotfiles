@@ -30,7 +30,26 @@ XTerm*eightBitInput:  false
 !XTerm*cursorOffTime: 300
 !XTerm*cursorOnTime:  900
 
-!! my theme
+XTerm*utf8:           true
+XTerm*allowBoldFonts: false
+XTerm*renderFont:     true
+XTerm*faceSize:       13.5
+XTerm*faceName:       DejaVu Sans Mono
+!XTerm*faceName:      Liberation Mono
+!XTerm*faceSize:      12.5
+!XTerm*faceName:      Liberation Mono
+!XTerm*fontdefault:   xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
+!XTerm*boldFont:      xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
+!XTerm*font:          fixed
+!XTerm*font:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*font:          -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
+!XTerm*font:          -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
+!XTerm*font:          DejaVu Sans Mono:pixelsize=13
+
+XTerm*translations:   #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+!! Themes
+!
 !XTerm*background:    #000000
 !XTerm*foreground:    #9f9f9f
 !XTerm*color0:        #000000
@@ -71,20 +90,3 @@ XTerm*color13:        #bb88dd
 XTerm*color14:        #4eb4fa
 XTerm*color15:        #d0d0d0
 
-XTerm*utf8:           true
-XTerm*allowBoldFonts: false
-XTerm*renderFont:     true
-XTerm*faceSize:       13.5
-XTerm*faceName:       DejaVu Sans Mono
-!XTerm*faceName:      Liberation Mono
-!XTerm*faceSize:      12.5
-!XTerm*faceName:      Liberation Mono
-!XTerm*fontdefault:   xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
-!XTerm*boldFont:      xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
-!XTerm*font:          fixed
-!XTerm*font:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!XTerm*font:          -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
-!XTerm*font:          -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
-!XTerm*font:          DejaVu Sans Mono:pixelsize=13
-
-XTerm*translations:   #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
