@@ -173,7 +173,7 @@ export PERL_MM_OPT="INSTALL_BASE=$myhome/perl5";
 export PERL5LIB="$myhome/perl5/lib/perl5:$PERL5LIB";
 export PYTHONPATH="$myhome/work/autotest-robot/library"
 export AWKPATH="$myhome/script/awk:$myhome/script/awk/awk-libs";
-export TERM=xterm-256color
+export TERM=xterm
 export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
