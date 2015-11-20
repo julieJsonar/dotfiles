@@ -117,6 +117,10 @@ do
 	   [ -z $f ] || \
 	   [ $f == '.git' ] || \
 	   [ $f == 'README.md' ] || \
+	   [ $f == 'init_ubuntu.sh' ] || \
+	   [ $f == 'update.sh' ] || \
+	   [ $f == 'patch.smbconf' ] || \
+	   [ $f == 'tftp' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then
 		echo "Skipping $f"
@@ -141,9 +145,9 @@ elif [ $action_mode == 'pull' ]; then
 	gvimrc="$HOME/.gvimrc"
 	nvimrc="$HOME/.nvimrc"
 	nvim="$HOME/.nvim"
-	rm $gvimrc
-	rm $nvimrc
-	rm $nvim
+	rm -f $gvimrc
+	rm -f $nvimrc
+	rm -f $nvim
 
 	if [ ! -f "$gvimrc" ] && [ ! -L "$gvimrc" ]
 	then

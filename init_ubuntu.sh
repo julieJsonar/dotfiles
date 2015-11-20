@@ -17,8 +17,6 @@ sudo apt-get install -y curl zsh xterm tmux ruby
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion
-~/dotfiles/sync.sh -a pull
-
 sudo apt-get install -y vim
 sudo apt-get install -y tree cscope ctags w3m
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
