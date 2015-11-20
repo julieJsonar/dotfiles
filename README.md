@@ -8,3 +8,7 @@ If ubuntu type OS: ubuntu, linux mint, ...
 
 Commit & Update  
   ./update.sh  
+
+Rollback  
+  git reset --hard <old-commit-id>  
+  git push -f origin branch  

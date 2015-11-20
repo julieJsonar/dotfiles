@@ -3,10 +3,10 @@
 # QuickStart
 # ==========
 # Help
-# ./install.sh -a pull                       # sync from remote github
+# ./update.sh -a pull                       # sync from remote github
 # ... change ...
-# ./install.sh -da push -m "commit message"  # dryrun review
-# ./install.sh -a push -m "commit message"   # sync to remote github
+# ./update.sh -da push -m "commit message"  # dryrun review
+# ./update.sh -a push -m "commit message"   # sync to remote github
 #
 # Usage info
 # ==========
