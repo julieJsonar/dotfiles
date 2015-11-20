@@ -54,5 +54,8 @@ sudo service smbd restart
 # connect:
 #smbclient //<HOST_IP_OR_NAME>/<folder_name> -U <user>
 
+# If laptop, install battery
+#sudo apt-get install indicator-power
+
 vim -c 'PluginInstall'
 # End of file
