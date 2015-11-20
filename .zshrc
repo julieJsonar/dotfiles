@@ -60,6 +60,8 @@ function git_prompt_info() {
 # wilson
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# By default 0.4 second delay after hit the <ESC>
+export KEYTIMEOUT=0
 export USESUDO=sudo
 
 export HISTCONTROL=erasedups
