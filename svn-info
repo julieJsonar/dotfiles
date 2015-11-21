@@ -1,0 +1,20 @@
+4.3  http://scm-yvr.fortinet.com/svn/svnfos/FortiOSv4/branches/4-3/trunk/FortiOS/fortinet
+4tr  http://scm-yvr.fortinet.com/svn/svnfos/FortiOSv4/trunk/FortiOS/fortinet/
+
+5.0  svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/branches/5.x/5.0/trunk/FortiOS/fortinet 5.0 >/dev/null &
+6tr  svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/trunk/FortiOS/fortinet 6tr >/dev/null &
+
+forticache:
+2.3  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/2.x/2-3/trunk
+2tr  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/2.x/trunk
+3tr  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/trunk
+3.0  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/3.x/3.0/trunk
+
+5.2  svn checkout http://scm-yvr.fortinet.com:8080/svn/svnfos/FortiOS/branches/5.x/5.2/trunk/FortiOS/fortinet 5.2 >/dev/null &
+5.4  svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/branches/5.x/trunk/FortiOS/fortinet 5tr >/dev/null &
+
+Rtmp-5.2:
+svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/branches/5.x/br_5-2_rtmp/trunk/FortiOS/fortinet
+
+Git-server:
+git pull ssh://hyu@gerrit.fortinet.com:29418/fos.git
