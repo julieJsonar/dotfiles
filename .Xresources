@@ -12,6 +12,7 @@ XTerm*cutNewline:     true
 XTerm*allowTitleOps:  false
 XTerm*termName:       xterm-color
 XTerm*allowSendEvents:true
+!XTerm*metaSendsEscape:true
 
 XTerm*selectToClipboard: true
 xterm*charClass:      33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
@@ -26,15 +27,29 @@ XTerm*scrollTtyOutput:on
 XTerm*scrollKey:      on
 XTerm*eightBitInput:  false
 
+!XTerm*cursorUnderLine:true
 !XTerm*cursorBlink:   on
 !XTerm*cursorOffTime: 300
 !XTerm*cursorOnTime:  900
+
+XTerm*iconName:       Terminal
+xterm*title:          Terminal
+xterm*cursorOnTime:   300
+xterm*geometry:       110x31
+Xft.antialias:        1
+Xft.autohint:         0
+Xft.dpi:              96
+Xft.hinting:          1
+Xft.hintstyle:        hintfull
+Xft.lcdfilter:        lcddefault
+Xft.rgba:             rgb
 
 XTerm*utf8:           true
 XTerm*allowBoldFonts: false
 XTerm*renderFont:     true
 XTerm*faceSize:       13.5
 XTerm*faceName:       DejaVu Sans Mono
+!XTerm*faceName:      Monospace
 !XTerm*faceName:      Liberation Mono
 !XTerm*faceSize:      12.5
 !XTerm*faceName:      Liberation Mono
