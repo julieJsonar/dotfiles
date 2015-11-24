@@ -24,6 +24,8 @@ eclipse-moonrise-theme
 from https://github.com/guari/eclipse-ui-theme  
 
 Modify the active view should click two times: 1st focus, 2nd click item.  
+```
 $ cd eclipse-moonrise-theme
 $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
 $ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  ~/tools/eclipse/plugins/.
+```
