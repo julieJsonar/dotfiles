@@ -1,41 +1,41 @@
 !***********************************************************************
-!*************************** XTerm *************************************
-!***********************************************************************
-XTerm*loginShell:     true
-XTerm*locale:         true
+*loginShell:          false
+*locale:              true
+
+*saveLines:           12000
+*transparent:         false
+
+*fastScroll:          True
+*scrollBar:           false
+*scrollBar.DrawBorder:false
+*reverseVideo:        false
+*reverseWrap:         true
+*scrollTtyOutput:     on
+*scrollKey:           on
+*scrollstyle:         plain
+*eightBitInput:       false
 
 ! solve screen switch flicker
-XTerm*visualBell:     false
+*visualBell:          false
+*urgentOnBell:        false
 
-XTerm*saveLines:      10000
-XTerm*cutNewline:     true
-XTerm*allowTitleOps:  false
-XTerm*termName:       xterm-color
-XTerm*allowSendEvents:true
-!XTerm*metaSendsEscape:true
+*cutNewline:          true
+*allowTitleOps:       false
+*termName:            xterm-color
+*allowSendEvents:     true
+!*metaSendsEscape:true
 
-XTerm*selectToClipboard: true
-xterm*charClass:      33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+*title:               Terminal
+*geometry:            110x31
 
-!XTerm*fastScroll:    True
-XTerm*scrollBar:      false
-XTerm*scrollBar.DrawBorder: false
-XTerm*reverseVideo:   false
-XTerm*reverseWrap:    true
-!XTerm*fullCursor:    true
-XTerm*scrollTtyOutput:on
-XTerm*scrollKey:      on
-XTerm*eightBitInput:  false
+*selectToClipboard:   true
+*charClass:           33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
-!XTerm*cursorUnderLine:true
-!XTerm*cursorBlink:   on
-!XTerm*cursorOffTime: 300
-!XTerm*cursorOnTime:  900
+!*cursorUnderLine:    true
+!*cursorBlink:        on
+!*cursorOffTime:      300
+!*cursorOnTime:       900
 
-XTerm*iconName:       Terminal
-xterm*title:          Terminal
-xterm*cursorOnTime:   300
-xterm*geometry:       110x31
 Xft.antialias:        1
 Xft.autohint:         0
 Xft.dpi:              96
@@ -44,24 +44,63 @@ Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcddefault
 Xft.rgba:             rgb
 
-XTerm*utf8:           true
-XTerm*allowBoldFonts: false
-XTerm*renderFont:     true
-XTerm*faceSize:       13.5
-XTerm*faceName:       DejaVu Sans Mono
-!XTerm*faceName:      Monospace
-!XTerm*faceName:      Liberation Mono
-!XTerm*faceSize:      12.5
-!XTerm*faceName:      Liberation Mono
-!XTerm*fontdefault:   xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
-!XTerm*boldFont:      xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
-!XTerm*font:          fixed
-!XTerm*font:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!XTerm*font:          -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
-!XTerm*font:          -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
-!XTerm*font:          DejaVu Sans Mono:pixelsize=13
+*utf8:                true
+*allowBoldFonts:      false
+*renderFont:          true
+*font:                xft:DejaVu Sans Mono:pixelsize=13.5:antialias=true:hinting=true
+*faceSize:            13.5
+*faceName:            DejaVu Sans Mono
+*boldFont:            xft:DejaVu Sans Mono:bold:pixelsize=13.5:antialias=true:hinting=true
+! Disable all bold font
+!*boldFont:
 
-XTerm*translations:   #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+!*faceName:           Monospace
+!*faceName:           Liberation Mono
+!*faceSize:           12.5
+!*faceName:           Liberation Mono
+!*fontdefault:        xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
+!*boldFont:           xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
+!*font:               fixed
+!*font:               -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!*font:               -*-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1
+!*font:               -*-Monospace-medium-r-*-*-14-*-*-*-*-*-*-*
+!*font:               DejaVu Sans Mono:pixelsize=13
+
+!*************************** Rxvt *************************************
+URxvt*transparent:    false
+
+URxvt*depth:          32
+URxvt*fading:         0
+URxvt*internalBorder: 3
+URxvt*tintColor:      Blue
+URxvt*letterSpace:    -1
+URxvt.pointerBlank:   true
+
+!Perl extensions
+URxvt.perl-lib:       /home/wilson/.rxvt/urxvt-perls
+URxvt.perl-ext-common:default,matcher,keyboard-select,clipboard
+URxvt.matcher.button: 1
+!URxvt.urlLauncher:          chromium
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!# Incremental search. 
+!# "BackSpace"      removes a character from the regex, 
+!# "Up" and "Down"  search upwards/downwards in the scrollback buffer, 
+!# "End" jumps to the bottom. 
+!# "Escape" leaves search mode and returns to the point where search was started, 
+!# while "Enter" or "Return" stay at the current position 
+!#   and additionally stores the first match in the current line into the primary selection.
+URxvt.keysym.M-s:      perl:keyboard-select:search
+URxvt.keysym.M-u:      perl:url-select:select_next
+URxvt.keysym.M-c:      perl:clipboard:copy
+URxvt.keysym.M-v:      perl:clipboard:paste
+URxvt.keysym.M-C-v:    perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd:  xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+
+!*************************** XTerm *************************************
+
+XTerm*iconName:       Terminal
+xterm*cursorOnTime:   300
 
 !! Themes
 !
@@ -85,23 +124,23 @@ XTerm*translations:   #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUF
 !XTerm*color15:       #ffffff
 
 ! Molokai theme
-XTerm*background:     #101010
-XTerm*foreground:     #d0d0d0
-XTerm*cursorColor:    #d0d0d0
-XTerm*color0:         #101010
-XTerm*color1:         #960050
-XTerm*color2:         #66aa11
-XTerm*color3:         #c47f2c
-XTerm*color4:         #30309b
-XTerm*color5:         #7e40a5
-XTerm*color6:         #3579a8
-XTerm*color7:         #9999aa
-XTerm*color8:         #303030
-XTerm*color9:         #ff0090
-XTerm*color10:        #80ff00
-XTerm*color11:        #ffba68
-XTerm*color12:        #5f5fee
-XTerm*color13:        #bb88dd
-XTerm*color14:        #4eb4fa
-XTerm*color15:        #d0d0d0
+*background:          #101010
+*foreground:          #d0d0d0
+*cursorColor:         #d0d0d0
+*color0:              #101010
+*color1:              #960050
+*color2:              #66aa11
+*color3:              #c47f2c
+*color4:              #30309b
+*color5:              #7e40a5
+*color6:              #3579a8
+*color7:              #9999aa
+*color8:              #303030
+*color9:              #ff0090
+*color10:             #80ff00
+*color11:             #ffba68
+*color12:             #5f5fee
+*color13:             #bb88dd
+*color14:             #4eb4fa
+*color15:             #d0d0d0
 
