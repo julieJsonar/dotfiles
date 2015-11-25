@@ -27,9 +27,6 @@
 
 *cutNewline:          true
 *allowTitleOps:       false
-*termName:            xterm-color
-*allowSendEvents:     true
-!*metaSendsEscape:true
 
 *title:               Terminal
 *geometry:            110x31
@@ -103,10 +100,28 @@ URxvt.keysym.M-C-v:    perl:clipboard:paste_escaped
 URxvt.clipboard.copycmd:  xsel -ib
 URxvt.clipboard.pastecmd: xsel -ob
 
-!*************************** XTerm *************************************
 
-XTerm*iconName:       Terminal
-xterm*cursorOnTime:   300
+!*************************** XTerm *************************************
+XTerm*termName:        xterm-256color
+XTerm*allowSendEvents: true
+!XTerm*metaSendsEscape:true
+
+XTerm*iconName:        Terminal
+XTerm*cursorOnTime:    300
+XTerm*VT100*titeInhibit: true
+
+! Fix up xterm keybindings
+xterm*VT100.translations: #override \
+       <Key>BackSpace:    string(0x7F) \n\
+       <Key>Insert:       string(0x1b) string("[2~")\n\
+       <Key>Delete:       string(0x1b) string("[3~")\n\
+       <Key>Home:         string(0x1b) string("[1~")\n\
+       <Key>End:          string(0x1b) string("[4~")\n\
+       <Key>Page_Up:      string(0x1b) string("[5~")\n\
+       <Key>Page_Down:    string(0x1b) string("[6~")\n\
+       <KeyPress>Prior:   scroll-back(1,page)\n\
+       <KeyPress>Next:    scroll-forw(1,page)
+
 
 !! Themes
 !
@@ -133,20 +148,29 @@ xterm*cursorOnTime:   300
 *background:          #101010
 *foreground:          #d0d0d0
 *cursorColor:         #d0d0d0
-*color0:              #101010
-*color1:              #960050
-*color2:              #66aa11
-*color3:              #c47f2c
-*color4:              #30309b
-*color5:              #7e40a5
-*color6:              #3579a8
-*color7:              #9999aa
-*color8:              #303030
-*color9:              #ff0090
-*color10:             #80ff00
-*color11:             #ffba68
-*color12:             #5f5fee
-*color13:             #bb88dd
-*color14:             #4eb4fa
-*color15:             #d0d0d0
-
+URxvt*background:     #101010
+URxvt*foreground:     #d0d0d0
+URxvt*cursorColor:    #d0d0d0
+*VT100*colorMode:     on
+*VT100*dynamicColors: on
+*VT100*colorULMode:   on
+*VT100*underLine:     off
+*VT100*colorBDMode:   on
+*VT100*color0:        #101010
+*VT100*color1:        #960050
+*VT100*color2:        #66aa11
+*VT100*color3:        #c47f2c
+*VT100*color4:        #30309b
+*VT100*color5:        #7e40a5
+*VT100*color6:        #3579a8
+*VT100*color7:        #9999aa
+*VT100*color8:        #303030
+*VT100*color9:        #ff0090
+*VT100*color10:       #80ff00
+*VT100*color11:       #ffba68
+*VT100*color12:       #5f5fee
+*VT100*color13:       #bb88dd
+*VT100*color14:       #4eb4fa
+*VT100*color15:       #d0d0d0
+*VT100*colorUL:       yellow
+*VT100*colorBD:       white
