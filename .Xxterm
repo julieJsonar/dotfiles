@@ -24,31 +24,37 @@ XTerm*cutNewline:          true
 XTerm*allowTitleOps:       false
 
 XTerm*title:               Terminal
-XTerm*geometry:            110x31
+xterm*VT100.geometry:      80*32
 
 XTerm*selectToClipboard:   true
 XTerm*charClass:           33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
-!*cursorUnderLine:    true
-!*cursorBlink:        on
-!*cursorOffTime:      300
-!*cursorOnTime:       900
+!*cursorUnderLine:         true
+!*cursorBlink:             on
+!*cursorOffTime:           300
+!*cursorOnTime:            900
 
-Xft.antialias:        1
-Xft.autohint:         0
-Xft.dpi:              96
-Xft.hinting:          1
-Xft.hintstyle:        hintfull
-Xft.lcdfilter:        lcddefault
-Xft.rgba:             rgb
+Xft.antialias:             1
+Xft.autohint:              0
+Xft.dpi:                   96
+Xft.hinting:               1
+Xft.hintstyle:             hintfull
+Xft.lcdfilter:             lcddefault
+Xft.rgba:                  rgb
 
 XTerm*utf8:                true
+xterm*utf8Title:           true
 XTerm*allowBoldFonts:      false
 XTerm*renderFont:          true
 XTerm*font:                xft:DejaVu Sans Mono:pixelsize=13.5:antialias=true:hinting=true
 XTerm*faceSize:            13.5
 XTerm*faceName:            DejaVu Sans Mono
 XTerm*boldFont:            xft:DejaVu Sans Mono:bold:pixelsize=13.5:antialias=true:hinting=true
+xterm*faceNameDoublesize:  WenQuanYi Micro Hei Mono:pixelsize=16:antialias=true
+
+!true, CJK text column width of 2: if set this, tmux pane border will disappear
+!xterm*cjkWidth:            true
+
 ! Disable all bold font
 !*boldFont:
 
@@ -66,13 +72,14 @@ XTerm*boldFont:            xft:DejaVu Sans Mono:bold:pixelsize=13.5:antialias=tr
 
 
 !*************************** XTerm *************************************
-XTerm*termName:        xterm-256color
-XTerm*allowSendEvents: true
-!XTerm*metaSendsEscape:true
+XTerm*termName:            xterm-256color
+XTerm*allowSendEvents:     true
+XTerm*metaSendsEscape:     true
+xterm*altSendsEscape:      true
 
-XTerm*iconName:        Terminal
-XTerm*cursorOnTime:    300
-XTerm*VT100*titeInhibit: true
+XTerm*iconName:            Terminal
+XTerm*cursorOnTime:        300
+XTerm*VT100*titeInhibit:   true
 
 !! Fix up xterm keybindings
 !xterm*VT100.translations: #override \
@@ -87,50 +94,53 @@ XTerm*VT100*titeInhibit: true
 !       <KeyPress>Next:    scroll-forw(1,page)
 
 
-!! Themes
-!XTerm*background:    #000000
-!XTerm*foreground:    #9f9f9f
-!XTerm*color0:        #000000
-!XTerm*color1:        #9e1828
-!XTerm*color2:        #aece92
-!XTerm*color3:        #968a38
-!XTerm*color4:        #414171
-!XTerm*color5:        #963c59
-!XTerm*color6:        #418179
-!XTerm*color7:        #bebebe
-!XTerm*color8:        #666666
-!XTerm*color9:        #cf6171
-!XTerm*color10:       #c5f779
-!XTerm*color11:       #fff796
-!XTerm*color12:       #4186be
-!XTerm*color13:       #cf9ebe
-!XTerm*color14:       #71bebe
-!XTerm*color15:       #ffffff
+! Themes
 
-! Molokai theme
-XTerm*background:     #101010
-XTerm*foreground:     #d0d0d0
-XTerm*cursorColor:    #d0d0d0
-XTerm*colorMode:      on
-XTerm*dynamicColors:  on
-XTerm*colorULMode:    on
-XTerm*underLine:      off
-XTerm*colorBDMode:    on
-XTerm*color0:         #101010
-XTerm*color1:         #960050
-XTerm*color2:         #66aa11
-XTerm*color3:         #c47f2c
-XTerm*color4:         #30309b
-XTerm*color5:         #7e40a5
-XTerm*color6:         #3579a8
-XTerm*color7:         #9999aa
-XTerm*color8:         #303030
-XTerm*color9:         #ff0090
-XTerm*color10:        #80ff00
-XTerm*color11:        #ffba68
-XTerm*color12:        #5f5fee
-XTerm*color13:        #bb88dd
-XTerm*color14:        #4eb4fa
-XTerm*color15:        #d0d0d0
-XTerm*colorUL:        yellow
-XTerm*colorBD:        white
+!XTerm*cursorColor:    #d0d0d0
+!XTerm*colorMode:      on
+!XTerm*dynamicColors:  on
+!XTerm*colorULMode:    on
+!XTerm*underLine:      off
+!XTerm*colorBDMode:    on
+
+! My theme
+XTerm*background:    #000000
+XTerm*foreground:    #9f9f9f
+XTerm*color0:        #000000
+XTerm*color1:        #9e1828
+XTerm*color2:        #aece92
+XTerm*color3:        #968a38
+XTerm*color4:        #414171
+XTerm*color5:        #963c59
+XTerm*color6:        #418179
+XTerm*color7:        #bebebe
+XTerm*color8:        #666666
+XTerm*color9:        #cf6171
+XTerm*color10:       #c5f779
+XTerm*color11:       #fff796
+XTerm*color12:       #4186be
+XTerm*color13:       #cf9ebe
+XTerm*color14:       #71bebe
+XTerm*color15:       #ffffff
+
+!! Molokai theme
+!XTerm*background:     #101010
+!XTerm*foreground:     #d0d0d0
+!XTerm*color0:         #101010
+!XTerm*color1:         #960050
+!XTerm*color2:         #66aa11
+!XTerm*color3:         #c47f2c
+!XTerm*color4:         #30309b
+!XTerm*color5:         #7e40a5
+!XTerm*color6:         #3579a8
+!XTerm*color7:         #9999aa
+!XTerm*color8:         #303030
+!XTerm*color9:         #ff0090
+!XTerm*color10:        #80ff00
+!XTerm*color11:        #ffba68
+!XTerm*color12:        #5f5fee
+!XTerm*color13:        #bb88dd
+!XTerm*color14:        #4eb4fa
+!XTerm*color15:        #d0d0d0
+!XTerm*colorUL:        yellow
+!XTerm*colorBD:        white
