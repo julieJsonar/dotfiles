@@ -75,7 +75,7 @@ readonly HISTFILESIZE
 readonly HISTIGNORE
 readonly HISTCONTROL
 export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
-shopt -s histappend
+#shopt -s histappend
 
 mydata='/data'
 myhome='/home/wilson'
