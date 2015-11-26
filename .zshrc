@@ -68,7 +68,7 @@ HISTSIZE=10000
 HISTFILESIZE=999999
 HISTCONTROL=erasedups
 # HISTCONTROL=ignoredups
-HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:clear:[ \t]*:hisotry"
+HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
 readonly HISTFILE
 readonly HISTSIZE
 readonly HISTFILESIZE
