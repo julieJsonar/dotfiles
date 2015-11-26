@@ -46,9 +46,9 @@ XTerm*utf8:                true
 xterm*utf8Title:           true
 XTerm*allowBoldFonts:      true
 XTerm*renderFont:          true
-XTerm*faceSize:            13.5
+XTerm*faceSize:            13
 XTerm*faceName:            DejaVu Sans Mono
-xterm*faceNameDoublesize:  WenQuanYi Micro Hei Mono:pixelsize=18:antialias=true
+xterm*faceNameDoublesize:  WenQuanYi Micro Hei Mono:pixelsize=17:antialias=true
 
 !true, CJK text column width of 2: if set this, tmux pane border will disappear
 !xterm*cjkWidth:            true
