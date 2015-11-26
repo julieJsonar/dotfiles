@@ -102,9 +102,12 @@ XTerm*VT100*titeInhibit:   true
 !XTerm*colorULMode:    on
 !XTerm*underLine:      off
 !XTerm*colorBDMode:    on
+!XTerm*colorUL:        yellow
+!XTerm*colorBD:        white
 
 ! My theme
-XTerm*background:    #000000
+!XTerm*background:   #000000
+XTerm*background:    #101010
 XTerm*foreground:    #9f9f9f
 XTerm*color0:        #000000
 XTerm*color1:        #9e1828
@@ -142,5 +145,3 @@ XTerm*color15:       #ffffff
 !XTerm*color13:        #bb88dd
 !XTerm*color14:        #4eb4fa
 !XTerm*color15:        #d0d0d0
-!XTerm*colorUL:        yellow
-!XTerm*colorBD:        white
