@@ -44,19 +44,14 @@ Xft.rgba:                  rgb
 
 XTerm*utf8:                true
 xterm*utf8Title:           true
-XTerm*allowBoldFonts:      false
+XTerm*allowBoldFonts:      true
 XTerm*renderFont:          true
-XTerm*font:                xft:DejaVu Sans Mono:pixelsize=13.5:antialias=true:hinting=true
 XTerm*faceSize:            13.5
 XTerm*faceName:            DejaVu Sans Mono
-XTerm*boldFont:            xft:DejaVu Sans Mono:bold:pixelsize=13.5:antialias=true:hinting=true
 xterm*faceNameDoublesize:  WenQuanYi Micro Hei Mono:pixelsize=16:antialias=true
 
 !true, CJK text column width of 2: if set this, tmux pane border will disappear
 !xterm*cjkWidth:            true
-
-! Disable all bold font
-!*boldFont:
 
 !*faceName:           Monospace
 !*faceName:           Liberation Mono
