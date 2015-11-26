@@ -64,9 +64,18 @@ export LANG=en_US.UTF-8
 export KEYTIMEOUT=0
 export USESUDO=sudo
 
-export HISTCONTROL=erasedups
-#export HISTCONTROL=ignoredups
-export HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:hisotry:cd ..:cd ~:cd /data:cd work:cd fos:cd fos_git:cd work_me:cd ~/work:cd ~/work_me:ls -l:ls –ltr:"
+HISTSIZE=10000
+HISTFILESIZE=999999
+HISTCONTROL=erasedups
+# HISTCONTROL=ignoredups
+HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:clear:[ \t]*:hisotry"
+readonly HISTFILE
+readonly HISTSIZE
+readonly HISTFILESIZE
+readonly HISTIGNORE
+readonly HISTCONTROL
+export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
+shopt -s histappend
 
 mydata='/data'
 myhome='/home/wilson'
@@ -175,7 +184,7 @@ export PERL_MM_OPT="INSTALL_BASE=$myhome/perl5";
 export PERL5LIB="$myhome/perl5/lib/perl5:$PERL5LIB";
 export PYTHONPATH="$myhome/work/autotest-robot/library"
 export AWKPATH="$myhome/script/awk:$myhome/script/awk/awk-libs";
-export TERM=screen-256color
+export TERM=xterm-256color
 export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
