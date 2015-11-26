@@ -230,6 +230,7 @@ nnoremap <C-c> <silent> <C-c>
 
 set nocompatible
 set guifont=Liberation\ Mono\ 13
+
 " Disable any use of bold fonts
 set t_md=
 set t_vb=
