@@ -1,7 +1,7 @@
 "======================================================================
 " Installation:
 " =============
-" 1. [vim-plugin](https://github.com/junegunn/vim-plug)
+" 1. Vundle.vim
 "    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
 "    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "    $ vi -c 'PluginInstall'
@@ -21,6 +21,8 @@
 " :on              close all other's windows
 "
 " <leader>l        show current function name
+" <leader>j        show jumplist and choose
+" <leader>\        list cscope symbol references in quickfix
 " <leader>a        switch .c/.h
 " <leader>;w       toggle relative line number
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
@@ -153,7 +155,7 @@
 " Self:
 " =====
 "   Function:
-"       :<C-\>eYourFunc() <CR>       # use YourFunc() return to replace all current command
+"       :<C-\>e YourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
@@ -170,6 +172,7 @@ call vundle#begin()
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'holokai'
 Plugin 'darkspectrum'
@@ -228,6 +231,7 @@ let mapleader = ";"
 " diable Ex mode
 map Q <Nop>
 nnoremap <C-c> <silent> <C-c>
+set term=xterm-256color
 
 set nocompatible
 set guifont=Liberation\ Mono\ 13
@@ -303,12 +307,12 @@ set ssop+=sesdir     " work under current dir as relative path
 " Restore cursor to file {
 
  " Tell vim to remember certain things when we exit
- "  '10  :  marks will be remembered for up to 10 previously edited files
- "  "100 :  will save up to 100 lines for each register
- "  :20  :  up to 20 lines of command-line history will be remembered
+ "  '30  :  marks will be remembered for up to 10 previously edited files
+ "  "300 :  will save up to 100 lines for each register
+ "  :30  :  up to 20 lines of command-line history will be remembered
  "  %    :  saves and restores the buffer list
  "  n... :  where to save the viminfo files
- set viminfo='10,\"100,:20,%,n~/.viminfo
+ set viminfo='30,\"300,:30,%,n~/.viminfo
 
  function! ResCur()
    if line("'\"") <= line("$")
@@ -371,6 +375,8 @@ let g:detectindent_max_lines_to_analyse = 1024
 " Autocmd {
 
   autocmd InsertEnter,InsertLeave * set cul!
+  " current position in jumplist
+  autocmd CursorHold * normal! m'
 
   autocmd BufNewFile,BufRead * DetectIndent
   autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -454,6 +460,17 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+nnoremap <c-1> 1gt
+nnoremap <c-2> 2gt
+nnoremap <c-3> 3gt
+nnoremap <c-4> 4gt
+nnoremap <c-5> 5gt
+nnoremap <c-6> 6gt
+nnoremap <c-7> 7gt
+nnoremap <c-8> 8gt
+nnoremap <c-9> 9gt
+
 nnoremap <silent> <leader>q :e #<cr>
 
 " https://github.com/christoomey/vim-tmux-navigator
@@ -604,8 +621,8 @@ endfunction
   map <leader>vV :<C-\>e LocalEasyGrep(2) <CR>
   map <leader>vr :<C-\>e LocalEasyReplace() <CR>
 
-  map <leader>g :<C-\>eLocalGrepYankToNewTab() <CR>
-  map <leader>s :<c-u>R !grep-malloc.sh <c-r>*
+  map <leader>g  :<C-\>e LocalGrepYankToNewTab() <CR>
+  map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
 "}
@@ -613,7 +630,7 @@ endfunction
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
 endfunction
-map <leader><space> :<C-\>eOpenFileInPreviewWindow() <CR><CR>
+map <leader><space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
 
 " note on source {
 
@@ -751,7 +768,7 @@ endfun
 
   " maps
   map <leader>bs :call SvnBlameCurrent() <CR>
-  "map <leader>bg :<C-\>eGitBlameCurrent() <CR><CR>
+  "map <leader>bg :<C-\>e GitBlameCurrent() <CR><CR>
   "map <leader>bs :call SvnBlame() <CR>
   map <leader>bg :Gblame <CR>
 
@@ -762,21 +779,23 @@ endfun
 
   nmap <silent> <c-n> :cn<cr>
   nmap <silent> <c-p> :cp<cr>
+  nnoremap <buffer> <Enter> <C-W><Enter>
 
   " autofit
-  nnoremap <buffer> <Enter> <C-W><Enter>
   autocmd FileType qf call AdjustWindowHeight(3, 8)
   function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
   endfunction
 
   " auto command
-  augroup qf
+  augroup quickfix
     autocmd!
+    " forbit focus on quickfix, but confuse my layout
+    "autocmd Syntax qf wincmd p
+
     autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
     autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
   augroup END
-
 
   " filter  :Qfilter pattern  <OR>  :Qfilter! pattern
   function! s:FilterQuickfixList(bang, pattern)
@@ -791,6 +810,8 @@ endfun
 " Layout {
 
   function! s:DefaultLayout()
+    exec "normal mM"
+
     exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%p')
     exec ":silent pclose"
     exec ":silent cclose"
@@ -799,6 +820,8 @@ endfun
     exec ":silent copen"
     exec "normal \<C-W>J"
     exec "normal \<C-W>k"
+
+    exec "normal `M"
   endfunction
 
   " :on[ly][!]  close all other windows, but keep buffer
@@ -809,6 +832,20 @@ endfun
 
 "}
 
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
+nmap <Leader>j :call GotoJump()<CR>
 
 " vimdiff output to html ignore the same line
 let g:html_ignore_folding = 1
@@ -871,16 +908,21 @@ let g:html_use_css = 0
   " Find symbol and add to quickfix
   function CscopeSymbol()
     let l:old_cscopeflag = &cscopequickfix
+    "let save_cursor = getpos(".")
+    exec "normal mM"
 
     set cscopequickfix=s-,c0,d0,i0,t-,e-
     exec ':cs find s ' . expand("<cword>")
-    exec ':silent copen'
-    exec "normal \<C-W>k"
+    "exec ':silent !copen'
+    "exec "normal \<C-W>k"
 
+    "call setpos('.', save_cursor)
+    exec "normal `M"
     let &cscopequickfix = l:old_cscopeflag
   endfunction
-  nmap <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
-  nmap <leader>fS :call CscopeSymbol() <CR>
+  nmap <silent> <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
+  nmap <silent> <leader>fS :call CscopeSymbol() <CR>
+  nmap <silent> <c-\> :call CscopeSymbol() <CR>
 
   " Using gnu-global replace cscope&ctags
   ""Using gtags.vim
