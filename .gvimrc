@@ -192,7 +192,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'fholgado/minibufexpl.vim'
 Plugin 'myusuf3/numbers.vim'
 
-Plugin 'gcmt/taboo.vim'
+Plugin 'huawenyu/taboo.vim'
 Plugin 'millermedeiros/vim-statline'
 "Plugin 'maciakl/vim-neatstatus'
 "Plugin 'bling/vim-airline'
