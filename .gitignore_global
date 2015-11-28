@@ -2,6 +2,9 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 Session.vim
+session.vim
+Default.vim
+default.vim
 log.*
 patch.*
 tags*

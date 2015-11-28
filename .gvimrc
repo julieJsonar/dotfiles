@@ -213,8 +213,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
 
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 "Plugin 'mhinz/vim-startify'
 
 "Plugin 'ervandew/supertab'
@@ -372,6 +372,10 @@ let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 4
 let g:detectindent_max_lines_to_analyse = 1024
+
+" Save Session
+let g:session_autosave = 'no'
+let g:session_directory = getcwd()
 
 " Autocmd {
 
@@ -627,6 +631,19 @@ endfunction
   nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
 "}
+
+
+function! PreviewWindowOpened()
+    for nr in range(1, winnr('$'))
+        if getwinvar(nr, "&pvw") == 1
+            " found a preview
+            return 1
+        endif
+    endfor
+
+    return 0
+endfunction
+
 
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
