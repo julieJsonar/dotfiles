@@ -454,7 +454,7 @@ hi link SpecialKey NonText
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 
-cmap w!! w !sudo tee % >/dev/null
+"cmap w!! w !sudo tee % >/dev/null
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
