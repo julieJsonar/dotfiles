@@ -24,6 +24,7 @@
 " <leader>j        show jumplist and choose
 " <leader>\        list cscope symbol references in quickfix
 " <leader>a        switch .c/.h
+" <leader>;r       rebuild & reset cscope database
 " <leader>;w       toggle relative line number
 " <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
 " <leader>;n       toggle taglist
@@ -941,6 +942,14 @@ let g:html_use_css = 0
   nmap <silent> <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
   nmap <silent> <leader>fS :call CscopeSymbol() <CR>
   nmap <silent> <c-\> :call CscopeSymbol() <CR>
+
+
+  nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
+      \:cs reset <CR><CR>
+  "nmap <F11> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
+  "    \:!cscope -b -i cscope.files -f cscope.out<CR>
+  "    \:cs reset<CR>
+
 
   " Using gnu-global replace cscope&ctags
   ""Using gtags.vim
