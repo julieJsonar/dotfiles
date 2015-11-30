@@ -379,6 +379,7 @@ let g:detectindent_preferred_when_mixed = 4
 let g:detectindent_max_lines_to_analyse = 1024
 
 " Save Session
+let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_directory = getcwd()
 
