@@ -828,7 +828,7 @@ endfun
 " Layout {
 
   function! s:DefaultLayout()
-    exec "normal mM"
+    exec "normal mP"
 
     exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%p')
     exec ":silent pclose"
@@ -839,7 +839,7 @@ endfun
     exec "normal \<C-W>J"
     exec "normal \<C-W>k"
 
-    exec "normal `M"
+    exec "normal `P"
   endfunction
 
   " :on[ly][!]  close all other windows, but keep buffer
@@ -927,7 +927,7 @@ let g:html_use_css = 0
   function CscopeSymbol()
     let l:old_cscopeflag = &cscopequickfix
     "let save_cursor = getpos(".")
-    exec "normal mM"
+    exec "normal mP"
 
     set cscopequickfix=s-,c0,d0,i0,t-,e-
     exec ':cs find s ' . expand("<cword>")
@@ -935,7 +935,7 @@ let g:html_use_css = 0
     "exec "normal \<C-W>k"
 
     "call setpos('.', save_cursor)
-    exec "normal `M"
+    exec "normal `P"
     let &cscopequickfix = l:old_cscopeflag
   endfunction
   nmap <silent> <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
