@@ -40,6 +40,10 @@
 "
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
+" :Savesession     save to current dir, use vi -S default.vim to open it.
+"
+" :TT              rename tab
+" alt+0,9,8,7      active the 1~4th tab
 "
 " Howtos:
 " =======
