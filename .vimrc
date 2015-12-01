@@ -472,16 +472,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-nnoremap <c-1> 1gt
-nnoremap <c-2> 2gt
-nnoremap <c-3> 3gt
-nnoremap <c-4> 4gt
-nnoremap <c-5> 5gt
-nnoremap <c-6> 6gt
-nnoremap <c-7> 7gt
-nnoremap <c-8> 8gt
-nnoremap <c-9> 9gt
-
 nnoremap <silent> <leader>q :e #<cr>
 
 " https://github.com/christoomey/vim-tmux-navigator
@@ -619,7 +609,14 @@ endfunction
                     \ -w '"
     endif
 
-    return l:cmd . l:param . expand('<cword>') . "' ."
+    " when the selection is limited to within one line
+    let l:sel_len = virtcol("'>") - virtcol("'<") + 1
+
+    if l:sel_len < 2
+      return l:cmd . l:param . expand('<cword>') . "' ."
+    else
+      return l:cmd . l:param . s:get_visual_selection() . "' ."
+    endif
   endfunction
 
   function! LocalEasyReplace()
@@ -648,6 +645,17 @@ function! PreviewWindowOpened()
     endfor
 
     return 0
+endfunction
+
+
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
 endfunction
 
 
