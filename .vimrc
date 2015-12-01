@@ -207,6 +207,7 @@ Plugin 'justinmk/vim-sneak'
 "Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/CmdlineComplete'
+Plugin 'vim-utils/vim-vertical-move'
 
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/deoplete.nvim'
