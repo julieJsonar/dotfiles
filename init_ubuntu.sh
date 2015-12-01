@@ -40,22 +40,23 @@ sudo chmod -R 777 /tftpboot
 sudo chown -R nobody /tftpboot
 sudo service xinetd restart
 
-# Samba
-# https://help.ubuntu.com/community/Samba/SambaServerGuide
-# Assume linux already have a username <wilson>, otherwise please add it first.
-sudo apt-get install -y samba smbclient
-sudo smbpasswd -a wilson
-sudo patch -p0 /etc/samba/smb.conf patch.smbconf
-sudo smbpasswd -a wilson
-sudo smbd reload
-sudo service smbd restart
-# List all shares:
-#smbclient -L //<HOST_IP_OR_NAME>/<folder_name> -U <user>
-# connect:
-#smbclient //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+## Samba
+## https://help.ubuntu.com/community/Samba/SambaServerGuide
+## Assume linux already have a username <wilson>, otherwise please add it first.
+#sudo apt-get install -y samba smbclient
+#sudo smbpasswd -a wilson
+#sudo patch -p0 /etc/samba/smb.conf patch.smbconf
+#sudo smbpasswd -a wilson
+#sudo smbd reload
+#sudo service smbd restart
+## List all shares:
+##smbclient -L //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+## connect:
+##smbclient //<HOST_IP_OR_NAME>/<folder_name> -U <user>
 
 # If laptop, install battery
 #sudo apt-get install indicator-power
 
 vim -c 'PluginInstall'
 # End of file
+
