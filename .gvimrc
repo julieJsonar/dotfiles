@@ -667,7 +667,7 @@ map <leader><space> :call OpenFileInPreviewWindow() <CR><CR>
 
 " note on source {
 
-  fun! AppendNoteOnSource()
+  function! AppendNoteOnSource()
     call inputsave()
     let msg = input('log.marks msg: ')
     call inputrestore()
@@ -691,7 +691,7 @@ map <leader><space> :call OpenFileInPreviewWindow() <CR><CR>
     
     "silent cfile log.marks
     "silent clast
-  endfun
+  endfunction
 
   " maps
   "nnoremap <silent> <leader>;w :call AppendNoteOnSource() <CR>
@@ -733,52 +733,52 @@ map gf :call GotoFileWithLineNum()<CR>
 map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
 
 
-fun! ShowFuncName()
+function! ShowFuncName()
   let lnum = line(".")
   let col = col(".")
   echohl ModeMsg
   echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
   echohl None
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
-endfun
+endfunction
 
-fun! GetFuncName()
+function! GetFuncName()
   let lnum = line(".")
   let col = col(".")
   let l:cmd = getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
   return substitute(l:cmd, "(.*", "()", "")
-endfun
+endfunction
 map <leader>l :call ShowFuncName() <CR>
 
 " preconditon: mark a, mark b
 " then in <gdb> source log.crash
-fun! Tracecrash()
+function! Tracecrash()
 	exec ":silent %normal \<ESC>0i#"
 	exec ":'a,'b normal df["
 	exec ":'a,'b normal f]d$"
 	exec ":'a,'b normal Il *"
-endfun
+endfunction
 
 
 " disassembly current function
-fun! Asm()
+function! Asm()
   execute("new|r !gdb -batch sysinit/init -ex 'disas /m " . expand("<cword>") . "'")
-endfun
+endfunction
 "map <leader>ds :call Asm() <CR>
 
 
 " Svn|Git blame {
 
-  fun! GitBlameCurrent()
+  function! GitBlameCurrent()
     return "!git --no-pager blame -L" . (line(".") - 5) . ",+10 HEAD -- " . expand("%p")
-  endfun
+  endfunction
 
-  fun! SvnBlameCurrent()
+  function! SvnBlameCurrent()
     execute("!svn blame " . expand("%p") . "|sed -n '" . (line(".") - 5) . "," . (line(".") + 5)  . "p'")
-  endfun
+  endfunction
 
-  function SvnBlame()
+  function! SvnBlame()
      let line = line(".")
      setlocal nowrap
      " create a new window at the left-hand side
@@ -939,7 +939,7 @@ let g:html_use_css = 0
   nmap <leader>o <C-O>
 
   " Find symbol and add to quickfix
-  function CscopeSymbol()
+  function! CscopeSymbol()
     let l:old_cscopeflag = &cscopequickfix
     "let save_cursor = getpos(".")
     exec "normal mP"
