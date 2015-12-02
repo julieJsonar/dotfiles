@@ -221,6 +221,7 @@ Plugin 'pangloss/vim-javascript'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-reload'
 "Plugin 'mhinz/vim-startify'
 
 "Plugin 'ervandew/supertab'
@@ -383,6 +384,7 @@ let g:detectindent_max_lines_to_analyse = 1024
 let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_directory = getcwd()
+let g:reload_on_write = 0
 
 " Autocmd {
 
@@ -996,3 +998,7 @@ let g:html_use_css = 0
 
 "}
 
+nmap <silent> <leader>;j <Plug>(vertical_move_down1)
+nmap <silent> <leader>;k <Plug>(vertical_move_up1)
+xmap <silent> <leader>;j <Plug>(vertical_move_down)
+xmap <silent> <leader>;k <Plug>(vertical_move_up)
