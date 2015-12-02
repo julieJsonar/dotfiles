@@ -966,39 +966,4 @@ let g:html_use_css = 0
   "    \:!cscope -b -i cscope.files -f cscope.out<CR>
   "    \:cs reset<CR>
 
-
-  " Using gnu-global replace cscope&ctags
-  ""Using gtags.vim
-  "" $ find . -name '*.[ch]' > tags.files
-  "" $ gtags -f tags.files
-  "" $ global -u    <<< incremental update
-  "" $ vim -c 'cs add GTAGS'
-  "" have gtags.vim, the name can be partial
-  ""   :Gtags funcname
-  ""   :Gtags -P filename
-  ""   :Gtags -r funcname    <<< called
-  ""   :GtagsCurrent
-  "set cscopeprg=gtags-cscope
-  "
-  "" gtags which come from gnu-global + gtags.vim
-  "" http://www.gnu.org/software/global/manual/global.html
-  "nmap <leader>] :GtagsCursor<CR>
-  "
-  "" 0 for c, 1 for c++
-  "set csto=0
-
-
-  ""Using gtags-cscope.vim
-  ""<C-space>t  open define in horizon window
-  ""<C-space><C-space>t  open define in vertical window
-  "let GtagsCscope_Auto_Load = 1
-  "let GtagsCscope_Auto_Map = 1
-  "let GtagsCscope_Quiet = 1
-  "set cscopetag
-
 "}
-
-nmap <silent> <leader>;j <Plug>(vertical_move_down1)
-nmap <silent> <leader>;k <Plug>(vertical_move_up1)
-xmap <silent> <leader>;j <Plug>(vertical_move_down)
-xmap <silent> <leader>;k <Plug>(vertical_move_up)
