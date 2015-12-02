@@ -770,7 +770,9 @@ endfunction
   function! DefaultLayout()
     exec "normal mP"
 
-    exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%p')
+	exec ':grep -n -w ' . expand('<cword>') . ' *.' . expand('%:e')
+    "exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%:p')
+
     exec ":silent pclose"
     exec ":silent cclose"
     exec ":silent psearch " . expand('<cword>')
@@ -905,7 +907,7 @@ let g:html_use_css = 0
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;n :TagbarToggle<CR>
-  nmap <silent> <leader>;l :call DefaultLayout() <CR>
+  nmap <silent> <leader>;l :call DefaultLayout() <CR><CR>
 
   map           <leader>;g :<C-\>e LocalEasyGrep(1,0) <CR>
   map           <leader>;v :<C-\>e LocalEasyGrep(1,1) <CR>
