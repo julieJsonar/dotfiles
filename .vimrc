@@ -159,6 +159,8 @@
 "
 " Self:
 " =====
+"   Function:
+"       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
 "   Batchfiles:
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
@@ -419,13 +421,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 
-" CtrlP
-let g:crtlp_map='<F11>'
-nnoremap <leader>fp :CtrlP<CR>
-nnoremap <leader>fb :CtrlPBuffer<CR>
-nnoremap <leader>fm :CtrlPMRUFiles<CR>
-nnoremap <leader>ft :CtrlPTag<CR>
-
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -461,53 +456,11 @@ hi link SpecialKey NonText
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 
-"cmap w!! w !sudo tee % >/dev/null
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 "vmap <leader>y   "+y
 "vnoremap <leader>p "_dP
-
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
-nnoremap <silent> <leader>q :e #<cr>
-
-" https://github.com/christoomey/vim-tmux-navigator
-"let g:tmux_navigator_no_mappings = 1
-"nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
-"nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
-"nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
-"nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
-"nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
-
-" vim local list
-"nnoremap <silent> gn  :lnext<cr>
-"nnoremap <silent> gp  :lpre<cr>
-"nnoremap <silent> gn  :cnew<cr>
-"nnoremap <silent> gp  :cold<cr>
-
-" :R !ls -l   grab command output int new buffer
-command! -nargs=* -complete=shellcmd R tabnew
-			\| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
-			\| r <args>
-
-" map same key under different mode
-nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
-vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
-nmap <leader>c  :tabclose<CR>
-nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
-
-" Shortkeys {
-  function! CurrentReplace()
-    return "%s/\\<" . expand("<cword>") . "\\>/" . expand("<cword>") . "/gi"
-  endfunction
-
-  " maps
-  map <leader>;r :call CurrentReplace() <CR>
-"}
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -529,8 +482,6 @@ let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
 "{ taglist tagbar plugin
-	map <leader>;n :TagbarToggle<cr>
-
 	let g:tagbar_width = 30
 	let g:tagbar_compact = 1
 	let g:tagbar_indent = 0
@@ -560,15 +511,6 @@ let g:sneak#s_next = 1
 " tracelog
 let g:tracelog_default_dir = $HOME . "/script/trace-wad/"
 
-" ctags -R *;  ctags -L cscope.files
-nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
-nmap <silent> <leader>, :ptnext<cr>
-nmap <silent> <leader>. :ptprevious<cr>
-
-" TAB conflict with ctrl-i
-nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
-nnoremap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
-
 
 " Space: show columnline or open-declaration
 function! SingleKey_Space()
@@ -587,8 +529,6 @@ function! SingleKey_Space()
     "norm! ^wpzt^wp
   endif
 endfunction
-"nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
-nmap <silent> <space> :call SingleKey_Space()<CR>
 
 
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
@@ -606,11 +546,21 @@ endfunction
   set grepprg=grep
 
   function! LocalGrepYankToNewTab()
-    return   "R !grep -Inr --include='*.[ch]' -- '" . @" . "' ."
+    execute "R !grep -Inr --include='*.[ch]' -- '" . @" . "' ."
+  endfunction
+
+  function! s:get_visual_selection()
+    " Why is this not a built-in Vim script function?!
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+    let lines = getline(lnum1, lnum2)
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, "\n")
   endfunction
 
   " autocmd QuickfixCmdPost make,grep,vimgrep copen
-  function! LocalEasyGrep(add)
+  function! LocalEasyGrep(add,sel)
     if a:add == 0
       let l:cmd = "grepadd"
       let l:param = "! -Inr --include='*.[ch]' -- '"
@@ -630,29 +580,20 @@ endfunction
                     \ -w '"
     endif
 
-    " when the selection is limited to within one line
-    let l:sel_len = virtcol("'>") - virtcol("'<") + 1
-
-    if l:sel_len < 2
-      return l:cmd . l:param . expand('<cword>') . "' ."
-    else
-      return l:cmd . l:param . s:get_visual_selection() . "' ."
+    if a:sel == 1
+      " when the selection is limited to within one line
+      let l:sel_len = virtcol("'>") - virtcol("'<") + 1
+      if l:sel_len >= 2
+        return l:cmd . l:param . s:get_visual_selection() . "' ."
+      endif
     endif
+
+    return l:cmd . l:param . expand('<cword>') . "' ."
   endfunction
 
   function! LocalEasyReplace()
     return "Qargs | argdo %s/\\<" . expand('<cword>') . "\\>/" . expand('<cword>') . "/gc | update"
   endfunction
-
-  " maps
-  map <leader>va :call LocalEasyGrep(0) <CR>
-  map <leader>vv :call LocalEasyGrep(1) <CR>
-  map <leader>vV :call LocalEasyGrep(2) <CR>
-  map <leader>vr :call LocalEasyReplace() <CR>
-
-  map <leader>g  :call LocalGrepYankToNewTab() <CR>
-  map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
-  nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
 "}
 
@@ -669,21 +610,9 @@ function! PreviewWindowOpened()
 endfunction
 
 
-function! s:get_visual_selection()
-  " Why is this not a built-in Vim script function?!
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
-
-
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
 endfunction
-map <leader><space> :call OpenFileInPreviewWindow() <CR><CR>
 
 " note on source {
 
@@ -713,14 +642,6 @@ map <leader><space> :call OpenFileInPreviewWindow() <CR><CR>
     "silent clast
   endfunction
 
-  " maps
-  "nnoremap <silent> <leader>;w :call AppendNoteOnSource() <CR>
-
-"}
-
-" Numbers {
-  let g:enable_numbers = 0
-  nnoremap <silent> <leader>;w :NumbersToggle<CR>
 "}
 
 function! GotoFileWithLineNum()
@@ -749,9 +670,6 @@ function! GotoFileWithLineNum()
     endif
 endfunction
 
-map gf :call GotoFileWithLineNum()<CR>
-map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
-
 
 function! ShowFuncName()
   let lnum = line(".")
@@ -769,7 +687,7 @@ function! GetFuncName()
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
   return substitute(l:cmd, "(.*", "()", "")
 endfunction
-map <leader>l :call ShowFuncName() <CR>
+
 
 " preconditon: mark a, mark b
 " then in <gdb> source log.crash
@@ -785,7 +703,6 @@ endfunction
 function! Asm()
   execute("new|r !gdb -batch sysinit/init -ex 'disas /m " . expand("<cword>") . "'")
 endfunction
-"map <leader>ds :call Asm() <CR>
 
 
 " Svn|Git blame {
@@ -816,23 +733,11 @@ endfunction
      setlocal scrollbind
      syncbind
   endfunction
-  "map gb :call <SID>svnBlame()<CR>
-  "command Blame call s:svnBlame()
-
-  " maps
-  map <leader>bs :call SvnBlameCurrent() <CR>
-  "map <leader>bg :call GitBlameCurrent() <CR><CR>
-  "map <leader>bs :call SvnBlame() <CR>
-  map <leader>bg :Gblame <CR>
 
 "}
 
 
 " QuickFix {
-
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
-  nnoremap <buffer> <Enter> <C-W><Enter>
 
   " autofit
   autocmd FileType qf call AdjustWindowHeight(3, 8)
@@ -877,12 +782,6 @@ endfunction
     exec "normal `P"
   endfunction
 
-  " :on[ly][!]  close all other windows, but keep buffer
-  command! Layout call s:DefaultLayout()
-  nmap <leader>;l :Layout <CR><CR>
-  nmap <leader>n :silent! cnewer <CR><CR>
-  nmap <leader>p :silent! colder <CR><CR>
-
 "}
 
 function! GotoJump()
@@ -898,7 +797,7 @@ function! GotoJump()
     endif
   endif
 endfunction
-nmap <Leader>j :call GotoJump()<CR>
+
 
 " vimdiff output to html ignore the same line
 let g:html_ignore_folding = 1
@@ -973,15 +872,119 @@ let g:html_use_css = 0
     exec "normal `P"
     let &cscopequickfix = l:old_cscopeflag
   endfunction
-  nmap <silent> <leader>;s :call LocalEasyGrep(1) <CR>
-  nmap <silent> <leader>fS :call CscopeSymbol() <CR>
   nmap <silent> <c-\> :call CscopeSymbol() <CR>
 
-
-  nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
-      \:cs reset <CR><CR>
   "nmap <F11> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
   "    \:!cscope -b -i cscope.files -f cscope.out<CR>
   "    \:cs reset<CR>
 
 "}
+
+" Numbers {
+  let g:enable_numbers = 0
+"}
+
+" Replace {
+  function! CurrentReplace()
+    return "%s/\\<" . expand("<cword>") . "\\>/" . expand("<cword>") . "/gi"
+  endfunction
+"}
+
+
+" my key maps {
+  nmap <silent> <leader>q :e #<cr>
+  map <leader>l :call ShowFuncName() <CR>
+  "nmap <leader>c  :tabclose<CR>
+  nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
+  nmap <Leader>j :call GotoJump()<CR>
+
+  " map same key under different mode
+  nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
+  vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
+
+  nmap <silent> <leader>;w :NumbersToggle<CR>
+  nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
+  nmap <silent> <leader>;n :TagbarToggle<CR>
+  nmap <silent> <leader>;l :call s:DefaultLayout() <CR>
+
+  map           <leader>;g :<C-\>e LocalEasyGrep(1,0) <CR>
+  map           <leader>;v :<C-\>e LocalEasyGrep(1,1) <CR>
+  nmap <silent> <leader>;s :call CscopeSymbol() <CR>
+  "nmap <silent> <leader>;r :call CurrentReplace() <CR>
+  "nmap <silent> <leader>;w :call AppendNoteOnSource() <CR>
+  nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
+      \:cs reset <CR><CR>
+
+  nmap <silent> <space> :call SingleKey_Space()<CR>
+  "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
+  "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
+
+  map gf :call GotoFileWithLineNum()<CR>
+  map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
+
+  "map <leader>ds :call Asm() <CR>
+  map <leader>bs :call SvnBlameCurrent() <CR>
+  map <leader>bg :Gblame <CR>
+
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
+  nmap <buffer> <Enter> <C-W><Enter>
+
+  " ctags -R *;  ctags -L cscope.files
+  "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
+  "nmap <silent> <leader>, :ptnext<cr>
+  "nmap <silent> <leader>. :ptprevious<cr>
+
+  " :on[ly][!]  close all other windows, but keep buffer
+  nmap <leader>n :silent! cnewer <CR><CR>
+  nmap <leader>p :silent! colder <CR><CR>
+
+  " TAB conflict with ctrl-i
+  nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
+  nnoremap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
+
+  nnoremap <c-h> <c-w>h
+  nnoremap <c-j> <c-w>j
+  nnoremap <c-k> <c-w>k
+  nnoremap <c-l> <c-w>l
+
+  " https://github.com/christoomey/vim-tmux-navigator
+  "let g:tmux_navigator_no_mappings = 1
+  "nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
+  "nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
+  "nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
+  "nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
+  "nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
+
+  " vim local list
+  "nnoremap <silent> gn  :lnext<cr>
+  "nnoremap <silent> gp  :lpre<cr>
+  "nnoremap <silent> gn  :cnew<cr>
+  "nnoremap <silent> gp  :cold<cr>
+
+  " CtrlP
+  let g:crtlp_map='<F11>'
+  nnoremap <leader>fp :CtrlP<CR>
+  nnoremap <leader>fb :CtrlPBuffer<CR>
+  nnoremap <leader>fm :CtrlPMRUFiles<CR>
+  nnoremap <leader>ft :CtrlPTag<CR>
+
+  " :R !ls -l   grab command output int new buffer
+  command! -nargs=* -complete=shellcmd R tabnew
+  			\| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
+  			\| r <args>
+
+  " Cause command 'w' delay
+  "cmap w!! w !sudo tee % >/dev/null
+
+  map <leader>va :<C-\>e LocalEasyGrep(0,1) <CR>
+  map <leader>vv :<C-\>e LocalEasyGrep(1,1) <CR>
+  map <leader>vV :<C-\>e LocalEasyGrep(2,1) <CR>
+  map <leader>vr :<C-\>e LocalEasyReplace() <CR>
+
+  "map <leader>g  :call LocalGrepYankToNewTab() <CR>
+  "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
+  nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
+
+"}
+
