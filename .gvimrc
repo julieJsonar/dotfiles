@@ -159,8 +159,6 @@
 "
 " Self:
 " =====
-"   Function:
-"       :<C-\>e YourFunc() <CR>       # use YourFunc() return to replace all current command
 "   Batchfiles:
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
@@ -508,7 +506,7 @@ nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
   endfunction
 
   " maps
-  map <leader>;r :<C-\>e CurrentReplace() <CR>
+  map <leader>;r :call CurrentReplace() <CR>
 "}
 
 let g:AutoComplPop_CompleteoptPreview = 1
@@ -627,12 +625,12 @@ endfunction
   endfunction
 
   " maps
-  map <leader>va :<C-\>e LocalEasyGrep(0) <CR>
-  map <leader>vv :<C-\>e LocalEasyGrep(1) <CR>
-  map <leader>vV :<C-\>e LocalEasyGrep(2) <CR>
-  map <leader>vr :<C-\>e LocalEasyReplace() <CR>
+  map <leader>va :call LocalEasyGrep(0) <CR>
+  map <leader>vv :call LocalEasyGrep(1) <CR>
+  map <leader>vV :call LocalEasyGrep(2) <CR>
+  map <leader>vr :call LocalEasyReplace() <CR>
 
-  map <leader>g  :<C-\>e LocalGrepYankToNewTab() <CR>
+  map <leader>g  :call LocalGrepYankToNewTab() <CR>
   map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
@@ -665,7 +663,7 @@ endfunction
 function! OpenFileInPreviewWindow()
   return "pedit " . matchstr(getline("."), '\h\S*')
 endfunction
-map <leader><space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
+map <leader><space> :call OpenFileInPreviewWindow() <CR><CR>
 
 " note on source {
 
@@ -803,7 +801,7 @@ endfun
 
   " maps
   map <leader>bs :call SvnBlameCurrent() <CR>
-  "map <leader>bg :<C-\>e GitBlameCurrent() <CR><CR>
+  "map <leader>bg :call GitBlameCurrent() <CR><CR>
   "map <leader>bs :call SvnBlame() <CR>
   map <leader>bg :Gblame <CR>
 
@@ -955,7 +953,7 @@ let g:html_use_css = 0
     exec "normal `P"
     let &cscopequickfix = l:old_cscopeflag
   endfunction
-  nmap <silent> <leader>;s :<C-\>e LocalEasyGrep(1) <CR>
+  nmap <silent> <leader>;s :call LocalEasyGrep(1) <CR>
   nmap <silent> <leader>fS :call CscopeSymbol() <CR>
   nmap <silent> <c-\> :call CscopeSymbol() <CR>
 
