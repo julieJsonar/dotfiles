@@ -564,12 +564,32 @@ let g:tracelog_default_dir = $HOME . "/script/trace-wad/"
 nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>, :ptnext<cr>
 nmap <silent> <leader>. :ptprevious<cr>
-"nmap <silent> <space> <c-w>}<c-w>Pzt<c-w><c-p>
-nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
 
 " TAB conflict with ctrl-i
 nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
-nnoremap <silent> <leader>a :FSHere<cr>
+nnoremap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
+
+
+" Space: show columnline or open-declaration
+function! SingleKey_Space()
+  let l:col = virtcol('.')
+
+  " Show colorcolumn
+  if getline(".")[col(".")-1] == ' '
+    if l:col == 1 || &colorcolumn == l:col
+      let &colorcolumn = ''
+    else
+      let &colorcolumn = l:col
+    endif
+  else
+    execute ":ptjump " . expand("<cword>")
+    execute "norm! \<c-w>pzt\<c-w>p"
+    "norm! ^wpzt^wp
+  endif
+endfunction
+"nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
+nmap <silent> <space> :call SingleKey_Space()<CR>
+
 
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 function! QuickfixFilenames()
