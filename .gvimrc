@@ -963,11 +963,11 @@ let g:html_use_css = 0
   "nnoremap <silent> gp  :cold<cr>
 
   " CtrlP
-  let g:crtlp_map='<F11>'
-  nnoremap <leader>fp :CtrlP<CR>
-  nnoremap <leader>fb :CtrlPBuffer<CR>
-  nnoremap <leader>fm :CtrlPMRUFiles<CR>
-  nnoremap <leader>ft :CtrlPTag<CR>
+  "let g:crtlp_map='<F11>'
+  "nnoremap <leader>fp :CtrlP<CR>
+  "nnoremap <leader>fb :CtrlPBuffer<CR>
+  "nnoremap <leader>fm :CtrlPMRUFiles<CR>
+  "nnoremap <leader>ft :CtrlPTag<CR>
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
