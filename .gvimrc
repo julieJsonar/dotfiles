@@ -14,66 +14,17 @@
 "  gd <or> D       goto declare <or> global declare
 "  [I              list all occurence
 "  g; <or> g,      navigate changelist
-"
-" <space>          open preview window, then <c-w>H adjust layout
-" <leader><space>  open file in preview window, then <c-w>H adjust layout
-" :Layout          open layout
-" :on              close all other's windows
-"
-" <leader>l        show current function name
-" <leader>j        show jumplist and choose
-" <leader>\        list cscope symbol references in quickfix
-" <leader>a        switch .c/.h
-" <leader>;r       rebuild & reset cscope database
-" <leader>;w       toggle relative line number
-" <leader>g        grep, replace :ptag # if use <leader>s will conflict witch <leader>swp: AnsiEsc:call SaveWinPosn()
-" <leader>;n       toggle taglist
-" <leader>z        syntax log file
-" <leader>g ,.     preview definition with ctags: pta, ptn, ptp
-" <leader>e        dictionary
-"  :<C-r><C-w>     get current word under cursor
-"
-" call Asm()       disassembly current function
-"
-" <C-n|p>; <leader>,|;>         jumps quickfix
-" <F3>             redirect g command output tabn
-"
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
 " :Savesession     save to current dir, use vi -S default.vim to open it.
-"
-" :TT              rename tab
-" alt+0,9,8,7      active the 1~4th tab
+" alt+7,8,9,0      active the 1~4th tab
 "
 " Howtos:
 " =======
-"   OpenFile:
-"       $ ls | vi -        # shell command output to vi
-"       $ vi $(ls)         # open all file which is shell command output
-"       $ vi $(!!)         # open all file which come from the last command's output
-"   Register:
-"       :@+                # have @ as prefix, then add register's name
-"       :@/                # the last search word
-"       :@"                # the yank word
-"   RunShellCmd:
-"       R !ls -l           # grab shell cmd output into new tab/buffer
-"       <leader>rr         # R run current line or selected,
-"       <leader>c          # close current tab
+"       :R !ls -l           # grab shell cmd output into new tab/buffer
 "       :new|0read !ls -l  # grab cmd output into new window
-"   Notes:
-"       <leader>w          # notes on source
 "       :cfile log.marks   # view as quickfix
-"   Quckfix:
-"       :cw                # open
-"       <C-n>              # :cnext
-"       <C-p>              # :cprevious
-"       :colder N          # last result list
-"       :cnewer N          # next result list
-"       :Qfilter pattern   # filter the result
-"   AutoComplete:
-"       <C-n>              # popup selector or navigate next
-"       <C-p>              # popup selector or navigate previous
-"       hit any            # select current and enter your hit also
+"       :mks!              # Save to Session.vim
 "   Vimgrep:               # Also lvimgrep, short as: vim, lvim
 "        vimregex          # rules:
 "                           . any-char \s whitespace \d digit \x hex \o octal
@@ -112,40 +63,6 @@
 "       :grep '[a-z]\{5\}' files
 "       :grep '^POST /\(idle\|send\)/CzHmd' log
 "
-"   EasyGrep:
-"       <leader>vv         # Search whole current word
-"       <leader>va         # Append search whole current word
-"       <leader>vr         # Replace whole current word
-"   Mark:
-"       <leader>mm         # MarkToggle
-"       <leader>mr         # MarkRegex
-"       <leader>mx         # MarkClearAll
-"   CtrlP:
-"        <leader>fp        :CtrlP<CR>
-"        <leader>fb        :CtrlPBuffer<CR>
-"        <leader>fm        :CtrlPMRUFiles<CR>
-"        <leader>ft        :CtrlPTag<CR>
-"   Cscope:
-"        :!cscope -[R]kbq;
-"        :cs reset
-"       <leader>;          # Jump definition
-"       <leader>i          # <C-I>
-"       <leader>o          # <C-O>
-"       <leader>fg         # Jump definition
-"       <leader>fc         # List All call current function
-"       <leader>fd         # List current function called
-"       <leader>ff         # find file, use . represent any char
-"                            :cs f f my_conn.<Enter> will show my_conn.c my_conn_impl.h
-"       <leader>fs         # List All symbol
-"       <leader>fS         # List All symbol and add to quickfix, then :Qfilter again
-"   SvnGitBlame:
-"       <leader>bs         # svn blame
-"       <leader>bg         # git blame
-"   SaveSession:
-"       :mks!              # Save to Session.vim
-"       :mks! log.vim      # Save Session to log.vim
-"       $ vi -S log.vim    # Load Session
-"
 " Tools:
 " ======
 "   DrawIt:                # use \di to start (\ds to stop)
@@ -164,9 +81,6 @@
 "   Batchfiles:
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
-"   Shortkeys:             # beginwith <leader>;
-"       w                  # relative number line
-"       r                  # replace
 "======================================================================
 
 set nocompatible
@@ -224,8 +138,11 @@ Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-reload'
 "Plugin 'mhinz/vim-startify'
 
-"Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-dispatch'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
+
 Plugin 'yuratomo/w3m.vim'
 Plugin 'DrawIt'
 Plugin 'bruno-/vim-man'
@@ -710,6 +627,9 @@ function! Asm()
   execute("new|r !gdb -batch sysinit/init -ex 'disas /m " . expand("<cword>") . "'")
 endfunction
 
+command! -nargs=1 Silent
+  \ | execute ':silent !'.<q-args>
+  \ | execute ':redraw!'
 
 " Svn|Git blame {
 
@@ -761,12 +681,42 @@ endfunction
     autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
   augroup END
 
-  " filter  :Qfilter pattern  <OR>  :Qfilter! pattern
-  function! s:FilterQuickfixList(bang, pattern)
-    let cmp = a:bang ? '!~#' : '=~#'
-    call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
+  "" filter  :Qfilter pattern  <OR>  :Qfilter! pattern
+  "function! s:FilterQuickfixList(bang, pattern)
+  "  let cmp = a:bang ? '!~#' : '=~#'
+  "  call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
+  "endfunction
+  "command! -bang -nargs=1 -complete=file Qfilter call s:FilterQuickfixList(<bang>0, <q-args>)
+
+  function! FilterQuickFixList()
+    execute ":copen"
+    execute ":w! /tmp/vim.qfilter"
+    let l:name = input('QFilter: ')
+    execute ":silent !grep '" . l:name .  "' /tmp/vim.qfilter > /tmp/vim.qfilter_"
+    execute ':redraw!'
+    execute ':cgetfile /tmp/vim.qfilter_'
   endfunction
-  command! -bang -nargs=1 -complete=file Qfilter call s:FilterQuickfixList(<bang>0, <q-args>)
+
+  function! SaveQuickFixList(fname)
+    let list = getqflist()
+    for i in range(len(list))
+      if has_key(list[i], 'bufnr')
+        let list[i].filename = fnamemodify(bufname(list[i].bufnr), ':p')
+        unlet list[i].bufnr
+      endif
+    endfor
+    let string = string(list)
+    let lines = split(string, "\n")
+    call writefile(lines, a:fname)
+  endfunction
+
+  function! LoadQuickFixList(fname)
+    if filereadable(a:fname)
+      let lines = readfile(a:fname)
+      let string = join(lines, "\n")
+      call setqflist(eval(string))
+    endif
+  endfunction
 
 "}
 
@@ -947,23 +897,24 @@ let g:html_use_css = 0
   "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
   "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
 
-  nmap <silent> <leader>q :e #<cr>
   nmap <leader>x  :tabclose<CR>
   nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
-  nmap <Leader>j :call GotoJump()<CR>
+  "nmap <Leader>j :call GotoJump()<CR>
 
   " map same key under different mode
   nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
-  nmap          <leader>;f :call ShowFuncName() <CR>
+  nmap          <leader>;q :call FilterQuickFixList() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;n :TagbarToggle<CR>
   nmap <silent> <leader>;l :call DefaultLayout() <CR><CR>
 
-  map           <leader>;g :<C-\>e LocalEasyGrep(1,0) <CR>
-  map           <leader>;v :<C-\>e LocalEasyGrep(1,1) <CR>
+  vmap          <leader>;f <Plug>CtrlSFVwordPath
+  nmap          <leader>;v :<C-\>e LocalEasyGrep(1,0) <CR>
+  vmap          <leader>;v :<C-\>e LocalEasyGrep(1,1) <CR>
+
   nmap <silent> <leader>;s :call CscopeSymbol() <CR>
   "nmap <silent> <leader>;r :call CurrentReplace() <CR>
   "nmap <silent> <leader>;w :call AppendNoteOnSource() <CR>
@@ -972,6 +923,23 @@ let g:html_use_css = 0
 
   nmap <silent> <leader>;. :call VerticalMoveDown(1)<CR>
   nmap <silent> <leader>;, :call VerticalMoveDown(0)<CR>
+
+  nmap <silent> <leader>1 :norm! 1gt <CR>
+  nmap <silent> <leader>2 :norm! 2gt <CR>
+  nmap <silent> <leader>3 :norm! 3gt <CR>
+  nmap <silent> <leader>4 :norm! 4gt <CR>
+  nmap <silent> <leader>5 :norm! 5gt <CR>
+
+  nmap <silent> <leader>j1 :call SaveQuickFixList('/tmp/vim.qfile1') <CR>
+  nmap <silent> <leader>j2 :call SaveQuickFixList('/tmp/vim.qfile2') <CR>
+  nmap <silent> <leader>j3 :call SaveQuickFixList('/tmp/vim.qfile3') <CR>
+  nmap <silent> <leader>j4 :call SaveQuickFixList('/tmp/vim.qfile4') <CR>
+  nmap <silent> <leader>j5 :call SaveQuickFixList('/tmp/vim.qfile5') <CR>
+  nmap <silent> <leader>;1 :call LoadQuickFixList('/tmp/vim.qfile1') <CR>
+  nmap <silent> <leader>;2 :call LoadQuickFixList('/tmp/vim.qfile2') <CR>
+  nmap <silent> <leader>;3 :call LoadQuickFixList('/tmp/vim.qfile3') <CR>
+  nmap <silent> <leader>;4 :call LoadQuickFixList('/tmp/vim.qfile4') <CR>
+  nmap <silent> <leader>;5 :call LoadQuickFixList('/tmp/vim.qfile5') <CR>
 
   map gf :call GotoFileWithLineNum()<CR>
   map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
@@ -1038,7 +1006,8 @@ let g:html_use_css = 0
 
   "map <leader>g  :call LocalGrepYankToNewTab() <CR>
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
-  nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
+  nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
+  nmap <F4> :call FilterQuickFixList() <CR>
 
 "}
 
