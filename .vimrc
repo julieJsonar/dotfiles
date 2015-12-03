@@ -459,11 +459,15 @@ function! SingleKey_Space()
   "echom "current: " . l:col . strtrans(getline(".")[col(".")-2])
 
   " Show colorcolumn
-  if strtrans(getline(".")[col(".")-2]) == ' '
+  if strtrans(getline(".")[col(".")-1]) == ' '
+     \ || strtrans(getline(".")[col(".")-1]) == "^I"
+     \ || strtrans(getline(".")[col(".")-2]) == ' '
      \ || strtrans(getline(".")[col(".")-2]) == "^I"
     if l:col == 1 || &colorcolumn == l:virtcol
       let &colorcolumn = ''
-      unlet g:colorcolumn_col
+      if exists("g:colorcolumn_col")
+        unlet g:colorcolumn_col
+      endif
     else
       let &colorcolumn = l:virtcol
       let g:colorcolumn_col = l:col
