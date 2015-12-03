@@ -4,6 +4,7 @@
 # git clone https://github.com/huawenyu/dotfiles.git
 
 sudo apt-get update
+sudo apt-get install -f
 
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
