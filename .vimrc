@@ -450,11 +450,11 @@ hi NonText ctermfg=DarkGrey guifg=DarkGrey
 hi clear SpecialKey
 hi link SpecialKey NonText
 
+" The characters after tab is U+2002. in vim with Ctrl-v u 2 0 0 2 (in insert mode).
+set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 "set listchars=nbsp:.,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=tab:>.,trail:~,extends:<,nbsp:.
-" The characters after tab is U+2002. in vim with Ctrl-v u 2 0 0 2 (in insert mode).
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
-set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 
 
 set clipboard+=unnamed
@@ -514,14 +514,20 @@ let g:tracelog_default_dir = $HOME . "/script/trace-wad/"
 
 " Space: show columnline or open-declaration
 function! SingleKey_Space()
-  let l:col = virtcol('.')
+  let l:col = col('.')
+  let l:virtcol = virtcol('.')
+
+  "echom "current: " . l:col . strtrans(getline(".")[col(".")-2])
 
   " Show colorcolumn
-  if getline(".")[col(".")-1] == ' '
+  if strtrans(getline(".")[col(".")-2]) == ' '
+     \ || strtrans(getline(".")[col(".")-2]) == "^I"
     if l:col == 1 || &colorcolumn == l:col
       let &colorcolumn = ''
+      unlet g:colorcolumn_col
     else
-      let &colorcolumn = l:col
+      let &colorcolumn = l:virtcol
+      let g:colorcolumn_col = l:col
     endif
   else
     execute ":ptjump " . expand("<cword>")
@@ -801,6 +807,49 @@ function! GotoJump()
 endfunction
 
 
+function! VerticalMoveDown(down)
+    let l:total_lines = line('$')
+    if a:down
+      let l:cursor_row = line('.') + 1
+    else
+      let l:cursor_row = line('.') - 1
+    endif
+
+    if exists("g:colorcolumn_col") && g:colorcolumn_col > 1
+      let l:cursor_col = g:colorcolumn_col
+    else
+      let l:cursor_col = col('.')
+    endif
+
+    if l:cursor_col <= 1
+      return
+    endif
+
+    let l:count = 0
+    while l:cursor_row > 0 && l:count < 1000
+      "echom "current: " . l:cursor_row . ":". l:cursor_col . " " . getline(l:cursor_row)[l:cursor_col - 1]
+      ":echo strtrans(getline('.')[col('.')-1])
+
+      let l:count += 1
+
+      if  ( (strtrans(getline(l:cursor_row)[l:cursor_col - 2]) == ' '
+        \    && strtrans(getline(l:cursor_row)[l:cursor_col - 3]) == ' ')
+        \  || strtrans(getline(l:cursor_row)[l:cursor_col - 2]) == "^I")
+        \ && (strtrans(getline(l:cursor_row)[l:cursor_col - 1]) != ' '
+        \     && strtrans(getline(l:cursor_row)[l:cursor_col - 1]) != "^I")
+        call cursor(l:cursor_row, l:cursor_col)
+        return
+      else
+        if a:down
+          let l:cursor_row += 1
+        else
+          let l:cursor_row -= 1
+        endif
+      endif
+    endwhile
+endfunction
+
+
 " vimdiff output to html ignore the same line
 let g:html_ignore_folding = 1
 let g:html_use_css = 0
@@ -894,9 +943,12 @@ let g:html_use_css = 0
 
 
 " my key maps {
+  nmap <silent> <space> :call SingleKey_Space()<CR>
+  "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
+  "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
+
   nmap <silent> <leader>q :e #<cr>
-  map <leader>l :call ShowFuncName() <CR>
-  "nmap <leader>c  :tabclose<CR>
+  nmap <leader>x  :tabclose<CR>
   nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
   nmap <Leader>j :call GotoJump()<CR>
 
@@ -904,6 +956,7 @@ let g:html_use_css = 0
   nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
+  nmap          <leader>;f :call ShowFuncName() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;n :TagbarToggle<CR>
@@ -917,9 +970,8 @@ let g:html_use_css = 0
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
 
-  nmap <silent> <space> :call SingleKey_Space()<CR>
-  "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
-  "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
+  nmap <silent> <leader>;. :call VerticalMoveDown(1)<CR>
+  nmap <silent> <leader>;, :call VerticalMoveDown(0)<CR>
 
   map gf :call GotoFileWithLineNum()<CR>
   map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
