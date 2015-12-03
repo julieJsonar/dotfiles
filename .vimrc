@@ -271,7 +271,26 @@ set ssop+=sesdir     " work under current dir as relative path
 "   %P percentage through buffer
 "   %) end of width specification
 function! Statusline_set_me()
-    set laststatus=2                             " always show statusbar
+  set laststatus=2                             " always show statusbar
+
+  if &filetype != 'c'
+    set nocindent
+    set noautoindent
+    set nosmartindent
+
+    if exists("g:statusline")
+      let &statusline = g:statusline
+      "echom "reset statusline"
+    endif
+  else
+    if !exists("g:statusline")
+      let g:statusline = &statusline
+    endif
+    "echom "set our statusline"
+
+    set cindent
+    set autoindent
+    set smartindent
 
     set statusline=
     set statusline+=[%{StatlineBufCount()}:%n]\   "space
@@ -283,10 +302,11 @@ function! Statusline_set_me()
     set statusline+=%m
 
     "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
-    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]\     "space
+    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]%y\     "space
 
     "set statusline+=%h%m%r%w                     " status flags
     "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+  endif
 endfunction
 
 filetype plugin indent on
@@ -310,11 +330,14 @@ let g:reload_on_write = 0
 
   autocmd BufNewFile,BufRead * DetectIndent
   autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd FileType c,cpp,c++,java,c+,javascript
-          \ set cindent |
-          \ set autoindent |
-          \ set smartindent |
-          \ call Statusline_set_me() |
+
+  autocmd BufEnter * call Statusline_set_me()
+  "autocmd FileType c,cpp,c++,java,c+,javascript
+  "        \ set cindent |
+  "        \ set autoindent |
+  "        \ set smartindent |
+  "        \ call Statusline_set_me() |
+  "        \ echom "status ctype" |
 
 "}
 
