@@ -17,7 +17,6 @@
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
 " :Savesession     save to current dir, use vi -S default.vim to open it.
-" alt+7,8,9,0      active the 1~4th tab
 "
 " Howtos:
 " =======
@@ -276,18 +275,18 @@ function! Statusline_set_me()
 
     set statusline=
     set statusline+=[%{StatlineBufCount()}:%n]\   "space
-    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
-    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]\     "space
-
-    "set statusline+=%h%m%r%w                     " status flags
-    "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+    set statusline+=%{GetFuncName()}\  " space
+    set statusline+=\ :%f
 
     set statusline+=%<
     set statusline+=%=
     set statusline+=%m
 
-    set statusline+=%f:
-    set statusline+=%{GetFuncName()}
+    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
+    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]\     "space
+
+    "set statusline+=%h%m%r%w                     " status flags
+    "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 endfunction
 
 filetype plugin indent on
