@@ -522,7 +522,7 @@ function! SingleKey_Space()
   " Show colorcolumn
   if strtrans(getline(".")[col(".")-2]) == ' '
      \ || strtrans(getline(".")[col(".")-2]) == "^I"
-    if l:col == 1 || &colorcolumn == l:col
+    if l:col == 1 || &colorcolumn == l:virtcol
       let &colorcolumn = ''
       unlet g:colorcolumn_col
     else
