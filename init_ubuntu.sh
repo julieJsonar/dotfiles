@@ -13,7 +13,7 @@ sudo apt-get install -y build-essential
 # sudo updatedb
 # locate stdio.h
 
-sudo apt-get install -y curl zsh xterm tmux ruby
+sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion
