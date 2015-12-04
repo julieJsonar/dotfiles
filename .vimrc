@@ -122,10 +122,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/CmdlineComplete'
 Plugin 'vim-utils/vim-vertical-move'
 
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/deoplete.nvim'
-"Plugin 'benekastah/neomake'
-
 Plugin 'huawenyu/vim-mark'
 Plugin 'AnsiEsc.vim'
 Plugin 'tpope/vim-markdown'
@@ -139,8 +135,16 @@ Plugin 'xolox/vim-reload'
 
 Plugin 'tpope/vim-dispatch'
 Plugin 'dyng/ctrlsf.vim'
-Plugin 'stefandtw/quickfix-reflector.vim'
+"Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
+
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
+" Install: cd ~/.vim/bundle/vimproc.vim; make
+Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/deoplete.nvim'
+"Plugin 'benekastah/neomake'
 
 Plugin 'yuratomo/w3m.vim'
 Plugin 'DrawIt'
@@ -252,6 +256,7 @@ set ssop+=sesdir     " work under current dir as relative path
 
 "}
 
+filetype plugin indent on
 "Status Line
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 " format markers:
@@ -270,46 +275,24 @@ set ssop+=sesdir     " work under current dir as relative path
 "   %V current virtual column number (-n), if different from %c
 "   %P percentage through buffer
 "   %) end of width specification
-function! Statusline_set_me()
+function! StatuslineFuncName()
   set laststatus=2                             " always show statusbar
 
-  if &filetype != 'c'
-    set nocindent
-    set noautoindent
-    set nosmartindent
+  setlocal statusline=[%{StatlineBufCount()}:%n]\   "space
+  setlocal statusline+=%{GetFuncName()}\  " space
+  setlocal statusline+=\ :%f
 
-    if exists("g:statusline")
-      let &statusline = g:statusline
-      "echom "reset statusline"
-    endif
-  else
-    if !exists("g:statusline")
-      let g:statusline = &statusline
-    endif
-    "echom "set our statusline"
+  setlocal statusline+=%<
+  setlocal statusline+=%=
+  setlocal statusline+=%m
 
-    set cindent
-    set autoindent
-    set smartindent
+  "setlocal statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
+  setlocal statusline+=L%l/%L\ %P\ %02.2c[%02.2B]%y\     "space
 
-    set statusline=
-    set statusline+=[%{StatlineBufCount()}:%n]\   "space
-    set statusline+=%{GetFuncName()}\  " space
-    set statusline+=\ :%f
-
-    set statusline+=%<
-    set statusline+=%=
-    set statusline+=%m
-
-    "set statusline+=%-18(%02.2c[%02.2B]L%l/%L%)\ "space
-    set statusline+=L%l/%L\ %P\ %02.2c[%02.2B]%y\     "space
-
-    "set statusline+=%h%m%r%w                     " status flags
-    "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-  endif
+  "setlocal statusline+=%h%m%r%w                     " status flags
+  "setlocal statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 endfunction
 
-filetype plugin indent on
 " DetectIndent using :DetectIndent command
 let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
@@ -331,13 +314,11 @@ let g:reload_on_write = 0
   autocmd BufNewFile,BufRead * DetectIndent
   autocmd BufNewFile,BufRead *.json set ft=javascript
 
-  autocmd BufEnter * call Statusline_set_me()
-  "autocmd FileType c,cpp,c++,java,c+,javascript
-  "        \ set cindent |
-  "        \ set autoindent |
-  "        \ set smartindent |
-  "        \ call Statusline_set_me() |
-  "        \ echom "status ctype" |
+  autocmd FileType c,cpp,c++,java,c+,javascript
+          \ setlocal cindent |
+          \ setlocal autoindent |
+          \ setlocal smartindent |
+          \ call StatuslineFuncName() |
 
 "}
 
@@ -465,12 +446,10 @@ function! SingleKey_Space()
      \ || strtrans(getline(".")[col(".")-2]) == ' '
      \ || strtrans(getline(".")[col(".")-2]) == "^I"
     if l:col == 1 || &colorcolumn == l:virtcol
-      let &colorcolumn = ''
-      if exists("g:colorcolumn_col")
-        unlet g:colorcolumn_col
-      endif
+      let &l:colorcolumn =
+      unlet! g:colorcolumn_col
     else
-      let &colorcolumn = l:virtcol
+      let &l:colorcolumn = l:virtcol
       let g:colorcolumn_col = l:col
     endif
   else
@@ -920,10 +899,14 @@ let g:html_use_css = 0
 "}
 
 
-" my key maps {
+" Key maps {
   nmap <silent> <space> :call SingleKey_Space()<CR>
   "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
   "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
+
+  " when wrap, move by virtual row
+  nmap j gj
+  nmap k gk
 
   nmap <leader>x  :tabclose<CR>
   nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
@@ -957,6 +940,18 @@ let g:html_use_css = 0
   nmap <silent> <leader>3 :norm! 3gt <CR>
   nmap <silent> <leader>4 :norm! 4gt <CR>
   nmap <silent> <leader>5 :norm! 5gt <CR>
+  nmap <silent> <leader>6 :norm! 6gt <CR>
+
+  nmap <silent> b1 :b1 <CR>
+  nmap <silent> b2 :b2 <CR>
+  nmap <silent> b3 :b3 <CR>
+  nmap <silent> b4 :b4 <CR>
+  nmap <silent> b5 :b5 <CR>
+  nmap <silent> b6 :b6 <CR>
+  nmap <silent> b7 :b7 <CR>
+  nmap <silent> b8 :b8 <CR>
+  nmap <silent> b9 :b9 <CR>
+  nmap <silent> b0 :b10<CR>
 
   nmap <silent> <leader>j1 :call SaveQuickFixList('/tmp/vim.qfile1') <CR>
   nmap <silent> <leader>j2 :call SaveQuickFixList('/tmp/vim.qfile2') <CR>
@@ -989,35 +984,33 @@ let g:html_use_css = 0
   nmap <leader>n :silent! cnewer <CR><CR>
   nmap <leader>p :silent! colder <CR><CR>
 
-  " TAB conflict with ctrl-i
-  nmap     <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
-  nnoremap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
+  " vim local list
+  nmap <silent> gn :silent! lnext <CR>
+  nmap <silent> gp :silent! lpre  <CR>
 
-  nnoremap <c-h> <c-w>h
-  nnoremap <c-j> <c-w>j
-  nnoremap <c-k> <c-w>k
-  nnoremap <c-l> <c-w>l
+  " TAB conflict with ctrl-i
+  nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
+  nmap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
+
+  nmap <c-h> <c-w>h
+  nmap <c-j> <c-w>j
+  nmap <c-k> <c-w>k
+  nmap <c-l> <c-w>l
 
   " https://github.com/christoomey/vim-tmux-navigator
   "let g:tmux_navigator_no_mappings = 1
-  "nnoremap <silent> <c-h>  :TmuxNavigateLeft<cr>
-  "nnoremap <silent> <c-j>  :TmuxNavigateDown<cr>
-  "nnoremap <silent> <c-k>  :TmuxNavigateUp<cr>
-  "nnoremap <silent> <c-l>  :TmuxNavigateRight<cr>
-  "nnoremap <silent> <c-\>  :TmuxNavigatePrevious<cr>
-
-  " vim local list
-  "nnoremap <silent> gn  :lnext<cr>
-  "nnoremap <silent> gp  :lpre<cr>
-  "nnoremap <silent> gn  :cnew<cr>
-  "nnoremap <silent> gp  :cold<cr>
+  "nmap <silent> <c-h>  :TmuxNavigateLeft<cr>
+  "nmap <silent> <c-j>  :TmuxNavigateDown<cr>
+  "nmap <silent> <c-k>  :TmuxNavigateUp<cr>
+  "nmap <silent> <c-l>  :TmuxNavigateRight<cr>
+  "nmap <silent> <c-\>  :TmuxNavigatePrevious<cr>
 
   " CtrlP
   "let g:crtlp_map='<F11>'
-  "nnoremap <leader>fp :CtrlP<CR>
-  "nnoremap <leader>fb :CtrlPBuffer<CR>
-  "nnoremap <leader>fm :CtrlPMRUFiles<CR>
-  "nnoremap <leader>ft :CtrlPTag<CR>
+  "nmap <leader>fp :CtrlP<CR>
+  "nmap <leader>fb :CtrlPBuffer<CR>
+  "nmap <leader>fm :CtrlPMRUFiles<CR>
+  "nmap <leader>ft :CtrlPTag<CR>
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
@@ -1035,7 +1028,27 @@ let g:html_use_css = 0
   "map <leader>g  :call LocalGrepYankToNewTab() <CR>
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-  nmap <F4> :call FilterQuickFixList() <CR>
+
+
+  " Unite
+  let g:unite_source_history_yank_enable = 1
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+  nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+  nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+  nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+  nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+  " Custom mappings for the unite buffer
+  autocmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    " Play nice with supertab
+    let b:SuperTabDisabled=1
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  endfunction
 
 "}
 
