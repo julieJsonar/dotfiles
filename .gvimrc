@@ -753,7 +753,8 @@ command! -nargs=1 Silent
   function! DefaultLayout()
     exec "normal mP"
 
-	exec ':grep -n -w ' . expand('<cword>') . ' *.' . expand('%:e')
+    exec ':silent! grep -n -w ' . expand('<cword>') . ' *.' . expand('%:e')
+    exec ':redraw!'
     "exec ":silent vimgrep! /\\<" . expand('<cword>') . "\\>/\\Cgj " . expand('%:p')
 
     exec ":silent pclose"
