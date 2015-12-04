@@ -459,7 +459,8 @@ function! SingleKey_Space()
   "echom "current: " . l:col . strtrans(getline(".")[col(".")-2])
 
   " Show colorcolumn
-  if strtrans(getline(".")[col(".")-1]) == ' '
+  if l:col == 1
+     \ ||strtrans(getline(".")[col(".")-1]) == ' '
      \ || strtrans(getline(".")[col(".")-1]) == "^I"
      \ || strtrans(getline(".")[col(".")-2]) == ' '
      \ || strtrans(getline(".")[col(".")-2]) == "^I"
