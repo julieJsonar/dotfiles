@@ -1041,7 +1041,7 @@ let g:html_use_css = 0
   nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
   " Custom mappings for the unite buffer
-  autocmd FileType unite call s:unite_settings()
+  autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
   function! s:unite_settings()
     " Play nice with supertab
     let b:SuperTabDisabled=1
