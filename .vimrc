@@ -446,7 +446,7 @@ function! SingleKey_Space()
      \ || strtrans(getline(".")[col(".")-2]) == ' '
      \ || strtrans(getline(".")[col(".")-2]) == "^I"
     if l:col == 1 || &colorcolumn == l:virtcol
-      let &l:colorcolumn =
+      setlocal colorcolumn&
       unlet! g:colorcolumn_col
     else
       let &l:colorcolumn = l:virtcol
@@ -941,17 +941,6 @@ let g:html_use_css = 0
   nmap <silent> <leader>4 :norm! 4gt <CR>
   nmap <silent> <leader>5 :norm! 5gt <CR>
   nmap <silent> <leader>6 :norm! 6gt <CR>
-
-  nmap <silent> b1 :b1 <CR>
-  nmap <silent> b2 :b2 <CR>
-  nmap <silent> b3 :b3 <CR>
-  nmap <silent> b4 :b4 <CR>
-  nmap <silent> b5 :b5 <CR>
-  nmap <silent> b6 :b6 <CR>
-  nmap <silent> b7 :b7 <CR>
-  nmap <silent> b8 :b8 <CR>
-  nmap <silent> b9 :b9 <CR>
-  nmap <silent> b0 :b10<CR>
 
   nmap <silent> <leader>j1 :call SaveQuickFixList('/tmp/vim.qfile1') <CR>
   nmap <silent> <leader>j2 :call SaveQuickFixList('/tmp/vim.qfile2') <CR>
