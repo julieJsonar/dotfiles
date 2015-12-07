@@ -221,17 +221,17 @@ set ssop+=sesdir     " work under current dir as relative path
  "  n... :  where to save the viminfo files
  set viminfo='30,\"300,:30,%,n~/.viminfo
 
- function! ResCur()
-   if line("'\"") <= line("$")
-     normal! g`"
-     return 1
-   endif
- endfunction
+ "function! ResCur()
+ "  if line("'\"") <= line("$")
+ "    normal! g`"
+ "    return 1
+ "  endif
+ "endfunction
 
- augroup resCur
-   autocmd!
-   autocmd BufWinEnter * call ResCur()
- augroup END
+ "augroup resCur
+ "  autocmd!
+ "  autocmd BufWinEnter * call ResCur()
+ "augroup END
 
 "}
 
@@ -901,6 +901,10 @@ let g:html_use_css = 0
   nmap <silent> <leader>;n :TagbarToggle<CR>
   nmap <silent> <leader>;l :call DefaultLayout() <CR><CR>
 
+  let g:ctrlsf_mapping = {
+      \ "next": "n",
+      \ "prev": "N",
+      \ }
   vmap          <leader>;f <Plug>CtrlSFVwordPath
   nmap          <leader>;v :<C-\>e LocalEasyGrep(1,0) <CR>
   vmap          <leader>;v :<C-\>e LocalEasyGrep(1,1) <CR>
@@ -996,7 +1000,6 @@ let g:html_use_css = 0
   "map <leader>g  :call LocalGrepYankToNewTab() <CR>
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-
 
   " Unite
   let g:unite_source_history_yank_enable = 1
