@@ -25,16 +25,6 @@
 "       :cfile log.marks   # view as quickfix
 "       :mks!              # Save to Session.vim
 "   Vimgrep:               # Also lvimgrep, short as: vim, lvim
-"        vimregex          # rules:
-"                           . any-char \s whitespace \d digit \x hex \o octal
-"                           \h head-char-of-word \p printable-char
-"                           \w word \a alpha \l lowercase \u uppercase
-"                          # reverse rules:
-"                           \S non-whitespace \D non-digit \X non-hex \O non-octal
-"                           \H non-head-char-of-word \P like \p, but-excluding-digits
-"                           \W non-word \A non-alpha \L non-lowercase \U non-uppercase
-"                          # times:
-"                           * 0-more \+  1-more \=  0or1-more \{n,m} \{n} \{,m} \{n,}
 "       samples
 "       :vim /some/gj **/*.c **/*.h
 "       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
@@ -48,14 +38,6 @@
 "       /^\n\{3}/          # find 3 empty lines
 "
 "   Grep:                  # grepprg=grep, using outer grep tool
-"       regex              # rules:
-"                           ^ begin-with $ end-with
-"                           . any-one-char * any-char .* any-char-list
-"                           \<~ \>~ words-end
-"                           \w~ words \W~ no-words
-"                           []~char-set [^]~no-match-char-set
-"                           \(xxx\)~match-group
-"                           x/{m/}~ x/{m,n/}~
 "       samples
 "       :grep -Iinr 'string' --include='*.[ch]' dirs
 "       :grep -w 'word1\|word2' files
@@ -69,9 +51,6 @@
 "       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
 "       <backspace>        # Back page
 "       <enter>            # Open link under the cursor
-"       f                  # Hit-A-Hint.
-"       s                  # Toggle Syntax On/Off
-"       c                  # Toggle Cookie On/Off.
 "
 " Self:
 " =====
