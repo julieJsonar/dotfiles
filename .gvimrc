@@ -1009,7 +1009,7 @@ let g:html_use_css = 0
   nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
   nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer  -start-insert buffer<cr>
 
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
