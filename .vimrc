@@ -43,6 +43,14 @@
 "       :grep -w 'word1\|word2' files
 "       :grep '[a-z]\{5\}' files
 "       :grep '^POST /\(idle\|send\)/CzHmd' log
+"       ‘\w’ matches a character within a word
+"       ‘\W’ matches a character which is not within a word
+"       ‘\<’ matches the beginning of a word
+"       ‘\>’ matches the end of a word
+"       ‘\b’ matches a word boundary
+"       ‘\B’ matches characters which are not a word boundary
+"       ‘\`’ matches the beginning of the whole input
+"       ‘\'’ matches the end of the whole input
 "
 " Tools:
 " ======
