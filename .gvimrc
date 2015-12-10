@@ -114,6 +114,7 @@ Plugin 'AnsiEsc.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
+Plugin 'vimoutliner/vimoutliner'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -122,12 +123,14 @@ Plugin 'xolox/vim-reload'
 
 Plugin 'tpope/vim-dispatch'
 Plugin 'dyng/ctrlsf.vim'
+Plugin 'rking/ag.vim'
 "Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
 
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
+Plugin 'h1mesuke/unite-outline'
 " Install: cd ~/.vim/bundle/vimproc.vim; make
 Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/deoplete.nvim'
@@ -1009,6 +1012,18 @@ let g:html_use_css = 0
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
+  "quickfix keymap import by ag.vim
+  "e    to open file and close the quickfix window
+  "o    to open (same as enter)
+  "go   to preview file (open but maintain focus on ag.vim results)
+  "t    to open in new tab
+  "T    to open in new tab silently
+  "h    to open in horizontal split
+  "H    to open in horizontal split silently
+  "v    to open in vertical split
+  "gv   to open in vertical split silently
+  "q    to close the quickfix window
+
   " Unite
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -1196,6 +1211,14 @@ function! WatchForChanges(bufname, ...)
   let @"=reg_saved
 endfunction
 
-nnoremap <leader>;q :<C-u>execute WatchForChanges("*",{'autoread':1})
+nnoremap <leader>;q :<C-u>execute WatchForChanges("*",{'autoread':1}) <CR>
 
+function! s:VSetSearch(cmdtype)
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
 
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
