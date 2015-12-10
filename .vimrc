@@ -396,7 +396,7 @@ let g:enable_numbers = 0
   nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
-  nmap          <leader>;q :call utilquick#FilterQuickFixList() <CR>
+  nmap          <leader>;q :call utilquickfix#FilterQuickFixList() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;n :TagbarToggle<CR>
