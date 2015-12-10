@@ -410,14 +410,14 @@ let g:enable_numbers = 0
   nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR>
   vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
 
-  nmap <silent> <leader>;s :call CscopeSymbol() <CR>
+  nmap <silent> <leader>;s :call utilcscope#CscopeSymbol() <CR>
   "nmap <silent> <leader>;r :call CurrentReplace() <CR>
   "nmap <silent> <leader>;w :call AppendNoteOnSource() <CR>
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
 
-  nmap <silent> <leader>;. :call VerticalMoveDown(1)<CR>
-  nmap <silent> <leader>;, :call VerticalMoveDown(0)<CR>
+  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
+  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
   nmap <silent> <leader>1 :norm! 1gt <CR>
   nmap <silent> <leader>2 :norm! 2gt <CR>
@@ -427,11 +427,11 @@ let g:enable_numbers = 0
   nmap <silent> <leader>6 :norm! 6gt <CR>
 
 
-  map gf :call GotoFileWithLineNum()<CR>
-  map gsf :sp<CR>:call GotoFileWithLineNum()<CR>
+  map gf :call utils#GotoFileWithLineNum()<CR>
+  map gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
 
   "map <leader>ds :call Asm() <CR>
-  map <leader>bs :call SvnBlameCurrent() <CR>
+  map <leader>bs :call blame#SvnBlameCurrent() <CR>
   map <leader>bg :Gblame <CR>
 
   nmap <silent> <c-n> :cn<cr>
