@@ -77,8 +77,7 @@ readonly HISTCONTROL
 export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
 #shopt -s histappend
 
-mydata='/data'
-myhome='/home/wilson'
+source .localrc
 
 alias dict='$mydata/tools/dict'
 alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $mydata/script/image.exp'
