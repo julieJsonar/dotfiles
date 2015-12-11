@@ -461,6 +461,9 @@ let g:bookmark_auto_save = 1
   nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
   nmap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
 
+  " Open tag in new tab
+  nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
   nmap <c-h> <c-w>h
   nmap <c-j> <c-w>j
   nmap <c-k> <c-w>k
