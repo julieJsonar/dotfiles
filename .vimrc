@@ -490,6 +490,8 @@ let g:bookmark_auto_save = 1
 
   " Unite
   let g:unite_source_history_yank_enable = 1
+  " neoyank config file: make vim yank cross vim-sessions
+  let g:neoyank#file = $HOME.'/.vim/yankring.txt'
   "call unite#filters#matcher_default#use(['matcher_fuzzy'])
   nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
   nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
