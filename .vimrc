@@ -454,8 +454,8 @@ let g:bookmark_auto_save = 1
   "nmap <silent> <leader>. :ptprevious<cr>
 
   " :on[ly][!]  close all other windows, but keep buffer
-  nmap <leader>n :silent! cnewer <CR><CR>
-  nmap <leader>p :silent! colder <CR><CR>
+  "nmap <leader>n :silent! cnewer <CR><CR>
+  "nmap <leader>p :silent! colder <CR><CR>
 
   " vim local list
   nmap <silent> gn :silent! lnext <CR>
