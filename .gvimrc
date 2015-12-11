@@ -114,7 +114,7 @@ Plugin 'AnsiEsc.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'huawenyu/vim-bookmarks'
+"Plugin 'huawenyu/vim-bookmarks'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
 
@@ -502,6 +502,7 @@ let g:bookmark_auto_save = 1
   "nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
   nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
+  nnoremap <leader>jj :<C-u>Unite jump <CR>
   nnoremap <leader>jc :<C-u>UniteClose <CR>
 
   " Custom mappings for the unite buffer
