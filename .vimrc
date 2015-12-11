@@ -114,7 +114,12 @@ Plugin 'AnsiEsc.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'vimoutliner/vimoutliner'
+Plugin 'huawenyu/vim-bookmarks'
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -130,11 +135,9 @@ Plugin 'rking/ag.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
-Plugin 'h1mesuke/unite-outline'
-" Install: cd ~/.vim/bundle/vimproc.vim; make
+Plugin 'Shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/deoplete.nvim'
-"Plugin 'benekastah/neomake'
+Plugin 'h1mesuke/unite-outline'
 
 Plugin 'yuratomo/w3m.vim'
 Plugin 'DrawIt'
@@ -377,6 +380,9 @@ let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
 
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+
 " Key maps {
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
   "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
@@ -481,13 +487,13 @@ let g:enable_numbers = 0
 
   " Unite
   let g:unite_source_history_yank_enable = 1
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  "call unite#filters#matcher_default#use(['matcher_fuzzy'])
   nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+  nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
   nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+  "nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer  -start-insert buffer<cr>
+  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
 
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
