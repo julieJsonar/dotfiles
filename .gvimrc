@@ -497,6 +497,7 @@ let g:bookmark_auto_save = 1
   "nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
   nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
+  nnoremap <leader>jc :<C-u>UniteClose <CR>
 
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
