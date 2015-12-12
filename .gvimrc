@@ -394,8 +394,8 @@ let g:enable_numbers = 0
   nmap <leader>o <C-O>
 
   " make vim yank cross vim-sessions
-  vmap <leader>;y :w! /tmp/vim.yank<CR>
-  nmap <leader>;p :r! cat /tmp/vim.yank<CR>
+  vmap <leader>y :w! /tmp/vim.yank<CR>
+  nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap <leader>x  :tabclose<CR>
   nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
@@ -454,7 +454,7 @@ let g:enable_numbers = 0
 
   " :on[ly][!]  close all other windows, but keep buffer
   nmap <leader>n :silent! cnewer <CR><CR>
-  nmap <leader>p :silent! colder <CR><CR>
+  nmap <leader>N :silent! colder <CR><CR>
 
   " vim local list
   nmap <silent> gn :silent! lnext <CR>

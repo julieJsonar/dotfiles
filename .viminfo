@@ -8,17 +8,26 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/file_dir
+~MSle0~/copy
 
 # Last Substitute Search Pattern:
-~MSle0&cur_dirr
+~MSle0&\<BOOKMARKS\>
 
 # Last Substitute String:
-$curr_dir
+$bookmarks_group
 
 # Command Line History (newest to oldest):
-:q
+:qa
 :w
+:TraceClear
+:make
+:cs f f wad_debug_impl.c
+:help expr4
+:echo simplify("/home/wilson/work/fos52-rtmp-yuwa/daemon/wad/wad_rtmp.c")
+:echo simplify("/home/wilson/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c")
+:pwd
+:BookmarkLoad Hello
+:q
 :help fnamemodify
 :echo fnamemodify("/home/wilson/.vimrc", ":p:h:~")
 :echo fnamemodify("/home/wilson/.vimrc", ":p:~")
@@ -29,10 +38,7 @@ $curr_dir
 :echo expand('%:p')
 :echo filename
 :e ~/.vimrc
-:qa
-:BookmarkLoad Hello
 :e ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
-:pwd
 :f
 :list_head
 :BookmarkSet "
@@ -41,14 +47,15 @@ $curr_dir
 :echo g:wilson[-1:]
 :'<,'>s/cur_dirr/curr_dir/g
 :'<,'>s/cur_dir/cur_dirr/g
-:echo g:wilson[4]
-:echo g:wilson[5]
-:echo g:wilson
-:let g:wilson = "hello"
-:echo fnamemodify("%", ":p:h")
-:help
 
 # Search String History (newest to oldest):
+?/copy
+? \<display\>
+?/display
+?/needed
+? \<wad_http_is_rtmpt_request\>
+?/is_rtmp
+? _WAD_TRACE_
 ?/file_dir
 ? \<curr_dir0\>
 ? \<curr_dir\>
@@ -316,28 +323,482 @@ $curr_dir
 
 # Registers:
 "0	CHAR	0
-	fnamemodify
+	/tmp/vim.yank
 "1	LINE	0
-	
+	bind-key P capture-pane -S -200 ; save-buffer /tmp/vim.yank ; delete-buffer'
 "2	LINE	0
-	
+	config vpn certificate local
+	    edit "Fortinet_CA_SSLProxy"
+	        set password ENC j0KyVx2HaYqXn9XnQ4aE2swZOjWI8gwSDVxJXH+vzoo0DYPBGTgt11PnFEM0Gbgh+vmKDhRQ/6bteXBk4UwdMlxBOlw6Fy+GAnEWjX47pZmvTgZw3UwAQIx4AeVHB7hvY5AkdR7J8KnJTv7LdDisvao+6OlXs1GsYgX6yy/sLWf5GHMUvEz9roWz4Cp1Yxwvb9hpnA==
+	        set comments "This is the default CA certificate the SSL Inspection will use when generating new server certificates."
+	        set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+	MIIBpjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIb5VP4nBc1+ICAggA
+	MBQGCCqGSIb3DQMHBAgRAcH7c7PgVwSCAWCbSRyEgL9515WPN819UtdxfeuaXETD
+	E0VsN2Q6YdBSsmTUyPQ0BhhmwarkUZ3y+G4v1F+y7JtJNLR9eJ5LdoqWKfUX+PO2
+	RevlNuBJHGXvMag/Yi89M2pZAPiembFRd6NKxKN0LcvU8eP66ts+JpNjzHxv5Gh2
+	yWMMEFfszjfqisS2vd9siEXEySZL/i7kxDoaKhCFR0BfSOvcQnwMXcAdln8qI2Wo
+	juzkYJ/8MKo/Ook3LKzOUBRUQTMW9P7I6Mj7viQrNuCAfJdxQeu7VOmW4pGt2I0L
+	/Al2w1J1CAmOqSdtg8N9ViGZ6HL221RhEzw9abSO2AMEUwpX3wppXg/B0g7P3BH2
+	H+rvnMLVqCBLVTuTCRJim+6O7+iQTgMdh1SvS0xaAzX4OLtGYdfYxv75noYMnlAe
+	wDUqWD351E34n113fZzYh8g2qqFSe3GmCq2bGCWoLvi/Ou4SsWWLurs9
+	-----END ENCRYPTED PRIVATE KEY-----"
+	        set certificate "-----BEGIN CERTIFICATE-----
+	MIICVDCCAf6gAwIBAgIIMvWZ/6GKiuYwDQYJKoZIhvcNAQEFBQAwgaUxCzAJBgNV
+	BAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlTdW5ueXZhbGUx
+	ETAPBgNVBAoMCEZvcnRpbmV0MR4wHAYDVQQLDBVDZXJ0aWZpY2F0ZSBBdXRob3Jp
+	dHkxFTATBgNVBAMMDEZvcnRpR2F0ZSBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9y
+	dEBmb3J0aW5ldC5jb20wHhcNMTUxMjA5MDY1ODMyWhcNMjUxMjA5MDY1ODMyWjCB
+	pTELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExEjAQBgNVBAcMCVN1
+	bm55dmFsZTERMA8GA1UECgwIRm9ydGluZXQxHjAcBgNVBAsMFUNlcnRpZmljYXRl
+	IEF1dGhvcml0eTEVMBMGA1UEAwwMRm9ydGlHYXRlIENBMSMwIQYJKoZIhvcNAQkB
+	FhRzdXBwb3J0QGZvcnRpbmV0LmNvbTBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQDE
+	L/h0cnXi1GrTmrlNmtBAWGLtYnb0qwLnt6cAvbvSR1zrpVSWwtXfRYUnlkcUeVP6
+	Gzy9XpDtzplZMkrePsMNAgMBAAGjEDAOMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcN
+	AQEFBQADQQCFAq1OiYxdUWbBUREaXSPOq2doB49XrVZk5uqSU2B5E6Pa9PBQOyFw
+	fmXat1n5rXtVMeYuBdyF1cQjpFacN2Z4
+	-----END CERTIFICATE-----"
+	    next
+	    edit "Fortinet_SSLProxy"
+	        set password ENC izZVUh2r8pbn85inYUpWtiZNgXvo2zMnxntv/RRj599CJWyjohifg4J8/I82lE57+D19PRWcbkXa32NMS48PIHy1Ewt85dHzgCZ5hC5PGbOjT+Mo2cxc+HFYwsao8T2d6Q4NlBDowEPe1CZWwtfuKB1En/45c2gmtq9/uHFey1MNdyV360eLEObY0vo04tDVwYCBFA==
+	        set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+	MIIBpjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIdDEk25HQ9fICAggA
+	MBQGCCqGSIb3DQMHBAgljWjrdnPN2gSCAWAKbsJ20GPV68rwz3ufrw6nXCIVfWvX
+	6i+W2sCnA5m3igRd2TBK7tRWSU9W8O9IxMhc0k8Blus8VoUTQ2HhzDsf70tNsJzi
+	xkkQnY7zG2B9ljOOwp+BTYfwnDnY8ZLfo/23g3PGJ5hB+Pd3V1YzpGd8HT11jdG1
+	gwV3CwdeKDOwVzqriIij+pmDGEo82/ZUqnP8k2aseoRVVB8zU+f2aETzlqt0gKSo
+	cX+A6TJS5SmmjD+G1iugEklrxUssDS20Onbdf4wHs4TG8gC4PDev3d1yosRNmQEw
+	pUlCkTASFj8mExmEngRzpC2ANOwss4YPh/RbspYo4ZNsM+NUYqfOA1NWS5IisWPS
+	knkgyXgOF92SnnHGcnX5wbB3CeP4p3p32/KO9pkUWzSwu+RbPN/XeAdS3u4z440J
+	7AQQnXLTx2/vrYUmXppxvciWI/oqm0CNzAe3h7TrHbRZkarIAJdI9IpV
+	-----END ENCRYPTED PRIVATE KEY-----"
+	        set certificate "-----BEGIN CERTIFICATE-----
+	MIICQTCCAeugAwIBAgIIf+Mmh6X9F3YwDQYJKoZIhvcNAQEFBQAwgZ0xCzAJBgNV
+	BAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlTdW5ueXZhbGUx
+	ETAPBgNVBAoMCEZvcnRpbmV0MRIwEAYDVQQLDAlGb3J0aUdhdGUxGTAXBgNVBAMM
+	EEZvcnRpR2F0ZSBTZXJ2ZXIxIzAhBgkqhkiG9w0BCQEWFHN1cHBvcnRAZm9ydGlu
+	ZXQuY29tMB4XDTE1MTIwOTA2NTgzMloXDTI1MTIwOTA2NTgzMlowgZ0xCzAJBgNV
+	BAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlTdW5ueXZhbGUx
+	ETAPBgNVBAoMCEZvcnRpbmV0MRIwEAYDVQQLDAlGb3J0aUdhdGUxGTAXBgNVBAMM
+	EEZvcnRpR2F0ZSBTZXJ2ZXIxIzAhBgkqhkiG9w0BCQEWFHN1cHBvcnRAZm9ydGlu
+	ZXQuY29tMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMTrOmItl0Olvy5+trs0PVCR
+	GQSeSvFG07IDlwrM3ycdtk3VsfCyLMMTKGAXeFu1noyzjx4Jy1GDxaMYRSQw/HsC
+	AwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQUFAANBALjR1g7jrL1VvZQb
+	5TwvSgxGxdzVCkvm8Z1T8RNQtOa+5rLP8Pl5Q1df7a884EAmwjGBwBF14AeDMnKZ
+	oHogCmg=
+	-----END CERTIFICATE-----"
+	    next
+	end
+	config user device-category
+	    edit "ipad"
+	    next
+	    edit "iphone"
+	    next
+	    edit "gaming-console"
+	    next
+	    edit "blackberry-phone"
+	    next
+	    edit "blackberry-playbook"
+	    next
+	    edit "linux-pc"
+	    next
+	    edit "mac"
+	    next
+	    edit "windows-pc"
+	    next
+	    edit "android-phone"
+	    next
+	    edit "android-tablet"
+	    next
+	    edit "media-streaming"
+	    next
+	    edit "windows-phone"
+	    next
+	    edit "windows-tablet"
+	    next
+	    edit "fortinet-device"
+	    next
+	    edit "ip-phone"
+	    next
+	    edit "router-nat-device"
+	    next
+	    edit "printer"
+	    next
+	    edit "other-network-device"
+	    next
+	    edit "collected-emails"
+	    next
+	    edit "all"
+	    next
+	end
+	config system session-sync
+	end
+	config system fortiguard
+	    set webfilter-sdns-server-ip "208.91.112.220" 
+	end
+	config ips global
+	    set default-app-cat-mask 18446744073474670591
+	end
+	config ips dbinfo
+	    set version 1
+	end
 "3	LINE	0
-	        let filename = filename2
+	config system replacemsg-image
+	    edit "logo_fnet"
+	        set image-type gif
+	        set image-base64 ''
+	    next
+	    edit "logo_fguard_wf"
+	        set image-type gif
+	        set image-base64 ''
+	    next
+	    edit "logo_fw_auth"
+	        set image-type png
+	        set image-base64 ''
+	    next
+	    edit "logo_v2_fnet"
+	        set image-type png
+	        set image-base64 ''
+	    next
+	    edit "logo_v2_fguard_wf"
+	        set image-type png
+	        set image-base64 ''
+	    next
+	    edit "logo_v2_fguard_app"
+	        set image-type png
+	        set image-base64 ''
+	    next
+	end
+	config system replacemsg mail "email-block"
+	end
+	config system replacemsg mail "email-dlp-subject"
+	end
+	config system replacemsg mail "email-dlp-ban"
+	end
+	config system replacemsg mail "email-filesize"
+	end
+	config system replacemsg mail "partial"
+	end
+	config system replacemsg mail "smtp-block"
+	end
+	config system replacemsg mail "smtp-filesize"
+	end
+	config system replacemsg http "bannedword"
+	end
+	config system replacemsg http "url-block"
+	end
+	config system replacemsg http "urlfilter-err"
+	end
+	config system replacemsg http "infcache-block"
+	end
+	config system replacemsg http "http-block"
+	end
+	config system replacemsg http "http-filesize"
+	end
+	config system replacemsg http "http-dlp-ban"
+	end
+	config system replacemsg http "http-archive-block"
+	end
+	config system replacemsg http "http-contenttypeblock"
+	end
+	config system replacemsg http "https-invalid-cert-block"
+	end
+	config system replacemsg http "http-client-block"
+	end
+	config system replacemsg http "http-client-filesize"
+	end
+	config system replacemsg http "http-client-bannedword"
+	end
+	config system replacemsg http "http-post-block"
+	end
+	config system replacemsg http "http-client-archive-block"
+	end
+	config system replacemsg http "switching-protocols-block"
+	end
+	config system replacemsg webproxy "deny"
+	end
+	config system replacemsg webproxy "user-limit"
+	end
+	config system replacemsg webproxy "auth-challenge"
+	end
+	config system replacemsg webproxy "auth-login-fail"
+	end
+	config system replacemsg webproxy "auth-authorization-fail"
+	end
+	config system replacemsg webproxy "http-err"
+	end
+	config system replacemsg webproxy "auth-ip-blackout"
+	end
+	config system replacemsg ftp "ftp-dl-blocked"
+	end
+	config system replacemsg ftp "ftp-dl-filesize"
+	end
+	config system replacemsg ftp "ftp-dl-dlp-ban"
+	end
+	config system replacemsg ftp "ftp-explicit-banner"
+	end
+	config system replacemsg ftp "ftp-dl-archive-block"
+	end
+	config system replacemsg nntp "nntp-dl-blocked"
+	end
+	config system replacemsg nntp "nntp-dl-filesize"
+	end
+	config system replacemsg nntp "nntp-dlp-subject"
+	end
+	config system replacemsg nntp "nntp-dlp-ban"
+	end
+	config system replacemsg fortiguard-wf "ftgd-block"
+	end
+	config system replacemsg fortiguard-wf "http-err"
+	end
+	config system replacemsg fortiguard-wf "ftgd-ovrd"
+	end
+	config system replacemsg fortiguard-wf "ftgd-quota"
+	end
+	config system replacemsg fortiguard-wf "ftgd-warning"
+	end
+	config system replacemsg spam "ipblocklist"
+	end
+	config system replacemsg spam "smtp-spam-dnsbl"
+	end
+	config system replacemsg spam "smtp-spam-feip"
+	end
+	config system replacemsg spam "smtp-spam-helo"
+	end
+	config system replacemsg spam "smtp-spam-emailblack"
+	end
+	config system replacemsg spam "smtp-spam-mimeheader"
+	end
+	config system replacemsg spam "reversedns"
+	end
+	config system replacemsg spam "smtp-spam-bannedword"
+	end
+	config system replacemsg spam "smtp-spam-ase"
+	end
+	config system replacemsg spam "submit"
+	end
+	config system replacemsg im "im-file-xfer-block"
+	end
+	config system replacemsg im "im-file-xfer-name"
+	end
+	config system replacemsg im "im-file-xfer-infected"
+	end
+	config system replacemsg im "im-file-xfer-size"
+	end
+	config system replacemsg im "im-dlp"
+	end
+	config system replacemsg im "im-dlp-ban"
+	end
+	config system replacemsg im "im-voice-chat-block"
+	end
+	config system replacemsg im "im-video-chat-block"
+	end
+	config system replacemsg im "im-photo-share-block"
+	end
+	config system replacemsg im "im-long-chat-block"
+	end
+	config system replacemsg alertmail "alertmail-virus"
+	end
+	config system replacemsg alertmail "alertmail-block"
+	end
+	config system replacemsg alertmail "alertmail-nids-event"
+	end
+	config system replacemsg alertmail "alertmail-crit-event"
+	end
+	config system replacemsg alertmail "alertmail-disk-full"
+	end
+	config system replacemsg admin "pre_admin-disclaimer-text"
+	end
+	config system replacemsg admin "post_admin-disclaimer-text"
+	end
+	config system replacemsg auth "auth-disclaimer-page-1"
+	end
+	config system replacemsg auth "auth-disclaimer-page-2"
+	end
+	config system replacemsg auth "auth-disclaimer-page-3"
+	end
+	config system replacemsg auth "auth-reject-page"
+	end
+	config system replacemsg auth "auth-login-page"
+	end
+	config system replacemsg auth "auth-login-failed-page"
+	end
+	config system replacemsg auth "auth-token-login-page"
+	end
+	config system replacemsg auth "auth-token-login-failed-page"
+	end
+	config system replacemsg auth "auth-success-msg"
+	end
+	config system replacemsg auth "auth-challenge-page"
+	end
+	config system replacemsg auth "auth-keepalive-page"
+	end
+	config system replacemsg auth "auth-portal-page"
+	end
+	config system replacemsg auth "auth-password-page"
+	end
+	config system replacemsg auth "auth-fortitoken-page"
+	end
+	config system replacemsg auth "auth-next-fortitoken-page"
+	end
+	config system replacemsg auth "auth-email-token-page"
+	end
+	config system replacemsg auth "auth-sms-token-page"
+	end
+	config system replacemsg auth "auth-email-harvesting-page"
+	end
+	config system replacemsg auth "auth-email-failed-page"
+	end
+	config system replacemsg auth "auth-cert-passwd-page"
+	end
+	config system replacemsg auth "auth-guest-print-page"
+	end
+	config system replacemsg auth "auth-guest-email-page"
+	end
+	config system replacemsg auth "auth-success-page"
+	end
+	config system replacemsg auth "auth-block-notification-page"
+	end
+	config system replacemsg sslvpn "sslvpn-login"
+	end
+	config system replacemsg sslvpn "sslvpn-limit"
+	end
+	config system replacemsg sslvpn "hostcheck-error"
+	end
+	config system replacemsg ec "endpt-download-portal"
+	end
+	config system replacemsg ec "endpt-download-portal-mac"
+	end
+	config system replacemsg ec "endpt-download-portal-ios"
+	end
+	config system replacemsg ec "endpt-download-portal-aos"
+	end
+	config system replacemsg ec "endpt-download-portal-other"
+	end
+	config system replacemsg device-detection-portal "device-detection-failure"
+	end
+	config system replacemsg nac-quar "nac-quar-virus"
+	end
+	config system replacemsg nac-quar "nac-quar-dos"
+	end
+	config system replacemsg nac-quar "nac-quar-ips"
+	end
+	config system replacemsg nac-quar "nac-quar-dlp"
+	end
+	config system replacemsg nac-quar "nac-quar-admin"
+	end
+	config system replacemsg traffic-quota "per-ip-shaper-block"
+	end
+	config system replacemsg utm "virus-html"
+	end
+	config system replacemsg utm "virus-text"
+	end
+	config system replacemsg utm "dlp-html"
+	end
+	config system replacemsg utm "dlp-text"
+	end
+	config system replacemsg utm "appblk-html"
+	end
+	config vpn certificate ca
+	end
 "4	LINE	0
-	      let file_dir = fnamemodify(filename, ":p:h")
+	config system admin
+	    edit "admin"
+	        set accprofile "super_admin"
+	        set vdom "root"
+	            config dashboard-tabs
+	                edit 1
+	                    set name "Status"
+	                next
+	            end
+	            config dashboard
+	                edit 1
+	                    set tab-id 1
+	                    set column 1
+	                next
+	                edit 2
+	                    set widget-type licinfo
+	                    set tab-id 1
+	                    set column 1
+	                next
+	                edit 3
+	                    set widget-type jsconsole
+	                    set tab-id 1
+	                    set column 1
+	                next
+	                edit 4
+	                    set widget-type sysres
+	                    set tab-id 1
+	                    set column 2
+	                next
+	                edit 5
+	                    set widget-type gui-features
+	                    set tab-id 1
+	                    set column 2
+	                next
+	                edit 6
+	                    set widget-type alert
+	                    set tab-id 1
+	                    set column 2
+	                    set top-n 10
+	                next
+	            end
+	    next
+	end
+	config system ha
+	    set override disable
+	end
 "5	LINE	0
-	  let curr_dir0 = fnamemodify(curr_dir, ":p:~")
+	config system custom-language
+	    edit "en"
+	        set filename "en"
+	    next
+	    edit "fr"
+	        set filename "fr"
+	    next
+	    edit "sp"
+	        set filename "sp"
+	    next
+	    edit "pg"
+	        set filename "pg"
+	    next
+	    edit "x-sjis"
+	        set filename "x-sjis"
+	    next
+	    edit "big5"
+	        set filename "big5"
+	    next
+	    edit "GB2312"
+	        set filename "GB2312"
+	    next
+	    edit "euc-kr"
+	        set filename "euc-kr"
+	    next
+	end
 "6	LINE	0
-	      endif
+	config system accprofile
+	    edit "prof_admin"
+	        set mntgrp read-write
+	        set admingrp read-write
+	        set updategrp read-write
+	        set authgrp read-write
+	        set sysgrp read-write
+	        set netgrp read-write
+	        set loggrp read-write
+	        set routegrp read-write
+	        set fwgrp read-write
+	        set vpngrp read-write
+	        set utmgrp read-write
+	        set wanoptgrp read-write
+	        set endpoint-control-grp read-write
+	        set wifi read-write
+	    next
+	end
 "7	LINE	0
-	    if filereadable(file0)
-	      let filename = file0
-	    else !filereadable(filename)
-	
+	  nmap <leader>ma :BookmarkShowAll <CR>
 "8	LINE	0
-	  "let file   = expand('%')
+	command! -nargs=1 -complete=custom,bookmark#BookmarkGroups BookmarkLoad call bookmark#LoadGroup(<f-args>)
 "9	LINE	0
-	      let file0 = fnamemodify(filename, ":t")
+	command! -nargs=1 Bookmark call bookmark#Bookmark(<f-args>)
 "j	CHAR	0
 	359
 <kjjk;a;a;ajjjjjjjjjjjjjGkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjkkwwwwwjlllllllkyyPllllllllllllllro:wlll:wkkkwklllllllllllllllllllllllllllllllllllllllllllwwbyevep:w:wll:wvllllllllllllllllld:w:whDa :w:w:wj:wjk:wbbbw:wllllllllise€kb€kbSet:w:wjbvlllldllllllllj0wwxiShowAll:w:w:wkk:w:w:w:
@@ -346,464 +807,340 @@ $curr_dir
 "q	CHAR	0
 	
 ""-	CHAR	0
-	:p"
+	#
 
 # global variables:
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'P  46  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
-'0  119  42  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-'1  8  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
-'2  49  7  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-'3  238  19  ~/.vimrc
-'4  325  27  ~/.viminfo
-'5  490  2  ~/.vimrc
-'6  48  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-'7  323  27  ~/.viminfo
-'8  2  3  ~/.netrc
-'9  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+'0  230  0  ~/.tmux.conf
+'1  397  15  ~/.vimrc
+'2  408  15  ~/.vimrc
+'3  197  96  ~/.tmux.conf
+'4  1  0  ~/.tmux
+'5  163  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+'6  13  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+'7  1  20  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+'8  21  28  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+'9  14  25  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
 
 # Jumplist (newest first):
--'  119  42  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  120  22  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  117  8  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  110  66  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  109  10  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  100  29  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  99  14  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  101  13  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  106  6  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  33  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  480  26  ~/.vimrc
--'  1  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  493  40  ~/.vimrc
--'  495  2  ~/.vimrc
--'  141  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  8  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  12  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  113  12  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  115  12  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  114  30  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  112  53  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  108  19  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  103  24  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  88  15  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  83  27  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  82  6  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  79  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  98  17  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  121  25  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  10  7  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  93  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  73  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  133  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  92  4  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  457  2  ~/.vimrc
--'  456  0  ~/.vimrc
--'  1  8  ~/.vimrc
--'  487  0  ~/.vimrc
--'  356  86  ~/.viminfo
--'  355  0  ~/.viminfo
--'  327  27  ~/.viminfo
--'  321  29  ~/.viminfo
--'  313  9  ~/.viminfo
--'  56  2  ~/.viminfo
--'  55  2  ~/.viminfo
--'  54  4  ~/.viminfo
--'  31  8  ~/.viminfo
--'  30  10  ~/.viminfo
--'  14  9  ~/.viminfo
--'  1  12  ~/.viminfo
--'  619  7  ~/.viminfo
--'  903  6  ~/.viminfo
--'  115  15  ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
--'  87  11  ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
--'  896  8  ~/.viminfo
+-'  230  0  ~/.tmux.conf
+-'  216  0  ~/.tmux.conf
+-'  122  0  ~/.tmux.conf
+-'  75  0  ~/.tmux.conf
+-'  56  23  ~/.tmux.conf
+-'  226  35  ~/.tmux.conf
+-'  1  35  ~/.tmux.conf
+-'  104  0  ~/.tmux.conf
+-'  197  103  ~/.tmux.conf
+-'  44  35  ~/.tmux.conf
+-'  196  117  ~/.tmux.conf
+-'  397  15  ~/.vimrc
+-'  456  15  ~/.vimrc
+-'  411  15  ~/.vimrc
+-'  408  15  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  198  74  ~/.tmux.conf
+-'  195  0  ~/.tmux.conf
+-'  190  0  ~/.tmux.conf
+-'  59  0  ~/.tmux.conf
+-'  3  0  ~/.tmux.conf
+-'  1  0  ~/.tmux
+-'  163  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+-'  14  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+-'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+-'  13  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  95  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  121  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  171  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  429  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  1123  2  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  3  10  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  1  20  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+-'  21  28  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+-'  14  25  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+-'  1  0  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+-'  23  40  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  44  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  56  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  55  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  43  18  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  1  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  26  60  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  25  48  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  94  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  323  27  ~/.viminfo
+-'  317  29  ~/.viminfo
+-'  53  2  ~/.viminfo
+-'  52  4  ~/.viminfo
+-'  27  8  ~/.viminfo
+-'  26  10  ~/.viminfo
+-'  14  10  ~/.viminfo
+-'  11  9  ~/.viminfo
+-'  1  0  ~/.viminfo
+-'  889  0  ~/.viminfo
+-'  2  3  ~/.netrc
+-'  1  0  ~/.netrc
+-'  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  20  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  23  96  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  17  1  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  22  7  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  21  9  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  25  58  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  7  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
+-'  19  10  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  13  16  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  5  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  25  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  6  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  7  13  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  17  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  16  22  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  18  20  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  3  8  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  14  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
 
 # Buffer list:
-%~/.vim/bundle/c-utils.vim/autoload/bookmark.vim	119	42
-%~/.vimrc	480	26
+%~/.tmux.conf	230	0
 
 # History of marks within files (newest to oldest):
 
-> ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-	"	119	42
-	^	119	43
-	.	119	42
-	+	39	6
-	+	37	35
-	+	14	32
-	+	15	0
-	+	14	36
-	+	20	63
-	+	24	27
-	+	37	46
-	+	34	24
-	+	33	2
-	+	53	0
-	+	55	9
-	+	38	0
-	+	93	0
-	+	134	0
-	+	99	19
-	+	79	0
-	+	89	5
-	+	80	10
-	+	101	0
-	+	101	27
-	+	101	0
-	+	101	17
-	+	117	8
-	+	110	7
-	+	101	6
-	+	110	24
-	+	116	12
-	+	110	63
-	+	101	39
-	+	110	64
-	+	106	0
-	+	109	42
-	+	109	49
-	+	109	36
-	+	110	75
-	+	106	31
-	+	108	12
-	+	106	43
-	+	106	28
-	+	106	0
-	+	106	0
-	+	107	19
-	+	108	0
-	+	107	19
-	+	105	0
-	+	106	6
-	+	106	7
-	+	106	27
-	+	106	0
-	+	106	7
-	+	106	7
-	+	106	0
-	+	117	0
-	+	107	27
-	+	101	0
-	+	109	56
-	+	109	58
-	+	113	20
-	+	112	42
-	+	111	42
-	+	112	53
-	+	114	32
-	+	116	32
-	+	113	17
-	+	114	20
-	+	113	19
-	+	114	19
-	+	99	0
-	+	115	26
-	+	113	44
-	+	112	42
-	+	115	101
-	+	116	35
-	+	106	0
-	+	104	4
-	+	106	27
-	+	106	24
-	+	34	0
-	+	33	2
-	+	106	0
-	+	106	7
-	+	106	0
-	+	117	0
-	+	106	0
-	+	99	27
-	+	109	49
-	+	99	14
-	+	100	0
-	+	99	29
-	+	109	0
-	+	120	0
-	+	107	18
-	+	116	0
-	+	119	4
-	+	118	0
-	+	120	0
-	+	119	46
-	+	120	0
-	+	119	42
-	o	100	22
-
-> ~/.vim/bundle/c-utils.vim/[unite] - buffer
-	"	1	0
-	^	1	0
-	.	2	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	17	0
-	+	12	0
-	+	12	0
-	+	12	0
-	+	12	0
-	+	12	0
-	+	12	0
-	+	12	0
-	+	1	0
-	+	12	0
-	+	1	0
-	+	9	0
-	+	7	0
-	+	4	0
-	+	4	0
-	+	4	0
-	+	2	0
+> ~/.tmux.conf
+	"	230	0
+	^	197	104
+	.	75	0
+	+	3	0
+	+	197	134
+	+	198	0
+	+	197	58
+	+	199	0
+	+	197	61
+	+	198	61
+	+	197	266
+	+	197	0
+	+	197	112
+	+	198	112
+	+	197	103
+	+	75	0
 
 > ~/.vimrc
-	"	480	26
-	^	492	37
-	.	494	36
-	+	144	0
-	+	138	0
-	+	139	0
-	+	142	21
-	+	142	0
-	+	512	86
-	+	510	2
-	+	516	76
-	+	515	62
-	+	516	76
-	+	507	43
-	+	507	42
-	+	507	37
-	+	507	0
-	+	507	8
-	+	507	0
-	+	507	16
-	+	507	15
-	+	507	15
-	+	507	16
-	+	507	16
-	+	507	0
-	+	507	30
-	+	507	0
-	+	120	15
-	+	142	0
-	+	142	0
-	+	141	26
-	+	514	2
-	+	515	64
-	+	516	57
-	+	474	3
-	+	473	22
-	+	472	0
-	+	518	42
-	+	509	49
-	+	509	29
-	+	510	38
-	+	510	33
-	+	510	0
-	+	509	0
-	+	402	4
-	+	401	0
-	+	462	2
-	+	463	2
-	+	120	0
-	+	517	37
-	+	120	0
-	+	241	14
-	+	240	35
-	+	535	0
-	+	491	0
-	+	488	10
-	+	491	34
-	+	494	34
-	+	491	0
-	+	491	0
-	+	494	0
-	+	491	27
-	+	494	33
-	+	100	0
-	+	102	0
-	+	102	0
-	+	101	0
-	+	100	0
-	+	101	0
-	+	100	0
-	+	101	0
-	+	100	0
-	+	91	0
-	+	92	0
-	+	93	0
-	+	96	0
-	+	88	0
-	+	95	0
-	+	94	0
-	+	489	19
-	+	491	19
-	+	489	31
-	+	491	29
-	+	494	33
-	+	494	31
-	+	492	30
-	+	493	29
-	+	494	0
-	+	490	0
-	+	239	0
-	+	238	14
-	+	239	0
-	+	457	0
+	"	397	15
+	.	457	15
 	+	397	15
 	+	398	15
-	+	456	2
-	+	457	2
-	+	491	36
-	+	492	37
-	+	493	36
-	+	491	40
-	+	493	36
-	+	494	36
-	a	346	17
-	c	493	16
+	+	457	15
 
-> /usr/share/vim/vim74/doc/eval.txt
-	"	3040	38
-
-> /usr/share/vim/vim74/doc/cmdline.txt
-	"	882	17
-
-> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_http_cache.c
-	"	153	14
-
-> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
-	"	87	11
-
-> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmpt.c
+> /tmp/t1
 	"	1	0
 
-> ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
-	"	87	11
-
-> ~/work/fos-git/daemon/wad/wad_http_cache.c
-	"	161	12
-
-> ~/work/fos-git/daemon/wad/wad_rtmp.c
+> ~/.tmux
 	"	1	0
 
-> /usr/share/vim/vim74/doc/starting.txt
-	"	1505	24
+> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+	"	163	8
+	.	163	8
+	+	163	8
 
-> ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
-	"	22	44
-	^	22	55
-	.	22	54
-	+	7	36
-	+	2	22
-	+	7	36
-	+	17	6
-	+	25	0
-	+	21	0
-	+	23	0
-	+	24	0
-	+	25	0
-	+	19	0
-	+	19	0
-	+	25	0
-	+	23	35
-	+	24	35
-	+	25	32
-	+	25	32
-	+	24	75
-	+	25	75
-	+	25	86
-	+	25	86
-	+	24	58
-	+	23	58
-	+	24	69
-	+	23	67
-	+	24	71
-	+	21	9
-	+	25	0
-	+	22	0
-	+	25	0
-	+	20	0
-	+	21	45
-	+	22	54
+> ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+	"	13	0
+	^	1	22
+	.	13	0
+	+	1	20
+	+	3	0
+	+	31	0
+	+	167	0
+	+	543	0
+	+	13	0
 
-> ~/.vim/bundle/c-utils.vim/[unite] - default
-	"	1	0
-	.	1	0
+> ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+	"	21	28
+	^	21	29
+	.	21	28
+	+	21	28
+
+> ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+	"	23	40
+	^	23	41
+	.	23	40
+	+	72	0
+	+	60	0
+	+	48	0
+	+	33	0
+	+	4	0
+	+	2	0
+	+	3	0
+	+	33	18
+	+	48	10
+	+	61	10
+	+	73	10
+	+	92	10
+	+	4	0
 	+	1	0
+	+	13	0
+	+	7	0
+	+	13	33
+	+	14	19
+	+	29	14
+	+	29	0
+	+	15	27
+	+	20	0
+	+	19	0
+	+	14	0
+	+	20	33
+	+	21	0
+	+	15	15
+	+	29	18
+	+	29	34
+	+	29	0
+	+	13	38
+	+	15	13
+	+	21	29
+	+	29	30
+	+	29	8
+	+	31	0
+	+	95	0
+	+	94	0
+	+	95	31
+	+	95	26
+	+	95	0
+	+	8	0
+	+	12	0
+	+	27	0
+	+	21	29
+	+	24	5
+	+	25	23
+	+	29	0
+	+	26	3
+	+	22	30
+	+	23	36
+	+	24	37
+	+	23	7
+	+	72	25
+	+	33	29
+	+	21	54
+	+	43	18
+	+	13	47
+	+	15	13
+	+	21	30
+	+	22	30
+	+	26	42
+	+	27	42
+	+	18	30
+	+	44	20
+	+	43	18
+	+	55	0
+	+	54	0
+	+	23	40
 
-> ~/.vim/bundle/unite.vim/doc/unite.txt
-	"	528	29
+> ~/work/fos52-rtmp-git/daemon/wad/wad_http_cache.c
+	"	25340	8
+	.	27120	0
+	+	27120	0
 
-> ~/.viminfo
-	"	356	86
+> ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+	"	25381	37
+	^	25381	44
+	.	25381	43
+	+	25381	43
 
-> ~/work/fos52-rtmp-git/wad_rtmp.c
+> ~/work/fos52-rtmp-git/daemon/wad/ui/fg/wad_ui.c
+	"	399	0
+	.	399	0
+	+	399	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/ui/fg/wad_debug_impl.h
+	"	64	0
+	.	64	0
+	+	64	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/ui/fg/wad_debug_impl.c
+	"	438	0
+	.	439	0
+	+	439	0
+
+> ~/script/trace-wad/files
 	"	1	0
 
-> ~/.netrc
-	"	2	3
-	^	3	25
-	.	3	24
-	+	3	25
-	+	2	20
-	+	3	24
+> ~/work/fos52-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+	"	508	0
+	.	508	0
+	+	508	0
 
-> ~/.vim/bundle/c-utils.vim/plugin/utilcscope.vim
-	"	7	0
+> ~/work/fos52-rtmp-git/daemon/wad/redirect/fortifilter/wad_redirect.c
+	"	395	0
+	.	395	0
+	+	395	0
 
-> ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
-	"	19	10
-	^	13	49
-	.	3	13
-	+	6	4
-	+	5	0
-	+	2	12
-	+	2	3
-	+	3	14
-	+	2	49
-	+	17	0
-	+	13	48
-	+	3	13
+> ~/work/fos52-rtmp-git/daemon/wad/ui/fg/wad_ui_diag.c
+	"	1844	0
+	.	1844	0
+	+	1844	0
 
-> /usr/share/vim/vim74/doc/options.txt
-	"	491	11
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_cifs.c
+	"	5208	0
+	.	5208	0
+	+	5208	0
 
 > ~/work/fos52-rtmp-git/daemon/wad/wad_app_eng.c
-	"	606	16
+	"	2742	0
+	.	2742	0
+	+	2742	0
 
-> ~/work/fos52-rtmp-git/daemon/wad/wad_app_eng.h
-	"	264	18
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_ftp.c
+	"	1445	0
+	.	1445	0
+	+	1445	0
 
-> ~/work/fos52-rtmp-git/daemon/wad/wad_ses_exp.h
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_http.c
+	"	1472	0
+	.	1472	0
+	+	1472	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_mapi.c
+	"	703	0
+	.	703	0
+	+	703	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_mgr.c
+	"	554	0
+	.	554	0
+	+	554	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/wad_app_tcp.c
 	"	87	0
+	.	87	0
+	+	87	0
 
-> ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp_impl.h
-	"	623	12
+> ~/work/fos52-rtmp-git/daemon/wad/wad_ftp_proxy.c
+	"	4113	0
+	.	4113	0
+	+	4113	0
 
-> ~/work/fos52-rtmp-git/daemon/wad/wad_config.h
-	"	160	0
+> ~/work/fos52-rtmp-git/daemon/wad/wad_http_auth.c
+	"	2278	0
+	.	2278	0
+	+	2278	0
 
-> ~/work/fos52-rtmp-git/daemon/dnp/dnp-proxy-main.c
-	"	22	20
+> ~/work/fos52-rtmp-git/daemon/wad/wad_http_parser.c
+	"	4404	0
+	.	4404	0
+	+	4404	0
 
-> ~/Downloads/marks/bookmarks.vim
-	"	1	0
+> ~/work/fos52-rtmp-git/daemon/wad/wad_http_parser.h
+	"	368	0
+	.	368	0
+	+	368	0
 
-> ~/Downloads/marks/marks_corey.vim
-	"	415	7
+> ~/work/fos52-rtmp-git/daemon/wad/wad_mapi_proxy.c
+	"	13686	0
+	.	13686	0
+	+	13686	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/wad_monitor.c
+	"	526	0
+	.	526	0
+	+	526	0
