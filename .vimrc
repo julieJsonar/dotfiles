@@ -235,7 +235,7 @@ set ssop+=sesdir     " work under current dir as relative path
  "  :30  :  up to 20 lines of command-line history will be remembered
  "  %    :  saves and restores the buffer list
  "  n... :  where to save the viminfo files
- set viminfo='30,\"300,:30,%,n~/.viminfo
+ set viminfo=!,'30,\"300,:30,%,n~/.viminfo
 
  function! ResCur()
    if line("'\"") <= line("$")
@@ -394,8 +394,8 @@ let g:enable_numbers = 0
   nmap <leader>o <C-O>
 
   " make vim yank cross vim-sessions
-  vmap <leader>y :w! /tmp/vim.yank<CR>
-  nmap <leader>p :r! cat /tmp/vim.yank<CR>
+  vmap <leader>;y :w! /tmp/vim.yank<CR>
+  nmap <leader>;p :r! cat /tmp/vim.yank<CR>
 
   nmap <leader>x  :tabclose<CR>
   nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
@@ -453,8 +453,8 @@ let g:enable_numbers = 0
   "nmap <silent> <leader>. :ptprevious<cr>
 
   " :on[ly][!]  close all other windows, but keep buffer
-  "nmap <leader>n :silent! cnewer <CR><CR>
-  "nmap <leader>p :silent! colder <CR><CR>
+  nmap <leader>n :silent! cnewer <CR><CR>
+  nmap <leader>p :silent! colder <CR><CR>
 
   " vim local list
   nmap <silent> gn :silent! lnext <CR>
@@ -488,9 +488,9 @@ let g:enable_numbers = 0
   "bookmark
   nmap <leader>mo :BookmarkLoad 
   nmap <leader>ma :BookmarkShowAll <CR>
-  nmap <leader>mm :BookmarkSet <C-R>=expand("<cword>") <CR>
-  nmap <leader>mg :BookmarkGoto <C-R>=expand("<cword>") <CR>
-  nmap <leader>mc :BookmarkDel <C-R>=expand("<cword>") <CR>
+  nmap <leader>mm :BookmarkSet <C-R><c-w> <CR>
+  nmap <leader>mg :BookmarkGoto <C-R><c-w> <CR>
+  nmap <leader>mc :BookmarkDel <C-R><c-w> <CR>
 
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>

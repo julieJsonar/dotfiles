@@ -8,56 +8,66 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0/\<BOOKMARKS\>
+~MSle0~/file_dir
 
 # Last Substitute Search Pattern:
-~MSle0~&\<BOOKMARKS\>
+~MSle0&cur_dirr
 
 # Last Substitute String:
-$bookmarks_group
+$curr_dir
 
 # Command Line History (newest to oldest):
-:qa
-:w
-:set paste
 :q
-:help expand
-:expand
-:'<,'>s/\<BOOKMARKS\>/bookmarks_group/g
-:'<,'>s/BOOKMARKS/bookmarks_group/g
-:'<,'>BOOK
-:help modeline
-:e ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
-:e ~/.vim/bundle/c-utils.vim/plugin/utilcscope.vim
-:b1
+:w
+:help fnamemodify
+:echo fnamemodify("/home/wilson/.vimrc", ":p:h:~")
+:echo fnamemodify("/home/wilson/.vimrc", ":p:~")
+:echo fnamemodify("/home/wilson/.vimrc, ":p:~")
+:echo fnamemodify(expand('%:p:h'), ":p:~")
+:echo fnamemodify(expand('%'), ":p:~")
+:echo expand('%:p:~')
+:echo expand('%:p')
+:echo filename
 :e ~/.vimrc
-:b2
-:vs
-:cs show
-:e marks_corey.vim
-:ls
-:help sign
-:grep! -Inr -- 'BookmarkSign' .
-:PluginInstall
-:e!
+:qa
+:BookmarkLoad Hello
+:e ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
 :pwd
-:Tracecrash
-:cs f g 
 :f
-:Unite jump
-:!git diff
-:jumps
+:list_head
+:BookmarkSet "
+:echo g:wilson[3:]
+:echo g:wilson[:2]
+:echo g:wilson[-1:]
+:'<,'>s/cur_dirr/curr_dir/g
+:'<,'>s/cur_dir/cur_dirr/g
+:echo g:wilson[4]
+:echo g:wilson[5]
+:echo g:wilson
+:let g:wilson = "hello"
+:echo fnamemodify("%", ":p:h")
+:help
 
 # Search String History (newest to oldest):
+?/file_dir
+? \<curr_dir0\>
+? \<curr_dir\>
+? cur_dirr
+? cur_dir
+? \<dyn_dir\>
+? \<cur_file\>
+?/<leader>n
+? \<echom\>
+? \<wviminfo\>
+?/BOOKMARKS
+?/viminfo
 ? \<BOOKMARKS\>
 ? BOOKMARKS
 ?/let-modeline.vim
 ?/modeline
-? \<echom\>
 ?/echo
 ?/getcwd
 ? \<expand\>
-?/viminfo
 ? \<Flash_signs\>
 ? \<Save_signs_to_file\>
 ?/Warn
@@ -305,41 +315,29 @@ $bookmarks_group
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	  nmap <leader>mg :BookmarkGoto <C-R>=expand("<cword>") <CR>
+"0	CHAR	0
+	fnamemodify
 "1	LINE	0
-	  nmap <leader>ma :BookmarkShowAll <CR>
+	
 "2	LINE	0
-	command! -nargs=1 -complete=custom,bookmark#BookmarkGroups BookmarkLoad call bookmark#LoadGroup(<f-args>)
+	
 "3	LINE	0
-	command! -nargs=1 Bookmark call bookmark#Bookmark(<f-args>)
+	        let filename = filename2
 "4	LINE	0
-	  let g:bookmarks_group = g:BOOKMARKS[a:bookmarks_group]
+	      let file_dir = fnamemodify(filename, ":p:h")
 "5	LINE	0
-	    return
+	  let curr_dir0 = fnamemodify(curr_dir, ":p:~")
 "6	LINE	0
-	" Completion function for choosing bookmarks group
-	function! bookmark#BookmarkGroups(A, L, P)
-	  return join(sort(keys(g:BOOKMARKS)), "\n")
-	endfunction
+	      endif
 "7	LINE	0
+	    if filereadable(file0)
+	      let filename = file0
+	    else !filereadable(filename)
 	
 "8	LINE	0
-	    " Searches from the directory of the current file upwards until root '/'
-	    let db = findfile("cscope.out", ".;")
-	    if (!empty(db))
-	      let path = strpart(db, 0, match(db, "/cscope.out$"))
-	      set nocscopeverbose " suppress 'duplicate connection' error
-	      exe "cs add " . db . " " . path
-	      set cscopeverbose
-	      let g:loaded_c_utils_utilcscope_have_db = 1
-	    endif
-	
-	    "set nocscopeverbose
-	    "exe "cs add cscope.out"
-	    "set cscopeverbose
+	  "let file   = expand('%')
 "9	LINE	0
-	"Plugin 'christoomey/vim-tmux-navigator'
+	      let file0 = fnamemodify(filename, ":t")
 "j	CHAR	0
 	359
 <kjjk;a;a;ajjjjjjjjjjjjjGkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjkkwwwwwjlllllllkyyPllllllllllllllro:wlll:wkkkwklllllllllllllllllllllllllllllllllllllllllllwwbyevep:w:wll:wvllllllllllllllllld:w:whDa :w:w:wj:wjk:wbbbw:wllllllllise€kb€kbSet:w:wjbvlllldllllllllj0wwxiShowAll:w:w:wkk:w:w:w:
@@ -348,252 +346,235 @@ $bookmarks_group
 "q	CHAR	0
 	
 ""-	CHAR	0
-	<password>
+	:p"
+
+# global variables:
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'P  46  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
-'0  2  3  ~/.netrc
-'1  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
-'2  535  0  ~/.vimrc
-'3  41  0  /usr/share/vim/vim74/doc/sign.txt
-'4  106  9  ~/.vim/bundle/vim-bookmarks/autoload/bm.vim
-'5  468  0  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
-'6  47  0  ~/[Vundle] Installer
-'7  120  0  ~/.vimrc
-'8  58  0  /tmp/log.tel
-'9  84  40  ~/work/fos52-rtmp-git/daemon/wad/wad_mem_check.c
+'0  119  42  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+'1  8  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
+'2  49  7  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+'3  238  19  ~/.vimrc
+'4  325  27  ~/.viminfo
+'5  490  2  ~/.vimrc
+'6  48  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+'7  323  27  ~/.viminfo
+'8  2  3  ~/.netrc
+'9  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
 
 # Jumplist (newest first):
--'  2  3  ~/.netrc
--'  1  0  ~/.netrc
--'  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  20  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  23  96  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  17  1  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  22  7  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  21  9  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  25  58  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  90  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  7  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  19  10  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  13  16  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  5  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  25  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  6  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  7  13  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  17  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  16  22  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  18  20  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  3  8  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  14  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  35  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  24  35  ~/.vim/bundle/c-utils.vim/plugin/utilcscope.vim
--'  418  33  ~/.vimrc
--'  491  33  ~/.vimrc
+-'  119  42  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  120  22  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  117  8  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  110  66  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  109  10  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  100  29  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  99  14  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  101  13  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  106  6  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  33  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  480  26  ~/.vimrc
 -'  1  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  32  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  42  9  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  24  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  19  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  4  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  535  0  ~/.vimrc
--'  250  5  ~/.vimrc
--'  239  13  ~/.vimrc
--'  238  30  ~/.vimrc
--'  120  0  ~/.vimrc
--'  415  7  ~/Downloads/marks/marks_corey.vim
--'  23  0  ~/Downloads/marks/marks_corey.vim
--'  334  0  ~/Downloads/marks/marks_corey.vim
--'  201  13  ~/Downloads/marks/marks_corey.vim
--'  169  10  ~/Downloads/marks/marks_corey.vim
--'  12  0  ~/Downloads/marks/bookmarks.vim
--'  1  0  ~/Downloads/marks/bookmarks.vim
--'  41  0  /usr/share/vim/vim74/doc/sign.txt
--'  33  51  /usr/share/vim/vim74/doc/sign.txt
--'  54  39  /usr/share/vim/vim74/doc/sign.txt
--'  1  0  /usr/share/vim/vim74/doc/sign.txt
--'  16  2  ~/.vim/bundle/vim-bookmarks/autoload/bm_sign.vim
--'  34  13  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
--'  468  0  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
--'  206  6  ~/.vim/bundle/vim-bookmarks/autoload/bm.vim
--'  113  3  ~/.vim/bundle/vim-bookmarks/t/bm_sign_spec.vim
--'  14  0  ~/.vim/bundle/vim-bookmarks/release
--'  2  16  ~/.vim/bundle/vim-bookmarks/autoload/util.vim
--'  1  0  ~/.vim/bundle/vim-bookmarks
--'  106  9  ~/.vim/bundle/vim-bookmarks/autoload/bm.vim
--'  10  0  ~/.vim/bundle/vim-bookmarks/autoload/unite/filters
--'  1  0  ~/.vim/bundle/vim-bookmarks/autoload
--'  66  0  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
--'  41  0  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
--'  1  0  ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
--'  47  0  ~/[Vundle] Installer
--'  517  42  ~/.vimrc
--'  516  65  ~/.vimrc
--'  513  65  ~/.vimrc
--'  58  0  /tmp/log.tel
--'  263  16  /tmp/log.tel
--'  978  0  /tmp/log.tel
--'  384  0  /tmp/log.tel
--'  249  0  /tmp/log.tel
--'  68071  40  /tmp/log.tel
--'  68270  21  /tmp/log.tel
--'  1088  0  /tmp/log.tel
--'  1  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  20  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  23  96  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  17  1  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  22  7  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  21  9  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  25  58  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
--'  90  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
--'  7  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
--'  19  10  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  13  16  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  5  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  25  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  6  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  7  13  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  17  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  16  22  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  18  20  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  3  8  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  14  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  35  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
--'  24  35  ~/.vim/bundle/c-utils.vim/plugin/utilcscope.vim
--'  418  33  ~/.vimrc
+-'  493  40  ~/.vimrc
+-'  495  2  ~/.vimrc
+-'  141  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  8  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
+-'  12  0  ~/.vim/bundle/c-utils.vim/[unite] - buffer
+-'  113  12  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  115  12  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  114  30  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  112  53  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  108  19  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  103  24  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  88  15  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  83  27  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  82  6  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  79  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  98  17  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  121  25  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  10  7  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  93  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  73  0  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  133  2  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  92  4  ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+-'  457  2  ~/.vimrc
+-'  456  0  ~/.vimrc
+-'  1  8  ~/.vimrc
+-'  487  0  ~/.vimrc
+-'  356  86  ~/.viminfo
+-'  355  0  ~/.viminfo
+-'  327  27  ~/.viminfo
+-'  321  29  ~/.viminfo
+-'  313  9  ~/.viminfo
+-'  56  2  ~/.viminfo
+-'  55  2  ~/.viminfo
+-'  54  4  ~/.viminfo
+-'  31  8  ~/.viminfo
+-'  30  10  ~/.viminfo
+-'  14  9  ~/.viminfo
+-'  1  12  ~/.viminfo
+-'  619  7  ~/.viminfo
+-'  903  6  ~/.viminfo
+-'  115  15  ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
+-'  87  11  ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
+-'  896  8  ~/.viminfo
 
 # Buffer list:
-%~/.netrc	2	3
+%~/.vim/bundle/c-utils.vim/autoload/bookmark.vim	119	42
+%~/.vimrc	480	26
 
 # History of marks within files (newest to oldest):
 
-> ~/.netrc
-	"	2	3
-	^	3	25
-	.	3	24
-	+	3	25
-	+	2	20
-	+	3	24
-
 > ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-	"	90	0
-	^	20	55
-	.	20	54
-	+	68	0
-	+	56	0
-	+	46	0
-	+	32	0
+	"	119	42
+	^	119	43
+	.	119	42
+	+	39	6
+	+	37	35
+	+	14	32
+	+	15	0
+	+	14	36
+	+	20	63
+	+	24	27
+	+	37	46
+	+	34	24
+	+	33	2
+	+	53	0
+	+	55	9
+	+	38	0
+	+	93	0
+	+	134	0
+	+	99	19
+	+	79	0
+	+	89	5
+	+	80	10
+	+	101	0
+	+	101	27
+	+	101	0
+	+	101	17
+	+	117	8
+	+	110	7
+	+	101	6
+	+	110	24
+	+	116	12
+	+	110	63
+	+	101	39
+	+	110	64
+	+	106	0
+	+	109	42
+	+	109	49
+	+	109	36
+	+	110	75
+	+	106	31
+	+	108	12
+	+	106	43
+	+	106	28
+	+	106	0
+	+	106	0
+	+	107	19
+	+	108	0
+	+	107	19
+	+	105	0
+	+	106	6
+	+	106	7
+	+	106	27
+	+	106	0
+	+	106	7
+	+	106	7
+	+	106	0
+	+	117	0
+	+	107	27
+	+	101	0
+	+	109	56
+	+	109	58
+	+	113	20
+	+	112	42
+	+	111	42
+	+	112	53
+	+	114	32
+	+	116	32
+	+	113	17
+	+	114	20
+	+	113	19
+	+	114	19
+	+	99	0
+	+	115	26
+	+	113	44
+	+	112	42
+	+	115	101
+	+	116	35
+	+	106	0
+	+	104	4
+	+	106	27
+	+	106	24
+	+	34	0
+	+	33	2
+	+	106	0
+	+	106	7
+	+	106	0
+	+	117	0
+	+	106	0
+	+	99	27
+	+	109	49
+	+	99	14
+	+	100	0
+	+	99	29
+	+	109	0
+	+	120	0
+	+	107	18
+	+	116	0
+	+	119	4
+	+	118	0
+	+	120	0
+	+	119	46
+	+	120	0
+	+	119	42
+	o	100	22
+
+> ~/.vim/bundle/c-utils.vim/[unite] - buffer
+	"	1	0
+	^	1	0
+	.	2	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	17	0
+	+	12	0
+	+	12	0
+	+	12	0
+	+	12	0
+	+	12	0
+	+	12	0
+	+	12	0
+	+	1	0
+	+	12	0
+	+	1	0
+	+	9	0
+	+	7	0
+	+	4	0
+	+	4	0
 	+	4	0
 	+	2	0
-	+	3	0
-	+	32	18
-	+	46	10
-	+	57	10
-	+	69	10
-	+	88	10
-	+	4	0
-	+	1	0
-	+	13	0
-	+	7	0
-	+	13	33
-	+	14	19
-	+	28	14
-	+	28	0
-	+	15	27
-	+	19	0
-	+	18	0
-	+	14	0
-	+	19	33
-	+	20	0
-	+	15	15
-	+	28	18
-	+	28	34
-	+	28	0
-	+	13	38
-	+	15	13
-	+	20	29
-	+	28	30
-	+	28	8
-	+	30	0
-	+	91	0
-	+	90	0
-	+	91	31
-	+	91	26
-	+	91	0
-	+	8	0
-	+	12	0
-	+	26	0
-	+	20	29
-	+	23	5
-	+	24	23
-	+	28	0
-	+	25	3
-	+	21	30
-	+	22	36
-	+	23	37
-	+	22	7
-	+	68	25
-	+	32	29
-	+	20	54
-
-> ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
-	"	1	0
-	^	22	55
-	.	22	54
-	+	7	36
-	+	2	22
-	+	7	36
-	+	17	6
-	+	25	0
-	+	21	0
-	+	23	0
-	+	24	0
-	+	25	0
-	+	19	0
-	+	19	0
-	+	25	0
-	+	23	35
-	+	24	35
-	+	25	32
-	+	25	32
-	+	24	75
-	+	25	75
-	+	25	86
-	+	25	86
-	+	24	58
-	+	23	58
-	+	24	69
-	+	23	67
-	+	24	71
-	+	21	9
-	+	25	0
-	+	22	0
-	+	25	0
-	+	20	0
-	+	21	45
-	+	22	54
 
 > ~/.vimrc
-	"	490	2
-	^	493	30
-	.	490	0
-	+	501	0
-	+	503	20
-	+	150	0
-	+	414	64
-	+	120	31
-	+	120	36
-	+	389	27
-	+	387	0
-	+	124	25
-	+	127	0
-	+	125	27
-	+	121	24
-	+	122	29
-	+	138	20
+	"	480	26
+	^	492	37
+	.	494	36
 	+	144	0
 	+	138	0
 	+	139	0
@@ -680,31 +661,108 @@ $bookmarks_group
 	+	493	29
 	+	494	0
 	+	490	0
+	+	239	0
+	+	238	14
+	+	239	0
+	+	457	0
+	+	397	15
+	+	398	15
+	+	456	2
+	+	457	2
+	+	491	36
+	+	492	37
+	+	493	36
+	+	491	40
+	+	493	36
+	+	494	36
 	a	346	17
 	c	493	16
 
-> ~/.vim/bundle/c-utils.vim/[unite] - buffer
-	"	3	0
-	^	3	0
-	.	2	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	7	0
-	+	2	0
+> /usr/share/vim/vim74/doc/eval.txt
+	"	3040	38
+
+> /usr/share/vim/vim74/doc/cmdline.txt
+	"	882	17
+
+> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_http_cache.c
+	"	153	14
+
+> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
+	"	87	11
+
+> ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmpt.c
+	"	1	0
+
+> ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
+	"	87	11
+
+> ~/work/fos-git/daemon/wad/wad_http_cache.c
+	"	161	12
+
+> ~/work/fos-git/daemon/wad/wad_rtmp.c
+	"	1	0
+
+> /usr/share/vim/vim74/doc/starting.txt
+	"	1505	24
+
+> ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+	"	22	44
+	^	22	55
+	.	22	54
+	+	7	36
+	+	2	22
+	+	7	36
+	+	17	6
+	+	25	0
+	+	21	0
+	+	23	0
+	+	24	0
+	+	25	0
+	+	19	0
+	+	19	0
+	+	25	0
+	+	23	35
+	+	24	35
+	+	25	32
+	+	25	32
+	+	24	75
+	+	25	75
+	+	25	86
+	+	25	86
+	+	24	58
+	+	23	58
+	+	24	69
+	+	23	67
+	+	24	71
+	+	21	9
+	+	25	0
+	+	22	0
+	+	25	0
+	+	20	0
+	+	21	45
+	+	22	54
+
+> ~/.vim/bundle/c-utils.vim/[unite] - default
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/.vim/bundle/unite.vim/doc/unite.txt
+	"	528	29
+
+> ~/.viminfo
+	"	356	86
+
+> ~/work/fos52-rtmp-git/wad_rtmp.c
+	"	1	0
+
+> ~/.netrc
+	"	2	3
+	^	3	25
+	.	3	24
+	+	3	25
+	+	2	20
+	+	3	24
 
 > ~/.vim/bundle/c-utils.vim/plugin/utilcscope.vim
 	"	7	0
@@ -723,14 +781,8 @@ $bookmarks_group
 	+	13	48
 	+	3	13
 
-> /usr/share/vim/vim74/doc/eval.txt
-	"	2770	26
-
 > /usr/share/vim/vim74/doc/options.txt
 	"	491	11
-
-> ~/work/fos52-rtmp-git/daemon/wad/wad_rtmp.c
-	"	87	11
 
 > ~/work/fos52-rtmp-git/daemon/wad/wad_app_eng.c
 	"	606	16
@@ -750,156 +802,8 @@ $bookmarks_group
 > ~/work/fos52-rtmp-git/daemon/dnp/dnp-proxy-main.c
 	"	22	20
 
-> ~/.viminfo
-	"	889	0
-
 > ~/Downloads/marks/bookmarks.vim
 	"	1	0
 
 > ~/Downloads/marks/marks_corey.vim
 	"	415	7
-
-> ~/.vim/bundle/vim-bookmarks/autoload/util.vim
-	"	2	16
-	^	2	17
-	.	2	16
-	+	4	9
-	+	4	0
-	+	3	2
-	+	2	16
-
-> ~/.vim/bundle/vim-bookmarks/t/bm_sign_spec.vim
-	"	113	2
-
-> ~/.vim/bundle/vim-bookmarks/autoload/bm.vim
-	"	206	6
-	^	108	10
-	.	108	9
-	+	104	7
-	+	105	7
-	+	107	9
-	+	108	9
-
-> ~/.vim/bundle/vim-bookmarks/plugin/bookmark.vim
-	"	34	13
-
-> ~/.vim/bundle/vim-bookmarks/__Tagbar__
-	"	33	0
-	.	55	0
-	+	55	0
-
-> ~/.vim/bundle/vim-bookmarks/autoload/bm_sign.vim
-	"	24	5
-	.	72	0
-	+	72	0
-
-> /usr/share/vim/vim74/doc/sign.txt
-	"	41	0
-
-> ~/[Vundle] Installer
-	"	47	0
-	.	1	0
-	+	1	0
-
-> /tmp/log.tel
-	"	58	0
-	a	185	23
-	m	155	51
-
-> ~/work/fos52-rtmp-git/daemon/wad/wad_mem_check.c
-	"	63	18
-	^	400	59
-	.	399	67
-	+	346	0
-	+	218	2
-	+	216	98
-	+	103	0
-	+	108	2
-	+	129	0
-	+	106	56
-	+	105	81
-	+	103	0
-	+	33	0
-	+	35	0
-	+	36	0
-	+	35	0
-	+	36	0
-	+	6	15
-	+	104	93
-	+	105	38
-	+	62	83
-	+	63	83
-	+	62	43
-	+	63	43
-	+	62	95
-	+	63	98
-	+	111	47
-	+	111	47
-	+	112	0
-	+	156	22
-	+	158	33
-	+	216	27
-	+	215	56
-	+	65	0
-	+	84	57
-	+	158	0
-	+	163	69
-	+	162	29
-	+	163	57
-	+	164	31
-	+	162	0
-	+	358	44
-	+	367	46
-	+	374	46
-	+	101	30
-	+	101	0
-	+	113	24
-	+	121	27
-	+	101	0
-	+	360	0
-	+	427	76
-	+	428	0
-	+	433	3
-	+	427	84
-	+	422	83
-	+	427	112
-	+	422	88
-	+	423	105
-	+	422	85
-	+	439	0
-	+	440	0
-	+	441	0
-	+	439	20
-	+	440	18
-	+	441	21
-	+	444	23
-	+	35	0
-	+	37	0
-	+	85	52
-	+	37	0
-	+	35	0
-	+	84	59
-	+	35	0
-	+	37	0
-	+	215	0
-	+	216	45
-	+	119	77
-	+	120	3
-	+	215	67
-	+	216	58
-	+	119	62
-	+	37	0
-	+	34	0
-	+	399	0
-	+	402	0
-	+	402	28
-	+	84	57
-	+	215	68
-	+	216	64
-	+	399	68
-	+	400	47
-	+	399	67
-	a	104	53
-
-> ~/work/fos52-rtmp-git/log.code
-	"	41	0
