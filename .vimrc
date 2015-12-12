@@ -85,17 +85,20 @@ Plugin 'tomasr/molokai'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'nanotech/jellybeans.vim'
 
-"Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'ciaranm/detectindent'
 Plugin 'file-line'
-"Plugin 'netrw.vim'
+Plugin 'myusuf3/numbers.vim'
 Plugin 'Raimondi/delimitMate'
-"Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
+
+"Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'netrw.vim'
 "Plugin 'vim-scripts/taglist.vim'
 "Plugin 'fholgado/minibufexpl.vim'
-Plugin 'myusuf3/numbers.vim'
+"Plugin 'ciaranm/securemodelines'
+"Plugin 'vim-scripts/let-modeline.vim'
 
 Plugin 'huawenyu/taboo.vim'
 Plugin 'millermedeiros/vim-statline'
@@ -114,7 +117,6 @@ Plugin 'AnsiEsc.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
-"Plugin 'huawenyu/vim-bookmarks'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
 
@@ -380,9 +382,6 @@ let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
 
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1
-
 " Key maps {
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
   "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
@@ -485,6 +484,13 @@ let g:bookmark_auto_save = 1
   map <leader>vv :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
   map <leader>vV :<C-\>e utilgrep#LocalEasyGrep(2,1) <CR>
   map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
+
+  "bookmark
+  nmap <leader>mo :BookmarkLoad 
+  nmap <leader>ma :BookmarkShowAll <CR>
+  nmap <leader>mm :BookmarkSet <C-R>=expand("<cword>") <CR>
+  nmap <leader>mg :BookmarkGoto <C-R>=expand("<cword>") <CR>
+  nmap <leader>mc :BookmarkDel <C-R>=expand("<cword>") <CR>
 
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
