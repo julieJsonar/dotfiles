@@ -814,18 +814,20 @@ $bookmarks_group
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'P  46  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
-'0  230  0  ~/.tmux.conf
-'1  397  15  ~/.vimrc
-'2  408  15  ~/.vimrc
-'3  197  96  ~/.tmux.conf
-'4  1  0  ~/.tmux
-'5  163  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
-'6  13  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
-'7  1  20  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
-'8  21  28  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
-'9  14  25  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
+'0  198  12  ~/.tmux.conf
+'1  230  0  ~/.tmux.conf
+'2  397  15  ~/.vimrc
+'3  408  15  ~/.vimrc
+'4  197  96  ~/.tmux.conf
+'5  1  0  ~/.tmux
+'6  163  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
+'7  13  0  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+'8  1  20  ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
+'9  21  28  ~/vmware/rtmp-5.2-32bit/FortiGate-VM.vmx
 
 # Jumplist (newest first):
+-'  198  12  ~/.tmux.conf
+-'  197  27  ~/.tmux.conf
 -'  230  0  ~/.tmux.conf
 -'  216  0  ~/.tmux.conf
 -'  122  0  ~/.tmux.conf
@@ -834,7 +836,6 @@ $bookmarks_group
 -'  226  35  ~/.tmux.conf
 -'  1  35  ~/.tmux.conf
 -'  104  0  ~/.tmux.conf
--'  197  103  ~/.tmux.conf
 -'  44  35  ~/.tmux.conf
 -'  196  117  ~/.tmux.conf
 -'  397  15  ~/.vimrc
@@ -842,7 +843,6 @@ $bookmarks_group
 -'  411  15  ~/.vimrc
 -'  408  15  ~/.vimrc
 -'  1  0  ~/.vimrc
--'  198  74  ~/.tmux.conf
 -'  195  0  ~/.tmux.conf
 -'  190  0  ~/.tmux.conf
 -'  59  0  ~/.tmux.conf
@@ -903,14 +903,17 @@ $bookmarks_group
 -'  3  8  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
 -'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
 -'  14  4  ~/.vim/bundle/c-utils.vim/autoload/utilcscope.vim
+-'  397  15  ~/.vimrc
+-'  456  15  ~/.vimrc
+-'  411  15  ~/.vimrc
 
 # Buffer list:
-%~/.tmux.conf	230	0
+%~/.tmux.conf	198	12
 
 # History of marks within files (newest to oldest):
 
 > ~/.tmux.conf
-	"	230	0
+	"	198	12
 	^	197	104
 	.	75	0
 	+	3	0
