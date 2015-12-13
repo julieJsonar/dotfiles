@@ -106,8 +106,9 @@ Plugin 'millermedeiros/vim-statline'
 "Plugin 'bling/vim-airline'
 
 "Plugin 'kien/ctrlp.vim'
-Plugin 'justinmk/vim-sneak'
-"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'justinmk/vim-sneak'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/CmdlineComplete'
 Plugin 'vim-utils/vim-vertical-move'
@@ -497,6 +498,17 @@ let g:enable_numbers = 0
   nnoremap <leader>;a :<C-u>execute autoreadfiles#WatchForChanges("*",{'autoread':1}) <CR>
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+  " EasyMotion
+  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+  map  <silent> <leader>;; <Plug>(easymotion-prefix)
+  nmap <silent> f <Plug>(easymotion-s)
+  nmap <silent> s <Plug>(easymotion-s2)
+  nmap <silent> t <Plug>(easymotion-t2)
+  map  <silent> / <Plug>(easymotion-sn)
+  omap <silent> / <Plug>(easymotion-tn)
+  map  <silent> n <Plug>(easymotion-next)
+  map  <silent> N <Plug>(easymotion-prev)
 
   " Unite
   let g:unite_source_history_yank_enable = 1
