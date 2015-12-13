@@ -8,23 +8,24 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/silent
+~MSle0~/Plugin
 
 # Last Substitute Search Pattern:
-~MSle0&\<BOOKMARKS\>
+~MSle0&req
 
 # Last Substitute String:
-$bookmarks_group
+$&
 
 # Command Line History (newest to oldest):
-:q
-:w
 :qa
+:w
+:help sneak
+:PluginClean
+:PluginInstall
+:q
 :qa!
 :q!
 :set paste
-:PluginInstall
-:PluginClean
 :pwd
 :Tracecrash
 :TraceClear
@@ -46,9 +47,10 @@ $bookmarks_group
 :e ~/.vimrc
 :e ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
 :f
-:list_head
 
 # Search String History (newest to oldest):
+?/s_next
+? Plugin
 ? silent
 ? silence
 ? rtmp
@@ -341,461 +343,39 @@ $bookmarks_group
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
-	<silent> 
-"1	LINE	0
-	  map <Leader>l <Plug>(easymotion-lineforward)
-	  map <Leader>j <Plug>(easymotion-j)
-	  map <Leader>k <Plug>(easymotion-k)
-	  map <Leader>h <Plug>(easymotion-linebackward)
+"0	CHAR	0
+	hstrm
+""1	LINE	0
+	let g:sneak#f_reset = 1
+	let g:sneak#t_reset = 1
 "2	LINE	0
-	
+	vim-sneak
+	vim-sneak
 "3	LINE	0
-	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+	
 "4	LINE	0
+	  " EasyMotion
+	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
+	  nmap <silent> f <Plug>(easymotion-s)
+	  nmap <silent> s <Plug>(easymotion-s2)
+	  nmap <silent> t <Plug>(easymotion-t2)
+	  map  <silent> / <Plug>(easymotion-sn)
+	  omap <silent> / <Plug>(easymotion-tn)
+	  map  <silent> n <Plug>(easymotion-next)
+	  map  <silent> N <Plug>(easymotion-prev)
 	
-"5	CHAR	0
-	
+"5	LINE	0
 	
 "6	LINE	0
-	
+	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "7	LINE	0
-	1: 2015-12-12 12:24:44 <00148> firmware FortiGate-VM v5.2.5,build07
-	01b701,151212 (Interim) (Debug)
-	2: 2015-12-12 12:24:44 <00148> application wad
-	3: 2015-12-12 12:24:44 <00148> *** signal 11 (Segmentation fault) r
-	eceived ***
-	4: 2015-12-12 12:24:44 <00148> Register dump:
-	5: 2015-12-12 12:24:44 <00148> EAX: 2d656e6f   EBX: 40276ff4   ECX:
-	 00000003    EDX: 40df40bc
-	6: 2015-12-12 12:24:44 <00148> ESI: 00000000   EDI: 00000000   EBP:
-	 bffffc58    ESP: bffffc10
-	7: 2015-12-12 12:24:44 <00148> EIP: 092f3cd4   EFLAGS: 00210246
-	8: 2015-12-12 12:24:44 <00148> CS: 0073   DS: 007b   ES: 007b   FS:
-	 0000   GS: 0033   SS: 007b
-	9: 2015-12-12 12:24:44 <00148> Trap: 0000000e   Error: 00000004   O
-	ldMask: 00000000
-	10: 2015-12-12 12:24:44 <00148> ESP/signal: bffffc10   CR2: 2d656e7
-	b
-	11: 2015-12-12 12:24:44 <00148> Backtrace:
-	12: 2015-12-12 12:24:44 <00148> [0x092f3cd4] => /bin/wad
-	13: 2015-12-12 12:24:44 <00148> [0x09261fd0] => /bin/wad
-	14: 2015-12-12 12:24:44 <00148> [0x0927ec26] => /bin/wad
-	15: 2015-12-12 12:24:44 <00148> [0x092034c5] => /bin/wad
-	16: 2015-12-12 12:24:44 <00148> [0x0932f15f] => /bin/wad
-	17: 2015-12-12 12:24:44 <00148> [0x0932f3f1] => /bin/wad
-	18: 2015-12-12 12:24:44 <00148> [0x0932f7d8] => /bin/wad
-	19: 2015-12-12 12:24:44 <00148> [0x09306c00] => /bin/wad
-	20: 2015-12-12 12:24:44 <00148> [0x09306e1a] => /bin/wad
-	21: 2015-12-12 12:24:44 <00148> [0x09343d66] => /bin/wad
-	22: 2015-12-12 12:24:44 <00148> [0x08066354] => /bin/wad
-	23: 2015-12-12 12:24:44 <00148> [0x08065c52] => /bin/wad
-	24: 2015-12-12 12:24:44 <00148> [0x400f13e5] => ../lib/libc.so.6 (_
-	_libc_start_main+0x000000f5)
-	25: 2015-12-12 12:24:44 liboffset 000193e5
-	26: 2015-12-12 12:24:44 <00148> [0x0806277d] => /bin/wad
-	27: 2015-12-12 12:24:44 <00148> proess=wad type=2 pid=148 total=100
-	3 free=706 mmu=66161471 mu=66070927
-	28: 2015-12-12 12:24:44 m=301161 f=283238 r=0
-	29: 2015-12-12 12:24:44 <00148> current tcp(0x40d86354) vf=0 sessio
-	n-id=1403 app_type=1 dyn_type=0
-	30: 2015-12-12 12:24:44 state=2  cur_bank=0xae64660 cur_tl=0xb06d06
-	0 cur_tm=0x40b0d074
 	
+"8	CHAR	0
 	
 	
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	\
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-"8	LINE	0
-	VM32 #
 "9	LINE	0
-	;
 	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	\
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
 "j	CHAR	0
 	359
 <kjjk;a;a;ajjjjjjjjjjjjjGkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjkkwwwwwjlllllllkyyPllllllllllllllro:wlll:wkkkwklllllllllllllllllllllllllllllllllllllllllllwwbyevep:w:wll:wvllllllllllllllllld:w:whDa :w:w:wj:wjk:wbbbw:wllllllllise€kb€kbSet:w:wjbvlllldllllllllj0wwxiShowAll:w:w:wkk:w:w:w:
@@ -804,7 +384,7 @@ $bookmarks_group
 "q	CHAR	0
 	
 "-	CHAR	0
-	2
+	e
 
 # global variables:
 !MARK_MARKS	STR	[]
@@ -813,35 +393,97 @@ $bookmarks_group
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
-'P  46  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
-'0  507  7  ~/.vimrc
-'1  502  13  ~/.vimrc
-'2  122  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
-'3  132  8  ~/.vimrc
-'4  111  24  ~/.vimrc
-'5  96  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
-'6  5  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-'7  320  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
-'8  39  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_mem_check.c
-'9  134  5  ~/work/fos52-rtmp-git2/log.code
+'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'0  386  0  ~/.vimrc
+'1  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'2  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+'3  109  0  ~/.vimrc
+'4  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'5  503  7  ~/.vimrc
+'6  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'7  12933  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'8  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'9  12929  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
 
 # Jumplist (newest first):
--'  507  7  ~/.vimrc
--'  505  7  ~/.vimrc
--'  508  7  ~/.vimrc
--'  510  7  ~/.vimrc
--'  504  7  ~/.vimrc
--'  511  17  ~/.vimrc
--'  497  28  ~/.vimrc
--'  506  28  ~/.vimrc
--'  522  0  ~/.vimrc
--'  443  0  ~/.vimrc
--'  502  13  ~/.vimrc
+-'  386  0  ~/.vimrc
+-'  385  21  ~/.vimrc
+-'  109  0  ~/.vimrc
+-'  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  13637  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12844  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12771  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12692  37  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  13623  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12842  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12839  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12850  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12931  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12944  59  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+-'  1  7  ~/.vimrc
+-'  503  7  ~/.vimrc
+-'  12928  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12581  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12630  40  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12688  50  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12732  14  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12774  53  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12816  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12859  30  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12901  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12943  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12994  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12929  43  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12933  4  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12923  2  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12924  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12922  34  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  426  1  ~/work/fos52-rtmp-git2/daemon/wad/redirect/fortifilter/wad_dns.c
+-'  10357  36  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  12886  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  11961  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  11759  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10543  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10358  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10360  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10363  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  104  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
+-'  107  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
+-'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
+-'  10378  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10377  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10376  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10381  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10280  18  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10327  42  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10391  34  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10388  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10402  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10301  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10304  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10306  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10316  15  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10283  52  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10297  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10293  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10286  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10284  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10285  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10282  32  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10291  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10279  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10275  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10299  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10308  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10302  43  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+-'  10300  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
 -'  111  24  ~/.vimrc
 -'  122  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
 -'  121  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
 -'  111  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  104  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
 -'  101  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
 -'  97  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
 -'  96  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
@@ -849,10 +491,8 @@ $bookmarks_group
 -'  122  8  ~/.vimrc
 -'  118  8  ~/.vimrc
 -'  112  8  ~/.vimrc
--'  1  8  ~/.vimrc
 -'  110  11  ~/.vimrc
--'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  5  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+-'  7  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
 -'  320  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  250  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  307  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
@@ -861,68 +501,18 @@ $bookmarks_group
 -'  61  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  70  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  66  33  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_helper.c
--'  392  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  374  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  268  18  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  226  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.c
--'  291  12  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  283  45  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  273  38  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  269  6  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  252  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  335  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  341  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  272  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
--'  161  14  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  135  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  201  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  169  56  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  167  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  163  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  162  6  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
--'  80  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf_parser.c
--'  88  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf_parser.c
--'  10300  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  60  85  ~/work/fos52-rtmp-git2/daemon/wad/wad_buff.h
--'  10318  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10377  14  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10271  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  9822  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  9838  2  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  525  14  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  543  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  499  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  426  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  439  46  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  435  38  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  433  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  430  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  428  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  431  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  427  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  424  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  429  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  267  48  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  423  42  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  512  12  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  510  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  500  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  538  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  573  65  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
--'  526  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
 
 # Buffer list:
-%~/.vimrc	507	7
+%~/.vimrc	386	0
 
 # History of marks within files (newest to oldest):
 
 > ~/.vimrc
-	"	507	7
-	^	504	7
-	.	504	6
-	+	398	15
+	"	386	0
+	.	386	0
 	+	399	15
-	+	458	15
+	+	400	15
+	+	459	15
 	+	115	25
 	+	115	0
 	+	110	0
@@ -930,31 +520,41 @@ $bookmarks_group
 	+	109	0
 	+	112	0
 	+	111	24
-	+	512	67
-	+	512	0
+	+	503	67
+	+	503	0
 	+	503	1
-	+	504	0
-	+	512	0
-	+	502	13
-	+	504	15
-	+	512	0
-	+	504	6
-	+	506	6
-	+	504	15
-	+	505	7
-	+	506	7
-	+	507	7
-	+	508	7
-	+	509	7
-	+	510	7
-	+	512	0
-	+	511	7
-	+	504	6
+	+	503	0
+	+	503	0
+	+	503	13
+	+	503	15
+	+	503	0
+	+	503	6
+	+	503	6
+	+	503	15
+	+	503	7
+	+	503	7
+	+	503	7
+	+	503	7
+	+	503	7
+	+	503	7
+	+	503	0
+	+	503	7
+	+	503	0
+	+	110	0
+	+	109	0
+	+	385	9
+	+	385	8
+	+	385	0
+	+	385	0
+	+	386	0
+	+	385	21
+	+	386	4
+	+	386	0
 
 > ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-	"	12933	0
-	^	12929	8
-	.	12923	0
+	"	13600	1
+	^	13623	57
+	.	13624	0
 	+	25381	43
 	+	9829	0
 	+	9839	25
@@ -974,6 +574,20 @@ $bookmarks_group
 	+	10357	0
 	+	12930	0
 	+	12923	0
+	+	13637	22
+	+	12844	26
+	+	12771	24
+	+	13637	0
+	+	13624	0
+
+> ~/.vim/bundle/vim-sneak/doc/sneak.txt
+	"	326	0
+
+> ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+	"	3	0
+	.	1	0
+	+	3	0
+	+	1	0
 
 > ~/work/fos52-rtmp-git2/daemon/wad/redirect/fortifilter/wad_dns.c
 	"	426	1
@@ -990,11 +604,6 @@ $bookmarks_group
 	+	1	0
 	+	1	0
 	+	2	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-	"	5	0
-	.	1	0
-	+	1	0
 
 > ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_helper.c
 	"	66	33
@@ -1120,14 +729,3 @@ $bookmarks_group
 	"	163	8
 	.	163	8
 	+	163	8
-
-> ~/vmware/rtmp-5.2-32bit/rtmp-implicit.conf
-	"	13	0
-	^	1	22
-	.	13	0
-	+	1	20
-	+	3	0
-	+	31	0
-	+	167	0
-	+	543	0
-	+	13	0
