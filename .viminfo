@@ -18,6 +18,7 @@ $&
 
 # Command Line History (newest to oldest):
 :qa
+:BookmarkLoad Log
 :w
 :help sneak
 :PluginClean
@@ -46,7 +47,6 @@ $&
 :echo filename
 :e ~/.vimrc
 :e ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
-:f
 
 # Search String History (newest to oldest):
 ?/s_next
@@ -389,23 +389,27 @@ $&
 # global variables:
 !MARK_MARKS	STR	[]
 !MARK_ENABLED	NUM	1
-!BOOKMARKS	DIC	{}
+!BOOKMARKS	DIC	{'Log': {'T ': ['/data/workref/log/log.5-4.explicit', [0, 40, 1, 0]], 'wad_hist_stats_webproxy_lan_update_read ': ['/data/workref/log/log.5-4.explicit', [0, 56, 44, 0]]}}
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  495  40  ~/dotfiles/.vimrc
-'1  386  0  ~/.vimrc
-'2  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'3  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-'4  109  0  ~/.vimrc
-'5  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'6  503  7  ~/.vimrc
-'7  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'8  12933  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'9  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'0  40  0  /data/workref/log/log.5-4.explicit
+'1  56  43  /data/workref/log/log.5-4.explicit
+'2  11  0  /data/workref/log/log.5-4.explicit
+'3  495  40  ~/dotfiles/.vimrc
+'4  386  0  ~/.vimrc
+'5  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'6  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+'7  109  0  ~/.vimrc
+'8  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'9  503  7  ~/.vimrc
 
 # Jumplist (newest first):
+-'  40  0  /data/workref/log/log.5-4.explicit
+-'  56  43  /data/workref/log/log.5-4.explicit
+-'  11  0  /data/workref/log/log.5-4.explicit
+-'  1  0  /data/workref/log/log.5-4.explicit
 -'  495  40  ~/dotfiles/.vimrc
 -'  1  0  ~/dotfiles/.vimrc
 -'  386  0  ~/.vimrc
@@ -500,15 +504,14 @@ $&
 -'  307  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  77  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  47  15  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  61  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  70  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  66  33  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_helper.c
--'  386  0  ~/.vimrc
 
 # Buffer list:
-%~/dotfiles/.vimrc	495	40
+%/data/workref/log/log.5-4.explicit	40	0
 
 # History of marks within files (newest to oldest):
+
+> /data/workref/log/log.5-4.explicit
+	"	40	0
 
 > ~/dotfiles/.vimrc
 	"	495	40
@@ -731,6 +734,3 @@ $&
 	+	197	103
 	+	75	0
 	+	197	102
-
-> ~/.tmux
-	"	1	0
