@@ -345,7 +345,7 @@ $&
 # Registers:
 "0	CHAR	0
 	hstrm
-""1	LINE	0
+"1	LINE	0
 	let g:sneak#f_reset = 1
 	let g:sneak#t_reset = 1
 "2	LINE	0
@@ -383,8 +383,8 @@ $&
 	kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 "q	CHAR	0
 	
-"-	CHAR	0
-	e
+""-	CHAR	0
+	 <CR>
 
 # global variables:
 !MARK_MARKS	STR	[]
@@ -394,18 +394,20 @@ $&
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  386  0  ~/.vimrc
-'1  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'2  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-'3  109  0  ~/.vimrc
-'4  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'5  503  7  ~/.vimrc
-'6  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'7  12933  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'8  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'9  12929  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'0  495  40  ~/dotfiles/.vimrc
+'1  386  0  ~/.vimrc
+'2  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'3  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
+'4  109  0  ~/.vimrc
+'5  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'6  503  7  ~/.vimrc
+'7  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'8  12933  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'9  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
 
 # Jumplist (newest first):
+-'  495  40  ~/dotfiles/.vimrc
+-'  1  0  ~/dotfiles/.vimrc
 -'  386  0  ~/.vimrc
 -'  385  21  ~/.vimrc
 -'  109  0  ~/.vimrc
@@ -501,11 +503,19 @@ $&
 -'  61  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  70  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
 -'  66  33  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_helper.c
+-'  386  0  ~/.vimrc
 
 # Buffer list:
-%~/.vimrc	386	0
+%~/dotfiles/.vimrc	495	40
 
 # History of marks within files (newest to oldest):
+
+> ~/dotfiles/.vimrc
+	"	495	40
+	.	495	40
+	+	493	40
+	+	494	41
+	+	495	40
 
 > ~/.vimrc
 	"	386	0
@@ -724,8 +734,3 @@ $&
 
 > ~/.tmux
 	"	1	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_live.c
-	"	163	8
-	.	163	8
-	+	163	8
