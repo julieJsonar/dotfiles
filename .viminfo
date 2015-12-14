@@ -8,18 +8,21 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/Plugin
+~Msle0~/\<FortiCache\>
 
 # Last Substitute Search Pattern:
-~MSle0&req
+~MSle0&wad_http_monitor_rtmpt_open
 
 # Last Substitute String:
-$&
+$
 
 # Command Line History (newest to oldest):
 :qa
-:BookmarkLoad Log
 :w
+:vs ../rtmp-5.2/FortiGate-VM64.vmx
+:2098
+::qa
+:BookmarkLoad Log
 :help sneak
 :PluginClean
 :PluginInstall
@@ -44,11 +47,20 @@ $&
 :echo fnamemodify(expand('%'), ":p:~")
 :echo expand('%:p:~')
 :echo expand('%:p')
-:echo filename
-:e ~/.vimrc
-:e ~/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c
 
 # Search String History (newest to oldest):
+? \<FortiCache\>
+?/strlcpy
+?/\Vfw_pol->
+? \<rtmp_profile\>
+?/rtmp
+?/fw_pol_pro
+?/full_init
+?/2098
+?/max
+?/BOOKMARKS
+?/MAX
+?/200D
 ?/s_next
 ? Plugin
 ? silent
@@ -86,7 +98,6 @@ $&
 ?/<leader>n
 ? \<echom\>
 ? \<wviminfo\>
-?/BOOKMARKS
 ?/viminfo
 ? \<BOOKMARKS\>
 ? BOOKMARKS
@@ -121,7 +132,6 @@ $&
 ? \<0x2a9b0d6fa4\>
 ? \<0x2a9b7beae0\>
 ? \<0x2a9b7beaf4\>
-?/rtmp
 ?/\Vsizeof(struct wad_mem_check_hdr)
 ? \<0x2a9b095c48\>
 ? \<bind\>
@@ -343,175 +353,222 @@ $&
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	hstrm
+""0	LINE	0
+	#!/usr/bin/vmware
 "1	LINE	0
-	let g:sneak#f_reset = 1
-	let g:sneak#t_reset = 1
+	    _WAD_TRACE_;
 "2	LINE	0
-	vim-sneak
-	vim-sneak
+		_WAD_TRACE_;
 "3	LINE	0
-	
+		_WAD_TRACE_;
 "4	LINE	0
-	  " EasyMotion
-	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
-	  nmap <silent> f <Plug>(easymotion-s)
-	  nmap <silent> s <Plug>(easymotion-s2)
-	  nmap <silent> t <Plug>(easymotion-t2)
-	  map  <silent> / <Plug>(easymotion-sn)
-	  omap <silent> / <Plug>(easymotion-tn)
-	  map  <silent> n <Plug>(easymotion-next)
-	  map  <silent> N <Plug>(easymotion-prev)
-	
+		_WAD_TRACE_;
 "5	LINE	0
-	
+		_WAD_TRACE_;
 "6	LINE	0
-	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+		_WAD_TRACE_;
 "7	LINE	0
-	
-"8	CHAR	0
-	
-	
+		_WAD_TRACE_;
+"8	LINE	0
+		_WAD_TRACE_;
 "9	LINE	0
-	
+		_WAD_TRACE_;
+"a	CHAR	0
+	static struct wad_port_ops
+"b	LINE	0
+	static struct wad_http_stream_ops wad_http_clt_body_skip_ops;
+	static struct wad_http_stream_ops wad_http_client_ops;
+	static struct wad_http_stream_ops wad_http_clt_auth_buff_ops;
+	static struct wad_http_stream_ops wad_http_clt_scan_req_ops;
+	static struct wad_http_stream_ops wad_http_clt_fwd_resp_ops;
+	static struct wad_http_stream_ops wad_http_clt_chg_resp_ops;
+	static struct wad_http_stream_ops wad_http_clt_scan_resp_ops;
+	static struct wad_http_stream_ops wad_http_clt_icap_ops;
 "j	CHAR	0
-	359
-<kjjk;a;a;ajjjjjjjjjjjjjGkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjkkwwwwwjlllllllkyyPllllllllllllllro:wlll:wkkkwklllllllllllllllllllllllllllllllllllllllllllwwbyevep:w:wll:wvllllllllllllllllld:w:whDa :w:w:wj:wjk:wbbbw:wllllllllise€kb€kbSet:w:wjbvlllldllllllllj0wwxiShowAll:w:w:wkk:w:w:w:
+	k
 "k	CHAR	0
-	kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+	851
+<kkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjbkwjbwkbwbjbwkbwbjbwbkwwbjbkwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjkllllllllljjjjjjjjjjjjjjkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjj€ý,€ý.
+"l	CHAR	0
+	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
-	
-""-	CHAR	0
-	 <CR>
+	www
+"-	CHAR	0
+	hcs->rtmpt_info.rs && 
 
 # global variables:
-!MARK_MARKS	STR	[]
-!MARK_ENABLED	NUM	1
-!BOOKMARKS	DIC	{'Log': {'T ': ['/data/workref/log/log.5-4.explicit', [0, 40, 1, 0]], 'wad_hist_stats_webproxy_lan_update_read ': ['/data/workref/log/log.5-4.explicit', [0, 56, 44, 0]]}}
 
 # File marks:
-'A  34  41  ~/andy/getlineex.c
-'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  40  0  /data/workref/log/log.5-4.explicit
-'1  56  43  /data/workref/log/log.5-4.explicit
-'2  11  0  /data/workref/log/log.5-4.explicit
-'3  495  40  ~/dotfiles/.vimrc
-'4  386  0  ~/.vimrc
-'5  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'6  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-'7  109  0  ~/.vimrc
-'8  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'9  503  7  ~/.vimrc
+'A  25814  15  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_cache.c
+'B  39169  17  /tmp/log.tel
+'C  1091  2  /data/work/bug-dfa-build/5.4-100D/daemon/wad/wad_sec_profile.c
+'G  32  27  ~/.Xxterm
+'M  373  35  /data/workref/log/log.implicit-proxy
+'P  34470  33  /data/workref/rtmp/fos52-rtmp-git/log.one-disconnect
+'0  12  5  ~/svn-info
+'1  11  45  ~/svn-info
+'2  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
+'3  1  0  a/migbase/sysapi/base/iprope_usr_fwd.c
+'4  50  0  /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
+'5  23  0  /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
+'6  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c.rej
+'7  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui.c.rej
+'8  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_debug_impl.h.rej
+'9  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui_config.c.rej
 
 # Jumplist (newest first):
--'  40  0  /data/workref/log/log.5-4.explicit
--'  56  43  /data/workref/log/log.5-4.explicit
--'  11  0  /data/workref/log/log.5-4.explicit
--'  1  0  /data/workref/log/log.5-4.explicit
--'  495  40  ~/dotfiles/.vimrc
--'  1  0  ~/dotfiles/.vimrc
--'  386  0  ~/.vimrc
--'  385  21  ~/.vimrc
--'  109  0  ~/.vimrc
--'  13634  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  13637  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12844  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12771  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12692  37  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  13623  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12842  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12839  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12850  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12931  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12944  59  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12932  17  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  3  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
--'  1  7  ~/.vimrc
--'  503  7  ~/.vimrc
--'  12928  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12581  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12630  40  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12688  50  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12732  14  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12774  53  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12816  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12859  30  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12901  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12943  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12994  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12929  43  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12930  35  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12933  4  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12923  2  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12924  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12922  34  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  426  1  ~/work/fos52-rtmp-git2/daemon/wad/redirect/fortifilter/wad_dns.c
--'  10357  36  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  12886  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  11961  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  11759  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10543  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10358  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10360  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10363  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  104  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  107  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  10378  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10377  8  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10376  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10381  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10280  18  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10327  42  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10391  34  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10388  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10402  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10301  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10304  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10306  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10316  15  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10283  52  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10297  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10293  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10286  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10284  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10285  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10282  32  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10291  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10279  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10275  25  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10299  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10308  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10302  43  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  10300  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
--'  111  24  ~/.vimrc
--'  122  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  121  9  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  111  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  101  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  97  7  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  96  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
--'  132  8  ~/.vimrc
--'  122  8  ~/.vimrc
--'  118  8  ~/.vimrc
--'  112  8  ~/.vimrc
--'  110  11  ~/.vimrc
--'  7  0  ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
--'  320  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  250  13  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  307  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  77  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  47  15  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
+-'  12  5  ~/svn-info
+-'  11  45  ~/svn-info
+-'  10  45  ~/svn-info
+-'  9  45  ~/svn-info
+-'  8  45  ~/svn-info
+-'  7  0  ~/svn-info
+-'  1  45  ~/svn-info
+-'  18  0  ~/svn-info
+-'  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
+-'  1  0  a/migbase/sysapi/base/iprope_usr_fwd.c
+-'  50  0  /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
+-'  1  0  /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
+-'  23  0  /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
+-'  61  0  /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
+-'  2  0  /data/vmware/rtmp-fch4.0/FortiCache-VM64.vmx
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui.c.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_debug_impl.h.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui_config.c.rej
+-'  7  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
+-'  16  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
+-'  11  37  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.h.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.h.rej
+-'  210  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
+-'  125  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
+-'  28  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git2/.version
+-'  1  0  /data/workref/rtmp/patch.2
+-'  1  0  /data/work/svn-info
+-'  152  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
+-'  151  4  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
+-'  1  0  ~/script/trace-wad/func-add
+-'  199  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel.h
+-'  1  0  ~/script/trace-wad/files
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_send.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  356  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_message.c
+-'  343  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_live.c
+-'  96  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_live.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_helper.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_handshake.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_chunk.c
+-'  391  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp.c
+-'  293  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf_parser.c
+-'  1183  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf.c
+-'  857  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmpt.c
+-'  213  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmpt.c
+-'  1210  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_url_filter.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_url_filter.c
+-'  10051  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ssl_port.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ssl_port.c
+-'  761  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips_redir.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips_redir.c
+-'  211  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips.c
+-'  1169  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
+-'  2449  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_avscan.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_avscan.c
+-'  1731  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_scan.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_scan.c
+-'  497  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_scan.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_scan.c
+-'  1991  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_socks.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_socks.c
+-'  196  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_rsso.c
+-'  1  1  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_rsso.c
+-'  258  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_ntlm.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_ntlm.c
+-'  154  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_fsae.c
+-'  1  1  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_fsae.c
+-'  716  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_digest.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_digest.c
+-'  1184  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_basic.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_hauth_basic.c
+-'  2278  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_auth.c
+-'  186  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_config.c
+-'  82  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_config.c
+-'  1059  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_replacemsg.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_replacemsg.c
+-'  512  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_wanopt_profile.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_wanopt_profile.c
+-'  2510  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_fw_policy.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_fw_policy.c
+-'  613  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel_msg.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel_msg.c
+-'  5080  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel.c
+-'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel.c
+-'  1358  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tun_compressor.c
 
 # Buffer list:
-%/data/workref/log/log.5-4.explicit	40	0
+%~/svn-info	12	5
 
 # History of marks within files (newest to oldest):
 
-> /data/workref/log/log.5-4.explicit
-	"	40	0
+> ~/svn-info
+	"	12	5
+	^	12	6
+	.	12	5
+	+	12	5
+
+> /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
+	"	3591	0
+
+> a/migbase/sysapi/base/iprope_usr_fwd.c
+	"	1	0
+
+> /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
+	"	50	0
+
+> /data/vmware/rtmp-fch4.0/FortiCache-VM64.vmx
+	"	1	0
+	.	1	0
+	+	1	0
+
+> /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
+	"	23	0
+
+> /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c.rej
+	"	1	0
+
+> /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c
+	"	2325	3
+	^	2363	63
+	.	2363	68
+	+	33	28
+	+	2363	68
+
+> /data/workref/rtmp/fos5.2-701/daemon/wad/wad_http_cache.c
+	"	14586	0
+
+> /data/workref/rtmp/fos52-rtmp-git2/.version
+	"	1	0
+
+> /data/work/bug-200D-maxdisk-1/5.4-200D/cooked/platform_info/FGT_200D_feature.h
+	"	59	29
+	.	59	29
+	+	59	29
+
+> /data/work/bug-200D-maxdisk-1/5.4-200D/daemon/wad/wad_debug.c
+	"	930	0
+	.	931	0
+	+	931	0
+
+> ~/dotfiles/.viminfo
+	"	392	1
 
 > ~/dotfiles/.vimrc
 	"	495	40
@@ -519,6 +576,15 @@ $&
 	+	493	40
 	+	494	41
 	+	495	40
+
+> /data/workref/fos-5.4/cooked/platform_info/FGT_200D_feature.h
+	"	59	29
+
+> /data/workref/fos-5.4/migbase/sysapi/diskop/disk_info.h
+	"	154	0
+
+> /data/workref/log/log.5-4.explicit
+	"	40	0
 
 > ~/.vimrc
 	"	386	0
@@ -635,102 +701,3 @@ $&
 
 > ~/work/fos52-rtmp-git2/daemon/wad/wad_buff.h
 	"	60	85
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_buff.c
-	"	81	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_chunk.c
-	"	161	14
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
-	"	320	0
-	^	300	26
-	.	300	25
-	+	300	25
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmpt.c
-	"	525	14
-	^	427	1
-	.	440	38
-	+	426	98
-	+	429	72
-	+	428	0
-	+	428	0
-	+	436	0
-	+	436	8
-	+	435	35
-	+	436	35
-	+	440	38
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf_parser.c
-	"	80	16
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_handshake.c
-	"	392	13
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.c
-	"	226	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] Installer
-	"	46	0
-	.	1	0
-	+	136	0
-	+	91	0
-	+	46	0
-	+	1	0
-
-> ~/.vim/bundle/clever-f.vim/autoload/clever_f.vim
-	"	74	24
-
-> /bundle/clever-f.vim/autoload/clever_f.vim:140
-	"	1	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_mem_check.c
-	"	39	1
-
-> ~/work/fos52-rtmp-git2/log.code
-	"	134	5
-
-> ~/work/fos52-rtmp-git2/log.crash
-	"	23	2
-	^	23	3
-	.	23	2
-	+	32	0
-	+	1	0
-	+	1	0
-	+	32	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	32	0
-	+	1	0
-	+	23	2
-	a	12	0
-	b	23	0
-
-> /tmp/t1
-	"	304	0
-	^	98	0
-	.	99	0
-	+	2	0
-	+	97	0
-	+	99	0
-
-> ~/.tmux.conf
-	"	197	102
-	^	197	103
-	.	197	102
-	+	3	0
-	+	197	134
-	+	198	0
-	+	197	58
-	+	199	0
-	+	197	61
-	+	198	61
-	+	197	266
-	+	197	0
-	+	197	112
-	+	198	112
-	+	197	103
-	+	75	0
-	+	197	102

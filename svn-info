@@ -9,6 +9,7 @@ forticache:
 2tr  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/2.x/trunk
 3tr  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/trunk
 3.0  http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/3.x/3.0/trunk
+4.0-br http://scm-yvr.fortinet.com/svn/svnroot/FortiCache/branches/3.x/br_3_fos_52_sync/trunk
 
 5.2  svn checkout http://scm-yvr.fortinet.com:8080/svn/svnfos/FortiOS/branches/5.x/5.2/trunk/FortiOS/fortinet 5.2 >/dev/null &
 5.4  svn checkout http://scm-yvr.fortinet.com/svn/svnfos/FortiOS/branches/5.x/trunk/FortiOS/fortinet 5tr >/dev/null &
