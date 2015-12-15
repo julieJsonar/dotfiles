@@ -499,6 +499,7 @@ let g:sneak#s_next = 1
   nnoremap <leader>;a :<C-u>execute autoreadfiles#WatchForChanges("*",{'autoread':1}) <CR>
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+  vnoremap // y:vim /<C-R>"\C/gj %<CR>
 
   " Unite
   let g:unite_source_history_yank_enable = 1
