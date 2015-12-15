@@ -430,6 +430,14 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
   nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
+  " :on[ly][!]  close all other windows, but keep buffer
+  nmap <silent> <leader>;n :silent! cnewer <CR>
+  nmap <silent> <leader>;p :silent! colder <CR>
+
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
+
+
   nmap <silent> <leader>1 :norm! 1gt <CR>
   nmap <silent> <leader>2 :norm! 2gt <CR>
   nmap <silent> <leader>3 :norm! 3gt <CR>
@@ -445,18 +453,12 @@ let g:sneak#s_next = 1
   map <leader>bs :call blame#SvnBlameCurrent() <CR>
   map <leader>bg :Gblame <CR>
 
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
   nmap <buffer> <Enter> <C-W><Enter>
 
   " ctags -R *;  ctags -L cscope.files
   "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
   "nmap <silent> <leader>, :ptnext<cr>
   "nmap <silent> <leader>. :ptprevious<cr>
-
-  " :on[ly][!]  close all other windows, but keep buffer
-  nmap <leader>n :silent! cnewer <CR><CR>
-  nmap <leader>N :silent! colder <CR><CR>
 
   " vim local list
   nmap <silent> gn :silent! lnext <CR>

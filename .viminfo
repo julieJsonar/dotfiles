@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0~/\<utils#VSetSearch\>
+~MSle0~/colder
 
 # Last Substitute Search Pattern:
 ~MSle0&wad_http_monitor_rtmpt_open
@@ -19,6 +19,9 @@ $
 # Command Line History (newest to oldest):
 :qa
 :w
+:vnoremap // y/<C-R>"<CR>
+:grep! -Inr --include='*.[ch]' -- 'transport.closed' .
+:cs f f wad_tcp_port.c
 :q
 :help lvim
 :lvim
@@ -44,11 +47,14 @@ $
 :TraceClear
 :make
 :cs f f wad_debug_impl.c
-:help expr4
-:echo simplify("/home/wilson/work/fos52-rtmp-yuwa/daemon/wad/wad_rtmp.c")
-:echo simplify("/home/wilson/work/fos52-rtmp-git.bak/daemon/wad/wad_rtmp.c")
 
 # Search String History (newest to oldest):
+?/colder
+?/older
+?/transport.closed
+?/wad_tcp_port_state_closing
+?/\Vtransport.closed
+? \<wad_tcp_port_on_read_end\>
 ? \<utils#VSetSearch\>
 ?/Set
 ? \<FortiCache\>
@@ -355,18 +361,28 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	Bookmark
+""0	CHAR	0
+	verticalmove#Vert
 "1	LINE	0
-	    _WAD_TRACE_;
+	  " :on[ly][!]  close all other windows, but keep buffer
+	  nmap <leader>n :silent! cnewer <CR><CR>
+	  nmap <leader>N :silent! colder <CR><CR>
 "2	LINE	0
-		_WAD_TRACE_;
+	  nmap <silent> <c-n> :cn<cr>
+	  nmap <silent> <c-p> :cp<cr>
+	  " :on[ly][!]  close all other windows, but keep buffer
+	  nmap <leader>n :silent! cnewer <CR><CR>
+	  nmap <leader>N :silent! colder <CR><CR>
+	
 "3	LINE	0
-		_WAD_TRACE_;
+	
 "4	LINE	0
-		_WAD_TRACE_;
+	  " :on[ly][!]  close all other windows, but keep buffer
+	  nmap <leader>n :silent! cnewer <CR><CR>
+	  nmap <leader>N :silent! colder <CR><CR>
+	
 "5	LINE	0
-		_WAD_TRACE_;
+	    _WAD_TRACE_;
 "6	LINE	0
 		_WAD_TRACE_;
 "7	LINE	0
@@ -395,8 +411,8 @@ $
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	www
-""-	CHAR	0
-	:lopen<CR>
+"-	CHAR	0
+	<CR>
 
 # global variables:
 
@@ -407,35 +423,43 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  34470  33  /data/workref/rtmp/fos52-rtmp-git/log.one-disconnect
-'0  502  37  ~/.vimrc
-'1  496  0  ~/.vimrc
-'2  495  19  ~/.vimrc
-'3  497  31  ~/.vimrc
-'4  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
-'5  501  34  ~/.vimrc
-'6  12  5  ~/svn-info
-'7  11  45  ~/svn-info
-'8  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
-'9  1  0  a/migbase/sysapi/base/iprope_usr_fwd.c
+'0  430  33  ~/.vimrc
+'1  434  35  ~/.vimrc
+'2  435  38  ~/.vimrc
+'3  504  32  ~/.vimrc
+'4  428  0  ~/.vimrc
+'5  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+'6  503  34  ~/.vimrc
+'7  12  5  ~/svn-info
+'8  11  45  ~/svn-info
+'9  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
 
 # Jumplist (newest first):
--'  502  37  ~/.vimrc
+-'  430  33  ~/.vimrc
+-'  431  33  ~/.vimrc
+-'  434  35  ~/.vimrc
+-'  436  0  ~/.vimrc
+-'  424  33  ~/.vimrc
+-'  435  38  ~/.vimrc
+-'  459  24  ~/.vimrc
+-'  504  32  ~/.vimrc
+-'  428  0  ~/.vimrc
+-'  442  0  ~/.vimrc
+-'  456  15  ~/.vimrc
+-'  1  19  ~/.vimrc
+-'  471  19  ~/.vimrc
+-'  497  19  ~/.vimrc
+-'  496  19  ~/.vimrc
 -'  495  19  ~/.vimrc
--'  496  0  ~/.vimrc
--'  500  24  ~/.vimrc
--'  499  28  ~/.vimrc
--'  503  0  ~/.vimrc
--'  491  19  ~/.vimrc
--'  497  31  ~/.vimrc
 -'  494  19  ~/.vimrc
 -'  493  19  ~/.vimrc
--'  492  19  ~/.vimrc
--'  490  3  ~/.vimrc
--'  513  64  ~/.vimrc
--'  501  34  ~/.vimrc
+-'  492  3  ~/.vimrc
+-'  515  64  ~/.vimrc
+-'  503  34  ~/.vimrc
 -'  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
 -'  1  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
 -'  38  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  502  34  ~/.vimrc
 -'  418  0  ~/.vimrc
 -'  386  0  ~/.vimrc
 -'  12  5  ~/svn-info
@@ -502,26 +526,19 @@ $
 -'  1169  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
 -'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
 -'  2449  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_avscan.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_avscan.c
--'  1731  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_scan.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_scan.c
--'  497  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_scan.c
--'  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  1  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  38  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
 
 # Buffer list:
-%~/.vimrc	502	37
+%~/.vimrc	430	33
 
 # History of marks within files (newest to oldest):
 
 > ~/.vimrc
-	"	502	37
-	^	502	49
-	.	502	37
+	"	430	33
+	^	435	35
+	.	434	28
 	+	399	15
 	+	400	15
-	+	459	15
+	+	463	15
 	+	115	25
 	+	115	0
 	+	110	0
@@ -529,26 +546,26 @@ $
 	+	109	0
 	+	112	0
 	+	111	24
-	+	504	67
-	+	504	0
-	+	504	1
-	+	504	0
-	+	504	0
-	+	504	13
-	+	504	15
-	+	504	0
-	+	504	6
-	+	504	6
-	+	504	15
-	+	504	7
-	+	504	7
-	+	504	7
-	+	504	7
-	+	504	7
-	+	504	7
-	+	504	0
-	+	504	7
-	+	504	0
+	+	506	67
+	+	506	0
+	+	506	1
+	+	506	0
+	+	506	0
+	+	506	13
+	+	506	15
+	+	506	0
+	+	506	6
+	+	506	6
+	+	506	15
+	+	506	7
+	+	506	7
+	+	506	7
+	+	506	7
+	+	506	7
+	+	506	7
+	+	506	0
+	+	506	7
+	+	506	0
 	+	110	0
 	+	109	0
 	+	385	9
@@ -559,14 +576,38 @@ $
 	+	385	21
 	+	386	4
 	+	386	0
-	+	502	30
-	+	503	0
-	+	503	0
-	+	503	0
-	+	503	0
-	+	503	0
-	+	503	0
-	+	502	37
+	+	504	31
+	+	463	0
+	+	456	0
+	+	456	0
+	+	437	0
+	+	432	0
+	+	439	0
+	+	433	0
+	+	436	0
+	+	434	16
+	+	435	16
+	+	504	32
+	+	434	7
+	+	435	7
+	+	434	28
+	+	435	28
+	+	434	38
+	+	435	38
+	+	436	0
+	+	435	34
+	+	434	28
+
+> ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+	"	150	19
+
+> ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+	"	591	22
+
+> ~/work/fos52-rtmp-git2/__Tagbar__
+	"	78	15
+	.	137	0
+	+	137	0
 
 > /usr/share/vim/vim74/doc/quickfix.txt
 	"	597	26
@@ -698,12 +739,3 @@ $
 	+	1	0
 	+	1	0
 	+	2	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_helper.c
-	"	66	33
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_input_buff.c
-	"	757	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_str.h
-	"	40	42
