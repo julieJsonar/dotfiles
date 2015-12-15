@@ -120,6 +120,7 @@ do
 	   [ $f == 'init_ubuntu.sh' ] || \
 	   [ $f == 'update.sh' ] || \
 	   [ $f == 'patch.smbconf' ] || \
+	   [ $f == 'FortiGate-VM64.vmx' ] || \
 	   [ $f == 'tftp' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then
