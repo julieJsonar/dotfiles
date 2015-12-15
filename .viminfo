@@ -366,7 +366,7 @@ $
 	HISTCONTROL=erasedups
 	# HISTCONTROL=ignoredups
 	HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
-""1	LINE	0
+"1	LINE	0
 	
 "2	LINE	0
 	#HISTSIZE=10000
@@ -431,8 +431,8 @@ $
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-"-	CHAR	0
-	 
+""-	CHAR	0
+	.zsh/history
 
 # global variables:
 !MARK_MARKS	STR	[]
@@ -447,19 +447,23 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  81  22  ~/.zshrc
-'1  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
-'2  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
-'3  1  0  **/disk_storage.cd
-'4  40  34  ~/dotfiles/init_ubuntu.sh
-'5  1796  0  ~/dotfiles/tmp
-'6  144  0  ~/.vimrc
-'7  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'8  48  0  ~/[Vundle] Installer
-'9  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+'0  69  27  ~/.zshrc
+'1  69  27  ~/dotfiles/.zshrc
+'2  103  0  ~/dotfiles/.zshrc
+'3  81  22  ~/.zshrc
+'4  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+'5  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+'6  1  0  **/disk_storage.cd
+'7  40  34  ~/dotfiles/init_ubuntu.sh
+'8  1796  0  ~/dotfiles/tmp
+'9  144  0  ~/.vimrc
 
 # Jumplist (newest first):
+-'  69  27  ~/.zshrc
 -'  81  22  ~/.zshrc
+-'  69  27  ~/dotfiles/.zshrc
+-'  103  0  ~/dotfiles/.zshrc
+-'  1  0  ~/dotfiles/.zshrc
 -'  80  0  ~/.zshrc
 -'  1  0  ~/.zshrc
 -'  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
@@ -555,14 +559,14 @@ $
 -'  1249  34  /usr/share/vim/vim74/doc/starting.txt
 
 # Buffer list:
-%~/.zshrc	81	22
+%~/.zshrc	69	27
 
 # History of marks within files (newest to oldest):
 
 > ~/.zshrc
-	"	81	22
-	^	81	23
-	.	81	22
+	"	69	27
+	^	69	28
+	.	69	27
 	+	79	61
 	+	80	0
 	+	70	0
@@ -576,6 +580,13 @@ $
 	+	79	27
 	+	80	0
 	+	81	22
+	+	69	27
+
+> ~/dotfiles/.zshrc
+	"	69	27
+	^	69	28
+	.	69	27
+	+	69	27
 
 > /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
 	"	1242	2
@@ -765,10 +776,3 @@ $
 
 > ~/dotfiles/.viminfo
 	"	392	1
-
-> ~/dotfiles/.vimrc
-	"	495	40
-	.	495	40
-	+	493	40
-	+	494	41
-	+	495	40

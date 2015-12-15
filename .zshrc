@@ -66,7 +66,7 @@ export USESUDO=sudo
 
 SAVEHIST=10000 # Number of entries
 HISTSIZE=10000
-HISTFILE=~/.zsh/history # File
+HISTFILE=~/.zsh_history     # File
 HISTCONTROL=erasedups
 # HISTCONTROL=ignoredups
 HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
