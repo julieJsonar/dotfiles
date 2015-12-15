@@ -40,7 +40,7 @@ sudo usermod -a -G wireshark $USER
 # tshark, command-line of wireshark
 # tshark -i eth0 -w tmp.pcap
 sudo apt-get install --force-yes tshark
-sudo chgrp wilson /usr/bin/dumpcap
+sudo chgrp $USER /usr/bin/dumpcap
 sudo chmod 750 /usr/bin/dumpcap
 sudo setcap cap_net_raw,cap_net_admin+eip /usr/bin/dumpcap
 
@@ -54,11 +54,11 @@ sudo service xinetd restart
 
 ## Samba
 ## https://help.ubuntu.com/community/Samba/SambaServerGuide
-## Assume linux already have a username <wilson>, otherwise please add it first.
+## Assume linux already have a username $USER, otherwise please add it first.
 #sudo apt-get install -y samba smbclient
-#sudo smbpasswd -a wilson
+#sudo smbpasswd -a $USER
 #sudo patch -p0 /etc/samba/smb.conf patch.smbconf
-#sudo smbpasswd -a wilson
+#sudo smbpasswd -a $USER
 #sudo smbd reload
 #sudo service smbd restart
 ## List all shares:

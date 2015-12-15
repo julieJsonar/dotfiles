@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/plugin
+~MSle0~/wilson
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -17,10 +17,10 @@
 $
 
 # Command Line History (newest to oldest):
-:qa
-:w
-:set paste
 :q
+:w
+:qa
+:set paste
 :Unite location_list
 :lvim /not/gj %
 :lvim /do/gj %
@@ -49,6 +49,7 @@ $
 :help sneak
 
 # Search String History (newest to oldest):
+?/wilson
 ?/plugin
 ?/colder
 ?/transport.closed
@@ -304,7 +305,6 @@ $
 ?/From: 
 ?/87abfa5
 ?/i
-?/wilson
 
 # Expression History (newest to oldest):
 
@@ -362,7 +362,7 @@ $
 
 # Registers:
 "0	CHAR	0
-	Plugin '
+	$USER
 "1	LINE	0
 	tshark -i eth0 -w tmp.pcap
 "2	LINE	0
@@ -418,7 +418,7 @@ $
 "q	CHAR	0
 	
 ""-	CHAR	0
-	 
+	<wilson>
 
 # global variables:
 !MARK_MARKS	STR	[]
@@ -433,21 +433,27 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  40  34  ~/dotfiles/init_ubuntu.sh
-'1  1796  0  ~/dotfiles/tmp
-'2  144  0  ~/.vimrc
-'3  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'4  48  0  ~/[Vundle] Installer
-'5  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-'6  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
-'7  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
-'8  1340  23  /usr/share/vim/vim74/doc/starting.txt
-'9  513  21  ~/work/log/log.implicit-proxy
+'0  45  44  ~/dotfiles/init_ubuntu.sh
+'1  40  34  ~/dotfiles/init_ubuntu.sh
+'2  1796  0  ~/dotfiles/tmp
+'3  144  0  ~/.vimrc
+'4  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+'5  48  0  ~/[Vundle] Installer
+'6  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+'7  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+'8  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+'9  1340  23  /usr/share/vim/vim74/doc/starting.txt
 
 # Jumplist (newest first):
+-'  45  44  ~/dotfiles/init_ubuntu.sh
+-'  57  40  ~/dotfiles/init_ubuntu.sh
+-'  1  10  ~/dotfiles/init_ubuntu.sh
+-'  61  23  ~/dotfiles/init_ubuntu.sh
+-'  59  23  ~/dotfiles/init_ubuntu.sh
+-'  43  11  ~/dotfiles/init_ubuntu.sh
+-'  35  0  ~/dotfiles/init_ubuntu.sh
 -'  40  34  ~/dotfiles/init_ubuntu.sh
 -'  37  37  ~/dotfiles/init_ubuntu.sh
--'  1  0  ~/dotfiles/init_ubuntu.sh
 -'  1796  0  ~/dotfiles/tmp
 -'  1  0  ~/dotfiles/tmp
 -'  144  0  ~/.vimrc
@@ -530,30 +536,16 @@ $
 -'  1205  16  /usr/share/vim/vim74/doc/starting.txt
 -'  1376  5  /usr/share/vim/vim74/doc/starting.txt
 -'  1507  5  /usr/share/vim/vim74/doc/starting.txt
--'  1378  20  /usr/share/vim/vim74/doc/starting.txt
--'  1372  20  /usr/share/vim/vim74/doc/starting.txt
--'  1350  27  /usr/share/vim/vim74/doc/starting.txt
--'  1488  11  /usr/share/vim/vim74/doc/starting.txt
--'  1466  0  /usr/share/vim/vim74/doc/starting.txt
--'  1469  32  /usr/share/vim/vim74/doc/starting.txt
--'  1397  32  /usr/share/vim/vim74/doc/starting.txt
--'  1377  32  /usr/share/vim/vim74/doc/starting.txt
--'  1  0  /usr/share/vim/vim74/doc/starting.txt
--'  1  0  ~/
--'  513  21  ~/work/log/log.implicit-proxy
--'  516  24  ~/work/log/log.implicit-proxy
--'  431  33  ~/.vimrc
--'  434  35  ~/.vimrc
 
 # Buffer list:
-%~/dotfiles/init_ubuntu.sh	40	34
+%~/dotfiles/init_ubuntu.sh	45	44
 
 # History of marks within files (newest to oldest):
 
 > ~/dotfiles/init_ubuntu.sh
-	"	40	34
+	"	45	44
 	^	41	2
-	.	37	37
+	.	58	40
 	+	46	27
 	+	40	1
 	+	35	0
@@ -566,6 +558,10 @@ $
 	+	46	0
 	+	41	1
 	+	37	37
+	+	44	11
+	+	60	19
+	+	62	19
+	+	58	40
 
 > ~/dotfiles/tmp
 	"	1796	0
