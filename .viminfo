@@ -17,9 +17,10 @@
 $
 
 # Command Line History (newest to oldest):
-:q
-:w
 :qa
+:w
+:set paste
+:q
 :Unite location_list
 :lvim /not/gj %
 :lvim /do/gj %
@@ -46,7 +47,6 @@ $
 ::qa
 :BookmarkLoad Log
 :help sneak
-:PluginClean
 
 # Search String History (newest to oldest):
 ?/plugin
@@ -671,18 +671,20 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  144  0  ~/.vimrc
-'1  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'2  48  0  ~/[Vundle] Installer
-'3  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-'4  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
-'5  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
-'6  1340  23  /usr/share/vim/vim74/doc/starting.txt
-'7  513  21  ~/work/log/log.implicit-proxy
-'8  408  0  ~/work/log/log.implicit-proxy
-'9  104  0  ~/work/log/log.implicit-proxy
+'0  1796  0  ~/dotfiles/tmp
+'1  144  0  ~/.vimrc
+'2  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+'3  48  0  ~/[Vundle] Installer
+'4  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+'5  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+'6  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+'7  1340  23  /usr/share/vim/vim74/doc/starting.txt
+'8  513  21  ~/work/log/log.implicit-proxy
+'9  408  0  ~/work/log/log.implicit-proxy
 
 # Jumplist (newest first):
+-'  1796  0  ~/dotfiles/tmp
+-'  1  0  ~/dotfiles/tmp
 -'  144  0  ~/.vimrc
 -'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
 -'  3  0  ~/.vim/bundle/unite-quickfix/doc/[unite] - buffer
@@ -782,9 +784,15 @@ $
 -'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
 
 # Buffer list:
-%~/.vimrc	144	0
+%~/dotfiles/tmp	1796	0
 
 # History of marks within files (newest to oldest):
+
+> ~/dotfiles/tmp
+	"	1796	0
+	^	1796	1
+	.	1796	0
+	+	1796	0
 
 > ~/.vimrc
 	"	144	0
@@ -988,6 +996,3 @@ $
 	+	12771	24
 	+	13637	0
 	+	13624	0
-
-> ~/.vim/bundle/vim-sneak/doc/sneak.txt
-	"	326	0
