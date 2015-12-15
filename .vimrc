@@ -410,7 +410,7 @@ let g:sneak#s_next = 1
   nmap          <leader>;q :call utilquickfix#FilterQuickFixList() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nmap <silent> <leader>;n :TagbarToggle<CR>
+  nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
 
   let g:ctrlsf_mapping = {

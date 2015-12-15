@@ -8,421 +8,55 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-<<<<<<< HEAD
-~MSle0~/storage_create_default
-=======
-~MSle0~/wilson
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
+~MSle0~/;o
 
 # Last Substitute Search Pattern:
 ~MSle0&req
 
 # Last Substitute String:
-$
+$&
 
 # Command Line History (newest to oldest):
-:q
-:w
 :qa
-:set paste
-:Unite location_list
-:lvim /not/gj %
-:lvim /do/gj %
-:lvim /123/gj %
-:lvim /123/gj
-:unite-quickfix-usage
-:Unite qf
-:PluginInstall
-:help quickfix
-:cs f f wad_tcp_port.c
-:vnoremap // y/<C-R>"<CR>
-:grep! -Inr --include='*.[ch]' -- 'transport.closed' .
-:help lvim
-:lvim
-:lopen
-:lgrep /source/gj %
-:copen
-:lgrep /call/g %
-:lgrep /call/g
-:lgrep /Bookmark/gj %
-:help vimgrep
-:vs ../rtmp-5.2/FortiGate-VM64.vmx
-:2098
-::qa
-:BookmarkLoad Log
-:help sneak
+:w
+:grep! -Inr --include='*.[ch]' -- 'setting.storage' .
 
 # Search String History (newest to oldest):
-<<<<<<< HEAD
-?/storage_create_default
-=======
-?/wilson
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
-?/plugin
-?/colder
-?/transport.closed
-?/older
-?/wad_tcp_port_state_closing
-?/\Vtransport.closed
-? \<wad_tcp_port_on_read_end\>
-? \<utils#VSetSearch\>
-?/Set
-? \<FortiCache\>
-?/strlcpy
-?/\Vfw_pol->
-? \<rtmp_profile\>
-?/rtmp
-?/fw_pol_pro
-?/full_init
-?/2098
-?/max
-?/BOOKMARKS
-?/MAX
-?/200D
-?/s_next
-? Plugin
-? silent
-? silence
-? rtmp
-? req
-? op
-? ses
-? rt
-? input
-?/wad_rtmp
-? \<tpope\>
-? \<wad_rtmpt_srv_monitor_body_done\>
-? \<wad_rtmpt_session_init\>
-? \<wad_rtmpt_srv_learn_client_id\>
-? \<data\>
-? \<client_id\>
-?/ea
-?/po
-? \<clever_f_repeat_last_char_inputs\>
-?/copy
-? \<display\>
-?/display
+?/;o
+?/toggle
+?/toggkle
+?/log.disk
+?/storage\"
 ?/needed
-? \<wad_http_is_rtmpt_request\>
-?/is_rtmp
-? _WAD_TRACE_
-?/file_dir
-? \<curr_dir0\>
-? \<curr_dir\>
-? cur_dirr
-? cur_dir
-? \<dyn_dir\>
-? \<cur_file\>
-?/<leader>n
-? \<echom\>
-? \<wviminfo\>
-?/viminfo
-? \<BOOKMARKS\>
-? BOOKMARKS
-?/let-modeline.vim
-?/modeline
-?/echo
-?/getcwd
-? \<expand\>
-? \<Flash_signs\>
-? \<Save_signs_to_file\>
-?/Warn
-?/warning
-? \<chksum\>
-? \<0x2a95640514\>
-?/dump
-? \<wad_mem_check_init_hdr_ftr\>
-?/check_free
-? \<memchk\>
-? \<wad_memtrack_chain_call\>
-?/warn
-? \<__wad_mem_check_free\>
-? \<hmem_len\>
-? \<0x2a95719164\>
-? \<0x2a9a9ce1f0\>
-? \<Warning\>
-? \<wad_mem_check_get_hdr_from_ptr\>
-?/\VWarning
-?/bookmark
-? \<signs_raw\>
-? \<bm_sign#lines_for_signs\>
-? \<util#redir_execute\>
-? \<0x2a9b0d6fa4\>
-? \<0x2a9b7beae0\>
-? \<0x2a9b7beaf4\>
-?/\Vsizeof(struct wad_mem_check_hdr)
-? \<0x2a9b095c48\>
-? \<bind\>
-? \<add_register\>
-?/too
-?/leader>p
-?/too long
-?/append
-? \<len_history\>
-?/ingore
-?/yank
-? \<UniteClose\>
-? \<startup\>
-? \<BookmarkLoad\>
-? \<bookmarks\>
-?/load
-? \<BookmarkPrev\>
-?/Load
-? \<bm#del_bookmark_at_line\>
-?/bm#del_book
-?/[
-? \<startup_load_bookmarks\>
-? \<add_missing_signs\>
-?/autocmd
-? \<set_up_auto_save\>
-? \<bookmark_manage_per_buffer\>
-? \<supports_confirm\>
-?/expand
-? \<get_current_file\>
-? \<wad_http_cache\>
-? \<bookmark_save_per_working_dir\>
-?/auto
-?/\V<afile>:p
-?/call
-? \<status_line\>
-? \<unsigned\>
-? \<struct\>
-? \<wad_ftp_stream_data\>
-? \<wad_port\>
-? \<bm_current_file\>
-? \<bookmark_save_file\>
-? \<BookmarkSave\>
-?/\V.vim-bookmarks
-? \<bookmark_auto_save\>
-? \<register_mapping\>
-? \<huawenyu\>
-?/book
-? \<Plug\>
-? \<Leader\>
-? \<xnoremap\>
-? \<include\>
-?/unit
-?/fuzzy
-?/finder
-? \<dwm\>
-?/markdown
-? \<wad_http_clt_fwd_resp_body_done\>
-?/eclipse
-? \<utilquickfix#FilterQuickFixList\>
-?/filter
-?/\Vutilquickfix
-?/localeasy
-? \<SingleKey_Space\>
-? \<StatuslineFuncName\>
-? \<VSetSearch\>
-? \<utils#GotoFileWithLineNum\>
-? \<GotoFileWithLineNum\>
-? \<OpenFileInPreviewWindow\>
-? \<PreviewWindowOpened\>
-?/trace
-? \<ShowFuncName\>
-?/blame
-? \<FilterQuickFixList\>
-? \<NumbersToggle\>
-?/defaultlay
-? \<DefaultLayout\>
-? \<GotoJump\>
-? \<colorcolumn_col\>
-? \<verticalmove#VerticalMoveDown\>
-? \<VerticalMoveDown\>
-? \<LoadCscope\>
-? \<AppendNoteOnSource\>
-? \<CurrentReplace\>
-? \<LocalEasyReplace\>
-?/\<LocalEasyGrep\>
-? \<utilgrep#get_visual_selection\>
-? \<LocalEasyGrep\>
-? \<get_visual_selection\>
-? \<LocalGrepYankToNewTab\>
-? \<QuickfixFilenames\>
-?/single
-?/status
-? \<echo\>
-?/mP
-? \<GetFuncName\>
-? \<StatlineBufCount\>
-? /\*
-? \<SaveQuickFixList\>
-?/\V->out_len = 
-?/\V->out_len += 
-?/\V->output
-?/\Vout_len
-?/\V->out_len
-? \<WatchForChanges\>
-?/huawenyu
-? \<tracelog#TraceAdd\>
-?/fontsize
-?/font
-? \<done_close\>
-??122
-? \<wad_tcp_port_proc_end\>
-?/58211
-?/\/43
-? \<TraceAdjust\>
-? \<TraceAdd\>
-? \<tracelog_default_dir\>
-? \<ac_pattern_mem_block_size\>
-? \<neomru\>
-?/ger
-?/debug
-? \<or\>
-? \<for\>
-? \<unite\>
-? \<laststatus\>
-?/\<Statusline_set_me\>
-? \<colorcolumn\>
-?/color
-? \<Statusline_set_me\>
-?/Ctrl
-? \<SearchCwordCmd\>
-? \<CtrlSFCwordPath\>
-? \<wad_http_client_read_request_line\>
-?/plug
-? \<leader\>
-? \<wad_sched_event\>
-? \<list_head\>
-? \<mk\>
-? \<home\>
-?/dispatch
-?/leader>q
-?/cfile
-? \<j1\>
-? \<q2\>
-? \<q5\>
-? \<redraw\>
-? \<execute\>
-?  $
-? \<Qfilter\>
-? \<Asm\>
-?/function 
-?/func
-? \<endfun\>
-? \<fun\>
-? \^fun
-?/function
-?/\\>e
-?/verti
-?/virtu
-? \<below_line_length\>
-?/row
-?/From: 
-?/87abfa5
-?/i
 
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
-@y
-@\<data\>
-@\<0x2a95640514\>
-@\<wad_memtrack_chain_call\>
-@\<hmem_len\>
-@\<0x2a95719164\>
-@\<wad_mem_check_get_hdr_from_ptr\>
-@\<wad_mem_check_init_hdr_ftr\>
-@header again
-@this is header
-@hello
-@adsfadf
-@adsadf
-@adsfad
-@adsfa
-@asdfadfa
-@adsadsf
-@\<unsigned\>
-@good me
-@\<struct\>
-@\<wad_ftp_stream_data\>
-@\<wad_port\>
-@\<Leader\>
-@\<xnoremap\>
-@\<include\>
-@we can shutdown this file here ?
-@\<wad_http_clt_fwd_resp_body_done\>
-@q
-@/\*
-@\<done_close\>
-@\<ac_pattern_mem_block_size\>
-@fout
-@build
-@[>0;95;0ckkk
-@\<or\>
-@\<for\>
-@n
-@\<wad_http_client_read_request_line\>
-@\<wad_sched_event\>
-@\<list_head\>
-@\<mk\>
-@\<home\>
-@strm
-@\<j1\>
-@\<q2\>
-@\<q5\>
-@wad_zip
-@cword
 
 # Input Line History (newest to oldest):
 
 # Registers:
-<<<<<<< HEAD
-"0	LINE	0
-	HISTCONTROL=erasedups
-	# HISTCONTROL=ignoredups
-	HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
-=======
 "0	CHAR	0
-	$USER
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
+	rtmp_profile
 "1	LINE	0
 	
 "2	LINE	0
-	#HISTSIZE=10000
-	#HISTFILESIZE=999999
-	#HISTCONTROL=erasedups
-	## HISTCONTROL=ignoredups
-	#HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
-	#readonly HISTFILE
-	#readonly HISTSIZE
-	#readonly HISTFILESIZE
-	#readonly HISTIGNORE
-	#readonly HISTCONTROL
-	#export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
-	##shopt -s histappend
+	
 "3	LINE	0
-	tshark -i eth0 -w tmp.pcap
+		strlcpy(fw_pol->rtmp_prof, pol->rtmp_prof, sizeof(fw_pol->rtmp_prof));
+	
 "4	LINE	0
-	//$ gnome-session-quit --logout --no-prompt
-"5	BLOCK	1
-	$ 
-	$ 
-	$ 
-"6	BLOCK	1
-	$ 
-	$ 
-	$ 
-	$ 
-	$ 
+	        snmp/FORTINET-FORTICACHE-MIB.mib
+"5	LINE	0
+	        migbase/sysapi/base/phy_intfs.h
+"6	LINE	0
+	        migbase/sysapi/base/iprope_usr_fwd.c.orig
 "7	LINE	0
-	Plugin 'osyo-manga/unite-quickfix'
+	        migbase/include/parser.h.orig
 "8	LINE	0
-	  " EasyMotion
-	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
-	  nmap <silent> f <Plug>(easymotion-s)
-	  nmap <silent> s <Plug>(easymotion-s2)
-	  nmap <silent> t <Plug>(easymotion-t2)
-	  map  <silent> / <Plug>(easymotion-sn)
-	  omap <silent> / <Plug>(easymotion-tn)
-	  map  <silent> n <Plug>(easymotion-next)
-	  map  <silent> N <Plug>(easymotion-prev)
-	
+	        migbase/include/cmdbapi/cmdbapi.h.orig
 "9	LINE	0
-	
+	        migbase/include/aps_policy.h.orig
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -444,17 +78,12 @@ $
 "q	CHAR	0
 	
 ""-	CHAR	0
-<<<<<<< HEAD
-	.zsh/history
-=======
-	<wilson>
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
+	 
 
 # global variables:
 !MARK_MARKS	STR	[]
 !MARK_ENABLED	NUM	1
-!BOOKMARKS	DIC	428
-<{'implicit-http-proxy-52': {'connect.accept': ['/home/wilson/work/log/log.implicit-proxy', [0, 1, 1, 0]], 'receive data from client': ['/home/wilson/work/log/log.implicit-proxy', [0, 51, 1, 0]], 'connect ': ['/home/wilson/work/log/log.implicit-proxy', [0, 1, 1, 0]], 'client dns resolve': ['/home/wilson/work/log/log.implicit-proxy', [0, 104, 1, 0]], 'shutdown': ['/home/wilson/work/log/log.implicit-proxy', [0, 408, 1, 0]]}}
+!BOOKMARKS	DIC	{}
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -463,370 +92,168 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-<<<<<<< HEAD
-'0  69  27  ~/.zshrc
-'1  69  27  ~/dotfiles/.zshrc
-'2  103  0  ~/dotfiles/.zshrc
-'3  81  22  ~/.zshrc
-'4  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
-'5  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
-'6  1  0  **/disk_storage.cd
-'7  40  34  ~/dotfiles/init_ubuntu.sh
-'8  1796  0  ~/dotfiles/tmp
-'9  144  0  ~/.vimrc
+'0  513  24  ~/.vimrc
+'1  1  0  /data/workref/git-svn/.version
+'2  89  0  /data/workref/fos-git/.config
+'3  1  0  /data/workref/fos-git/.version
+'4  1  0  ~/svn-info
+'5  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+'6  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+'7  80  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+'8  87  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
+'9  1  0  /data/workref/rtmp/fch40-rtmp-git/wad_config.c
 
 # Jumplist (newest first):
--'  69  27  ~/.zshrc
--'  81  22  ~/.zshrc
--'  69  27  ~/dotfiles/.zshrc
--'  103  0  ~/dotfiles/.zshrc
--'  1  0  ~/dotfiles/.zshrc
--'  80  0  ~/.zshrc
--'  1  0  ~/.zshrc
--'  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1224  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1308  4  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1321  22  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1330  1  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1331  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1327  1  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  668  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  566  16  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  128  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
--'  1  0  **/disk_storage.cd
-=======
-'0  45  44  ~/dotfiles/init_ubuntu.sh
-'1  40  34  ~/dotfiles/init_ubuntu.sh
-'2  1796  0  ~/dotfiles/tmp
-'3  144  0  ~/.vimrc
-'4  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'5  48  0  ~/[Vundle] Installer
-'6  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-'7  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
-'8  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
-'9  1340  23  /usr/share/vim/vim74/doc/starting.txt
-
-# Jumplist (newest first):
--'  45  44  ~/dotfiles/init_ubuntu.sh
--'  57  40  ~/dotfiles/init_ubuntu.sh
--'  1  10  ~/dotfiles/init_ubuntu.sh
--'  61  23  ~/dotfiles/init_ubuntu.sh
--'  59  23  ~/dotfiles/init_ubuntu.sh
--'  43  11  ~/dotfiles/init_ubuntu.sh
--'  35  0  ~/dotfiles/init_ubuntu.sh
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
--'  40  34  ~/dotfiles/init_ubuntu.sh
--'  37  37  ~/dotfiles/init_ubuntu.sh
--'  1796  0  ~/dotfiles/tmp
--'  1  0  ~/dotfiles/tmp
--'  144  0  ~/.vimrc
--'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
--'  3  0  ~/.vim/bundle/unite-quickfix/doc/[unite] - buffer
--'  17  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
--'  50  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
--'  36  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
--'  1  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
--'  48  0  ~/[Vundle] Installer
--'  78  7  ~/.vimrc
--'  7  14  ~/.vimrc
--'  1  33  ~/.vimrc
--'  430  33  ~/.vimrc
--'  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  71  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  162  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  592  18  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  711  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  578  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  590  28  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  775  61  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  725  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  817  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  820  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1256  60  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1259  24  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1264  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1308  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1414  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1430  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1496  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  2304  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1416  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  150  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  1347  36  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1419  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  1341  11  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  24  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
--'  148  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  169  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  167  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
--'  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
--'  392  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
--'  61  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  417  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  1304  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
--'  320  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
--'  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
--'  726  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
--'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
--'  1340  23  /usr/share/vim/vim74/doc/starting.txt
--'  1363  34  /usr/share/vim/vim74/doc/starting.txt
--'  1339  34  /usr/share/vim/vim74/doc/starting.txt
--'  1328  34  /usr/share/vim/vim74/doc/starting.txt
--'  1324  25  /usr/share/vim/vim74/doc/starting.txt
--'  1322  31  /usr/share/vim/vim74/doc/starting.txt
--'  1302  34  /usr/share/vim/vim74/doc/starting.txt
--'  1296  16  /usr/share/vim/vim74/doc/starting.txt
--'  1293  34  /usr/share/vim/vim74/doc/starting.txt
--'  1288  34  /usr/share/vim/vim74/doc/starting.txt
--'  1280  23  /usr/share/vim/vim74/doc/starting.txt
--'  1277  25  /usr/share/vim/vim74/doc/starting.txt
--'  1268  16  /usr/share/vim/vim74/doc/starting.txt
--'  1266  34  /usr/share/vim/vim74/doc/starting.txt
--'  1265  0  /usr/share/vim/vim74/doc/starting.txt
--'  1262  0  /usr/share/vim/vim74/doc/starting.txt
--'  1259  20  /usr/share/vim/vim74/doc/starting.txt
--'  1258  34  /usr/share/vim/vim74/doc/starting.txt
--'  1257  34  /usr/share/vim/vim74/doc/starting.txt
--'  1255  34  /usr/share/vim/vim74/doc/starting.txt
--'  1253  34  /usr/share/vim/vim74/doc/starting.txt
--'  1249  34  /usr/share/vim/vim74/doc/starting.txt
-<<<<<<< HEAD
+-'  513  24  ~/.vimrc
+-'  414  24  ~/.vimrc
+-'  1  25  ~/.vimrc
+-'  450  25  ~/.vimrc
+-'  413  25  ~/.vimrc
+-'  411  35  ~/.vimrc
+-'  504  37  ~/.vimrc
+-'  1  0  /data/workref/git-svn/.version
+-'  89  0  /data/workref/fos-git/.config
+-'  2  0  /data/workref/fos-git/.config
+-'  1  0  /data/workref/fos-git/.config
+-'  1  0  /data/workref/fos-git/.version
+-'  1  0  ~/svn-info
+-'  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  34  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
+-'  93  14  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
+-'  2575  43  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  80  24  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
+-'  209  26  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.h
+-'  348  58  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  831  29  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/ui/fg/wad_ui_config.c
+-'  2554  41  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2555  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2553  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2563  2  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2423  3  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2465  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2628  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2615  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2614  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  1075  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  1074  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  1073  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  1  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  2616  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+-'  80  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  136  10  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  832  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
+-'  835  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
+-'  816  3  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
+-'  212  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.h
+-'  111  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  2653  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
+-'  21  24  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  39  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  34  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  30  31  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  59  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  92  17  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  133  14  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  125  28  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  115  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  149  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  2634  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
+-'  2647  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
+-'  38  12  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  12  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
+-'  13  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
+-'  35  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  9  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  132  56  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  87  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
+-'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
+-'  1  0  /data/workref/rtmp/fch40-rtmp-git/wad_config.c
+-'  12  52  /tmp/log.tel
+-'  1  0  /tmp/log.tel
+-'  61  0  /tmp/log.tel
+-'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.files
+-'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.fiels
+-'  2  28  /data/workref/rtmp/fch40-rtmp-git/log.files
+-'  135  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  129  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  133  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  126  43  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  169  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  134  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  259  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  32  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  204  0  /data/workref/rtmp/fch40-rtmp-git/cmf/plugin/wanopt/rtmp_profile.c
+-'  47  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  132  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
+-'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  12086  6  /tmp/log.tel
+-'  11915  6  /tmp/log.tel
+-'  11789  6  /tmp/log.tel
+-'  11634  6  /tmp/log.tel
+-'  11313  6  /tmp/log.tel
+-'  11116  6  /tmp/log.tel
+-'  10738  6  /tmp/log.tel
+-'  10214  6  /tmp/log.tel
+-'  10065  6  /tmp/log.tel
+-'  9538  6  /tmp/log.tel
+-'  9450  6  /tmp/log.tel
+-'  9326  6  /tmp/log.tel
 
 # Buffer list:
-%~/.zshrc	69	27
-=======
--'  1247  34  /usr/share/vim/vim74/doc/starting.txt
--'  1243  15  /usr/share/vim/vim74/doc/starting.txt
--'  1241  34  /usr/share/vim/vim74/doc/starting.txt
--'  1235  34  /usr/share/vim/vim74/doc/starting.txt
--'  1205  16  /usr/share/vim/vim74/doc/starting.txt
--'  1376  5  /usr/share/vim/vim74/doc/starting.txt
--'  1507  5  /usr/share/vim/vim74/doc/starting.txt
-
-# Buffer list:
-%~/dotfiles/init_ubuntu.sh	45	44
->>>>>>> 9aa5c4229f4b821942233d5a9e9dc9b8a7fdcf6e
+%~/.vimrc	513	24
 
 # History of marks within files (newest to oldest):
 
-> ~/.zshrc
-	"	69	27
-	^	69	28
-	.	69	27
-	+	79	61
-	+	80	0
-	+	70	0
-	+	80	0
-	+	73	27
-	+	74	27
-	+	75	27
-	+	76	27
-	+	77	27
-	+	78	28
-	+	79	27
-	+	80	0
-	+	81	22
-	+	69	27
+> ~/.vimrc
+	"	513	24
+	.	413	25
+	+	413	25
 
-> ~/dotfiles/.zshrc
-	"	69	27
-	^	69	28
-	.	69	27
-	+	69	27
-
-> /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
-	"	1242	2
-	.	1308	0
-	+	1308	0
-
-> **/disk_storage.cd
+> /data/workref/git-svn/.version
 	"	1	0
 
-> ~/dotfiles/init_ubuntu.sh
-	"	45	44
-	^	41	2
-	.	58	40
-	+	46	27
-	+	40	1
-	+	35	0
-	+	36	0
-	+	35	10
-	+	40	34
-	+	42	0
-	+	36	0
-	+	39	0
-	+	46	0
-	+	41	1
-	+	37	37
-	+	44	11
-	+	60	19
-	+	62	19
-	+	58	40
+> /data/workref/fos-git/.config
+	"	89	0
 
-> ~/dotfiles/tmp
-	"	1796	0
-	^	1796	1
-	.	1796	0
-	+	1796	0
-
-> ~/.vimrc
-	"	144	0
-	.	144	0
-	+	399	15
-	+	400	15
-	+	463	15
-	+	115	25
-	+	115	0
-	+	110	0
-	+	115	0
-	+	109	0
-	+	112	0
-	+	111	24
-	+	506	67
-	+	506	0
-	+	506	1
-	+	506	0
-	+	506	0
-	+	506	13
-	+	506	15
-	+	506	0
-	+	506	6
-	+	506	6
-	+	506	15
-	+	506	7
-	+	506	7
-	+	506	7
-	+	506	7
-	+	506	7
-	+	506	7
-	+	506	0
-	+	506	7
-	+	506	0
-	+	110	0
-	+	109	0
-	+	385	9
-	+	385	8
-	+	385	0
-	+	385	0
-	+	386	0
-	+	385	21
-	+	386	4
-	+	386	0
-	+	504	31
-	+	463	0
-	+	456	0
-	+	456	0
-	+	437	0
-	+	432	0
-	+	439	0
-	+	433	0
-	+	436	0
-	+	434	16
-	+	435	16
-	+	504	32
-	+	434	7
-	+	435	7
-	+	434	28
-	+	435	28
-	+	434	38
-	+	435	38
-	+	436	0
-	+	435	34
-	+	434	28
-	+	144	0
-
-> ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-	"	19	1
-
-> ~/.vim/bundle/unite-quickfix/doc/[unite] - default
-	"	4	0
-	.	2	0
-	+	1	0
-	+	2	0
-
-> ~/.vim/bundle/unite-quickfix/doc/[unite] - buffer
-	"	3	0
-	^	3	0
-	.	2	0
-	+	2	0
-
-> ~/[Vundle] Installer
-	"	48	0
-	.	1	0
-	+	1	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
-	"	162	16
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-	"	591	22
-
-> /usr/share/vim/vim74/doc/quickfix.txt
-	"	434	30
-
-> ~/work/fos52-rtmp-git2/__Tagbar__
-	"	78	15
-	.	137	0
-	+	137	0
-
-> /usr/share/vim/vim74/doc/options.txt
-	"	3991	12
-
-> ~/.vim/bundle/c-utils.vim/autoload/utils.vim
-	"	42	10
+> /data/workref/fos-git/.version
+	"	1	0
 
 > ~/svn-info
-	"	12	5
-	^	12	6
-	.	12	5
-	+	12	5
-
-> /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
-	"	3591	0
-
-> a/migbase/sysapi/base/iprope_usr_fwd.c
 	"	1	0
 
-> /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
-	"	50	0
+> /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+	"	2574	0
+	^	2575	45
+	.	2577	0
+	+	2423	0
+	+	2574	1
+	+	2576	0
+	+	2575	10
+	+	2576	10
+	+	2575	44
+	+	2577	0
 
-> /data/vmware/rtmp-fch4.0/FortiCache-VM64.vmx
-	"	1	0
-	.	1	0
-	+	1	0
-
-> /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
-	"	23	0
-
-> /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c.rej
-	"	1	0
-
-> /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c
-	"	2325	3
-	^	2363	63
-	.	2363	68
-	+	33	28
-	+	2363	68
-
-> /data/workref/rtmp/fos5.2-701/daemon/wad/wad_http_cache.c
-	"	14586	0
-
-> /data/workref/rtmp/fos52-rtmp-git2/.version
+> /data/workref/rtmp/fos52-701-git/.config
 	"	1	0
 
-> /data/work/bug-200D-maxdisk-1/5.4-200D/cooked/platform_info/FGT_200D_feature.h
-	"	59	29
-	.	59	29
-	+	59	29
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_live.c
+	"	157	0
 
-> /data/work/bug-200D-maxdisk-1/5.4-200D/daemon/wad/wad_debug.c
-	"	930	0
-	.	931	0
-	+	931	0
+> /data/workref/fos-5.2/cmf/plugin/log/logsetting.c
+	"	2930	1
 
-> ~/dotfiles/.viminfo
-	"	392	1
+> /data/work/bug-200D-maxdisk-1/5.4-200D/cmf/cli/upgrade/upgrade_5_4.c
+	"	1215	45
+
+> /data/work/bug-200D-maxdisk-1/5.4-200D/cmf/cli/upgrade/upgrade_id.h
+	"	23	1
+
+> **/upgrade_5_4.c
+	"	1	0
+
+> /data/workref/fos-5.2/migbase/sysapi/diskop/disk_storage.c
+	"	362	1
+
+> /data/workref/fos-5.2/migbase/include/cmdbapi/cmdbapi.h
+	"	4125	0
