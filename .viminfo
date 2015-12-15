@@ -363,9 +363,23 @@ $
 # Registers:
 "0	CHAR	0
 	Plugin '
-""1	LINE	0
-	Plugin 'osyo-manga/unite-quickfix'
+"1	LINE	0
+	tshark -i eth0 -w tmp.pcap
 "2	LINE	0
+	//$ gnome-session-quit --logout --no-prompt
+"3	BLOCK	1
+	$ 
+	$ 
+	$ 
+"4	BLOCK	1
+	$ 
+	$ 
+	$ 
+	$ 
+	$ 
+"5	LINE	0
+	Plugin 'osyo-manga/unite-quickfix'
+"6	LINE	0
 	  " EasyMotion
 	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
@@ -377,264 +391,12 @@ $
 	  map  <silent> n <Plug>(easymotion-next)
 	  map  <silent> N <Plug>(easymotion-prev)
 	
-"3	LINE	0
-	
-"4	LINE	0
-	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-"5	LINE	0
-	
-"6	CHAR	0
-	
-	
 "7	LINE	0
 	
 "8	LINE	0
-	1: 2015-12-12 12:24:44 <00148> firmware FortiGate-VM v5.2.5,build07
-	01b701,151212 (Interim) (Debug)
-	2: 2015-12-12 12:24:44 <00148> application wad
-	3: 2015-12-12 12:24:44 <00148> *** signal 11 (Segmentation fault) r
-	eceived ***
-	4: 2015-12-12 12:24:44 <00148> Register dump:
-	5: 2015-12-12 12:24:44 <00148> EAX: 2d656e6f   EBX: 40276ff4   ECX:
-	 00000003    EDX: 40df40bc
-	6: 2015-12-12 12:24:44 <00148> ESI: 00000000   EDI: 00000000   EBP:
-	 bffffc58    ESP: bffffc10
-	7: 2015-12-12 12:24:44 <00148> EIP: 092f3cd4   EFLAGS: 00210246
-	8: 2015-12-12 12:24:44 <00148> CS: 0073   DS: 007b   ES: 007b   FS:
-	 0000   GS: 0033   SS: 007b
-	9: 2015-12-12 12:24:44 <00148> Trap: 0000000e   Error: 00000004   O
-	ldMask: 00000000
-	10: 2015-12-12 12:24:44 <00148> ESP/signal: bffffc10   CR2: 2d656e7
-	b
-	11: 2015-12-12 12:24:44 <00148> Backtrace:
-	12: 2015-12-12 12:24:44 <00148> [0x092f3cd4] => /bin/wad
-	13: 2015-12-12 12:24:44 <00148> [0x09261fd0] => /bin/wad
-	14: 2015-12-12 12:24:44 <00148> [0x0927ec26] => /bin/wad
-	15: 2015-12-12 12:24:44 <00148> [0x092034c5] => /bin/wad
-	16: 2015-12-12 12:24:44 <00148> [0x0932f15f] => /bin/wad
-	17: 2015-12-12 12:24:44 <00148> [0x0932f3f1] => /bin/wad
-	18: 2015-12-12 12:24:44 <00148> [0x0932f7d8] => /bin/wad
-	19: 2015-12-12 12:24:44 <00148> [0x09306c00] => /bin/wad
-	20: 2015-12-12 12:24:44 <00148> [0x09306e1a] => /bin/wad
-	21: 2015-12-12 12:24:44 <00148> [0x09343d66] => /bin/wad
-	22: 2015-12-12 12:24:44 <00148> [0x08066354] => /bin/wad
-	23: 2015-12-12 12:24:44 <00148> [0x08065c52] => /bin/wad
-	24: 2015-12-12 12:24:44 <00148> [0x400f13e5] => ../lib/libc.so.6 (_
-	_libc_start_main+0x000000f5)
-	25: 2015-12-12 12:24:44 liboffset 000193e5
-	26: 2015-12-12 12:24:44 <00148> [0x0806277d] => /bin/wad
-	27: 2015-12-12 12:24:44 <00148> proess=wad type=2 pid=148 total=100
-	3 free=706 mmu=66161471 mu=66070927
-	28: 2015-12-12 12:24:44 m=301161 f=283238 r=0
-	29: 2015-12-12 12:24:44 <00148> current tcp(0x40d86354) vf=0 sessio
-	n-id=1403 app_type=1 dyn_type=0
-	30: 2015-12-12 12:24:44 state=2  cur_bank=0xae64660 cur_tl=0xb06d06
-	0 cur_tm=0x40b0d074
-	
-	
-	
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	\
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
-	
-	VM32 # diag debug crash read
+	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "9	LINE	0
-	VM32 #
+	
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -655,8 +417,8 @@ $
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-"-	CHAR	0
-	] => /bin/wad
+""-	CHAR	0
+	 
 
 # global variables:
 !MARK_MARKS	STR	[]
@@ -671,18 +433,21 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  1796  0  ~/dotfiles/tmp
-'1  144  0  ~/.vimrc
-'2  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'3  48  0  ~/[Vundle] Installer
-'4  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-'5  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
-'6  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
-'7  1340  23  /usr/share/vim/vim74/doc/starting.txt
-'8  513  21  ~/work/log/log.implicit-proxy
-'9  408  0  ~/work/log/log.implicit-proxy
+'0  40  34  ~/dotfiles/init_ubuntu.sh
+'1  1796  0  ~/dotfiles/tmp
+'2  144  0  ~/.vimrc
+'3  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+'4  48  0  ~/[Vundle] Installer
+'5  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+'6  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+'7  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+'8  1340  23  /usr/share/vim/vim74/doc/starting.txt
+'9  513  21  ~/work/log/log.implicit-proxy
 
 # Jumplist (newest first):
+-'  40  34  ~/dotfiles/init_ubuntu.sh
+-'  37  37  ~/dotfiles/init_ubuntu.sh
+-'  1  0  ~/dotfiles/init_ubuntu.sh
 -'  1796  0  ~/dotfiles/tmp
 -'  1  0  ~/dotfiles/tmp
 -'  144  0  ~/.vimrc
@@ -779,14 +544,28 @@ $
 -'  516  24  ~/work/log/log.implicit-proxy
 -'  431  33  ~/.vimrc
 -'  434  35  ~/.vimrc
--'  436  0  ~/.vimrc
--'  424  33  ~/.vimrc
--'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
 
 # Buffer list:
-%~/dotfiles/tmp	1796	0
+%~/dotfiles/init_ubuntu.sh	40	34
 
 # History of marks within files (newest to oldest):
+
+> ~/dotfiles/init_ubuntu.sh
+	"	40	34
+	^	41	2
+	.	37	37
+	+	46	27
+	+	40	1
+	+	35	0
+	+	36	0
+	+	35	10
+	+	40	34
+	+	42	0
+	+	36	0
+	+	39	0
+	+	46	0
+	+	41	1
+	+	37	37
 
 > ~/dotfiles/tmp
 	"	1796	0
@@ -967,32 +746,3 @@ $
 
 > /data/workref/log/log.5-4.explicit
 	"	40	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-	"	13600	1
-	^	13623	57
-	.	13624	0
-	+	25381	43
-	+	9829	0
-	+	9839	25
-	+	10307	0
-	+	10318	26
-	+	10282	7
-	+	10300	0
-	+	10282	35
-	+	10283	31
-	+	10282	35
-	+	10283	35
-	+	10282	0
-	+	10377	0
-	+	10378	0
-	+	10378	0
-	+	10360	0
-	+	10357	0
-	+	12930	0
-	+	12923	0
-	+	13637	22
-	+	12844	26
-	+	12771	24
-	+	13637	0
-	+	13624	0

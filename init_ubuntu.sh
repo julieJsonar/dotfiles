@@ -32,6 +32,17 @@ sudo apt-get install oracle-java8-installer
 # Please add this line to the shell profile
 # export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 
+# wireshark
+sudo apt-get install wireshark
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -a -G wireshark $USER
+
+# tshark, command-line of wireshark
+# tshark -i eth0 -w tmp.pcap
+sudo apt-get install --force-yes tshark
+sudo chgrp wilson /usr/bin/dumpcap
+sudo chmod 750 /usr/bin/dumpcap
+sudo setcap cap_net_raw,cap_net_admin+eip /usr/bin/dumpcap
 
 # tftp
 sudo apt-get install xinetd tftpd tftp
