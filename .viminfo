@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/plugin
+~MSle0~/storage_create_default
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -49,6 +49,7 @@ $
 :help sneak
 
 # Search String History (newest to oldest):
+?/storage_create_default
 ?/plugin
 ?/colder
 ?/transport.closed
@@ -361,25 +362,42 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	Plugin '
-"1	LINE	0
-	tshark -i eth0 -w tmp.pcap
+"0	LINE	0
+	HISTCONTROL=erasedups
+	# HISTCONTROL=ignoredups
+	HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
+""1	LINE	0
+	
 "2	LINE	0
+	#HISTSIZE=10000
+	#HISTFILESIZE=999999
+	#HISTCONTROL=erasedups
+	## HISTCONTROL=ignoredups
+	#HISTIGNORE="?:??:???:&:ls:[bf]g:exit:pwd:df*:free*:cd*:ls*:man*:vi*:clear:[ \t]*:hisotry*"
+	#readonly HISTFILE
+	#readonly HISTSIZE
+	#readonly HISTFILESIZE
+	#readonly HISTIGNORE
+	#readonly HISTCONTROL
+	#export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
+	##shopt -s histappend
+"3	LINE	0
+	tshark -i eth0 -w tmp.pcap
+"4	LINE	0
 	//$ gnome-session-quit --logout --no-prompt
-"3	BLOCK	1
+"5	BLOCK	1
 	$ 
 	$ 
 	$ 
-"4	BLOCK	1
+"6	BLOCK	1
 	$ 
 	$ 
 	$ 
 	$ 
 	$ 
-"5	LINE	0
+"7	LINE	0
 	Plugin 'osyo-manga/unite-quickfix'
-"6	LINE	0
+"8	LINE	0
 	  " EasyMotion
 	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
@@ -391,10 +409,6 @@ $
 	  map  <silent> n <Plug>(easymotion-next)
 	  map  <silent> N <Plug>(easymotion-prev)
 	
-"7	LINE	0
-	
-"8	LINE	0
-	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "9	LINE	0
 	
 "a	CHAR	0
@@ -417,7 +431,7 @@ $
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-""-	CHAR	0
+"-	CHAR	0
 	 
 
 # global variables:
@@ -433,18 +447,34 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  40  34  ~/dotfiles/init_ubuntu.sh
-'1  1796  0  ~/dotfiles/tmp
-'2  144  0  ~/.vimrc
-'3  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
-'4  48  0  ~/[Vundle] Installer
-'5  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
-'6  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
-'7  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
-'8  1340  23  /usr/share/vim/vim74/doc/starting.txt
-'9  513  21  ~/work/log/log.implicit-proxy
+'0  81  22  ~/.zshrc
+'1  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+'2  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+'3  1  0  **/disk_storage.cd
+'4  40  34  ~/dotfiles/init_ubuntu.sh
+'5  1796  0  ~/dotfiles/tmp
+'6  144  0  ~/.vimrc
+'7  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+'8  48  0  ~/[Vundle] Installer
+'9  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
 
 # Jumplist (newest first):
+-'  81  22  ~/.zshrc
+-'  80  0  ~/.zshrc
+-'  1  0  ~/.zshrc
+-'  1242  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1224  2  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1308  4  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1323  32  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1321  22  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1330  1  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1331  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1327  1  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  668  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  566  16  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  128  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1  0  /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+-'  1  0  **/disk_storage.cd
 -'  40  34  ~/dotfiles/init_ubuntu.sh
 -'  37  37  ~/dotfiles/init_ubuntu.sh
 -'  1  0  ~/dotfiles/init_ubuntu.sh
@@ -523,32 +553,37 @@ $
 -'  1255  34  /usr/share/vim/vim74/doc/starting.txt
 -'  1253  34  /usr/share/vim/vim74/doc/starting.txt
 -'  1249  34  /usr/share/vim/vim74/doc/starting.txt
--'  1247  34  /usr/share/vim/vim74/doc/starting.txt
--'  1243  15  /usr/share/vim/vim74/doc/starting.txt
--'  1241  34  /usr/share/vim/vim74/doc/starting.txt
--'  1235  34  /usr/share/vim/vim74/doc/starting.txt
--'  1205  16  /usr/share/vim/vim74/doc/starting.txt
--'  1376  5  /usr/share/vim/vim74/doc/starting.txt
--'  1507  5  /usr/share/vim/vim74/doc/starting.txt
--'  1378  20  /usr/share/vim/vim74/doc/starting.txt
--'  1372  20  /usr/share/vim/vim74/doc/starting.txt
--'  1350  27  /usr/share/vim/vim74/doc/starting.txt
--'  1488  11  /usr/share/vim/vim74/doc/starting.txt
--'  1466  0  /usr/share/vim/vim74/doc/starting.txt
--'  1469  32  /usr/share/vim/vim74/doc/starting.txt
--'  1397  32  /usr/share/vim/vim74/doc/starting.txt
--'  1377  32  /usr/share/vim/vim74/doc/starting.txt
--'  1  0  /usr/share/vim/vim74/doc/starting.txt
--'  1  0  ~/
--'  513  21  ~/work/log/log.implicit-proxy
--'  516  24  ~/work/log/log.implicit-proxy
--'  431  33  ~/.vimrc
--'  434  35  ~/.vimrc
 
 # Buffer list:
-%~/dotfiles/init_ubuntu.sh	40	34
+%~/.zshrc	81	22
 
 # History of marks within files (newest to oldest):
+
+> ~/.zshrc
+	"	81	22
+	^	81	23
+	.	81	22
+	+	79	61
+	+	80	0
+	+	70	0
+	+	80	0
+	+	73	27
+	+	74	27
+	+	75	27
+	+	76	27
+	+	77	27
+	+	78	28
+	+	79	27
+	+	80	0
+	+	81	22
+
+> /data/work/bug-200D-maxdisk-1/5.4-200D/migbase/sysapi/diskop/disk_storage.c
+	"	1242	2
+	.	1308	0
+	+	1308	0
+
+> **/disk_storage.cd
+	"	1	0
 
 > ~/dotfiles/init_ubuntu.sh
 	"	40	34
@@ -737,12 +772,3 @@ $
 	+	493	40
 	+	494	41
 	+	495	40
-
-> /data/workref/fos-5.4/cooked/platform_info/FGT_200D_feature.h
-	"	59	29
-
-> /data/workref/fos-5.4/migbase/sysapi/diskop/disk_info.h
-	"	154	0
-
-> /data/workref/log/log.5-4.explicit
-	"	40	0
