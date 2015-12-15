@@ -8,21 +8,30 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/colder
+~MSle0~/plugin
 
 # Last Substitute Search Pattern:
-~MSle0&wad_http_monitor_rtmpt_open
+~MSle0&req
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
-:qa
+:q
 :w
+:qa
+:Unite location_list
+:lvim /not/gj %
+:lvim /do/gj %
+:lvim /123/gj %
+:lvim /123/gj
+:unite-quickfix-usage
+:Unite qf
+:PluginInstall
+:help quickfix
+:cs f f wad_tcp_port.c
 :vnoremap // y/<C-R>"<CR>
 :grep! -Inr --include='*.[ch]' -- 'transport.closed' .
-:cs f f wad_tcp_port.c
-:q
 :help lvim
 :lvim
 :lopen
@@ -38,20 +47,12 @@ $
 :BookmarkLoad Log
 :help sneak
 :PluginClean
-:PluginInstall
-:qa!
-:q!
-:set paste
-:pwd
-:Tracecrash
-:TraceClear
-:make
-:cs f f wad_debug_impl.c
 
 # Search String History (newest to oldest):
+?/plugin
 ?/colder
-?/older
 ?/transport.closed
+?/older
 ?/wad_tcp_port_state_closing
 ?/\Vtransport.closed
 ? \<wad_tcp_port_on_read_end\>
@@ -187,7 +188,6 @@ $
 ? \<register_mapping\>
 ? \<huawenyu\>
 ?/book
-?/plugin
 ? \<Plug\>
 ? \<Leader\>
 ? \<xnoremap\>
@@ -361,36 +361,280 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
-	verticalmove#Vert
-"1	LINE	0
-	  " :on[ly][!]  close all other windows, but keep buffer
-	  nmap <leader>n :silent! cnewer <CR><CR>
-	  nmap <leader>N :silent! colder <CR><CR>
+"0	CHAR	0
+	Plugin '
+""1	LINE	0
+	Plugin 'osyo-manga/unite-quickfix'
 "2	LINE	0
-	  nmap <silent> <c-n> :cn<cr>
-	  nmap <silent> <c-p> :cp<cr>
-	  " :on[ly][!]  close all other windows, but keep buffer
-	  nmap <leader>n :silent! cnewer <CR><CR>
-	  nmap <leader>N :silent! colder <CR><CR>
+	  " EasyMotion
+	  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+	  map  <silent> <leader>;; <Plug>(easymotion-prefix)
+	  nmap <silent> f <Plug>(easymotion-s)
+	  nmap <silent> s <Plug>(easymotion-s2)
+	  nmap <silent> t <Plug>(easymotion-t2)
+	  map  <silent> / <Plug>(easymotion-sn)
+	  omap <silent> / <Plug>(easymotion-tn)
+	  map  <silent> n <Plug>(easymotion-next)
+	  map  <silent> N <Plug>(easymotion-prev)
 	
 "3	LINE	0
 	
 "4	LINE	0
-	  " :on[ly][!]  close all other windows, but keep buffer
-	  nmap <leader>n :silent! cnewer <CR><CR>
-	  nmap <leader>N :silent! colder <CR><CR>
-	
+	let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "5	LINE	0
-	    _WAD_TRACE_;
-"6	LINE	0
-		_WAD_TRACE_;
+	
+"6	CHAR	0
+	
+	
 "7	LINE	0
-		_WAD_TRACE_;
+	
 "8	LINE	0
-		_WAD_TRACE_;
+	1: 2015-12-12 12:24:44 <00148> firmware FortiGate-VM v5.2.5,build07
+	01b701,151212 (Interim) (Debug)
+	2: 2015-12-12 12:24:44 <00148> application wad
+	3: 2015-12-12 12:24:44 <00148> *** signal 11 (Segmentation fault) r
+	eceived ***
+	4: 2015-12-12 12:24:44 <00148> Register dump:
+	5: 2015-12-12 12:24:44 <00148> EAX: 2d656e6f   EBX: 40276ff4   ECX:
+	 00000003    EDX: 40df40bc
+	6: 2015-12-12 12:24:44 <00148> ESI: 00000000   EDI: 00000000   EBP:
+	 bffffc58    ESP: bffffc10
+	7: 2015-12-12 12:24:44 <00148> EIP: 092f3cd4   EFLAGS: 00210246
+	8: 2015-12-12 12:24:44 <00148> CS: 0073   DS: 007b   ES: 007b   FS:
+	 0000   GS: 0033   SS: 007b
+	9: 2015-12-12 12:24:44 <00148> Trap: 0000000e   Error: 00000004   O
+	ldMask: 00000000
+	10: 2015-12-12 12:24:44 <00148> ESP/signal: bffffc10   CR2: 2d656e7
+	b
+	11: 2015-12-12 12:24:44 <00148> Backtrace:
+	12: 2015-12-12 12:24:44 <00148> [0x092f3cd4] => /bin/wad
+	13: 2015-12-12 12:24:44 <00148> [0x09261fd0] => /bin/wad
+	14: 2015-12-12 12:24:44 <00148> [0x0927ec26] => /bin/wad
+	15: 2015-12-12 12:24:44 <00148> [0x092034c5] => /bin/wad
+	16: 2015-12-12 12:24:44 <00148> [0x0932f15f] => /bin/wad
+	17: 2015-12-12 12:24:44 <00148> [0x0932f3f1] => /bin/wad
+	18: 2015-12-12 12:24:44 <00148> [0x0932f7d8] => /bin/wad
+	19: 2015-12-12 12:24:44 <00148> [0x09306c00] => /bin/wad
+	20: 2015-12-12 12:24:44 <00148> [0x09306e1a] => /bin/wad
+	21: 2015-12-12 12:24:44 <00148> [0x09343d66] => /bin/wad
+	22: 2015-12-12 12:24:44 <00148> [0x08066354] => /bin/wad
+	23: 2015-12-12 12:24:44 <00148> [0x08065c52] => /bin/wad
+	24: 2015-12-12 12:24:44 <00148> [0x400f13e5] => ../lib/libc.so.6 (_
+	_libc_start_main+0x000000f5)
+	25: 2015-12-12 12:24:44 liboffset 000193e5
+	26: 2015-12-12 12:24:44 <00148> [0x0806277d] => /bin/wad
+	27: 2015-12-12 12:24:44 <00148> proess=wad type=2 pid=148 total=100
+	3 free=706 mmu=66161471 mu=66070927
+	28: 2015-12-12 12:24:44 m=301161 f=283238 r=0
+	29: 2015-12-12 12:24:44 <00148> current tcp(0x40d86354) vf=0 sessio
+	n-id=1403 app_type=1 dyn_type=0
+	30: 2015-12-12 12:24:44 state=2  cur_bank=0xae64660 cur_tl=0xb06d06
+	0 cur_tm=0x40b0d074
+	
+	
+	
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	\
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
+	
+	VM32 # diag debug crash read
 "9	LINE	0
-		_WAD_TRACE_;
+	VM32 #
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -403,139 +647,148 @@ $
 	static struct wad_http_stream_ops wad_http_clt_scan_resp_ops;
 	static struct wad_http_stream_ops wad_http_clt_icap_ops;
 "j	CHAR	0
-	k
+	359
+<kjjk;a;a;ajjjjjjjjjjjjjGkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjkkwwwwwjlllllllkyyPllllllllllllllro:wlll:wkkkwklllllllllllllllllllllllllllllllllllllllllllwwbyevep:w:wll:wvllllllllllllllllld:w:whDa :w:w:wj:wjk:wbbbw:wllllllllise€kb€kbSet:w:wjbvlllldllllllllj0wwxiShowAll:w:w:wkk:w:w:w:
 "k	CHAR	0
-	851
-<kkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjbkwjbwkbwbjbwkbwbjbwbkwwbjbkwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjkllllllllljjjjjjjjjjjjjjkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjj€ý,€ý.
+	kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 "l	CHAR	0
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
-	www
+	
 "-	CHAR	0
-	<CR>
+	] => /bin/wad
 
 # global variables:
+!MARK_MARKS	STR	[]
+!MARK_ENABLED	NUM	1
+!BOOKMARKS	DIC	428
+<{'implicit-http-proxy-52': {'connect.accept': ['/home/wilson/work/log/log.implicit-proxy', [0, 1, 1, 0]], 'receive data from client': ['/home/wilson/work/log/log.implicit-proxy', [0, 51, 1, 0]], 'connect ': ['/home/wilson/work/log/log.implicit-proxy', [0, 1, 1, 0]], 'client dns resolve': ['/home/wilson/work/log/log.implicit-proxy', [0, 104, 1, 0]], 'shutdown': ['/home/wilson/work/log/log.implicit-proxy', [0, 408, 1, 0]]}}
 
 # File marks:
-'A  25814  15  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_cache.c
+'A  34  41  ~/andy/getlineex.c
 'B  39169  17  /tmp/log.tel
 'C  1091  2  /data/work/bug-dfa-build/5.4-100D/daemon/wad/wad_sec_profile.c
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
-'P  34470  33  /data/workref/rtmp/fos52-rtmp-git/log.one-disconnect
-'0  430  33  ~/.vimrc
-'1  434  35  ~/.vimrc
-'2  435  38  ~/.vimrc
-'3  504  32  ~/.vimrc
-'4  428  0  ~/.vimrc
-'5  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
-'6  503  34  ~/.vimrc
-'7  12  5  ~/svn-info
-'8  11  45  ~/svn-info
-'9  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
+'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
+'0  144  0  ~/.vimrc
+'1  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+'2  48  0  ~/[Vundle] Installer
+'3  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+'4  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+'5  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+'6  1340  23  /usr/share/vim/vim74/doc/starting.txt
+'7  513  21  ~/work/log/log.implicit-proxy
+'8  408  0  ~/work/log/log.implicit-proxy
+'9  104  0  ~/work/log/log.implicit-proxy
 
 # Jumplist (newest first):
+-'  144  0  ~/.vimrc
+-'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+-'  3  0  ~/.vim/bundle/unite-quickfix/doc/[unite] - buffer
+-'  17  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+-'  50  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+-'  36  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+-'  1  0  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+-'  48  0  ~/[Vundle] Installer
+-'  78  7  ~/.vimrc
+-'  7  14  ~/.vimrc
+-'  1  33  ~/.vimrc
 -'  430  33  ~/.vimrc
+-'  591  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  71  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  162  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  592  18  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  711  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  578  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  590  28  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  775  61  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  725  21  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  817  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  820  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1256  60  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1259  24  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1264  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1308  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1414  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1430  22  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1496  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  2304  20  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1416  3  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  150  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  1347  36  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1419  23  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  1341  11  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  24  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
+-'  148  19  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  169  10  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  167  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
+-'  393  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+-'  392  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_impl.h
+-'  61  16  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
+-'  417  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
+-'  1304  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+-'  320  1  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_message.c
+-'  1310  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+-'  726  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+-'  1  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp_amf.c
+-'  1340  23  /usr/share/vim/vim74/doc/starting.txt
+-'  1363  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1339  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1328  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1324  25  /usr/share/vim/vim74/doc/starting.txt
+-'  1322  31  /usr/share/vim/vim74/doc/starting.txt
+-'  1302  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1296  16  /usr/share/vim/vim74/doc/starting.txt
+-'  1293  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1288  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1280  23  /usr/share/vim/vim74/doc/starting.txt
+-'  1277  25  /usr/share/vim/vim74/doc/starting.txt
+-'  1268  16  /usr/share/vim/vim74/doc/starting.txt
+-'  1266  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1265  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1262  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1259  20  /usr/share/vim/vim74/doc/starting.txt
+-'  1258  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1257  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1255  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1253  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1249  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1247  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1243  15  /usr/share/vim/vim74/doc/starting.txt
+-'  1241  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1235  34  /usr/share/vim/vim74/doc/starting.txt
+-'  1205  16  /usr/share/vim/vim74/doc/starting.txt
+-'  1376  5  /usr/share/vim/vim74/doc/starting.txt
+-'  1507  5  /usr/share/vim/vim74/doc/starting.txt
+-'  1378  20  /usr/share/vim/vim74/doc/starting.txt
+-'  1372  20  /usr/share/vim/vim74/doc/starting.txt
+-'  1350  27  /usr/share/vim/vim74/doc/starting.txt
+-'  1488  11  /usr/share/vim/vim74/doc/starting.txt
+-'  1466  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1469  32  /usr/share/vim/vim74/doc/starting.txt
+-'  1397  32  /usr/share/vim/vim74/doc/starting.txt
+-'  1377  32  /usr/share/vim/vim74/doc/starting.txt
+-'  1  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1  0  ~/
+-'  513  21  ~/work/log/log.implicit-proxy
+-'  516  24  ~/work/log/log.implicit-proxy
 -'  431  33  ~/.vimrc
 -'  434  35  ~/.vimrc
 -'  436  0  ~/.vimrc
 -'  424  33  ~/.vimrc
--'  435  38  ~/.vimrc
--'  459  24  ~/.vimrc
--'  504  32  ~/.vimrc
--'  428  0  ~/.vimrc
--'  442  0  ~/.vimrc
--'  456  15  ~/.vimrc
--'  1  19  ~/.vimrc
--'  471  19  ~/.vimrc
--'  497  19  ~/.vimrc
--'  496  19  ~/.vimrc
--'  495  19  ~/.vimrc
--'  494  19  ~/.vimrc
--'  493  19  ~/.vimrc
--'  492  3  ~/.vimrc
--'  515  64  ~/.vimrc
--'  503  34  ~/.vimrc
--'  42  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  1  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  38  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  502  34  ~/.vimrc
--'  418  0  ~/.vimrc
--'  386  0  ~/.vimrc
--'  12  5  ~/svn-info
--'  11  45  ~/svn-info
--'  10  45  ~/svn-info
--'  9  45  ~/svn-info
--'  8  45  ~/svn-info
--'  7  0  ~/svn-info
--'  1  45  ~/svn-info
--'  18  0  ~/svn-info
--'  3591  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/migbase/sysapi/base/iprope_usr_fwd.c
--'  1  0  a/migbase/sysapi/base/iprope_usr_fwd.c
--'  50  0  /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
--'  1  0  /data/vmware/rtmp-fch4.0-bak/FortiCache-VM64.vmx
--'  23  0  /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
--'  61  0  /data/vmware/rtmp-5.2/FortiGate-VM64.vmx
--'  2  0  /data/vmware/rtmp-fch4.0/FortiCache-VM64.vmx
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_fw_policy.c.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui.c.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_debug_impl.h.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/ui/fg/wad_ui_config.c.rej
--'  7  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
--'  16  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/cmf/plugin/firewall/policy.c.rej
--'  11  37  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.h.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.h.rej
--'  210  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
--'  125  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
--'  28  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/daemon/wad/wad_http_cache.c.rej
--'  1  0  /data/workref/rtmp/fos52-rtmp-git2/.version
--'  1  0  /data/workref/rtmp/patch.2
--'  1  0  /data/work/svn-info
--'  152  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
--'  151  4  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_memtrack.c
--'  1  0  ~/script/trace-wad/func-add
--'  199  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_tunnel.h
--'  1  0  ~/script/trace-wad/files
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_send.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  356  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_message.c
--'  343  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_live.c
--'  96  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_live.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_helper.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_handshake.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_chunk.c
--'  391  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp.c
--'  293  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf_parser.c
--'  1183  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmp_amf.c
--'  857  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmpt.c
--'  213  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_rtmpt.c
--'  1210  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_url_filter.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_url_filter.c
--'  10051  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ssl_port.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ssl_port.c
--'  761  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips_redir.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips_redir.c
--'  211  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_ips.c
--'  1169  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
--'  1  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_ipsscan.c
--'  2449  0  /data/workref/rtmp/fos52-rtmp-git/daemon/wad/wad_http_avscan.c
+-'  19  1  ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
 
 # Buffer list:
-%~/.vimrc	430	33
+%~/.vimrc	144	0
 
 # History of marks within files (newest to oldest):
 
 > ~/.vimrc
-	"	430	33
-	^	435	35
-	.	434	28
+	"	144	0
+	.	144	0
 	+	399	15
 	+	400	15
 	+	463	15
@@ -597,20 +850,41 @@ $
 	+	436	0
 	+	435	34
 	+	434	28
+	+	144	0
+
+> ~/.vim/bundle/unite-quickfix/doc/unite_quickfix.txt
+	"	19	1
+
+> ~/.vim/bundle/unite-quickfix/doc/[unite] - default
+	"	4	0
+	.	2	0
+	+	1	0
+	+	2	0
+
+> ~/.vim/bundle/unite-quickfix/doc/[unite] - buffer
+	"	3	0
+	^	3	0
+	.	2	0
+	+	2	0
+
+> ~/[Vundle] Installer
+	"	48	0
+	.	1	0
+	+	1	0
 
 > ~/work/fos52-rtmp-git2/daemon/wad/wad_app_eng.h
-	"	150	19
+	"	162	16
 
 > ~/work/fos52-rtmp-git2/daemon/wad/wad_tcp_port.c
 	"	591	22
+
+> /usr/share/vim/vim74/doc/quickfix.txt
+	"	434	30
 
 > ~/work/fos52-rtmp-git2/__Tagbar__
 	"	78	15
 	.	137	0
 	+	137	0
-
-> /usr/share/vim/vim74/doc/quickfix.txt
-	"	597	26
 
 > /usr/share/vim/vim74/doc/options.txt
 	"	3991	12
@@ -717,25 +991,3 @@ $
 
 > ~/.vim/bundle/vim-sneak/doc/sneak.txt
 	"	326	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/[Vundle] clean
-	"	3	0
-	.	1	0
-	+	3	0
-	+	1	0
-
-> ~/work/fos52-rtmp-git2/daemon/wad/redirect/fortifilter/wad_dns.c
-	"	426	1
-
-> ~/work/fos52-rtmp-git2/daemon/wad/wad_rtmp.c
-	"	104	7
-	.	104	0
-	+	104	0
-
-> ~/work/fos52-rtmp-git2/[unite] - default
-	"	1	0
-	.	2	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	2	0
