@@ -507,7 +507,7 @@ let g:sneak#s_next = 1
 
   " Tasklist
   let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  nmap <leader>t :<C-u>Ag -i 'TODO @*wilson' . <CR>
+  nmap <leader>t :<C-u>Ag -i 'TODO @*wilson' .
 
   " Unite
   let g:unite_source_history_yank_enable = 1
