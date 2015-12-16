@@ -505,6 +505,10 @@ let g:sneak#s_next = 1
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
+  " Tasklist
+  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
+  nmap <leader>t :<C-u>grep! -Iinr --include='*.[ch]' -- '\(TODO\|FIXME\|XXX\) @\*wilson' . <CR>
+
   " Unite
   let g:unite_source_history_yank_enable = 1
   let g:neoyank#file = $HOME.'/.vim/yankring.txt'
