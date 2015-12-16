@@ -8,57 +8,125 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/;o
+~Msle0~/\<workspace#PromptExistedWorkspaceName\>
 
 # Last Substitute Search Pattern:
 ~MSle0&req
 
 # Last Substitute String:
-$&
+$
 
 # Command Line History (newest to oldest):
 :qa
 :w
+:e plugin/bookmark.vim
+:e autoload/bookmark.vim
+:e autoload/workspace.vim
+:vs
+:set wrap
+:b vim.viminfo
+:viminfo
+:BookmarkLoad Default
+:BookmarkLoad 
+:q
+:b ~/work/log/vim.viminfo
+:BookmarkLoad "Default"
+:vim.vim-bookmarks
+:ls
+:BookmarkLoad Log
+:Savews
 :grep! -Inr --include='*.[ch]' -- 'setting.storage' .
+:qa!
+:b plugin/bookmark.vim
+:f
+:b autoload/bookmark.vim
+:b autoload/workspace.vim
+:b plugin/workspace.vim
+:+40
+:%s/s:LastWorkspaceName/g:wsLastWorkspaceName/g
+:'<,'>s/
+:w autoload/workspace.vim
 
 # Search String History (newest to oldest):
+? \<workspace#PromptExistedWorkspaceName\>
+?/viminfo
+?/bookmarks
+?/BOOKMARKS
+? \<wad_http_client_read_header\>
+? \<LoadWorkspaceCore\>
+? \<LoadwsCoreFuncref\>
+? \<SaveWorkspaceCore\>
+? \<SavewsCoreFuncref\>
+? \<WorkspaceOperator\>
+? \<PromptExistedWorkspaceName\>
+? \<InitCheck\>
+? \<InitVariable\>
+? \<LastWorkspaceName\>
+? \<loaded_workspace\>
+? \<workspace_version\>
 ?/;o
 ?/toggle
 ?/toggkle
 ?/log.disk
 ?/storage\"
 ?/needed
+? \<BookmarkLoad\>
+?/default
+?/we will
+? \<input\>
+? \<workspace#SaveWorkspaceCore\>
+?/SaveWorkspace
+?/LoadWorkspace
+?/\<DefaultWorkspaceSessionName\>
+? \<DefaultWorkspaceSessionName\>
+? \<workspace#LoadWorkspaceCore\>
+? \<choice\>
+?/savewsCore
+? \<workspace#SavewsCoreFuncref\>
+?/load
+?/prom
+? \<wviminfo\>
+? \<echo\>
+? \<workspace#WorkspaceOperator\>
+? s:LastWorkspaceName
+? \<cur_dir\>
+? \<wsOverwrite\>
+? \<DefaultWorkspaceName\>
+?/workspace.session
+?/workspace
 
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@\<wad_http_client_read_header\>
+@qa
+@\<echo\>
 
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	rtmp_profile
-"1	LINE	0
-	
+"0	LINE	0
+	  let g:bookmarks_groupname = a:bookmarks_groupname
+""1	LINE	0
+	  else
 "2	LINE	0
-	
+	    let g:bookmarks_groupname = 'Default'
 "3	LINE	0
-		strlcpy(fw_pol->rtmp_prof, pol->rtmp_prof, sizeof(fw_pol->rtmp_prof));
-	
+	  endif
 "4	LINE	0
-	        snmp/FORTINET-FORTICACHE-MIB.mib
+	    echom "Empty bookmark group name."
 "5	LINE	0
-	        migbase/sysapi/base/phy_intfs.h
+	    return
 "6	LINE	0
-	        migbase/sysapi/base/iprope_usr_fwd.c.orig
+	
 "7	LINE	0
-	        migbase/include/parser.h.orig
+	call bookmark#LoadGroup('Default')
 "8	LINE	0
-	        migbase/include/cmdbapi/cmdbapi.h.orig
+	
 "9	LINE	0
-	        migbase/include/aps_policy.h.orig
+	call workspace#PromptExistedWorkspaceName()
 "a	CHAR	0
-	static struct wad_port_ops
+	
 "b	LINE	0
 	static struct wad_http_stream_ops wad_http_clt_body_skip_ops;
 	static struct wad_http_stream_ops wad_http_client_ops;
@@ -77,13 +145,11 @@ $&
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-""-	CHAR	0
+"-	CHAR	0
 	 
 
 # global variables:
-!MARK_MARKS	STR	[]
-!MARK_ENABLED	NUM	1
-!BOOKMARKS	DIC	{}
+!BOOKMARKS	DIC	{'Default': {}}
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -92,168 +158,125 @@ $&
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  513  24  ~/.vimrc
-'1  1  0  /data/workref/git-svn/.version
-'2  89  0  /data/workref/fos-git/.config
-'3  1  0  /data/workref/fos-git/.version
-'4  1  0  ~/svn-info
-'5  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
-'6  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
-'7  80  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
-'8  87  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
-'9  1  0  /data/workref/rtmp/fch40-rtmp-git/wad_config.c
+'0  20  16  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+'1  179  0  ~/work/log/vim.viminfo
+'2  151  0  ~/work/log/vim.viminfo
+'3  86  10  ~/work/log/log.5-4.explicit
+'4  57  27  ~/work/log/log.5-4.explicit
+'5  70  25  ~/work/log/log.5-4.explicit
+'6  41  25  ~/work/log/log.5-4.explicit
+'7  11  25  ~/work/log/log.5-4.explicit
+'8  48  19  ~/work/log/log.5-4.explicit
+'9  52  19  ~/work/log/log.5-4.explicit
 
 # Jumplist (newest first):
--'  513  24  ~/.vimrc
--'  414  24  ~/.vimrc
--'  1  25  ~/.vimrc
--'  450  25  ~/.vimrc
--'  413  25  ~/.vimrc
--'  411  35  ~/.vimrc
--'  504  37  ~/.vimrc
--'  1  0  /data/workref/git-svn/.version
--'  89  0  /data/workref/fos-git/.config
--'  2  0  /data/workref/fos-git/.config
--'  1  0  /data/workref/fos-git/.config
--'  1  0  /data/workref/fos-git/.version
--'  1  0  ~/svn-info
--'  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  34  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  93  14  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  2575  43  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  80  24  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  209  26  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.h
--'  348  58  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  831  29  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/ui/fg/wad_ui_config.c
--'  2554  41  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2555  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2553  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2563  2  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2423  3  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2465  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2628  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2615  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2614  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1075  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1074  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1073  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2616  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  80  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  136  10  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  832  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  835  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  816  3  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  212  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.h
--'  111  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  2653  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  21  24  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  39  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  34  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  30  31  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  59  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  92  17  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  133  14  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  125  28  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  115  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  149  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  2634  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  2647  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  38  12  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  12  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
--'  13  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
--'  35  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  9  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  132  56  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  87  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/wad_config.c
--'  12  52  /tmp/log.tel
--'  1  0  /tmp/log.tel
--'  61  0  /tmp/log.tel
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.files
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.fiels
--'  2  28  /data/workref/rtmp/fch40-rtmp-git/log.files
--'  135  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  129  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  133  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  126  43  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  169  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  134  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  259  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  32  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  204  0  /data/workref/rtmp/fch40-rtmp-git/cmf/plugin/wanopt/rtmp_profile.c
--'  47  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  132  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  12086  6  /tmp/log.tel
--'  11915  6  /tmp/log.tel
--'  11789  6  /tmp/log.tel
--'  11634  6  /tmp/log.tel
--'  11313  6  /tmp/log.tel
--'  11116  6  /tmp/log.tel
--'  10738  6  /tmp/log.tel
--'  10214  6  /tmp/log.tel
--'  10065  6  /tmp/log.tel
--'  9538  6  /tmp/log.tel
--'  9450  6  /tmp/log.tel
--'  9326  6  /tmp/log.tel
+-'  20  16  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  25  0  ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+-'  43  0  ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+-'  33  28  ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+-'  34  0  ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+-'  28  0  ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+-'  1  0  ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+-'  179  0  ~/work/log/vim.viminfo
+-'  151  0  ~/work/log/vim.viminfo
+-'  1  0  ~/work/log
+-'  1  0  ~/.vimrc
+-'  120  8  ~/work/log/vim.viminfo
+-'  68  27  ~/work/log/log.5-4.explicit
+-'  57  27  ~/work/log/log.5-4.explicit
+-'  1  0  ~/work/log/vim.viminfo
+-'  239  37  ~/.vimrc
+-'  22  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  25  0  ~/work/log
+-'  1  0  ~/work/log
+-'  179  0  ~/work/log/vim.viminfo
+-'  171  0  ~/work/log/vim.viminfo
+-'  151  0  ~/work/log/vim.viminfo
+-'  120  8  ~/work/log/vim.viminfo
+-'  68  27  ~/work/log/log.5-4.explicit
+-'  57  27  ~/work/log/log.5-4.explicit
+-'  1  0  ~/work/log/vim.viminfo
+-'  179  0  ~/work/log/vim.viminfo
+-'  171  0  ~/work/log/vim.viminfo
+-'  151  0  ~/work/log/vim.viminfo
+-'  120  8  ~/work/log/vim.viminfo
+-'  68  27  ~/work/log/log.5-4.explicit
+-'  57  27  ~/work/log/log.5-4.explicit
+-'  1  0  ~/work/log/vim.viminfo
+-'  25  0  ~/work/log
+-'  1  0  ~/work/log
+-'  179  0  ~/work/log/vim.viminfo
+-'  171  0  ~/work/log/vim.viminfo
+-'  151  0  ~/work/log/vim.viminfo
+-'  120  8  ~/work/log/vim.viminfo
+-'  68  27  ~/work/log/log.5-4.explicit
+-'  57  27  ~/work/log/log.5-4.explicit
+-'  1  0  ~/work/log/vim.viminfo
+-'  179  0  ~/work/log/vim.viminfo
+-'  171  0  ~/work/log/vim.viminfo
+-'  151  0  ~/work/log/vim.viminfo
+-'  120  8  ~/work/log/vim.viminfo
+-'  68  27  ~/work/log/log.5-4.explicit
+-'  57  27  ~/work/log/log.5-4.explicit
+-'  1  0  ~/work/log/vim.viminfo
 
 # Buffer list:
-%~/.vimrc	513	24
+%~/.vim/bundle/c-utils.vim/plugin/workspace.vim	43	0
+%~/.vim/bundle/c-utils.vim/autoload/workspace.vim	1	0
+%~/.vim/bundle/c-utils.vim/autoload/bookmark.vim	12	2
+%~/.vim/bundle/c-utils.vim/plugin/bookmark.vim	20	16
 
 # History of marks within files (newest to oldest):
 
+> ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
+	"	43	0
+	^	34	1
+	.	35	0
+	+	33	0
+	+	32	0
+	+	34	0
+	+	35	0
+
+> ~/.vim/bundle/c-utils.vim/autoload/workspace.vim
+	"	1	0
+
+> ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
+	"	12	2
+	^	14	6
+	.	14	5
+	+	31	1
+	+	15	0
+	+	15	3
+	+	15	0
+	+	15	39
+	+	15	0
+	+	16	0
+	+	15	0
+	+	15	0
+	+	15	0
+	+	13	2
+	+	15	0
+	+	14	5
+
+> ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
+	"	20	16
+	.	20	16
+	+	20	16
+	+	25	0
+	+	20	16
+
 > ~/.vimrc
-	"	513	24
-	.	413	25
-	+	413	25
+	"	239	37
+	^	239	36
+	.	239	37
+	+	239	37
 
-> /data/workref/git-svn/.version
-	"	1	0
+> ~/work/log/vim.viminfo
+	"	179	0
+	.	109	10
+	+	109	10
+	+	109	10
 
-> /data/workref/fos-git/.config
-	"	89	0
-
-> /data/workref/fos-git/.version
-	"	1	0
-
-> ~/svn-info
-	"	1	0
-
-> /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
-	"	2574	0
-	^	2575	45
-	.	2577	0
-	+	2423	0
-	+	2574	1
-	+	2576	0
-	+	2575	10
-	+	2576	10
-	+	2575	44
-	+	2577	0
-
-> /data/workref/rtmp/fos52-701-git/.config
-	"	1	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_live.c
-	"	157	0
-
-> /data/workref/fos-5.2/cmf/plugin/log/logsetting.c
-	"	2930	1
-
-> /data/work/bug-200D-maxdisk-1/5.4-200D/cmf/cli/upgrade/upgrade_5_4.c
-	"	1215	45
-
-> /data/work/bug-200D-maxdisk-1/5.4-200D/cmf/cli/upgrade/upgrade_id.h
-	"	23	1
-
-> **/upgrade_5_4.c
-	"	1	0
-
-> /data/workref/fos-5.2/migbase/sysapi/diskop/disk_storage.c
-	"	362	1
-
-> /data/workref/fos-5.2/migbase/include/cmdbapi/cmdbapi.h
-	"	4125	0
+> ~/work/log/log.5-4.explicit
+	"	86	10

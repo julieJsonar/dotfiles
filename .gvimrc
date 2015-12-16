@@ -231,12 +231,14 @@ set ssop+=sesdir     " work under current dir as relative path
 " Restore cursor to file {
 
  " Tell vim to remember certain things when we exit
+ "  !    :  The uppercase global VARIABLE will saved
  "  '30  :  marks will be remembered for up to 10 previously edited files
  "  "300 :  will save up to 100 lines for each register
  "  :30  :  up to 20 lines of command-line history will be remembered
  "  %    :  saves and restores the buffer list
- "  n... :  where to save the viminfo files
- set viminfo=!,'30,\"300,:30,%,n~/.viminfo
+ "  n... :  where to save the viminfo files,
+ "            here save to /tmp means we have another viminfo manager 'workspace'
+ set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
 
  function! ResCur()
    if line("'\"") <= line("$")
@@ -490,7 +492,7 @@ let g:sneak#s_next = 1
   map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
 
   "bookmark
-  nmap <leader>mo :BookmarkLoad 
+  nmap <leader>mo :BookmarkLoad Default
   nmap <leader>ma :BookmarkShowAll <CR>
   nmap <leader>mm :BookmarkSet <C-R><c-w> <CR>
   nmap <leader>mg :BookmarkGoto <C-R><c-w> <CR>
