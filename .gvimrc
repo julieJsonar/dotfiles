@@ -120,6 +120,9 @@ Plugin 'huawenyu/vim-log-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
+" Outline: help-doc https://vim-voom.github.io/
+Plugin 'vim-voom/VOoM'
+Plugin 'vimwiki/vimwiki'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -409,17 +412,18 @@ let g:sneak#s_next = 1
   nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
-  nmap          <leader>;q :call utilquickfix#FilterQuickFixList() <CR>
+  nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
+  nmap <silent> <leader>;t :VoomToggle<CR>
+  " Tasklist
+  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
+  nmap          <leader>t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
-  let g:ctrlsf_mapping = {
-      \ "next": "n",
-      \ "prev": "N",
-      \ }
-  vmap          <leader>;f <Plug>CtrlSFVwordPath
+  let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
+  vmap          <leader>;h <Plug>CtrlSFVwordPath
   nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR>
   vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
 
@@ -504,10 +508,6 @@ let g:sneak#s_next = 1
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
-
-  " Tasklist
-  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  nmap <leader>t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
   " Unite
   let g:unite_source_history_yank_enable = 1
