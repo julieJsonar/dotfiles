@@ -9,12 +9,7 @@ sudo apt-get install -f
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
-sudo apt-get install -y build-essential
-# Gcc Compile: check header not found error
-# sudo updatedb
-# locate stdio.h
-
-sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag
+sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag traceroute smbclient openssh-server minicom lftp meld
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion
@@ -23,7 +18,10 @@ sudo apt-get install -y tree cscope ctags w3m
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Develop Env
-sudo apt-get install -y ia32-libs smbclient openssh-server minicom lftp meld
+sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386
+# Gcc Compile: check header not found error
+# sudo updatedb
+# locate stdio.h
 
 # Java JDK
 sudo apt-add-repository ppa:webupd8team/java
