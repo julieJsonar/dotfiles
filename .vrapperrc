@@ -9,6 +9,8 @@ set smartcase
 set incsearch
 set tabstop=4
 set shiftwidth=4
+set nowrap
+set nowrapscan
 
 inoremap z,  <c-o>
 inoremap z,p <c-r>"
