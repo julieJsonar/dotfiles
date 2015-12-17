@@ -444,12 +444,12 @@ let g:sneak#s_next = 1
   nmap <silent> <c-p> :cp<cr>
 
 
-  nmap <silent> <leader>1 :norm! 1gt <CR>
-  nmap <silent> <leader>2 :norm! 2gt <CR>
-  nmap <silent> <leader>3 :norm! 3gt <CR>
-  nmap <silent> <leader>4 :norm! 4gt <CR>
-  nmap <silent> <leader>5 :norm! 5gt <CR>
-  nmap <silent> <leader>6 :norm! 6gt <CR>
+  map <silent> <leader>1 :norm! 1gt <CR>
+  map <silent> <leader>2 :norm! 2gt <CR>
+  map <silent> <leader>3 :norm! 3gt <CR>
+  map <silent> <leader>4 :norm! 4gt <CR>
+  map <silent> <leader>5 :norm! 5gt <CR>
+  map <silent> <leader>6 :norm! 6gt <CR>
 
 
   map gf :call utils#GotoFileWithLineNum()<CR>
@@ -493,7 +493,8 @@ let g:sneak#s_next = 1
   map <leader>va :<C-\>e utilgrep#LocalEasyGrep(0,1) <CR>
   map <leader>vv :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
   map <leader>vV :<C-\>e utilgrep#LocalEasyGrep(2,1) <CR>
-  map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
+  "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
+  map <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
   "bookmark
   nmap <leader>mo :BookmarkLoad Default
