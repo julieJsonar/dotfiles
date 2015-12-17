@@ -509,6 +509,8 @@ let g:sneak#s_next = 1
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
+  let g:voom_tree_width = 45
+
   " Unite
   let g:unite_source_history_yank_enable = 1
   let g:neoyank#file = $HOME.'/.vim/yankring.txt'
