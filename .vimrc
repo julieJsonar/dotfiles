@@ -426,6 +426,8 @@ let g:sneak#s_next = 1
   vmap          <leader>;h <Plug>CtrlSFVwordPath
   nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR>
   vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
+  " Redirect last g search content to a new tab
+  map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
   nmap <silent> <leader>;s :call utilcscope#CscopeSymbol() <CR>
   "nmap <silent> <leader>;r :call CurrentReplace() <CR>
@@ -504,7 +506,6 @@ let g:sneak#s_next = 1
   nmap <leader>mc :BookmarkDel <C-R><c-w>
 
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
-  nmap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
   nnoremap <leader>;a :<C-u>execute autoreadfiles#WatchForChanges("*",{'autoread':1}) <CR>
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
