@@ -1,12 +1,12 @@
 "======================================================================
-" Installation:
-" =============
+" Installation & Helper {{{1}}}
+" ============================
 " 1. Vundle.vim
 "    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
 "    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "    $ vi -c 'PluginInstall'
 "
-" Usage:
+" Usage: {{{2}}}
 " ======
 " <leader>         ";"
 " <leader>;*       my shortkey
@@ -18,7 +18,7 @@
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
 " :Savesession     save to current dir, use vi -S default.vim to open it.
 "
-" Howtos:
+" Howtos: {{{2}}}
 " =======
 "       :R !ls -l           # grab shell cmd output into new tab/buffer
 "       :new|0read !ls -l  # grab cmd output into new window
@@ -52,7 +52,7 @@
 "       ‘\`’ matches the beginning of the whole input
 "       ‘\'’ matches the end of the whole input
 "
-" Tools:
+" Tools: {{{2}}}
 " ======
 "   DrawIt:                # use \di to start (\ds to stop)
 "   W3m:
@@ -60,7 +60,7 @@
 "       <backspace>        # Back page
 "       <enter>            # Open link under the cursor
 "
-" Self:
+" Self: {{{2}}}
 " =====
 "   Function:
 "       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
@@ -69,6 +69,7 @@
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
 
+" Plugins {{{1}}}
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -392,7 +393,7 @@ let g:html_use_css = 0
 let g:enable_numbers = 0
 let g:sneak#s_next = 1
 
-" Key maps {
+" Key maps {{{1}}}
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
   "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
   "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
