@@ -445,7 +445,7 @@ let g:sneak#s_next = 1
   " Execute selected text as shell
   nmap          <leader>ed  :bd<CR>
   nmap          <leader>ex  :tabclose<CR>
-  nmap          <leader>et  :TabooOpen<CR>
+  nmap          <leader>et  :TabooOpen
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
   vmap <silent> <leader>ee  :<c-u>call utilexecute#execute_selection(1)<CR>
