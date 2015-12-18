@@ -121,6 +121,7 @@ do
 	   [ $f == 'update.sh' ] || \
 	   [ $f == 'patch.smbconf' ] || \
 	   [ $f == 'FortiGate-VM64.vmx' ] || \
+	   [ $f == 'eclipse-moonrise-theme' ] || \
 	   [ $f == 'tftp' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then

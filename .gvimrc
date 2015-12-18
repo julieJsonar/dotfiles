@@ -138,6 +138,9 @@ Plugin 'rking/ag.vim'
 "Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
 
+Plugin 'benmills/vimux'
+Plugin 'JarrodCTaylor/vim-shell-executor'
+
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
@@ -404,14 +407,6 @@ let g:sneak#s_next = 1
   vmap <leader>y :w! /tmp/vim.yank<CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
-  nmap <leader>x  :tabclose<CR>
-  nmap <leader>e  :!~/tools/dict <C-R>=expand("<cword>")<CR><CR>
-  "nmap <Leader>j :call GotoJump()<CR>
-
-  " map same key under different mode
-  nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
-  vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
-
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
   nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
@@ -426,6 +421,7 @@ let g:sneak#s_next = 1
   vmap          <leader>;h <Plug>CtrlSFVwordPath
   nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR>
   vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
+
   " Redirect last g search content to a new tab
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
 
@@ -444,6 +440,25 @@ let g:sneak#s_next = 1
 
   nmap <silent> <c-n> :cn<cr>
   nmap <silent> <c-p> :cp<cr>
+
+
+  " Execute selected text as shell
+  nmap          <leader>ed  :bd<CR>
+  nmap          <leader>ex  :tabclose<CR>
+  nmap          <leader>et  :TabooOpen<CR>
+  nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
+  nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
+  vmap <silent> <leader>ee  :<c-u>call utilexecute#execute_selection()<CR>
+  nmap          <leader>ee  :VimuxPromptCommand <CR>
+  nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
+  vmap <silent> <leader>;e  :ExecuteSelection <CR>
+  nmap <silent> <leader>kk  :<c-u>call utilexecute#copy_selection() <CR>
+
+  "nmap          <Leader>j  :call GotoJump()<CR>
+
+  " map same key under different mode
+  nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
+  vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
 
   map <silent> <leader>1 :norm! 1gt <CR>
@@ -473,7 +488,7 @@ let g:sneak#s_next = 1
   nmap <silent> gp :silent! lpre  <CR>
 
   " TAB conflict with ctrl-i
-  nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
+  "nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
   nmap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
 
   " Open tag in new tab
