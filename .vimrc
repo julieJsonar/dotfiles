@@ -139,7 +139,7 @@ Plugin 'rking/ag.vim'
 "Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
 
-Plugin 'benmills/vimux'
+Plugin 'huawenyu/vimux'
 Plugin 'JarrodCTaylor/vim-shell-executor'
 
 Plugin 'Shougo/vimshell.vim'
@@ -158,6 +158,7 @@ Plugin 'huawenyu/c-utils.vim'
 call vundle#end()
 filetype plugin indent on
 
+" Configure {{{1}}}
 let mapleader = ";"
 " diable Ex mode
 map Q <Nop>
@@ -234,7 +235,7 @@ set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
 
-
+" Plugins Configure {{{1}}}
 " Restore cursor to file {
 
  " Tell vim to remember certain things when we exit
@@ -260,8 +261,6 @@ set ssop+=sesdir     " work under current dir as relative path
  augroup END
 
 "}
-
-filetype plugin indent on
 
 " DetectIndent using :DetectIndent command
 let g:detectindent_preferred_expandtab = 0
@@ -341,8 +340,6 @@ set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 
 set clipboard+=unnamed
 set clipboard+=unnamedplus
-"vmap <leader>y   "+y
-"vnoremap <leader>p "_dP
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -405,7 +402,10 @@ let g:sneak#s_next = 1
   nmap <leader>o <C-O>
 
   " make vim yank cross vim-sessions
+  "vmap <leader>y   "+y
+  "vnoremap <leader>p "_dP
   vmap <leader>y :w! /tmp/vim.yank<CR>
+  nmap <silent> <leader>y  :<c-u>call utilexecute#copy_selection() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
@@ -442,18 +442,17 @@ let g:sneak#s_next = 1
   nmap <silent> <c-n> :cn<cr>
   nmap <silent> <c-p> :cp<cr>
 
-
   " Execute selected text as shell
   nmap          <leader>ed  :bd<CR>
   nmap          <leader>ex  :tabclose<CR>
   nmap          <leader>et  :TabooOpen<CR>
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
-  vmap <silent> <leader>ee  :<c-u>call utilexecute#execute_selection()<CR>
+  vmap <silent> <leader>ee  :<c-u>call utilexecute#execute_selection(1)<CR>
   nmap          <leader>ee  :VimuxPromptCommand <CR>
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
+  nmap <silent> <leader>;e  :<c-u>call utilexecute#execute_selection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
-  nmap <silent> <leader>kk  :<c-u>call utilexecute#copy_selection() <CR>
 
   "nmap          <Leader>j  :call GotoJump()<CR>
 
