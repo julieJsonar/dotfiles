@@ -87,7 +87,7 @@ Plugin 'Lokaltog/vim-distinguished'
 Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'derekwyatt/vim-fswitch'
-Plugin 'ciaranm/detectindent'
+Plugin 'tpope/vim-sleuth'
 Plugin 'file-line'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'Raimondi/delimitMate'
@@ -262,12 +262,6 @@ set ssop+=sesdir     " work under current dir as relative path
 
 "}
 
-" DetectIndent using :DetectIndent command
-let g:detectindent_preferred_expandtab = 0
-let g:detectindent_preferred_indent = 4
-let g:detectindent_preferred_when_mixed = 4
-let g:detectindent_max_lines_to_analyse = 1024
-
 " Save Session
 let g:session_autoload = 'no'
 let g:session_autosave = 'no'
@@ -279,7 +273,6 @@ let g:reload_on_write = 0
   " current position in jumplist
   autocmd CursorHold * normal! m'
 
-  autocmd BufNewFile,BufRead * DetectIndent
   autocmd BufNewFile,BufRead *.json set ft=javascript
 "}
 
@@ -405,7 +398,7 @@ let g:sneak#s_next = 1
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
   vmap <leader>y :w! /tmp/vim.yank<CR>
-  nmap <silent> <leader>y  :<c-u>call utilexecute#copy_selection() <CR>
+  nmap <silent> <leader>y  :<c-u>call vimux#copy_selection() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
@@ -448,10 +441,11 @@ let g:sneak#s_next = 1
   nmap          <leader>et  :TabooOpen 
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
-  vmap <silent> <leader>ee  :<c-u>call utilexecute#execute_selection(1)<CR>
+  vmap <silent> <leader>ee  :<c-u>call vimux#execute_selection(1)<CR>
   nmap          <leader>ee  :VimuxPromptCommand <CR>
+  nmap <silent> <leader>eg  :<c-u>call vimux#execute_group()<CR>
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
-  nmap <silent> <leader>;e  :<c-u>call utilexecute#execute_selection(0)<CR>
+  nmap <silent> <leader>;e  :<c-u>call vimux#execute_selection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
 
   "nmap          <Leader>j  :call GotoJump()<CR>
