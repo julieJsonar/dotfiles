@@ -128,7 +128,8 @@ do
 		echo "Skipping $f"
 	elif [ $f == '.zsh_history' ]; then
 		cat .zsh_history >> ~/.zsh_history
-	elif [ -d $f ]; then
+	elif [ -d $f ] && \
+	   [ $f != 'eclipse-moonrise-theme' ]; then
 		copy_file -r $f
 	elif [ -f $f ]; then
 		copy_file '' $f
@@ -140,8 +141,6 @@ done
 
 if [ $action_mode == 'push' ]; then
 # special commands
-	execute "cp ~/.vim/syntax/log.vim ."
-
 	execute "git add ."
 	execute "git commit -am \"$commit_msg\" && git push origin master"
 elif [ $action_mode == 'pull' ]; then
@@ -157,16 +156,7 @@ elif [ $action_mode == 'pull' ]; then
 	then
 		execute "ln -s ~/.vimrc $gvimrc"
 	fi
-
-	#if [ ! -f "$nvimrc" ] && [ ! -L "$nvimrc" ]
-	#then
-	#	execute "ln -s ~/.vimrc $nvimrc"
-	#fi
-
-	#if [ ! -d "$nvim" ] && [ ! -L "$nvim" ]
-	#then
-	#	execute "ln -s ~/.vim $nvim"
-	#fi
+	awk -f zsh_hist.awk ~/.zsh_history .zsh_history > ~/.zsh_history
 fi
 
 # End of file
