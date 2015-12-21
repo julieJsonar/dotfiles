@@ -127,6 +127,7 @@ Plugin 'vimwiki/vimwiki'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+"Plugin 'msanders/snipmate.vim'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -139,7 +140,7 @@ Plugin 'rking/ag.vim'
 "Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
 
-Plugin 'huawenyu/vimux'
+Plugin 'huawenyu/vimux-script'
 Plugin 'JarrodCTaylor/vim-shell-executor'
 
 Plugin 'Shougo/vimshell.vim'
