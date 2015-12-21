@@ -443,7 +443,7 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
   vmap <silent> <leader>ee  :<c-u>call vimux#execute_selection(1)<CR>
   nmap <silent> <leader>ee  :<c-u>call vimux#execute_selection(0)<CR>
-  nmap <silent> <leader>eg  :<c-u>call vimux#execute_group()<CR>
+  nmap <silent> <leader>eg  :<c-u>call vimuxscript#execute_group()<CR>
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
   nmap <silent> <leader>;e  :<c-u>call vimux#execute_selection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
