@@ -126,6 +126,8 @@ do
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then
 		echo "Skipping $f"
+	elif [ $f == '.zsh_history' ]; then
+		cat .zsh_history >> ~/.zsh_history
 	elif [ -d $f ]; then
 		copy_file -r $f
 	elif [ -f $f ]; then

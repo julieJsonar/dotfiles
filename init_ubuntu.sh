@@ -67,6 +67,11 @@ sudo service xinetd restart
 # If laptop, install battery
 #sudo apt-get install indicator-power
 
+# Startup.sh
+crontab -l > /tmp/my-crontab
+echo "@reboot sh /home/$USER/.startup.sh > /tmp/cronlog 2>&1" >> /tmp/my-crontab
+sudo crontab /tmp/my-crontab
+
 vim -c 'PluginInstall'
 # End of file
 
