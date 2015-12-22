@@ -4,4 +4,5 @@
 # @reboot /home/wilson/.startup.sh
 
 #setxkbmap -option caps:none
-xmodmap .Xmodmap
+#xmodmap .Xmodmap
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'

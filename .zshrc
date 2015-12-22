@@ -96,7 +96,6 @@ alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-
 
 unsetopt correct_all
 unsetopt nomatch
-xmodmap ~/.Xmodmap
 
 #
 # GREP
