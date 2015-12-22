@@ -87,7 +87,6 @@ Plugin 'Lokaltog/vim-distinguished'
 Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'derekwyatt/vim-fswitch'
-Plugin 'tpope/vim-sleuth'
 Plugin 'file-line'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'Raimondi/delimitMate'
@@ -127,6 +126,7 @@ Plugin 'vimwiki/vimwiki'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+"Plugin 'msanders/snipmate.vim'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -139,7 +139,7 @@ Plugin 'rking/ag.vim'
 "Plugin 'stefandtw/quickfix-reflector.vim'
 "Plugin 'huawenyu/vim-easygrep'
 
-Plugin 'huawenyu/vimux'
+Plugin 'huawenyu/vimux-script'
 Plugin 'JarrodCTaylor/vim-shell-executor'
 
 Plugin 'Shougo/vimshell.vim'
@@ -407,6 +407,7 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
   nmap <silent> <leader>;t :VoomToggle<CR>
+  nmap          <leader>dd :g/<C-R><C-w>/ norm dd
   " Tasklist
   let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
   nmap          <leader>t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
