@@ -5,6 +5,7 @@
 
 sudo apt-get update
 sudo apt-get install -f
+sudo update-rc.d cron defaults
 
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes

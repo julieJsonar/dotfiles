@@ -80,6 +80,8 @@ setopt SHARE_HISTORY        # Share history between session/terminals
 
 # Our local dir: data, tools, home
 source ~/.localrc
+# remap caps to ESC
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 alias dict='$mydata/tools/dict'
 alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $mydata/script/image.exp'
