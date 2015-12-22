@@ -122,6 +122,7 @@ do
 	   [ $f == 'patch.smbconf' ] || \
 	   [ $f == 'FortiGate-VM64.vmx' ] || \
 	   [ $f == 'eclipse-moonrise-theme' ] || \
+	   [ $f == 'zsh_hist.awk' ] || \
 	   [ $f == 'tftp' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then
