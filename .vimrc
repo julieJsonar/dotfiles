@@ -399,7 +399,7 @@ let g:sneak#s_next = 1
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
   vmap <leader>y :w! /tmp/vim.yank<CR>
-  nmap <silent> <leader>y  :<c-u>call vimux#copy_selection() <CR>
+  nmap <silent> <leader>y  :<c-u>call vimuxscript#copy_selection() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
@@ -443,11 +443,13 @@ let g:sneak#s_next = 1
   nmap          <leader>et  :TabooOpen 
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
-  vmap <silent> <leader>ee  :<c-u>call vimux#execute_selection(1)<CR>
-  nmap <silent> <leader>ee  :<c-u>call vimux#execute_selection(0)<CR>
+  "nmap <silent> <leader>ey  :<c-u>call vimuxscript#execute_selection(1)<CR>
+  "nmap <silent> <leader>ep  :<c-u>call vimuxscript#execute_selection(1)<CR>
+  vmap <silent> <leader>ee  :<c-u>call vimuxscript#execute_selection(1)<CR>
+  nmap <silent> <leader>ee  :<c-u>call vimuxscript#execute_selection(0)<CR>
   nmap <silent> <leader>eg  :<c-u>call vimuxscript#execute_group()<CR>
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
-  nmap <silent> <leader>;e  :<c-u>call vimux#execute_selection(0)<CR>
+  nmap <silent> <leader>;e  :<c-u>call vimuxscript#execute_selection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
 
   "nmap          <Leader>j  :call GotoJump()<CR>
