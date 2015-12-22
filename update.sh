@@ -123,12 +123,11 @@ do
 	   [ $f == 'FortiGate-VM64.vmx' ] || \
 	   [ $f == 'eclipse-moonrise-theme' ] || \
 	   [ $f == 'zsh_hist.awk' ] || \
+	   [ $f == '.zsh_history' ] || \
 	   [ $f == 'tftp' ] || \
 	   [ $f == '.' ] || \
 	   [ $f == '..' ]; then
 		echo "Skipping $f"
-	elif [ $f == '.zsh_history' ]; then
-		cat .zsh_history >> ~/.zsh_history
 	elif [ -d $f ] && \
 	   [ $f != 'eclipse-moonrise-theme' ]; then
 		copy_file -r $f
