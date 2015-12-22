@@ -152,6 +152,7 @@ Plugin 'h1mesuke/unite-outline'
 Plugin 'yuratomo/w3m.vim'
 Plugin 'DrawIt'
 Plugin 'bruno-/vim-man'
+Plugin 'vim-scripts/DirDiff.vim'
 
 Plugin 'huawenyu/c-utils.vim'
 
