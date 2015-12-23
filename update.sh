@@ -157,6 +157,10 @@ elif [ $action_mode == 'pull' ]; then
 		execute "ln -s ~/.vimrc $gvimrc"
 	fi
 	awk -f zsh_hist.awk ~/.zsh_history .zsh_history > ~/.zsh_history
+
+	# neovim
+	#ln -s ~/.vim ~/.config/nvim
+	#ln -s ~/.vimrc ~/.config/nvim/init.vim
 fi
 
 # End of file

@@ -6,9 +6,9 @@
 
 
 # hlsearch on (H) or off (h):
-~H
+~h
 # Last Search Pattern:
-~Msle0~/\<rtmp_prof\>
+~MSle0~/viminfo
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -18,8 +18,9 @@ $&
 
 # Command Line History (newest to oldest):
 :qa
-:'<,'>qa
 :w
+:echo has("nvim")
+:'<,'>qa
 :e plugin/bookmark.vim
 :e autoload/bookmark.vim
 :e autoload/workspace.vim
@@ -49,8 +50,8 @@ $&
 :w autoload/workspace.vim
 
 # Search String History (newest to oldest):
-? \<workspace#PromptExistedWorkspaceName\>
 ?/viminfo
+? \<workspace#PromptExistedWorkspaceName\>
 ?/bookmarks
 ?/BOOKMARKS
 ? \<wad_http_client_read_header\>
@@ -106,8 +107,8 @@ $&
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	rtmp_profile
+"0	LINE	0
+	 set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
 "1	LINE	0
 	
 "2	LINE	0
@@ -150,11 +151,6 @@ $&
 ""-	CHAR	0
 	 
 
-# global variables:
-!MARK_MARKS	STR	[]
-!MARK_ENABLED	NUM	1
-!BOOKMARKS	DIC	{}
-
 # File marks:
 'A  34  41  ~/andy/getlineex.c
 'B  39169  17  /tmp/log.tel
@@ -162,18 +158,22 @@ $&
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
-'1  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
-'2  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
-'3  479  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
-'4  1  0  /data/workref/git-svn/.version
-'5  89  0  /data/workref/fos-git/.config
-'6  1  0  /data/workref/fos-git/.version
-'7  1  0  ~/svn-info
-'8  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
-'9  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
+'0  261  1  ~/.vimrc
+'1  1  0  ~/project/nerdtree/.vimrc
+'2  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
+'3  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+'4  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
+'5  479  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
+'6  1  0  /data/workref/git-svn/.version
+'7  89  0  /data/workref/fos-git/.config
+'8  1  0  /data/workref/fos-git/.version
+'9  1  0  ~/svn-info
 
 # Jumplist (newest first):
+-'  261  1  ~/.vimrc
+-'  253  13  ~/.vimrc
+-'  239  13  ~/.vimrc
+-'  1  0  ~/project/nerdtree/.vimrc
 -'  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
 -'  25506  7  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
 -'  25481  13  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
@@ -268,17 +268,27 @@ $&
 -'  11915  6  /tmp/log.tel
 -'  11789  6  /tmp/log.tel
 -'  11634  6  /tmp/log.tel
--'  11313  6  /tmp/log.tel
--'  11116  6  /tmp/log.tel
--'  10738  6  /tmp/log.tel
--'  10214  6  /tmp/log.tel
-
-# Buffer list:
-%/data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c	25491	8
-%/data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c	25481	0
-%/data/workref/fos54-git-svn/daemon/wad/acsm.c	464	1
 
 # History of marks within files (newest to oldest):
+
+> ~/.vimrc
+	"	261	1
+	^	261	2
+	.	261	1
+	+	239	37
+	+	259	1
+	+	258	11
+	+	260	4
+	+	262	5
+	+	261	0
+	+	259	37
+	+	260	0
+	+	262	0
+	+	259	1
+	+	261	1
+
+> ~/project/nerdtree/.vimrc
+	"	1	0
 
 > /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
 	"	25491	8
@@ -319,12 +329,6 @@ $&
 	+	20	16
 	+	25	0
 	+	20	16
-
-> ~/.vimrc
-	"	239	37
-	^	239	36
-	.	239	37
-	+	239	37
 
 > ~/work/log/vim.viminfo
 	"	179	0

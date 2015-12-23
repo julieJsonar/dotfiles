@@ -68,6 +68,13 @@
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
+if has("unix")
+    let s:uname = system("uname")
+    let g:python_host_prog='/usr/bin/python'
+    if s:uname == "Darwin\n"
+        let g:python_host_prog='/usr/bin/python'
+    endif
+endif
 
 " Plugins {{{1}}}
 set nocompatible
@@ -124,6 +131,8 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'vim-voom/VOoM'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'szw/vim-maximizer'
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -248,7 +257,11 @@ set ssop+=sesdir     " work under current dir as relative path
  "  %    :  saves and restores the buffer list
  "  n... :  where to save the viminfo files,
  "            here save to /tmp means we have another viminfo manager 'workspace'
- set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
+if has("nvim")
+  set viminfo=!,'30,\"300,:30,%,n/tmp/nviminfo
+else
+  set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
+endif
 
  function! ResCur()
    if line("'\"") <= line("$")
@@ -396,12 +409,6 @@ let g:sneak#s_next = 1
   nmap <leader>i <C-I>
   nmap <leader>o <C-O>
 
-  " maximize
-  nnoremap <silent> <leader>ww :MaximizerToggle<CR>
-  vnoremap <silent> <leader>ww :MaximizerToggle<CR>gv
-  "nnoremap <silent> <leader>wm <C-w>w:MaximizerToggle<CR>
-  "vnoremap <silent> <leader>wm <C-w>w:MaximizerToggle<CR>gv
-
   " make vim yank cross vim-sessions
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
@@ -410,7 +417,8 @@ let g:sneak#s_next = 1
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
-  nmap <silent> <leader>;w :NumbersToggle<CR>
+  "nmap <silent> <leader>;w :NumbersToggle<CR>
+  nmap <silent> <leader>;w :MaximizerToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
@@ -557,4 +565,3 @@ let g:sneak#s_next = 1
   endfunction
 
 "}
-

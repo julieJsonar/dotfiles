@@ -24,6 +24,14 @@ sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386
 # sudo updatedb
 # locate stdio.h
 
+# neovim
+sudo apt-get install python-dev python-pip python3-dev python3-pip
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
+# nvim :help nvim_python
+sudo pip install neovim
+
 # Java JDK
 sudo apt-add-repository ppa:webupd8team/java
 sudo apt-get update
