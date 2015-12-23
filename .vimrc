@@ -122,7 +122,8 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
 " Outline: help-doc https://vim-voom.github.io/
 Plugin 'vim-voom/VOoM'
-Plugin 'vimwiki/vimwiki'
+"Plugin 'vimwiki/vimwiki'
+Plugin 'szw/vim-maximizer'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -395,6 +396,12 @@ let g:sneak#s_next = 1
   nmap <leader>i <C-I>
   nmap <leader>o <C-O>
 
+  " maximize
+  nnoremap <silent> <leader>ww :MaximizerToggle<CR>
+  vnoremap <silent> <leader>ww :MaximizerToggle<CR>gv
+  "nnoremap <silent> <leader>wm <C-w>w:MaximizerToggle<CR>
+  "vnoremap <silent> <leader>wm <C-w>w:MaximizerToggle<CR>gv
+
   " make vim yank cross vim-sessions
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
@@ -438,7 +445,7 @@ let g:sneak#s_next = 1
   nmap <silent> <c-p> :cp<cr>
 
   " Execute selected text as shell
-  nmap          <leader>ed  :bd<CR>
+  nmap          <leader>ed  :g/.\{200,\}/d
   nmap          <leader>ex  :tabclose<CR>
   nmap          <leader>et  :TabooOpen 
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
