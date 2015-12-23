@@ -416,7 +416,8 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>y  :<c-u>call vimuxscript#Copy() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
-  nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
+  nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
+  nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
   "nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;w :MaximizerToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
@@ -434,8 +435,8 @@ let g:sneak#s_next = 1
 
   let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
   vmap          <leader>;h <Plug>CtrlSFVwordPath
-  nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR>
-  vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
+  nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
 
   " Redirect last g search content to a new tab
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
@@ -524,7 +525,7 @@ let g:sneak#s_next = 1
   "cmap w!! w !sudo tee % >/dev/null
 
   map <leader>va :<C-\>e utilgrep#LocalEasyGrep(0,1) <CR>
-  map <leader>vv :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR>
+  map <leader>vv :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
   map <leader>vV :<C-\>e utilgrep#LocalEasyGrep(2,1) <CR>
   "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
   map <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
