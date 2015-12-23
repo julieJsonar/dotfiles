@@ -413,7 +413,7 @@ let g:sneak#s_next = 1
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
   vmap <leader>y :w! /tmp/vim.yank<CR>
-  nmap <silent> <leader>ey  :<c-u>call vimuxscript#Copy() <CR>
+  nmap <silent> <leader>y  :<c-u>call vimuxscript#Copy() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
