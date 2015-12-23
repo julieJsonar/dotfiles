@@ -413,7 +413,7 @@ let g:sneak#s_next = 1
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
   vmap <leader>y :w! /tmp/vim.yank<CR>
-  nmap <silent> <leader>y  :<c-u>call vimuxscript#copy_selection() <CR>
+  nmap <silent> <leader>ey  :<c-u>call vimuxscript#Copy() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   nmap          <leader>;f :call utilquickfix#FilterQuickFixList() <CR>
@@ -423,7 +423,10 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
   nmap <silent> <leader>;t :VoomToggle<CR>
+
   nmap          <leader>dd :g/<C-R><C-w>/ norm dd
+  nmap          <leader>de  :g/.\{200,\}/d
+
   " Tasklist
   let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
   nmap          <leader>t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
@@ -453,13 +456,12 @@ let g:sneak#s_next = 1
   nmap <silent> <c-p> :cp<cr>
 
   " Execute selected text as shell
-  nmap          <leader>ed  :g/.\{200,\}/d
   nmap          <leader>ex  :tabclose<CR>
   nmap          <leader>et  :TabooOpen 
   nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
   nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
-  "nmap <silent> <leader>ey  :<c-u>call vimuxscript#execute_selection(1)<CR>
-  "nmap <silent> <leader>ep  :<c-u>call vimuxscript#execute_selection(1)<CR>
+  nmap <silent> <leader>ev  :<c-u>call vimuxscript#StartCopy() <CR>
+  nmap <silent> <leader>ey  :<c-u>call vimuxscript#Copy() <CR>
   vmap <silent> <leader>ee  :<c-u>call vimuxscript#execute_selection(1)<CR>
   nmap <silent> <leader>ee  :<c-u>call vimuxscript#execute_selection(0)<CR>
   nmap <silent> <leader>eg  :<c-u>call vimuxscript#execute_group()<CR>
