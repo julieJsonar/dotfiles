@@ -423,6 +423,7 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;o :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
   nmap <silent> <leader>;t :VoomToggle<CR>
+  let g:voom_tree_placement = 'right'
 
   nmap          <leader>dd :g/<C-R><C-w>/ norm dd
   nmap          <leader>de  :g/.\{200,\}/d
