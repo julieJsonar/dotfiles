@@ -435,8 +435,10 @@ let g:sneak#s_next = 1
 
   let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
   vmap          <leader>;h <Plug>CtrlSFVwordPath
-  nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  "nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  "vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  nmap          <leader>;v :<C-\>e utilgrep#Ag(0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  vmap          <leader>;v :<C-\>e utilgrep#Ag(1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
 
   " Redirect last g search content to a new tab
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
