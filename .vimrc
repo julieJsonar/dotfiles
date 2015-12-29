@@ -400,8 +400,6 @@ let g:sneak#s_next = 1
 
 " Key maps {{{1}}}
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
-  "nmap <silent> <space> :ptjump <c-r><c-w><cr><c-w>Pzt<c-w><c-p>
-  "map <leader> <space> :<C-\>e OpenFileInPreviewWindow() <CR><CR>
 
   " when wrap, move by virtual row
   nmap j gj
@@ -416,36 +414,56 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>y  :<c-u>call vimuxscript#Copy() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
+  " vim local list
+  nmap <silent> gn :silent! lnext <CR>
+  nmap <silent> gp :silent! lpre  <CR>
+
+  " Open tag in new tab
+  nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+  nmap <c-h> <c-w>h
+  nmap <c-j> <c-w>j
+  nmap <c-k> <c-w>k
+  nmap <c-l> <c-w>l
+
+  map <silent> <leader>1 :norm! 1gt <CR>
+  map <silent> <leader>2 :norm! 2gt <CR>
+  map <silent> <leader>3 :norm! 3gt <CR>
+  map <silent> <leader>4 :norm! 4gt <CR>
+  map <silent> <leader>5 :norm! 5gt <CR>
+  map <silent> <leader>6 :norm! 6gt <CR>
+
+  nmap <buffer> <Enter> <C-W><Enter>
+
+  map gf :call utils#GotoFileWithLineNum()<CR>
+  map gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
+
+  "map <leader>ds :call Asm() <CR>
+  map <leader>bs :call blame#SvnBlameCurrent() <CR>
+  map <leader>bg :Gblame <CR>
+
   nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
+  nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
+
   "nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;w :MaximizerToggle<CR>
-  nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nmap <silent> <leader>;f :TagbarToggle<CR>
-  nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
-  nmap <silent> <leader>;o :VoomToggle<CR>
-  let g:voom_tree_placement = 'right'
+  nmap <silent> <leader>ww :MaximizerToggle<CR>
 
   nmap          <leader>dd :g/<C-R><C-w>/ norm dd
   nmap          <leader>de  :g/.\{200,\}/d
 
-  " Tasklist
+  let g:voom_tree_placement = 'right'
   let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
-
   let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
+  "nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
+
+  nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
+  nmap <silent> <leader>;o :VoomToggle<CR>
+  nmap <silent> <leader>;t :TagbarToggle<CR>
   vmap          <leader>;h <Plug>CtrlSFVwordPath
-  nmap          <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  vmap          <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  "nmap          <leader>;v :<C-\>e utilgrep#Ag(0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  "vmap          <leader>;v :<C-\>e utilgrep#Ag(1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-
-  " Redirect last g search content to a new tab
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-
   nmap <silent> <leader>;s :call utilcscope#CscopeSymbol() <CR>
-  "nmap <silent> <leader>;r :call CurrentReplace() <CR>
-  "nmap <silent> <leader>;w :call AppendNoteOnSource() <CR>
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
 
@@ -473,50 +491,18 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;e  :<c-u>call vimuxscript#execute_selection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
 
-  "nmap          <Leader>j  :call GotoJump()<CR>
-
   " map same key under different mode
   nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
-
-
-  map <silent> <leader>1 :norm! 1gt <CR>
-  map <silent> <leader>2 :norm! 2gt <CR>
-  map <silent> <leader>3 :norm! 3gt <CR>
-  map <silent> <leader>4 :norm! 4gt <CR>
-  map <silent> <leader>5 :norm! 5gt <CR>
-  map <silent> <leader>6 :norm! 6gt <CR>
-
-
-  map gf :call utils#GotoFileWithLineNum()<CR>
-  map gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
-
-  "map <leader>ds :call Asm() <CR>
-  map <leader>bs :call blame#SvnBlameCurrent() <CR>
-  map <leader>bg :Gblame <CR>
-
-  nmap <buffer> <Enter> <C-W><Enter>
 
   " ctags -R *;  ctags -L cscope.files
   "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
   "nmap <silent> <leader>, :ptnext<cr>
   "nmap <silent> <leader>. :ptprevious<cr>
 
-  " vim local list
-  nmap <silent> gn :silent! lnext <CR>
-  nmap <silent> gp :silent! lpre  <CR>
-
   " TAB conflict with ctrl-i
   "nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
   nmap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
-
-  " Open tag in new tab
-  nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
-
-  nmap <c-h> <c-w>h
-  nmap <c-j> <c-w>j
-  nmap <c-k> <c-w>k
-  nmap <c-l> <c-w>l
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
@@ -526,16 +512,21 @@ let g:sneak#s_next = 1
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
 
-  map <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
-  map <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  map <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
+  map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
+  nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
+  vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
+  map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
   "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
-  map <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  map  <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  nmap <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR>
+  vmap <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR>
 
   "bookmark
   nmap <leader>mo :BookmarkLoad Default
   nmap <leader>ma :BookmarkShowAll <CR>
   nmap <leader>mm :BookmarkSet <C-R><c-w>
+  nmap <leader>;m :BookmarkSet <C-R><c-w>
+  "nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <leader>mg :BookmarkGoto <C-R><c-w>
   nmap <leader>mc :BookmarkDel <C-R><c-w>
 
