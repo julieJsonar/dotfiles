@@ -459,6 +459,7 @@ let g:sneak#s_next = 1
   "nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
+  nmap <silent> <leader>;i :call utils#VoomInsert() <CR>
   nmap <silent> <leader>;o :VoomToggle<CR>
   nmap <silent> <leader>;t :TagbarToggle<CR>
   vmap          <leader>;h <Plug>CtrlSFVwordPath
