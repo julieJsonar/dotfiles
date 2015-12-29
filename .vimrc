@@ -128,7 +128,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
 " Outline: help-doc https://vim-voom.github.io/
-Plugin 'vim-voom/VOoM'
+Plugin 'vim-scripts/VOoM'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'szw/vim-maximizer'
 "Plugin 'godlygeek/tabular'
