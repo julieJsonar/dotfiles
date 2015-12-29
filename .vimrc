@@ -421,9 +421,9 @@ let g:sneak#s_next = 1
   "nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;w :MaximizerToggle<CR>
   nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nmap <silent> <leader>;o :TagbarToggle<CR>
+  nmap <silent> <leader>;f :TagbarToggle<CR>
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
-  nmap <silent> <leader>;t :VoomToggle<CR>
+  nmap <silent> <leader>;o :VoomToggle<CR>
   let g:voom_tree_placement = 'right'
 
   nmap          <leader>dd :g/<C-R><C-w>/ norm dd
@@ -431,14 +431,14 @@ let g:sneak#s_next = 1
 
   " Tasklist
   let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  nmap          <leader>t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
+  nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
   let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
   vmap          <leader>;h <Plug>CtrlSFVwordPath
-  "nmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  "vmap          <leader>;v :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  nmap          <leader>;v :<C-\>e utilgrep#Ag(0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  vmap          <leader>;v :<C-\>e utilgrep#Ag(1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  nmap          <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  vmap          <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  "nmap          <leader>;v :<C-\>e utilgrep#Ag(0) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  "vmap          <leader>;v :<C-\>e utilgrep#Ag(1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
 
   " Redirect last g search content to a new tab
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
@@ -526,9 +526,9 @@ let g:sneak#s_next = 1
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
 
-  map <leader>va :<C-\>e utilgrep#LocalEasyGrep(0,1) <CR>
-  map <leader>vv :<C-\>e utilgrep#LocalEasyGrep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
-  map <leader>vV :<C-\>e utilgrep#LocalEasyGrep(2,1) <CR>
+  map <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
+  map <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR> \| :call utilquickfix#QuickFixFunction() <CR>
+  map <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
   "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
   map <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
