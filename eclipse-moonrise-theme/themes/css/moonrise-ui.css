@@ -56,19 +56,6 @@
 	    swt-corner-radius: 16px;
 	}
 	
-	.MPartStack.active {
-	    background-color: #292929;   /* ignored (<2>) */
-	    swt-inner-keyline-color: #FFFFFF;
-	    swt-tab-outline: #484848; /* border color for selected tab */
-	    swt-outer-keyline-color: #4B4C4F; /* border color for whole tabs container */
-	    swt-unselected-tabs-color: #494A4D #404043 #272727 99% 100%; /* title background for unselected tab */
-	    swt-selected-tab-fill: #292929; /* title background for selected tab (gradient bottom color) */
-	}
-	.MPartStack.active > * {
-	    /* Workaround for (<2>) to set the color of the inner border for the active tab */
-	    background-color: #292929;
-	}
-	
 	.MPartStack.empty {
 	    swt-unselected-tabs-color: #515658 #4F5456 #4F5456 99% 100%; /* title background for unselected tab */
 	    swt-tab-outline: #535354; /* border color for selected tab */
@@ -84,21 +71,11 @@
 	}
 	CTabItem:selected,
 	CTabItem:selected CLabel {
-	    color: #DDDDDD;
-	}
-	
-	.MPartStack.active > CTabItem,
-	.MPartStack.active > CTabItem CLabel {
-	    background-color: #292929; /* HACK for background of CTabFolder inner Toolbars */
-	    color: #AAAAAA;
-	}
-	.MPartStack.active > CTabItem:selected,
-	.MPartStack.active > CTabItem:selected CLabel {
-	    color: #FFFFFF;
+	    color: #999999;
 	}
 	
 	CTabItem.busy {
-		color: #888888;
+		color: #999999;
 	}
 	
 	.MTrimmedWindow {
@@ -116,10 +93,6 @@
 	.TrimStack {
 	    frame-cuts: 4px 2px 5px 16px;
 	    handle-image: url('./dragHandle.png');
-	}
-	
-	CTabFolder.MArea .MPartStack,CTabFolder.MArea .MPartStack.active {
-	    swt-shadow-visible: false;
 	}
 	
 	.MToolControl.TrimStack {
@@ -438,7 +411,7 @@
 	}
 	
 	CTabFolder {
-	    background-color: #292929;
+	    background-color: #313538;
 	    color: #f7f8f8;
 	    swt-tab-renderer: url('bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.CTabRendering');
 	
@@ -448,7 +421,7 @@
 	    swt-tab-outline: #484848; /* border color for selected tab */
 	    swt-outer-keyline-color: #4B4C4F; /* border color for whole tabs container */
 	    swt-unselected-tabs-color: #494A4D #404043 #272727 99% 100%; /* title background for unselected tab */
-	    swt-selected-tab-fill: #292929; /* title background for selected tab (gradient bottom color) */
+	    swt-selected-tab-fill: #313538; /* title background for selected tab (gradient bottom color) */
 	
 	    swt-shadow-color: #0b0b0b;
 	    swt-shadow-visible: true;
@@ -483,25 +456,10 @@
 	    background-color: #2F2F2F;
 	    color: #CCC;
 	}
-	.MPartStack.active Tree,
-	.MPartStack.active CTabFolder Canvas {
-	    background-color: #262626;
-	    color: #CCC;
-	}
-	
-	.MPartStack.active Table{
-	    background-color: #2F2F2F;
-	    color: #CCC;
-	}
-	
 	.View {
 	    background-color: #313538;
 	    color: #F5F5F5;
 	}
-	/* not triggered
-	.View.active {
-	    background-color: #333;
-	} */
 	
 	Form,
 	FormHeading {
@@ -611,11 +569,7 @@
 	/* ######################### Views ############################# */
 	
 	.MPart {
-	    background-color: #323435;
-	    color: #DDDDDD;
-	}
-	.MPartStack.active .MPart {
-	    background-color: #292929;
+	    background-color: #313538;
 	    color: #DDDDDD;
 	}
 	
@@ -650,45 +604,10 @@
 	    background-color: #2F2F2F;
 	    color: #AAAAAA;
 	}
-	.MPartStack.active .MPart Composite,
-	.MPartStack.active .MPart LayoutComposite,
-	.MPartStack.active .MPart Label,
-	.MPartStack.active .MPart Hyperlink,
-	.MPartStack.active .MPart ImageHyperlink,
-	.MPartStack.active .MPart ScrolledForm,
-	.MPartStack.active .MPart Form,
-	.MPartStack.active .MPart Section,
-	.MPartStack.active .MPart FormText,
-	.MPartStack.active .MPart Link,
-	.MPartStack.active .MPart Sash,
-	.MPartStack.active .MPart Button,
-	.MPartStack.active .MPart Group,
-	.MPartStack.active .MPart SashForm,
-	.MPartStack.active .MPart FilteredTree,
-	.MPartStack.active .MPart RegistryFilteredTree,
-	.MPartStack.active .MPart PageSiteComposite,
-	.MPartStack.active .MPart DependenciesComposite,
-	.MPartStack.active .MPart Text[style~='SWT.READ_ONLY'],
-	.MPartStack.active .MPart FigureCanvas,
-	.MPartStack.active .MPart ListEditorComposite,
-	.MPartStack.active .MPart ScrolledComposite,
-	.MPartStack.active .MPart ScrolledComposite ToolBar,
-	.MPartStack.active .Mpart ScrolledComposite ProgressInfoItem,
-	.MPartStack.active .MPart Form ScrolledPageBook,
-	.MPartStack.active .MPart Form > LayoutComposite > LayoutComposite > ToolBar,
-	.MPartStack.active .MPart DependenciesComposite > SashForm > Section > * /* Section > DependenciesComposite$... */,
-	.MPartStack.active .MPart LayoutComposite > * > LayoutComposite > Section > LayoutComposite > * /*LayoutComposite > MasterDetailBlock$... > LayoutComposite > Section > LayoutComposite > ExtensionsSection$...*/ {
-	    background-color: #262626;
-	    color: #999999;
-	}
 	
 	.MPart Section > Label {
 		background-color: #2F2F2F;
-	    color: #ABCEDA;
-	}
-	.MPartStack.active .MPart Section > Label {
-		background-color: #262626;
-	    color: #9EC1CE;
+	    color: #AAAAAA;
 	}
 	
 	.MPart Table,
@@ -704,48 +623,21 @@
 		background-color: #313538;
 	    color: #CCC;
 	}
-	.MPartStack.active .MPart Table,
-	.MPartStack.active .MPart Browser,
-	.MPartStack.active .Mpart OleFrame,
-	.MPartStack.active .MPart ViewForm,
-	.MPartStack.active .MPart ViewForm > ToolBar,
-	.MPartStack.active .MPart ViewForm > CLabel,
-	.MPartStack.active .MPart PageBook > Label,
-	.MPartStack.active .MPart PageBook > SashForm,
-	.MPartStack.active #org-eclipse-help-ui-HelpView LayoutComposite > LayoutComposite,
-	.MPartStack.active #org-eclipse-help-ui-HelpView LayoutComposite > LayoutComposite > * {
-		background-color: #333;
-	    color: #DDDDDD;
-	}
 	#org-eclipse-help-ui-HelpView LayoutComposite > LayoutComposite ImageHyperlink {
 		background-color: #313538;
-	    color: #6fc5ee;
-	}
-	.MPartStack.active #org-eclipse-help-ui-HelpView LayoutComposite > LayoutComposite ImageHyperlink {
-		background-color: #333;
-	    color: #7AAADA;
+	    color: #CCC;
 	}
 	
 	.MPart > Label,
 	#com-android-ide-eclipse-adt-internal-lint-LintViewPart > Composite > Label {
 	    background-color: #313538;
-	    color: #7DC2BD;
-	}
-	.MPartStack.active .MPart > Label,
-	.MPartStack.active #com-android-ide-eclipse-adt-internal-lint-LintViewPart > Composite > Label {
-	    background-color: #2F3235;
-	    color: #B1E8F7;
+	    color: #CCC;
 	}
 	
 	.MPart Section Tree,
 	.MPart LayoutComposite > * > LayoutComposite > Section > LayoutComposite > Tree {
-	    background-color: #383A3B;
-	    color: #DDDDDD;
-	}
-	.MPartStack.active .MPart Section Tree,
-	.MPartStack.active .MPart LayoutComposite > * > LayoutComposite > Section > LayoutComposite > Tree {
-	    background-color: #353636;
-	    color: #CCCCCC;
+	    background-color: #313538;
+	    color: #CCC;
 	}
 	
 	.MPart DatePicker,
@@ -759,20 +651,6 @@
 	.MPart StyledText,
 	.MPart PageBook > SashForm Label,
 	.MPart SashForm > Text[style~='SWT.BORDER'] {
-	    background-color: #3f4447;
-	    color: #BBBBBB;
-	}
-	.MPartStack.active .MPart DatePicker,
-	.MPartStack.active .MPart DatePicker > Text,
-	.MPartStack.active .MPart DatePicker > ImageHyperlink,
-	.MPartStack.active .MPart ScheduleDatePicker,
-	.MPartStack.active .MPart ScheduleDatePicker > Text,
-	.MPartStack.active .MPart ScheduleDatePicker > ImageHyperlink,
-	.MPartStack.active .MPart CCombo,
-	.MPartStack.active .MPart Spinner,
-	.MPartStack.active .MPart StyledText,
-	.MPartStack.active .MPart PageBook > SashForm Label,
-	.MPartStack.active .MPart SashForm > Text[style~='SWT.BORDER'] {
 	    background-color: #313538;
 	    color: #AAAAAA;
 	}
@@ -790,22 +668,7 @@
 	}
 	.MPart FormHeading {
 		background: #505f70;
-		background-image: #505f70;	
-	}
-	.MPartStack.active .MPart FormHeading,
-	.MPartStack.active .MPart FormHeading > ToolBar,
-	.MPartStack.active .MPart FormHeading > TitleRegion,
-	.MPartStack.active .MPart FormHeading > TitleRegion > Label,
-	.MPartStack.active .MPart FormHeading > TitleRegion > ToolBar,
-	.MPartStack.active .MPart FormHeading > TitleRegion > StyledText,
-	.MPartStack.active .MPart FormHeading LayoutComposite,
-	.MPartStack.active .MPart FormHeading ImageHyperlink {
-	    background-color: #415062;
-	    color: #9ac9d8;
-	}
-	.MPartStack.active .MPart FormHeading {
-		background: #415062;
-		background-image: #415062;
+		background-image: #505f70;
 	}
 	.MPart FormHeading,
 	.MPart FormHeading > TitleRegion {
@@ -813,10 +676,6 @@
 	}
 	.MPart FormHeading > CLabel {
 		background-color: #505f70;
-	    color: #E98787;
-	}
-	.MPartStack.active .MPart FormHeading > CLabel {
-		background-color: #415062;
 	    color: #E98787;
 	}
 	
@@ -836,14 +695,6 @@
 	    background-color: #2F2F2F;
 	    color: #CCCCCC;
 	}
-	.MPartStack.active #org-eclipse-ui-console-ConsoleView .MPart > Composite,
-	.MPartStack.active #org-eclipse-ui-console-ConsoleView .MPart StyledText,
-	.MPartStack.active #org-eclipse-ui-console-ConsoleView .MPart PageBook Label,
-	.MPartStack.active #org-eclipse-dltk-debug-ui-ScriptDisplayView SashForm > * {
-	    background-color: #262626;
-	    color: #CCCCCC;
-	}
-	
 	/* ------------------------------------------------------------- */
 	
 	#org-eclipse-pde-runtime-LogView Text {
@@ -864,14 +715,7 @@
 	#org-eclipse-e4-ui-compatibility-editor Canvas > *,
 	/* Workaround for CDT folding column SWT-BUG (styles aren't inherited) */
 	#org-eclipse-e4-ui-compatibility-editor Canvas > * > * {
-	    background-color: #262626;
-	    /* SWT-BUG: background-color rule for LineNumberRulerColumn is ignored */
-	}
-	.MPartStack.active #org-eclipse-e4-ui-compatibility-editor Canvas,
-	.MPartStack.active #org-eclipse-e4-ui-compatibility-editor Canvas > *,
-	/* Workaround for CDT folding column SWT-BUG (styles aren't inherited) */
-	.MPartStack.active #org-eclipse-e4-ui-compatibility-editor Canvas > * > * {
-	    background-color: #202020;
+	    background-color: #2F2F2F;
 	    /* SWT-BUG: background-color rule for LineNumberRulerColumn is ignored */
 	}
 	#org-eclipse-e4-ui-compatibility-editor .MPart {
@@ -879,10 +723,6 @@
 	}
 	#org-eclipse-e4-ui-compatibility-editor PaletteControl ScrolledComposite > Composite > * {
 	    background-color: #2F2F2F;
-	    color: #BBBBBB;
-	}
-	.MPartStack.active #org-eclipse-e4-ui-compatibility-editor PaletteControl ScrolledComposite > Composite > * {
-	    background-color: #262626;
 	    color: #CCCCCC;
 	}
 	#org-eclipse-e4-ui-compatibility-editor PaletteControl CLabel {
@@ -960,14 +800,6 @@
 	jtab-unselected-text-shadow-position: 0px 1px;  /* Offset for the shadow of unselected tab item text */
 }
 
-.MPartStack.active {
-	background: #292929;         
-    jtab-selected-tab-background: #2B2C2D #292929 #292929 99% 100%;  /* Gradient for selected tab item */
-	jtab-header-background: #494A4D #404043 #404043 99% 100%;  /* Gradient for the background of tab header */
-	
-	jtab-hover-tabs-background: #313638 #363639 100%;  /* Gradient for hover tab item */
-}
-
 .TrimStack {
     frame-image: url('jeeeyul://frame?background-color=#414648');
     frame-cuts: 4px 2px 5px 16px;
@@ -989,7 +821,7 @@
 CTabFolder {
     swt-tab-renderer: url('bundleclass://net.jeeeyul.eclipse.themes/net.jeeeyul.eclipse.themes.rendering.JeeeyulsTabRenderer');
     
-    jtab-selected-tab-background: #363636 #292929 #292929 99% 100%;  /* Gradient for selected tab item */	
+    jtab-selected-tab-background: #363636 #313538 #313538 99% 100%;  /* Gradient for selected tab item */	
     jtab-selected-border-color: none;  /* Gradient for the border of selected tab item */
     
     jtab-header-background: #494A4D #404043 #404043 99% 100%;  /* Gradient for the background of tab header */
