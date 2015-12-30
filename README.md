@@ -29,6 +29,8 @@ If plugin invalid, we can install by update:
 Then replaced by our modified version.
 
 ```
+Please choose the moonrise, not moonrise(standalone)
+
 $ cd eclipse-moonrise-theme
 $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
 $ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  ~/tools/eclipse/plugins/.
