@@ -115,9 +115,9 @@ alias grep='_mygrep'
 unset GREP_OPTIONS
 
 # This will run everytime you run a command.
-precmd () {
-  tmux set -qg status-left "#S #P $(pwd)"
-}
+#precmd () {
+#  tmux set -qg status-left "#S #P $(pwd)"
+#}
 
 # tmux-all-panes
 # Runs the specified command (provided by the first argument) in all tmux panes

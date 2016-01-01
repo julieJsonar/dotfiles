@@ -525,8 +525,8 @@ let g:sneak#s_next = 1
   "bookmark
   nmap <leader>mo :BookmarkLoad Default
   nmap <leader>ma :BookmarkShowAll <CR>
-  nmap <leader>mm :BookmarkSet <C-R><c-w>
-  nmap <leader>;m :BookmarkSet <C-R><c-w>
+  nmap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
+  nmap <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   "nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
   nmap <leader>mg :BookmarkGoto <C-R><c-w>
   nmap <leader>mc :BookmarkDel <C-R><c-w>
