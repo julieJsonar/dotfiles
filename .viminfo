@@ -6,9 +6,9 @@
 
 
 # hlsearch on (H) or off (h):
-~h
+~H
 # Last Search Pattern:
-~MSle0~/viminfo
+~MSle0~/insert
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -19,6 +19,11 @@ $&
 # Command Line History (newest to oldest):
 :qa
 :w
+:set shiftwidth=4
+:qa!
+:q
+:echo @s
+:PluginClean
 :echo has("nvim")
 :'<,'>qa
 :e plugin/bookmark.vim
@@ -30,7 +35,6 @@ $&
 :viminfo
 :BookmarkLoad Default
 :BookmarkLoad 
-:q
 :b ~/work/log/vim.viminfo
 :BookmarkLoad "Default"
 :vim.vim-bookmarks
@@ -38,7 +42,6 @@ $&
 :BookmarkLoad Log
 :Savews
 :grep! -Inr --include='*.[ch]' -- 'setting.storage' .
-:qa!
 :b plugin/bookmark.vim
 :f
 :b autoload/bookmark.vim
@@ -50,6 +53,8 @@ $&
 :w autoload/workspace.vim
 
 # Search String History (newest to oldest):
+?/insert
+?/^POST \/open
 ?/viminfo
 ? \<workspace#PromptExistedWorkspaceName\>
 ?/bookmarks
@@ -100,6 +105,7 @@ $&
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@y
 @\<wad_http_client_read_header\>
 @qa
 @\<echo\>
@@ -107,27 +113,31 @@ $&
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	 set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
+"0	CHAR	0
+	@s
 "1	LINE	0
-	
+	        let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
 "2	LINE	0
-	
+	        let cur_word = 
 "3	LINE	0
-		strlcpy(fw_pol->rtmp_prof, pol->rtmp_prof, sizeof(fw_pol->rtmp_prof));
 	
 "4	LINE	0
-	        snmp/FORTINET-FORTICACHE-MIB.mib
+	        let number = 1
+	        if v:count > 0
+	            let number = v:count
+	        endif
+	
 "5	LINE	0
-	        migbase/sysapi/base/phy_intfs.h
+	  else
 "6	LINE	0
-	        migbase/sysapi/base/iprope_usr_fwd.c.orig
+	
 "7	LINE	0
-	        migbase/include/parser.h.orig
+	
 "8	LINE	0
-	        migbase/include/cmdbapi/cmdbapi.h.orig
+		strlcpy(fw_pol->rtmp_prof, pol->rtmp_prof, sizeof(fw_pol->rtmp_prof));
+	
 "9	LINE	0
-	        migbase/include/aps_policy.h.orig
+	        snmp/FORTINET-FORTICACHE-MIB.mib
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -148,8 +158,10 @@ $&
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-""-	CHAR	0
-	 
+""s	CHAR	0
+	for view in 
+"-	CHAR	0
+	cur_word
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -158,18 +170,40 @@ $&
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  473  1  ~/.vimrc
-'1  15  2  ~/work/log/rtmp-tp.script
-'2  51  42  ~/work/log/rtmp-tp-live.log
-'3  11  0  ~/work/log/rtmp-tp.script
-'4  1  0  ~/work/log/rtmp-tp.script
-'5  261  1  ~/.vimrc
-'6  1  0  ~/project/nerdtree/.vimrc
-'7  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
-'8  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
-'9  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
+'0  63  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+'1  447  41  ~/.vimrc
+'2  248  6  ~/.vimrc
+'3  14  12  /data/workref/log/rtmp-tp.script
+'4  29  0  ~/[Vundle] clean
+'5  473  1  ~/.vimrc
+'6  15  2  ~/work/log/rtmp-tp.script
+'7  51  42  ~/work/log/rtmp-tp-live.log
+'8  11  0  ~/work/log/rtmp-tp.script
+'9  1  0  ~/work/log/rtmp-tp.script
 
 # Jumplist (newest first):
+-'  63  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  57  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  54  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  66  8  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  61  8  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  60  3  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  41  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  31  5  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  78  9  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  38  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  70  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+-'  447  41  ~/.vimrc
+-'  248  6  ~/.vimrc
+-'  247  39  ~/.vimrc
+-'  245  37  ~/.vimrc
+-'  243  54  ~/.vimrc
+-'  242  30  ~/.vimrc
+-'  145  1  ~/.vimrc
+-'  14  12  /data/workref/log/rtmp-tp.script
+-'  1  0  /data/workref/log/rtmp-tp.script
+-'  29  0  ~/[Vundle] clean
 -'  473  1  ~/.vimrc
 -'  261  1  ~/.vimrc
 -'  15  2  ~/work/log/rtmp-tp.script
@@ -241,38 +275,55 @@ $&
 -'  125  28  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
 -'  115  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
 -'  149  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  2634  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  2647  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  38  12  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  12  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
--'  13  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.h
--'  35  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  9  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  132  56  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  87  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_config.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/wad_config.c
--'  12  52  /tmp/log.tel
--'  1  0  /tmp/log.tel
--'  61  0  /tmp/log.tel
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.files
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/log.fiels
--'  2  28  /data/workref/rtmp/fch40-rtmp-git/log.files
--'  135  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  129  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  133  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  126  43  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  169  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  134  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  259  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  32  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
 
 # History of marks within files (newest to oldest):
 
+> ~/.vim/bundle/c-utils.vim/autoload/utils.vim
+	"	63	10
+	^	65	4
+	.	63	0
+	+	54	30
+	+	60	10
+	+	68	0
+	+	67	4
+	+	66	0
+	+	61	0
+	+	66	0
+	+	65	0
+	+	67	0
+	+	60	0
+	+	63	30
+	+	64	30
+	+	66	0
+	+	55	0
+	+	66	22
+	+	67	30
+	+	66	0
+	+	63	0
+
+> ~/.vim/bundle/c-utils.vim/autoload/__Tagbar__
+	"	6	0
+	.	8	0
+	+	8	0
+	+	8	0
+	+	8	0
+
+> /tmp/log.tel
+	"	1389	0
+	^	1388	0
+	.	1389	0
+	+	1389	0
+
+> /data/workref/log/rtmp-tp.script
+	"	23	1
+	^	14	11
+	.	14	10
+	+	14	10
+
 > ~/.vimrc
-	"	473	1
-	^	261	2
-	.	261	1
+	"	447	50
+	^	447	51
+	.	447	50
 	+	239	37
 	+	259	1
 	+	258	11
@@ -284,6 +335,21 @@ $&
 	+	262	0
 	+	259	1
 	+	261	1
+	+	448	50
+	+	447	50
+
+> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+	"	39	4
+
+> ~/__Tagbar__
+	"	5	9
+	.	18	0
+	+	18	0
+
+> ~/[Vundle] clean
+	"	29	0
+	.	1	0
+	+	1	0
 
 > ~/work/log/rtmp-tp.script
 	"	15	2
