@@ -95,75 +95,59 @@ Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'file-line'
-Plugin 'myusuf3/numbers.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'majutsushi/tagbar'
-
-"Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'netrw.vim'
-"Plugin 'vim-scripts/taglist.vim'
-"Plugin 'fholgado/minibufexpl.vim'
-"Plugin 'ciaranm/securemodelines'
-"Plugin 'vim-scripts/let-modeline.vim'
-
-Plugin 'huawenyu/taboo.vim'
 Plugin 'millermedeiros/vim-statline'
-"Plugin 'maciakl/vim-neatstatus'
-"Plugin 'bling/vim-airline'
 
-"Plugin 'kien/ctrlp.vim'
 Plugin 'justinmk/vim-sneak'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'myusuf3/numbers.vim'
 "Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-scripts/CmdlineComplete'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'vim-scripts/CmdlineComplete'
 Plugin 'vim-utils/vim-vertical-move'
 
-Plugin 'huawenyu/vim-mark'
-Plugin 'AnsiEsc.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'huawenyu/vim-log-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'jceb/vim-orgmode'
-Plugin 'tpope/vim-speeddating'
-" Outline: help-doc https://vim-voom.github.io/
+"Plugin 'AnsiEsc.vim'
+"Plugin 'tpope/vim-markdown'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'jceb/vim-orgmode'
+"Plugin 'tpope/vim-speeddating'
 Plugin 'vim-scripts/VOoM'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'szw/vim-maximizer'
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 "Plugin 'msanders/snipmate.vim'
 
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-reload'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-reload'
 "Plugin 'mhinz/vim-startify'
 
-Plugin 'tpope/vim-dispatch'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'rking/ag.vim'
-"Plugin 'stefandtw/quickfix-reflector.vim'
-"Plugin 'huawenyu/vim-easygrep'
+"Plugin 'tpope/vim-dispatch'
+"Plugin 'dyng/ctrlsf.vim'
+"Plugin 'rking/ag.vim'
 
-Plugin 'huawenyu/vimux-script'
-Plugin 'JarrodCTaylor/vim-shell-executor'
+"Plugin 'JarrodCTaylor/vim-shell-executor'
 
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/neoyank.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'h1mesuke/unite-outline'
+"Plugin 'Shougo/vimshell.vim'
+"Plugin 'Shougo/unite.vim'
+"Plugin 'Shougo/neomru.vim'
+"Plugin 'Shougo/neoyank.vim'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'h1mesuke/unite-outline'
 
 Plugin 'yuratomo/w3m.vim'
-Plugin 'DrawIt'
-Plugin 'bruno-/vim-man'
-Plugin 'vim-scripts/DirDiff.vim'
+"Plugin 'DrawIt'
+"Plugin 'bruno-/vim-man'
+"Plugin 'vim-scripts/DirDiff.vim'
 
+Plugin 'huawenyu/taboo.vim'
+Plugin 'huawenyu/vim-mark'
+Plugin 'huawenyu/vim-log-syntax'
+Plugin 'huawenyu/vimux-script'
 Plugin 'huawenyu/c-utils.vim'
 
 call vundle#end()
@@ -258,9 +242,10 @@ set ssop+=sesdir     " work under current dir as relative path
  "  n... :  where to save the viminfo files,
  "            here save to /tmp means we have another viminfo manager 'workspace'
 if has("nvim")
-  set viminfo=!,'30,\"300,:30,%,n/tmp/nviminfo
+  set viminfo=!,'30,\"300,:30,%,n~/.nviminfo
 else
-  set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
+  "set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
+  set viminfo='30,\"100,:100,n~/.viminfo
 endif
 
  function! ResCur()

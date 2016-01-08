@@ -158,19 +158,25 @@ $&
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  261  1  ~/.vimrc
-'1  1  0  ~/project/nerdtree/.vimrc
-'2  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
-'3  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
-'4  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
-'5  479  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
-'6  1  0  /data/workref/git-svn/.version
-'7  89  0  /data/workref/fos-git/.config
-'8  1  0  /data/workref/fos-git/.version
-'9  1  0  ~/svn-info
+'0  473  1  ~/.vimrc
+'1  15  2  ~/work/log/rtmp-tp.script
+'2  51  42  ~/work/log/rtmp-tp-live.log
+'3  11  0  ~/work/log/rtmp-tp.script
+'4  1  0  ~/work/log/rtmp-tp.script
+'5  261  1  ~/.vimrc
+'6  1  0  ~/project/nerdtree/.vimrc
+'7  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
+'8  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+'9  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
 
 # Jumplist (newest first):
+-'  473  1  ~/.vimrc
 -'  261  1  ~/.vimrc
+-'  15  2  ~/work/log/rtmp-tp.script
+-'  11  0  ~/work/log/rtmp-tp.script
+-'  51  42  ~/work/log/rtmp-tp-live.log
+-'  1  0  ~/work/log/rtmp-tp-live.log
+-'  1  0  ~/work/log/rtmp-tp.script
 -'  253  13  ~/.vimrc
 -'  239  13  ~/.vimrc
 -'  1  0  ~/project/nerdtree/.vimrc
@@ -260,19 +266,11 @@ $&
 -'  134  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
 -'  259  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
 -'  32  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  204  0  /data/workref/rtmp/fch40-rtmp-git/cmf/plugin/wanopt/rtmp_profile.c
--'  47  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  132  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  1  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  12086  6  /tmp/log.tel
--'  11915  6  /tmp/log.tel
--'  11789  6  /tmp/log.tel
--'  11634  6  /tmp/log.tel
 
 # History of marks within files (newest to oldest):
 
 > ~/.vimrc
-	"	261	1
+	"	473	1
 	^	261	2
 	.	261	1
 	+	239	37
@@ -286,6 +284,12 @@ $&
 	+	262	0
 	+	259	1
 	+	261	1
+
+> ~/work/log/rtmp-tp.script
+	"	15	2
+
+> ~/work/log/rtmp-tp-live.log
+	"	51	42
 
 > ~/project/nerdtree/.vimrc
 	"	1	0
