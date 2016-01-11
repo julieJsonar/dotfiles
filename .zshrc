@@ -99,20 +99,20 @@ alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-
 unsetopt correct_all
 unsetopt nomatch
 
-#
-# GREP
-#
-GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.\* "
-function _mygrep()
-{
-  if [ -t 0 ]; then
-    /bin/grep "$@" $GREP_OPTIONS
-  else
-    /bin/grep $@
-  fi
-};
-alias grep='_mygrep'
-unset GREP_OPTIONS
+##
+## GREP
+##
+#GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.\* "
+#function _mygrep()
+#{
+#  if [ -t 0 ]; then
+#    /bin/grep "$@" $GREP_OPTIONS
+#  else
+#    /bin/grep $@
+#  fi
+#};
+#alias grep='_mygrep'
+#unset GREP_OPTIONS
 
 # This will run everytime you run a command.
 #precmd () {

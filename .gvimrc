@@ -116,6 +116,7 @@ Plugin 'vim-utils/vim-vertical-move'
 Plugin 'vim-scripts/VOoM'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'szw/vim-maximizer'
+Plugin 'chrisbra/NrrwRgn'
 
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
@@ -126,7 +127,8 @@ Plugin 'szw/vim-maximizer'
 "Plugin 'xolox/vim-reload'
 "Plugin 'mhinz/vim-startify'
 
-"Plugin 'tpope/vim-dispatch'
+"Plugin 'kana/vim-arpeggio'
+Plugin 'tpope/vim-dispatch'
 "Plugin 'dyng/ctrlsf.vim'
 "Plugin 'rking/ag.vim'
 
@@ -150,6 +152,10 @@ Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
 Plugin 'huawenyu/c-utils.vim'
 
+" Debug
+"Plugin 'tpope/vim-scriptease'
+"Plugin 'vim-scripts/Decho'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -158,7 +164,13 @@ let mapleader = ";"
 " diable Ex mode
 map Q <Nop>
 nnoremap <C-c> <silent> <C-c>
-set term=xterm-256color
+
+if has("nvim")
+  "let base16colorspace=256
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+else
+ set term=xterm-256color
+endif
 
 set nocompatible
 set guifont=Liberation\ Mono\ 13
@@ -549,3 +561,4 @@ let g:sneak#s_next = 1
   endfunction
 
 "}
+

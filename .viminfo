@@ -8,29 +8,75 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/insert
+~MSle0~/unlet
 
 # Last Substitute Search Pattern:
 ~MSle0&req
 
 # Last Substitute String:
-$&
+$
 
 # Command Line History (newest to oldest):
 :qa
 :w
-:set shiftwidth=4
-:qa!
 :q
-:echo @s
+:we
 :PluginClean
+:a
+:e ../plugin/arpeggio.vim
+:ls
+:call arpeggio#load() 
+:call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+:call arpeggio#load()
+:e ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
+:Arpeggio imap xy  <Plug>Foo
+:message
+:e /tmp/vimdebug.log
+:qa!
+:qa1
+:set paste
+:Arpeggio inoremap xy 'wilson'
+:Arpeggio inoremap xy :echom 'wilson'
+:Arpeggio inoremap xy  :echo 'wilson'
+:PluginInstall
+:help <expr>
+:debug Dispatch grep -Inr wad_ftpproxy_send_ready .
+:Dispatch grep -Inr wad_ftpproxy_send_ready .
+:help vimResized
+:e dispatch/tmux.vim
+:pwd
+:12verbose Dispatch grep -Inr wad_ftpproxy_send_ready .
+:9verbose Dispatch grep -Inr wad_ftpproxy_send_ready .
+:set verbosefile=/tmp/vimdebug.log
+:help system
+:help getchar
+:set number
+:'<,'>NR
+:set fixednumber
+:set norelativenumber
+:set rnu
+:help set number
+:help 2number
+:help &number
+:help number
+:number
+:+16
+:f
+:help doautocmd
+:b1
+:b2
+:help after
+:help QuickFixCmdPre
+:e ../plugin/dispatch.vim
+:set wrap
+:set shiftwidth=4
+:echo @s
 :echo has("nvim")
 :'<,'>qa
 :e plugin/bookmark.vim
 :e autoload/bookmark.vim
 :e autoload/workspace.vim
 :vs
-:set wrap
 :b vim.viminfo
 :viminfo
 :BookmarkLoad Default
@@ -38,12 +84,10 @@ $&
 :b ~/work/log/vim.viminfo
 :BookmarkLoad "Default"
 :vim.vim-bookmarks
-:ls
 :BookmarkLoad Log
 :Savews
 :grep! -Inr --include='*.[ch]' -- 'setting.storage' .
 :b plugin/bookmark.vim
-:f
 :b autoload/bookmark.vim
 :b autoload/workspace.vim
 :b plugin/workspace.vim
@@ -53,6 +97,37 @@ $&
 :w autoload/workspace.vim
 
 # Search String History (newest to oldest):
+?/unlet
+?/default
+?/background
+?/esca
+? \<t_Co\>
+?/256
+?/term
+?/nvim
+?/grep
+? \<Arpeggio\>
+?/\Vdispatch#tmux#poll
+?/complete
+? \<after\>
+? \<dispatch#complete\>
+?/\Vs:dispatch
+? \<dispatch_handlers\>
+?/s:dispatch
+? \<dispatch\>
+? \<expand_lnum\>
+?/\V5653
+? \<58_dispatch\>
+? \<5653\>
+? \<vNVRNor\>
+? \<dispatch#spawn\>
+? \<dispatch#start\>
+? \<cgetfile\>
+?/\Vdispatch-make-complete
+?/\Vdispatch-make
+? \<dispatch#compile_command\>
+?/Dispatch
+??Pl
 ?/insert
 ?/^POST \/open
 ?/viminfo
@@ -78,7 +153,6 @@ $&
 ?/storage\"
 ?/needed
 ? \<BookmarkLoad\>
-?/default
 ?/we will
 ? \<input\>
 ? \<workspace#SaveWorkspaceCore\>
@@ -109,35 +183,60 @@ $&
 @\<wad_http_client_read_header\>
 @qa
 @\<echo\>
+@kkkkkkkkkkk
+@q
+@n
+@echo response
+@s
+@echo pane
+@echo a:request
+@echo s:make_pane
+@echo cmd
+@echo exec
+@echo args
+@echo request.compiler
+@echo executable
+@echo request
+@redraw
+@?
+@c
+@breaklist
+@breakadd file 622 dispatch.vim
+@cont
+@s
+@breakadd func dispatch#complete
+@breakadd dispatch#complete:1
+@breakadd dispatch#complete()
+@breakadd dispatch#complete
 
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	@s
+"0	LINE	0
+	  let $NVIM_TUI_ENABLE_TRUE_COLOR=0
 "1	LINE	0
-	        let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+	
 "2	LINE	0
-	        let cur_word = 
+	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
 "3	LINE	0
-	
+	XTerm*termName:            xterm-256color
 "4	LINE	0
-	        let number = 1
-	        if v:count > 0
-	            let number = v:count
-	        endif
-	
-"5	LINE	0
-	  else
+	set -g default-terminal "xterm-256color"
+"5	BLOCK	0
+	"
+	"
+	"
+	 
+	"
 "6	LINE	0
-	
+	:qa
+	:qa
 "7	LINE	0
-	
+	   set t_Co=256
 "8	LINE	0
-		strlcpy(fw_pol->rtmp_prof, pol->rtmp_prof, sizeof(fw_pol->rtmp_prof));
-	
+	  set term=xterm-256color
 "9	LINE	0
-	        snmp/FORTINET-FORTICACHE-MIB.mib
+	  let base16colorspace=256
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -158,10 +257,10 @@ $&
 	llllllllllllllllllllllllllllllllllllllll
 "q	CHAR	0
 	
-""s	CHAR	0
+"s	CHAR	0
 	for view in 
-"-	CHAR	0
-	cur_word
+""-	CHAR	0
+	 
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -170,241 +269,338 @@ $&
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  63  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
-'1  447  41  ~/.vimrc
-'2  248  6  ~/.vimrc
-'3  14  12  /data/workref/log/rtmp-tp.script
-'4  29  0  ~/[Vundle] clean
-'5  473  1  ~/.vimrc
-'6  15  2  ~/work/log/rtmp-tp.script
-'7  51  42  ~/work/log/rtmp-tp-live.log
-'8  11  0  ~/work/log/rtmp-tp.script
-'9  1  0  ~/work/log/rtmp-tp.script
+'0  92  0  ~/.tmux.conf
+'1  168  0  ~/.vim/init.vim
+'2  171  35  ~/.vim/init.vim
+'3  169  32  ~/.vim/init.vim
+'4  169  0  ~/.vim/init.vim
+'5  169  6  ~/.vimrc
+'6  44  7  ~/.tmux.conf
+'7  6  0  /tmp/log
+'8  1  0  ~/project/neovim/.tmux.conf
+'9  190  0  ~/.vimrc
 
 # Jumplist (newest first):
--'  63  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  57  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  54  10  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  66  8  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  61  8  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  60  3  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  41  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  31  5  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  78  9  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  38  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  70  19  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  1  0  ~/.vim/bundle/c-utils.vim/autoload/utils.vim
--'  447  41  ~/.vimrc
--'  248  6  ~/.vimrc
--'  247  39  ~/.vimrc
--'  245  37  ~/.vimrc
--'  243  54  ~/.vimrc
--'  242  30  ~/.vimrc
--'  145  1  ~/.vimrc
--'  14  12  /data/workref/log/rtmp-tp.script
--'  1  0  /data/workref/log/rtmp-tp.script
--'  29  0  ~/[Vundle] clean
--'  473  1  ~/.vimrc
--'  261  1  ~/.vimrc
--'  15  2  ~/work/log/rtmp-tp.script
--'  11  0  ~/work/log/rtmp-tp.script
--'  51  42  ~/work/log/rtmp-tp-live.log
--'  1  0  ~/work/log/rtmp-tp-live.log
--'  1  0  ~/work/log/rtmp-tp.script
--'  253  13  ~/.vimrc
--'  239  13  ~/.vimrc
--'  1  0  ~/project/nerdtree/.vimrc
--'  25491  8  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
--'  25506  7  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
--'  25481  13  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
--'  25458  0  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
--'  1  0  /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
--'  25481  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  25458  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  464  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  498  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  479  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  325  1  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  24  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  1  0  /data/workref/fos54-git-svn/daemon/wad/acsm.c
--'  1  0  /data/workref/git-svn/.version
--'  89  0  /data/workref/fos-git/.config
--'  2  0  /data/workref/fos-git/.config
--'  1  0  /data/workref/fos-git/.config
--'  1  0  /data/workref/fos-git/.version
--'  1  0  ~/svn-info
--'  2574  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2577  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  34  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  93  14  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  2575  43  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  80  24  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_rtmp_profile.c
--'  209  26  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.h
--'  348  58  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  831  29  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/ui/fg/wad_ui_config.c
--'  2554  41  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2555  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2553  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2563  2  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2423  3  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2465  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2628  0  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2615  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2614  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1075  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1074  31  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1073  13  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  1  1  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  2616  10  /data/workref/rtmp/svn-fch31-rtmp/daemon/wad/wad_fw_policy.c
--'  80  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  136  10  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  832  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  835  2  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  816  3  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/ui/fg/wad_ui_config.c
--'  212  35  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.h
--'  111  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  2653  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_fw_policy.c
--'  21  24  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  39  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  34  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  30  31  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  59  1  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  92  17  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  133  14  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/wad_rtmp_profile.c
--'  125  28  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  115  5  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
--'  149  0  /data/workref/rtmp/fch40-rtmp-git/daemon/wad/redirect/fortifilter/wad_conn.c
+-'  92  0  ~/.tmux.conf
+-'  32  0  ~/.tmux.conf
+-'  44  7  ~/.tmux.conf
+-'  168  0  ~/.vim/init.vim
+-'  172  0  ~/.vim/init.vim
+-'  171  37  ~/.vim/init.vim
+-'  169  0  ~/.vim/init.vim
+-'  305  2  ~/.vim/init.vim
+-'  169  6  ~/.vimrc
+-'  1  27  ~/.tmux.conf
+-'  175  27  ~/.tmux.conf
+-'  6  0  /tmp/log
+-'  1  0  /tmp/log
+-'  1  0  ~/project/neovim/.tmux.conf
+-'  190  0  ~/.vimrc
+-'  130  0  ~/.vimrc
+-'  54  7  ~/.tmux.conf
+-'  69  26  ~/.Xxterm
+-'  70  32  ~/.Xxterm
+-'  33  29  ~/.tmux.conf
+-'  3  0  ~/project/neovim/[Vundle] clean
+-'  168  2  ~/.vimrc
+-'  172  2  ~/.vimrc
+-'  170  3  ~/.vimrc
+-'  1  0  ~/project/neovim/src/nvim/arabic.c
+-'  171  5  ~/.vimrc
+-'  184  5  ~/.vimrc
+-'  46  0  ~/.Xxterm
+-'  1  0  ~/.Xxterm
+-'  71  0  ~/.tmux.conf
+-'  1  0  ~/tmux.conf
+-'  34  0  ~/.tmux.conf
+-'  35  0  ~/.tmux.conf
+-'  1  12  ~/.vimrc
+-'  334  12  ~/.vimrc
+-'  333  13  ~/.vimrc
+-'  331  42  ~/.vimrc
+-'  330  40  ~/.vimrc
+-'  329  42  ~/.vimrc
+-'  328  45  ~/.vimrc
+-'  326  36  ~/.vimrc
+-'  325  42  ~/.vimrc
+-'  321  39  ~/.vimrc
+-'  320  41  ~/.vimrc
+-'  319  41  ~/.vimrc
+-'  318  27  ~/.vimrc
+-'  316  24  ~/.vimrc
+-'  255  0  ~/.vimrc
+-'  563  0  ~/.vimrc
+-'  559  0  ~/.vimrc
+-'  94  0  ~/.vim/init.vim
+-'  1  0  ~/.vim/init.vim
+-'  116  0  ~/.zshrc
+-'  102  0  ~/.zshrc
+-'  105  0  ~/.zshrc
+-'  103  2  ~/.zshrc
+-'  94  26  ~/.zshrc
+-'  26  0  ~/.zshrc
+-'  1  0  ~/.zshrc
+-'  1  0  ~/.zshc
+-'  433  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+-'  98  30  ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
+-'  174  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+-'  99  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+-'  82  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+-'  1  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+-'  97  0  ~/.vim/bundle/vim-arpeggio/mduem/Makefile
+-'  1  0  ~/.vim/bundle/vim-arpeggio/mduem/Makefile
+-'  13  0  ~/.vim/bundle/vim-arpeggio/Makefile
+-'  1  0  ~/.vim/bundle/vim-arpeggio/Makefile
+-'  772  0  /tmp/vimdebug.log
+-'  720  0  /tmp/vimdebug.log
+-'  569  0  ~/.vimrc
+-'  566  2  ~/.vimrc
+-'  716  0  /tmp/vimdebug.log
+-'  571  16  ~/.vimrc
+-'  124  0  ~/.vimrc
+-'  715  64  /tmp/vimdebug.log
+-'  730  36  /tmp/vimdebug.log
+-'  12  0  ~/work/log/ftp.log
+-'  2  0  ~/work/log/ftp.log
+-'  131  0  ~/.vimrc
+-'  129  1  ~/.vimrc
+-'  27  0  ~/work/[Vundle] Installer
+-'  120  0  ~/.vimrc
+-'  295  29  /usr/share/vim/vim74/doc/map.txt
+-'  232  6  /usr/share/vim/vim74/doc/map.txt
+-'  1  0  /usr/share/vim/vim74/doc/map.txt
+-'  1  0  ~/work
+-'  64  5  ~/work/log/rtmp-tp.cfg
+-'  63  4  ~/work/log/rtmp-tp.cfg
+-'  60  4  ~/work/log/rtmp-tp.cfg
+-'  44  0  ~/work/log/rtmp-tp.cfg
+-'  46  0  ~/work/log/ftp.log
+-'  1  0  ~/work/log/ftp.log
+-'  168  0  ~/.vim/init.vim
+-'  172  0  ~/.vim/init.vim
 
 # History of marks within files (newest to oldest):
 
-> ~/.vim/bundle/c-utils.vim/autoload/utils.vim
-	"	63	10
-	^	65	4
-	.	63	0
-	+	54	30
-	+	60	10
-	+	68	0
-	+	67	4
-	+	66	0
-	+	61	0
-	+	66	0
-	+	65	0
-	+	67	0
-	+	60	0
-	+	63	30
-	+	64	30
-	+	66	0
-	+	55	0
-	+	66	22
-	+	67	30
-	+	66	0
-	+	63	0
+> ~/.tmux.conf
+	"	92	0
+	.	32	0
+	+	33	45
+	+	33	0
+	+	32	0
+	+	33	0
+	+	32	0
+	+	33	0
+	+	32	0
 
-> ~/.vim/bundle/c-utils.vim/autoload/__Tagbar__
-	"	6	0
-	.	8	0
-	+	8	0
-	+	8	0
-	+	8	0
+> ~/.vim/init.vim
+	"	168	0
+	^	171	38
+	.	168	0
+	+	169	32
+	+	169	0
+	+	167	0
+	+	169	5
+	+	171	35
+	+	169	0
+	+	171	34
+	+	168	0
+	a	169	0
 
-> /tmp/log.tel
-	"	1389	0
-	^	1388	0
-	.	1389	0
-	+	1389	0
-
-> /data/workref/log/rtmp-tp.script
-	"	23	1
-	^	14	11
-	.	14	10
-	+	14	10
+> ~/project/neovim/init.vim
+	"	1	0
 
 > ~/.vimrc
-	"	447	50
-	^	447	51
-	.	447	50
-	+	239	37
-	+	259	1
-	+	258	11
-	+	260	4
-	+	262	5
-	+	261	0
-	+	259	37
-	+	260	0
-	+	262	0
-	+	259	1
-	+	261	1
-	+	448	50
-	+	447	50
+	"	169	6
+	^	169	35
+	.	169	34
+	+	250	37
+	+	270	1
+	+	269	11
+	+	271	4
+	+	273	5
+	+	272	0
+	+	270	37
+	+	271	0
+	+	273	0
+	+	270	1
+	+	272	1
+	+	459	50
+	+	458	50
+	+	131	0
+	+	143	0
+	+	156	27
+	+	157	24
+	+	157	0
+	+	119	23
+	+	120	0
+	+	130	0
+	+	124	0
+	+	564	17
+	+	564	15
+	+	564	44
+	+	564	0
+	+	564	17
+	+	564	2
+	+	563	0
+	+	564	0
+	+	564	0
+	+	564	0
+	+	564	15
+	+	564	0
+	+	564	0
+	+	558	0
+	+	561	9
+	+	562	0
+	+	563	5
+	+	561	3
+	+	562	0
+	+	561	0
+	+	167	0
+	+	172	4
+	+	170	0
+	+	170	1
+	+	167	3
+	+	170	0
+	+	170	0
+	+	172	0
+	+	168	0
+	+	167	3
+	+	170	0
+	+	171	0
+	+	170	0
+	+	168	0
+	+	171	0
+	+	172	0
+	+	167	0
+	+	130	0
+	+	190	0
+	+	169	34
 
-> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-	"	39	4
+> /tmp/log
+	"	6	0
+	.	5	4
+	+	5	4
 
-> ~/__Tagbar__
-	"	5	9
-	.	18	0
-	+	18	0
+> ~/project/neovim/.tmux.conf
+	"	1	0
 
-> ~/[Vundle] clean
-	"	29	0
+> ~/.Xxterm
+	"	69	26
+	^	69	27
+	.	69	26
+	+	69	0
+	+	70	0
+	+	69	27
+	+	70	0
+	+	69	26
+
+> ~/project/neovim/[Vundle] clean
+	"	3	0
 	.	1	0
 	+	1	0
 
-> ~/work/log/rtmp-tp.script
-	"	15	2
-
-> ~/work/log/rtmp-tp-live.log
-	"	51	42
-
-> ~/project/nerdtree/.vimrc
+> ~/project/neovim/src/nvim/arabic.c
 	"	1	0
 
-> /data/workref/rtmp/fos52-701/daemon/wad/wad_http_cache.c
-	"	25491	8
-
-> ~/.vim/bundle/c-utils.vim/plugin/workspace.vim
-	"	43	0
-	^	34	1
-	.	35	0
-	+	33	0
-	+	32	0
-	+	34	0
-	+	35	0
-
-> ~/.vim/bundle/c-utils.vim/autoload/workspace.vim
+> ~/tmux.conf
 	"	1	0
 
-> ~/.vim/bundle/c-utils.vim/autoload/bookmark.vim
-	"	12	2
-	^	14	6
-	.	14	5
-	+	31	1
-	+	15	0
-	+	15	3
-	+	15	0
-	+	15	39
-	+	15	0
-	+	16	0
-	+	15	0
-	+	15	0
-	+	15	0
-	+	13	2
-	+	15	0
-	+	14	5
+> ~/.zshrc
+	"	116	0
+	^	102	1
+	.	103	0
+	+	102	0
+	+	103	0
 
-> ~/.vim/bundle/c-utils.vim/plugin/bookmark.vim
-	"	20	16
-	.	20	16
-	+	20	16
-	+	25	0
-	+	20	16
+> ~/.zshc
+	"	1	0
 
-> ~/work/log/vim.viminfo
-	"	179	0
-	.	109	10
-	+	109	10
-	+	109	10
+> ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
+	"	433	0
 
-> ~/work/log/log.5-4.explicit
-	"	86	10
+> ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
+	"	98	30
+	^	98	31
+	.	98	30
+	+	91	0
+	+	96	0
+	+	101	0
+	+	90	1
+	+	90	0
+	+	98	30
+
+> ~/.vim/bundle/vim-arpeggio/mduem/Makefile
+	"	97	0
+
+> ~/.vim/bundle/vim-arpeggio/Makefile
+	"	13	0
+
+> /tmp/vimdebug.log
+	"	772	0
+	^	719	2
+	.	719	1
+	+	716	2
+	+	718	0
+	+	719	1
+
+> ~/work/log/ftp.log
+	"	12	0
+	^	12	28
+	.	12	0
+	+	12	0
+
+> ~/work/[Vundle] Installer
+	"	27	0
+	.	1	0
+	+	1	0
+
+> /usr/share/vim/vim74/doc/map.txt
+	"	295	29
+
+> ~/work/log/rtmp-tp.cfg
+	"	64	5
+	^	64	7
+	.	64	0
+	+	64	0
+
+> ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
+	"	604	2
+	.	512	0
+	+	512	0
+
+> ~/.vim/bundle/vim-dispatch/autoload/dispatch/tmux.vim
+	"	115	10
+
+> /usr/share/vim/vim74/doc/autocmd.txt
+	"	905	56
+
+> ~/.vim/bundle/vim-dispatch/autoload/NrrwRgn_dispatch_1
+	"	1	24
+	.	2	0
+	+	114	0
+	+	1	0
+	+	2	0
+
+> /usr/share/vim/vim74/doc/eval.txt
+	"	5911	42
+
+> ~/.vim/bundle/vim-dispatch/autoload/__Tagbar__
+	"	9	3
+	.	12	0
+	+	58	0
+	+	58	0
+	+	58	0
+	+	58	0
+	+	58	0
+	+	12	0
+
+> /usr/share/vim/vim74/doc/various.txt
+	"	190	0
+
+> ~/.vim/bundle/vim-dispatch/autoload/[Vundle] Installer
+	"	26	0
+	.	1	0
+	+	1	0
+
+> ~/.vim/bundle/vim-dispatch/plugin/dispatch.vim
+	"	1	8
