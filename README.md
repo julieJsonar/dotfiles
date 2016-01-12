@@ -5,18 +5,21 @@ linux programmer's config files: zsh, tmux, vim, ...
 
 Install
 =======
-If ubuntu type OS: ubuntu, linux mint, ...  
+If ubuntu type OS: ubuntu, linux mint, ...
+```Shell
   ./init_ubuntu.sh  
-
+```
 Update
 ======
 Commit & Update  
+```Shell
   ./update.sh  
-
+```
 Rollback  
+```Shell
   git reset --hard <old-commit-id>  
   git push -f origin branch  
-
+```
 eclipse dark theme
 =================
 
@@ -28,9 +31,8 @@ If plugin invalid, we can install by update:
   https://raw.github.com/guari/eclipse-ui-theme/master/com.github.eclipseuitheme.themes.updatesite  
 Then replaced by our modified version.
 
-```
 Please choose the moonrise, not moonrise(standalone)
-
+```Shell
 $ cd eclipse-moonrise-theme
 $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
 $ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  ~/tools/eclipse/plugins/.
