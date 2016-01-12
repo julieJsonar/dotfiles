@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/unlet
+~MSle0~/#Ag
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -19,9 +19,59 @@ $
 # Command Line History (newest to oldest):
 :qa
 :w
-:q
-:we
+:b2
+:sp
+:b1
+:GrepAdd  -- '->req_bypass'
+:Grep  -- 'req_bypass'
+:Grep  -- '->req_bypass'
+:pwd
+:Grep -- '->req_bypass'
+:Grep "->req_bypass"
+:Grep  '->req_bypass'
+:Grep'->req_bypass':
 :PluginClean
+:PluginInstall
+:e!
+:q
+:message
+:echo match('<C-c>', "^<.*>$")
+:echo match('<C-c>', '^<.*>$')
+:echo match("<C-c>", "^<.*>$")
+:call vimux#VimuxSendKeys("<Enter>")
+:call vimux#VimuxSendKeys('<C-c>')
+:call vimux#VimuxSendKeys('C-c')
+:call vimux#VimuxSendKeys("C-c")
+:call vimux#VimuxSendKeys("\<C-c\>")
+:call vimux#VimuxSendKeys("<C-c>")
+:call vimux#VimuxSendKeys("Enter")
+:!git diff
+:+7
+:echo escape("<C-c>", '\"$')
+:echo g:VimuxLastCommand
+:echo g:cmdstr
+:echo g:last_cmdstr
+:echo g:output
+:echo matchstr("(gdb)", "(gdb)")
+:W
+:b ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+:f
+:vs
+:e ~/.vim/bundle/
+:qa!
+:help sleep
+:help sleep()
+:e ~/.vim/bundle/c-utils.vim/autoload/blame.vim
+:W3m http://tilvim.com/2014/03/13/dispatch.html
+:qq
+:set syn=diff
+:w\u
+:Dispatch grep -Inr --include='*.c' -w 'wad_ftpproxy_send_ready' .
+:Dispatch grep -Inr --include=*.c wad_ftpproxy_send_ready .
+:vim /wad_ftpproxy_send_ready/gi **/*.c
+:vim /wad_ftpproxy_send_ready/gi .
+:Dispatch grep -Inr wad_ftpproxy_send_ready .
+:we
 :a
 :e ../plugin/arpeggio.vim
 :ls
@@ -30,21 +80,16 @@ $
 :call arpeggio#load()
 :e ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
 :Arpeggio imap xy  <Plug>Foo
-:message
 :e /tmp/vimdebug.log
-:qa!
 :qa1
 :set paste
 :Arpeggio inoremap xy 'wilson'
 :Arpeggio inoremap xy :echom 'wilson'
 :Arpeggio inoremap xy  :echo 'wilson'
-:PluginInstall
 :help <expr>
 :debug Dispatch grep -Inr wad_ftpproxy_send_ready .
-:Dispatch grep -Inr wad_ftpproxy_send_ready .
 :help vimResized
 :e dispatch/tmux.vim
-:pwd
 :12verbose Dispatch grep -Inr wad_ftpproxy_send_ready .
 :9verbose Dispatch grep -Inr wad_ftpproxy_send_ready .
 :set verbosefile=/tmp/vimdebug.log
@@ -61,10 +106,7 @@ $
 :help number
 :number
 :+16
-:f
 :help doautocmd
-:b1
-:b2
 :help after
 :help QuickFixCmdPre
 :e ../plugin/dispatch.vim
@@ -75,37 +117,66 @@ $
 :'<,'>qa
 :e plugin/bookmark.vim
 :e autoload/bookmark.vim
-:e autoload/workspace.vim
-:vs
-:b vim.viminfo
-:viminfo
-:BookmarkLoad Default
-:BookmarkLoad 
-:b ~/work/log/vim.viminfo
-:BookmarkLoad "Default"
-:vim.vim-bookmarks
-:BookmarkLoad Log
-:Savews
-:grep! -Inr --include='*.[ch]' -- 'setting.storage' .
-:b plugin/bookmark.vim
-:b autoload/bookmark.vim
-:b autoload/workspace.vim
-:b plugin/workspace.vim
-:+40
-:%s/s:LastWorkspaceName/g:wsLastWorkspaceName/g
-:'<,'>s/
-:w autoload/workspace.vim
 
 # Search String History (newest to oldest):
-?/unlet
+?/#Ag
+? \<utilgrep#Grep\>
+? \<wad_http_client_notifier\>
+?/dispatch
+?/dispach
+? \<EfyGNxL2eJr16wSZ\>
+?/wad_hash_
+? \<wad_rtmpt_session_resolve\>
+? \<wad_http_rtmpt_detach\>
 ?/default
+? \<vimux#VimuxSendText\>
+? \<vimux#VimuxSendKeys\>
+?/auto
+? \<box_crash\>
+?/crash
+? \<vimux#VimuxOpenRunner\>
+? \<vimux#Prepare\>
+? \<autoreturn\>
+? \<vimux#_VimuxTmux\>
+?/VimuxTmux
+? \<pane_gdb\>
+? \<linux_gdb\>
+? \<box_gdbserver_init\>
+? \<box_telnet\>
+? \<vimux#Run\>
+? \<cmdline\>
+? \<cmdline_\>
+? \<vimuxscript#_ExecuteCmd\>
+? \<vimuxscript#_ExecuteInnnerAction\>
+?/g:
+? \<VimuxGroupCommandPause\>
+?/enter
+? \<Enter\>
+?/-l
+? \<hist_pos\>
+?/<match>
+?/goto
+?/memset
+?/blame
+? \<wad_http_client_read_sync\>
+? \<wad_http_request_put\>
+? \<wad_http_request_hold\>
+? \<0x2a9a9bd830\>
+? \<raid_help_str\>
+?/raid_help
+?/>0
+?/raid_help_str
+? \<_raid_need_disks\>
+?/1500D
+? \<raid_rebuild_level\>
+?/grep
+?/unlet
 ?/background
 ?/esca
 ? \<t_Co\>
 ?/256
 ?/term
 ?/nvim
-?/grep
 ? \<Arpeggio\>
 ?/\Vdispatch#tmux#poll
 ?/complete
@@ -179,6 +250,10 @@ $
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@->req_bypass
+@\<wad_http_client_read_sync\>
+@\<wad_http_request_put\>
+@\<wad_http_request_hold\>
 @y
 @\<wad_http_client_read_header\>
 @qa
@@ -213,30 +288,124 @@ $
 
 # Registers:
 "0	LINE	0
-	  let $NVIM_TUI_ENABLE_TRUE_COLOR=0
-"1	LINE	0
-	
+	  - [ ] rtmpt request /close/
+""1	LINE	0
+	Plugin 'huawenyu/vim-dispatch'
 "2	LINE	0
-	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
+	wad_fmem_open(fmem=0x4ed3de0, fmem_name='wad-str-wrapper', elm_sz=32, block_sz=16384): overhead=0
+	cmem open 'sched'
+	cmem open 'buff'
+	wad_fmem_open(fmem=0x4e30340, fmem_name='buffs fmem', elm_sz=4069, block_sz=4294967295): overhead=0
+	wad_fmem.c@wad_fmem_open(297): block_size -1 for "buffs fmem" set to block size of: 65536, ele_sz: 4069
+	wad_fmem_open(fmem=0x4e302a0, fmem_name='wad_buff_region', elm_sz=40, block_sz=0): overhead=0
+	wad_fmem.c@wad_fmem_open(297): block_size 0 for "wad_buff_region" set to block size of: 4096, ele_sz: 40
+	wad_fmem_open(fmem=0x4ea47d0, fmem_name='cmem 48 bucket', elm_sz=48, block_sz=8192): overhead=0
+	wad_fmem_open(fmem=0x4ea4d48, fmem_name='cmem 104 bucket', elm_sz=104, block_sz=8192): overhead=0
+	cmem open 'worker process'
+	T@          wad_redirect_open()
+	T@          wad_monitor_open()
+	cmem open 'monitor'
+	cmem open 'timer'
+	wad_fmem_open(fmem=0x4ea5450, fmem_name='cmem 184 bucket', elm_sz=184, block_sz=16384): overhead=0
+	wad_timer_list_alloc(140): tm_list=0x2a955f0038 bucks=6 period=10 precise=2 active=0x2a955f0090 inactive=0x2a955f00a0 last=0x2a955f00e0
+	T@                wad_app_session_material_init()
+	__wad_sched_task_list_open(53): opne task_list=0x51183e0 called by wad_monitor_open:468
+	T@          wad_fqdn_resolver_open()
+	wad_fmem_open(fmem=0x4ea6e18, fmem_name='cmem 632 bucket', elm_sz=632, block_sz=32768): overhead=0
+	wad_timer_list_alloc(140): tm_list=0x2a955f4038 bucks=31 period=300 precise=10 active=0x2a955f4090 inactive=0x2a955f40a0 last=0x2a955f4270
+	cmem open 'vcache'
+	wad_fmem_open(fmem=0x4ea4af0, fmem_name='cmem 80 bucket', elm_sz=80, block_sz=8192): overhead=0
+	wad_fmem_open(fmem=0x4ea43e8, fmem_name='cmem 8 bucket', elm_sz=8, block_sz=8192): overhead=0
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc038 ("") to parent (nil) ("(null)")
+	wad_vcache_add_site(732): add site: site_name = vcache://youtube/, hostname_suffix = youtube.com
+	wad_fmem_open(fmem=0x4ea4bb8, fmem_name='cmem 88 bucket', elm_sz=88, block_sz=8192): overhead=0
+	wad_fmem_open(fmem=0x4ea4578, fmem_name='cmem 24 bucket', elm_sz=24, block_sz=8192): overhead=0
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 11, node->str = "", site = vcache://youtube/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc09c ("com") to parent 0x2a955fc038 ("")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = youtube.com (7 bytes), end = 7, node->str = "com", site = vcache://youtube/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc100 ("youtube") to parent 0x2a955fc09c ("com")
+	wad_fmem_open(fmem=0x4ea4898, fmem_name='cmem 56 bucket', elm_sz=56, block_sz=8192): overhead=0
+	wad_fmem_open(fmem=0x4ea44b0, fmem_name='cmem 16 bucket', elm_sz=16, block_sz=8192): overhead=0
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/videoplayback" => exact = "/videoplayback", starts = "(null)", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 5, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/stream_204" => exact = "/stream_204", starts = "(null)", ends = "(null)", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/ptracking" => exact = "/ptracking", starts = "(null)", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 4, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://googlevideo/, hostname_suffix = googlevideo.com
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 15, node->str = "", site = vcache://googlevideo/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = googlevideo.com (11 bytes), end = 11, node->str = "com", site = vcache://googlevideo/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc164 ("googlevideo") to parent 0x2a955fc09c ("com")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/videoplayback" => exact = "/videoplayback", starts = "(null)", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 5, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/stream_204" => exact = "/stream_204", starts = "(null)", ends = "(null)", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/ptracking" => exact = "/ptracking", starts = "(null)", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 4, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://metacafe/, hostname_suffix = mccont.com
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 10, node->str = "", site = vcache://metacafe/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = mccont.com (6 bytes), end = 6, node->str = "com", site = vcache://metacafe/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc1c8 ("mccont") to parent 0x2a955fc09c ("com")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 21, node->str = "", site = vcache://metacafe/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = metacafe.com (8 bytes), end = 17, node->str = "com", site = vcache://metacafe/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc22c ("metacafe") to parent 0x2a955fc09c ("com")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = akvideos.metacafe.com (8 bytes), end = 8, node->str = "metacafe", site = vcache://metacafe/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc290 ("akvideos") to parent 0x2a955fc22c ("metacafe")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://facebook/, hostname_suffix = fbcdn.net
+	wad_vcache_insert_hostname_node(674): hostname_suffix = net (3 bytes), end = 9, node->str = "", site = vcache://facebook/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc2f4 ("net") to parent 0x2a955fc038 ("")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = fbcdn.net (5 bytes), end = 5, node->str = "net", site = vcache://facebook/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc358 ("fbcdn") to parent 0x2a955fc2f4 ("net")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 12, node->str = "", site = vcache://facebook/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = facebook.com (8 bytes), end = 8, node->str = "com", site = vcache://facebook/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc3bc ("facebook") to parent 0x2a955fc09c ("com")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://dailymotion/, hostname_suffix = dailymotion.com
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 15, node->str = "", site = vcache://dailymotion/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = dailymotion.com (11 bytes), end = 11, node->str = "com", site = vcache://dailymotion/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc420 ("dailymotion") to parent 0x2a955fc09c ("com")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.mp4" => exact = "(null)", starts = "/video/", ends = ".mp4", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.flv" => exact = "(null)", starts = "/video/", ends = ".flv", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.on2" => exact = "(null)", starts = "/video/", ends = ".on2", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.aac" => exact = "(null)", starts = "/video/", ends = ".aac", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.h264" => exact = "(null)", starts = "/video/", ends = ".h264", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.h263" => exact = "(null)", starts = "/video/", ends = ".h263", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 2, match_str = "start=*" => exact = "(null)", starts = "start=", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://break/, hostname_suffix = break.com
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 9, node->str = "", site = vcache://break/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = break.com (5 bytes), end = 5, node->str = "com", site = vcache://break/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc484 ("break") to parent 0x2a955fc09c ("com")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/dnet/media/*.flv" => exact = "(null)", starts = "/dnet/media/", ends = ".flv", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/dnet/media/*.mp4" => exact = "(null)", starts = "/dnet/media/", ends = ".mp4", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 2, match_str = "ec_seek=*" => exact = "(null)", starts = "ec_seek=", ends = "(null)", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
+	wad_vcache_add_site(732): add site: site_name = vcache://msn/, hostname_suffix = video.msn.com
+	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 13, node->str = "", site = vcache://msn/
+	wad_vcache_insert_hostname_node(674): hostname_suffix = msn.com (3 bytes), end = 9, node->str = "com", site = vcache://msn/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc4e8 ("msn") to parent 0x2a955fc09c ("com")
+	wad_vcache_insert_hostname_node(674): hostname_suffix = video.msn.com (5 bytes), end = 5, node->str = "msn", site = vcache://msn/
+	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc54c ("video") to parent 0x2a955fc4e8 ("msn")
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
+	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
+	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
 "3	LINE	0
-	XTerm*termName:            xterm-256color
+	    memset(ptr, 0, size);
 "4	LINE	0
-	set -g default-terminal "xterm-256color"
-"5	BLOCK	0
-	"
-	"
-	"
-	 
-	"
+	
+"5	LINE	0
+	
 "6	LINE	0
-	:qa
-	:qa
+	
 "7	LINE	0
-	   set t_Co=256
+	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
 "8	LINE	0
-	  set term=xterm-256color
+	XTerm*termName:            xterm-256color
 "9	LINE	0
-	  let base16colorspace=256
+	set -g default-terminal "xterm-256color"
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -259,8 +428,8 @@ $
 	
 "s	CHAR	0
 	for view in 
-""-	CHAR	0
-	 
+"-	CHAR	0
+	tpope
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -269,165 +438,136 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  92  0  ~/.tmux.conf
-'1  168  0  ~/.vim/init.vim
-'2  171  35  ~/.vim/init.vim
-'3  169  32  ~/.vim/init.vim
-'4  169  0  ~/.vim/init.vim
-'5  169  6  ~/.vimrc
-'6  44  7  ~/.tmux.conf
-'7  6  0  /tmp/log
-'8  1  0  ~/project/neovim/.tmux.conf
-'9  190  0  ~/.vimrc
+'0  520  39  ~/.vimrc
+'1  1  0  ~/.vim/bundle/vim-dispatch/.git/config
+'2  1  0  ~/.vim/bundle/vimux-script/.git/config
+'3  2  0  ~/.vim/bundle/vimux-script/[Vundle] clean
+'4  152  0  ~/.vimrc
+'5  3  0  /data/workref/log/log.tel
+'6  100989  105  /tmp/log.tel
+'7  43  36  ~/.vimrc
+'8  260  12  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+'9  7  8  /data/workref/log/task.log
 
 # Jumplist (newest first):
--'  92  0  ~/.tmux.conf
--'  32  0  ~/.tmux.conf
--'  44  7  ~/.tmux.conf
--'  168  0  ~/.vim/init.vim
--'  172  0  ~/.vim/init.vim
--'  171  37  ~/.vim/init.vim
--'  169  0  ~/.vim/init.vim
--'  305  2  ~/.vim/init.vim
--'  169  6  ~/.vimrc
--'  1  27  ~/.tmux.conf
--'  175  27  ~/.tmux.conf
--'  6  0  /tmp/log
--'  1  0  /tmp/log
--'  1  0  ~/project/neovim/.tmux.conf
--'  190  0  ~/.vimrc
--'  130  0  ~/.vimrc
--'  54  7  ~/.tmux.conf
--'  69  26  ~/.Xxterm
--'  70  32  ~/.Xxterm
--'  33  29  ~/.tmux.conf
--'  3  0  ~/project/neovim/[Vundle] clean
--'  168  2  ~/.vimrc
--'  172  2  ~/.vimrc
--'  170  3  ~/.vimrc
--'  1  0  ~/project/neovim/src/nvim/arabic.c
--'  171  5  ~/.vimrc
--'  184  5  ~/.vimrc
--'  46  0  ~/.Xxterm
--'  1  0  ~/.Xxterm
--'  71  0  ~/.tmux.conf
--'  1  0  ~/tmux.conf
--'  34  0  ~/.tmux.conf
--'  35  0  ~/.tmux.conf
--'  1  12  ~/.vimrc
--'  334  12  ~/.vimrc
--'  333  13  ~/.vimrc
--'  331  42  ~/.vimrc
--'  330  40  ~/.vimrc
--'  329  42  ~/.vimrc
--'  328  45  ~/.vimrc
--'  326  36  ~/.vimrc
--'  325  42  ~/.vimrc
--'  321  39  ~/.vimrc
--'  320  41  ~/.vimrc
--'  319  41  ~/.vimrc
--'  318  27  ~/.vimrc
--'  316  24  ~/.vimrc
--'  255  0  ~/.vimrc
--'  563  0  ~/.vimrc
--'  559  0  ~/.vimrc
--'  94  0  ~/.vim/init.vim
--'  1  0  ~/.vim/init.vim
--'  116  0  ~/.zshrc
--'  102  0  ~/.zshrc
--'  105  0  ~/.zshrc
--'  103  2  ~/.zshrc
--'  94  26  ~/.zshrc
--'  26  0  ~/.zshrc
--'  1  0  ~/.zshrc
--'  1  0  ~/.zshc
--'  433  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
--'  98  30  ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
--'  174  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
--'  99  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
--'  82  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
--'  1  0  ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
--'  97  0  ~/.vim/bundle/vim-arpeggio/mduem/Makefile
--'  1  0  ~/.vim/bundle/vim-arpeggio/mduem/Makefile
--'  13  0  ~/.vim/bundle/vim-arpeggio/Makefile
--'  1  0  ~/.vim/bundle/vim-arpeggio/Makefile
--'  772  0  /tmp/vimdebug.log
--'  720  0  /tmp/vimdebug.log
--'  569  0  ~/.vimrc
--'  566  2  ~/.vimrc
--'  716  0  /tmp/vimdebug.log
--'  571  16  ~/.vimrc
--'  124  0  ~/.vimrc
--'  715  64  /tmp/vimdebug.log
--'  730  36  /tmp/vimdebug.log
--'  12  0  ~/work/log/ftp.log
--'  2  0  ~/work/log/ftp.log
--'  131  0  ~/.vimrc
--'  129  1  ~/.vimrc
--'  27  0  ~/work/[Vundle] Installer
--'  120  0  ~/.vimrc
--'  295  29  /usr/share/vim/vim74/doc/map.txt
--'  232  6  /usr/share/vim/vim74/doc/map.txt
--'  1  0  /usr/share/vim/vim74/doc/map.txt
--'  1  0  ~/work
--'  64  5  ~/work/log/rtmp-tp.cfg
--'  63  4  ~/work/log/rtmp-tp.cfg
--'  60  4  ~/work/log/rtmp-tp.cfg
--'  44  0  ~/work/log/rtmp-tp.cfg
--'  46  0  ~/work/log/ftp.log
--'  1  0  ~/work/log/ftp.log
--'  168  0  ~/.vim/init.vim
--'  172  0  ~/.vim/init.vim
+-'  520  39  ~/.vimrc
+-'  514  39  ~/.vimrc
+-'  1  29  ~/.vimrc
+-'  515  26  ~/.vimrc
+-'  207  0  ~/.vimrc
+-'  152  0  ~/.vimrc
+-'  1  0  ~/.vim/bundle/vim-dispatch/.git/config
+-'  1  0  ~/.vim/bundle/vimux-script/.git/config
+-'  2  0  ~/.vim/bundle/vimux-script/[Vundle] clean
+-'  43  36  ~/.vimrc
+-'  3  0  /data/workref/log/log.tel
+-'  1  0  /data/workref/log/log.tel
+-'  100989  105  /tmp/log.tel
+-'  100974  0  /tmp/log.tel
+-'  100875  0  /tmp/log.tel
+-'  184414  27  /tmp/log.tel
+-'  184420  0  /tmp/log.tel
+-'  184275  69  /tmp/log.tel
+-'  184348  938  /tmp/log.tel
+-'  184272  85  /tmp/log.tel
+-'  184212  936  /tmp/log.tel
+-'  1  0  /tmp/log.tel
+-'  184411  84  /tmp/log.tel
+-'  184412  47  /tmp/log.tel
+-'  37  0  /tmp/log.tel
+-'  184019  0  /tmp/log.tel
+-'  184419  11  /tmp/log.tel
+-'  184421  11  /tmp/log.tel
+-'  2  0  /tmp/log.tel
+-'  440  43  ~/.vimrc
+-'  260  12  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+-'  256  33  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+-'  226  18  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+-'  1  0  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+-'  7  8  /data/workref/log/task.log
+-'  5  8  /data/workref/log/task.log
+-'  1  0  /data/workref/log/task.log
+-'  153  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
+-'  2  10  ~/.vim/bundle/c-utils.vim/autoload/blame.vim
+-'  154  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
+-'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
+-'  19643  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  14915  21  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  15213  18  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19638  20  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  15232  21  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19630  22  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19649  16  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19646  54  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19644  5  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19625  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19618  9  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19617  50  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19616  12  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19607  26  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19604  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19749  23  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19603  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  17446  15  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  4318  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  4326  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20252  37  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20256  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20257  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20258  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20259  8  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20260  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20261  7  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20262  51  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20264  39  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20270  10  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20271  34  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  20356  26  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19658  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19653  23  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19641  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19633  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  19746  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  918167  20  /tmp/log.tel
+-'  918169  18  /tmp/log.tel
+-'  918277  18  /tmp/log.tel
+-'  918172  18  /tmp/log.tel
+-'  918647  18  /tmp/log.tel
+-'  17423  4  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  918629  51  /tmp/log.tel
+-'  4577  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  918634  65  /tmp/log.tel
+-'  918630  38  /tmp/log.tel
+-'  918650  8  /tmp/log.tel
+-'  918605  1  /tmp/log.tel
+-'  918600  85  /tmp/log.tel
+-'  918168  64  /tmp/log.tel
+-'  918160  39  /tmp/log.tel
+-'  918138  16  /tmp/log.tel
+-'  918120  69  /tmp/log.tel
+-'  30  30  ~/.vim/bundle/c-utils.vim/plugin/utilgrep.vim
 
 # History of marks within files (newest to oldest):
 
-> ~/.tmux.conf
-	"	92	0
-	.	32	0
-	+	33	45
-	+	33	0
-	+	32	0
-	+	33	0
-	+	32	0
-	+	33	0
-	+	32	0
-
-> ~/.vim/init.vim
-	"	168	0
-	^	171	38
-	.	168	0
-	+	169	32
-	+	169	0
-	+	167	0
-	+	169	5
-	+	171	35
-	+	169	0
-	+	171	34
-	+	168	0
-	a	169	0
-
-> ~/project/neovim/init.vim
-	"	1	0
-
 > ~/.vimrc
-	"	169	6
-	^	169	35
-	.	169	34
-	+	250	37
-	+	270	1
-	+	269	11
-	+	271	4
-	+	273	5
-	+	272	0
-	+	270	37
-	+	271	0
+	"	520	39
+	^	514	39
+	.	152	0
+	+	251	37
+	+	271	1
+	+	270	11
+	+	272	4
+	+	274	5
 	+	273	0
-	+	270	1
-	+	272	1
+	+	271	37
+	+	272	0
+	+	274	0
+	+	271	1
+	+	273	1
+	+	460	50
 	+	459	50
-	+	458	50
 	+	131	0
-	+	143	0
+	+	142	0
 	+	156	27
 	+	157	24
 	+	157	0
@@ -435,26 +575,26 @@ $
 	+	120	0
 	+	130	0
 	+	124	0
-	+	564	17
-	+	564	15
-	+	564	44
+	+	565	17
+	+	565	15
+	+	565	44
+	+	565	0
+	+	565	17
+	+	565	2
 	+	564	0
-	+	564	17
-	+	564	2
+	+	565	0
+	+	565	0
+	+	565	0
+	+	565	15
+	+	565	0
+	+	565	0
+	+	559	0
+	+	562	9
 	+	563	0
-	+	564	0
-	+	564	0
-	+	564	0
-	+	564	15
-	+	564	0
-	+	564	0
-	+	558	0
-	+	561	9
+	+	564	5
+	+	562	3
+	+	563	0
 	+	562	0
-	+	563	5
-	+	561	3
-	+	562	0
-	+	561	0
 	+	167	0
 	+	172	4
 	+	170	0
@@ -473,134 +613,264 @@ $
 	+	172	0
 	+	167	0
 	+	130	0
-	+	190	0
+	+	191	0
 	+	169	34
+	+	174	19
+	+	173	34
+	+	172	2
+	+	174	19
+	+	440	43
+	+	131	0
+	+	152	0
 
-> /tmp/log
-	"	6	0
-	.	5	4
-	+	5	4
+> ~/.vim/bundle/c-utils.vim/autoload/utilgrep.vim
+	"	35	37
+	^	35	38
+	.	35	37
+	+	47	19
+	+	19	21
+	+	20	17
+	+	20	17
+	+	15	2
+	+	16	2
+	+	15	19
+	+	16	17
+	+	17	0
+	+	14	0
+	+	20	0
+	+	20	0
+	+	35	28
+	+	39	0
+	+	35	34
+	+	16	17
+	+	35	37
 
-> ~/project/neovim/.tmux.conf
+> ~/.vim/bundle/c-utils.vim/plugin/utilgrep.vim
+	"	30	30
+	^	40	0
+	.	30	30
+	+	36	58
+	+	37	61
+	+	38	59
+	+	39	62
+	+	40	0
+	+	30	30
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+	"	14535	10
+
+> ~/.vim/bundle/vim-dispatch/.git/config
 	"	1	0
 
-> ~/.Xxterm
-	"	69	26
-	^	69	27
-	.	69	26
-	+	69	0
-	+	70	0
-	+	69	27
-	+	70	0
-	+	69	26
+> ~/.vim/bundle/vimux-script/.git/config
+	"	1	0
 
-> ~/project/neovim/[Vundle] clean
+> ~/.vim/bundle/vimux-script/[Vundle] clean
+	"	2	0
+	.	1	0
+	+	1	0
+
+> /data/workref/log/log.tel
 	"	3	0
-	.	1	0
-	+	1	0
 
-> ~/project/neovim/src/nvim/arabic.c
-	"	1	0
+> /tmp/log.tel
+	"	100989	105
+	^	184420	0
+	.	184420	0
+	+	918658	0
+	+	918657	0
+	+	918658	0
+	+	184421	0
+	+	184420	0
 
-> ~/tmux.conf
-	"	1	0
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmpt.c
+	"	416	14
 
-> ~/.zshrc
-	"	116	0
-	^	102	1
-	.	103	0
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_hash_map.c
+	"	137	0
+
+> ~/.vim/bundle/vimux-script/autoload/vimux.vim
+	"	92	21
+	^	99	8
+	.	104	0
+	+	98	76
+	+	97	33
+	+	98	80
+	+	97	0
+	+	98	23
 	+	102	0
-	+	103	0
+	+	104	19
+	+	102	19
+	+	97	0
+	+	97	0
+	+	97	22
+	+	97	23
+	+	97	0
+	+	97	21
+	+	97	45
+	+	97	38
+	+	97	23
+	+	97	68
+	+	99	7
+	+	97	34
+	+	99	11
+	+	100	80
+	+	97	0
+	+	98	0
+	+	100	0
+	+	102	0
+	+	104	0
+	a	96	5
 
-> ~/.zshc
+> /data/workref/log/rtmp-tp.script
+	"	47	3
+	^	80	0
+	.	84	0
+	+	13	0
+	+	39	0
+	+	38	0
+	+	39	5
+	+	50	0
+	+	49	0
+	+	50	12
+	+	48	0
+	+	53	0
+	+	48	0
+	+	53	0
+	+	43	0
+	+	46	0
+	+	46	0
+	+	46	15
+	+	46	0
+	+	40	0
+	+	41	6
+	+	44	0
+	+	45	0
+	+	47	0
+	+	48	0
+	+	31	10
+	+	9	0
+	+	8	0
+	+	9	28
+	+	31	34
+	+	32	10
+	+	33	10
+	+	37	10
+	+	32	31
+	+	35	18
+	+	36	20
+	+	34	0
+	+	51	13
+	+	47	9
+	+	52	0
+	+	31	10
+	+	118	17
+	+	119	13
+	+	120	0
+	+	116	0
+	+	117	0
+	+	121	2
+	+	47	5
+	+	84	6
+	+	80	0
+	+	84	0
+
+> ~/__Tagbar__
 	"	1	0
 
-> ~/.vim/bundle/vim-arpeggio/autoload/arpeggio.vim
-	"	433	0
+> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+	"	357	11
+	^	400	12
+	.	288	0
+	+	260	12
+	+	310	19
+	+	289	15
+	+	288	0
 
-> ~/.vim/bundle/vim-arpeggio/plugin/arpeggio.vim
-	"	98	30
-	^	98	31
-	.	98	30
-	+	91	0
-	+	96	0
-	+	101	0
-	+	90	1
-	+	90	0
-	+	98	30
+> /data/work/bug-disk-raid2/5.4-1500D/patch.diff
+	"	4	19
 
-> ~/.vim/bundle/vim-arpeggio/mduem/Makefile
-	"	97	0
+> /data/work/bug-disk-raid2/5.4-1500D/cmf/plugin/execute/formatlogdisk.c
+	"	142	0
+	.	122	34
+	+	122	34
 
-> ~/.vim/bundle/vim-arpeggio/Makefile
-	"	13	0
+> /data/work/bug-disk-raid2/5.4-1500D/migbase/include/cmdbapi/cmdb_core.h
+	"	218	0
 
-> /tmp/vimdebug.log
-	"	772	0
-	^	719	2
-	.	719	1
-	+	716	2
-	+	718	0
-	+	719	1
+> /data/work/bug-disk-raid2/5.4-1500D/.version
+	"	1	0
 
-> ~/work/log/ftp.log
-	"	12	0
-	^	12	28
-	.	12	0
-	+	12	0
+> /data/work/bug-disk-raid2/5.4-1500D/checklist.txt
+	"	37	6
+	^	36	23
+	.	36	16
+	+	12	17
+	+	13	28
+	+	8	32
+	+	7	36
+	+	6	18
+	+	3	73
+	+	38	43
+	+	39	0
+	+	36	3
+	+	37	3
+	+	36	16
 
-> ~/work/[Vundle] Installer
-	"	27	0
-	.	1	0
-	+	1	0
-
-> /usr/share/vim/vim74/doc/map.txt
-	"	295	29
-
-> ~/work/log/rtmp-tp.cfg
-	"	64	5
-	^	64	7
-	.	64	0
-	+	64	0
-
-> ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
-	"	604	2
-	.	512	0
-	+	512	0
-
-> ~/.vim/bundle/vim-dispatch/autoload/dispatch/tmux.vim
-	"	115	10
-
-> /usr/share/vim/vim74/doc/autocmd.txt
-	"	905	56
-
-> ~/.vim/bundle/vim-dispatch/autoload/NrrwRgn_dispatch_1
-	"	1	24
-	.	2	0
-	+	114	0
-	+	1	0
-	+	2	0
-
-> /usr/share/vim/vim74/doc/eval.txt
-	"	5911	42
-
-> ~/.vim/bundle/vim-dispatch/autoload/__Tagbar__
-	"	9	3
-	.	12	0
-	+	58	0
-	+	58	0
-	+	58	0
-	+	58	0
-	+	58	0
-	+	12	0
+> /data/work/checklist.txt
+	"	38	0
+	^	36	6
+	.	38	0
+	+	2	22
+	+	8	30
+	+	12	17
+	+	14	41
+	+	13	28
+	+	3	36
+	+	35	0
+	+	36	5
+	+	37	6
+	+	37	0
+	+	38	0
 
 > /usr/share/vim/vim74/doc/various.txt
-	"	190	0
+	"	616	43
 
-> ~/.vim/bundle/vim-dispatch/autoload/[Vundle] Installer
-	"	26	0
-	.	1	0
-	+	1	0
+> /data/workref/log/task.log
+	"	7	8
+	^	7	10
+	.	7	9
+	+	1	1
+	+	2	34
+	+	3	60
+	+	4	46
+	+	5	51
+	+	6	21
+	+	7	9
 
-> ~/.vim/bundle/vim-dispatch/plugin/dispatch.vim
-	"	1	8
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
+	"	153	0
+	.	153	0
+	+	153	0
+
+> ~/.vim/bundle/c-utils.vim/autoload/blame.vim
+	"	2	10
+	.	3	4
+	+	3	4
+
+> /data/work/bug-disk-raid/5.4-100D/patch.diff
+	"	30	33
+
+> /data/work/bug-disk-raid/5.4-100D/cmf/plugin/execute/formatlogdisk.c
+	"	104	8
+
+> /data/work/bug-disk-raid/5.4-100D/cmf/plugin/execute/raid.c
+	"	160	54
+
+> /data/work/bug-disk-raid/5.4-100D/w3m-1
+	"	48	0
+	.	2	0
+	+	2	0
+
+> /data/work/bug-disk-raid2/5.4-1500D/migbase/osapi/raid.c
+	"	558	0

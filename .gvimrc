@@ -128,7 +128,6 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'mhinz/vim-startify'
 
 "Plugin 'kana/vim-arpeggio'
-Plugin 'tpope/vim-dispatch'
 "Plugin 'dyng/ctrlsf.vim'
 "Plugin 'rking/ag.vim'
 
@@ -150,6 +149,7 @@ Plugin 'huawenyu/taboo.vim'
 Plugin 'huawenyu/vim-mark'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
+Plugin 'huawenyu/vim-dispatch'
 Plugin 'huawenyu/c-utils.vim'
 
 " Debug
@@ -165,9 +165,13 @@ let mapleader = ";"
 map Q <Nop>
 nnoremap <C-c> <silent> <C-c>
 
+set clipboard+=unnamed
+set clipboard+=unnamedplus
+
 if has("nvim")
-  "let base16colorspace=256
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let base16colorspace=256
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=0
+  set synmaxcol=2048
 else
  set term=xterm-256color
 endif
@@ -342,10 +346,6 @@ set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 "set listchars=tab:>.,trail:~,extends:<,nbsp:.
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 
-
-set clipboard+=unnamed
-set clipboard+=unnamedplus
-
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
 \ 'c': [ {'command' : "\<C-x>\<C-o>",
@@ -437,7 +437,7 @@ let g:sneak#s_next = 1
 
   "map <leader>ds :call Asm() <CR>
   map <leader>bs :call blame#SvnBlameCurrent() <CR>
-  map <leader>bg :Gblame <CR>
+  map <leader>bg :call blame#GitBlameCurrent() <CR>
 
   nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
