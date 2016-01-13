@@ -3828,6 +3828,13 @@ document enablecolorprompt
 | Enable color prompt
 end
 
+
+# ourself setting {{{1
+#source /home/wilson/project/voltron/dbgentry.py
+#voltron init
+#set disassembly-flavor intel
+# }}}
+
 #EOF
 
 # Older change logs:

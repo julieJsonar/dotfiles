@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/#Ag
+~MSle0~/\<warning\>
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -18,7 +18,10 @@ $
 
 # Command Line History (newest to oldest):
 :qa
+:aa
 :w
+:python vim.command('echo "Hello World!"')
+:python from vim import *
 :b2
 :sp
 :b1
@@ -114,11 +117,9 @@ $
 :set shiftwidth=4
 :echo @s
 :echo has("nvim")
-:'<,'>qa
-:e plugin/bookmark.vim
-:e autoload/bookmark.vim
 
 # Search String History (newest to oldest):
+? \<warning\>
 ?/#Ag
 ? \<utilgrep#Grep\>
 ? \<wad_http_client_notifier\>
@@ -287,11 +288,25 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	  - [ ] rtmpt request /close/
-""1	LINE	0
-	Plugin 'huawenyu/vim-dispatch'
+""0	CHAR	0
+	**warning** (netrw) sorry, cannot preview a directory suc
+"1	LINE	0
+	" ============================================================================
+	" Netrw Directory Listing                                        (netrw v149)
+	"   /home/wilson/project/test
+	"   Sorted by      name
+	"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
+	"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:exec
+	" ============================================================================
+	../
+	./
+	t1.c
+	t1*
 "2	LINE	0
+	
+"3	LINE	0
+	Plugin 'huawenyu/vim-dispatch'
+"4	LINE	0
 	wad_fmem_open(fmem=0x4ed3de0, fmem_name='wad-str-wrapper', elm_sz=32, block_sz=16384): overhead=0
 	cmem open 'sched'
 	cmem open 'buff'
@@ -392,20 +407,16 @@ $
 	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
 	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
 	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-"3	LINE	0
-	    memset(ptr, 0, size);
-"4	LINE	0
-	
 "5	LINE	0
-	
+	    memset(ptr, 0, size);
 "6	LINE	0
 	
 "7	LINE	0
-	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
+	
 "8	LINE	0
-	XTerm*termName:            xterm-256color
+	
 "9	LINE	0
-	set -g default-terminal "xterm-256color"
+	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -429,7 +440,7 @@ $
 "s	CHAR	0
 	for view in 
 "-	CHAR	0
-	tpope
+	o
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -438,18 +449,33 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  520  39  ~/.vimrc
-'1  1  0  ~/.vim/bundle/vim-dispatch/.git/config
-'2  1  0  ~/.vim/bundle/vimux-script/.git/config
-'3  2  0  ~/.vim/bundle/vimux-script/[Vundle] clean
-'4  152  0  ~/.vimrc
-'5  3  0  /data/workref/log/log.tel
-'6  100989  105  /tmp/log.tel
-'7  43  36  ~/.vimrc
-'8  260  12  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-'9  7  8  /data/workref/log/task.log
+'0  111  0  ~/.gdbinit
+'1  1  0  ~/project/test
+'2  1  2  ~/project/test/NetrwMessage
+'3  13  19  ~/project/test/t1.c
+'4  14  0  ~/project/test/t1.c
+'5  12  1  ~/project/test/t1.c
+'6  3835  8  ~/.gdbinit
+'7  520  39  ~/.vimrc
+'8  1  0  ~/.vim/bundle/vim-dispatch/.git/config
+'9  1  0  ~/.vim/bundle/vimux-script/.git/config
 
 # Jumplist (newest first):
+-'  111  0  ~/.gdbinit
+-'  107  0  ~/.gdbinit
+-'  97  0  ~/.gdbinit
+-'  3833  0  ~/.gdbinit
+-'  3835  8  ~/.gdbinit
+-'  1  0  ~/project/test
+-'  1  2  ~/project/test/NetrwMessage
+-'  13  19  ~/project/test/t1.c
+-'  14  0  ~/project/test/t1.c
+-'  12  1  ~/project/test/t1.c
+-'  1  0  ~/project/test/t1.c
+-'  4005  0  ~/.gdbinit
+-'  1  0  ~/.gdbinit
+-'  3832  0  ~/.gdbinit
+-'  9  0  ~/.gdbinit
 -'  520  39  ~/.vimrc
 -'  514  39  ~/.vimrc
 -'  1  29  ~/.vimrc
@@ -532,22 +558,39 @@ $
 -'  918169  18  /tmp/log.tel
 -'  918277  18  /tmp/log.tel
 -'  918172  18  /tmp/log.tel
--'  918647  18  /tmp/log.tel
--'  17423  4  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  918629  51  /tmp/log.tel
--'  4577  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  918634  65  /tmp/log.tel
--'  918630  38  /tmp/log.tel
--'  918650  8  /tmp/log.tel
--'  918605  1  /tmp/log.tel
--'  918600  85  /tmp/log.tel
--'  918168  64  /tmp/log.tel
--'  918160  39  /tmp/log.tel
--'  918138  16  /tmp/log.tel
--'  918120  69  /tmp/log.tel
--'  30  30  ~/.vim/bundle/c-utils.vim/plugin/utilgrep.vim
 
 # History of marks within files (newest to oldest):
+
+> ~/.gdbinit
+	"	111	0
+	^	3833	1
+	.	3834	0
+	+	3835	0
+	+	3834	0
+	+	3830	0
+	+	3834	0
+	+	3837	0
+	+	3832	16
+	+	3831	0
+	+	3832	21
+	+	3836	1
+	+	3833	0
+	+	3834	0
+
+> ~/project/test/t1.c
+	"	13	19
+	^	13	20
+	.	13	19
+	+	1	17
+	+	2	15
+	+	4	30
+	+	5	1
+	+	6	0
+	+	15	9
+	+	12	11
+	+	13	27
+	+	14	0
+	+	13	19
 
 > ~/.vimrc
 	"	520	39
@@ -866,11 +909,3 @@ $
 
 > /data/work/bug-disk-raid/5.4-100D/cmf/plugin/execute/raid.c
 	"	160	54
-
-> /data/work/bug-disk-raid/5.4-100D/w3m-1
-	"	48	0
-	.	2	0
-	+	2	0
-
-> /data/work/bug-disk-raid2/5.4-1500D/migbase/osapi/raid.c
-	"	558	0
