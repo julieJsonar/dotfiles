@@ -18,8 +18,8 @@ $
 
 # Command Line History (newest to oldest):
 :qa
-:aa
 :w
+:aa
 :python vim.command('echo "Hello World!"')
 :python from vim import *
 :b2
@@ -288,7 +288,7 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
+"0	CHAR	0
 	**warning** (netrw) sorry, cannot preview a directory suc
 "1	LINE	0
 	" ============================================================================
@@ -439,8 +439,8 @@ $
 	
 "s	CHAR	0
 	for view in 
-"-	CHAR	0
-	o
+""-	CHAR	0
+	.
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -449,19 +449,30 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  111  0  ~/.gdbinit
-'1  1  0  ~/project/test
-'2  1  2  ~/project/test/NetrwMessage
-'3  13  19  ~/project/test/t1.c
-'4  14  0  ~/project/test/t1.c
-'5  12  1  ~/project/test/t1.c
-'6  3835  8  ~/.gdbinit
-'7  520  39  ~/.vimrc
-'8  1  0  ~/.vim/bundle/vim-dispatch/.git/config
-'9  1  0  ~/.vim/bundle/vimux-script/.git/config
+'0  80  22  ~/.gdbinit
+'1  9  296  ~/tmuxlog/tmux-rtmp-log.log
+'2  208  70  ~/.tmux.conf
+'3  111  0  ~/.gdbinit
+'4  1  0  ~/project/test
+'5  1  2  ~/project/test/NetrwMessage
+'6  13  19  ~/project/test/t1.c
+'7  14  0  ~/project/test/t1.c
+'8  12  1  ~/project/test/t1.c
+'9  3835  8  ~/.gdbinit
 
 # Jumplist (newest first):
+-'  80  22  ~/.gdbinit
+-'  96  18  ~/.gdbinit
+-'  100  16  ~/.gdbinit
+-'  78  23  ~/.gdbinit
+-'  75  21  ~/.gdbinit
+-'  3826  0  ~/.gdbinit
 -'  111  0  ~/.gdbinit
+-'  9  296  ~/tmuxlog/tmux-rtmp-log.log
+-'  1  0  ~/tmuxlog/tmux-rtmp-log.log
+-'  208  70  ~/.tmux.conf
+-'  207  35  ~/.tmux.conf
+-'  1  0  ~/.tmux.conf
 -'  107  0  ~/.gdbinit
 -'  97  0  ~/.gdbinit
 -'  3833  0  ~/.gdbinit
@@ -545,26 +556,13 @@ $
 -'  20260  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  20261  7  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  20262  51  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20264  39  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20270  10  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20271  34  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20356  26  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19658  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19653  23  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19641  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19633  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19746  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  918167  20  /tmp/log.tel
--'  918169  18  /tmp/log.tel
--'  918277  18  /tmp/log.tel
--'  918172  18  /tmp/log.tel
 
 # History of marks within files (newest to oldest):
 
 > ~/.gdbinit
-	"	111	0
+	"	80	22
 	^	3833	1
-	.	3834	0
+	.	75	21
 	+	3835	0
 	+	3834	0
 	+	3830	0
@@ -576,6 +574,20 @@ $
 	+	3836	1
 	+	3833	0
 	+	3834	0
+	+	75	21
+
+> ~/tmuxlog/tmux-rtmp-log.log
+	"	9	296
+
+> ~/.tmux.conf
+	"	208	70
+	^	208	71
+	.	208	70
+	+	207	117
+	+	208	82
+	+	206	0
+	+	207	106
+	+	208	70
 
 > ~/project/test/t1.c
 	"	13	19
@@ -903,9 +915,3 @@ $
 
 > /data/work/bug-disk-raid/5.4-100D/patch.diff
 	"	30	33
-
-> /data/work/bug-disk-raid/5.4-100D/cmf/plugin/execute/formatlogdisk.c
-	"	104	8
-
-> /data/work/bug-disk-raid/5.4-100D/cmf/plugin/execute/raid.c
-	"	160	54
