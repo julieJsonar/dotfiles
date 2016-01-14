@@ -18,6 +18,7 @@ $
 
 # Command Line History (newest to oldest):
 :qa
+:q
 :w
 :aa
 :python vim.command('echo "Hello World!"')
@@ -36,7 +37,6 @@ $
 :PluginClean
 :PluginInstall
 :e!
-:q
 :message
 :echo match('<C-c>', "^<.*>$")
 :echo match('<C-c>', '^<.*>$')
@@ -119,6 +119,8 @@ $
 :echo has("nvim")
 
 # Search String History (newest to oldest):
+??\a
+? \<DEBUGGER_VIEWER\>
 ? \<warning\>
 ?/#Ag
 ? \<utilgrep#Grep\>
@@ -290,7 +292,12 @@ $
 # Registers:
 "0	CHAR	0
 	**warning** (netrw) sorry, cannot preview a directory suc
-"1	LINE	0
+"1	BLOCK	0
+	#
+	#
+	#
+	#
+"2	LINE	0
 	" ============================================================================
 	" Netrw Directory Listing                                        (netrw v149)
 	"   /home/wilson/project/test
@@ -302,11 +309,11 @@ $
 	./
 	t1.c
 	t1*
-"2	LINE	0
-	
 "3	LINE	0
-	Plugin 'huawenyu/vim-dispatch'
+	
 "4	LINE	0
+	Plugin 'huawenyu/vim-dispatch'
+"5	LINE	0
 	wad_fmem_open(fmem=0x4ed3de0, fmem_name='wad-str-wrapper', elm_sz=32, block_sz=16384): overhead=0
 	cmem open 'sched'
 	cmem open 'buff'
@@ -407,16 +414,14 @@ $
 	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
 	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
 	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-"5	LINE	0
-	    memset(ptr, 0, size);
 "6	LINE	0
-	
+	    memset(ptr, 0, size);
 "7	LINE	0
 	
 "8	LINE	0
 	
 "9	LINE	0
-	unlet! $NVIM_TUI_ENABLE_TRUE_COLOR
+	
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -440,7 +445,7 @@ $
 "s	CHAR	0
 	for view in 
 ""-	CHAR	0
-	.
+	 
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -449,21 +454,33 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  80  22  ~/.gdbinit
-'1  9  296  ~/tmuxlog/tmux-rtmp-log.log
-'2  208  70  ~/.tmux.conf
-'3  111  0  ~/.gdbinit
-'4  1  0  ~/project/test
-'5  1  2  ~/project/test/NetrwMessage
-'6  13  19  ~/project/test/t1.c
-'7  14  0  ~/project/test/t1.c
-'8  12  1  ~/project/test/t1.c
-'9  3835  8  ~/.gdbinit
+'0  12  6  ~/dotfiles/.tmux-pipe-rdb
+'1  100  16  ~/.gdbinit
+'2  82  0  ~/rdb.txt
+'3  6  14  ~/project/voltron/dbgentry.py
+'4  3833  0  ~/.gdbinit
+'5  3836  0  ~/.gdbinit
+'6  2  46  ~/.voltron/config
+'7  1  0  ~/.voltron/config
+'8  80  22  ~/.gdbinit
+'9  9  296  ~/tmuxlog/tmux-rtmp-log.log
 
 # Jumplist (newest first):
--'  80  22  ~/.gdbinit
--'  96  18  ~/.gdbinit
+-'  12  6  ~/dotfiles/.tmux-pipe-rdb
+-'  77  6  ~/dotfiles/.tmux-pipe-rdb
+-'  4  2  ~/dotfiles/.tmux-pipe-rdb
+-'  1  0  ~/dotfiles/.tmux-pipe-rdb
 -'  100  16  ~/.gdbinit
+-'  3833  0  ~/.gdbinit
+-'  82  0  ~/rdb.txt
+-'  1  0  ~/rdb.txt
+-'  6  14  ~/project/voltron/dbgentry.py
+-'  1  0  ~/project/voltron/dbgentry.py
+-'  3836  0  ~/.gdbinit
+-'  80  22  ~/.gdbinit
+-'  2  46  ~/.voltron/config
+-'  1  0  ~/.voltron/config
+-'  96  18  ~/.gdbinit
 -'  78  23  ~/.gdbinit
 -'  75  21  ~/.gdbinit
 -'  3826  0  ~/.gdbinit
@@ -475,7 +492,6 @@ $
 -'  1  0  ~/.tmux.conf
 -'  107  0  ~/.gdbinit
 -'  97  0  ~/.gdbinit
--'  3833  0  ~/.gdbinit
 -'  3835  8  ~/.gdbinit
 -'  1  0  ~/project/test
 -'  1  2  ~/project/test/NetrwMessage
@@ -547,22 +563,41 @@ $
 -'  19603  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  17446  15  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  4318  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  4326  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20252  37  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20256  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20257  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20258  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20259  8  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20260  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20261  7  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  20262  51  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 
 # History of marks within files (newest to oldest):
 
+> ~/dotfiles/.tmux-pipe-rdb
+	"	12	6
+	^	12	8
+	.	12	0
+	+	12	0
+
+> ~/.tmux-pipe-rdb
+	"	13	14
+	^	12	7
+	.	13	14
+	+	13	0
+	+	12	6
+	+	13	14
+
+> ~/.tmux.conf
+	"	210	92
+	^	210	93
+	.	210	92
+	+	207	117
+	+	208	82
+	+	206	0
+	+	207	106
+	+	208	70
+	+	210	44
+	+	211	0
+	+	209	0
+	+	210	92
+
 > ~/.gdbinit
-	"	80	22
-	^	3833	1
-	.	75	21
+	"	100	16
+	^	3836	1
+	.	96	18
 	+	3835	0
 	+	3834	0
 	+	3830	0
@@ -575,19 +610,27 @@ $
 	+	3833	0
 	+	3834	0
 	+	75	21
+	+	3833	0
+	+	3836	0
+	+	80	22
+	+	82	24
+	+	88	22
+	+	96	18
+
+> ~/rdb.txt
+	"	82	0
+
+> ~/project/voltron/dbgentry.py
+	"	6	14
+
+> ~/.voltron/config
+	"	2	46
+	^	2	47
+	.	2	0
+	+	2	0
 
 > ~/tmuxlog/tmux-rtmp-log.log
 	"	9	296
-
-> ~/.tmux.conf
-	"	208	70
-	^	208	71
-	.	208	70
-	+	207	117
-	+	208	82
-	+	206	0
-	+	207	106
-	+	208	70
 
 > ~/project/test/t1.c
 	"	13	19
@@ -887,31 +930,3 @@ $
 	+	37	6
 	+	37	0
 	+	38	0
-
-> /usr/share/vim/vim74/doc/various.txt
-	"	616	43
-
-> /data/workref/log/task.log
-	"	7	8
-	^	7	10
-	.	7	9
-	+	1	1
-	+	2	34
-	+	3	60
-	+	4	46
-	+	5	51
-	+	6	21
-	+	7	9
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
-	"	153	0
-	.	153	0
-	+	153	0
-
-> ~/.vim/bundle/c-utils.vim/autoload/blame.vim
-	"	2	10
-	.	3	4
-	+	3	4
-
-> /data/work/bug-disk-raid/5.4-100D/patch.diff
-	"	30	33
