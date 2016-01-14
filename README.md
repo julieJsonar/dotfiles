@@ -18,6 +18,14 @@ Rollback
   git push -f origin branch  
 ```
 # Tools
+## vim server
+```Shell
+<terminal-1> $ vim --servername foo                           <<< start vim-server named 'foo'
+<terminal-2> $ vim --servername foo --remote-silent bar.hs    <<< open current dir's file 'bar.hs' but display on the vim-server
+<terminal-3> $ vim --servername foo --remote-tab file2.txt file3.txt   <<< open these files into new tabs on the vim-server
+<terminal-4> $ vim --servername foo --remote-send '<Esc>:mksession ~/sessionFile.vim<CR>:wqa<CR>'    <<< save session and used by another vim-server
+<terminal-5> $ vim --servername bar -S ~/sessionFile.vim
+```
 ## gdb-dashboard
 https://github.com/cyrus-and/gdb-dashboard
 
