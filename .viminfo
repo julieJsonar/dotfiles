@@ -340,7 +340,7 @@ $
 "s	CHAR	0
 	for view in 
 ""-	CHAR	0
-	self.file_name + ":"+ str(current_line)
+	 
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -349,18 +349,60 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  840  11  ~/.gdb-dashboard
-'1  647  8  ~/.gdb-dashboard
-'2  648  8  ~/.gdb-dashboard
-'3  1139  12  ~/.gdb-dashboard
-'4  1  0  ~/.gdbinit.1
-'5  12  6  ~/dotfiles/.tmux-pipe-rdb
-'6  100  16  ~/.gdbinit
-'7  82  0  ~/rdb.txt
-'8  6  14  ~/project/voltron/dbgentry.py
-'9  3833  0  ~/.gdbinit
+'0  1  4  ~/dotfiles/.git/MERGE_MSG
+'1  840  11  ~/.gdb-dashboard
+'2  647  8  ~/.gdb-dashboard
+'3  648  8  ~/.gdb-dashboard
+'4  1139  12  ~/.gdb-dashboard
+'5  1  0  ~/.gdbinit.1
+'6  12  6  ~/dotfiles/.tmux-pipe-rdb
+'7  100  16  ~/.gdbinit
+'8  82  0  ~/rdb.txt
+'9  6  14  ~/project/voltron/dbgentry.py
 
 # Jumplist (newest first):
+-'  1  4  ~/dotfiles/.git/MERGE_MSG
+-'  840  11  ~/.gdb-dashboard
+-'  948  11  ~/.gdb-dashboard
+-'  1056  0  ~/.gdb-dashboard
+-'  1210  56  ~/.gdb-dashboard
+-'  1230  2  ~/.gdb-dashboard
+-'  1206  62  ~/.gdb-dashboard
+-'  1196  58  ~/.gdb-dashboard
+-'  627  54  ~/.gdb-dashboard
+-'  621  50  ~/.gdb-dashboard
+-'  431  51  ~/.gdb-dashboard
+-'  369  56  ~/.gdb-dashboard
+-'  277  54  ~/.gdb-dashboard
+-'  180  48  ~/.gdb-dashboard
+-'  115  45  ~/.gdb-dashboard
+-'  15  56  ~/.gdb-dashboard
+-'  1  5  ~/.gdb-dashboard
+-'  243  23  ~/.gdb-dashboard
+-'  288  23  ~/.gdb-dashboard
+-'  1208  17  ~/.gdb-dashboard
+-'  667  8  ~/.gdb-dashboard
+-'  322  8  ~/.gdb-dashboard
+-'  321  8  ~/.gdb-dashboard
+-'  300  8  ~/.gdb-dashboard
+-'  721  8  ~/.gdb-dashboard
+-'  666  8  ~/.gdb-dashboard
+-'  657  8  ~/.gdb-dashboard
+-'  655  8  ~/.gdb-dashboard
+-'  641  8  ~/.gdb-dashboard
+-'  684  8  ~/.gdb-dashboard
+-'  665  78  ~/.gdb-dashboard
+-'  725  55  ~/.gdb-dashboard
+-'  671  8  ~/.gdb-dashboard
+-'  659  20  ~/.gdb-dashboard
+-'  644  11  ~/.gdb-dashboard
+-'  643  8  ~/.gdb-dashboard
+-'  677  35  ~/.gdb-dashboard
+-'  680  16  ~/.gdb-dashboard
+-'  658  31  ~/.gdb-dashboard
+-'  650  16  ~/.gdb-dashboard
+-'  647  8  ~/.gdb-dashboard
+-'  13  0  ~/.gdb-dashboard
 -'  840  11  ~/.gdb-dashboard
 -'  948  11  ~/.gdb-dashboard
 -'  1056  0  ~/.gdb-dashboard
@@ -404,6 +446,11 @@ $
 -'  13  0  ~/.gdb-dashboard
 
 # History of marks within files (newest to oldest):
+
+> ~/dotfiles/.git/MERGE_MSG
+	"	1	4
+	.	1	4
+	+	1	4
 
 > ~/.gdb-dashboard
 	"	840	11
@@ -774,6 +821,3 @@ $
 	+	84	6
 	+	80	0
 	+	84	0
-
-> ~/__Tagbar__
-	"	1	0
