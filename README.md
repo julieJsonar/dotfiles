@@ -1,16 +1,13 @@
-dotfiles
-========
+# dotfiles
 
 linux programmer's config files: zsh, tmux, vim, ...
 
-Install
-=======
+# Setup
+
 If ubuntu type OS: ubuntu, linux mint, ...
 ```Shell
   ./init_ubuntu.sh  
 ```
-Update
-======
 Commit & Update  
 ```Shell
   ./update.sh  
@@ -20,8 +17,21 @@ Rollback
   git reset --hard <old-commit-id>  
   git push -f origin branch  
 ```
-eclipse dark theme
-=================
+# Tools
+## gdb-dashboard
+https://github.com/cyrus-and/gdb-dashboard
+
+using gdb's python interface, if use ubuntu 14.04, the gdb using python3 interface, so if some python module need, please `sudo pip3 install <module>`
+
+  - start GDB in one terminal, set breakpoint then run to that breakpoint;
+  - from step-1, we have a program running, enter python mode by `(gdb) source ~/.gdb-dashboard`;
+  - If want the output to another terminal:
+    * open another terminal (e.g. tmux pane) and get its TTY with the tty command (e.g. /dev/ttys001, the name may be different for a variety of reasons);
+    * issue the command dashboard -output /dev/ttys001 to redirect the dashboard output to the newly created terminal;
+  - debug as usual, the only different is python prompt `>>> `, not `(gdb) `, but we can change by `dashboard -style prompt '(gdb)'`
+  - config show model: `dashboard -layout registers source !assembly stack`
+
+## eclipse dark theme
 
 eclipse-moonrise-theme  
 from https://github.com/guari/eclipse-ui-theme  
@@ -35,5 +45,5 @@ Please choose the moonrise, not moonrise(standalone)
 ```Shell
 $ cd eclipse-moonrise-theme
 $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
-$ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  ~/tools/eclipse/plugins/.
+$ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
 ```
