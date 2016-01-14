@@ -454,18 +454,23 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  12  6  ~/dotfiles/.tmux-pipe-rdb
-'1  100  16  ~/.gdbinit
-'2  82  0  ~/rdb.txt
-'3  6  14  ~/project/voltron/dbgentry.py
-'4  3833  0  ~/.gdbinit
-'5  3836  0  ~/.gdbinit
-'6  2  46  ~/.voltron/config
-'7  1  0  ~/.voltron/config
-'8  80  22  ~/.gdbinit
-'9  9  296  ~/tmuxlog/tmux-rtmp-log.log
+'0  1129  12  ~/.gdb-dashboard
+'1  1  0  ~/.gdbinit.1
+'2  12  6  ~/dotfiles/.tmux-pipe-rdb
+'3  100  16  ~/.gdbinit
+'4  82  0  ~/rdb.txt
+'5  6  14  ~/project/voltron/dbgentry.py
+'6  3833  0  ~/.gdbinit
+'7  3836  0  ~/.gdbinit
+'8  2  46  ~/.voltron/config
+'9  1  0  ~/.voltron/config
 
 # Jumplist (newest first):
+-'  1129  12  ~/.gdb-dashboard
+-'  1188  12  ~/.gdb-dashboard
+-'  44  0  ~/.gdb-dashboard
+-'  1  0  ~/.gdb-dashboard
+-'  1  0  ~/.gdbinit.1
 -'  12  6  ~/dotfiles/.tmux-pipe-rdb
 -'  77  6  ~/dotfiles/.tmux-pipe-rdb
 -'  4  2  ~/dotfiles/.tmux-pipe-rdb
@@ -560,11 +565,14 @@ $
 -'  19607  26  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  19604  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  19749  23  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19603  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  17446  15  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  4318  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 
 # History of marks within files (newest to oldest):
+
+> ~/.gdb-dashboard
+	"	1129	12
+
+> ~/.gdbinit.1
+	"	1	0
 
 > ~/dotfiles/.tmux-pipe-rdb
 	"	12	6
@@ -898,35 +906,3 @@ $
 
 > /data/work/bug-disk-raid2/5.4-1500D/.version
 	"	1	0
-
-> /data/work/bug-disk-raid2/5.4-1500D/checklist.txt
-	"	37	6
-	^	36	23
-	.	36	16
-	+	12	17
-	+	13	28
-	+	8	32
-	+	7	36
-	+	6	18
-	+	3	73
-	+	38	43
-	+	39	0
-	+	36	3
-	+	37	3
-	+	36	16
-
-> /data/work/checklist.txt
-	"	38	0
-	^	36	6
-	.	38	0
-	+	2	22
-	+	8	30
-	+	12	17
-	+	14	41
-	+	13	28
-	+	3	36
-	+	35	0
-	+	36	5
-	+	37	6
-	+	37	0
-	+	38	0
