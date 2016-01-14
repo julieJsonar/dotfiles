@@ -10,6 +10,7 @@ import os
 import re
 import struct
 import termios
+#import subprocess
 
 # Common attributes ------------------------------------------------------------
 
@@ -652,12 +653,20 @@ class Source(Dashboard.Module):
         if file_name != self.file_name or ts and ts > self.ts:
             self.file_name = file_name
             self.ts = ts
+            '''
             try:
                 with open(self.file_name) as source:
                     self.source_lines = source.readlines()
             except:
                 msg = 'Cannot access "{}"'.format(self.file_name)
                 return [ansi(msg, R.style_error)]
+            '''
+
+        #subprocess.Popen(["vim", " --servername foo --remote-silent ~/update.sh"], creationflags=DETACHED_PROCESS)
+        os.system("vim --servername foo --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
+        return ""
+
+        '''
         # compute the line range
         start = max(current_line - 1 - self.context, 0)
         end = min(current_line - 1 + self.context, len(self.source_lines))
@@ -671,6 +680,7 @@ class Source(Dashboard.Module):
                 line_format = ansi(number_format, R.style_low) + ' {}'
             out.append(line_format.format(number, line.rstrip('\n')))
         return out
+        '''
 
     def set_context(self, arg):
         msg = 'expecting a positive integer'

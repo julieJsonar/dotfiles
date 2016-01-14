@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/\<warning\>
+~MSle0~/------------------
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -17,9 +17,11 @@
 $
 
 # Command Line History (newest to oldest):
-:qa
 :q
 :w
+:set syn=python
+:qa
+:xiqtei
 :aa
 :python vim.command('echo "Hello World!"')
 :python from vim import *
@@ -115,10 +117,14 @@ $
 :e ../plugin/dispatch.vim
 :set wrap
 :set shiftwidth=4
-:echo @s
-:echo has("nvim")
 
 # Search String History (newest to oldest):
+?/------------------
+? \<start\>
+?/call 
+?/c
+?/source
+? \<class\>
 ??\a
 ? \<DEBUGGER_VIEWER\>
 ? \<warning\>
@@ -291,137 +297,26 @@ $
 
 # Registers:
 "0	CHAR	0
-	**warning** (netrw) sorry, cannot preview a directory suc
-"1	BLOCK	0
-	#
-	#
-	#
-	#
+	str(current_line)
+"1	LINE	0
+	        return out
 "2	LINE	0
-	" ============================================================================
-	" Netrw Directory Listing                                        (netrw v149)
-	"   /home/wilson/project/test
-	"   Sorted by      name
-	"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
-	"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:exec
-	" ============================================================================
-	../
-	./
-	t1.c
-	t1*
+	        return out
 "3	LINE	0
 	
 "4	LINE	0
-	Plugin 'huawenyu/vim-dispatch'
+	
 "5	LINE	0
-	wad_fmem_open(fmem=0x4ed3de0, fmem_name='wad-str-wrapper', elm_sz=32, block_sz=16384): overhead=0
-	cmem open 'sched'
-	cmem open 'buff'
-	wad_fmem_open(fmem=0x4e30340, fmem_name='buffs fmem', elm_sz=4069, block_sz=4294967295): overhead=0
-	wad_fmem.c@wad_fmem_open(297): block_size -1 for "buffs fmem" set to block size of: 65536, ele_sz: 4069
-	wad_fmem_open(fmem=0x4e302a0, fmem_name='wad_buff_region', elm_sz=40, block_sz=0): overhead=0
-	wad_fmem.c@wad_fmem_open(297): block_size 0 for "wad_buff_region" set to block size of: 4096, ele_sz: 40
-	wad_fmem_open(fmem=0x4ea47d0, fmem_name='cmem 48 bucket', elm_sz=48, block_sz=8192): overhead=0
-	wad_fmem_open(fmem=0x4ea4d48, fmem_name='cmem 104 bucket', elm_sz=104, block_sz=8192): overhead=0
-	cmem open 'worker process'
-	T@          wad_redirect_open()
-	T@          wad_monitor_open()
-	cmem open 'monitor'
-	cmem open 'timer'
-	wad_fmem_open(fmem=0x4ea5450, fmem_name='cmem 184 bucket', elm_sz=184, block_sz=16384): overhead=0
-	wad_timer_list_alloc(140): tm_list=0x2a955f0038 bucks=6 period=10 precise=2 active=0x2a955f0090 inactive=0x2a955f00a0 last=0x2a955f00e0
-	T@                wad_app_session_material_init()
-	__wad_sched_task_list_open(53): opne task_list=0x51183e0 called by wad_monitor_open:468
-	T@          wad_fqdn_resolver_open()
-	wad_fmem_open(fmem=0x4ea6e18, fmem_name='cmem 632 bucket', elm_sz=632, block_sz=32768): overhead=0
-	wad_timer_list_alloc(140): tm_list=0x2a955f4038 bucks=31 period=300 precise=10 active=0x2a955f4090 inactive=0x2a955f40a0 last=0x2a955f4270
-	cmem open 'vcache'
-	wad_fmem_open(fmem=0x4ea4af0, fmem_name='cmem 80 bucket', elm_sz=80, block_sz=8192): overhead=0
-	wad_fmem_open(fmem=0x4ea43e8, fmem_name='cmem 8 bucket', elm_sz=8, block_sz=8192): overhead=0
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc038 ("") to parent (nil) ("(null)")
-	wad_vcache_add_site(732): add site: site_name = vcache://youtube/, hostname_suffix = youtube.com
-	wad_fmem_open(fmem=0x4ea4bb8, fmem_name='cmem 88 bucket', elm_sz=88, block_sz=8192): overhead=0
-	wad_fmem_open(fmem=0x4ea4578, fmem_name='cmem 24 bucket', elm_sz=24, block_sz=8192): overhead=0
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 11, node->str = "", site = vcache://youtube/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc09c ("com") to parent 0x2a955fc038 ("")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = youtube.com (7 bytes), end = 7, node->str = "com", site = vcache://youtube/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc100 ("youtube") to parent 0x2a955fc09c ("com")
-	wad_fmem_open(fmem=0x4ea4898, fmem_name='cmem 56 bucket', elm_sz=56, block_sz=8192): overhead=0
-	wad_fmem_open(fmem=0x4ea44b0, fmem_name='cmem 16 bucket', elm_sz=16, block_sz=8192): overhead=0
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/videoplayback" => exact = "/videoplayback", starts = "(null)", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 5, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/stream_204" => exact = "/stream_204", starts = "(null)", ends = "(null)", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/ptracking" => exact = "/ptracking", starts = "(null)", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 4, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://googlevideo/, hostname_suffix = googlevideo.com
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 15, node->str = "", site = vcache://googlevideo/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = googlevideo.com (11 bytes), end = 11, node->str = "com", site = vcache://googlevideo/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc164 ("googlevideo") to parent 0x2a955fc09c ("com")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/videoplayback" => exact = "/videoplayback", starts = "(null)", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 5, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/stream_204" => exact = "/stream_204", starts = "(null)", ends = "(null)", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/ptracking" => exact = "/ptracking", starts = "(null)", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 4, start_ind = /, start_skip = 0, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://metacafe/, hostname_suffix = mccont.com
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 10, node->str = "", site = vcache://metacafe/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = mccont.com (6 bytes), end = 6, node->str = "com", site = vcache://metacafe/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc1c8 ("mccont") to parent 0x2a955fc09c ("com")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 21, node->str = "", site = vcache://metacafe/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = metacafe.com (8 bytes), end = 17, node->str = "com", site = vcache://metacafe/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc22c ("metacafe") to parent 0x2a955fc09c ("com")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = akvideos.metacafe.com (8 bytes), end = 8, node->str = "metacafe", site = vcache://metacafe/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc290 ("akvideos") to parent 0x2a955fc22c ("metacafe")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://facebook/, hostname_suffix = fbcdn.net
-	wad_vcache_insert_hostname_node(674): hostname_suffix = net (3 bytes), end = 9, node->str = "", site = vcache://facebook/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc2f4 ("net") to parent 0x2a955fc038 ("")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = fbcdn.net (5 bytes), end = 5, node->str = "net", site = vcache://facebook/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc358 ("fbcdn") to parent 0x2a955fc2f4 ("net")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 12, node->str = "", site = vcache://facebook/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = facebook.com (8 bytes), end = 8, node->str = "com", site = vcache://facebook/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc3bc ("facebook") to parent 0x2a955fc09c ("com")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://dailymotion/, hostname_suffix = dailymotion.com
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 15, node->str = "", site = vcache://dailymotion/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = dailymotion.com (11 bytes), end = 11, node->str = "com", site = vcache://dailymotion/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc420 ("dailymotion") to parent 0x2a955fc09c ("com")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.mp4" => exact = "(null)", starts = "/video/", ends = ".mp4", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.flv" => exact = "(null)", starts = "/video/", ends = ".flv", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.on2" => exact = "(null)", starts = "/video/", ends = ".on2", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.aac" => exact = "(null)", starts = "/video/", ends = ".aac", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.h264" => exact = "(null)", starts = "/video/", ends = ".h264", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/video/*.h263" => exact = "(null)", starts = "/video/", ends = ".h263", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 2, match_str = "start=*" => exact = "(null)", starts = "start=", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://break/, hostname_suffix = break.com
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 9, node->str = "", site = vcache://break/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = break.com (5 bytes), end = 5, node->str = "com", site = vcache://break/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc484 ("break") to parent 0x2a955fc09c ("com")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/dnet/media/*.flv" => exact = "(null)", starts = "/dnet/media/", ends = ".flv", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/dnet/media/*.mp4" => exact = "(null)", starts = "/dnet/media/", ends = ".mp4", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 2, match_str = "ec_seek=*" => exact = "(null)", starts = "ec_seek=", ends = "(null)", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
-	wad_vcache_add_site(732): add site: site_name = vcache://msn/, hostname_suffix = video.msn.com
-	wad_vcache_insert_hostname_node(674): hostname_suffix = com (3 bytes), end = 13, node->str = "", site = vcache://msn/
-	wad_vcache_insert_hostname_node(674): hostname_suffix = msn.com (3 bytes), end = 9, node->str = "com", site = vcache://msn/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc4e8 ("msn") to parent 0x2a955fc09c ("com")
-	wad_vcache_insert_hostname_node(674): hostname_suffix = video.msn.com (5 bytes), end = 5, node->str = "msn", site = vcache://msn/
-	wad_vcache_hostname_node_add_child(629): add node 0x2a955fc54c ("video") to parent 0x2a955fc4e8 ("msn")
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.flv" => exact = "(null)", starts = "/", ends = ".flv", contains = "(null)"
-	__wad_vcache_rule_add_match(430): match_target = 1, match_str = "/*.mp4" => exact = "(null)", starts = "/", ends = ".mp4", contains = "(null)"
-	wad_vcache_rule_set_video_id_ind(483): rule_id = 0, match_target = 1, start_ind = /, start_skip = 1, end_ind = (null), end_skip = 0 range = "(null)"
+	
 "6	LINE	0
-	    memset(ptr, 0, size);
+	
 "7	LINE	0
-	
+	        #subprocess.Popen(["vim", " --servername foo --remote-silent ~/update.sh"], creationflags=DETACHED_PROCESS)
+	        os.system("vim --servername foo --remote-silent ~/update.sh")
 "8	LINE	0
-	
+	from subprocess import call
 "9	LINE	0
-	
+	vim --servername foo  bar.hs
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -445,7 +340,7 @@ $
 "s	CHAR	0
 	for view in 
 ""-	CHAR	0
-	 
+	self.file_name + ":"+ str(current_line)
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -454,122 +349,136 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  12922  0  ~/work/fos52-rtmp-git2/daemon/wad/wad_http_cache.c
-'0  1129  12  ~/.gdb-dashboard
-'1  1  0  ~/.gdbinit.1
-'2  12  6  ~/dotfiles/.tmux-pipe-rdb
-'3  100  16  ~/.gdbinit
-'4  82  0  ~/rdb.txt
-'5  6  14  ~/project/voltron/dbgentry.py
-'6  3833  0  ~/.gdbinit
-'7  3836  0  ~/.gdbinit
-'8  2  46  ~/.voltron/config
-'9  1  0  ~/.voltron/config
+'0  840  11  ~/.gdb-dashboard
+'1  647  8  ~/.gdb-dashboard
+'2  648  8  ~/.gdb-dashboard
+'3  1139  12  ~/.gdb-dashboard
+'4  1  0  ~/.gdbinit.1
+'5  12  6  ~/dotfiles/.tmux-pipe-rdb
+'6  100  16  ~/.gdbinit
+'7  82  0  ~/rdb.txt
+'8  6  14  ~/project/voltron/dbgentry.py
+'9  3833  0  ~/.gdbinit
 
 # Jumplist (newest first):
--'  1129  12  ~/.gdb-dashboard
--'  1188  12  ~/.gdb-dashboard
--'  44  0  ~/.gdb-dashboard
--'  1  0  ~/.gdb-dashboard
--'  1  0  ~/.gdbinit.1
--'  12  6  ~/dotfiles/.tmux-pipe-rdb
--'  77  6  ~/dotfiles/.tmux-pipe-rdb
--'  4  2  ~/dotfiles/.tmux-pipe-rdb
--'  1  0  ~/dotfiles/.tmux-pipe-rdb
--'  100  16  ~/.gdbinit
--'  3833  0  ~/.gdbinit
--'  82  0  ~/rdb.txt
--'  1  0  ~/rdb.txt
--'  6  14  ~/project/voltron/dbgentry.py
--'  1  0  ~/project/voltron/dbgentry.py
--'  3836  0  ~/.gdbinit
--'  80  22  ~/.gdbinit
--'  2  46  ~/.voltron/config
--'  1  0  ~/.voltron/config
--'  96  18  ~/.gdbinit
--'  78  23  ~/.gdbinit
--'  75  21  ~/.gdbinit
--'  3826  0  ~/.gdbinit
--'  111  0  ~/.gdbinit
--'  9  296  ~/tmuxlog/tmux-rtmp-log.log
--'  1  0  ~/tmuxlog/tmux-rtmp-log.log
--'  208  70  ~/.tmux.conf
--'  207  35  ~/.tmux.conf
--'  1  0  ~/.tmux.conf
--'  107  0  ~/.gdbinit
--'  97  0  ~/.gdbinit
--'  3835  8  ~/.gdbinit
--'  1  0  ~/project/test
--'  1  2  ~/project/test/NetrwMessage
--'  13  19  ~/project/test/t1.c
--'  14  0  ~/project/test/t1.c
--'  12  1  ~/project/test/t1.c
--'  1  0  ~/project/test/t1.c
--'  4005  0  ~/.gdbinit
--'  1  0  ~/.gdbinit
--'  3832  0  ~/.gdbinit
--'  9  0  ~/.gdbinit
--'  520  39  ~/.vimrc
--'  514  39  ~/.vimrc
--'  1  29  ~/.vimrc
--'  515  26  ~/.vimrc
--'  207  0  ~/.vimrc
--'  152  0  ~/.vimrc
--'  1  0  ~/.vim/bundle/vim-dispatch/.git/config
--'  1  0  ~/.vim/bundle/vimux-script/.git/config
--'  2  0  ~/.vim/bundle/vimux-script/[Vundle] clean
--'  43  36  ~/.vimrc
--'  3  0  /data/workref/log/log.tel
--'  1  0  /data/workref/log/log.tel
--'  100989  105  /tmp/log.tel
--'  100974  0  /tmp/log.tel
--'  100875  0  /tmp/log.tel
--'  184414  27  /tmp/log.tel
--'  184420  0  /tmp/log.tel
--'  184275  69  /tmp/log.tel
--'  184348  938  /tmp/log.tel
--'  184272  85  /tmp/log.tel
--'  184212  936  /tmp/log.tel
--'  1  0  /tmp/log.tel
--'  184411  84  /tmp/log.tel
--'  184412  47  /tmp/log.tel
--'  37  0  /tmp/log.tel
--'  184019  0  /tmp/log.tel
--'  184419  11  /tmp/log.tel
--'  184421  11  /tmp/log.tel
--'  2  0  /tmp/log.tel
--'  440  43  ~/.vimrc
--'  260  12  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  256  33  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  226  18  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  1  0  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  7  8  /data/workref/log/task.log
--'  5  8  /data/workref/log/task.log
--'  1  0  /data/workref/log/task.log
--'  153  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
--'  2  10  ~/.vim/bundle/c-utils.vim/autoload/blame.vim
--'  154  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
--'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_memtrack.c
--'  19643  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  14915  21  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  15213  18  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19638  20  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  15232  21  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19630  22  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19649  16  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19646  54  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19644  5  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19625  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19618  9  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19617  50  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19616  12  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19607  26  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19604  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
--'  19749  23  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  840  11  ~/.gdb-dashboard
+-'  948  11  ~/.gdb-dashboard
+-'  1056  0  ~/.gdb-dashboard
+-'  1210  56  ~/.gdb-dashboard
+-'  1230  2  ~/.gdb-dashboard
+-'  1206  62  ~/.gdb-dashboard
+-'  1196  58  ~/.gdb-dashboard
+-'  627  54  ~/.gdb-dashboard
+-'  621  50  ~/.gdb-dashboard
+-'  431  51  ~/.gdb-dashboard
+-'  369  56  ~/.gdb-dashboard
+-'  277  54  ~/.gdb-dashboard
+-'  180  48  ~/.gdb-dashboard
+-'  115  45  ~/.gdb-dashboard
+-'  15  56  ~/.gdb-dashboard
+-'  1  5  ~/.gdb-dashboard
+-'  243  23  ~/.gdb-dashboard
+-'  288  23  ~/.gdb-dashboard
+-'  1208  17  ~/.gdb-dashboard
+-'  667  8  ~/.gdb-dashboard
+-'  322  8  ~/.gdb-dashboard
+-'  321  8  ~/.gdb-dashboard
+-'  300  8  ~/.gdb-dashboard
+-'  721  8  ~/.gdb-dashboard
+-'  666  8  ~/.gdb-dashboard
+-'  657  8  ~/.gdb-dashboard
+-'  655  8  ~/.gdb-dashboard
+-'  641  8  ~/.gdb-dashboard
+-'  684  8  ~/.gdb-dashboard
+-'  665  78  ~/.gdb-dashboard
+-'  725  55  ~/.gdb-dashboard
+-'  671  8  ~/.gdb-dashboard
+-'  659  20  ~/.gdb-dashboard
+-'  644  11  ~/.gdb-dashboard
+-'  643  8  ~/.gdb-dashboard
+-'  677  35  ~/.gdb-dashboard
+-'  680  16  ~/.gdb-dashboard
+-'  658  31  ~/.gdb-dashboard
+-'  650  16  ~/.gdb-dashboard
+-'  647  8  ~/.gdb-dashboard
+-'  13  0  ~/.gdb-dashboard
 
 # History of marks within files (newest to oldest):
 
 > ~/.gdb-dashboard
-	"	1129	12
+	"	840	11
+	^	667	16
+	.	667	15
+	+	13	27
+	+	647	25
+	+	647	0
+	+	647	50
+	+	647	21
+	+	647	55
+	+	647	0
+	+	647	21
+	+	647	19
+	+	647	8
+	+	647	22
+	+	13	0
+	+	647	8
+	+	647	8
+	+	13	0
+	+	647	8
+	+	13	0
+	+	647	0
+	+	665	0
+	+	670	0
+	+	664	0
+	+	666	106
+	+	666	0
+	+	656	14
+	+	663	14
+	+	656	14
+	+	670	0
+	+	670	0
+	+	666	0
+	+	669	10
+	+	670	0
+	+	668	0
+	+	683	10
+	+	684	0
+	+	682	0
+	+	684	0
+	+	667	15
+
+> ~/project/test/t1.c +3
+	"	1	0
+
+> ~/project/test/t1.c
+	"	10	0
+	^	13	20
+	.	13	19
+	+	1	17
+	+	2	15
+	+	4	30
+	+	5	1
+	+	6	0
+	+	15	9
+	+	12	11
+	+	13	27
+	+	14	0
+	+	13	19
+
+> --servername foo --remote-silent ~/update.sh
+	"	2	0
+	^	2	2
+	.	2	0
+	+	2	0
+
+> ~/update.sh
+	"	1	0
+
+> --servername foo --remote-silent ~/update.sh
+	"	1	0
+
+> ~/dotfiles/update.sh
+	"	131	0
 
 > ~/.gdbinit.1
 	"	1	0
@@ -639,21 +548,6 @@ $
 
 > ~/tmuxlog/tmux-rtmp-log.log
 	"	9	296
-
-> ~/project/test/t1.c
-	"	13	19
-	^	13	20
-	.	13	19
-	+	1	17
-	+	2	15
-	+	4	30
-	+	5	1
-	+	6	0
-	+	15	9
-	+	12	11
-	+	13	27
-	+	14	0
-	+	13	19
 
 > ~/.vimrc
 	"	520	39
@@ -882,27 +776,4 @@ $
 	+	84	0
 
 > ~/__Tagbar__
-	"	1	0
-
-> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-	"	357	11
-	^	400	12
-	.	288	0
-	+	260	12
-	+	310	19
-	+	289	15
-	+	288	0
-
-> /data/work/bug-disk-raid2/5.4-1500D/patch.diff
-	"	4	19
-
-> /data/work/bug-disk-raid2/5.4-1500D/cmf/plugin/execute/formatlogdisk.c
-	"	142	0
-	.	122	34
-	+	122	34
-
-> /data/work/bug-disk-raid2/5.4-1500D/migbase/include/cmdbapi/cmdb_core.h
-	"	218	0
-
-> /data/work/bug-disk-raid2/5.4-1500D/.version
 	"	1	0
