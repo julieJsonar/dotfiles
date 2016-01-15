@@ -271,7 +271,7 @@ class Dashboard(gdb.Command):
                 pane = ses.attached_pane()
                 os.system("tmux pipe-pane -t " \
                           + pane['window_index'] + "." + pane['pane_index'] \
-                          + " -o 'cat >>" + "g_vim_gdb_output'")
+                          + " -o 'cat >>" + g_vim_gdb_output + "'")
 
 
             if not g_vim.remote_expr("g:tmux_gdb"):
