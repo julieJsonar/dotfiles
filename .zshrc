@@ -114,6 +114,16 @@ unsetopt nomatch
 #alias grep='_mygrep'
 #unset GREP_OPTIONS
 
+function _mytail()
+{
+  if [ -t 0 ]; then
+    tail "$@" 2> >(grep -v truncated >&2)
+  else
+    tail "$@" 2> >(grep -v truncated >&2)
+  fi
+};
+alias tail='_mytail'
+
 # This will run everytime you run a command.
 #precmd () {
 #  tmux set -qg status-left "#S #P $(pwd)"

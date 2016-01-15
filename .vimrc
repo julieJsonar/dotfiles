@@ -108,7 +108,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'vim-utils/vim-vertical-move'
 
 Plugin 'klen/python-mode'
-"Plugin 'AnsiEsc.vim'
+Plugin 'AnsiEsc.vim'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'

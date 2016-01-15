@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/Plugin
+~MSle0~/tail
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -19,17 +19,44 @@ $
 # Command Line History (newest to oldest):
 :qa
 :w
+:set paste
+:silent! e! +13 /data/proj/test/t1.c
+:silent! e +13 /data/proj/test/t1.c
+:silent e +13 /data/proj/test/t1.c
+:e +13 /data/proj/test/t1.c
+:messages
+:e +16 /data/proj/test/t1.c
+:message
+:b1
+:ls
+:e +21 /data/proj/test/t1.c<F5>
 :q
+:silent! e /tmp/gdb.output
+:e /tmp/gdb.output
+:b2
+:sp
+:buffers
+:bufdo e!
+:set cursorline
+:AnsiEsc
+:AnsiEs
+:source ~/.vimrc
+:PluginInstall
+:e +16 ~/.vimrc
+:e +6 ~/.vimrc
+:e +5 ~/.vimrc
+:e ~/.vimrc:4
+:e ~/.vimrc:3
+:pwd
+:e 
+:f
+:e!
+:PluginClean
 :start
 :b vimgdb.vim
 :kkkk
 :e ../autoload/vimuxscript.vim
-:ls
-:f
-:message
-:e!
 :set filetype=vim
-:b2
 :vs
 :e ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 :GdbMode
@@ -42,11 +69,8 @@ $
 :b3
 :e ../autoload/vimux.vim
 :pw
-:set paste
 :set syn=python
-:PluginInstall
 :help clientserver
-:set cursorline
 :map <2-LeftMouse> :echom "wilson double click" . expand("<cword>") <CR>
 :map <MiddleMouse> :echom "wilson" <CR>
 :help mouse
@@ -58,11 +82,9 @@ $
 :set mouse=a
 :echo mouse?
 :echo mouse
-:pwd
 :e ~/.vimrc:8
 :e ~/.vimrc:7
 :e ~/.vimrc:5
-:e ~/.vimrc:3
 :e .vimrc:3
 :edit .vimrc:edit .vimrc Enter
 :e ~/.gdb-dashboard
@@ -74,7 +96,6 @@ $
 :highlight Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
 :highlight! link Visual CursorLine
 :3
-:PluginClean
 :qa1
 :tselect
 :disconnect_client
@@ -96,14 +117,10 @@ $
 :Grep  -- 'role_'
 :w]
 :we
-:b rtmpt.c
-:cs f f live.c
-:TabooOpen live
-:cs f f cache.c
-:Grep  -- 'wad_rtmpt_pending_'
-:Grep  -- 'wad_rtmp_live_pending'
 
 # Search String History (newest to oldest):
+?/tail
+?/Ansi
 ?/Plugin
 ?/_comm
 ? \<start\>
@@ -249,29 +266,26 @@ $
 
 # Registers:
 "0	LINE	0
-	# +++++++++++++++++++++++++++ {{{1}}}
-"1	LINE	0
-	"hi CursorLine guibg=Grey40
+	  - Output to another terminal by tty:
+	    * In another terminal (e.g. tmux pane) and get its TTY with the tty command (e.g. /dev/ttys001, the name may be different for a variety of reasons);
+""1	LINE	0
+	  - config show model: `dashboard -layout !registers source !assembly !stack !threads`
 "2	LINE	0
-	hi CursorLine guibg=Grey40
+	  - debug as usual, the only different is python prompt `>>> `, not `(gdb) `, but we can change by `dashboard -style prompt '(gdb)'`
 "3	LINE	0
-	Plugin 'vim-scripts/tagmenu.vim'
-"4	BLOCK	0
-	#
-	#
-	#
-	#
-"5	CHAR	0
-	)
+	  - from step-1, we have a program running, enter python mode by `(gdb) source ~/.gdb-dashboard`;
+"4	LINE	0
 	
+"5	LINE	0
+	### prep
 "6	LINE	0
-	
+	    /bin/grep $@
 "7	LINE	0
-	
+	    /bin/grep  $GREP_OPTIONS
 "8	LINE	0
-	# client-1: recv client-2 data POST /idle/8rfGNxL2emKiiPkZ/19 {{{2}}}
+	tail -f file 2> >(grep -v truncated >&2)
 "9	LINE	0
-	
+	tail -f file 2> >(grep -v truncated >&2)
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -294,13 +308,13 @@ $
 	
 "s	CHAR	0
 	for view in 
-""v	CHAR	0
-	b
+"v	CHAR	0
+	array[position]
 "w	CHAR	0
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 "-	CHAR	0
-	b
+	;
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -309,112 +323,153 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  47  0  /data/workref/log/rtmp-tp.script
-'0  157  0  ~/.vimrc
-'1  15  0  ~/project/test/t1.c
-'2  10  0  ~/project/test/t1.c
-'3  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
-'4  12  0  ~/project/test/t1.c
-'5  13  5  ~/project/test/t1.c
-'6  9  1  ~/project/test/t1.c
-'7  566  42  ~/.gdb-dashboard
-'8  551  33  ~/.gdb-dashboard
-'9  550  42  ~/.gdb-dashboard
+'0  39  4  ~/dotfiles/README.md
+'1  19  11  /data/proj/test/t1.c
+'2  13  2  /data/proj/test/t1.c
+'3  16  16  /data/proj/test/t1.c
+'4  120  4  ~/.zshrc
+'5  12  0  /data/proj/test/t1.c
+'6  9  17  /data/proj/test/t1.c
+'7  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
+'8  11  19  /tmp/gdb.output
+'9  10  4  /data/proj/test/t1.c
 
 # Jumplist (newest first):
--'  157  0  ~/.vimrc
--'  87  0  ~/.vimrc
--'  85  7  ~/.vimrc
--'  78  2  ~/.vimrc
--'  7  14  ~/.vimrc
--'  1  0  ~/.vimrc
--'  320  0  ~/.vimrc
--'  15  0  ~/project/test/t1.c
--'  13  0  ~/project/test/t1.c
--'  12  0  ~/project/test/t1.c
--'  10  0  ~/project/test/t1.c
--'  9  0  ~/project/test/t1.c
--'  16  0  ~/project/test/t1.c
--'  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
--'  5  0  ~/project/test/t1.c
--'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
--'  11  0  ~/project/test/t1.c
--'  1  0  ~/project/test/t1.c
--'  566  42  ~/.gdb-dashboard
--'  565  57  ~/.gdb-dashboard
--'  568  30  ~/.gdb-dashboard
--'  559  17  ~/.gdb-dashboard
--'  551  33  ~/.gdb-dashboard
--'  550  42  ~/.gdb-dashboard
--'  546  16  ~/.gdb-dashboard
--'  530  22  ~/.gdb-dashboard
--'  62  4  ~/.vimrc
--'  8  0  ~/.vimrc
--'  5  0  ~/.vimrc
--'  3  0  ~/.vimrc
--'  1  0  ~/project/vimrunner-python/vimrunner/.vimrc:3
--'  476  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  79  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  151  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  246  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  244  13  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  336  20  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  424  21  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  256  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  257  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  54  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  1  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  31  0  ~/.vimrc
--'  30  0  ~/.vimrc
--'  231  0  ~/.vimrc
--'  211  0  ~/.vimrc
--'  258  4  ~/.vimrc
--'  295  4  ~/.vimrc
--'  322  0  ~/.vimrc
--'  301  0  ~/.vimrc
--'  304  0  ~/.vimrc
--'  319  0  ~/.vimrc
--'  48  41  ~/.vimrc
--'  24  44  ~/.vimrc
--'  18  47  ~/.vimrc
--'  14  47  ~/.vimrc
--'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
--'  566  42  ~/.gdb-dashboard
--'  565  57  ~/.gdb-dashboard
--'  568  30  ~/.gdb-dashboard
--'  559  17  ~/.gdb-dashboard
--'  551  33  ~/.gdb-dashboard
--'  550  42  ~/.gdb-dashboard
--'  546  16  ~/.gdb-dashboard
--'  530  22  ~/.gdb-dashboard
--'  1  0  ~/project/vimrunner-python/vimrunner/.vimrc:3
--'  476  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  79  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  151  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  246  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  244  13  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  336  20  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  424  21  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  256  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  257  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  54  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  1  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
--'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
--'  566  42  ~/.gdb-dashboard
--'  565  57  ~/.gdb-dashboard
--'  15  0  ~/project/test/t1.c
--'  13  0  ~/project/test/t1.c
--'  12  0  ~/project/test/t1.c
--'  10  0  ~/project/test/t1.c
--'  9  0  ~/project/test/t1.c
--'  16  0  ~/project/test/t1.c
+-'  39  4  ~/dotfiles/README.md
+-'  56  4  ~/dotfiles/README.md
+-'  45  9  ~/dotfiles/README.md
+-'  38  4  ~/dotfiles/README.md
+-'  37  24  ~/dotfiles/README.md
+-'  40  42  ~/dotfiles/README.md
+-'  34  59  ~/dotfiles/README.md
+-'  1  0  ~/dotfiles/README.md
+-'  19  11  /data/proj/test/t1.c
+-'  13  11  /data/proj/test/t1.c
+-'  16  5  /data/proj/test/t1.c
+-'  15  8  /data/proj/test/t1.c
+-'  11  11  /data/proj/test/t1.c
+-'  9  14  /data/proj/test/t1.c
+-'  23  8  /data/proj/test/t1.c
+-'  22  8  /data/proj/test/t1.c
+-'  21  8  /data/proj/test/t1.c
+-'  122  9  ~/.zshrc
+-'  120  9  ~/.zshrc
+-'  19  11  /data/proj/test/t1.c
+-'  13  11  /data/proj/test/t1.c
+-'  16  5  /data/proj/test/t1.c
+-'  15  8  /data/proj/test/t1.c
+-'  11  11  /data/proj/test/t1.c
+-'  9  14  /data/proj/test/t1.c
+-'  23  8  /data/proj/test/t1.c
+-'  22  8  /data/proj/test/t1.c
+-'  21  8  /data/proj/test/t1.c
+-'  19  11  /data/proj/test/t1.c
+-'  13  11  /data/proj/test/t1.c
+-'  16  5  /data/proj/test/t1.c
+-'  15  8  /data/proj/test/t1.c
+-'  11  11  /data/proj/test/t1.c
+-'  9  14  /data/proj/test/t1.c
+-'  23  8  /data/proj/test/t1.c
+-'  22  8  /data/proj/test/t1.c
+-'  21  8  /data/proj/test/t1.c
 
 # History of marks within files (newest to oldest):
 
+> ~/dotfiles/README.md
+	"	39	4
+	^	36	4
+	.	36	3
+	+	34	51
+	+	37	27
+	+	40	15
+	+	37	24
+	+	38	101
+	+	39	29
+	+	41	75
+	+	39	36
+	+	56	0
+	+	42	40
+	+	43	67
+	+	56	0
+	+	45	8
+	+	55	2
+	+	46	18
+	+	54	0
+	+	45	0
+	+	43	118
+	+	44	0
+	+	56	0
+	+	36	0
+	+	56	0
+	+	35	2
+	+	36	2
+	+	35	3
+	+	36	3
+
+> ~/.zshrc
+	"	122	9
+	^	120	4
+	.	122	9
+	+	126	39
+	+	117	0
+	+	116	0
+	+	117	11
+	+	125	9
+	+	126	0
+	+	122	0
+	+	120	3
+	+	120	14
+	+	120	0
+	+	122	0
+	+	120	9
+	+	122	9
+
+> /data/proj/test/t1.c
+	"	19	11
+	^	15	10
+	.	15	7
+	+	31	0
+	+	2	0
+	+	10	0
+	+	9	12
+	+	9	0
+	+	5	11
+	+	9	0
+	+	6	0
+	+	5	5
+	+	6	34
+	+	27	0
+	+	18	0
+	+	17	0
+	+	9	35
+	+	9	57
+	+	9	57
+	+	10	0
+	+	8	4
+	+	9	17
+	+	8	35
+	+	9	17
+	+	15	7
+
+> /data/proj/test/t1.c<F5>
+	"	1	0
+
+> /build/buildd/eglibc-2.19/csu/libc-start.c
+	"	1	0
+
+> /tmp/gdb.output
+	"	9	26
+	.	1	0
+	+	1	0
+
+> '/data/proj/test/t1.c'
+	"	1	0
+	^	1	0
+
 > ~/.vimrc
-	"	157	0
+	"	111	0
 	^	320	0
-	.	320	0
-	+	272	0
+	.	111	0
 	+	274	0
 	+	271	1
 	+	273	1
@@ -514,33 +569,36 @@ $
 	+	322	0
 	+	321	0
 	+	320	0
+	+	111	0
 
-> ~/project/test/t1.c
-	"	15	0
-	^	12	5
-	.	14	0
-	+	12	0
+> ~/[Vundle] Installer
+	"	28	0
+	.	1	0
+	+	28	0
 	+	1	0
-	+	12	1
-	+	14	0
 
-> ~/project/test/__GDB_WINDOW__
+> /data/work/bug-urlfilter/[Vundle] Installer
+	"	28	0
+	.	1	0
+	+	1	0
+
+> ~/__GDB_WINDOW__
 	"	1	0
 	^	1	0
-	.	6	0
-	+	1	1
-	+	3	0
-	+	2	0
-	+	4	2
-	+	5	6
-	+	5	7
-	+	7	0
-	+	6	0
+
+> /data/work/bug-urlfilter/100D-WF_B0705-bug307010.conf
+	"	1	0
+
+> ~/t1.c
+	"	1	0
+
+> /data/proj/test/t1
+	"	1	0
 
 > ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-	"	250	21
-	^	198	12
-	.	194	0
+	"	290	9
+	^	291	1
+	.	291	0
 	+	194	0
 	+	194	0
 	+	194	0
@@ -638,6 +696,35 @@ $
 	+	290	22
 	+	198	11
 	+	194	0
+	+	295	1
+	+	291	0
+
+> ~/[Vundle] clean
+	"	2	0
+	.	1	0
+	+	1	0
+
+> ~/project/test/t1.c
+	"	15	0
+	^	12	5
+	.	14	0
+	+	12	0
+	+	1	0
+	+	12	1
+	+	14	0
+
+> ~/project/test/__GDB_WINDOW__
+	"	1	0
+	^	1	0
+	.	6	0
+	+	1	1
+	+	3	0
+	+	2	0
+	+	4	2
+	+	5	6
+	+	5	7
+	+	7	0
+	+	6	0
 
 > /usr/share/vim/vim74/doc/help.txt
 	"	1	0
@@ -653,9 +740,6 @@ $
 
 > ~/Downloads/vimgdb.vim.txt
 	"	178	0
-
-> /build/buildd/eglibc-2.19/csu/libc-start.c
-	"	1	0
 
 > /build/buildd/eglibc-2.19/stdio-common/printf.c
 	"	1	0
@@ -792,11 +876,6 @@ $
 	+	3	0
 	+	1	0
 
-> ~/[Vundle] Installer
-	"	27	0
-	.	1	0
-	+	1	0
-
 > /usr/share/vim/vim74/doc/remote.txt
 	"	73	25
 
@@ -805,85 +884,3 @@ $
 
 > ~/project/vimrunner-python/vimrunner/vimrunner.py
 	"	476	8
-
-> ~/project/vimrunner-python/vimrunner/.vimrc:3
-	"	1	0
-
-> ~/.zshrc
-	"	30	0
-
-> ~/dotfiles/init_ubuntu.sh
-	"	67	21
-	^	17	33
-	.	17	32
-	+	17	32
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] clean
-	"	3	0
-	.	1	0
-	+	1	0
-
-> /tmp/log.tel
-	"	137169	71
-	^	38	1
-	.	137164	57
-	+	94346	30
-	+	94283	23
-	+	94282	33
-	+	12523	20
-	+	62675	19
-	+	72247	0
-	+	14900	51
-	+	14911	0
-	+	14912	0
-	+	14911	0
-	+	14682	35
-	+	14620	21
-	+	72236	32
-	+	72247	20
-	+	71796	32
-	+	71795	0
-	+	94346	0
-	+	94346	70
-	+	94346	69
-	+	94346	0
-	+	94342	0
-	+	94342	0
-	+	94346	0
-	+	94345	0
-	+	94343	0
-	+	94342	0
-	+	94283	0
-	+	39	0
-	+	38	0
-	+	137165	59
-	+	137164	57
-	a	156184	36
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-	"	27	0
-	.	1	0
-	+	1	0
-
-> ~/.tmux.conf
-	"	80	0
-	^	79	1
-	.	80	0
-	+	79	0
-	+	80	0
-
-> ~/.tmux.config
-	"	1	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/log.tel_VOOM1
-	"	18	2
-
-> ~/.gdb-register
-	"	1610	7
-	a	1108	5
-
-> /data/workref/rtmp/fos52-701-git/patch.1
-	"	1440	0
-
-> ~/dotfiles/update.sh
-	"	134	13

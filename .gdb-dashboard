@@ -13,8 +13,16 @@ import termios
 import tmuxp
 import vimrunner
 
-# Common attributes ------------------------------------------------------------
+# Globals ------------------------------------------------------------
+g_vim_state = 0
+g_vim = None
 
+g_vim_servername = "GDB.SOURCE"
+g_vim_source_init_str = ""
+g_vim_source_exist_tmuxgdb = False
+g_vim_gdb_output = "/tmp/gdb.output"
+
+# Common attributes ------------------------------------------------------------
 class R():
 
     @staticmethod
@@ -238,6 +246,12 @@ class Dashboard(gdb.Command):
         return self.inferior_pid() != 0
 
     def build(self):
+        global g_vim_state
+        global g_vim_source_exist_tmuxgdb
+        global g_vim_source_init_str
+        global g_vim_gdb_output
+        global g_vim
+
         # fetch the output width
         try:
             fd = self.output.fileno() if self.output else 1  # main terminal
@@ -245,6 +259,34 @@ class Dashboard(gdb.Command):
         except:
             # fall back to the main terminal
             Dashboard.update_term_width()
+
+        # Check vim server exist
+        g_vim = vimrunner.Server(name=g_vim_servername)
+        servername = g_vim.server_list()
+        if any(g_vim_servername in s for s in servername):
+            if g_vim_state == 0:
+                g_vim_state = 1
+                server = tmuxp.Server()
+                ses = server.list_sessions()[0]
+                pane = ses.attached_pane()
+                os.system("tmux pipe-pane -t " \
+                          + pane['window_index'] + "." + pane['pane_index'] \
+                          + " -o 'cat >>" + "g_vim_gdb_output'")
+
+
+            if not g_vim.remote_expr("g:tmux_gdb"):
+                if not g_vim_source_init_str:
+                    server = tmuxp.Server()
+                    ses = server.list_sessions()[0]
+                    pane = ses.attached_pane()
+                    g_vim_source_init_str = "<ESC>:let g:tmux_gdb='" \
+                        + pane['window_index'] + "." + pane['pane_index'] \
+                        + "'<Enter>:GdbMode<Enter>"
+
+                g_vim.remote_send(g_vim_source_init_str)
+        else:
+            g_vim_state = 0
+
         # fetch lines
         lines = []
         for module in self.modules:
@@ -256,15 +298,26 @@ class Dashboard(gdb.Command):
             if len(module_lines) > 0:
                 lines.append(divider(module.label(), True, module_lines))
                 lines.extend(module_lines)
+
         if len(lines) == 0:
             lines.append(divider('Error', True))
             if len(self.modules) == 0:
                 lines.append('No module loaded')
             else:
                 lines.append('No module to display (see `help dashboard`)')
+
         lines.append(divider(primary=True))
+
         # print the dashboard
-        return '\n'.join(lines)
+        output_lines = '\n'.join(lines)
+
+        if g_vim_state > 0:
+            with open(g_vim_gdb_output, 'w+') as the_file:
+                the_file.write(output_lines)
+            #g_vim.remote_send("<ESC>:bufdo e!<Enter>")
+            return ""
+        else:
+            return output_lines
 
     def display(self, *data):
         # gdb module has both write() and flush()
@@ -648,12 +701,6 @@ class Source(Dashboard.Module):
         # reload the source file if changed
         file_name = sal.symtab.fullname()
         ts = None
-
-        vim = vimrunner.Server()
-        servername = vim.server_list()
-        if any("GDB.SOURCE" in s for s in servername):
-            vim_source = True
-
         try:
             ts = os.path.getmtime(file_name)
         except:
@@ -662,7 +709,7 @@ class Source(Dashboard.Module):
             self.file_name = file_name
             self.ts = ts
 
-            if not vim_source:
+            if g_vim_state == 0:
                 try:
                     with open(self.file_name) as source:
                         self.source_lines = source.readlines()
@@ -670,17 +717,10 @@ class Source(Dashboard.Module):
                     msg = 'Cannot access "{}"'.format(self.file_name)
                     return [ansi(msg, R.style_error)]
 
-        if vim_source:
-            vim = vimrunner.Server()
-            servername = vim.server_list()
-            if any("GDB.SOURCE" in s for s in servername):
-                os.system("vim --servername GDB.SOURCE --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
-
-                server = tmuxp.Server()
-                ses = server.list_sessions()[0]
-                pane = ses.attached_pane()
-                os.system("vim --servername GDB.SOURCE --remote-send \"<ESC>:silent! let g:tmux_gdb='"
-                    + pane['window_index'] + "." + pane['pane_index'] + "'<Enter>\"");
+        if g_vim_state > 0:
+            g_vim.remote_send("<ESC>:silent! e! +" + str(current_line) + " " + self.file_name + "<Enter>")
+            #os.system("g_vim --servername " + g_vim_servername
+            #    + " --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
             return ""
         else:
             # compute the line range
