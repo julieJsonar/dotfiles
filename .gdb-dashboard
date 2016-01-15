@@ -10,7 +10,8 @@ import os
 import re
 import struct
 import termios
-#import subprocess
+import tmuxp
+import vimrunner
 
 # Common attributes ------------------------------------------------------------
 
@@ -252,8 +253,9 @@ class Dashboard(gdb.Command):
             module = module.instance
             # active if more than zero lines
             module_lines = module.lines()
-            lines.append(divider(module.label(), True, module_lines))
-            lines.extend(module_lines)
+            if len(module_lines) > 0:
+                lines.append(divider(module.label(), True, module_lines))
+                lines.extend(module_lines)
         if len(lines) == 0:
             lines.append(divider('Error', True))
             if len(self.modules) == 0:
@@ -646,6 +648,12 @@ class Source(Dashboard.Module):
         # reload the source file if changed
         file_name = sal.symtab.fullname()
         ts = None
+
+        vim = vimrunner.Server()
+        servername = vim.server_list()
+        if any("GDB.SOURCE" in s for s in servername):
+            vim_source = True
+
         try:
             ts = os.path.getmtime(file_name)
         except:
@@ -653,34 +661,41 @@ class Source(Dashboard.Module):
         if file_name != self.file_name or ts and ts > self.ts:
             self.file_name = file_name
             self.ts = ts
-            '''
-            try:
-                with open(self.file_name) as source:
-                    self.source_lines = source.readlines()
-            except:
-                msg = 'Cannot access "{}"'.format(self.file_name)
-                return [ansi(msg, R.style_error)]
-            '''
 
-        #subprocess.Popen(["vim", " --servername gdb --remote-silent ~/update.sh"], creationflags=DETACHED_PROCESS)
-        os.system("vim --servername gdb --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
-        return ""
+            if not vim_source:
+                try:
+                    with open(self.file_name) as source:
+                        self.source_lines = source.readlines()
+                except:
+                    msg = 'Cannot access "{}"'.format(self.file_name)
+                    return [ansi(msg, R.style_error)]
 
-        '''
-        # compute the line range
-        start = max(current_line - 1 - self.context, 0)
-        end = min(current_line - 1 + self.context, len(self.source_lines))
-        # return the source code listing
-        out = []
-        number_format = '{{:>{}}}'.format(len(str(end)))
-        for number, line in enumerate(self.source_lines[start:end], start + 1):
-            if int(number) == current_line:
-                line_format = ansi(number_format + ' {}', R.style_selected_1)
-            else:
-                line_format = ansi(number_format, R.style_low) + ' {}'
-            out.append(line_format.format(number, line.rstrip('\n')))
-        return out
-        '''
+        if vim_source:
+            vim = vimrunner.Server()
+            servername = vim.server_list()
+            if any("GDB.SOURCE" in s for s in servername):
+                os.system("vim --servername GDB.SOURCE --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
+
+                server = tmuxp.Server()
+                ses = server.list_sessions()[0]
+                pane = ses.attached_pane()
+                os.system("vim --servername GDB.SOURCE --remote-send \"<ESC>:silent! let g:tmux_gdb='"
+                    + pane['window_index'] + "." + pane['pane_index'] + "'<Enter>\"");
+            return ""
+        else:
+            # compute the line range
+            start = max(current_line - 1 - self.context, 0)
+            end = min(current_line - 1 + self.context, len(self.source_lines))
+            # return the source code listing
+            out = []
+            number_format = '{{:>{}}}'.format(len(str(end)))
+            for number, line in enumerate(self.source_lines[start:end], start + 1):
+                if int(number) == current_line:
+                    line_format = ansi(number_format + ' {}', R.style_selected_1)
+                else:
+                    line_format = ansi(number_format, R.style_low) + ' {}'
+                out.append(line_format.format(number, line.rstrip('\n')))
+            return out
 
     def set_context(self, arg):
         msg = 'expecting a positive integer'

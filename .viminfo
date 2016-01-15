@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/^POST 
+~MSle0~/Plugin
 
 # Last Substitute Search Pattern:
 ~MSle0&req
@@ -18,20 +18,68 @@ $
 
 # Command Line History (newest to oldest):
 :qa
-:PluginClean
 :w
+:q
+:start
+:b vimgdb.vim
+:kkkk
+:e ../autoload/vimuxscript.vim
+:ls
+:f
+:message
+:e!
+:set filetype=vim
+:b2
+:vs
+:e ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+:GdbMode
 :qa!
-:qa1
+:echo g:tmux_gdb
+:bd
+:echo v:servername
+:echo match(v:servername, "GDB")
+:set filetype=python
+:b3
+:e ../autoload/vimux.vim
+:pw
+:set paste
+:set syn=python
 :PluginInstall
+:help clientserver
+:set cursorline
+:map <2-LeftMouse> :echom "wilson double click" . expand("<cword>") <CR>
+:map <MiddleMouse> :echom "wilson" <CR>
+:help mouse
+:map <RightMouse> :ls <CR>
+:call inputdialog("hello")
+:call inputdialog()
+:call SyntaxBalloon()
+:map <LeftMouse> :ls <CR>
+:set mouse=a
+:echo mouse?
+:echo mouse
+:pwd
+:e ~/.vimrc:8
+:e ~/.vimrc:7
+:e ~/.vimrc:5
+:e ~/.vimrc:3
+:e .vimrc:3
+:edit .vimrc:edit .vimrc Enter
+:e ~/.gdb-dashboard
+:set nocursorline
+:e ~/.vimrc
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+:hi CursorLine term=bold cterm=bold guibg=Grey40
+:hi Visual term=reverse cterm=reverse guibg=Grey
+:highlight Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
+:highlight! link Visual CursorLine
+:3
+:PluginClean
+:qa1
 :tselect
 :disconnect_client
-:e!
-:ls
-:pwd
 :w ~/tmuxlog/log.tel
-:q
 :w !diff % -
-:message
 :messager
 :echo empty([1])
 :echo empty([])
@@ -54,71 +102,59 @@ $
 :cs f f cache.c
 :Grep  -- 'wad_rtmpt_pending_'
 :Grep  -- 'wad_rtmp_live_pending'
-:cs f f rtmpt.c
-:copen
-:diffthis
-:e README.md
-:q'
-:help diffthis
-:help diff
-:echo v:servername
-:help clientserver
-:help server
-:set syn=python
-:xiqtei
-:aa
-:python vim.command('echo "Hello World!"')
-:python from vim import *
-:b2
-:sp
-:b1
-:GrepAdd  -- '->req_bypass'
-:Grep  -- 'req_bypass'
-:Grep  -- '->req_bypass'
-:Grep -- '->req_bypass'
-:Grep "->req_bypass"
-:Grep  '->req_bypass'
-:Grep'->req_bypass':
-:echo match('<C-c>', "^<.*>$")
-:echo match('<C-c>', '^<.*>$')
-:echo match("<C-c>", "^<.*>$")
-:call vimux#VimuxSendKeys("<Enter>")
-:call vimux#VimuxSendKeys('<C-c>')
-:call vimux#VimuxSendKeys('C-c')
-:call vimux#VimuxSendKeys("C-c")
-:call vimux#VimuxSendKeys("\<C-c\>")
-:call vimux#VimuxSendKeys("<C-c>")
-:call vimux#VimuxSendKeys("Enter")
-:!git diff
-:+7
-:echo escape("<C-c>", '\"$')
-:echo g:VimuxLastCommand
-:echo g:cmdstr
-:echo g:last_cmdstr
-:echo g:output
-:echo matchstr("(gdb)", "(gdb)")
-:W
-:b ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-:f
-:vs
-:e ~/.vim/bundle/
-:help sleep
-:help sleep()
-:e ~/.vim/bundle/c-utils.vim/autoload/blame.vim
-:W3m http://tilvim.com/2014/03/13/dispatch.html
-:qq
-:set syn=diff
-:w\u
-:Dispatch grep -Inr --include='*.c' -w 'wad_ftpproxy_send_ready' .
-:Dispatch grep -Inr --include=*.c wad_ftpproxy_send_ready .
-:vim /wad_ftpproxy_send_ready/gi **/*.c
-:vim /wad_ftpproxy_send_ready/gi .
-:Dispatch grep -Inr wad_ftpproxy_send_ready .
-:a
-:e ../plugin/arpeggio.vim
-:call arpeggio#load() 
 
 # Search String History (newest to oldest):
+?/Plugin
+?/_comm
+? \<start\>
+? \<vimgdb_running\>
+?/VIMGDB
+? \<vimuxscript#_Capture\>
+?/capture
+?/capureu
+?/command
+?/tmux_gdb
+? \<Gdb_interf_init\>
+? \<EnterGdbBuf\>
+? \<Gdb_command\>
+? \<execute\>
+? tmux_gdb_fixed = g
+?/breakpoint
+? \<class\>
+? \s\+$
+?/modify
+?/\<vimux#TmuxAttach2\>
+? \<VimuxRunnerIndex\>
+? \<vimux#TmuxAttach2\>
+? \<vimux#_VimuxHasRunner\>
+?/attach
+?/a
+? \<vimux#Run\>
+? \<lines\>
+? \<gdb_client\>
+? \<gdb_buf_name\>
+?/\<Gdb_command\>
+?/b
+?/-t
+? \<divider\>
+? \<modules\>
+?/-
+?/cursor
+?/ in 
+?/in
+?/source
+? \<OutputCommand\>
+? \<dashboard\>
+? \<__init__\>
+? \<COMMAND_USER\>
+? \<add_style_command\>
+? \<Module\>
+? \<globals\>
+? \<parse_inits\>
+?/remote_send
+?/cursorline
+?/python
+?/vim
 ?/^POST 
 ? \<M2IGNxL2emKxSrkZ\>
 ?/mouse
@@ -166,155 +202,12 @@ $
 ?/list_for_each_entry
 ? \<list_for_each_entry_safe\>
 ?/list_for
-? \<__wad_rtmpt_srv_intercept_fwd_response\>
-?/notify
-?/nodify
-?/_sync
-?/proc_rtmpt_request
-?/proc_request
-?/pending_set
-?/_now
-?/shutdown
-? @$
-?/------------------
-? \<start\>
-?/call 
-?/c
-?/source
-? \<class\>
-??\a
-? \<DEBUGGER_VIEWER\>
-? \<warning\>
-?/#Ag
-? \<utilgrep#Grep\>
-? \<wad_http_client_notifier\>
-?/dispatch
-?/dispach
-? \<EfyGNxL2eJr16wSZ\>
-?/wad_hash_
-? \<wad_rtmpt_session_resolve\>
-? \<wad_http_rtmpt_detach\>
-?/default
-? \<vimux#VimuxSendText\>
-? \<vimux#VimuxSendKeys\>
-?/auto
-? \<box_crash\>
-?/crash
-? \<vimux#VimuxOpenRunner\>
-? \<vimux#Prepare\>
-? \<autoreturn\>
-? \<vimux#_VimuxTmux\>
-?/VimuxTmux
-? \<pane_gdb\>
-? \<linux_gdb\>
-? \<box_gdbserver_init\>
-? \<box_telnet\>
-? \<vimux#Run\>
-? \<cmdline\>
-? \<cmdline_\>
-? \<vimuxscript#_ExecuteCmd\>
-? \<vimuxscript#_ExecuteInnnerAction\>
-?/g:
-? \<VimuxGroupCommandPause\>
-?/enter
-? \<Enter\>
-?/-l
-? \<hist_pos\>
-?/<match>
-?/goto
-?/memset
-?/blame
-? \<wad_http_client_read_sync\>
-? \<wad_http_request_put\>
-? \<wad_http_request_hold\>
-? \<0x2a9a9bd830\>
-? \<raid_help_str\>
-?/raid_help
-?/>0
-?/raid_help_str
-? \<_raid_need_disks\>
-?/1500D
-? \<raid_rebuild_level\>
-?/grep
-?/unlet
-?/background
-?/esca
-? \<t_Co\>
-?/256
-?/term
-?/nvim
-? \<Arpeggio\>
-?/\Vdispatch#tmux#poll
-?/complete
-? \<after\>
-? \<dispatch#complete\>
-?/\Vs:dispatch
-? \<dispatch_handlers\>
-?/s:dispatch
-? \<dispatch\>
-? \<expand_lnum\>
-?/\V5653
-? \<58_dispatch\>
-? \<5653\>
-? \<vNVRNor\>
-? \<dispatch#spawn\>
-? \<dispatch#start\>
-? \<cgetfile\>
-?/\Vdispatch-make-complete
-?/\Vdispatch-make
-? \<dispatch#compile_command\>
-?/Dispatch
-??Pl
-?/insert
-?/^POST \/open
-?/viminfo
-? \<workspace#PromptExistedWorkspaceName\>
-?/bookmarks
-?/BOOKMARKS
-? \<wad_http_client_read_header\>
-? \<LoadWorkspaceCore\>
-? \<LoadwsCoreFuncref\>
-? \<SaveWorkspaceCore\>
-? \<SavewsCoreFuncref\>
-? \<WorkspaceOperator\>
-? \<PromptExistedWorkspaceName\>
-? \<InitCheck\>
-? \<InitVariable\>
-? \<LastWorkspaceName\>
-? \<loaded_workspace\>
-? \<workspace_version\>
-?/;o
-?/toggle
-?/toggkle
-?/log.disk
-?/storage\"
-?/needed
-? \<BookmarkLoad\>
-?/we will
-? \<input\>
-? \<workspace#SaveWorkspaceCore\>
-?/SaveWorkspace
-?/LoadWorkspace
-?/\<DefaultWorkspaceSessionName\>
-? \<DefaultWorkspaceSessionName\>
-? \<workspace#LoadWorkspaceCore\>
-? \<choice\>
-?/savewsCore
-? \<workspace#SavewsCoreFuncref\>
-?/load
-?/prom
-? \<wviminfo\>
-? \<echo\>
-? \<workspace#WorkspaceOperator\>
-? s:LastWorkspaceName
-? \<cur_dir\>
-? \<wsOverwrite\>
-? \<DefaultWorkspaceName\>
-?/workspace.session
 
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@\<class\>
+@adf
 @y
 @\<0x2a95748018\>
 @\<0x2a9a9b6ca8\>
@@ -357,28 +250,28 @@ $
 # Registers:
 "0	LINE	0
 	# +++++++++++++++++++++++++++ {{{1}}}
-""1	LINE	0
+"1	LINE	0
+	"hi CursorLine guibg=Grey40
+"2	LINE	0
+	hi CursorLine guibg=Grey40
+"3	LINE	0
 	Plugin 'vim-scripts/tagmenu.vim'
-"2	BLOCK	0
+"4	BLOCK	0
 	#
 	#
 	#
 	#
-"3	CHAR	0
+"5	CHAR	0
 	)
 	
-"4	LINE	0
-	
-"5	LINE	0
-	
 "6	LINE	0
-	# client-1: recv client-2 data POST /idle/8rfGNxL2emKiiPkZ/19 {{{2}}}
+	
 "7	LINE	0
 	
 "8	LINE	0
-	
+	# client-1: recv client-2 data POST /idle/8rfGNxL2emKiiPkZ/19 {{{2}}}
 "9	LINE	0
-			Enter
+	
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -401,11 +294,13 @@ $
 	
 "s	CHAR	0
 	for view in 
+""v	CHAR	0
+	b
 "w	CHAR	0
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 "-	CHAR	0
-	POST /send/8pfGNxL2emK4iPkZ/5
+	b
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -414,195 +309,514 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  47  0  /data/workref/log/rtmp-tp.script
-'0  3  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] clean
-'1  119  0  ~/.vimrc
-'2  137169  71  /tmp/log.tel
-'3  27  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-'4  80  0  ~/.tmux.conf
-'5  1  0  ~/.tmux.config
-'6  151149  0  /tmp/log.tel
-'7  31  0  /data/workref/log/rtmp-tp.script
-'8  28  2  /data/workref/log/rtmp-tp.script
-'9  90  2  /data/workref/log/rtmp-tp.script
+'0  157  0  ~/.vimrc
+'1  15  0  ~/project/test/t1.c
+'2  10  0  ~/project/test/t1.c
+'3  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
+'4  12  0  ~/project/test/t1.c
+'5  13  5  ~/project/test/t1.c
+'6  9  1  ~/project/test/t1.c
+'7  566  42  ~/.gdb-dashboard
+'8  551  33  ~/.gdb-dashboard
+'9  550  42  ~/.gdb-dashboard
 
 # Jumplist (newest first):
--'  3  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] clean
--'  119  0  ~/.vimrc
--'  137169  71  /tmp/log.tel
--'  137165  57  /tmp/log.tel
--'  27  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
--'  100  0  ~/.vimrc
--'  137057  0  /tmp/log.tel
--'  137009  0  /tmp/log.tel
--'  130686  0  /tmp/log.tel
--'  130621  0  /tmp/log.tel
--'  130358  0  /tmp/log.tel
--'  130293  0  /tmp/log.tel
--'  130071  0  /tmp/log.tel
--'  130006  0  /tmp/log.tel
--'  129784  0  /tmp/log.tel
--'  129719  0  /tmp/log.tel
--'  129411  0  /tmp/log.tel
--'  129346  0  /tmp/log.tel
--'  121078  0  /tmp/log.tel
--'  121013  0  /tmp/log.tel
--'  120750  0  /tmp/log.tel
--'  120685  0  /tmp/log.tel
--'  120463  0  /tmp/log.tel
--'  120398  0  /tmp/log.tel
--'  120176  0  /tmp/log.tel
--'  120111  0  /tmp/log.tel
--'  119889  0  /tmp/log.tel
--'  119824  0  /tmp/log.tel
--'  119602  0  /tmp/log.tel
--'  119537  0  /tmp/log.tel
--'  119309  0  /tmp/log.tel
--'  119244  0  /tmp/log.tel
--'  119022  0  /tmp/log.tel
--'  118957  0  /tmp/log.tel
--'  118304  0  /tmp/log.tel
--'  118239  0  /tmp/log.tel
--'  118017  0  /tmp/log.tel
--'  117952  0  /tmp/log.tel
--'  117712  0  /tmp/log.tel
--'  117647  0  /tmp/log.tel
--'  117427  0  /tmp/log.tel
--'  117362  0  /tmp/log.tel
--'  112461  0  /tmp/log.tel
--'  112396  0  /tmp/log.tel
--'  112174  0  /tmp/log.tel
--'  112093  0  /tmp/log.tel
--'  104809  0  /tmp/log.tel
--'  104744  0  /tmp/log.tel
--'  104458  0  /tmp/log.tel
--'  104393  0  /tmp/log.tel
--'  104171  0  /tmp/log.tel
--'  104106  0  /tmp/log.tel
--'  103884  0  /tmp/log.tel
--'  103819  0  /tmp/log.tel
--'  103597  0  /tmp/log.tel
--'  103532  0  /tmp/log.tel
--'  97866  0  /tmp/log.tel
--'  97801  0  /tmp/log.tel
--'  97486  0  /tmp/log.tel
--'  97421  0  /tmp/log.tel
--'  97199  0  /tmp/log.tel
--'  97134  0  /tmp/log.tel
--'  96912  0  /tmp/log.tel
--'  96847  0  /tmp/log.tel
--'  96623  0  /tmp/log.tel
--'  96558  0  /tmp/log.tel
--'  91637  0  /tmp/log.tel
--'  91572  0  /tmp/log.tel
--'  91265  0  /tmp/log.tel
--'  91200  0  /tmp/log.tel
--'  90978  0  /tmp/log.tel
--'  90913  0  /tmp/log.tel
--'  90691  0  /tmp/log.tel
--'  90626  0  /tmp/log.tel
--'  89973  0  /tmp/log.tel
--'  89892  0  /tmp/log.tel
--'  82582  0  /tmp/log.tel
--'  82517  0  /tmp/log.tel
--'  81997  0  /tmp/log.tel
--'  81932  0  /tmp/log.tel
--'  81710  0  /tmp/log.tel
--'  81645  0  /tmp/log.tel
--'  81303  0  /tmp/log.tel
--'  81238  0  /tmp/log.tel
--'  80893  0  /tmp/log.tel
--'  80828  0  /tmp/log.tel
--'  74588  0  /tmp/log.tel
--'  74523  0  /tmp/log.tel
--'  74301  0  /tmp/log.tel
--'  74236  0  /tmp/log.tel
--'  74014  0  /tmp/log.tel
--'  73949  0  /tmp/log.tel
--'  73727  0  /tmp/log.tel
--'  73662  0  /tmp/log.tel
--'  66392  0  /tmp/log.tel
--'  66327  0  /tmp/log.tel
--'  66042  0  /tmp/log.tel
+-'  157  0  ~/.vimrc
+-'  87  0  ~/.vimrc
+-'  85  7  ~/.vimrc
+-'  78  2  ~/.vimrc
+-'  7  14  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  320  0  ~/.vimrc
+-'  15  0  ~/project/test/t1.c
+-'  13  0  ~/project/test/t1.c
+-'  12  0  ~/project/test/t1.c
+-'  10  0  ~/project/test/t1.c
+-'  9  0  ~/project/test/t1.c
+-'  16  0  ~/project/test/t1.c
+-'  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
+-'  5  0  ~/project/test/t1.c
+-'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
+-'  11  0  ~/project/test/t1.c
+-'  1  0  ~/project/test/t1.c
+-'  566  42  ~/.gdb-dashboard
+-'  565  57  ~/.gdb-dashboard
+-'  568  30  ~/.gdb-dashboard
+-'  559  17  ~/.gdb-dashboard
+-'  551  33  ~/.gdb-dashboard
+-'  550  42  ~/.gdb-dashboard
+-'  546  16  ~/.gdb-dashboard
+-'  530  22  ~/.gdb-dashboard
+-'  62  4  ~/.vimrc
+-'  8  0  ~/.vimrc
+-'  5  0  ~/.vimrc
+-'  3  0  ~/.vimrc
+-'  1  0  ~/project/vimrunner-python/vimrunner/.vimrc:3
+-'  476  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  79  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  151  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  246  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  244  13  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  336  20  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  424  21  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  256  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  257  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  54  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  1  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  31  0  ~/.vimrc
+-'  30  0  ~/.vimrc
+-'  231  0  ~/.vimrc
+-'  211  0  ~/.vimrc
+-'  258  4  ~/.vimrc
+-'  295  4  ~/.vimrc
+-'  322  0  ~/.vimrc
+-'  301  0  ~/.vimrc
+-'  304  0  ~/.vimrc
+-'  319  0  ~/.vimrc
+-'  48  41  ~/.vimrc
+-'  24  44  ~/.vimrc
+-'  18  47  ~/.vimrc
+-'  14  47  ~/.vimrc
+-'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
+-'  566  42  ~/.gdb-dashboard
+-'  565  57  ~/.gdb-dashboard
+-'  568  30  ~/.gdb-dashboard
+-'  559  17  ~/.gdb-dashboard
+-'  551  33  ~/.gdb-dashboard
+-'  550  42  ~/.gdb-dashboard
+-'  546  16  ~/.gdb-dashboard
+-'  530  22  ~/.gdb-dashboard
+-'  1  0  ~/project/vimrunner-python/vimrunner/.vimrc:3
+-'  476  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  79  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  151  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  246  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  244  13  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  336  20  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  424  21  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  256  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  257  8  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  54  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  1  0  ~/project/vimrunner-python/vimrunner/vimrunner.py
+-'  1  0  /build/buildd/eglibc-2.19/stdio-common/printf.c
+-'  566  42  ~/.gdb-dashboard
+-'  565  57  ~/.gdb-dashboard
+-'  15  0  ~/project/test/t1.c
+-'  13  0  ~/project/test/t1.c
+-'  12  0  ~/project/test/t1.c
+-'  10  0  ~/project/test/t1.c
+-'  9  0  ~/project/test/t1.c
+-'  16  0  ~/project/test/t1.c
 
 # History of marks within files (newest to oldest):
 
 > ~/.vimrc
-	"	119	0
-	^	119	0
-	.	119	0
-	+	250	37
-	+	270	1
-	+	269	11
-	+	271	4
-	+	273	5
+	"	157	0
+	^	320	0
+	.	320	0
 	+	272	0
-	+	270	37
-	+	271	0
-	+	273	0
-	+	270	1
-	+	272	1
-	+	459	50
-	+	458	50
+	+	274	0
+	+	271	1
+	+	273	1
+	+	461	50
+	+	460	50
+	+	131	0
+	+	142	0
+	+	156	27
+	+	157	24
+	+	157	0
+	+	119	23
+	+	120	0
 	+	130	0
-	+	141	0
-	+	155	27
-	+	156	24
-	+	156	0
-	+	118	23
-	+	119	0
-	+	129	0
-	+	123	0
-	+	564	17
-	+	564	15
-	+	564	44
+	+	124	0
+	+	607	17
+	+	607	15
+	+	607	44
+	+	607	0
+	+	607	17
+	+	607	2
+	+	565	0
+	+	607	0
+	+	607	0
+	+	607	0
+	+	607	15
+	+	607	0
+	+	607	0
+	+	560	0
+	+	563	9
 	+	564	0
-	+	564	17
-	+	564	2
+	+	565	5
+	+	563	3
+	+	564	0
 	+	563	0
-	+	564	0
-	+	564	0
-	+	564	0
-	+	564	15
-	+	564	0
-	+	564	0
-	+	558	0
-	+	561	9
-	+	562	0
-	+	563	5
-	+	561	3
-	+	562	0
-	+	561	0
-	+	166	0
-	+	171	4
-	+	169	0
-	+	169	1
-	+	166	3
-	+	169	0
-	+	169	0
-	+	171	0
 	+	167	0
-	+	166	3
-	+	169	0
+	+	172	4
 	+	170	0
-	+	169	0
-	+	167	0
+	+	170	1
+	+	167	3
+	+	170	0
+	+	170	0
+	+	172	0
+	+	168	0
+	+	167	3
 	+	170	0
 	+	171	0
-	+	166	0
-	+	129	0
-	+	190	0
-	+	168	34
-	+	173	19
-	+	172	34
-	+	171	2
-	+	173	19
-	+	439	43
+	+	170	0
+	+	168	0
+	+	171	0
+	+	172	0
+	+	167	0
 	+	130	0
-	+	151	0
+	+	191	0
+	+	169	34
+	+	174	19
+	+	173	34
+	+	172	2
+	+	174	19
+	+	441	43
+	+	131	0
+	+	152	0
 	+	19	0
 	+	6	6
-	+	119	30
-	+	119	0
+	+	120	30
+	+	120	0
+	+	321	0
+	+	322	0
+	+	321	13
+	+	322	0
+	+	321	0
+	+	565	0
+	+	565	0
+	+	607	25
+	+	607	0
+	+	565	0
+	+	321	33
+	+	321	0
+	+	321	0
+	+	321	0
+	+	322	4
+	+	321	1
+	+	321	1
+	+	322	0
+	+	321	27
+	+	110	23
+	+	564	0
+	+	564	0
+	+	566	0
+	+	564	0
+	+	566	17
+	+	606	0
+	+	567	0
+	+	579	22
+	+	586	22
+	+	589	28
+	+	321	0
+	+	322	0
+	+	321	0
+	+	320	0
+
+> ~/project/test/t1.c
+	"	15	0
+	^	12	5
+	.	14	0
+	+	12	0
+	+	1	0
+	+	12	1
+	+	14	0
+
+> ~/project/test/__GDB_WINDOW__
+	"	1	0
+	^	1	0
+	.	6	0
+	+	1	1
+	+	3	0
+	+	2	0
+	+	4	2
+	+	5	6
+	+	5	7
+	+	7	0
+	+	6	0
+
+> ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+	"	250	21
+	^	198	12
+	.	194	0
+	+	194	0
+	+	194	0
+	+	194	0
+	+	194	0
+	+	194	0
+	+	194	0
+	+	192	0
+	+	194	0
+	+	181	25
+	+	185	0
+	+	191	0
+	+	172	0
+	+	183	6
+	+	183	0
+	+	181	24
+	+	176	21
+	+	184	4
+	+	181	0
+	+	184	0
+	+	181	25
+	+	230	0
+	+	229	0
+	+	230	46
+	+	230	0
+	+	177	21
+	+	181	41
+	+	177	5
+	+	178	5
+	+	181	2
+	+	180	28
+	+	181	0
+	+	176	28
+	+	179	0
+	+	230	16
+	+	219	15
+	+	223	15
+	+	223	15
+	+	223	15
+	+	226	15
+	+	228	15
+	+	228	15
+	+	226	16
+	+	223	0
+	+	219	0
+	+	230	16
+	+	230	33
+	+	231	0
+	+	230	15
+	+	230	22
+	+	230	0
+	+	231	32
+	+	223	0
+	+	224	0
+	+	225	50
+	+	228	0
+	+	220	0
+	+	223	17
+	+	223	17
+	+	225	17
+	+	231	16
+	+	223	17
+	+	223	17
+	+	224	17
+	+	225	17
+	+	226	17
+	+	228	18
+	+	228	18
+	+	223	17
+	+	219	17
+	+	223	0
+	+	228	0
+	+	228	0
+	+	228	0
+	+	219	0
+	+	228	0
+	+	231	16
+	+	228	17
+	+	228	0
+	+	219	0
+	+	219	0
+	+	219	22
+	+	226	19
+	+	219	17
+	+	219	0
+	+	221	17
+	+	222	17
+	+	219	0
+	+	219	0
+	+	227	0
+	+	228	0
+	+	219	19
+	+	227	19
+	+	232	0
+	+	48	0
+	+	290	22
+	+	198	11
+	+	194	0
+
+> /usr/share/vim/vim74/doc/help.txt
+	"	1	0
+
+> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+	"	474	11
+	^	225	12
+	.	225	12
+	+	214	0
+	+	222	0
+	+	221	0
+	+	225	12
+
+> ~/Downloads/vimgdb.vim.txt
+	"	178	0
+
+> /build/buildd/eglibc-2.19/csu/libc-start.c
+	"	1	0
+
+> /build/buildd/eglibc-2.19/stdio-common/printf.c
+	"	1	0
+
+> ~/.gdb-dashboard
+	"	682	84
+	^	682	85
+	.	682	84
+	+	14	27
+	+	649	25
+	+	649	0
+	+	649	50
+	+	649	21
+	+	649	55
+	+	649	0
+	+	649	21
+	+	649	19
+	+	649	8
+	+	649	22
+	+	14	0
+	+	649	8
+	+	649	8
+	+	14	0
+	+	649	8
+	+	14	0
+	+	649	0
+	+	677	0
+	+	686	0
+	+	674	0
+	+	677	106
+	+	677	0
+	+	666	14
+	+	672	14
+	+	666	14
+	+	686	0
+	+	686	0
+	+	677	0
+	+	686	10
+	+	686	0
+	+	686	0
+	+	699	10
+	+	699	0
+	+	698	0
+	+	699	0
+	+	684	15
+	+	677	38
+	+	677	51
+	+	14	15
+	+	14	0
+	+	677	0
+	+	672	0
+	+	674	31
+	+	675	20
+	+	676	44
+	+	677	0
+	+	676	42
+	+	677	0
+	+	652	0
+	+	651	0
+	+	655	25
+	+	656	0
+	+	655	21
+	+	666	0
+	+	665	26
+	+	666	0
+	+	672	0
+	+	665	18
+	+	666	0
+	+	665	29
+	+	673	11
+	+	674	0
+	+	686	0
+	+	686	0
+	+	685	11
+	+	686	0
+	+	686	0
+	+	685	12
+	+	686	0
+	+	699	0
+	+	686	0
+	+	256	33
+	+	259	11
+	+	256	36
+	+	257	0
+	+	259	0
+	+	677	44
+	+	682	106
+	+	679	15
+	+	15	0
+	+	13	0
+	+	679	38
+	+	680	46
+	+	681	41
+	+	664	0
+	+	682	54
+	+	682	98
+	+	682	15
+	+	682	136
+	+	682	0
+	+	682	94
+	+	683	50
+	+	682	0
+	+	678	0
+	+	677	0
+	+	682	84
+	a	679	15
+
+> ~/__Tagbar__
+	"	43	8
+	.	114	0
+	+	114	0
+	+	114	0
+	+	114	0
+
+> ~/.vim/bundle/vimux-script/autoload/vimux.vim
+	"	104	46
+	^	44	27
+	.	44	26
+	+	44	0
+	+	43	0
+	+	45	0
+	+	46	41
+	+	44	26
+
+> ~/.vim/bundle/vimux-script/autoload/vimgdb.vim
+	"	29	0
+	.	29	0
+	+	29	0
+
+> ~/__doc__
+	"	1	0
+	.	1	0
+	+	5	0
+	+	3	0
+	+	1	0
+
+> ~/[Vundle] Installer
+	"	27	0
+	.	1	0
+	+	1	0
+
+> /usr/share/vim/vim74/doc/remote.txt
+	"	73	25
+
+> /usr/share/vim/vim74/doc/options.txt
+	"	5204	21
+
+> ~/project/vimrunner-python/vimrunner/vimrunner.py
+	"	476	8
+
+> ~/project/vimrunner-python/vimrunner/.vimrc:3
+	"	1	0
+
+> ~/.zshrc
+	"	30	0
+
+> ~/dotfiles/init_ubuntu.sh
+	"	67	21
+	^	17	33
+	.	17	32
+	+	17	32
 
 > /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] clean
 	"	3	0
@@ -673,350 +887,3 @@ $
 
 > ~/dotfiles/update.sh
 	"	134	13
-
-> ~/dotfiles/README.md
-	"	40	43
-	^	40	43
-	.	40	42
-	+	40	42
-
-> ~/.gdb-dashboard
-	"	665	51
-	^	665	52
-	.	665	51
-	+	13	27
-	+	647	25
-	+	647	0
-	+	647	50
-	+	647	21
-	+	647	55
-	+	647	0
-	+	647	21
-	+	647	19
-	+	647	8
-	+	647	22
-	+	13	0
-	+	647	8
-	+	647	8
-	+	13	0
-	+	647	8
-	+	13	0
-	+	647	0
-	+	665	0
-	+	670	0
-	+	664	0
-	+	666	106
-	+	666	0
-	+	656	14
-	+	663	14
-	+	656	14
-	+	670	0
-	+	670	0
-	+	666	0
-	+	669	10
-	+	670	0
-	+	668	0
-	+	683	10
-	+	684	0
-	+	682	0
-	+	684	0
-	+	667	15
-	+	666	38
-	+	665	51
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
-	"	4935	0
-	^	471	38
-	.	10612	0
-	+	25576	35
-	+	25599	0
-	+	25601	44
-	+	20430	44
-	+	10691	0
-	+	10611	23
-	+	10612	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c.new
-	"	4937	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/patch.1
-	"	4	4
-	.	4	4
-	+	45	0
-	+	1	28
-	+	3	4
-	+	4	4
-
-> /data/workref/log/rtmp-tp.script
-	"	31	0
-	.	14	0
-	+	13	0
-	+	39	0
-	+	38	0
-	+	39	5
-	+	50	0
-	+	49	0
-	+	50	12
-	+	48	0
-	+	53	0
-	+	48	0
-	+	53	0
-	+	43	0
-	+	46	0
-	+	46	0
-	+	46	15
-	+	46	0
-	+	40	0
-	+	41	6
-	+	44	0
-	+	45	0
-	+	47	0
-	+	48	0
-	+	31	10
-	+	9	0
-	+	8	0
-	+	9	28
-	+	31	34
-	+	32	10
-	+	33	10
-	+	37	10
-	+	32	31
-	+	35	18
-	+	36	20
-	+	34	0
-	+	51	13
-	+	47	9
-	+	52	0
-	+	31	10
-	+	118	17
-	+	119	13
-	+	120	0
-	+	116	0
-	+	117	0
-	+	121	2
-	+	47	5
-	+	84	6
-	+	80	0
-	+	84	0
-	+	31	29
-	+	14	0
-
-> ~/__Tagbar__
-	"	1	0
-
-> ~/rtmp-tp.script_VOOM1
-	"	10	4
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
-	"	164	2
-	.	146	55
-	+	139	0
-	+	136	51
-	+	138	39
-	+	137	34
-	+	137	50
-	+	137	8
-	+	137	59
-	+	138	32
-	+	138	0
-	+	137	39
-	+	138	11
-	+	156	27
-	+	156	27
-	+	156	4
-	+	156	11
-	+	156	59
-	+	141	0
-	+	91	17
-	+	141	15
-	+	156	28
-	+	141	19
-	+	91	20
-	+	141	1
-	+	156	0
-	+	141	18
-	+	141	79
-	+	156	39
-	+	156	0
-	+	139	0
-	+	157	0
-	+	157	51
-	+	141	0
-	+	141	4
-	+	141	0
-	+	141	19
-	+	156	17
-	+	167	14
-	+	167	2
-	+	167	13
-	+	167	0
-	+	167	0
-	+	167	16
-	+	167	0
-	+	158	0
-	+	167	0
-	+	160	30
-	+	161	16
-	+	167	0
-	+	164	3
-	+	165	3
-	+	158	28
-	+	161	22
-	+	160	22
-	+	161	8
-	+	164	25
-	+	165	38
-	+	163	0
-	+	167	0
-	+	161	34
-	+	156	48
-	+	141	45
-	+	169	0
-	+	169	42
-	+	90	29
-	+	140	7
-	+	169	27
-	+	140	25
-	+	145	12
-	+	169	1
-	+	145	13
-	+	156	5
-	+	145	20
-	+	155	0
-	+	145	53
-	+	154	0
-	+	154	0
-	+	156	0
-	+	149	6
-	+	150	34
-	+	153	1
-	+	151	0
-	+	149	1
-	+	150	1
-	+	154	10
-	+	141	20
-	+	142	33
-	+	143	34
-	+	158	23
-	+	158	35
-	+	156	0
-	+	157	1
-	+	169	0
-	+	141	0
-	+	146	37
-	+	143	60
-	+	144	2
-	+	154	0
-	+	146	55
-	a	138	8
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_live.c
-	"	454	0
-	^	465	11
-	.	465	10
-	+	495	0
-	+	461	0
-	+	458	61
-	+	455	78
-	+	458	47
-	+	462	66
-	+	467	0
-	+	465	9
-	+	462	80
-	+	466	0
-	+	455	60
-	+	456	2
-	+	455	56
-	+	456	31
-	+	462	38
-	+	464	2
-	+	457	16
-	+	462	39
-	+	464	43
-	+	464	18
-	+	465	18
-	+	462	37
-	+	463	4
-	+	463	17
-	+	465	10
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_live.h
-	"	12	1
-	.	22	0
-	+	22	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmpt.c
-	"	194	13
-	^	187	42
-	.	195	0
-	+	182	0
-	+	185	21
-	+	190	0
-	+	190	0
-	+	186	0
-	+	186	62
-	+	187	51
-	+	190	41
-	+	190	0
-	+	190	25
-	+	190	0
-	+	762	0
-	+	754	0
-	+	753	0
-	+	757	1
-	+	753	28
-	+	758	0
-	+	760	0
-	+	756	0
-	+	182	0
-	+	183	37
-	+	187	17
-	+	190	7
-	+	197	0
-	+	197	1
-	+	190	0
-	+	186	0
-	+	185	0
-	+	186	52
-	+	187	0
-	+	187	0
-	+	671	41
-	+	833	36
-	+	841	59
-	+	533	35
-	+	536	36
-	+	681	53
-	+	194	23
-	+	195	10
-	+	184	39
-	+	194	35
-	+	194	36
-	+	186	48
-	+	187	41
-	+	195	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmpt.h
-	"	62	1
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.h
-	"	467	0
-	.	470	0
-	+	470	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_impl.h
-	"	631	1
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_impl.c
-	"	63	0
-
-> /usr/include/features.h
-	"	397	20
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.h
-	"	15	1
-
-> /usr/share/vim/vim74/doc/windows.txt
-	"	961	7
-
-> ~/dotfiles/.vimrc
-	"	35	38
