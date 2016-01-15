@@ -662,8 +662,8 @@ class Source(Dashboard.Module):
                 return [ansi(msg, R.style_error)]
             '''
 
-        #subprocess.Popen(["vim", " --servername foo --remote-silent ~/update.sh"], creationflags=DETACHED_PROCESS)
-        os.system("vim --servername foo --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
+        #subprocess.Popen(["vim", " --servername gdb --remote-silent ~/update.sh"], creationflags=DETACHED_PROCESS)
+        os.system("vim --servername gdb --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
         return ""
 
         '''

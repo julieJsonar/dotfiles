@@ -37,7 +37,7 @@ using gdb's python interface, if use ubuntu 14.04, the gdb using python3 interfa
     * open another terminal (e.g. tmux pane) and get its TTY with the tty command (e.g. /dev/ttys001, the name may be different for a variety of reasons);
     * issue the command dashboard -output /dev/ttys001 to redirect the dashboard output to the newly created terminal;
   - debug as usual, the only different is python prompt `>>> `, not `(gdb) `, but we can change by `dashboard -style prompt '(gdb)'`
-  - config show model: `dashboard -layout registers source !assembly stack`
+  - config show model: `dashboard -layout !registers source !assembly !stack !threads`
 
 ## eclipse dark theme
 

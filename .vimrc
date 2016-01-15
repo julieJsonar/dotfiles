@@ -16,7 +16,6 @@
 "  g; <or> g,      navigate changelist
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
-" :Savesession     save to current dir, use vi -S default.vim to open it.
 "
 " Howtos: {{{2}}}
 " =======
