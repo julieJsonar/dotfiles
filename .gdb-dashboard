@@ -10,17 +10,18 @@ import os
 import re
 import struct
 import termios
-import tmuxp
 import vimrunner
 
 # Globals ------------------------------------------------------------
+g_gdb_tmux_id = ""
 g_vim_state = 0
 g_vim = None
 
 g_vim_servername = "GDB.SOURCE"
 g_vim_source_init_str = ""
-g_vim_source_exist_tmuxgdb = False
-g_vim_gdb_output = "/tmp/gdb.output"
+g_vim_gdb_output = "/tmp/gdb/"
+g_vim_source_fname = ""
+g_vim_source_fname_line = ""
 
 # Common attributes ------------------------------------------------------------
 class R():
@@ -212,10 +213,12 @@ class Dashboard(gdb.Command):
         # dashboard is printed to a separate file
         if self.enabled and self.is_running() and not self.output:
             Dashboard.update_term_width()
-            gdb.write(Dashboard.clear_screen())
-            gdb.write(divider('Output/messages', True))
-            gdb.write('\n')
-            gdb.flush()
+
+            if g_vim_state == 0:
+                gdb.write(Dashboard.clear_screen())
+                gdb.write(divider('Output/messages', True))
+                gdb.write('\n')
+                gdb.flush()
 
     def on_stop(self):
         # redisplay the dashboard when the target program stops (the screen is
@@ -247,10 +250,9 @@ class Dashboard(gdb.Command):
 
     def build(self):
         global g_vim_state
-        global g_vim_source_exist_tmuxgdb
+        global g_vim
         global g_vim_source_init_str
         global g_vim_gdb_output
-        global g_vim
 
         # fetch the output width
         try:
@@ -262,26 +264,14 @@ class Dashboard(gdb.Command):
 
         # Check vim server exist
         g_vim = vimrunner.Server(name=g_vim_servername)
-        servername = g_vim.server_list()
-        if any(g_vim_servername in s for s in servername):
-            if g_vim_state == 0:
-                g_vim_state = 1
-                server = tmuxp.Server()
-                ses = server.list_sessions()[0]
-                pane = ses.attached_pane()
-                os.system("tmux pipe-pane -t " \
-                          + pane['window_index'] + "." + pane['pane_index'] \
-                          + " -o 'cat >>" + g_vim_gdb_output + "'")
-
-
+        vim_client = g_vim.connect()
+        if g_vim.is_running():
+            g_vim_state = 1
             if not g_vim.remote_expr("g:tmux_gdb"):
                 if not g_vim_source_init_str:
-                    server = tmuxp.Server()
-                    ses = server.list_sessions()[0]
-                    pane = ses.attached_pane()
                     g_vim_source_init_str = "<ESC>:let g:tmux_gdb='" \
-                        + pane['window_index'] + "." + pane['pane_index'] \
-                        + "'<Enter>:GdbMode<Enter>"
+                        + g_gdb_tmux_id + "'<Enter>:let g:tmux_gdb_dir='" \
+                        + g_vim_gdb_output + "'<Enter>:GdbMode<Enter>"
 
                 g_vim.remote_send(g_vim_source_init_str)
         else:
@@ -295,6 +285,14 @@ class Dashboard(gdb.Command):
             module = module.instance
             # active if more than zero lines
             module_lines = module.lines()
+            if g_vim_state > 0:
+                fname = g_vim_gdb_output + module.label().lower()
+                with open(fname, 'w+') as the_file:
+                    output_lines = '\n'.join(module_lines)
+                    the_file.write(output_lines)
+                    the_file.close()
+                    os.system("ansi2txt < " + fname + " > " + fname + ".txt")
+
             if len(module_lines) > 0:
                 lines.append(divider(module.label(), True, module_lines))
                 lines.extend(module_lines)
@@ -312,9 +310,23 @@ class Dashboard(gdb.Command):
         output_lines = '\n'.join(lines)
 
         if g_vim_state > 0:
-            with open(g_vim_gdb_output, 'w+') as the_file:
+            fname = g_vim_gdb_output + "out"
+            with open(g_vim_gdb_output + "out", 'w+') as the_file:
                 the_file.write(output_lines)
-            #g_vim.remote_send("<ESC>:bufdo e!<Enter>")
+                the_file.close()
+                os.system("ansi2txt < " + fname + " > " + fname + ".txt")
+
+            g_vim.remote_send("<ESC>:GdbRefresh " \
+                + g_vim_source_fname + " " + g_vim_source_fname_line + "<Enter>")
+            #g_vim.remote_send("<ESC>:bufdo! silent! checktime <Enter>l<Enter>")
+            #g_vim.remote_send("<ESC>:bufdo! e! <Enter>")
+
+            #pos_next = "-1"
+            #pos_head = vim_client.get_active_buffer()
+            #while pos_head != pos_next:
+            #    g_vim.remote_send("<ESC>:wincmd w<Enter>:e!<Enter>")
+            #    pos_next = vim_client.get_active_buffer()
+
             return ""
         else:
             return output_lines
@@ -333,6 +345,13 @@ class Dashboard(gdb.Command):
 
     @staticmethod
     def start():
+        global g_gdb_tmux_id
+
+        os.system("mkdir -p " + g_vim_gdb_output)
+        g_gdb_tmux_id = os.popen("tmux display -p '#I.#P'").read().strip('\n')
+        os.system("tmux pipe-pane -t " + g_gdb_tmux_id \
+                    + " -o 'cat >>" + g_vim_gdb_output + "out'")
+
         # initialize the dashboard
         dashboard = Dashboard()
         Dashboard.set_custom_prompt(dashboard)
@@ -693,6 +712,9 @@ class Source(Dashboard.Module):
         return 'Source'
 
     def lines(self):
+        global g_vim_source_fname
+        global g_vim_source_fname_line
+
         # try to fetch the current line (skip if no line information)
         sal = gdb.selected_frame().find_sal()
         current_line = sal.line
@@ -718,9 +740,11 @@ class Source(Dashboard.Module):
                     return [ansi(msg, R.style_error)]
 
         if g_vim_state > 0:
-            g_vim.remote_send("<ESC>:silent! e! +" + str(current_line) + " " + self.file_name + "<Enter>")
-            #os.system("g_vim --servername " + g_vim_servername
-            #    + " --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
+            # Always assume the left window is source code window
+            #g_vim.remote_send("<ESC>:wincmd k<Enter>:wincmd h<Enter>:silent! e! +" \
+            #    + str(current_line) + " " + self.file_name + "<Enter>")
+            g_vim_source_fname = self.file_name
+            g_vim_source_fname_line = str(current_line)
             return ""
         else:
             # compute the line range

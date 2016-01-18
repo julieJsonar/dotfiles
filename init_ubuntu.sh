@@ -14,8 +14,10 @@ sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag traceroute sm
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion
+# vim (+clientserver)
 sudo apt-get install -y vim-gnome
-sudo apt-get install -y tree cscope ctags w3m
+# ansi2txt (kbtin)
+sudo apt-get install -y tree cscope ctags w3m kbtin
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Develop Env

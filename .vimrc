@@ -147,6 +147,7 @@ Plugin 'yuratomo/w3m.vim'
 
 Plugin 'huawenyu/taboo.vim'
 Plugin 'huawenyu/vim-mark'
+Plugin 'huawenyu/highlight.vim'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
 Plugin 'huawenyu/vim-dispatch'
@@ -563,7 +564,7 @@ let g:sneak#s_next = 1
 
 "}
 
-" Python-mode {{{1
+" Python-mode{{{1
   " Activate rope
   " Keys:
   " K             Show python docs

@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/os.system
+~MSle0~/Action
 
 # Last Substitute Search Pattern:
 ~MSle0&\<g_vim_source\>
@@ -20,106 +20,181 @@ $
 :qa
 :w
 :pwd
-:we
-:qw
-:%s/\<g_vim_source\>/g_vim_state/gi
-:%s/\<vim\>/g_vim/gi
-:23
-:set filetype=python
-:f
-:e!
-:bufdo e!
-:q
-:echo v:servername
-:set paste
-:silent! e! +13 /data/proj/test/t1.c
-:silent! e +13 /data/proj/test/t1.c
-:silent e +13 /data/proj/test/t1.c
-:e +13 /data/proj/test/t1.c
-:messages
-:e +16 /data/proj/test/t1.c
-:message
-:b1
 :ls
-:e +21 /data/proj/test/t1.c<F5>
-:silent! e /tmp/gdb.output
-:e /tmp/gdb.output
-:b2
-:sp
-:buffers
-:set cursorline
-:AnsiEsc
-:AnsiEs
-:source ~/.vimrc
+:set paste
+:vsp dotfiles/update.sh
+:copen
+:call setqflist(map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), '{"bufnr": v:val}'))
+:help winbufnr
+:q
+:echo b_2
+:echo b_1
+:let b_{a[1]} = 'hello'
+:let a = [1,2,3]
+:help brace
+:exec HightlightOff
+:exec "HightlightOff"
+:exec "HightlightOff
+:HightlightOn
+:b plugin/vimgdb.vim
+:mks
+:e /tmp/gdb/stack.txt
+:vsp
+:set nomodifiable:qa
+:set nomodifiable
+:set modifiable
+:set ft=python
+:help winnr()
+:e .gdb-dashboard
+:file wilson
+:help window
 :PluginInstall
-:e +16 ~/.vimrc
-:e +6 ~/.vimrc
-:e +5 ~/.vimrc
-:e ~/.vimrc:4
-:e ~/.vimrc:3
-:e 
-:PluginClean
-:start
-:b vimgdb.vim
-:kkkk
-:e ../autoload/vimuxscript.vim
-:set filetype=vim
-:vs
-:e ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-:GdbMode
-:qa!
-:echo g:tmux_gdb
-:bd
-:echo match(v:servername, "GDB")
-:b3
-:e ../autoload/vimux.vim
-:pw
-:set syn=python
-:help clientserver
-:map <2-LeftMouse> :echom "wilson double click" . expand("<cword>") <CR>
-:map <MiddleMouse> :echom "wilson" <CR>
-:help mouse
-:map <RightMouse> :ls <CR>
-:call inputdialog("hello")
-:call inputdialog()
-:call SyntaxBalloon()
-:map <LeftMouse> :ls <CR>
-:set mouse=a
-:echo mouse?
-:echo mouse
-:e ~/.vimrc:8
-:e ~/.vimrc:7
-:e ~/.vimrc:5
-:e .vimrc:3
-:edit .vimrc:edit .vimrc Enter
+:b1
 :e ~/.gdb-dashboard
-:set nocursorline
-:e ~/.vimrc
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
-:hi CursorLine term=bold cterm=bold guibg=Grey40
-:hi Visual term=reverse cterm=reverse guibg=Grey
-:highlight Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
-:highlight! link Visual CursorLine
-:3
-:qa1
-:tselect
-:disconnect_client
-:w ~/tmuxlog/log.tel
-:w !diff % -
-:messager
-:echo empty([1])
-:echo empty([])
-:echo len([])
-:echo len([1,2])
-:help ls
-:Grep  -- 'client_id'
-:Grep  -- 'client-id'
-:b rtmp.c
-:466
-:b wad_rtmp_live.c
+:echo &modified
+:echo 
+:help 'modified'
+:help setbufvar()
+:help setwinvar()
+:+13
+:3wincmd w
+:2wincmd w
+:2wincmd 2
+:2wincmd 1
+:+6
+:help winnr
+:3 wincmd w
+:3 wincmd 2
+:help wincmd
+:echo winnr('$')
+:echo bufname(1)
+:echo bufname()
+:help bufnr()
+:buffnr
+:.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!AAAAAAdsw
+:help <f-args>
+:help commands
+:help usercommand
+:vs
+:sp
+:bd
+:e /tmp/gdb/stack
+:message
+:GdbRefresh /home/wilson/project/test/t1.c 11
+:GdbRefresh /home/wilson/project/test/t1.c 10
+:GdbRefresh /home/wilson/project/test/t1.c 9
+:redraw!
+:GdbRefresh /home/wilson/project/test/t1.c 8
+:silent! e! +8 ~/project/test/t1.c
+:silent! e! +10 ~/project/test/t1.c
+:e! +10 ~/project/test/t1.c
+:e +8 ~/project/test/t1.c
+:quit
+:e /tmp/gdb/registers.txt
+:e /tmp/gdb/regiters.txt
+:vp
+:e!
+:wincmd h
+:wincmd l
+:wincmd j
+:wincmd L
+:wincmd J
+:b3
+:bd4
+:bd5
+:bd2
+:wincmd 2
+:wincmd w
+:wincmd n
+:wincmd p
+:286
+:f
+:226
+:bufdo silent! checktime
+:set syn=on
+:bd15
+:bufdo! silent! checktime
+:silent! checktime
+:b11
+:bufdo! silent! e!
 
 # Search String History (newest to oldest):
+?/Action
+?/is not 
+? \<action_mode\>
+?/commit_msg
+?/win.*view
+?/winloadview
+?/hil
+? \<Gdb_interf_init\>
+??Mode
+??mode
+?/Source
 ? \s\+$
+? \<g_gdb_tmux_id\>
+? \<g_vim_source_fname_line\>
+?/Gdb
+?/\Vwindow-tag
+?/wincmd
+? \<tmux_gdb\>
+?/\V|bufname()
+?/GdbMode
+?/\<remote_send\>
+?/print
+? \<remote_send\>
+? \<vim_client\>
+?/tail
+?/\Vvimrunner
+? \<servername\>
+? \<g_vim_servername\>
+?/\Vthe_file.write
+? \<label\>
+? \<start\>
+?/lower
+?/to_low
+? \<ModuleInfo\>
+?/self.name
+?/Ass
+?/\Vos.system
+? \<the_file\>
+? \<g_vim_gdb_output\>
+?/write
+?/\VOutput\/messages
+?/Output
+? \<tmuxp\>
+? \<g_vim_source_exist_tmuxgdb\>
+?/\Vtmuxp.Server
+?/bufdo
+? \<system\>
+?/cat
+? \<vimux#_VimuxTmuxProperty\>
+? \<vimux#_VimuxNearestIndex\>
+? \<vimux#_VimuxHasRunner\>
+?/init_
+? @$
+??cclose
+?/cclose
+?/close
+? \<copen\>
+?/\<VimuxVimIndex\>
+?/!=
+? \<vimuxscript_init\>
+? \<VimuxGroupInit\>
+?/init
+? \<VimuxVimIndex\>
+?/for
+? \<VimuxRunnerIndex\>
+? \<vimux#_VimuxTmuxWindowIndex\>
+? \<vimux#_VimuxRunnerType\>
+? \<vimux#Prepare\>
+? \<open_quickfix\>
+?/copen
+? \<cgetfile\>
+? \<dispatch#complete\>
+? \<dispatch#tmux#poll\>
+?/Resize
+? \<dispatch#completed\>
+?/#complete
 ?/os.system
 ?/remote_send
 ? \<g_vim_state\>
@@ -129,13 +204,8 @@ $
 ?/\s\+$
 ?/g_vim
 ? \<vim\>
-? \<remote_send\>
-? \<g_vim_gdb_output\>
 ?/vim_source
-?/Source
-? \<g_vim_source_exist_tmuxgdb\>
 ?/\VGDB.SOURCE
-? \<tmux_gdb\>
 ?/tmux
 ?/tmuxgdb
 ? \<tmux_gdb_fixed\>
@@ -146,11 +216,9 @@ $
 ? \<EnterGdbBuf\>
 ? \<wcmd\>
 ?/utils#ColumnlineOrDeclaration
-?/tail
 ?/Ansi
 ?/Plugin
 ?/_comm
-? \<start\>
 ? \<vimgdb_running\>
 ?/VIMGDB
 ? \<vimuxscript#_Capture\>
@@ -158,16 +226,13 @@ $
 ?/capureu
 ?/command
 ?/tmux_gdb
-? \<Gdb_interf_init\>
 ? \<execute\>
 ? tmux_gdb_fixed = g
 ?/breakpoint
 ? \<class\>
 ?/modify
 ?/\<vimux#TmuxAttach2\>
-? \<VimuxRunnerIndex\>
 ? \<vimux#TmuxAttach2\>
-? \<vimux#_VimuxHasRunner\>
 ?/attach
 ?/a
 ? \<vimux#Run\>
@@ -288,25 +353,26 @@ $
 
 # Registers:
 "0	CHAR	0
-	g_vim_gdb_output
+	\"$commit_msg\"
 "1	LINE	0
 	
 "2	LINE	0
-	
+	   command! HightlightOn call <SID>Highlight("h")
+	   command! HightlightOff call <SID>Highlight("r")
 "3	LINE	0
-	                g_vim_state = 1
+	   command loaded_highlight_keymap
 "4	LINE	0
-	                if not g_vim.remote_expr("g:tmux_gdb"):
+	Plugin 'huawenyu/highlight.vim'
 "5	LINE	0
-	            if g_vim_state == 0:
+	
 "6	LINE	0
-	g_vim = None
+		exec src . "wincmd w"
 "7	LINE	0
-	g_vim_state = 0
+		let c = 1
 "8	LINE	0
-	g_vim_state = 0
+			let c += 1
 "9	LINE	0
-	g_vim_source = 0
+		while c <= winnr('$')
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -335,7 +401,7 @@ $
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 ""-	CHAR	0
-	"
+	$commit_msg
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -343,327 +409,486 @@ $
 'C  1091  2  /data/work/bug-dfa-build/5.4-100D/daemon/wad/wad_sec_profile.c
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
-'P  47  0  /data/workref/log/rtmp-tp.script
-'0  274  62  ~/.gdb-dashboard
-'1  15  0  /data/proj/test/t1.c
-'2  21  0  /data/proj/test/t1.c
-'3  8  0  /data/proj/test/t1.c
-'4  929  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_debug.c
-'5  2  0  ~/[Vundle] clean
-'6  157  0  ~/.vimrc
-'7  15  0  ~/project/test/t1.c
-'8  10  0  ~/project/test/t1.c
-'9  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
+'P  577  3  ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
+'0  60  30  ~/sync.sh
+'1  59  9  ~/sync.sh
+'2  73  0  ~/sync.sh
+'3  98  8  ~/dotfiles/update.sh
+'4  76  0  ~/sync.sh
+'5  10  19  ~/sync.sh
+'6  40  6  ~/sync.sh
+'7  80  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+'8  153  1  ~/.vimrc
+'9  29  0  ~/.vim/bundle/vimux-script/[Vundle] Installer
 
 # Jumplist (newest first):
--'  274  62  ~/.gdb-dashboard
--'  15  0  /data/proj/test/t1.c
--'  13  0  /data/proj/test/t1.c
--'  16  0  /data/proj/test/t1.c
--'  11  0  /data/proj/test/t1.c
--'  9  0  /data/proj/test/t1.c
--'  1  0  /data/proj/test/t1.c
--'  21  0  /data/proj/test/t1.c
--'  19  0  /data/proj/test/t1.c
--'  8  0  /data/proj/test/t1.c
--'  6  0  /data/proj/test/t1.c
--'  23  2  /data/proj/test/t1.c
--'  22  2  /data/proj/test/t1.c
--'  18  0  /data/proj/test/t1.c
--'  15  0  /data/proj/test/t1.c
--'  13  0  /data/proj/test/t1.c
--'  16  0  /data/proj/test/t1.c
--'  11  0  /data/proj/test/t1.c
--'  9  0  /data/proj/test/t1.c
--'  1  0  /data/proj/test/t1.c
--'  21  0  /data/proj/test/t1.c
--'  19  0  /data/proj/test/t1.c
--'  8  0  /data/proj/test/t1.c
--'  6  0  /data/proj/test/t1.c
--'  23  2  /data/proj/test/t1.c
--'  22  2  /data/proj/test/t1.c
--'  18  0  /data/proj/test/t1.c
+-'  60  30  ~/sync.sh
+-'  59  9  ~/sync.sh
+-'  73  0  ~/sync.sh
+-'  76  0  ~/sync.sh
+-'  98  8  ~/dotfiles/update.sh
+-'  71  8  ~/dotfiles/update.sh
+-'  1  0  ~/dotfiles/update.sh
+-'  144  0  ~/dotfiles/update.sh
+-'  10  10  ~/sync.sh
+-'  40  6  ~/sync.sh
+-'  48  12  ~/sync.sh
+-'  17  0  ~/sync.sh
+-'  1  10  ~/sync.sh
+-'  36  12  ~/sync.sh
+-'  77  8  ~/sync.sh
+-'  57  15  ~/sync.sh
+-'  66  12  ~/sync.sh
+-'  28  15  ~/sync.sh
+-'  11  26  ~/sync.sh
+-'  80  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  114  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  113  12  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  69  12  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  60  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  68  12  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  64  44  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  112  27  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  52  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  61  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  1  0  ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+-'  153  1  ~/.vimrc
+-'  151  0  ~/.vimrc
+-'  29  0  ~/.vim/bundle/vimux-script/[Vundle] Installer
+-'  149  7  ~/.vimrc
+-'  69  0  ~/.gdb-dashboard
+-'  155  7  ~/.vimrc
+-'  57  0  ~/.vim/bundle/vimux-script/[Vundle] Installer
+-'  567  13  ~/.vimrc
+-'  300  11  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  305  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  315  9  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  313  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  314  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  309  3  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  312  3  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  311  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  308  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  310  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  306  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  303  21  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  307  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  304  18  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  319  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  209  23  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  200  7  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  18  10  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  19  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  299  4  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  331  38  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  332  30  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  276  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  57  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  193  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  180  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  133  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  94  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  300  11  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  305  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  315  9  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  313  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  314  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  309  3  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  312  3  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  311  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  308  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  310  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  306  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  303  21  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  307  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  304  18  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  319  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  209  23  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  200  7  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  18  10  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  19  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  299  4  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  331  38  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  332  30  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  276  2  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  57  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  193  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  180  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  133  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  94  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  300  11  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  305  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 
 # History of marks within files (newest to oldest):
 
-> ~/.gdb-dashboard
-	"	274	62
-	^	274	63
-	.	274	62
-	+	251	15
-	+	286	0
-	+	282	43
-	+	284	51
-	+	286	36
-	+	284	50
-	+	286	36
-	+	278	0
-	+	279	0
-	+	278	48
-	+	279	0
-	+	286	16
-	+	285	0
-	+	302	0
-	+	720	11
-	+	712	31
-	+	704	0
-	+	720	26
-	+	302	38
-	+	302	0
-	+	302	27
-	+	302	0
-	+	312	0
-	+	302	48
-	+	302	12
-	+	302	0
-	+	302	0
-	+	308	0
-	+	302	16
-	+	302	0
-	+	312	22
-	+	320	14
-	+	312	23
-	+	320	0
-	+	302	0
-	+	310	0
-	+	313	0
-	+	314	0
-	+	320	19
-	+	316	31
-	+	23	9
-	+	252	15
-	+	315	0
-	+	317	0
-	+	318	20
-	+	315	22
-	+	282	73
-	+	283	78
-	+	282	74
-	+	283	76
-	+	284	28
-	+	282	73
-	+	26	0
-	+	315	42
-	+	24	0
-	+	24	2
-	+	253	17
-	+	24	0
-	+	1286	2
-	+	263	16
-	+	722	0
-	+	722	0
-	+	721	30
-	+	722	12
-	+	723	12
-	+	721	41
-	+	24	0
-	+	20	0
-	+	21	0
-	+	249	19
-	+	278	0
-	+	24	0
-	+	21	0
-	+	24	0
-	+	17	0
-	+	24	0
-	+	18	0
-	+	19	0
-	+	721	88
-	+	277	12
-	+	278	0
-	+	278	0
-	+	317	13
-	+	721	44
-	+	278	0
-	+	268	12
-	+	276	0
-	+	278	0
-	+	267	31
-	+	268	15
-	+	275	0
-	+	272	16
-	+	274	16
-	+	269	0
-	+	272	48
-	+	273	0
-	+	272	47
-	+	274	38
-	+	273	0
-	+	274	62
-	a	274	34
-
-> /data/proj/test/t1.c
-	"	15	0
-	^	15	10
-	.	15	7
-	+	31	0
+> ~/sync.sh
+	"	60	30
+	^	6	8
+	.	60	16
+	+	1	0
 	+	2	0
-	+	10	0
-	+	9	12
-	+	9	0
-	+	5	11
-	+	9	0
-	+	6	0
-	+	5	5
-	+	6	34
-	+	27	0
-	+	18	0
-	+	17	0
-	+	9	35
-	+	9	57
-	+	9	57
-	+	10	0
-	+	8	4
-	+	9	17
-	+	8	35
-	+	9	17
-	+	15	7
+	+	5	7
+	+	6	7
+	+	8	26
+	+	10	26
+	+	11	26
+	+	75	22
+	+	60	16
 
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_debug.c
-	"	929	0
-	.	930	0
-	+	930	0
+> ~/dotfiles/update.sh
+	"	98	8
+	.	103	0
+	+	110	0
+	+	69	0
+	+	69	0
+	+	103	0
 
-> /data/workref/rtmp/fos52-701-git/__Tagbar__
-	"	85	0
+> ~/.vim/bundle/highlight.vim/plugin/highlight.vim
+	"	80	0
+	^	114	0
 	.	114	0
+	+	54	30
+	+	58	3
+	+	59	0
+	+	113	4
+	+	117	0
+	+	113	11
+	+	113	0
+	+	113	2
+	+	113	0
+	+	113	23
+	+	113	0
+	+	115	0
+	+	113	0
 	+	114	0
 
-> ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-	"	210	0
-	.	210	0
-	+	238	17
-	+	238	17
-	+	239	17
-	+	240	17
-	+	241	17
-	+	243	18
-	+	243	18
-	+	238	17
-	+	234	17
-	+	238	0
-	+	243	0
-	+	243	0
-	+	243	0
-	+	234	0
-	+	243	0
-	+	246	16
-	+	243	17
-	+	243	0
-	+	234	0
-	+	234	0
-	+	234	22
-	+	241	19
-	+	234	17
-	+	234	0
-	+	236	17
-	+	237	17
-	+	234	0
-	+	234	0
-	+	242	0
-	+	243	0
-	+	234	19
-	+	242	19
-	+	247	0
-	+	62	0
-	+	305	22
-	+	213	11
-	+	208	0
-	+	307	1
-	+	306	0
-	+	307	0
-	+	76	0
-	+	80	0
-	+	78	0
-	+	307	0
-	+	21	29
-	+	25	19
-	+	28	41
-	+	22	0
-	+	23	0
-	+	24	0
+> ~/update.sh
+	"	87	0
+	^	75	0
+	.	75	0
+	+	21	0
+	+	88	0
+	+	1	0
+	+	20	0
+	+	9	0
+	+	11	0
+	+	4	9
+	+	6	0
+	+	4	20
+	+	5	20
+	+	3	0
+	+	14	0
+	+	13	0
+	+	49	0
+	+	48	0
+	+	56	0
+	+	26	0
 	+	25	0
-	+	28	0
-	+	21	35
-	+	22	32
-	+	23	34
-	+	24	33
-	+	25	32
-	+	28	0
-	+	27	0
-	+	19	0
-	+	17	22
-	+	39	26
-	+	52	10
-	+	39	33
+	+	26	0
+	+	50	0
+	+	55	0
+	+	76	0
+	+	87	0
+	+	88	0
+	+	57	3
+	+	58	0
+	+	76	0
+	+	57	0
+	+	58	0
+	+	77	0
+	+	87	0
+	+	88	0
+	+	58	0
+	+	56	25
+	+	58	1
+	+	59	1
+	+	58	9
+	+	59	52
+	+	60	0
+	+	58	0
 	+	62	0
-	+	40	25
-	+	44	19
-	+	39	40
-	+	51	33
-	+	60	38
-	+	39	40
-	+	60	56
-	+	51	20
-	+	39	39
-	+	51	34
-	+	61	0
-	+	26	35
-	+	61	41
-	+	18	26
-	+	61	40
-	+	90	0
-	+	92	2
-	+	90	1
-	+	92	0
-	+	91	0
-	+	77	14
-	+	60	1
-	+	61	1
-	+	60	1
-	+	61	1
-	+	60	1
-	+	61	1
-	+	296	66
-	+	79	4
-	+	80	1
-	+	204	0
-	+	206	35
-	+	205	2
-	+	208	2
-	+	210	0
-	a	60	21
+	+	64	0
+	+	66	0
+	+	68	0
+	+	70	0
+	+	72	0
+	+	73	0
+	+	74	25
+	+	71	30
+	+	59	16
+	+	63	16
+	+	67	16
+	+	74	25
+	+	75	0
 
-> ~/.vim/bundle/vimux-script/plugin/__GDB_WINDOW__
-	"	2	0
-	^	2	0
-	.	2	0
-	+	1	1
-	+	2	0
+> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+	"	479	8
+	^	418	33
+	.	419	0
+	+	214	0
+	+	222	0
+	+	221	0
+	+	225	12
+	+	9	32
+	+	10	0
+	+	9	40
+	+	416	33
+	+	418	32
+	+	420	0
+	+	419	0
 
-> ~/.zshrc
-	"	122	9
-	^	122	11
-	.	122	0
-	+	126	39
-	+	117	0
-	+	116	0
-	+	117	11
-	+	125	9
-	+	126	0
-	+	122	0
-	+	120	3
-	+	120	14
-	+	120	0
-	+	122	0
-	+	120	9
-	+	122	0
+> ~/.vim/bundle/vimux-script/autoload/vimux.vim
+	"	122	6
+	^	44	27
+	.	44	26
+	+	44	0
+	+	43	0
+	+	45	0
+	+	46	41
+	+	44	26
+
+> ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+	"	282	3
+	^	294	21
+	.	294	20
+	+	299	14
+	+	300	27
+	+	334	0
+	+	335	0
+	+	334	27
+	+	335	0
+	+	301	0
+	+	301	0
+	+	301	0
+	+	301	0
+	+	307	19
+	+	301	9
+	+	317	8
+	+	319	0
+	+	307	11
+	+	308	12
+	+	308	19
+	+	16	0
+	+	18	0
+	+	18	21
+	+	18	0
+	+	20	0
+	+	18	22
+	+	19	0
+	+	18	14
+	+	17	26
+	+	18	0
+	+	19	0
+	+	316	28
+	+	316	6
+	+	308	5
+	+	316	0
+	+	307	13
+	+	309	11
+	+	310	2
+	+	309	41
+	+	310	10
+	+	312	5
+	+	301	11
+	+	312	11
+	+	313	0
+	+	312	16
+	+	313	6
+	+	314	35
+	+	319	0
+	+	301	0
+	+	308	7
+	+	307	0
+	+	308	0
+	+	307	0
+	+	314	9
+	+	310	0
+	+	310	18
+	+	313	25
+	+	307	14
+	+	309	5
+	+	307	0
+	+	309	0
+	+	303	15
+	+	309	5
+	+	303	15
+	+	309	11
+	+	310	0
+	+	313	0
+	+	304	0
+	+	307	0
+	+	301	0
+	+	305	8
+	+	314	9
+	+	310	9
+	+	317	6
+	+	313	14
+	+	318	8
+	+	302	26
+	+	318	41
+	+	302	8
+	+	302	0
+	+	305	8
+	+	318	0
+	+	306	17
+	+	292	6
+	+	292	0
+	+	292	7
+	+	292	0
+	+	292	7
+	+	292	0
+	+	294	19
+	+	292	0
+	+	294	0
+	+	291	0
+	+	81	1
+	+	312	8
+	+	81	1
+	+	82	0
+	+	312	0
+	+	316	0
+	+	315	0
+	+	311	8
+	+	291	22
+	+	294	20
+	a	308	2
+
+> ~/.vim/bundle/vimux-script/plugin/vimux.vim
+	"	14	0
+
+> /usr/share/vim/vim74/doc/eval.txt
+	"	6688	13
 
 > ~/.vimrc
-	"	400	30
+	"	74	0
+	.	150	0
+	+	462	50
+	+	461	50
+	+	131	0
+	+	142	0
+	+	157	27
+	+	158	24
+	+	158	0
+	+	119	23
+	+	120	0
+	+	130	0
+	+	124	0
+	+	608	17
+	+	608	15
+	+	608	44
+	+	608	0
+	+	608	17
+	+	608	2
+	+	566	0
+	+	608	0
+	+	608	0
+	+	608	0
+	+	608	15
+	+	608	0
+	+	608	0
+	+	561	0
+	+	564	9
+	+	565	0
+	+	566	5
+	+	564	3
+	+	565	0
+	+	564	0
+	+	168	0
+	+	173	4
+	+	171	0
+	+	171	1
+	+	168	3
+	+	171	0
+	+	171	0
+	+	173	0
+	+	169	0
+	+	168	3
+	+	171	0
+	+	172	0
+	+	171	0
+	+	169	0
+	+	172	0
+	+	173	0
+	+	168	0
+	+	130	0
+	+	192	0
+	+	170	34
+	+	175	19
+	+	174	34
+	+	173	2
+	+	175	19
+	+	442	43
+	+	131	0
+	+	153	0
+	+	19	0
+	+	6	6
+	+	120	30
+	+	120	0
+	+	322	0
+	+	323	0
+	+	322	13
+	+	323	0
+	+	322	0
+	+	566	0
+	+	566	0
+	+	608	25
+	+	608	0
+	+	566	0
+	+	322	33
+	+	322	0
+	+	322	0
+	+	322	0
+	+	323	4
+	+	322	1
+	+	322	1
+	+	323	0
+	+	322	27
+	+	110	23
+	+	565	0
+	+	565	0
+	+	567	0
+	+	565	0
+	+	567	17
+	+	607	0
+	+	568	0
+	+	580	22
+	+	587	22
+	+	590	28
+	+	322	0
+	+	323	0
+	+	322	0
+	+	321	0
+	+	111	0
+	+	567	13
+	+	155	0
+	+	150	0
+
+> ~/project/test/t1.c
+	"	9	40
+	^	8	0
+	.	2	0
+	+	20	0
+	+	20	0
+	+	20	0
+	+	19	0
+	+	20	0
+	+	8	21
+	+	10	0
+	+	17	4
+	+	3	0
+	+	5	0
+	+	2	0
+
+> /tmp/gdb/stack.txt
+	"	1	0
+
+> /build/buildd/eglibc-2.19/csu/libc-start.c
+	"	1	0
+
+> ~/wilson
+	"	561	13
 	^	320	0
-	.	111	0
-	+	274	0
+	.	566	13
 	+	271	1
 	+	273	1
 	+	461	50
@@ -763,147 +988,203 @@ $
 	+	321	0
 	+	320	0
 	+	111	0
+	+	566	13
 
-> ~/dotfiles/README.md
-	"	39	4
-	^	36	4
-	.	36	3
-	+	34	51
-	+	37	27
-	+	40	15
-	+	37	24
-	+	38	101
-	+	39	29
-	+	41	75
-	+	39	36
-	+	56	0
-	+	42	40
-	+	43	67
-	+	56	0
-	+	45	8
-	+	55	2
-	+	46	18
-	+	54	0
-	+	45	0
-	+	43	118
-	+	44	0
-	+	56	0
-	+	36	0
-	+	56	0
-	+	35	2
-	+	36	2
-	+	35	3
-	+	36	3
+> /usr/share/vim/vim74/doc/windows.txt
+	"	763	50
 
-> /data/proj/test/t1.c<F5>
-	"	1	0
+> ~/.gdb-dashboard
+	"	745	12
+	^	273	73
+	.	273	72
+	+	329	0
+	+	325	0
+	+	319	47
+	+	23	20
+	+	24	0
+	+	23	14
+	+	24	22
+	+	744	12
+	+	747	11
+	+	746	33
+	+	747	38
+	+	744	85
+	+	745	12
+	+	319	48
+	+	715	15
+	+	716	0
+	+	717	0
+	+	715	32
+	+	319	48
+	+	320	63
+	+	319	48
+	+	273	74
+	+	274	47
+	+	273	72
+	a	273	26
+	m	744	85
+	t	737	19
 
-> /build/buildd/eglibc-2.19/csu/libc-start.c
-	"	1	0
-
-> /tmp/gdb.output
-	"	9	26
-	.	1	0
-	+	1	0
-
-> '/data/proj/test/t1.c'
-	"	1	0
-	^	1	0
-
-> ~/[Vundle] Installer
-	"	28	0
-	.	1	0
-	+	28	0
-	+	1	0
-
-> /data/work/bug-urlfilter/[Vundle] Installer
-	"	28	0
-	.	1	0
-	+	1	0
-
-> ~/__GDB_WINDOW__
-	"	1	0
-	^	1	0
-
-> /data/work/bug-urlfilter/100D-WF_B0705-bug307010.conf
-	"	1	0
-
-> ~/t1.c
-	"	1	0
-
-> /data/proj/test/t1
-	"	1	0
-
-> ~/[Vundle] clean
-	"	2	0
-	.	1	0
-	+	1	0
-
-> ~/project/test/t1.c
-	"	15	0
-	^	12	5
-	.	14	0
-	+	12	0
-	+	1	0
-	+	12	1
-	+	14	0
-
-> ~/project/test/__GDB_WINDOW__
-	"	1	0
-	^	1	0
-	.	6	0
-	+	1	1
-	+	3	0
-	+	2	0
-	+	4	2
-	+	5	6
-	+	5	7
-	+	7	0
-	+	6	0
-
-> /usr/share/vim/vim74/doc/help.txt
-	"	1	0
-
-> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-	"	474	11
-	^	225	12
-	.	225	12
-	+	214	0
-	+	222	0
-	+	221	0
-	+	225	12
-
-> ~/Downloads/vimgdb.vim.txt
-	"	178	0
-
-> /build/buildd/eglibc-2.19/stdio-common/printf.c
-	"	1	0
-
-> ~/__Tagbar__
-	"	43	8
-	.	114	0
-	+	114	0
-	+	114	0
-	+	114	0
-
-> ~/.vim/bundle/vimux-script/autoload/vimux.vim
-	"	104	46
-	^	44	27
-	.	44	26
-	+	44	0
-	+	43	0
-	+	45	0
-	+	46	41
-	+	44	26
-
-> ~/.vim/bundle/vimux-script/autoload/vimgdb.vim
+> ~/.vim/bundle/vimux-script/[Vundle] Installer
 	"	29	0
-	.	29	0
+	.	1	0
 	+	29	0
+	+	1	0
+
+> ~/.vim/bundle/vimux-script/__Tagbar__
+	"	13	2
+	.	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+	+	16	0
+
+> /usr/share/vim/vim74/doc/netbeans.txt
+	"	599	0
+
+> /usr/share/vim/vim74/doc/map.txt
+	"	1461	7
+
+> /usr/share/vim/vim74/doc/options.txt
+	"	5079	8
+
+> ~/Downloads/marks/bookmarks.vim
+	"	1	0
+
+> /tmp/gdb/stack
+	"	1	0
+
+> ~/.gdbinit
+	"	737	70
+	^	324	40
+	.	737	60
+	+	316	61
+	+	268	67
+	+	268	0
+	+	22	0
+	+	252	0
+	+	254	0
+	+	251	0
+	+	16	17
+	+	250	0
+	+	344	0
+	+	345	0
+	+	268	0
+	+	347	0
+	+	350	0
+	+	347	23
+	+	348	40
+	+	349	0
+	+	348	39
+	+	271	40
+	+	272	0
+	+	270	0
+	+	13	0
+	+	267	12
+	+	268	0
+	+	215	28
+	+	216	0
+	+	214	0
+	+	23	14
+	+	23	17
+	+	23	32
+	+	23	38
+	+	931	0
+	+	931	36
+	+	931	31
+	+	931	20
+	+	931	0
+	+	931	0
+	+	931	12
+	+	931	11
+	+	931	0
+	+	22	28
+	+	23	0
+	+	311	45
+	+	349	60
+	+	292	22
+	+	285	0
+	+	292	0
+	+	287	45
+	+	289	35
+	+	292	0
+	+	931	0
+	+	286	20
+	+	291	74
+	+	310	43
+	+	314	0
+	+	286	15
+	+	286	46
+	+	287	48
+	+	286	64
+	+	287	30
+	+	350	0
+	+	346	0
+	+	288	45
+	+	289	35
+	+	290	35
+	+	313	16
+	+	316	69
+	+	317	0
+	+	316	12
+	+	317	12
+	+	266	28
+	+	322	52
+	+	265	11
+	+	315	0
+	+	320	47
+	+	321	16
+	+	320	18
+	+	321	17
+	+	319	0
+	+	320	19
+	+	319	26
+	+	321	37
+	+	322	15
+	+	323	23
+	+	737	52
+	+	736	65
+	+	738	0
+	+	738	36
+	+	737	12
+	+	320	0
+	+	318	0
+	+	737	12
+	+	738	0
+	+	321	38
+	+	319	12
+	+	325	0
+	+	324	28
+	+	321	38
+	+	324	39
+	+	737	60
+	b	360	4
+
+> /tmp/gdb/regiters.txt
+	"	1	0
+
+> /tmp/gdb/registers.txt
+	"	1	3
+
+> ~/.zshrc
+	"	117	12
 
 > ~/__doc__
 	"	1	0
 	.	1	0
-	+	5	0
-	+	3	0
 	+	1	0
+
+> /tmp/gdb.output
+	"	8	3
+	^	3	1
+	.	3	1
+	+	1	1
+	+	3	1
+
+> /tmp/gdb.output1
+	"	1	0
