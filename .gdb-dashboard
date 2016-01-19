@@ -269,7 +269,7 @@ class Dashboard(gdb.Command):
             g_vim_state = 1
             if not g_vim.remote_expr("g:tmux_gdb"):
                 if not g_vim_source_init_str:
-                    g_vim_source_init_str = "<ESC>:GdbMode " \
+                    g_vim_source_init_str = "<ESC>:silent! GdbMode " \
                         + g_gdb_tmux_id + " " \
                         + g_vim_servername + " " \
                         + g_vim_gdb_output + " " \

@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0~/\<GdbMode_complete\>
+~Msle0~/\<until\>
 
 # Last Substitute Search Pattern:
 ~MSle0&vdom1
@@ -18,8 +18,16 @@ $
 
 # Command Line History (newest to oldest):
 :qa
-:GdbMode 1.4 GDB.SOURCE /tmp/gdb/
 :w
+:echo " " . line('.')
+:echo "hello" . line('.')
+:echo line('.')
+:message
+:GdbMode 1.4 GDB.SOURCE /tmp/gdb
+:copen
+:q
+:echo v:servername
+:GdbMode 1.4 GDB.SOURCE /tmp/gdb/
 :e ../autoload/vimux.vim
 :vs
 :GdbMode 
@@ -28,17 +36,14 @@ $
 :vi vimux.vim
 :pwd
 :vsp
-:message
 :'<,'>w
 :e!
 :qa!
 :qz
 :quit
 :let g:tmux_gdb='1.4'
-:echo v:servername
 :echo g:tmux_gdb
 :set ft=c
-:q
 :help filere
 :help cgetfile
 :Grep  -- 'APIResponse'
@@ -66,7 +71,6 @@ $
 :cs f g wad_url_filter_local_request
 : 
 :set paste
-:copen
 :help quickfix
 :+34
 :help :cnext
@@ -113,12 +117,18 @@ $
 :b plugin/vimgdb.vim
 :mks
 :e /tmp/gdb/stack.txt
-:set nomodifiable:qa
-:set nomodifiable
-:set modifiable
-:set ft=python
 
 # Search String History (newest to oldest):
+? \<until\>
+? \<Gdb_command\>
+?/GdbMode
+?/\<GdbRefresh\>
+? \<GdbRefresh\>
+?/GdbRe
+?/Gdb_
+?/Gdb_re
+?/Fresh
+? \<g_gdb_tmux_id\>
 ? \<GdbMode_complete\>
 ? \<Gdb_interf_init\>
 ?/complte
@@ -126,7 +136,6 @@ $
 ? \<Gdb_attach\>
 ? \<Gdb_refresh_files\>
 ? \<GdbAttach\>
-?/GdbMode
 ?/Breaks
 ? \<append\>
 ?/str
@@ -194,7 +203,6 @@ $
 ??mode
 ?/Source
 ? \s\+$
-? \<g_gdb_tmux_id\>
 ? \<g_vim_source_fname_line\>
 ?/Gdb
 ?/\Vwindow-tag
@@ -268,7 +276,6 @@ $
 ?/tmux
 ?/tmuxgdb
 ? \<tmux_gdb_fixed\>
-? \<Gdb_command\>
 ?/\<EnterGdbBuf\>
 ? \<gdb_win_hight\>
 ? \<gdb_buf_name\>
@@ -412,15 +419,17 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
-	A, L, P
-"1	LINE	0
-	            lines.append()
+"0	CHAR	0
+	lines
+""1	LINE	0
+			echom cmd_str
 "2	LINE	0
-	        
+	            lines.append()
 "3	LINE	0
-	
+	        
 "4	LINE	0
+	
+"5	LINE	0
 	    def format_value(self, value):
 	        try:
 	            if value.type.code in [gdb.TYPE_CODE_INT, gdb.TYPE_CODE_PTR]:
@@ -431,16 +440,16 @@ $
 	            # convert to unsigned but preserve code and flags information
 	            pass
 	        return str(value)
-"5	LINE	0
-	
 "6	LINE	0
-	            return output;
+	
 "7	LINE	0
+	            return output;
+"8	LINE	0
 	        out = []
 	        for i in range(0, len(partial), per_line):
 	            out.append(' '.join(partial[i:i + per_line]).rstrip())
 	        return out
-"8	LINE	0
+"9	LINE	0
 	        for reg_info in output:
 	            # fetch register and update the table
 	            name = reg_info.split(None, 1)[0]
@@ -472,8 +481,6 @@ $
 	            value_style = R.style_selected_1 if changed else ''
 	            styled_value = ansi(value.ljust(max_value), value_style)
 	            partial.append(styled_name + ' ' + styled_value)
-"9	LINE	0
-	    ret = gdb.execute(command, to_string=True)
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -502,7 +509,7 @@ $
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 "-	CHAR	0
-	i
+	 
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -511,8 +518,8 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  1743  2  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_http_cache.c
-'0  343  34  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-'1  344  32  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+'0  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+'1  305  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
 '2  23  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
 '3  272  51  ~/.gdb-dashboard
 '4  1284  19  ~/.gdb-dashboard
@@ -523,13 +530,38 @@ $
 '9  44  2  /data/work/bug-urlfilter/5.4-100D/cmf/plugin/dnsfilter/urlfilter.c
 
 # Jumplist (newest first):
--'  343  34  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  364  35  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  344  32  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  69  12  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  42  21  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  1  54  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  359  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  228  16  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  364  45  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  229  14  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  92  59  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  73  29  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  1  36  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  366  32  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  367  19  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  305  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  306  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  277  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  276  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  274  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  273  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  264  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  259  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  253  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  248  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  250  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  249  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  317  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local.c
+-'  187  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  151  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  186  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  347  19  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  346  19  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  345  22  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  342  41  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  340  41  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  341  42  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  1  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
 -'  23  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
 -'  1  0  ~/.vim/bundle/c-utils.vim/autoload/test.c
 -'  25  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
@@ -575,60 +607,34 @@ $
 -'  1001  17  ~/.gdb-dashboard
 -'  907  40  ~/.gdb-dashboard
 -'  724  31  ~/.gdb-dashboard
--'  1404  23  ~/.gdb-dashboard
--'  727  34  ~/.gdb-dashboard
--'  730  11  ~/.gdb-dashboard
--'  731  17  ~/.gdb-dashboard
--'  736  29  ~/.gdb-dashboard
--'  739  59  ~/.gdb-dashboard
--'  745  50  ~/.gdb-dashboard
--'  746  38  ~/.gdb-dashboard
--'  992  16  ~/.gdb-dashboard
--'  417  25  ~/.gdb-dashboard
--'  223  15  ~/.gdb-dashboard
--'  192  15  ~/.gdb-dashboard
--'  174  25  ~/.gdb-dashboard
--'  44  49  ~/.gdb-dashboard
--'  1349  33  ~/.gdb-dashboard
--'  1317  42  ~/.gdb-dashboard
--'  1231  15  ~/.gdb-dashboard
--'  637  22  ~/.gdb-dashboard
--'  276  26  ~/.gdbinit
--'  272  51  ~/.gdbinit
--'  274  26  ~/.gdbinit
--'  20  0  ~/.gdbinit
--'  1  5  ~/.gdbinit
--'  1274  6  ~/.gdbinit
--'  78  0  ~/.gdbinit
--'  32  38  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  124  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  122  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  120  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  99  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  33  40  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  27  35  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  26  44  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  292  0  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  323  20  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  29  6  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  322  19  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  23  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  1  0  ~/.vim/bundle/c-utils.vim/autoload/test.c
--'  25  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  24  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  1  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  1332  5  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  1334  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+-'  119  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  93  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  1  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  92  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  85  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  83  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+-'  49  0  /data/work/bug-urlfilter/5.4-100D/migbase/include/local_urlfilter.h
+-'  307  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  1  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  305  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  306  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  277  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  276  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  274  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
 
 # History of marks within files (newest to oldest):
 
 > ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-	"	343	34
-	^	343	29
-	.	343	28
-	+	338	17
+	"	230	5
+	^	229	26
+	.	230	0
+	+	343	17
 	+	30	40
-	+	338	17
-	+	340	5
-	+	339	20
+	+	343	17
+	+	345	5
+	+	344	20
 	+	28	26
 	+	28	24
 	+	27	27
@@ -645,12 +651,12 @@ $
 	+	34	34
 	+	33	38
 	+	33	0
-	+	364	0
-	+	365	46
-	+	364	7
-	+	365	7
-	+	366	7
-	+	364	0
+	+	370	0
+	+	371	46
+	+	370	7
+	+	371	7
+	+	372	7
+	+	370	0
 	+	69	35
 	+	96	27
 	+	96	19
@@ -681,24 +687,84 @@ $
 	+	66	0
 	+	101	21
 	+	65	56
-	+	352	0
-	+	353	0
-	+	355	0
-	+	353	17
-	+	354	17
-	+	353	46
-	+	354	48
+	+	357	0
+	+	358	0
 	+	360	0
-	+	364	48
-	+	343	0
-	+	364	35
-	+	343	0
-	+	345	10
-	+	344	0
-	+	342	0
-	+	346	0
-	+	344	32
-	+	343	28
+	+	358	17
+	+	359	17
+	+	358	46
+	+	359	48
+	+	365	0
+	+	370	48
+	+	348	0
+	+	370	35
+	+	348	0
+	+	350	10
+	+	349	0
+	+	347	0
+	+	351	0
+	+	349	32
+	+	348	28
+	+	367	0
+	+	364	46
+	+	366	52
+	+	367	18
+	+	228	14
+	+	228	0
+	+	227	19
+	+	228	0
+	+	228	4
+	+	230	5
+	+	229	18
+	+	228	0
+	+	226	0
+	+	235	17
+	+	367	18
+	+	230	14
+	+	229	24
+	+	230	0
+
+> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
+	"	119	0
+	^	93	0
+
+> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
+	"	1332	5
+	^	340	42
+
+> ~/.gdbinit
+	"	272	58
+	^	272	59
+	.	272	58
+	+	272	110
+	+	276	23
+	+	274	41
+	+	272	112
+	+	274	48
+	+	272	28
+	+	275	0
+	+	272	54
+	+	275	26
+	+	272	50
+	+	272	51
+	+	272	53
+	+	273	39
+	+	272	51
+	+	273	26
+	+	272	58
+	a	273	26
+
+> /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+	"	307	0
+
+> /data/work/bug-urlfilter/5.4-100D/migbase/include/local_urlfilter.h
+	"	49	0
+
+> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local.c
+	"	317	0
+
+> /usr/share/vim/vim74/doc/help.txt
+	"	1	0
 
 > ~/.vim/bundle/vimux-script/autoload/vimux.vim
 	"	29	32
@@ -816,30 +882,6 @@ $
 	+	1283	0
 	+	1284	20
 
-> ~/.gdbinit
-	"	276	26
-	^	272	54
-	.	273	26
-	+	272	110
-	+	276	23
-	+	274	41
-	+	272	112
-	+	274	48
-	+	272	28
-	+	275	0
-	+	272	54
-	+	275	26
-	+	272	50
-	+	272	51
-	+	272	53
-	+	273	39
-	+	272	51
-	+	273	26
-	a	273	26
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
-	"	350	72
-
 > /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_ssl_port.c
 	"	5482	1
 
@@ -910,15 +952,6 @@ $
 	+	11	0
 	+	10	31
 
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
-	"	187	0
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local.c
-	"	317	0
-
-> /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
-	"	277	0
-
 > /home/amir/FortiDev/4.7.x/branches/br_4.7.x_x86_64/trunk/devel/source/compiler/extractdir/glibc-2.15-fortidev/misc/../sysdeps/unix/syscall-template.S
 	"	1	0
 
@@ -926,10 +959,4 @@ $
 	"	1	0
 
 > /tmp/gdb/backtrace.txt
-	"	1	0
-
-> /tmp/gdb/backtrace
-	"	1	0
-
-> /tmp/gdb/assembly.txt
 	"	1	0
