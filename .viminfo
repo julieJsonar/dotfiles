@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0~/\<wildmenu\>
+~MSle0~/obsess
 
 # Last Substitute Search Pattern:
 ~MSle0&\<g_vim_source\>
@@ -19,23 +19,49 @@ $
 # Command Line History (newest to oldest):
 :qa
 :w
+:q
+: 
+:set paste
+:copen
+:help quickfix
+:+34
+:help :cnext
+:help setqflist()
+:help getqflist()
+:help fnamemodify()
+:Grep  -- 'wad_sched_task_list_close'
+:message
+:cclose
+:copne
+:Grep  -- 'wad_socks_close'
+:PluginClean
+:Obsession
+:Grep  -- 'a:groupname'
+:Grep  -- 'vimuxscript#ExecuteGroupByname'
+:qa!
+:Ob:qa
+:pwd
+:call winsaveview()
+:GdbMode
+:Plugin
+:set wildmenu
+:b3
+:ls
+:vs
+:b 
+:PluginInstall
+:help sessionoptions
 :GdbRefresh
 :PluginInstall test.zip
-:q
 :GrepAdd Downloads/
 :PluginUpdate
-:Plugin
 :PluginList
 :b 5
-:ls
 :b 8
 :help getqflist
 :help filter()
 :help map()
-:pwd
-:set paste
 :vsp dotfiles/update.sh
-:copen
 :call setqflist(map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), '{"bufnr": v:val}'))
 :help winbufnr
 :echo b_2
@@ -59,7 +85,6 @@ $
 :e .gdb-dashboard
 :file wilson
 :help window
-:PluginInstall
 :b1
 :e ~/.gdb-dashboard
 :echo &modified
@@ -86,43 +111,33 @@ $
 :help <f-args>
 :help commands
 :help usercommand
-:vs
 :sp
 :bd
 :e /tmp/gdb/stack
-:message
 :GdbRefresh /home/wilson/project/test/t1.c 11
 :GdbRefresh /home/wilson/project/test/t1.c 10
 :GdbRefresh /home/wilson/project/test/t1.c 9
-:redraw!
-:GdbRefresh /home/wilson/project/test/t1.c 8
-:silent! e! +8 ~/project/test/t1.c
-:silent! e! +10 ~/project/test/t1.c
-:e! +10 ~/project/test/t1.c
-:e +8 ~/project/test/t1.c
-:quit
-:e /tmp/gdb/registers.txt
-:e /tmp/gdb/regiters.txt
-:vp
-:e!
-:wincmd h
-:wincmd l
-:wincmd j
-:wincmd L
-:wincmd J
-:b3
-:bd4
-:bd5
-:bd2
-:wincmd 2
-:wincmd w
-:wincmd n
 
 # Search String History (newest to oldest):
-? \<wildmenu\>
-?/wilson
+?/w:
+? \<w:quickfix_title\>
+?/title
+?/help quickfix
+? \<list\>
+?/help setqflist
+?/filename
+? \<filename-modifiers\>
 ??\a
 ? @$
+?/obsess
+?/autocmd
+?/init
+?/Gdb_ref
+?/tpop
+?/obsession
+?/save
+? \<wildmenu\>
+?/wilson
 ?/Action
 ?/is not 
 ? \<action_mode\>
@@ -183,7 +198,6 @@ $
 ?/!=
 ? \<vimuxscript_init\>
 ? \<VimuxGroupInit\>
-?/init
 ? \<VimuxVimIndex\>
 ?/for
 ? \<VimuxRunnerIndex\>
@@ -313,9 +327,9 @@ $
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@y
 @\<class\>
 @adf
-@y
 @\<0x2a95748018\>
 @\<0x2a9a9b6ca8\>
 @\<0x2a9aa3130c\>
@@ -356,30 +370,42 @@ $
 
 # Registers:
 "0	CHAR	0
-	:wincmd h<Enter>
+	[
 ""1	LINE	0
-	set wildmode=longest
+		char ans;
 "2	LINE	0
-	  " wilson: was_qf=1 buftype=quickfix copen= 0
-"3	BLOCK	0
-	#
-	#
-	#
-	#
-	#
+				}
+				break;
+"3	LINE	0
+					printf("\nEmpty stack!Underflow !!");
+				else {
 "4	LINE	0
-	            g_vim.remote_send("<ESC>:silent! e! +" + str(current_line) + " " + self.file_name + "<Enter>")
+			case 3:
+				break;
+			case 4:
+				exit(0);
+		}
 "5	LINE	0
-	            #os.system("g_vim --servername " + g_vim_servername
-	            #    + " --remote-silent +" + str(current_line) + " '" + self.file_name + "'")
+		switch (choice) {
+			case 1:
+				printf("\nEnter The item to be pushed: ");
+				scanf("%d", &item);
+				break;
+			case 2:
 "6	LINE	0
-	        servername = g_vim.server_list()
+				display();
 "7	LINE	0
-	        os.system("mkdir -p " + g_vim_gdb_output)
-"8	LINE	0
-	                info = Dashboard.ModuleInfo(self, module)
+		
+"8	BLOCK	3
+		
+		
+		
+		
 "9	LINE	0
-	
+				if (stfull())
+					printf("\nStack is Full!");
+				else
+					push(item);
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -408,7 +434,7 @@ $
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 "-	CHAR	0
-	,list
+	, choice;
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -416,779 +442,432 @@ $
 'C  1091  2  /data/work/bug-dfa-build/5.4-100D/daemon/wad/wad_sec_profile.c
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
-'P  577  3  ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
-'0  171  29  ~/.vimrc
-'1  172  0  ~/.vimrc
-'2  170  0  ~/.vimrc
-'3  172  0  ~/.vimrc
-'4  861  10  ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
-'5  1  0  ~/.vim/bundle/vimux-script/.git/config
-'6  3647  0  /usr/share/vim/vim74/doc/eval.txt
-'7  3072  50  /usr/share/vim/vim74/doc/eval.txt
-'8  74  0  ~/.vimrc
-'9  9  40  ~/project/test/t1.c
+'P  27717  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+'0  75  34  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'1  73  1  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'2  1  0  autoload/vimuxscript.vim
+'3  73  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'4  73  41  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'5  5  8  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'6  2  27  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+'7  1  2  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+'8  66  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+'9  4  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
 
 # Jumplist (newest first):
--'  171  29  ~/.vimrc
--'  172  0  ~/.vimrc
--'  170  0  ~/.vimrc
--'  74  0  ~/.vimrc
--'  861  10  ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
--'  1  0  ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
--'  1  0  ~/.vim/bundle/vim-dispatch/plugin/dispatch.vim
--'  1  0  ~/.vim/bundle/vim-dispatch/autoload/dispatch/headless.vim
--'  1  0  ~/.vim/bundle/vimux-script/.git/config
--'  3647  0  /usr/share/vim/vim74/doc/eval.txt
--'  3661  30  /usr/share/vim/vim74/doc/eval.txt
--'  3668  40  /usr/share/vim/vim74/doc/eval.txt
--'  3663  40  /usr/share/vim/vim74/doc/eval.txt
--'  3649  26  /usr/share/vim/vim74/doc/eval.txt
--'  3652  33  /usr/share/vim/vim74/doc/eval.txt
--'  3648  42  /usr/share/vim/vim74/doc/eval.txt
--'  1  0  /usr/share/vim/vim74/doc/eval.txt
--'  1  0  ~/
--'  3072  50  /usr/share/vim/vim74/doc/eval.txt
--'  3096  43  /usr/share/vim/vim74/doc/eval.txt
--'  3087  22  /usr/share/vim/vim74/doc/eval.txt
--'  4336  42  /usr/share/vim/vim74/doc/eval.txt
--'  4311  42  /usr/share/vim/vim74/doc/eval.txt
--'  153  1  ~/.vimrc
--'  9  40  ~/project/test/t1.c
--'  8  0  ~/project/test/t1.c
--'  19  0  ~/project/test/t1.c
--'  18  0  ~/project/test/t1.c
--'  16  0  ~/project/test/t1.c
--'  15  0  ~/project/test/t1.c
--'  10  0  ~/project/test/t1.c
+-'  75  34  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  74  17  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  71  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  73  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  60  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  79  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  78  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
 -'  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
--'  1  0  ~/project/test/t1.c
--'  11  0  ~/project/test/t1.c
--'  1  0  ~/Downloads/marks/bookmarks.vim
--'  12  0  ~/project/test/t1.c
--'  2  0  /tmp/gdb/stack.txt
--'  13  0  ~/project/test/t1.c
--'  737  70  ~/.gdbinit
--'  324  17  ~/.gdbinit
--'  418  8  ~/.gdbinit
--'  323  16  ~/.gdbinit
--'  321  12  ~/.gdbinit
--'  322  23  ~/.gdbinit
--'  738  12  ~/.gdbinit
--'  318  0  ~/.gdbinit
--'  320  23  ~/.gdbinit
--'  265  8  ~/.gdbinit
--'  1  5  ~/.gdbinit
--'  319  12  ~/.gdbinit
--'  667  12  ~/.gdbinit
--'  676  18  ~/.gdbinit
--'  279  12  ~/.gdbinit
--'  736  64  ~/.gdbinit
--'  317  12  ~/.gdbinit
--'  264  16  ~/.gdbinit
--'  13  7  ~/.gdbinit
--'  266  8  ~/.gdbinit
--'  20  0  ~/.gdbinit
--'  316  12  ~/.gdbinit
--'  273  22  ~/.gdbinit
--'  312  16  ~/.gdbinit
--'  290  33  ~/.gdbinit
--'  291  46  ~/.gdbinit
--'  289  46  ~/.gdbinit
--'  288  20  ~/.gdbinit
--'  286  50  ~/.gdbinit
--'  287  44  ~/.gdbinit
--'  707  8  ~/.gdbinit
--'  294  44  ~/.gdbinit
--'  346  8  ~/.gdbinit
--'  1277  17  ~/.gdbinit
--'  22  0  ~/.gdbinit
--'  223  15  ~/.gdbinit
--'  226  15  ~/.gdbinit
--'  285  15  ~/.gdbinit
--'  444  40  ~/.gdbinit
--'  772  8  ~/.gdbinit
--'  877  8  ~/.gdbinit
--'  991  8  ~/.gdbinit
--'  234  12  ~/.gdbinit
--'  235  29  ~/.gdbinit
--'  441  10  ~/.gdbinit
--'  467  58  ~/.gdbinit
--'  448  48  ~/.gdbinit
--'  625  6  ~/.gdbinit
--'  348  8  ~/.gdbinit
--'  311  57  ~/.gdbinit
--'  277  20  ~/.gdbinit
--'  929  8  ~/.gdbinit
--'  931  48  ~/.gdbinit
--'  293  12  ~/.gdbinit
--'  292  11  ~/.gdbinit
--'  349  38  ~/.gdbinit
--'  253  15  ~/.gdbinit
--'  344  27  ~/.gdbinit
+-'  1  0  autoload/vimuxscript.vim
+-'  1  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  5  8  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  2  27  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+-'  1  2  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+-'  66  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  88  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  65  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  89  2  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  86  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  81  2  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  45  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  18  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  5  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  91  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  4  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  1108  1  ~/work/fos701-rtmp-git/daemon/wad/wad_db.c
+-'  3838  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  3837  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  3836  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  23  0  ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.h
+-'  27717  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  61  0  ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.c
+-'  27716  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  27715  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  736  1  ~/work/fos701-rtmp-git/daemon/wad/wad_dport.c
+-'  27718  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  799  1  ~/work/fos701-rtmp-git/daemon/wad/wad_ips_redir.c
+-'  483  1  ~/work/fos701-rtmp-git/daemon/wad/wad_monitor.c
+-'  64  1  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  63  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  62  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  61  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  58  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  90  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  89  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  65  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  1  0  /build/buildd/eglibc-2.19/csu/libc-start.c
+-'  72  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  69  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  68  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  67  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  1  0  autoload/vimuxscript.vim
+-'  76  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  2  27  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+-'  1  2  ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+-'  66  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  88  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  65  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  89  2  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  86  1  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  81  2  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  45  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  18  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  5  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  91  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  4  0  ~/.vim/bundle/vimux-script/gdb-sample/t.c
+-'  1108  1  ~/work/fos701-rtmp-git/daemon/wad/wad_db.c
+-'  3838  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  3837  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  3836  1  ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+-'  23  0  ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.h
+-'  27717  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  61  0  ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.c
+-'  27716  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  27715  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  736  1  ~/work/fos701-rtmp-git/daemon/wad/wad_dport.c
+-'  27718  1  ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+-'  799  1  ~/work/fos701-rtmp-git/daemon/wad/wad_ips_redir.c
+-'  483  1  ~/work/fos701-rtmp-git/daemon/wad/wad_monitor.c
 
 # History of marks within files (newest to oldest):
 
-> ~/.vimrc
-	"	171	29
-	^	171	30
-	.	171	29
-	+	120	0
-	+	130	0
-	+	124	0
-	+	613	17
-	+	613	15
-	+	613	44
-	+	613	0
-	+	613	17
-	+	613	2
-	+	571	0
-	+	613	0
-	+	613	0
-	+	613	0
-	+	613	15
-	+	613	0
-	+	613	0
-	+	566	0
-	+	569	9
-	+	570	0
-	+	571	5
-	+	569	3
-	+	570	0
-	+	569	0
-	+	172	0
-	+	178	4
-	+	176	0
-	+	176	1
-	+	172	3
-	+	176	0
-	+	176	0
-	+	178	0
-	+	174	0
-	+	172	3
-	+	176	0
-	+	177	0
-	+	176	0
-	+	174	0
-	+	177	0
-	+	178	0
-	+	172	0
-	+	130	0
-	+	197	0
-	+	175	34
-	+	180	19
-	+	179	34
-	+	178	2
-	+	180	19
-	+	447	43
-	+	131	0
-	+	153	0
-	+	19	0
-	+	6	6
-	+	120	30
-	+	120	0
-	+	327	0
-	+	328	0
-	+	327	13
-	+	328	0
-	+	327	0
-	+	571	0
-	+	571	0
-	+	613	25
-	+	613	0
-	+	571	0
-	+	327	33
-	+	327	0
-	+	327	0
-	+	327	0
-	+	328	4
-	+	327	1
-	+	327	1
-	+	328	0
-	+	327	27
-	+	110	23
-	+	570	0
-	+	570	0
-	+	572	0
-	+	570	0
-	+	572	17
-	+	612	0
-	+	573	0
-	+	585	22
-	+	592	22
-	+	595	28
-	+	327	0
-	+	328	0
-	+	327	0
-	+	326	0
-	+	111	0
-	+	572	13
-	+	155	0
-	+	150	0
-	+	172	12
-	+	169	37
-	+	172	24
-	+	170	0
-	+	172	0
-	+	170	0
-	+	172	0
-	+	171	29
-
-> ~/.vim/bundle/vim-dispatch/autoload/dispatch/headless.vim
-	"	1	0
-
-> ~/.vim/bundle/vim-dispatch/autoload/dispatch.vim
-	"	861	10
-	.	861	0
-	+	861	0
-
-> ~/.vim/bundle/vim-dispatch/plugin/dispatch.vim
-	"	1	0
-
-> ~/.vim/bundle/vimux-script/.git/config
-	"	1	0
-
-> /usr/share/vim/vim74/doc/eval.txt
-	"	3647	0
-
-> ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-	"	283	3
-	^	294	21
-	.	294	20
-	+	299	14
-	+	300	27
-	+	334	0
-	+	335	0
-	+	334	27
-	+	335	0
-	+	301	0
-	+	301	0
-	+	301	0
-	+	301	0
-	+	307	19
-	+	301	9
-	+	317	8
-	+	319	0
-	+	307	11
-	+	308	12
-	+	308	19
-	+	16	0
-	+	18	0
-	+	18	21
-	+	18	0
-	+	20	0
-	+	18	22
-	+	19	0
-	+	18	14
-	+	17	26
-	+	18	0
-	+	19	0
-	+	316	28
-	+	316	6
-	+	308	5
-	+	316	0
-	+	307	13
-	+	309	11
-	+	310	2
-	+	309	41
-	+	310	10
-	+	312	5
-	+	301	11
-	+	312	11
-	+	313	0
-	+	312	16
-	+	313	6
-	+	314	35
-	+	319	0
-	+	301	0
-	+	308	7
-	+	307	0
-	+	308	0
-	+	307	0
-	+	314	9
-	+	310	0
-	+	310	18
-	+	313	25
-	+	307	14
-	+	309	5
-	+	307	0
-	+	309	0
-	+	303	15
-	+	309	5
-	+	303	15
-	+	309	11
-	+	310	0
-	+	313	0
-	+	304	0
-	+	307	0
-	+	301	0
-	+	305	8
-	+	314	9
-	+	310	9
-	+	317	6
-	+	313	14
-	+	318	8
-	+	302	26
-	+	318	41
-	+	302	8
-	+	302	0
-	+	305	8
-	+	318	0
-	+	306	17
-	+	292	6
-	+	292	0
-	+	292	7
-	+	292	0
-	+	292	7
-	+	292	0
-	+	294	19
-	+	292	0
-	+	294	0
-	+	291	0
-	+	81	1
-	+	312	8
-	+	81	1
-	+	82	0
-	+	312	0
-	+	316	0
-	+	315	0
-	+	311	8
-	+	291	22
-	+	294	20
-	a	308	2
-
-> ~/sync.sh
-	"	60	30
-	^	6	8
-	.	60	16
-	+	1	0
-	+	2	0
-	+	5	7
-	+	6	7
-	+	8	26
-	+	10	26
-	+	11	26
-	+	75	22
-	+	60	16
-
-> ~/dotfiles/update.sh
-	"	98	8
-	.	103	0
-	+	110	0
-	+	69	0
-	+	69	0
-	+	103	0
-
-> ~/.vim/bundle/highlight.vim/plugin/highlight.vim
-	"	80	0
-	^	114	0
-	.	114	0
-	+	54	30
-	+	58	3
-	+	59	0
-	+	113	4
-	+	117	0
-	+	113	11
-	+	113	0
-	+	113	2
-	+	113	0
-	+	113	23
-	+	113	0
-	+	115	0
-	+	113	0
-	+	114	0
-
-> ~/update.sh
-	"	87	0
-	^	75	0
-	.	75	0
-	+	21	0
-	+	88	0
-	+	1	0
-	+	20	0
-	+	9	0
-	+	11	0
-	+	4	9
-	+	6	0
-	+	4	20
-	+	5	20
-	+	3	0
-	+	14	0
-	+	13	0
-	+	49	0
-	+	48	0
-	+	56	0
-	+	26	0
-	+	25	0
-	+	26	0
-	+	50	0
-	+	55	0
-	+	76	0
-	+	87	0
-	+	88	0
-	+	57	3
-	+	58	0
-	+	76	0
-	+	57	0
-	+	58	0
-	+	77	0
-	+	87	0
-	+	88	0
-	+	58	0
-	+	56	25
-	+	58	1
-	+	59	1
-	+	58	9
-	+	59	52
-	+	60	0
-	+	58	0
-	+	62	0
-	+	64	0
-	+	66	0
-	+	68	0
-	+	70	0
-	+	72	0
-	+	73	0
-	+	74	25
-	+	71	30
-	+	59	16
-	+	63	16
-	+	67	16
-	+	74	25
-	+	75	0
-
-> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-	"	479	8
-	^	418	33
-	.	419	0
-	+	214	0
-	+	222	0
-	+	221	0
-	+	225	12
-	+	9	32
-	+	10	0
-	+	9	40
-	+	416	33
-	+	418	32
-	+	420	0
-	+	419	0
-
-> ~/.vim/bundle/vimux-script/autoload/vimux.vim
-	"	122	6
-	^	44	27
-	.	44	26
-	+	44	0
-	+	43	0
-	+	45	0
-	+	46	41
-	+	44	26
-
-> ~/.vim/bundle/vimux-script/plugin/vimux.vim
-	"	14	0
-
-> ~/project/test/t1.c
-	"	9	40
-	^	8	0
-	.	2	0
-	+	20	0
-	+	20	0
-	+	20	0
-	+	19	0
-	+	20	0
-	+	8	21
-	+	10	0
-	+	17	4
-	+	3	0
+> ~/.vim/bundle/vimux-script/gdb-sample/test.c
+	"	75	34
+	^	56	10
+	.	57	0
+	+	4	8
+	+	5	8
 	+	5	0
-	+	2	0
+	+	73	41
+	+	73	0
+	+	62	33
+	+	72	0
+	+	62	4
+	+	57	6
+	+	62	0
+	+	58	0
+	+	59	0
+	+	62	0
+	+	61	0
+	+	62	53
+	+	69	1
+	+	73	0
+	+	63	2
+	+	69	0
+	+	63	16
+	+	66	0
+	+	65	8
+	+	64	49
+	+	68	13
+	+	77	0
+	+	71	1
+	+	70	0
+	+	73	0
+	+	77	0
+	+	73	8
+	+	74	0
+	+	77	0
+	+	73	20
+	+	76	0
+	+	74	0
+	+	56	9
+	+	57	0
 
-> /tmp/gdb/stack.txt
+> autoload/vimuxscript.vim
 	"	1	0
+	^	1	0
 
 > /build/buildd/eglibc-2.19/csu/libc-start.c
 	"	1	0
 
-> ~/wilson
-	"	561	13
-	^	320	0
-	.	566	13
-	+	271	1
-	+	273	1
-	+	461	50
-	+	460	50
+> ~/.vim/bundle/vimux-script/gdb-sample/Makefile
+	"	2	27
+	^	2	24
+	.	2	27
+	+	1	18
+	+	2	0
+	+	1	0
+	+	2	27
+
+> ~/.vim/bundle/vimux-script/gdb-sample/t.c
+	"	66	1
+	^	56	0
+	.	89	0
+	+	92	0
+	+	91	0
+	+	92	0
+	+	7	0
+	+	14	12
+	+	22	19
+	+	9	0
+	+	28	13
+	+	36	9
+	+	44	14
+	+	1	3
+	+	1	93
+	+	1	13
+	+	2	2
+	+	2	93
+	+	3	0
+	+	55	10
+	+	62	0
+	+	89	0
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_http_cache.c
+	"	27717	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.c
+	"	61	0
+
+> ~/work/fos701-rtmp-git/daemon/wad/scheduler/wad_sched_task_list.h
+	"	23	0
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_chunk.c
+	"	3838	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_db.c
+	"	1108	1
+
+> /tmp/vim.qfile1
+	"	1	199
+
+> ~/.vim/bundle/c-utils.vim/autoload/utilquickfix.vim
+	"	67	28
+	^	68	29
+	.	68	28
+	+	84	7
+	+	106	0
+	+	106	0
+	+	106	0
+	+	105	0
+	+	106	0
+	+	98	0
+	+	98	0
+	+	98	0
+	+	106	0
+	+	100	68
+	+	104	0
+	+	103	0
+	+	97	26
+	+	98	0
+	+	100	0
+	+	102	0
+	+	100	0
+	+	100	43
+	+	102	0
+	+	100	0
+	+	102	0
+	+	100	6
+	+	102	0
+	+	96	0
+	+	96	0
+	+	97	15
+	+	99	5
+	+	100	7
+	+	101	5
+	+	104	22
+	+	100	43
+	+	101	0
+	+	101	13
+	+	98	0
+	+	104	26
+	+	98	0
+	+	105	4
+	+	104	4
+	+	96	0
+	+	97	15
+	+	99	27
+	+	100	43
+	+	104	4
+	+	101	0
+	+	105	0
+	+	95	0
+	+	37	7
+	+	36	6
+	+	38	0
+	+	40	0
+	+	74	0
+	+	69	0
+	+	36	8
+	+	37	8
+	+	69	10
+	+	36	8
+	+	37	8
+	+	74	0
+	+	72	49
+	+	73	28
+	+	72	2
+	+	30	0
+	+	41	8
+	+	41	29
+	+	45	0
+	+	41	33
+	+	42	5
+	+	44	0
+	+	42	9
+	+	41	60
+	+	42	13
+	+	68	28
+
+> /usr/share/vim/vim74/doc/eval.txt
+	"	5634	0
+
+> /usr/share/vim/vim74/doc/cmdline.txt
+	"	896	20
+
+> /usr/share/vim/vim74/doc/quickfix.txt
+	"	375	0
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_dport.c
+	"	736	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_ips_redir.c
+	"	799	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_monitor.c
+	"	483	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_rsso.c
+	"	360	1
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_rtmp_live.c
+	"	515	53
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_ssl_port.c
+	"	10398	55
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_stream_port.c
+	"	846	54
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_tcp_port.c
+	"	2748	51
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_tun_compressor.c
+	"	1401	54
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_tunnel.c
+	"	5262	50
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_url_filter.c
+	"	1245	58
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_socks.c
+	"	2056	0
+
+> ~/work/fos701-rtmp-git/daemon/wad/wad_socks.h
+	"	15	0
+
+> ~/.vimrc
+	"	125	1
+	^	125	2
+	.	125	1
+	+	615	15
+	+	615	44
+	+	615	0
+	+	615	17
+	+	615	2
+	+	573	0
+	+	615	0
+	+	615	0
+	+	615	0
+	+	615	15
+	+	615	0
+	+	615	0
+	+	568	0
+	+	571	9
+	+	572	0
+	+	573	5
+	+	571	3
+	+	572	0
+	+	571	0
+	+	173	0
+	+	179	4
+	+	177	0
+	+	177	1
+	+	173	3
+	+	177	0
+	+	177	0
+	+	179	0
+	+	175	0
+	+	173	3
+	+	177	0
+	+	178	0
+	+	177	0
+	+	175	0
+	+	178	0
+	+	179	0
+	+	173	0
 	+	131	0
-	+	142	0
-	+	156	27
-	+	157	24
-	+	157	0
-	+	119	23
-	+	120	0
-	+	130	0
-	+	124	0
-	+	607	17
-	+	607	15
-	+	607	44
-	+	607	0
-	+	607	17
-	+	607	2
-	+	565	0
-	+	607	0
-	+	607	0
-	+	607	0
-	+	607	15
-	+	607	0
-	+	607	0
-	+	560	0
-	+	563	9
-	+	564	0
-	+	565	5
-	+	563	3
-	+	564	0
-	+	563	0
-	+	167	0
-	+	172	4
-	+	170	0
-	+	170	1
-	+	167	3
-	+	170	0
-	+	170	0
-	+	172	0
-	+	168	0
-	+	167	3
-	+	170	0
-	+	171	0
-	+	170	0
-	+	168	0
-	+	171	0
-	+	172	0
-	+	167	0
-	+	130	0
-	+	191	0
-	+	169	34
-	+	174	19
-	+	173	34
-	+	172	2
-	+	174	19
-	+	441	43
-	+	131	0
-	+	152	0
+	+	198	0
+	+	176	34
+	+	181	19
+	+	180	34
+	+	179	2
+	+	181	19
+	+	449	43
+	+	132	0
+	+	154	0
 	+	19	0
 	+	6	6
 	+	120	30
 	+	120	0
-	+	321	0
-	+	322	0
-	+	321	13
-	+	322	0
-	+	321	0
-	+	565	0
-	+	565	0
-	+	607	25
-	+	607	0
-	+	565	0
-	+	321	33
-	+	321	0
-	+	321	0
-	+	321	0
-	+	322	4
-	+	321	1
-	+	321	1
-	+	322	0
-	+	321	27
-	+	110	23
-	+	564	0
-	+	564	0
-	+	566	0
-	+	564	0
-	+	566	17
-	+	606	0
-	+	567	0
-	+	579	22
-	+	586	22
-	+	589	28
-	+	321	0
-	+	322	0
-	+	321	0
-	+	320	0
-	+	111	0
-	+	566	13
-
-> /usr/share/vim/vim74/doc/windows.txt
-	"	763	50
-
-> ~/.gdb-dashboard
-	"	745	12
-	^	273	73
-	.	273	72
 	+	329	0
-	+	325	0
-	+	319	47
-	+	23	20
-	+	24	0
-	+	23	14
-	+	24	22
-	+	744	12
-	+	747	11
-	+	746	33
-	+	747	38
-	+	744	85
-	+	745	12
-	+	319	48
-	+	715	15
-	+	716	0
-	+	717	0
-	+	715	32
-	+	319	48
-	+	320	63
-	+	319	48
-	+	273	74
-	+	274	47
-	+	273	72
-	a	273	26
-	m	744	85
-	t	737	19
+	+	330	0
+	+	329	13
+	+	330	0
+	+	329	0
+	+	573	0
+	+	573	0
+	+	615	25
+	+	615	0
+	+	573	0
+	+	329	33
+	+	329	0
+	+	329	0
+	+	329	0
+	+	330	4
+	+	329	1
+	+	329	1
+	+	330	0
+	+	329	27
+	+	110	23
+	+	572	0
+	+	572	0
+	+	574	0
+	+	572	0
+	+	574	17
+	+	614	0
+	+	575	0
+	+	587	22
+	+	594	22
+	+	597	28
+	+	329	0
+	+	330	0
+	+	329	0
+	+	328	0
+	+	111	0
+	+	574	13
+	+	156	0
+	+	151	0
+	+	173	12
+	+	170	37
+	+	173	24
+	+	171	0
+	+	173	0
+	+	171	0
+	+	173	0
+	+	172	29
+	+	107	0
+	+	125	0
+	+	295	2
+	+	125	1
 
-> ~/.vim/bundle/vimux-script/[Vundle] Installer
-	"	29	0
+> ~/dotfiles/[Vundle] clean
+	"	3	0
 	.	1	0
-	+	29	0
 	+	1	0
-
-> ~/.vim/bundle/vimux-script/__Tagbar__
-	"	13	2
-	.	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-	+	16	0
-
-> /usr/share/vim/vim74/doc/netbeans.txt
-	"	599	0
-
-> /usr/share/vim/vim74/doc/map.txt
-	"	1461	7
-
-> /usr/share/vim/vim74/doc/options.txt
-	"	5079	8
-
-> ~/Downloads/marks/bookmarks.vim
-	"	1	0
-
-> /tmp/gdb/stack
-	"	1	0
-
-> ~/.gdbinit
-	"	737	70
-	^	324	40
-	.	737	60
-	+	316	61
-	+	268	67
-	+	268	0
-	+	22	0
-	+	252	0
-	+	254	0
-	+	251	0
-	+	16	17
-	+	250	0
-	+	344	0
-	+	345	0
-	+	268	0
-	+	347	0
-	+	350	0
-	+	347	23
-	+	348	40
-	+	349	0
-	+	348	39
-	+	271	40
-	+	272	0
-	+	270	0
-	+	13	0
-	+	267	12
-	+	268	0
-	+	215	28
-	+	216	0
-	+	214	0
-	+	23	14
-	+	23	17
-	+	23	32
-	+	23	38
-	+	931	0
-	+	931	36
-	+	931	31
-	+	931	20
-	+	931	0
-	+	931	0
-	+	931	12
-	+	931	11
-	+	931	0
-	+	22	28
-	+	23	0
-	+	311	45
-	+	349	60
-	+	292	22
-	+	285	0
-	+	292	0
-	+	287	45
-	+	289	35
-	+	292	0
-	+	931	0
-	+	286	20
-	+	291	74
-	+	310	43
-	+	314	0
-	+	286	15
-	+	286	46
-	+	287	48
-	+	286	64
-	+	287	30
-	+	350	0
-	+	346	0
-	+	288	45
-	+	289	35
-	+	290	35
-	+	313	16
-	+	316	69
-	+	317	0
-	+	316	12
-	+	317	12
-	+	266	28
-	+	322	52
-	+	265	11
-	+	315	0
-	+	320	47
-	+	321	16
-	+	320	18
-	+	321	17
-	+	319	0
-	+	320	19
-	+	319	26
-	+	321	37
-	+	322	15
-	+	323	23
-	+	737	52
-	+	736	65
-	+	738	0
-	+	738	36
-	+	737	12
-	+	320	0
-	+	318	0
-	+	737	12
-	+	738	0
-	+	321	38
-	+	319	12
-	+	325	0
-	+	324	28
-	+	321	38
-	+	324	39
-	+	737	60
-	b	360	4
-
-> /tmp/gdb/regiters.txt
-	"	1	0
-
-> /tmp/gdb/registers.txt
-	"	1	3

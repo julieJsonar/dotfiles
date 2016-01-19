@@ -122,6 +122,7 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'honza/vim-snippets'
 "Plugin 'msanders/snipmate.vim'
 
+"Plugin 'tpope/vim-obsession'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
 "Plugin 'xolox/vim-reload'
@@ -291,6 +292,7 @@ let g:session_directory = getcwd()
 let g:reload_on_write = 0
 
 " Autocmd {
+  "autocmd VimLeavePre * cclose | lclose
   autocmd InsertEnter,InsertLeave * set cul!
   " current position in jumplist
   autocmd CursorHold * normal! m'

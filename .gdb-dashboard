@@ -892,16 +892,34 @@ location, if available. Optionally list the frame arguments and locals too."""
         number = 0
         selected_index = 0
         frame = gdb.newest_frame()
+
+        if g_vim_state > 0:
+            lines = []
+            while frame:
+                # fetch frame info
+                selected = (frame == gdb.selected_frame())
+                if selected:
+                    selected_index = number
+
+                lines.append(Stack.get_vim_line(frame))
+
+                # next
+                frame = frame.older()
+                number += 1
+            return lines
+
         while frame:
             frame_lines = []
             # fetch frame info
             selected = (frame == gdb.selected_frame())
             if selected:
                 selected_index = number
+
             style = R.style_selected_1 if selected else R.style_selected_2
             frame_id = ansi(str(number), style)
             info = Stack.get_pc_line(frame, style)
             frame_lines.append('[{}] {}'.format(frame_id, info))
+
             # fetch frame arguments and locals
             decorator = gdb.FrameDecorator.FrameDecorator(frame)
             if self.show_arguments:
@@ -971,6 +989,31 @@ location, if available. Optionally list the frame arguments and locals too."""
                 file_name = ansi(sal.symtab.filename, style)
                 file_line = ansi(str(sal.line), style)
                 info += ' at {}:{}'.format(file_name, file_line)
+        return info
+
+    @staticmethod
+    def get_vim_line(frame):
+        sal = frame.find_sal()
+        if sal.symtab:
+            info = '{}:{}:'.format(sal.symtab.filename, str(sal.line))
+
+        if frame.name():
+            info += frame.name() + "("
+
+        lines = []
+        decorator = gdb.FrameDecorator.FrameDecorator(frame)
+        frame_args = decorator.frame_args()
+        for elem in frame_args or []:
+            name = elem.sym
+            value = to_string(elem.sym.value(frame))
+            lines.append('{}={} '.format(name, value))
+
+        if len(lines):
+            info += ''.join(lines)
+
+        if frame.name():
+            info += ")"
+
         return info
 
     def attributes(self):
@@ -1283,7 +1326,6 @@ set print array-indexes on
 set python print-stack full
 
 # Start ------------------------------------------------------------------------
-
 python Dashboard.start()
 
 # ------------------------------------------------------------------------------
