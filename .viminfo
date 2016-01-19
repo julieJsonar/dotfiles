@@ -18,6 +18,7 @@ $
 
 # Command Line History (newest to oldest):
 :qa
+:l
 :w
 :echo " " . line('.')
 :echo "hello" . line('.')
@@ -116,7 +117,6 @@ $
 :HightlightOn
 :b plugin/vimgdb.vim
 :mks
-:e /tmp/gdb/stack.txt
 
 # Search String History (newest to oldest):
 ? \<until\>
@@ -419,9 +419,9 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	lines
-""1	LINE	0
+"0	LINE	0
+	.svn/
+"1	LINE	0
 			echom cmd_str
 "2	LINE	0
 	            lines.append()
@@ -508,8 +508,8 @@ $
 "w	CHAR	0
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
-"-	CHAR	0
-	 
+""-	CHAR	0
+	svn
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -518,18 +518,21 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  1743  2  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_http_cache.c
-'0  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-'1  305  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
-'2  23  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
-'3  272  51  ~/.gdb-dashboard
-'4  1284  19  ~/.gdb-dashboard
-'5  22925  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
-'6  160  17  /tmp/log.tel
-'7  161  17  /tmp/log.tel
-'8  44  0  /tmp/log.tel
-'9  44  2  /data/work/bug-urlfilter/5.4-100D/cmf/plugin/dnsfilter/urlfilter.c
+'0  66  2  ~/.agignore
+'1  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+'2  305  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+'3  23  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+'4  272  51  ~/.gdb-dashboard
+'5  1284  19  ~/.gdb-dashboard
+'6  22925  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+'7  160  17  /tmp/log.tel
+'8  161  17  /tmp/log.tel
+'9  44  0  /tmp/log.tel
 
 # Jumplist (newest first):
+-'  66  2  ~/.agignore
+-'  65  0  ~/.agignore
+-'  1  0  ~/.agignore
 -'  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 -'  228  16  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 -'  364  45  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
@@ -623,8 +626,16 @@ $
 -'  277  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
 -'  276  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
 -'  274  0  /data/work/bug-urlfilter/5.4-100D/migbase/sysapi/local_urlfilter/local_urlfilter.c
+-'  230  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
+-'  228  16  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 
 # History of marks within files (newest to oldest):
+
+> ~/.agignore
+	"	66	2
+	^	66	3
+	.	66	2
+	+	66	2
 
 > ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
 	"	230	5
@@ -956,7 +967,4 @@ $
 	"	1	0
 
 > /tmp/gdb/breakpoints
-	"	1	0
-
-> /tmp/gdb/backtrace.txt
 	"	1	0

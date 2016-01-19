@@ -16,6 +16,7 @@ vendor
 *.exe
 *.o
 *.so
+*.d
 
 # Packages #
 ############
