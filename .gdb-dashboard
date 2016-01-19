@@ -263,20 +263,23 @@ class Dashboard(gdb.Command):
             Dashboard.update_term_width()
 
         # Check vim server exist
-        g_vim = vimrunner.Server(name=g_vim_servername)
-        vim_client = g_vim.connect()
-        if g_vim.is_running():
-            g_vim_state = 1
-            if not g_vim.remote_expr("g:tmux_gdb"):
-                if not g_vim_source_init_str:
-                    g_vim_source_init_str = "<ESC>:silent! GdbMode " \
-                        + g_gdb_tmux_id + " " \
-                        + g_vim_servername + " " \
-                        + g_vim_gdb_output + " " \
-                        + "<Enter>"
+        try:
+            g_vim = vimrunner.Server(name=g_vim_servername)
+            vim_client = g_vim.connect(2)
+            if g_vim.is_running():
+                g_vim_state = 1
+                if not g_vim.remote_expr("g:tmux_gdb"):
+                    if not g_vim_source_init_str:
+                        g_vim_source_init_str = "<ESC>:silent! GdbMode " \
+                            + g_gdb_tmux_id + " " \
+                            + g_vim_servername + " " \
+                            + g_vim_gdb_output + " " \
+                            + "<Enter>"
 
-                g_vim.remote_send(g_vim_source_init_str)
-        else:
+                    g_vim.remote_send(g_vim_source_init_str)
+            else:
+                g_vim_state = 0
+        except:
             g_vim_state = 0
 
         # fetch lines
@@ -1264,47 +1267,18 @@ class Breakpoints(Dashboard.Module):
 
     def lines(self):
         # fetch backtrace
-        backtrace = []
+        breakpoints = []
+        r = re.compile('[ \t\n\r]+')
         output = run('info breakpoints').strip().split('\n')
         if g_vim_state > 0:
-            return output;
+            for one_info in output:
+                info_break = r.split(one_info)
+                if len(info_break) >= 9:
+                    info = '{}: num={} type={} valid={} {}'.format(info_break[8], info_break[0], info_break[1], info_break[3], info_break[6])
+                    breakpoints.append(info)
+            return breakpoints;
 
         return "Breakpoints only vim mode"
-
-class Breaks(Dashboard.Module):
-    """List the Breaks."""
-
-    def label(self):
-        return 'Breaks'
-
-    def lines(self):
-        lines = []
-
-        for br in gdb.breakpoints():
-            lines.append('{}:{}:{}'.format(br.location, br.number, br.enabled))
-
-        return lines
-
-        # fetch last entries
-        for i in range(-self.limit + 1, 1):
-            try:
-                value = to_string(gdb.history(i))
-                value_id = ansi('$${}', R.style_low).format(abs(i))
-                line = '{} = {}'.format(value_id, value)
-                out.append(line)
-            except gdb.error:
-                continue
-        return out
-
-    def attributes(self):
-        return {
-            'limit': {
-                'doc': 'Maximum number of values to show.',
-                'default': 3,
-                'type': int,
-                'check': check_gt_zero
-            }
-        }
 
 class Threads(Dashboard.Module):
     """List the currently available threads."""
@@ -1404,6 +1378,7 @@ set print pretty on
 set print array off
 set print array-indexes on
 set python print-stack full
+set filename-display absolute
 
 # Start ------------------------------------------------------------------------
 python Dashboard.start()
