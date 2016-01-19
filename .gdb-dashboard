@@ -269,9 +269,11 @@ class Dashboard(gdb.Command):
             g_vim_state = 1
             if not g_vim.remote_expr("g:tmux_gdb"):
                 if not g_vim_source_init_str:
-                    g_vim_source_init_str = "<ESC>:let g:tmux_gdb='" \
-                        + g_gdb_tmux_id + "'<Enter>:let g:tmux_gdb_dir='" \
-                        + g_vim_gdb_output + "'<Enter>:GdbMode<Enter>"
+                    g_vim_source_init_str = "<ESC>:GdbMode " \
+                        + g_gdb_tmux_id + " " \
+                        + g_vim_servername + " " \
+                        + g_vim_gdb_output + " " \
+                        + "<Enter>"
 
                 g_vim.remote_send(g_vim_source_init_str)
         else:
@@ -316,7 +318,7 @@ class Dashboard(gdb.Command):
                 the_file.close()
                 os.system("ansi2txt < " + fname + " > " + fname + ".txt")
 
-            g_vim.remote_send("<ESC>:GdbRefresh " \
+            g_vim.remote_send("<ESC>:silent! GdbRefresh " \
                 + g_vim_source_fname + " " + g_vim_source_fname_line + "<Enter>")
             #g_vim.remote_send("<ESC>:bufdo! silent! checktime <Enter>l<Enter>")
             #g_vim.remote_send("<ESC>:bufdo! e! <Enter>")
@@ -789,6 +791,9 @@ instructions constituting the current statement are marked, if available."""
         try:
             # try to fetch the function boundaries using the disassemble command
             output = run('disassemble').split('\n')
+            if g_vim_state > 0:
+                return output;
+
             start = int(re.split('[ :]', output[1][3:], 1)[0], 16)
             end = int(re.split('[ :]', output[-3][3:], 1)[0], 16)
             asm = disassemble(start, end_pc=end)
@@ -1179,7 +1184,11 @@ class Registers(Dashboard.Module):
     def lines(self):
         # fetch registers status
         registers = []
-        for reg_info in run('info registers').strip().split('\n'):
+        output = run('info registers').strip().split('\n')
+        if g_vim_state > 0:
+            return output;
+
+        for reg_info in output:
             # fetch register and update the table
             name = reg_info.split(None, 1)[0]
             value = gdb.parse_and_eval('${}'.format(name))
@@ -1225,6 +1234,77 @@ class Registers(Dashboard.Module):
             # convert to unsigned but preserve code and flags information
             pass
         return str(value)
+
+class Backtrace(Dashboard.Module):
+    """Show the backtrace."""
+
+    def __init__(self):
+        self.table = {}
+
+    def label(self):
+        return 'Backtrace'
+
+    def lines(self):
+        # fetch backtrace
+        backtrace = []
+        output = run('backtrace').strip().split('\n')
+        if g_vim_state > 0:
+            return output;
+
+        return "Backtrace only vim mode"
+
+class Breakpoints(Dashboard.Module):
+    """Show the breakpoints."""
+
+    def __init__(self):
+        self.table = {}
+
+    def label(self):
+        return 'Breakpoints'
+
+    def lines(self):
+        # fetch backtrace
+        backtrace = []
+        output = run('info breakpoints').strip().split('\n')
+        if g_vim_state > 0:
+            return output;
+
+        return "Breakpoints only vim mode"
+
+class Breaks(Dashboard.Module):
+    """List the Breaks."""
+
+    def label(self):
+        return 'Breaks'
+
+    def lines(self):
+        lines = []
+
+        for br in gdb.breakpoints():
+            lines.append('{}:{}:{}'.format(br.location, br.number, br.enabled))
+
+        return lines
+
+        # fetch last entries
+        for i in range(-self.limit + 1, 1):
+            try:
+                value = to_string(gdb.history(i))
+                value_id = ansi('$${}', R.style_low).format(abs(i))
+                line = '{} = {}'.format(value_id, value)
+                out.append(line)
+            except gdb.error:
+                continue
+        return out
+
+    def attributes(self):
+        return {
+            'limit': {
+                'doc': 'Maximum number of values to show.',
+                'default': 3,
+                'type': int,
+                'check': check_gt_zero
+            }
+        }
 
 class Threads(Dashboard.Module):
     """List the currently available threads."""
