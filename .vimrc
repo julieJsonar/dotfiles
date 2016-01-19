@@ -166,6 +166,11 @@ let mapleader = ";"
 map Q <Nop>
 nnoremap <C-c> <silent> <C-c>
 
+" Vim status bar prediction/completion
+"set wildmode=longest,list,full
+set wildmode=longest:full,full
+set wildmenu
+
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 
