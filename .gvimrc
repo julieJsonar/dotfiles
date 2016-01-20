@@ -148,15 +148,15 @@ Plugin 'yuratomo/w3m.vim'
 
 Plugin 'huawenyu/taboo.vim'
 Plugin 'huawenyu/vim-mark'
-Plugin 'huawenyu/highlight.vim'
+"Plugin 'huawenyu/highlight.vim'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
 Plugin 'huawenyu/vim-dispatch'
 Plugin 'huawenyu/c-utils.vim'
 
 " Debug
-"Plugin 'tpope/vim-scriptease'
-"Plugin 'vim-scripts/Decho'
+Plugin 'tpope/vim-scriptease'
+Plugin 'huawenyu/Decho'
 
 call vundle#end()
 filetype plugin indent on
@@ -520,7 +520,8 @@ let g:sneak#s_next = 1
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
 
-  map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
+  map  <leader>va :Decho "wilson some message here" <CR>
+  "map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
   nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
   vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
   map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
@@ -570,6 +571,10 @@ let g:sneak#s_next = 1
   endfunction
 
 "}
+
+" VimL Debug{{{1
+  let g:decho_enable = 0
+" }}}
 
 " Python-mode{{{1
   " Activate rope

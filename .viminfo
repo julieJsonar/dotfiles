@@ -8,17 +8,105 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/\Vvimuxscript#_Capture
+~Msle0~/\<Dhide\>
 
 # Last Substitute Search Pattern:
-~MSle0&vdom1
+~MSle0&req
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
+:qa!
 :qa
+:e
+:e /tmp/gdb/capture
+:sp
+:let decho_enable=1
+:GdbMode 1.4 GDB.SOURCE /tmp/gdb/
+:echo $VIM
+:echo 
+:help mkview
+:help mks
+:help makesession
+:help makeview
+:b9
+:ls
+:q
 :w
+:help start
+:b2
+:+9
+:b1
+:e plugin/vimgdb.vim
+:pwd
+:set ft=c
+:Grep  -- 'wilson'
+:message
+:Decho g:testwilson
+:echo v:functionname
+:echo v:scriptname
+:Decho [1, 'hello', 2]
+:let g:decho_enable=1
+:Decho "hello"
+:wq
+:set paste
+:debug call Decho("hello")
+:debug Decho "hello"
+:Dhide
+:Decho "hello world"
+:b 2
+:e ~/.vimrc
+:!git diff
+:Dshow
+:PluginInstall
+:Plugin
+:help debug
+:DechoOn
+:DechoOff
+:Grep  -- 'utilgrep'
+:Grep  -- 'utilgrep#Grep'
+:help quickfix
+:Grep  -- 'case 9' daemon/wad
+:c
+:copen
+:Grep  -- '901' daemon/wad
+:Grep  -- '901'
+:Grep  -- 'case 901'
+:Grep  -- 'case 901:'
+:vs
+:PluginClean
+:.,.+41w
+:set syn=diff
+:s
+:no paste
+:top sp
+:cs f f wad_log.c
+:silent! HightlightOn
+:"w
+:GdbMode
+:echo g:VimuxRunnerIndex
+:echo g:wilson_sizes
+:m
+:echo exists("g:VimuxRunnerIndex")
+:e /tmp
+:echo g:VimuxRunnerHeight
+:e!
+:+33
+:+18
+:Grep  -- 'NearestIndex'
+:echo match(">>> ", '>>> ')
+:echo match(">>> ", '>>> '_
+:echo split("1", '\V.')
+:echo split("1.1", '\V.')
+:echo split("1.1", ".")
+:echo split("1.1", '\.')
+:echo split("1.1", '.')
+:e ./plugin/vimux.vim
+:e autoload/vimux.vim
+:bd
+:e autoload/vimux
+:e **/vimux.vim
 :call Varg2("a")
 :call Varg2("a", "b", "c")
 :endfunction
@@ -27,100 +115,72 @@ $
 :echom a:0
 :echom a:foo
 :function Varg2(foo, ...)
-:e /tmp/gdb/capture
-:sp
 :echo matchstr
 :e /tmp/gdb/out
-:pwd
-:236
-:set ft=python
-:message
-:echo join(["foo", "bar"], "")
-:echo join(["foo", "bar"], "...")
-:q
-:copen
-:quit
-:cs add cscope.out
-:e ~/.vim/bundle/c-utils.vim/autoload/utilquickfix.vim
-:vsp
-:1008
-:set ft=c
-:1009
-:GdbAttach 1.4
-:qa!
-:1017
-:help QuickFixCmdPre
-:help QuickFixCmdPost
-:help quickfix
-:PluginInstall
-:+18
-:cs f g wad_rm_urlfilter_error
-:1062
-:266
-:lnext
-:lgetfile /tmp/gdb/breakpoints.txt
-:set modifiable
-:set mo
-:R svn diff -c137964 
-:exit
-:R svn diff -c 137964 
-:R! svn diff -c 137964 
-:Grep  -- 'urlfilter' cmf
-:cs f f pcre.c
-:ls
-:set nocursorline
-:set cursorline
-:l
-:echo " " . line('.')
-:echo "hello" . line('.')
-:echo line('.')
-:GdbMode 1.4 GDB.SOURCE /tmp/gdb
-:echo v:servername
-:GdbMode 1.4 GDB.SOURCE /tmp/gdb/
-:e ../autoload/vimux.vim
-:vs
-:GdbMode 
-:e ../autoload/vimux
-:jjjjjjjjjjjj
-:vi vimux.vim
-:'<,'>w
-:e!
-:qz
-:let g:tmux_gdb='1.4'
-:echo g:tmux_gdb
-:help filere
-:help cgetfile
-:Grep  -- 'APIResponse'
-:b 6
-:Grep  -- 'client.send_request'
-:cs f g wad_http_generate_url_filter_replace_message
-:cs f g __wad_http_build_replmsg_resp
-:cs f g wad_http_url_filter_notify
-:b /tmp/log.tel
-:e /tmp/log.tel
-:GdbRefresh
-:echo g:gdb_tmux
-:b10
-:b9
-:b8
-:b7
-:b6
-:b5
-:b4
-:b3
-:b2
-:.,.+5w
-:echo g:servername
-:cs f g wad_url_filter_local_request
-: 
-:set paste
-:+34
-:help :cnext
-:help setqflist()
 
 # Search String History (newest to oldest):
+?/\Vs:Gdb_attach
+? \<start\>
+??init
+? \<SID\>
+?/\Vs:gdb_capture
 ?/\Vvimuxscript#_Capture
 ?/capture
+?/a:
+?/a:0
+?/ignore
+?/\Vg:
+? \<Decho\>
+? \<Dhide\>
+?/Decho
+? ^"\+
+? \<D\%(echo\|func\|redir\|ret\|echo\%(Msg\|Rem\|Tab\|Var\)O\%(n\|ff\)\)\>
+? ^[^"]
+?/script
+?/cnext
+?/901
+? \<test_run\>
+? \<wad_test_suite_add\>
+? \<_WAD_DEBUG_TEST\>
+?/test
+? \<gdb_prompt\>
+? \<wad_http_generate_url_filter_replace_message\>
+?/wilson
+?/Mode
+??GdbMode
+?/unknown
+?/unkonw
+? \<HightlightOff\>
+? \<HightlightOn\>
+?/Hi
+?/highli
+? \<vimuxscript#_TmuxInfoRefresh\>
+? \<VimuxRunnerIndex\>
+? \<gdb_capture\>
+? \<pane_box\>
+? \<vimux#TmuxAttach\>
+?/<attach>
+? \<vimux#_VimuxHasRunner\>
+?/attach
+? @$
+? \<box_telnet\>
+? \<box_log\>
+?/lseep
+?/<sleep
+? \<runner\>
+? \<box_prompt\>
+? \<pane_gdb\>
+?/2200
+? \<nearestIndex\>
+? \<vimux#_VimuxNearestIndex\>
+?/has
+? \<vimux#_VimuxTmuxIndex\>
+? \<endfunction\>
+? \<vimux#_VimuxRunnerType\>
+? \<VimuxVimIndex\>
+? \<vimux#_VimuxTmuxProperty\>
+?/\<VimuxRunnerIndex\>
+? \<vimux#VimuxOpenRunner\>
 ? \<gdb_buf_output\>
 ? \s\+$
 ? \<vim_is_running\>
@@ -227,13 +287,11 @@ $
 ?/\Vgdb.execute
 ??wilson
 ?/refresh
-?/wilson
 ? \<gdb_buf_source\>
 ?/csetfile
 ? \<APIResponse\>
 ? \<send_request\>
 ? \<wad_http_url_filter_notify\>
-? \<wad_http_generate_url_filter_replace_message\>
 ? \<msg\>
 ?/run
 ?/g:tmux
@@ -246,7 +304,6 @@ $
 ?/filename
 ? \<filename-modifiers\>
 ??\a
-? @$
 ?/obsess
 ?/autocmd
 ?/init
@@ -281,7 +338,6 @@ $
 ? \<g_vim_servername\>
 ?/\Vthe_file.write
 ? \<label\>
-? \<start\>
 ?/lower
 ?/to_low
 ?/self.name
@@ -298,9 +354,6 @@ $
 ?/bufdo
 ? \<system\>
 ?/cat
-? \<vimux#_VimuxTmuxProperty\>
-? \<vimux#_VimuxNearestIndex\>
-? \<vimux#_VimuxHasRunner\>
 ?/init_
 ??cclose
 ?/cclose
@@ -310,11 +363,8 @@ $
 ?/!=
 ? \<vimuxscript_init\>
 ? \<VimuxGroupInit\>
-? \<VimuxVimIndex\>
 ?/for
-? \<VimuxRunnerIndex\>
 ? \<vimux#_VimuxTmuxWindowIndex\>
-? \<vimux#_VimuxRunnerType\>
 ? \<vimux#Prepare\>
 ? \<open_quickfix\>
 ?/copen
@@ -357,7 +407,6 @@ $
 ?/modify
 ?/\<vimux#TmuxAttach2\>
 ? \<vimux#TmuxAttach2\>
-?/attach
 ?/a
 ? \<vimux#Run\>
 ? \<lines\>
@@ -430,10 +479,10 @@ $
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@y
 @\<tid\>
 @\<number\>
 @\<wad_http_url_filter_notify\>
-@y
 @\<class\>
 @adf
 @\<0x2a95748018\>
@@ -471,47 +520,41 @@ $
 @breakadd dispatch#complete:1
 @breakadd dispatch#complete()
 @breakadd dispatch#complete
+@next
+@help
+@?
+@cont
+@n
 
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	            g_vim_state = 0
-""1	LINE	0
-	                call vimux#_VimuxTmux("save-buffer ")
-	                "call vimux#_VimuxTmux("delete-buffer")
+"0	CHAR	0
+	Install a RedHat Linux, with kernel source and development packages
+"1	LINE	0
+	
 "2	LINE	0
-	        if 
+				diag debug app wad 0
+				diag debug enable
+	
 "3	LINE	0
-	                else:
-	                    g_vim_state = 0
+				# Disable watchdog
 "4	LINE	0
-	            if len():
+				# switch to worker
 "5	LINE	0
-	
+				# only start one worker
 "6	LINE	0
-	            fname = g_vim_gdb_output + "out"
-	            with open(g_vim_gdb_output + "out", 'w+') as the_file:
-	                the_file.write(output_lines)
-	                the_file.close()
 	
-"7	LINE	0
-	        if len(lines) == 0:
-	            lines.append(divider('Error', True))
-	            if len(self.modules) == 0:
-	                lines.append('No module loaded')
-	            else:
-	                lines.append('No module to display (see `help dashboard`)')
-	
-	        lines.append(divider(primary=True))
-	
-	        # print the dashboard
-	        output_lines = '\n'.join(lines)
-	
-"8	LINE	0
+"7	BLOCK	0
+	#
+	#
+	#
+	#
+"8	CHAR	0
+	)
 	
 "9	LINE	0
-	                os.system("ansi2txt < " + fname + " > " + fname + ".txt")
+	
 "a	CHAR	0
 	static struct wad_port_ops
 "b	LINE	0
@@ -534,13 +577,13 @@ $
 	
 "s	CHAR	0
 	for view in 
-"v	CHAR	0
-	b
+""v	CHAR	0
+	Install a RedHat Linux, with kernel source and development packages Install a RedHat Linux, with kernel source and development packages
 "w	CHAR	0
 	524
 <[:w:wjVjjdkdd:w:w:wlllllvehhhh;;vnJlllllllllllllll/pend_€kbing_setjjjjjjjjjVjjjjjjjjjjjjjjjjd:wVjd:wdd:w:w:wnjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkk€ý,€ý.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjkwvwhh;;v€kl€kb€kb€kb€kb€kb€kbwad_rtmpt_pending_jkkjknJjjjjjjkkkkkjjjkkkkkjjjjkkkkjjjjwbwwbb
 "-	CHAR	0
-	/tmp/vim.vimux
+	<C-\>e utilgrep#Grep(0,1) <CR>
 
 # File marks:
 'A  34  41  ~/andy/getlineex.c
@@ -548,475 +591,442 @@ $
 'C  1091  2  /data/work/bug-dfa-build/5.4-100D/daemon/wad/wad_sec_profile.c
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
-'0  222  16  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-'1  313  8  ~/.gdbinit
-'2  83  4  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-'3  1319  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
-'4  71  0  /data/work/bug-urlfilter/5.4-100D/snmp/core/src/asn1.c
-'5  349  37  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-'6  1  0  /home/amir/FortiDev/4.7.x/branches/br_4.7.x_x86_64/trunk/devel/source/compiler/extractdir/glibc-2.15-fortidev/misc/../sysdeps/unix/syscall-template.S
-'7  352  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-'8  29  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-'9  371  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_http_replacemsg.c
+'P  525  26  ~/.vimrc
+'0  3  4  /data/workref/rtmp/fos52-701-git/README
+'1  1327  65  /usr/share/vim/vim74/doc/starting.txt
+'2  69  36  ~/.vim/bundle/Decho/plugin/Decho.vim
+'3  523  19  ~/.vimrc
+'4  525  55  ~/.vimrc
+'5  159  0  ~/.vimrc
+'6  30  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
+'7  123  18  /usr/share/vim/vim74/doc/quickfix.txt
+'8  1  0  **/dfa.c
+'9  36  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_debug.h
 
 # Jumplist (newest first):
--'  222  16  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  223  53  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  215  8  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  198  10  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  297  21  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  1  21  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  217  12  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  90  31  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  85  31  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  71  31  ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
--'  313  8  ~/.gdbinit
--'  259  8  ~/.gdbinit
--'  261  12  ~/.gdbinit
--'  275  12  ~/.gdbinit
--'  252  8  ~/.gdbinit
--'  1  5  ~/.gdbinit
--'  294  13  ~/.gdbinit
--'  319  13  ~/.gdbinit
--'  296  20  ~/.gdbinit
--'  322  34  ~/.gdbinit
--'  262  34  ~/.gdbinit
--'  198  12  ~/.gdbinit
--'  215  12  ~/.gdbinit
--'  265  20  ~/.gdbinit
--'  276  12  ~/.gdbinit
--'  278  15  ~/.gdbinit
--'  281  15  ~/.gdbinit
--'  303  15  ~/.gdbinit
--'  220  15  ~/.gdbinit
--'  219  15  ~/.gdbinit
--'  217  15  ~/.gdbinit
--'  17  0  ~/.gdbinit
--'  518  4  ~/.gdbinit
--'  211  4  ~/.gdbinit
--'  207  27  ~/.gdbinit
--'  225  21  ~/.gdbinit
--'  237  21  ~/.gdbinit
--'  187  12  ~/.gdbinit
--'  280  12  ~/.gdbinit
--'  310  12  ~/.gdbinit
--'  311  0  ~/.gdbinit
--'  318  8  ~/.gdbinit
--'  312  12  ~/.gdbinit
--'  309  15  ~/.gdbinit
--'  305  12  ~/.gdbinit
--'  302  12  ~/.gdbinit
--'  975  11  ~/.gdbinit
--'  880  0  ~/.gdbinit
--'  244  56  ~/.gdbinit
--'  389  14  ~/.gdbinit
--'  238  49  ~/.gdbinit
--'  239  17  ~/.gdbinit
--'  723  8  ~/.gdbinit
--'  374  36  ~/.gdbinit
--'  300  23  ~/.gdbinit
--'  21  15  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  68  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  25  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  1  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  24  1  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  23  9  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  50  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  49  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  46  6  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  32  3  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  29  6  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  71  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  65  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  64  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  19  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  16  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  15  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  63  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  62  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  237  57  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  76  25  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  35  7  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  1  53  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  1093  0  /tmp/gdb/out
--'  5  0  /tmp/gdb/out
--'  239  23  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  22  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
--'  238  19  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  105  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  66  1  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  64  20  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  75  17  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  61  39  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  49  20  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  301  5  ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
--'  40  0  ~/.vim/bundle/vimux-script/gdb-sample/test.c
+-'  3  4  /data/workref/rtmp/fos52-701-git/README
+-'  13  0  /data/workref/rtmp/fos52-701-git/README
+-'  12  0  /data/workref/rtmp/fos52-701-git/README
+-'  1327  65  /usr/share/vim/vim74/doc/starting.txt
+-'  1325  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1298  68  /usr/share/vim/vim74/doc/starting.txt
+-'  1278  17  /usr/share/vim/vim74/doc/starting.txt
+-'  1224  7  /usr/share/vim/vim74/doc/starting.txt
+-'  1  0  /usr/share/vim/vim74/doc/starting.txt
+-'  10779  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10792  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10723  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10677  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10659  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10582  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10588  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10600  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10613  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10616  27  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  566  10  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_amf.c
+-'  41  4  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+-'  27  12  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+-'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+-'  69  36  ~/.vim/bundle/Decho/plugin/Decho.vim
+-'  354  2  ~/.vim/bundle/Decho/plugin/Decho.vim
+-'  355  10  ~/.vim/bundle/Decho/plugin/Decho.vim
+-'  294  0  ~/.vim/bundle/Decho/plugin/Decho.vim
+-'  1  0  ~/.vim/bundle/Decho/plugin/Decho.vim
+-'  523  19  ~/.vimrc
+-'  525  26  ~/.vimrc
+-'  552  0  ~/.vimrc
+-'  159  0  ~/.vimrc
+-'  30  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
+-'  1  57  ~/.vimrc
+-'  538  57  ~/.vimrc
+-'  158  0  ~/.vimrc
+-'  153  23  ~/.vimrc
+-'  147  13  ~/.vimrc
+-'  116  12  ~/.vimrc
+-'  113  26  ~/.vimrc
+-'  107  13  ~/.vimrc
+-'  151  0  ~/.vimrc
+-'  123  18  /usr/share/vim/vim74/doc/quickfix.txt
+-'  7205  27  /usr/share/vim/vim74/doc/options.txt
+-'  7201  41  /usr/share/vim/vim74/doc/options.txt
+-'  7196  0  /usr/share/vim/vim74/doc/options.txt
+-'  7199  8  /usr/share/vim/vim74/doc/options.txt
+-'  79  18  /usr/share/vim/vim74/doc/quickfix.txt
+-'  7197  6  /usr/share/vim/vim74/doc/options.txt
+-'  78  43  /usr/share/vim/vim74/doc/quickfix.txt
+-'  77  43  /usr/share/vim/vim74/doc/quickfix.txt
+-'  68  0  /usr/share/vim/vim74/doc/quickfix.txt
+-'  55  4  /usr/share/vim/vim74/doc/quickfix.txt
+-'  43  4  /usr/share/vim/vim74/doc/quickfix.txt
+-'  41  4  /usr/share/vim/vim74/doc/quickfix.txt
+-'  1  0  /usr/share/vim/vim74/doc/quickfix.txt
+-'  1428  3  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_procmgr.c
+-'  1322  9  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_procmgr.c
+-'  1407  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_procmgr.c
+-'  1436  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_procmgr.c
+-'  395  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  389  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  134  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  12  10  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  1  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  1011  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  1092  17  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  428  0  /data/work/bug-urlfilter/5.4-100D/daemon/wad/ui/fg/wad_ui.c
+-'  1091  17  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_worker.c
+-'  344  14  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  336  27  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  378  14  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  578  15  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_blackwhite.c
+-'  367  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  365  1  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_proc_wanopt.c
+-'  137  10  /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad.h
+-'  1327  65  /usr/share/vim/vim74/doc/starting.txt
+-'  1325  0  /usr/share/vim/vim74/doc/starting.txt
+-'  1298  68  /usr/share/vim/vim74/doc/starting.txt
+-'  1278  17  /usr/share/vim/vim74/doc/starting.txt
+-'  1224  7  /usr/share/vim/vim74/doc/starting.txt
+-'  1  0  /usr/share/vim/vim74/doc/starting.txt
+-'  10779  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10792  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10723  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10677  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10659  2  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10582  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10588  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10600  1  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10613  6  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  10616  27  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+-'  566  10  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_amf.c
+-'  41  4  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+-'  27  12  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+-'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
 
 # History of marks within files (newest to oldest):
 
-> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
-	"	222	16
-	^	223	54
-	.	223	53
-	+	198	43
-	+	215	10
-	+	215	0
-	+	220	17
-	+	222	12
-	+	222	0
-	+	222	11
-	+	219	23
-	+	222	51
-	+	219	25
-	+	222	0
-	+	223	0
-	+	221	30
-	+	223	53
+> /data/workref/rtmp/fos52-701-git/README
+	"	3	4
+	^	3	140
+	.	3	139
+	+	8	0
+	+	3	139
 
-> ~/.vim/bundle/vimux-script/gdb-sample/test.c
-	"	21	15
-	^	56	10
-	.	57	0
-	+	4	8
-	+	5	8
-	+	5	0
-	+	73	41
-	+	73	0
-	+	62	33
-	+	72	0
-	+	62	4
-	+	57	6
-	+	62	0
-	+	58	0
-	+	59	0
-	+	62	0
-	+	61	0
-	+	62	53
-	+	69	1
-	+	73	0
-	+	63	2
-	+	69	0
-	+	63	16
-	+	66	0
-	+	65	8
-	+	64	49
-	+	68	13
-	+	77	0
-	+	71	1
-	+	70	0
-	+	73	0
-	+	77	0
-	+	73	8
-	+	74	0
-	+	77	0
-	+	73	20
-	+	76	0
-	+	74	0
-	+	56	9
-	+	57	0
+> /data/workref/rtmp/fos52-701-git/DBG
+	"	40	101
+	^	16	0
+	.	15	0
+	+	15	0
 
 > /tmp/gdb/capture
-	"	2	2
-	^	5	7
-	.	5	6
-	+	5	6
+	"	2	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
+	"	41	4
+
+> /usr/include/stdint.h
+	"	63	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_amf.c
+	"	566	10
+
+> /usr/include/math.h
+	"	26	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
+	"	10654	0
+
+> /usr/include/stdio.h
+	"	25	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmpt.h
+	"	77	0
+
+> /usr/include/wchar.h
+	"	61	17
+
+> /usr/share/vim/vim74/doc/starting.txt
+	"	1327	65
+
+> ~/.vim/bundle/vimux-script/autoload/vimuxscript.vim
+	"	207	75
+	^	207	76
+	.	207	75
+	+	198	43
+	+	218	10
+	+	218	0
+	+	223	17
+	+	225	12
+	+	225	0
+	+	225	11
+	+	222	23
+	+	225	51
+	+	222	25
+	+	225	0
+	+	227	0
+	+	224	30
+	+	227	53
+	+	263	30
+	+	226	47
+	+	217	43
+	+	214	47
+	+	13	29
+	+	13	0
+	+	14	0
+	+	13	12
+	+	8	26
+	+	9	22
+	+	8	0
+	+	13	0
+	+	213	4
+	+	217	8
+	+	226	12
+	+	213	9
+	+	217	13
+	+	226	12
+	+	250	13
+	+	367	9
+	+	378	17
+	+	380	17
+	+	208	0
+	+	207	67
+	+	231	21
+	+	207	75
+	a	200	36
 
 > ~/.vim/bundle/vimux-script/plugin/vimgdb.vim
-	"	237	57
-	^	36	37
-	.	237	47
-	+	104	31
-	+	104	30
-	+	105	41
-	+	67	0
-	+	63	0
-	+	68	0
-	+	64	0
-	+	67	0
-	+	67	0
-	+	64	30
+	"	102	6
+	^	107	13
+	.	107	12
+	+	237	65
+	+	89	0
+	+	93	0
+	+	88	0
+	+	74	0
+	+	88	4
+	+	93	4
+	+	75	0
+	+	107	12
+
+> /usr/share/vim/vim74/doc/insert.txt
+	"	1	0
+
+> ~/.vim/bundle/c-utils.vim/autoload/test.vim
+	"	10	38
+	^	10	39
+	.	10	38
+	+	2	0
+	+	4	21
+	+	5	7
+	+	5	0
+	+	3	0
+	+	5	0
+	+	6	0
+	+	4	23
+	+	7	0
+	+	8	0
+	+	7	34
+	+	9	0
+	+	10	38
+
+> /data/workref/log/rtmp-tp.script
+	"	140	2
+	^	140	11
+	.	140	0
+	+	51	12
+	+	49	0
+	+	54	0
+	+	49	0
+	+	54	0
+	+	44	0
+	+	47	0
+	+	47	0
+	+	47	15
+	+	47	0
+	+	41	0
+	+	42	6
+	+	45	0
+	+	46	0
+	+	48	0
+	+	49	0
+	+	32	10
+	+	10	0
+	+	8	0
+	+	10	28
+	+	32	34
+	+	33	10
+	+	34	10
+	+	38	10
+	+	33	31
+	+	36	18
+	+	37	20
+	+	35	0
+	+	52	13
+	+	48	9
+	+	53	0
+	+	32	10
+	+	133	17
+	+	134	13
+	+	135	0
+	+	131	0
+	+	132	0
+	+	136	2
+	+	48	5
+	+	85	6
+	+	81	0
+	+	85	0
+	+	32	29
+	+	15	0
+	+	136	32
+	+	2	33
+	+	3	34
+	+	8	0
+	+	9	26
+	+	134	24
+	+	9	25
+	+	111	23
+	+	112	23
+	+	102	19
+	+	112	25
+	+	114	20
+	+	115	20
+	+	102	22
+	+	102	19
+	+	102	0
+	+	100	0
+	+	101	20
+	+	135	25
+	+	136	18
+	+	136	31
+	+	140	8
+	+	136	0
+	+	125	23
+	+	135	14
+	+	9	26
+	+	134	23
+	+	135	7
+	+	139	4
+	+	137	5
+	+	112	0
+	+	103	0
+	+	114	0
 	+	104	0
-	+	65	0
-	+	67	0
-	+	102	21
-	+	66	56
-	+	379	0
-	+	380	0
-	+	382	0
-	+	380	17
-	+	381	17
-	+	380	46
-	+	381	48
-	+	387	0
-	+	392	48
-	+	370	0
-	+	392	35
-	+	370	0
-	+	372	10
-	+	371	0
-	+	369	0
-	+	373	0
-	+	371	32
-	+	370	28
-	+	389	0
-	+	386	46
-	+	388	52
-	+	389	18
-	+	229	14
-	+	229	0
-	+	228	19
-	+	229	0
-	+	229	4
-	+	231	5
-	+	230	18
-	+	229	0
-	+	227	0
-	+	236	17
-	+	389	18
-	+	231	14
-	+	230	24
-	+	231	0
-	+	334	2
-	+	31	36
-	+	348	35
-	+	349	23
-	+	365	0
-	+	351	0
-	+	347	0
-	+	366	21
-	+	365	1
-	+	366	0
-	+	354	0
-	+	360	0
-	+	362	0
-	+	364	0
-	+	354	0
-	+	352	15
-	+	353	0
-	+	362	2
-	+	362	0
-	+	362	0
-	+	363	0
-	+	355	0
-	+	357	0
-	+	353	8
-	+	354	0
-	+	353	0
-	+	29	39
-	+	28	43
-	+	27	45
-	+	30	37
-	+	31	49
-	+	32	40
-	+	33	49
-	+	34	41
-	+	35	36
-	+	349	23
-	+	348	19
-	+	234	2
-	+	237	2
-	+	239	12
-	+	234	0
-	+	235	0
-	+	238	31
-	+	240	1
-	+	239	23
-	+	237	45
-	+	239	7
-	+	36	36
-	+	237	47
-	a	237	29
+	+	115	0
+	+	105	0
+	+	106	0
+	+	107	0
+	+	102	0
+	+	109	0
+	+	111	0
+	+	108	0
+	+	139	5
+	+	139	0
+	+	134	23
+	+	135	7
+	+	138	20
+	+	5	21
+	+	6	21
+	+	7	21
+	+	114	11
+	+	98	158
+	+	98	155
+	+	98	0
+	+	90	0
+	+	140	0
+	a	135	18
 
-> /tmp/gdb/out
-	"	1093	0
+> ~/DBG
+	"	2	0
 
-> ~/.gdbinit
-	"	313	8
-	^	276	16
-	.	276	15
-	+	970	0
-	+	990	0
-	+	970	11
-	+	916	0
-	+	920	0
-	+	987	28
-	+	989	16
-	+	1094	0
-	+	1093	0
-	+	1094	11
-	+	1100	0
-	+	1176	0
-	+	1175	0
-	+	1176	11
-	+	1186	30
-	+	1248	11
-	+	1250	0
-	+	1249	13
-	+	1250	0
-	+	1255	0
-	+	1302	0
-	+	1314	0
-	+	1314	0
-	+	1314	13
-	+	1314	0
-	+	1328	0
-	+	1327	0
-	+	1331	0
-	+	1327	15
-	+	1319	0
-	+	1326	26
-	+	1327	0
-	+	1363	0
-	+	1362	0
-	+	1363	11
-	+	1369	30
-	+	1369	39
-	+	1369	27
-	+	1369	0
-	+	1371	53
-	+	1407	0
-	+	1416	0
-	+	1407	11
-	+	1414	0
-	+	1413	24
-	+	553	42
-	+	239	12
-	+	238	49
-	+	252	0
-	+	251	0
-	+	252	11
-	+	296	0
-	+	258	0
-	+	279	0
-	+	278	25
-	+	279	0
-	+	277	0
-	+	294	28
-	+	263	0
-	+	262	12
-	+	879	17
-	+	880	0
-	+	975	0
-	+	302	0
-	+	301	0
-	+	324	0
-	+	303	0
-	+	303	0
-	+	304	41
-	+	305	0
-	+	311	0
-	+	303	0
-	+	312	0
-	+	310	24
-	+	310	0
-	+	323	0
-	+	319	0
-	+	311	16
-	+	312	0
-	+	311	0
-	+	318	0
-	+	326	0
-	+	319	0
-	+	553	3
-	+	554	0
-	+	553	0
-	+	253	0
-	+	257	0
-	+	262	12
-	+	263	19
-	+	262	19
-	+	263	0
-	+	320	38
-	+	321	49
-	+	322	16
-	+	321	16
-	+	320	37
-	+	259	8
-	+	275	0
-	+	276	15
-	a	280	12
-	b	1079	15
+> ~/.vim/bundle/Decho/plugin/cecutil.vim
+	"	183	16
+	.	505	0
+	+	505	0
+	+	504	0
+	+	505	0
+	+	505	0
 
-> ~/.vim/bundle/vimux-script/__Tagbar__
-	"	2	1
-	.	143	0
-	+	143	0
-	+	143	0
-	+	143	0
-	+	143	0
-	+	143	0
+> ~/.vim/bundle/Decho/plugin/Decho.vim
+	"	114	2
+	^	98	0
+	.	98	0
+	+	593	0
+	+	592	0
+	+	593	0
+	+	593	0
+	+	36	0
+	+	35	0
+	+	36	0
+	+	38	0
+	+	36	4
+	+	38	12
+	+	39	21
+	+	36	0
+	+	95	23
+	+	97	7
+	+	96	6
+	+	98	0
+	a	95	0
 
-> /build/buildd/eglibc-2.19/stdio-common/printf.c
+> ~/.vim/bundle/c-utils.vim/plugin/test.vim
+	"	2	6
+	^	1	14
+	.	7	0
+	+	7	0
+	+	1	13
+	+	7	0
+
+> ~/.vimrc
+	"	619	1
+	^	576	2
+	.	576	1
+	+	151	0
+	+	525	55
+	+	158	0
+	+	159	0
+	+	525	55
+	+	523	0
+	+	524	2
+	+	525	52
+	+	523	19
+	+	159	0
+	+	159	0
+	+	523	0
+	+	523	0
+	+	575	0
+	+	574	0
+	+	577	4
+	+	577	0
+	+	575	11
+	+	577	4
+	+	577	0
+	+	577	0
+	+	159	15
+	+	577	0
+	+	576	1
+
+> /usr/share/vim/vim74/doc/help.txt
+	"	2	0
+
+> ~/.vim/bundle/Decho/.git/config
 	"	1	0
 
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter.c
-	"	1449	1
-	^	340	42
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_http_cache.c
-	"	23295	3
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/scheduler/wad_sched_task_list.c
-	"	25	2
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/scheduler/wad_sched_tasks.c
-	"	26	2
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/scheduler/epoll/wad_sched.c
-	"	116	2
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/ui/fg/wad_ui.c
-	"	551	1
-
-> /data/work/bug-urlfilter/5.4-100D/sysinit/fortiexec.c
-	"	695	3
-
-> /data/work/bug-urlfilter/5.4-100D/sysinit/init.c
-	"	2512	2
-
-> /home/amir/FortiDev/4.7.x/branches/br_4.7.x_x86_64/trunk/devel/source/compiler/extractdir/glibc-2.15-fortidev/misc/../sysdeps/unix/syscall-template.S
-	"	1	0
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_ssl_port.c
-	"	370	5
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_url_filter_local_request.c
-	"	119	3
-	^	93	0
-
-> /data/work/bug-urlfilter/5.4-100D/migbase/include/local_urlfilter.h
-	"	49	1
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_log.c
-	"	1170	0
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/wad_http_replacemsg.c
-	"	371	0
-	^	371	1
-	a	371	1
-
-> ~/.vim/bundle/c-utils.vim/autoload/utilquickfix.vim
-	"	74	0
-
-> /data/work/bug-urlfilter/5.4-100D/snmp/common/buf.h
-	"	178	0
-
-> /data/work/bug-urlfilter/5.4-100D/snmp/core/src/asn1.c
-	"	71	0
-
-> /home/amir/FortiDev/4.7.x/branches/br_4.7.x_x86_64/trunk/devel/source/compiler/extractdir/glibc-2.15-fortidev/signal/sigempty.c
-	"	1	0
-
-> /usr/share/vim/vim74/doc/quickfix.txt
-	"	299	1
-
-> /usr/share/vim/vim74/doc/autocmd.txt
-	"	849	28
-
-> /data/work/bug306438.patch
-	"	1	17
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-	"	29	0
+> ~/.vim/bundle/Decho/[Vundle] Installer
+	"	30	0
 	.	1	0
 	+	1	0
+
+> ~/.vim/bundle/Decho/README
+	"	32	0
+
+> /usr/share/vim/vim74/doc/repeat.txt
+	"	510	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/DBG
+	"	9	0
+
+> /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
+	"	30	0
+	.	1	0
+	+	1	0
+
+> /data/work/bug-urlfilter/5.4-100D/daemon/wad/acsm.c
+	"	1000	3
