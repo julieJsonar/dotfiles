@@ -235,6 +235,7 @@ class Dashboard(gdb.Command):
         self.modules = []
         for module in modules:
             info = Dashboard.ModuleInfo(self, module)
+            info.enabled = info.instance.default()
             self.modules.append(info)
 
     def redisplay(self):
@@ -247,6 +248,34 @@ class Dashboard(gdb.Command):
 
     def is_running(self):
         return self.inferior_pid() != 0
+
+    def vim_is_running(self):
+        global g_vim_state
+        global g_vim
+        global g_vim_source_init_str
+        global g_vim_gdb_output
+
+        # Check vim server exist
+        g_vim_state = 0
+        try:
+            g_vim = vimrunner.Server(name=g_vim_servername)
+            if any(g_vim_servername in s for s in g_vim.server_list()):
+                vim_client = g_vim.connect(1)
+                if g_vim.is_running():
+                    g_vim_state = 1
+                    if not g_vim.remote_expr("g:tmux_gdb"):
+                        if not g_vim_source_init_str:
+                            g_vim_source_init_str = "<ESC>:silent! GdbMode " \
+                                + g_gdb_tmux_id + " " \
+                                + g_vim_servername + " " \
+                                + g_vim_gdb_output + " " \
+                                + "<Enter>"
+
+                        g_vim.remote_send(g_vim_source_init_str)
+        except:
+            pass
+
+        return g_vim_state
 
     def build(self):
         global g_vim_state
@@ -262,78 +291,50 @@ class Dashboard(gdb.Command):
             # fall back to the main terminal
             Dashboard.update_term_width()
 
-        # Check vim server exist
-        try:
-            g_vim = vimrunner.Server(name=g_vim_servername)
-            vim_client = g_vim.connect(2)
-            if g_vim.is_running():
-                g_vim_state = 1
-                if not g_vim.remote_expr("g:tmux_gdb"):
-                    if not g_vim_source_init_str:
-                        g_vim_source_init_str = "<ESC>:silent! GdbMode " \
-                            + g_gdb_tmux_id + " " \
-                            + g_vim_servername + " " \
-                            + g_vim_gdb_output + " " \
-                            + "<Enter>"
-
-                    g_vim.remote_send(g_vim_source_init_str)
-            else:
-                g_vim_state = 0
-        except:
-            g_vim_state = 0
+        self.vim_is_running()
 
         # fetch lines
         lines = []
         for module in self.modules:
             if not module.enabled:
                 continue
+
             module = module.instance
-            # active if more than zero lines
-            module_lines = module.lines()
             if g_vim_state > 0:
+                module_lines = module.vim_lines()
                 fname = g_vim_gdb_output + module.label().lower()
                 with open(fname, 'w+') as the_file:
                     output_lines = '\n'.join(module_lines)
                     the_file.write(output_lines)
                     the_file.close()
-                    os.system("ansi2txt < " + fname + " > " + fname + ".txt")
-
-            if len(module_lines) > 0:
-                lines.append(divider(module.label(), True, module_lines))
-                lines.extend(module_lines)
-
-        if len(lines) == 0:
-            lines.append(divider('Error', True))
-            if len(self.modules) == 0:
-                lines.append('No module loaded')
+                continue;
             else:
-                lines.append('No module to display (see `help dashboard`)')
-
-        lines.append(divider(primary=True))
-
-        # print the dashboard
-        output_lines = '\n'.join(lines)
+                # active if more than zero lines
+                module_lines = module.lines()
+                if len(module_lines) > 0:
+                    lines.append(divider(module.label(), True, module_lines))
+                    lines.extend(module_lines)
 
         if g_vim_state > 0:
-            fname = g_vim_gdb_output + "out"
-            with open(g_vim_gdb_output + "out", 'w+') as the_file:
-                the_file.write(output_lines)
-                the_file.close()
-                os.system("ansi2txt < " + fname + " > " + fname + ".txt")
-
             g_vim.remote_send("<ESC>:silent! GdbRefresh " \
-                + g_vim_source_fname + " " + g_vim_source_fname_line + "<Enter>")
-            #g_vim.remote_send("<ESC>:bufdo! silent! checktime <Enter>l<Enter>")
-            #g_vim.remote_send("<ESC>:bufdo! e! <Enter>")
-
-            #pos_next = "-1"
-            #pos_head = vim_client.get_active_buffer()
-            #while pos_head != pos_next:
-            #    g_vim.remote_send("<ESC>:wincmd w<Enter>:e!<Enter>")
-            #    pos_next = vim_client.get_active_buffer()
+                + g_vim_source_fname + " " \
+                + g_vim_source_fname_line \
+                + "<Enter><Enter>")
 
             return ""
         else:
+            if len(lines) == 0:
+                lines.append(divider('Error', True))
+                if len(self.modules) == 0:
+                    lines.append('No module loaded')
+                else:
+                    lines.append('No module to display (see `help dashboard`)')
+
+            lines.append(divider(primary=True))
+
+            # print the dashboard
+            output_lines = '\n'.join(lines)
+
             return output_lines
 
     def display(self, *data):
@@ -455,6 +456,7 @@ class Dashboard(gdb.Command):
             self.instance = module()
             self.doc = self.instance.__doc__ or '(no documentation)'
             self.prefix = 'dashboard {}'.format(self.name)
+
             # add GDB commands
             self.add_main_command(dashboard)
             self.add_style_command(dashboard)
@@ -547,6 +549,8 @@ output (default)."""
                     Dashboard.err('Cannot open "{}"'.format(arg))
             # redisplay the dashboard in the new output
             self.dashboard.redisplay()
+
+    # VimCommand: dashboard vim 1.4 GDB.SOURCE{{{1}}}
 
     class EnabledCommand(gdb.Command):
         """Enable or disable the dashboard [on|off].
@@ -716,10 +720,10 @@ class Source(Dashboard.Module):
     def label(self):
         return 'Source'
 
-    def lines(self):
-        global g_vim_source_fname
-        global g_vim_source_fname_line
+    def default(self):
+        return True
 
+    def lines(self):
         # try to fetch the current line (skip if no line information)
         sal = gdb.selected_frame().find_sal()
         current_line = sal.line
@@ -735,36 +739,40 @@ class Source(Dashboard.Module):
         if file_name != self.file_name or ts and ts > self.ts:
             self.file_name = file_name
             self.ts = ts
+            try:
+                with open(self.file_name) as source:
+                    self.source_lines = source.readlines()
+            except:
+                msg = 'Cannot access "{}"'.format(self.file_name)
+                return [ansi(msg, R.style_error)]
 
-            if g_vim_state == 0:
-                try:
-                    with open(self.file_name) as source:
-                        self.source_lines = source.readlines()
-                except:
-                    msg = 'Cannot access "{}"'.format(self.file_name)
-                    return [ansi(msg, R.style_error)]
+        # compute the line range
+        start = max(current_line - 1 - self.context, 0)
+        end = min(current_line - 1 + self.context, len(self.source_lines))
+        # return the source code listing
+        out = []
+        number_format = '{{:>{}}}'.format(len(str(end)))
+        for number, line in enumerate(self.source_lines[start:end], start + 1):
+            if int(number) == current_line:
+                line_format = ansi(number_format + ' {}', R.style_selected_1)
+            else:
+                line_format = ansi(number_format, R.style_low) + ' {}'
+            out.append(line_format.format(number, line.rstrip('\n')))
+        return out
 
-        if g_vim_state > 0:
-            # Always assume the left window is source code window
-            #g_vim.remote_send("<ESC>:wincmd k<Enter>:wincmd h<Enter>:silent! e! +" \
-            #    + str(current_line) + " " + self.file_name + "<Enter>")
-            g_vim_source_fname = self.file_name
-            g_vim_source_fname_line = str(current_line)
-            return ""
-        else:
-            # compute the line range
-            start = max(current_line - 1 - self.context, 0)
-            end = min(current_line - 1 + self.context, len(self.source_lines))
-            # return the source code listing
-            out = []
-            number_format = '{{:>{}}}'.format(len(str(end)))
-            for number, line in enumerate(self.source_lines[start:end], start + 1):
-                if int(number) == current_line:
-                    line_format = ansi(number_format + ' {}', R.style_selected_1)
-                else:
-                    line_format = ansi(number_format, R.style_low) + ' {}'
-                out.append(line_format.format(number, line.rstrip('\n')))
-            return out
+    def vim_lines(self):
+        global g_vim_source_fname
+        global g_vim_source_fname_line
+
+        # try to fetch the current line (skip if no line information)
+        sal = gdb.selected_frame().find_sal()
+        current_line = sal.line
+        if current_line == 0:
+            return []
+
+        g_vim_source_fname = sal.symtab.fullname()
+        g_vim_source_fname_line = str(current_line)
+        return []
 
     def set_context(self, arg):
         msg = 'expecting a positive integer'
@@ -787,6 +795,9 @@ instructions constituting the current statement are marked, if available."""
     def label(self):
         return 'Assembly'
 
+    def default(self):
+        return True
+
     def lines(self):
         line_info = None
         frame = gdb.selected_frame()  # PC is here
@@ -794,9 +805,6 @@ instructions constituting the current statement are marked, if available."""
         try:
             # try to fetch the function boundaries using the disassemble command
             output = run('disassemble').split('\n')
-            if g_vim_state > 0:
-                return output;
-
             start = int(re.split('[ :]', output[1][3:], 1)[0], 16)
             end = int(re.split('[ :]', output[-3][3:], 1)[0], 16)
             asm = disassemble(start, end_pc=end)
@@ -866,6 +874,12 @@ instructions constituting the current statement are marked, if available."""
             out.append(format_string.format(addr_str, opcodes, func_info, text))
         return out
 
+    def vim_lines(self):
+        try:
+            return run('disassemble').split('\n')
+        except gdb.error:
+            return []
+
     def attributes(self):
         return {
             'context': {
@@ -895,29 +909,14 @@ location, if available. Optionally list the frame arguments and locals too."""
     def label(self):
         return 'Stack'
 
-    def lines(self):
-        return "Stack only vim mode"
+    def default(self):
+        return True
 
+    def lines(self):
         frames = []
         number = 0
         selected_index = 0
         frame = gdb.newest_frame()
-
-        if g_vim_state > 0:
-            lines = []
-            while frame:
-                # fetch frame info
-                selected = (frame == gdb.selected_frame())
-                if selected:
-                    selected_index = number
-
-                lines.append(Stack.get_vim_line(frame))
-
-                # next
-                frame = frame.older()
-                number += 1
-            return lines
-
         while frame:
             frame_lines = []
             # fetch frame info
@@ -967,6 +966,27 @@ location, if available. Optionally list the frame arguments and locals too."""
         if more:
             lines.append('[{}]'.format(ansi('+', R.style_selected_2)))
         return lines
+
+    def vim_lines(self):
+        # fetch backtrace
+        backtrace = []
+        r = re.compile('( in | at )')
+        output = run('backtrace').strip().split('\n')
+        for one_info in output:
+            info_bt = r.split(one_info)
+            if len(info_bt) >= 5:
+                info = '{}: {} {}'.format( \
+                        info_bt[4], \
+                        info_bt[0], info_bt[2])
+                backtrace.append(info)
+            elif len(info_bt) >= 3:
+                info = '{}: {}'.format( \
+                        info_bt[2], \
+                        info_bt[0])
+                backtrace.append(info)
+        return backtrace
+
+        return []
 
     def fetch_frame_info(self, frame, data, prefix):
         prefix = ansi(prefix, R.style_low)
@@ -1055,6 +1075,9 @@ class History(Dashboard.Module):
     def label(self):
         return 'History'
 
+    def default(self):
+        return False
+
     def lines(self):
         out = []
         # fetch last entries
@@ -1063,6 +1086,18 @@ class History(Dashboard.Module):
                 value = to_string(gdb.history(i))
                 value_id = ansi('$${}', R.style_low).format(abs(i))
                 line = '{} = {}'.format(value_id, value)
+                out.append(line)
+            except gdb.error:
+                continue
+        return out
+
+    def vim_lines(self):
+        out = []
+        # fetch last entries
+        for i in range(-self.limit + 1, 1):
+            try:
+                value = to_string(gdb.history(i))
+                line = '{} = {}'.format(abs(i), value)
                 out.append(line)
             except gdb.error:
                 continue
@@ -1118,6 +1153,9 @@ class Memory(Dashboard.Module):
     def label(self):
         return 'Memory'
 
+    def default(self):
+        return False
+
     def lines(self):
         out = []
         inferior = gdb.selected_inferior()
@@ -1129,6 +1167,23 @@ class Memory(Dashboard.Module):
                 msg = 'Cannot access {} bytes starting at {}'
                 msg = msg.format(length, format_address(address))
                 out.append(ansi(msg, R.style_error))
+            out.append(divider())
+        # drop last divider
+        if out:
+            del out[-1]
+        return out
+
+    def vim_lines(self):
+        out = []
+        inferior = gdb.selected_inferior()
+        for address, length in sorted(self.table.items()):
+            try:
+                memory = inferior.read_memory(address, length)
+                out.extend(self.format_memory(address, memory))
+            except gdb.error:
+                msg = 'Cannot access {} bytes starting at {}'
+                msg = msg.format(length, format_address(address))
+                out.append(msg)
             out.append(divider())
         # drop last divider
         if out:
@@ -1187,13 +1242,16 @@ class Registers(Dashboard.Module):
     def label(self):
         return 'Registers'
 
+    def default(self):
+        return True
+
+    def vim_lines(self):
+        return run('info registers').strip().split('\n')
+
     def lines(self):
         # fetch registers status
         registers = []
         output = run('info registers').strip().split('\n')
-        if g_vim_state > 0:
-            return output;
-
         for reg_info in output:
             # fetch register and update the table
             name = reg_info.split(None, 1)[0]
@@ -1241,37 +1299,6 @@ class Registers(Dashboard.Module):
             pass
         return str(value)
 
-class Backtrace(Dashboard.Module):
-    """Show the backtrace."""
-
-    def __init__(self):
-        self.table = {}
-
-    def label(self):
-        return 'Backtrace'
-
-    def lines(self):
-        # fetch backtrace
-        backtrace = []
-        r = re.compile('( in | at )')
-        output = run('backtrace').strip().split('\n')
-        if g_vim_state > 0:
-            for one_info in output:
-                info_bt = r.split(one_info)
-                if len(info_bt) >= 5:
-                    info = '{}: {} {}'.format( \
-                            info_bt[4], \
-                            info_bt[0], info_bt[2])
-                    backtrace.append(info)
-                elif len(info_bt) >= 3:
-                    info = '{}: {}'.format( \
-                            info_bt[2], \
-                            info_bt[0])
-                    backtrace.append(info)
-            return backtrace;
-
-        return "Backtrace only vim mode"
-
 class Breakpoints(Dashboard.Module):
     """Show the breakpoints."""
 
@@ -1281,28 +1308,35 @@ class Breakpoints(Dashboard.Module):
     def label(self):
         return 'Breakpoints'
 
-    def lines(self):
+    def default(self):
+        return True
+
+    def vim_lines(self):
         # fetch breakpoints
         breakpoints = []
         r = re.compile('[ \t\n\r]+')
         output = run('info breakpoints').strip().split('\n')
-        if g_vim_state > 0:
-            for one_info in output:
-                info_break = r.split(one_info)
-                if len(info_break) >= 9:
-                    info = '{}: num={} type={} valid={} {}'.format( \
-                            info_break[8], \
-                            info_break[0], info_break[1], info_break[3], info_break[6])
-                    breakpoints.append(info)
-            return breakpoints;
+        for one_info in output:
+            info_break = r.split(one_info)
+            if len(info_break) >= 9:
+                info = '{}: num={} type={} valid={} {}'.format( \
+                        info_break[8], \
+                        info_break[0], info_break[1], info_break[3], info_break[6])
+                breakpoints.append(info)
+        return breakpoints
 
-        return "Breakpoints only vim mode"
+    def lines(self):
+        # fetch breakpoints
+        return []
 
 class Threads(Dashboard.Module):
     """List the currently available threads."""
 
     def label(self):
         return 'Threads'
+
+    def default(self):
+        return False
 
     def lines(self):
         out = []
@@ -1326,6 +1360,25 @@ class Threads(Dashboard.Module):
         selected_frame.select()
         return out
 
+    def vim_lines(self):
+        out = []
+        selected_thread = gdb.selected_thread()
+        selected_frame = gdb.selected_frame()
+        for thread in gdb.Inferior.threads(gdb.selected_inferior()):
+            is_selected = (thread.ptid == selected_thread.ptid)
+            info = '[{}] id {}'.format(thread.num, thread.ptid[1] or thread.ptid[2])
+            if thread.name:
+                info += ' name {}'.format(thread.name)
+            # switch thread to fetch frame info
+            thread.switch()
+            frame = gdb.newest_frame()
+            info += ' ' + Stack.get_pc_line(frame, style)
+            out.append(info)
+        # restore thread and frame
+        selected_thread.switch()
+        selected_frame.select()
+        return out
+
 class Expressions(Dashboard.Module):
     """Watch user expressions."""
 
@@ -1336,6 +1389,9 @@ class Expressions(Dashboard.Module):
     def label(self):
         return 'Expressions'
 
+    def default(self):
+        return False
+
     def lines(self):
         out = []
         for number, expression in sorted(self.table.items()):
@@ -1345,6 +1401,16 @@ class Expressions(Dashboard.Module):
                 value = ansi(e, R.style_error)
             number = ansi(number, R.style_selected_2)
             expression = ansi(expression, R.style_low)
+            out.append('[{}] {} = {}'.format(number, expression, value))
+        return out
+
+    def vim_lines(self):
+        out = []
+        for number, expression in sorted(self.table.items()):
+            try:
+                value = to_string(gdb.parse_and_eval(expression))
+            except gdb.error as e:
+                value = e
             out.append('[{}] {} = {}'.format(number, expression, value))
         return out
 
