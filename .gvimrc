@@ -574,6 +574,10 @@ let g:sneak#s_next = 1
 
 " VimL Debug{{{1
   let g:decho_enable = 0
+  function! Decho(...)
+    return
+  endfunction
+
 " }}}
 
 " Python-mode{{{1
