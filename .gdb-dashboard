@@ -1263,6 +1263,11 @@ class Backtrace(Dashboard.Module):
                             info_bt[4], \
                             info_bt[0], info_bt[2])
                     backtrace.append(info)
+                elif len(info_bt) >= 3:
+                    info = '{}: {}'.format( \
+                            info_bt[2], \
+                            info_bt[0])
+                    backtrace.append(info)
             return backtrace;
 
         return "Backtrace only vim mode"
