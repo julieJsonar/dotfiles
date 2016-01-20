@@ -896,6 +896,8 @@ location, if available. Optionally list the frame arguments and locals too."""
         return 'Stack'
 
     def lines(self):
+        return "Stack only vim mode"
+
         frames = []
         number = 0
         selected_index = 0
@@ -1001,6 +1003,7 @@ location, if available. Optionally list the frame arguments and locals too."""
 
     @staticmethod
     def get_vim_line(frame):
+        info = ""
         sal = frame.find_sal()
         if sal.symtab:
             info = '{}:{}:'.format(sal.symtab.filename, str(sal.line))
@@ -1250,9 +1253,17 @@ class Backtrace(Dashboard.Module):
     def lines(self):
         # fetch backtrace
         backtrace = []
+        r = re.compile('( in | at )')
         output = run('backtrace').strip().split('\n')
         if g_vim_state > 0:
-            return output;
+            for one_info in output:
+                info_bt = r.split(one_info)
+                if len(info_bt) >= 5:
+                    info = '{}: {} {}'.format( \
+                            info_bt[4], \
+                            info_bt[0], info_bt[2])
+                    backtrace.append(info)
+            return backtrace;
 
         return "Backtrace only vim mode"
 
@@ -1266,7 +1277,7 @@ class Breakpoints(Dashboard.Module):
         return 'Breakpoints'
 
     def lines(self):
-        # fetch backtrace
+        # fetch breakpoints
         breakpoints = []
         r = re.compile('[ \t\n\r]+')
         output = run('info breakpoints').strip().split('\n')
@@ -1274,7 +1285,9 @@ class Breakpoints(Dashboard.Module):
             for one_info in output:
                 info_break = r.split(one_info)
                 if len(info_break) >= 9:
-                    info = '{}: num={} type={} valid={} {}'.format(info_break[8], info_break[0], info_break[1], info_break[3], info_break[6])
+                    info = '{}: num={} type={} valid={} {}'.format( \
+                            info_break[8], \
+                            info_break[0], info_break[1], info_break[3], info_break[6])
                     breakpoints.append(info)
             return breakpoints;
 
