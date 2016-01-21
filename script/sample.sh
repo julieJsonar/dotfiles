@@ -1,89 +1,78 @@
 #!/bin/bash
-#   sample.sh -- Demonstrate how testing feature can be implemented in program
-#
-#       Copyright (C) 2009 Jari Aalto <jari.aalto@cante.net>
-#
-#   License
-#
-#       This program is free software; you can redistribute it and/or
-#       modify it under the terms of the GNU General Public License as
-#       published by the Free Software Foundation; either version 2 of
-#       the License, or (at your option) any later version.
-#
-#       This program is distributed in the hope that it will be useful, but
-#       WITHOUT ANY WARRANTY; without even the implied warranty of
-#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-#       General Public License for more details.
-#
-#       You should have received a copy of the GNU General Public License
-#       along with program. If not, write to the Free Software
-#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-#       02110-1301, USA.
-#
-#       Visit <http://www.gnu.org/copyleft/gpl.html>
-#
-#   Description
-#
-#       To enable debugging and testing capabilities in shell
-#       scripts, add function Run() and use it to proxy all commands.
-#
-#   Notes
-#
-#       The functions in the program are "defined before used". It is only
-#       possible to call a function (= command) if it exists (= is defined).
-#
-#       There is explicit Main() where program starts. This follows
-#       the convention of good programming style. By putting the code
-#       inside functions, it also makes one think about modularity and
-#       reusable components.
-#
-#   Run Sample:
-#         -d      Debug. Before command is run, show it.
-#         -t      Dry-run test mode. Show commands, do not really execute.
-#      $ bash sample.sh -t
-#
-#      test-demo.sh -- Demonstrate how testing feature can be implemented in program
-#      # DEMO: a command
-#      ls -l
-#
-#      # DEMO: a command with pipe
-#      ls -l | sort
-#
-#      # DEMO: a command with pipe and redirection
-#      ls -l | sort > /tmp/jaalto.1396-ls.lst
-#
-#      # DEMO: a command with pipe and redirection using quotes
-#      ls -l | sort > "/tmp/jaalto.1396-ls.lst"
-#
-#      # DEMO: a command and subshell call.
-#      echo ls -l
-####################################################################################
+# header {{{1
+#   sample.sh -- script template
+NOTE="a script template"
+_DEBUG="off"
+verbose=0
+dryrun="off"
 
-DESC="$0 -- Demonstrate how testing feature can be implemented in program"
-TEMPDIR=${TEMPDIR:-/tmp}
-TEMPPATH=$TEMPDIR/${LOGNAME:-foo}.$$
-
-#   This variable is best to be undefined, not TEST="" or anything.
-unset TEST
-
+# functions {{{1
+# help {{{2
 Help ()
 {
-    echo "\
-$DESC
+cat << EOF
+Usage: ${0##*/} [-hvdn] [-m <message>]
 
-Available options:
+Options:
+  -h  help
+  -v  verbose
+  -d  debug
+  -n  dry-run
 
--d      Debug. Before command is run, show it.
--t      Test mode. Show commands, do not really execute.
+Samples:
+  ./sample.sh -dn -m "hello"
 
-The -t option takes precedence over -d option."
-
-    exit ${1:-0}
+EOF
+exit ${1:-0}
 }
+
+# basic function {{{2
+GetOpts ()
+{
+    if [ $# -eq 0 ]; then
+        Help >&2
+    fi
+
+    # Reset is necessary if getopts was used previously in the script.
+    OPTIND=1
+    local opt
+    while getopts "hvdnm:" opt; do
+    case "$opt" in
+    h)
+        Help
+        ;;
+    v)  verbose=$OPTARG
+        ;;
+    d)  _DEBUG="on"
+        ;;
+    n)  dryrun="on"
+        ;;
+    m)  usermsg=$OPTARG
+        ;;
+    \?)
+        Help >&2
+        ;;
+    *)
+        Help >&2
+        ;;
+    esac
+    done
+    # Shift off the options and optional
+    shift "$((OPTIND-1))"
+
+    # Check options
+    if [ -z "${usermsg}" ] || [ -z "${verbose}" ]; then
+        Help
+    fi
+}
+
+DEBUG() { [ "$_DEBUG" == "on" ] && $@; }
+Echo () { echo "# $(basename $0): $*"; }
+Die()   { echo $1; exit 1; }
 
 Run ()
 {
-    if [ "$TEST" ]; then
+    if [ "$dryrun" == "on" ]; then
         echo "$*"
         return 0
     fi
@@ -91,60 +80,46 @@ Run ()
     eval "$@"
 }
 
-Echo ()
-{
-    echo "# DEMO: $*"
-}
 
-Demo ()
+# user function {{{2
+Demo()
 {
-    Echo "a command"
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+
+    Run "ls"
     Run ls -l
+    LogicAndOr
 
-    Echo "a command with pipe"
-    Run "ls -l | sort"
-
-    Echo "a command with pipe and redirection"
-    Run "ls -l | sort > $TEMPPATH-ls.lst"
-
-    Echo "a command with pipe and redirection using quotes"
-    Run "ls -l | sort > \"$TEMPPATH-ls.lst\""
-
-    #   You need to put Run() call also into subshell, otherwise
-    #   it would be run "for real" and defeat the test mode.
-
-    Echo "a command and subshell call."
-    Run "echo $( Run ls -l )"
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
 LogicAndOr ()
 {
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+
+    #cat /etc/shadow 2>/dev/null || Echo "Failed to open file"
+    #cat /etc/shadow 2>/dev/null || Die "Failed to open file"
+
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
+
+# Main: user script {{{1
 Main ()
 {
-    echo "$DESC"
-
-    OPTIND=1
-    local arg
-
-    while getopts "hdt" arg "$@"
-    do
-        case "$arg" in
-            h)  Help
-                ;;
-            t)  TEST="test"
-                ;;
-        esac
-    done
-
-    #   Remove found options from command line arguments.
-    shift $(($OPTIND - 1))
-
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+    printf "$NOTE\n"
     #   Run the demonstration
     Demo
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
+# footer {{{1
+printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+GetOpts "$@"
+DEBUG set -vx
 Main "$@"
-
+DEBUG set +vx
+printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]}{{{${#FUNCNAME[@]}\n"
 # End of file
+

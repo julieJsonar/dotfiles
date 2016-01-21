@@ -55,6 +55,20 @@ alias tail='_mytail'
 ```
 ## script
 
+### sample: script template
+
+Can output like this in vim-plugin `VOom`:
+```Code
+= |###./sample.sh:0: main
+  . |###./sample.sh:168: Main
+  . . |###./sample.sh:163: Demo
+  . . . |###./sample.sh:125: LogicAndOr
+  . . . |###./sample.sh:125: LogicAndOr
+  . . |###./sample.sh:163: Demo
+  . |###./sample.sh:168: Main
+  |###./sample.sh:0: main
+```
+
 ### bashdb: shell script debugger
 
 To use this script you simply prepend the call to the script you want to test with `bashdb`.
@@ -92,9 +106,9 @@ On Fedora based distros:
   - If sometimes the plugin invalid (Examp: update a plugin just make the `moonrise` theme disappear), we can install directly from:
     * [update-site](https://raw.github.com/guari/eclipse-ui-theme/master/com.github.eclipseuitheme.themes.updatesite)
   - If install succ, please replaced it by our modified version.
-  ```Shell
-  $ cd eclipse-moonrise-theme
-  $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
-  $ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
-  ```
   - Please choose the moonrise, not moonrise(standalone)
+```Shell
+$ cd eclipse-moonrise-theme
+$ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
+$ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
+```
