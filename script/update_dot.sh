@@ -15,6 +15,7 @@ ignore_files=( "$(basename $0)" '.' '..' \
     '.git' 'README.md' \
     'plugin' \
     '.zsh_history' \
+    '.gvimrc' \
 )
 
 # functions {{{1
@@ -123,7 +124,8 @@ Main ()
 
     old_dir=$(pwd)
     cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
-    echo "Current dir: $old_dir, change to $(pwd)"
+    echo "Current dir: $old_dir"
+    echo "Change to $(pwd)"
 
     if [ $action == 'pull' ]; then
         Run "git pull --all" || Die "Git pull failed!"
@@ -138,27 +140,21 @@ Main ()
                     true
                 else
                     Run "rm -fr $home_f"
+                    Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
                 fi
             fi
 
-            Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
         done
 
-        Run "awk -f $phy_dotfiles_dir/zsh_hist.awk $HOME/.zsh_history $phy_dotfiles_dir/.zsh_history > $HOME/.zsh_history"
-        ##	test file exists cannot use '~' to replace $HOME, and should have double-quote
-        #gvimrc="$HOME/.gvimrc"
-        #nvimrc="$HOME/.nvimrc"
-        #nvim="$HOME/.nvim"
-        #Run "rm -f $gvimrc"
-        #Run "rm -f $nvimrc"
-        #Run "rm -f $nvim"
+        # test file exists cannot use '~' to replace $HOME, and should have double-quote
+        Run "awk -f $phy_dotfiles_dir/script/zsh_hist.awk $HOME/.zsh_history $phy_dotfiles_dir/.zsh_history > $HOME/.zsh_history"
 
-        #if [ ! -f "$gvimrc" ] && [ ! -L "$gvimrc" ]
-        #    ;
-        #then
-        #    Run "ln -s ~/.vimrc $gvimrc"
-        #fi
-        #Run "awk -f zsh_hist.awk ~/.zsh_history .zsh_history > ~/.zsh_history"
+        gvimrc="$HOME/.gvimrc"
+        Run "rm -f $gvimrc"
+
+        if [ ! -f "$gvimrc" ] && [ ! -L "$gvimrc" ]; then
+            Run "ln -s ~/.vimrc $gvimrc"
+        fi
 
         ## neovim
         ##Run "ln -s ~/.vim ~/.config/nvim"
