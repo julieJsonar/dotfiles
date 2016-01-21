@@ -1,11 +1,28 @@
 #!/bin/bash
+declare -r DIR=$(cd "$(dirname "$0")" && pwd)
+source $DIR/lib_common.sh
+
 # header {{{1
 #   sample.sh -- script template
 NOTE="synce all config change"
 _DEBUG="off"
 verbose=0
 dryrun="off"
-usermsg="auto update"
+
+action="none"
+commitmsg="commit message"
+
+old_dir=$(pwd)
+cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
+
+git_repos=( \
+  "$phy_dotfiles_dir" \
+  "$HOME/.vim/bundle/vim-dispatch" \
+  "$HOME/.vim/bundle/vimux-script" \
+  "$HOME/.vim/bundle/c-utils.vim" \
+  "$HOME/.vim/bundle/vimux-script" \
+  "$HOME/log" \
+)
 
 # functions {{{1
 # help {{{2
@@ -52,7 +69,7 @@ GetOpts ()
         ;;
     a)  action=$OPTARG
         ;;
-    m)  usermsg=$OPTARG
+    m)  commitmsg=$OPTARG
         ;;
     \?)
         Help >&2
@@ -66,7 +83,7 @@ GetOpts ()
     shift "$((OPTIND-1))"
 
     # Check options
-    if [ -z "${usermsg}" ] || [ -z "${action}" ] \
+    if [ -z "${commitmsg}" ] || [ -z "${action}" ] \
         || [ "${action}" != "push" -a  "${action}" != "pull" ] ; then
         Help
     fi
@@ -78,61 +95,42 @@ Die()   { echo $1; exit 1; }
 
 Run ()
 {
-    if [ "$dryrun" == "on" ]; then
-        echo "$*"
+    if [ "$dryrun" == "off" ]; then
+        eval "$@"
+    else
+        echo "Will $*"
         return 0
     fi
-
-    eval "$@"
 }
 
 # Main: user script {{{1
 Main ()
 {
     printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
-    printf "$NOTE: $dryrun $action $usermsg\n"
+    printf "$NOTE: $dryrun $action $commitmsg\n"
 
-	if [ "$action" == "push" ]; then
-		Run "cd ~/.vim/bundle/vim-dispatch"
-		Run "git commit -am \"$usermsg\""
-		Run "git push origin master"
-
-		Run cd ~/.vim/bundle/vimux-script
-		Run "git commit -am \"$usermsg\""
-		Run "git push origin master"
-
-		Run cd ~/.vim/bundle/c-utils.vim
-		Run "git commit -am \"$usermsg\""
-		Run "git push origin master"
-
-		Run cd ~/log
-		Run "git commit -am \"$usermsg\""
-		Run "git push origin master"
-
-		Run cd ~/dotfiles
-		Run "./update.sh -a push -m \"$usermsg\""
-
-	elif [ "$action" == "pull" ]; then
-		Run "cd ~/.vim/bundle/vim-dispatch"
-		Run "git pull --all"
-		Run "cd ~/.vim/bundle/vimux-script"
-		Run "git pull --all"
-		Run "cd ~/.vim/bundle/c-utils.vim"
-		Run "git pull --all"
-		Run "cd ~/log"
-		Run "git pull --all"
-		Run "cd ~/dotfiles"
-		Run "./update.sh -a pull"
-	fi
+    for git_dir in "${git_repos[@]}"
+    do
+        if [ "$action" == "pull" ]; then
+            Run "cd $git_dir"
+            Run "git pull --all" || Die "Git pull $git_dir failed!"
+        elif [ "$action" == "push" ]; then
+            Run "cd $git_dir"
+            Run "git commit -am \"$commitmsg\"" || Die "Git commit $git_dir failed!"
+            Run "git push origin master" || Die "Git push $git_dir failed!"
+        fi
+    done
 
     printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
 # footer {{{1
+old_dir=$(pwd)
 printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx
 Main "$@"
 DEBUG set +vx
 printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]}{{{${#FUNCNAME[@]}\n"
+cd $old_dir
 # End of file

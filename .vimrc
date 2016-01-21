@@ -16,6 +16,8 @@
 "  g; <or> g,      navigate changelist
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
+" :set ts=4 sts=4 noet   indent tab
+" :set ts=4 sts=4 et     indent space
 "
 " Howtos: {{{2}}}
 " =======
