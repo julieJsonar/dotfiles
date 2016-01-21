@@ -20,7 +20,7 @@ Options:
   -n  dry-run
 
 Samples:
-  ./sample.sh -dn -m "hello"
+  ./${0##*/} -dn -m "hello"
 
 EOF
 exit ${1:-0}

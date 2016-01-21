@@ -1,88 +1,138 @@
 #!/bin/bash
-function show_help(){
+# header {{{1
+#   sample.sh -- script template
+NOTE="synce all config change"
+_DEBUG="off"
+verbose=0
+dryrun="off"
+usermsg="auto update"
+
+# functions {{{1
+# help {{{2
+Help ()
+{
 cat << EOF
-Examples:
-$ ./sync.sh -a pull
-$ ./sync.sh -a push
+Usage: ${0##*/} [-hvdn] [-a <action>] [-m <message>]
 
-Do stuff like git pull|push
+Options:
+  -h  help
+  -v  verbose
+  -d  debug
+  -n  dry-run
+  -*a [push|pull]
+  -*m "some note"
 
-    -a ACTION   pull action
-                push action
+Samples:
+  ${0##*/} -na pull -m "auto update"
+
 EOF
+exit ${1:-0}
 }
 
-# Initialize our own variables:
-self=`basename $0`
-action_mode=""
-verbose=0
-dryrun="run"
-commit_msg="script auto commit"
+# basic function {{{2
+GetOpts ()
+{
+    if [ $# -eq 0 ]; then
+        Help >&2
+    fi
 
-if [ $# -eq 0 ]; then
-	show_help >&2
-	exit 1
-fi
-
-OPTIND=1 # Reset is necessary if getopts was used previously in the script. It is a good idea to make this local in a function.
-while getopts "hvda:m:" opt; do
+    # Reset is necessary if getopts was used previously in the script.
+    OPTIND=1
+    local opt
+    while getopts "hvdna:m:" opt; do
     case "$opt" in
-        h)
-            show_help
-            exit 0
-            ;;
-        v)  verbose=1
-            ;;
-        a)  action_mode=$OPTARG
-            ;;
-        d)  dryrun="dryrun"
-            ;;
-        m)  commit_msg=$OPTARG
-            ;;
-        '?')
-            show_help >&2
-            exit 1
-            ;;
+    h)
+        Help
+        ;;
+    v)  verbose=$OPTARG
+        ;;
+    d)  _DEBUG="on"
+        ;;
+    n)  dryrun="on"
+        ;;
+    a)  action=$OPTARG
+        ;;
+    m)  usermsg=$OPTARG
+        ;;
+    \?)
+        Help >&2
+        ;;
+    *)
+        Help >&2
+        ;;
     esac
-done
-shift "$((OPTIND-1))" # Shift off the options and optional --.
+    done
+    # Shift off the options and optional
+    shift "$((OPTIND-1))"
 
-# START
-if [ $verbose -eq '1' ]; then
-	set -vx
-else
-	set +vx
-fi
+    # Check options
+    if [ -z "${usermsg}" ] || [ -z "${action}" ] \
+        || [ "${action}" != "push" -a  "${action}" != "pull" ] ; then
+        Help
+    fi
+}
 
-if [ $action_mode == 'push' ]; then
-	cd ~/.vim/bundle/vim-dispatch
-	git add .
-	git commit -am \"$commit_msg\" && git push origin master
+DEBUG() { [ "$_DEBUG" == "on" ] && $@; }
+Echo () { echo "# $(basename $0): $*"; }
+Die()   { echo $1; exit 1; }
 
-	cd ~/.vim/bundle/vimux-script
-	git add .
-	git commit -am \"$commit_msg\" && git push origin master
+Run ()
+{
+    if [ "$dryrun" == "on" ]; then
+        echo "$*"
+        return 0
+    fi
 
-	cd ~/.vim/bundle/c-utils.vim
-	git add .
-	git commit -am \"$commit_msg\" && git push origin master
+    eval "$@"
+}
 
-	cd ~/log
-	git add .
-	git commit -am \"$commit_msg\" && git push origin master
+# Main: user script {{{1
+Main ()
+{
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+    printf "$NOTE: $dryrun $action $usermsg\n"
 
-	cd ~/dotfiles
-	./update.sh -a push -m \"$commit_msg\"
+	if [ "$action" == "push" ]; then
+		Run "cd ~/.vim/bundle/vim-dispatch"
+		Run "git commit -am \"$usermsg\""
+		Run "git push origin master"
 
-elif [ $action_mode == 'pull' ]; then
-	cd ~/.vim/bundle/vim-dispatch
-	git pull --all
-	cd ~/.vim/bundle/vimux-script
-	git pull --all
-	cd ~/.vim/bundle/c-utils.vim
-	git pull --all
-	cd ~/log
-	git pull --all
-	cd ~/dotfiles
-	./update.sh -a pull
-fi
+		Run cd ~/.vim/bundle/vimux-script
+		Run "git commit -am \"$usermsg\""
+		Run "git push origin master"
+
+		Run cd ~/.vim/bundle/c-utils.vim
+		Run "git commit -am \"$usermsg\""
+		Run "git push origin master"
+
+		Run cd ~/log
+		Run "git commit -am \"$usermsg\""
+		Run "git push origin master"
+
+		Run cd ~/dotfiles
+		Run "./update.sh -a push -m \"$usermsg\""
+
+	elif [ "$action" == "pull" ]; then
+		Run "cd ~/.vim/bundle/vim-dispatch"
+		Run "git pull --all"
+		Run "cd ~/.vim/bundle/vimux-script"
+		Run "git pull --all"
+		Run "cd ~/.vim/bundle/c-utils.vim"
+		Run "git pull --all"
+		Run "cd ~/log"
+		Run "git pull --all"
+		Run "cd ~/dotfiles"
+		Run "./update.sh -a pull"
+	fi
+
+    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+}
+
+# footer {{{1
+printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+GetOpts "$@"
+DEBUG set -vx
+Main "$@"
+DEBUG set +vx
+printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]}{{{${#FUNCNAME[@]}\n"
+# End of file
