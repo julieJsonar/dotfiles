@@ -1,8 +1,8 @@
-# dotfiles
+## dotfiles
 
 linux programmer's config files: zsh, tmux, vim, ...
 
-# Setup
+## Setup
 
 If ubuntu type OS: ubuntu, linux mint, ...
 ```Shell
@@ -17,8 +17,8 @@ Rollback
   git reset --hard <old-commit-id>  
   git push -f origin branch  
 ```
-# Tools
-## vim server
+## Tools
+### vim server
 ```Shell
 <terminal-1> $ vim --servername foo                           <<< start vim-server named 'foo'
 <terminal-2> $ vim --servername foo --remote-silent bar.hs    <<< open current dir's file 'bar.hs' but display on the vim-server
@@ -26,7 +26,7 @@ Rollback
 <terminal-4> $ vim --servername foo --remote-send '<Esc>:mksession ~/sessionFile.vim<CR>:wqa<CR>'    <<< save session and used by another vim-server
 <terminal-5> $ vim --servername bar -S ~/sessionFile.vim
 ```
-## gdb-dashboard
+### gdb-dashboard
 https://github.com/cyrus-and/gdb-dashboard
 
 using gdb's python interface, if use ubuntu 14.04, the gdb using python3 interface, so if some python module need, please `sudo pip3 install <module>`
@@ -53,20 +53,48 @@ function _mytail()
 };
 alias tail='_mytail'
 ```
+## script
 
-## eclipse dark theme
+### bashdb: shell script debugger
 
-eclipse-moonrise-theme  
-from https://github.com/guari/eclipse-ui-theme  
-
-Modify the active view should click two times: 1st focus, 2nd click item.  
-If plugin invalid, we can install by update:  
-  https://raw.github.com/guari/eclipse-ui-theme/master/com.github.eclipseuitheme.themes.updatesite  
-Then replaced by our modified version.
-
-Please choose the moonrise, not moonrise(standalone)
+To use this script you simply prepend the call to the script you want to test with `bashdb`.
 ```Shell
-$ cd eclipse-moonrise-theme
-$ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
-$ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
+$ ./bashdb header.sh . .
+# $1 - The name of the original script we are debugging
+# $2 - The directory where temporary files are stored
+# $3 - The directory where bashdb.pre and bashdb.fns are stored
 ```
+bashdb will read off the first parameter as the script you want to debug and forward any other parameters to that script when it calls it. The script will then return a prompt for you to enter commands and step through debugging.
+
+You can enter h or ? at the prompt for a full listing of available commands.
+
+This is an extension of an example from the book "Learning The Bash Shell" by O'Reilly
+
+### ShellCheck: a static analysis tool for shell scripts
+
+- [code](https://github.com/koalaman/shellcheck)
+- [doc](http://www.shellcheck.net)
+
+On Debian based distros:
+`apt-get install shellcheck`
+
+On Fedora based distros:
+`dnf install ShellCheck`
+
+### bsfl: shell script library
+
+## plugin
+
+### eclipse dark theme
+
+[eclipse-moonrise-theme](https://github.com/guari/eclipse-ui-theme)
+  - Modify the active view should click two times: 1st focus, 2nd click item.  
+  - If sometimes the plugin invalid (Examp: update a plugin just make the `moonrise` theme disappear), we can install directly from:
+    * [update-site](https://raw.github.com/guari/eclipse-ui-theme/master/com.github.eclipseuitheme.themes.updatesite)
+  - If install succ, please replaced it by our modified version.
+  ```Shell
+  $ cd eclipse-moonrise-theme
+  $ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
+  $ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
+  ```
+  - Please choose the moonrise, not moonrise(standalone)
