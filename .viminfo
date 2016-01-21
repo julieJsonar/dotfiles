@@ -18,9 +18,9 @@ $
 
 # Command Line History (newest to oldest):
 :qa
+:w
 :Decho "hello"
 :let decho_enable=1
-:w
 :qa!
 :e
 :e /tmp/gdb/capture
@@ -592,18 +592,21 @@ $
 'G  32  27  ~/.Xxterm
 'M  373  35  /data/workref/log/log.implicit-proxy
 'P  525  26  ~/.vimrc
-'0  94  2  ~/.vim/bundle/Decho/plugin/Decho.vim
-'1  3  4  /data/workref/rtmp/fos52-701-git/README
-'2  1327  65  /usr/share/vim/vim74/doc/starting.txt
-'3  69  36  ~/.vim/bundle/Decho/plugin/Decho.vim
-'4  523  19  ~/.vimrc
-'5  525  55  ~/.vimrc
-'6  159  0  ~/.vimrc
-'7  30  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-'8  123  18  /usr/share/vim/vim74/doc/quickfix.txt
-'9  1  0  **/dfa.c
+'0  19  39  ~/dotfiles/init_ubuntu.sh
+'1  1  0  /tmp/log.tel
+'2  94  2  ~/.vim/bundle/Decho/plugin/Decho.vim
+'3  3  4  /data/workref/rtmp/fos52-701-git/README
+'4  1327  65  /usr/share/vim/vim74/doc/starting.txt
+'5  69  36  ~/.vim/bundle/Decho/plugin/Decho.vim
+'6  523  19  ~/.vimrc
+'7  525  55  ~/.vimrc
+'8  159  0  ~/.vimrc
+'9  30  0  /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
 
 # Jumplist (newest first):
+-'  19  39  ~/dotfiles/init_ubuntu.sh
+-'  1  0  ~/dotfiles/init_ubuntu.sh
+-'  1  0  /tmp/log.tel
 -'  94  2  ~/.vim/bundle/Decho/plugin/Decho.vim
 -'  114  2  ~/.vim/bundle/Decho/plugin/Decho.vim
 -'  3  4  /data/workref/rtmp/fos52-701-git/README
@@ -700,10 +703,18 @@ $
 -'  10616  27  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_http_cache.c
 -'  566  10  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp_amf.c
 -'  41  4  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
--'  27  12  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
--'  1  0  /data/workref/rtmp/fos52-701-git/daemon/wad/wad_rtmp.c
 
 # History of marks within files (newest to oldest):
+
+> ~/dotfiles/init_ubuntu.sh
+	"	19	39
+	^	19	40
+	.	19	39
+	+	20	35
+	+	19	39
+
+> /tmp/log.tel
+	"	1	0
 
 > ~/.vim/bundle/Decho/plugin/Decho.vim
 	"	94	2
@@ -1029,11 +1040,3 @@ $
 
 > /usr/share/vim/vim74/doc/repeat.txt
 	"	510	0
-
-> /data/workref/rtmp/fos52-701-git/daemon/wad/[Vundle] Installer
-	"	30	0
-	.	1	0
-	+	1	0
-
-> /data/work/bug-urlfilter/5.4-100D/daemon/wad/acsm.c
-	"	1000	3
