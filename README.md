@@ -16,12 +16,15 @@ $ ./update_dot.sh -a pull
 ### Apply dotfiles
 - All your old dotfiles will backup to `$HOME/dotfiles_bak` if it's not softlink
 - Create softlink of all dotfile into your `$HOME`, includes: `config for vim, tmux, zshrc, xterm, git, ag, ...`
+  * script, include the update_dot.sh, update_all.sh, init_ubuntu.sh, ...
+  * the config files
+
 ```Shell
 $ cd ~/dotfiles/script
 $ ./update_dot.sh -a pull
 ```
 
-#### Setup linux env for ubuntu type OS: ubuntu, linux mint, ...
+#### [options] If want setup develop env for ubuntu type OS: ubuntu, linux mint, ...
 - install gcc build env, cscope, ctags, ...
 - install tools: git, svn, vim-gnome, tftp, samba, ...
 - config tftp-service, samba service
@@ -123,9 +126,9 @@ Can output like this in vim-plugin `VOom`:
 To use this script you simply prepend the call to the script you want to test with `bashdb`.
 ```Shell
 $ ./bashdb header.sh . .
-# $1 - The name of the original script we are debugging
-# $2 - The directory where temporary files are stored
-# $3 - The directory where bashdb.pre and bashdb.fns are stored
+ $1 - The name of the original script we are debugging
+ $2 - The directory where temporary files are stored
+ $3 - The directory where bashdb.pre and bashdb.fns are stored
 ```
 bashdb will read off the first parameter as the script you want to debug and forward any other parameters to that script when it calls it. The script will then return a prompt for you to enter commands and step through debugging.
 
