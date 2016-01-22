@@ -117,8 +117,7 @@ Main ()
             Run "git pull --all" || Die "Git pull $git_dir failed!"
         elif [ "$action" == "push" ]; then
             Run "cd $git_dir"
-            Run "git commit -am \"$commitmsg\"" || Die "Git commit $git_dir failed!"
-            Run "git push origin master" || Die "Git push $git_dir failed!"
+            Run "git commit -am \"$commitmsg\"" && Run "git push origin master"
         fi
     done
 
