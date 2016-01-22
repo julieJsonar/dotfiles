@@ -527,13 +527,13 @@ let g:sneak#s_next = 1
   "cmap w!! w !sudo tee % >/dev/null
 
   map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
-  nmap <leader>vv :<C-\>e utilgrep#Grep(1,0, "daemon/wad") <CR><CR>
-  vmap <leader>vv :<C-\>e utilgrep#Grep(1,1, "daemon/wad") <CR><CR>
+  nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
+  vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
   map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
   "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
   map  <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
-  nmap <leader>;v :<C-\>e utilgrep#Grep(1,0, "daemon/wad") <CR><CR>
-  vmap <leader>;v :<C-\>e utilgrep#Grep(1,1, "daemon/wad") <CR><CR>
+  nmap <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR>
+  vmap <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR>
 
   "bookmark
   nmap <leader>mo :BookmarkLoad Default
