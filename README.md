@@ -2,19 +2,36 @@
 
 linux programmer's config files: zsh, tmux, vim, script, ...
 
-## Setup
+## Install
 
-### First time: setup linux env only once
-If ubuntu type OS: ubuntu, linux mint, ...
+### First time, download dotfiles
 ```Shell
 $ cd ~
 $ apt-get install git
 $ git clone https://github.com/huawenyu/dotfiles.git
 $ cd dotfiles/script
 $ ./update_dot.sh -a pull
+```
+
+### Apply dotfiles: please back up your dotfile first
+- 
+
+```Shell
+$ cd ~/dotfiles/script
+$ ./update_dot.sh -a pull
+```
+
+#### Setup linux env for ubuntu type OS: ubuntu, linux mint, ...
+- install gcc build env, cscope, ctags, ...
+- install tools: git, svn, vim-gnome, tftp, samba, ...
+- config tftp-service, samba service
+
+```Shell
+$ cd ~/dotfiles/script
 $ ./init_ubuntu.sh
 ```
-### Routine workflow
+
+## Usage
 
 Commit & Push data to github
 
