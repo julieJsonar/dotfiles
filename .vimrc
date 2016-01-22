@@ -1,74 +1,10 @@
-"======================================================================
-" Installation & Helper {{{1}}}
-" ============================
-" 1. Vundle.vim
-"    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
-"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"    $ vi -c 'PluginInstall'
-"
-" Usage: {{{2}}}
-" ======
-" <leader>         ";"
-" <leader>;*       my shortkey
-"
-"  gd <or> D       goto declare <or> global declare
-"  [I              list all occurence
-"  g; <or> g,      navigate changelist
-" :g/regex/t$      copy match lines append to tail
-" s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
-" :set ts=4 sts=4 noet   indent tab
-" :set ts=4 sts=4 et     indent space
-"
-" Howtos: {{{2}}}
-" =======
-"       :R !ls -l           # grab shell cmd output into new tab/buffer
-"       :new|0read !ls -l  # grab cmd output into new window
-"       :cfile log.marks   # view as quickfix
-"       :mks!              # Save to Session.vim
-"   Vimgrep:               # Also lvimgrep, short as: vim, lvim
-"       samples
-"       :vim /some/gj **/*.c **/*.h
-"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
-"
-"       /^joe.*fred.*bill/ # AND
-"       /fred\|joe/        # OR
-"       /.*fred\&.*joe/    # AND no-order
-"       /\<fred\>/         # whole word
-"       /begin\_.*end/     # search over possible multiple lines
-"       /fred\_s*joe/      # any whitespace including newline [C]
-"       /^\n\{3}/          # find 3 empty lines
-"
-"   Grep:                  # grepprg=grep, using outer grep tool
-"       samples
-"       :grep -Iinr 'string' --include='*.[ch]' dirs
-"       :grep -w 'word1\|word2' files
-"       :grep '[a-z]\{5\}' files
-"       :grep '^POST /\(idle\|send\)/CzHmd' log
-"       ‘\w’ matches a character within a word
-"       ‘\W’ matches a character which is not within a word
-"       ‘\<’ matches the beginning of a word
-"       ‘\>’ matches the end of a word
-"       ‘\b’ matches a word boundary
-"       ‘\B’ matches characters which are not a word boundary
-"       ‘\`’ matches the beginning of the whole input
-"       ‘\'’ matches the end of the whole input
-"
-" Tools: {{{2}}}
-" ======
-"   DrawIt:                # use \di to start (\ds to stop)
-"   W3m:
-"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
-"       <backspace>        # Back page
-"       <enter>            # Open link under the cursor
-"
-" Self: {{{2}}}
-" =====
-"   Function:
-"       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
-"   Batchfiles:
-"       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
-"   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
-"======================================================================
+" VimL Debug{{{1
+  let g:decho_enable = 0
+  function! Decho(...)
+    return
+  endfunction
+" }}}
+
 if has("unix")
     let s:uname = system("uname")
     let g:python_host_prog='/usr/bin/python'
@@ -575,14 +511,6 @@ let g:sneak#s_next = 1
 
 "}
 
-" VimL Debug{{{1
-  let g:decho_enable = 0
-  function! Decho(...)
-    return
-  endfunction
-
-" }}}
-
 " Python-mode{{{1
   " Activate rope
   " Keys:
@@ -624,3 +552,75 @@ let g:sneak#s_next = 1
   " Don't autofold code
   let g:pymode_folding = 0
 "}}}
+
+"======================================================================
+" Installation & Helper {{{1}}}
+" ============================
+" 1. Vundle.vim
+"    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
+"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    $ vi -c 'PluginInstall'
+"
+" Usage: {{{2}}}
+" ======
+" <leader>         ";"
+" <leader>;*       my shortkey
+"
+"  gd <or> D       goto declare <or> global declare
+"  [I              list all occurence
+"  g; <or> g,      navigate changelist
+" :g/regex/t$      copy match lines append to tail
+" s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
+" :set ts=4 sts=4 noet   indent tab
+" :set ts=4 sts=4 et     indent space
+"
+" Howtos: {{{2}}}
+" =======
+"       :R !ls -l           # grab shell cmd output into new tab/buffer
+"       :new|0read !ls -l  # grab cmd output into new window
+"       :cfile log.marks   # view as quickfix
+"       :mks!              # Save to Session.vim
+"   Vimgrep:               # Also lvimgrep, short as: vim, lvim
+"       samples
+"       :vim /some/gj **/*.c **/*.h
+"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
+"
+"       /^joe.*fred.*bill/ # AND
+"       /fred\|joe/        # OR
+"       /.*fred\&.*joe/    # AND no-order
+"       /\<fred\>/         # whole word
+"       /begin\_.*end/     # search over possible multiple lines
+"       /fred\_s*joe/      # any whitespace including newline [C]
+"       /^\n\{3}/          # find 3 empty lines
+"
+"   Grep:                  # grepprg=grep, using outer grep tool
+"       samples
+"       :grep -Iinr 'string' --include='*.[ch]' dirs
+"       :grep -w 'word1\|word2' files
+"       :grep '[a-z]\{5\}' files
+"       :grep '^POST /\(idle\|send\)/CzHmd' log
+"       ‘\w’ matches a character within a word
+"       ‘\W’ matches a character which is not within a word
+"       ‘\<’ matches the beginning of a word
+"       ‘\>’ matches the end of a word
+"       ‘\b’ matches a word boundary
+"       ‘\B’ matches characters which are not a word boundary
+"       ‘\`’ matches the beginning of the whole input
+"       ‘\'’ matches the end of the whole input
+"
+" Tools: {{{2}}}
+" ======
+"   DrawIt:                # use \di to start (\ds to stop)
+"   W3m:
+"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
+"       <backspace>        # Back page
+"       <enter>            # Open link under the cursor
+"
+" Self: {{{2}}}
+" =====
+"   Function:
+"       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
+"   Batchfiles:
+"       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
+"   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
+"======================================================================
