@@ -526,8 +526,7 @@ let g:sneak#s_next = 1
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
 
-  map  <leader>va :Decho "wilson some message here" <CR>
-  "map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
+  map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
   nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
   vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
   map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
