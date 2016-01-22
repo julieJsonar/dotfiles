@@ -1,3 +1,8 @@
+" <leader>         ";"
+" <leader>;*       my shortkey
+" :set ts=4 sts=4 noet   indent tab
+" :set ts=4 sts=4 et     indent space
+"
 " VimL Debug{{{1
   let g:decho_enable = 0
   function! Decho(...)
@@ -48,13 +53,16 @@ Plugin 'szw/vim-maximizer'
 
 Plugin 'klen/python-mode'
 Plugin 'AnsiEsc.vim'
-"Plugin 'tpope/vim-markdown'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'
 "Plugin 'tpope/vim-speeddating'
 Plugin 'vim-scripts/VOoM'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
+" Markdown
+Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'tpope/vim-markdown'
 
 Plugin 'chrisbra/NrrwRgn'
 "Plugin 'SirVer/ultisnips'
@@ -192,6 +200,35 @@ set ssop-=folds      " do not store folds
 set ssop-=curdir     " do not store absolute path
 set ssop+=sesdir     " work under current dir as relative path
 
+hi CursorLine guibg=Grey40
+hi Visual term=reverse cterm=reverse guibg=Grey
+
+"hi MatchParen cterm=bold ctermfg=cyan
+"hi MatchParen cterm=none ctermbg=green ctermfg=none
+"hi MatchParen cterm=none ctermbg=green ctermfg=blue
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+
+" change highlight color for search hits
+"hi Search guibg=peru guifg=wheat
+"hi Search ctermfg=grey ctermbg=darkblue cterm=NONE
+hi Search ctermfg=Red ctermbg=NONE cterm=NONE
+
+"hi TabLineFill ctermfg=Black ctermbg=Green cterm=NONE
+hi TabLine ctermfg=DarkBlue ctermbg=NONE cterm=NONE
+hi TabLineSel ctermfg=Red ctermbg=NONE cterm=NONE
+hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
+
+"hi NonText ctermfg=7 guifg=Gray
+hi NonText ctermfg=DarkGrey guifg=DarkGrey
+hi clear SpecialKey
+hi link SpecialKey NonText
+
+" The characters after tab is U+2002. in vim with Ctrl-v u 2 0 0 2 (in insert mode).
+set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
+"set listchars=nbsp:.,tab:>-,trail:~,extends:>,precedes:<
+"set listchars=tab:>.,trail:~,extends:<,nbsp:.
+"set listchars=tab:> ,trail:~,extends:<,nbsp:.
+
 " Plugins Configure {{{1}}}
 " Restore cursor to file {
 
@@ -265,35 +302,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 
-hi CursorLine guibg=Grey40
-hi Visual term=reverse cterm=reverse guibg=Grey
-
-"hi MatchParen cterm=bold ctermfg=cyan
-"hi MatchParen cterm=none ctermbg=green ctermfg=none
-"hi MatchParen cterm=none ctermbg=green ctermfg=blue
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-
-" change highlight color for search hits
-"hi Search guibg=peru guifg=wheat
-"hi Search ctermfg=grey ctermbg=darkblue cterm=NONE
-hi Search ctermfg=Red ctermbg=NONE cterm=NONE
-
-"hi TabLineFill ctermfg=Black ctermbg=Green cterm=NONE
-hi TabLine ctermfg=DarkBlue ctermbg=NONE cterm=NONE
-hi TabLineSel ctermfg=Red ctermbg=NONE cterm=NONE
-hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
-
-"hi NonText ctermfg=7 guifg=Gray
-hi NonText ctermfg=DarkGrey guifg=DarkGrey
-hi clear SpecialKey
-hi link SpecialKey NonText
-
-" The characters after tab is U+2002. in vim with Ctrl-v u 2 0 0 2 (in insert mode).
-set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
-"set listchars=nbsp:.,tab:>-,trail:~,extends:>,precedes:<
-"set listchars=tab:>.,trail:~,extends:<,nbsp:.
-"set listchars=tab:> ,trail:~,extends:<,nbsp:.
-
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
 \ 'c': [ {'command' : "\<C-x>\<C-o>",
@@ -342,6 +350,58 @@ let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
 let g:sneak#s_next = 1
+
+" Python-mode{{{2
+  " Activate rope
+  " Keys:
+  " K             Show python docs
+  " <Ctrl-Space>  Rope autocomplete
+  " <Ctrl-c>g     Rope goto definition
+  " <Ctrl-c>d     Rope show documentation
+  " <Ctrl-c>f     Rope find occurrences
+  " <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
+  " [[            Jump on previous class or function (normal, visual, operator modes)
+  " ]]            Jump on next class or function (normal, visual, operator modes)
+  " [M            Jump on previous class or method (normal, visual, operator modes)
+  " ]M            Jump on next class or method (normal, visual, operator modes)
+  let g:pymode_rope = 0
+
+  " Documentation
+  let g:pymode_doc = 1
+  let g:pymode_doc_key = 'K'
+
+  "Linting
+  let g:pymode_lint = 0
+  let g:pymode_lint_checker = "pyflakes,pep8"
+  " Auto check on save
+  let g:pymode_lint_write = 1
+
+  " Support virtualenv
+  let g:pymode_virtualenv = 1
+
+  " Enable breakpoints plugin
+  let g:pymode_breakpoint = 1
+  let g:pymode_breakpoint_bind = '<leader>b'
+
+  " syntax highlighting
+  let g:pymode_syntax = 1
+  let g:pymode_syntax_all = 1
+  let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+  let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+  " Don't autofold code
+  let g:pymode_folding = 0
+"}}}
+
+"======================================================================
+" Tabularize{{{2
+    if exists(":Tabularize")
+      nmap <leader>a= :Tabularize /=<CR>
+      vmap <leader>a= :Tabularize /=<CR>
+      nmap <leader>a: :Tabularize /:\zs<CR>
+      vmap <leader>a: :Tabularize /:\zs<CR>
+    endif
+"}}}
 
 " Key maps {{{1}}}
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
@@ -406,13 +466,20 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
   nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
   vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
-  nmap <silent> <leader>;o :VoomToggle<CR>
   nmap <silent> <leader>;t :TagbarToggle<CR>
   vmap          <leader>;h <Plug>CtrlSFVwordPath
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
   nmap <silent> <leader>;s :call utilcscope#CscopeSymbol() <CR>
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
+
+  " Voom
+  nmap <silent> <leader>;o :VoomToggle<CR>
+  augroup voom_map
+    autocmd!
+    autocmd filetype markdown nnoremap <buffer> <leader>;o :VoomToggle markdown<CR>
+    autocmd filetype python   nnoremap <buffer> <leader>;o :VoomToggle python<CR>
+  augroup END
 
   nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
   nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
@@ -511,49 +578,6 @@ let g:sneak#s_next = 1
 
 "}
 
-" Python-mode{{{1
-  " Activate rope
-  " Keys:
-  " K             Show python docs
-  " <Ctrl-Space>  Rope autocomplete
-  " <Ctrl-c>g     Rope goto definition
-  " <Ctrl-c>d     Rope show documentation
-  " <Ctrl-c>f     Rope find occurrences
-  " <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-  " [[            Jump on previous class or function (normal, visual, operator modes)
-  " ]]            Jump on next class or function (normal, visual, operator modes)
-  " [M            Jump on previous class or method (normal, visual, operator modes)
-  " ]M            Jump on next class or method (normal, visual, operator modes)
-  let g:pymode_rope = 0
-
-  " Documentation
-  let g:pymode_doc = 1
-  let g:pymode_doc_key = 'K'
-
-  "Linting
-  let g:pymode_lint = 0
-  let g:pymode_lint_checker = "pyflakes,pep8"
-  " Auto check on save
-  let g:pymode_lint_write = 1
-
-  " Support virtualenv
-  let g:pymode_virtualenv = 1
-
-  " Enable breakpoints plugin
-  let g:pymode_breakpoint = 1
-  let g:pymode_breakpoint_bind = '<leader>b'
-
-  " syntax highlighting
-  let g:pymode_syntax = 1
-  let g:pymode_syntax_all = 1
-  let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-  let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-  " Don't autofold code
-  let g:pymode_folding = 0
-"}}}
-
-"======================================================================
 " Installation & Helper {{{1}}}
 " ============================
 " 1. Vundle.vim
@@ -563,16 +587,11 @@ let g:sneak#s_next = 1
 "
 " Usage: {{{2}}}
 " ======
-" <leader>         ";"
-" <leader>;*       my shortkey
-"
 "  gd <or> D       goto declare <or> global declare
 "  [I              list all occurence
 "  g; <or> g,      navigate changelist
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
-" :set ts=4 sts=4 noet   indent tab
-" :set ts=4 sts=4 et     indent space
 "
 " Howtos: {{{2}}}
 " =======
