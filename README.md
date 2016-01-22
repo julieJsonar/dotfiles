@@ -4,7 +4,7 @@ linux programmer's config files: zsh, tmux, vim, script, ...
 
 ## Install
 
-### First time, download dotfiles
+### First time, download dotfiles to any where
 ```Shell
 $ cd ~
 $ apt-get install git
@@ -13,9 +13,9 @@ $ cd dotfiles/script
 $ ./update_dot.sh -a pull
 ```
 
-### Apply dotfiles: please back up your dotfile first
-- 
-
+### Apply dotfiles
+- All your old dotfiles will backup to `$HOME/dotfiles_bak` if it's not softlink
+- Create softlink of all dotfile into your `$HOME`, includes: `config for vim, tmux, zshrc, xterm, git, ag, ...`
 ```Shell
 $ cd ~/dotfiles/script
 $ ./update_dot.sh -a pull

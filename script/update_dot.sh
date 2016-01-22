@@ -122,13 +122,14 @@ Main ()
     printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
     printf "$NOTE: dry=$dryrun v=$verbose action=$action dir=$DIR\n"
 
-    old_dir=$(pwd)
     cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
     echo "Current dir: $old_dir"
     echo "Change to $(pwd)"
 
     if [ $action == 'pull' ]; then
         Run "git pull --all" || Die "Git pull failed!"
+        home_bak=$HOME/dotfiles_bak
+        Run "mkdir -p $home_bak" || Die "Make $home_bak failed!"
 
         for file in .* *
         do
@@ -139,10 +140,13 @@ Main ()
                 if [[ -L "$home_f" ]]; then
                     true
                 else
-                    Run "rm -fr $home_f"
-                    Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
+                    Run "mv $home_f $home_bak/$file"
                 fi
+
+                Run "rm -fr $home_f 2> /dev/null"
             fi
+
+            Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
 
         done
 

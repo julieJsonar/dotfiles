@@ -40,7 +40,8 @@ Options:
   -*m "some note"
 
 Samples:
-  ${0##*/} -na pull -m "auto update"
+  ${0##*/} -na pull
+  ${0##*/} -na push -m "<our commit message>"
 
 EOF
 exit ${1:-0}
