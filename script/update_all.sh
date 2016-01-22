@@ -12,7 +12,7 @@ dryrun="off"
 action="none"
 commitmsg="commit message"
 
-old_dir=$(pwd)
+declare -r old_dir=$(pwd)
 cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
 
 git_repos=( \
@@ -125,7 +125,7 @@ Main ()
 }
 
 # footer {{{1
-old_dir=$(pwd)
+old_dir=$(pwd) 2> /dev/null
 printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx

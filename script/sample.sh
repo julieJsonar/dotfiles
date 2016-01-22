@@ -115,7 +115,7 @@ Main ()
 }
 
 # footer {{{1
-old_dir=$(pwd)
+old_dir=$(pwd) 2> /dev/null
 printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx
