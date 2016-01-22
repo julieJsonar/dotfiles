@@ -1,17 +1,49 @@
 ## dotfiles
 
-linux programmer's config files: zsh, tmux, vim, ...
+linux programmer's config files: zsh, tmux, vim, script, ...
 
 ## Setup
 
+### First time: setup linux env only once
 If ubuntu type OS: ubuntu, linux mint, ...
 ```Shell
-  ./init_ubuntu.sh  
+$ cd ~
+$ apt-get install git
+$ git clone https://github.com/huawenyu/dotfiles.git
+$ cd dotfiles/script
+$ ./update_dot.sh -a pull
+$ ./init_ubuntu.sh
 ```
-Commit & Update  
+### Routine workflow
+
+Commit & Push data to github
+
+Please add the install path (maybe $HOME/dotfiles/script) to our env $PATH by add 
+`export PATH=$HOME/dotfiles/script:$PATH` to our `.bashrc` or `.zshrc`
+
 ```Shell
-  ./update.sh  
+$ update_dot.sh
+Usage: update_dot.sh [-hvdn] [-a <action>] [-m <message>]
+
+Options:
+  -h  help
+  -v  verbose
+  -d  debug
+  -n  dry-run
+  -*a [push|pull]
+  -*m "commit message"
+
+Samples:
+  update_dot.sh -na pull
+  update_dot.sh -na push -m "auto update"
+
+$ update_dot.sh -a pull
+
+<do some modify>
+
+$ update_dot.sh -a push -m "do some modify"
 ```
+
 Rollback  
 ```Shell
   git reset --hard <old-commit-id>  
