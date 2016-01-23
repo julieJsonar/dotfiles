@@ -1,6 +1,7 @@
 #!/bin/bash
 declare -r DIR=$(cd "$(dirname "$0")" && pwd)
 source $DIR/lib_common.sh
+source $DIR/lib_bsfl.sh
 
 # header {{{1
 NOTE="update dotfile config"
