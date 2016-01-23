@@ -2,7 +2,10 @@
 " <leader>;*       my shortkey
 " :set ts=4 sts=4 noet   indent tab
 " :set ts=4 sts=4 et     indent space
-"
+
+"setlocal stl=%t\ (%l\ of\ %L)%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+"autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
+
 " VimL Debug{{{1
   let g:decho_enable = 0
   function! Decho(...)
