@@ -5,7 +5,7 @@ source $DIR/lib_bsfl.sh
 
 # header {{{1
 #   sample.sh -- script template
-NOTE="synce all config change"
+NOTE="Sync all list git-repos"
 _DEBUG="off"
 verbose=0
 dryrun="off"
@@ -109,7 +109,7 @@ Run ()
 Main ()
 {
     printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
-    printf "$NOTE: $dryrun $action $commitmsg\n"
+    printf "$NOTE: dry=$dryrun action=$action msg=$commitmsg\n"
 
     for git_dir in "${git_repos[@]}"
     do
@@ -123,7 +123,7 @@ Main ()
 
             diff_num=$(git diff | wc -l)
             if [ $diff_num -gt 0 ]; then
-                Run "git commit -am \"$commitmsg\" > /dev/null 2>&1" \
+                Run "git commit -am \"$commitmsg\" > /dev/null" \
                     && Run "git push origin master > /dev/null" \
                     && msg_success "$git_dir push $diff_num lines patch." \
                     || Die "Git commit or push failed: $git_dir"
