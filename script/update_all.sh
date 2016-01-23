@@ -116,7 +116,7 @@ Main ()
         if [ "$action" == "pull" ]; then
             Run "cd $git_dir"
             Run "git pull --all" \
-                && msg_success "$git_dir pull." \
+                && msg_status "$git_dir pull." "pull"\
                 || Die "Git pull $git_dir failed!"
         elif [ "$action" == "push" ]; then
             Run "cd $git_dir"
@@ -125,10 +125,10 @@ Main ()
             if [ $diff_num -gt 0 ]; then
                 Run "git commit -am \"$commitmsg\" &> /dev/null" \
                     && Run "git push origin master &> /dev/null" \
-                    && msg_success "$git_dir push $diff_num lines patch." \
+                    && msg_status "$git_dir" "$diff_num Lines"\
                     || Die "Git commit or push failed: $git_dir"
             else
-                msg_passed "$git_dir no changed!"
+                msg_status "$git_dir" "No-Changed"
             fi
         fi
     done
