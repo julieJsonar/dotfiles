@@ -123,8 +123,8 @@ Main ()
 
             diff_num=$(git diff | wc -l)
             if [ $diff_num -gt 0 ]; then
-                Run "git commit -am \"$commitmsg\"" \
-                    && Run "git push origin master" \
+                Run "git commit -am \"$commitmsg\" > /dev/null" \
+                    && Run "git push origin master > /dev/null" \
                     && msg_success "$git_dir push $diff_num lines patch." \
                     || Die "Git commit or push failed: $git_dir"
             else
