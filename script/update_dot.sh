@@ -119,8 +119,8 @@ copy_file()
 # Main: user script {{{1
 Main ()
 {
-    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
-    printf "$NOTE: dry=$dryrun v=$verbose action=$action dir=$DIR\n"
+    DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+    printf "$NOTE: dry=$dryrun v=$verbose action=$action dir=$DIR\n\n"
 
     cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
     echo "Current dir: $old_dir"
@@ -164,21 +164,28 @@ Main ()
         ##Run "ln -s ~/.vim ~/.config/nvim"
         ##Run "ln -s ~/.vimrc ~/.config/nvim/init.vim"
     elif [ $action == 'push' ]; then
-        Run "git commit -am \"$commitmsg\"" || Die "Git commit failed!"
-        Run "git push origin master" || Die "Git push failed!"
+        diff_num=$(git diff | wc -l)
+        if [ $diff_num -gt 0 ]; then
+            Run "git commit -am \"$commitmsg\" &> /dev/null" \
+                && Run "git push origin master &> /dev/null" \
+                && msg_success "$phy_dotfiles_dir push $diff_num lines patch." \
+                || Die "Git commit or push failed: $phy_dotfiles_dir"
+        else
+            msg_passed "$phy_dotfiles_dir no changed!"
+        fi
     fi
 
     echo "Backto current dir: $old_dir"
-    printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+    DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
 # footer {{{1
 old_dir=$(pwd)
-printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
+DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx
 Main "$@"
 DEBUG set +vx
-printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]}{{{${#FUNCNAME[@]}\n"
+DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]}{{{${#FUNCNAME[@]}\n"
 cd $old_dir
 # End of file
