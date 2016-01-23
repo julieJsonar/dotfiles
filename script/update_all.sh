@@ -1,6 +1,7 @@
 #!/bin/bash
 declare -r DIR=$(cd "$(dirname "$0")" && pwd)
 source $DIR/lib_common.sh
+source $DIR/lib_bsfl.sh
 
 # header {{{1
 #   sample.sh -- script template
@@ -92,7 +93,7 @@ GetOpts ()
 
 DEBUG() { [ "$_DEBUG" == "on" ] && $@; }
 Echo () { echo "# $(basename $0): $*"; }
-Die()   { echo $1; exit 1; }
+Die()   { echo $1 "$RED"; exit 1; }
 
 Run ()
 {
@@ -114,10 +115,21 @@ Main ()
     do
         if [ "$action" == "pull" ]; then
             Run "cd $git_dir"
-            Run "git pull --all" || Die "Git pull $git_dir failed!"
+            Run "git pull --all" \
+                && msg_success "$git_dir pull." \
+                || Die "Git pull $git_dir failed!"
         elif [ "$action" == "push" ]; then
             Run "cd $git_dir"
-            Run "git commit -am \"$commitmsg\"" && Run "git push origin master"
+
+            diff_num=$(git diff | wc -l)
+            if [ $diff_num -gt 0 ]; then
+                Run "git commit -am \"$commitmsg\"" \
+                    && Run "git push origin master" \
+                    && msg_success "$git_dir push $diff_num lines patch." \
+                    || Die "Git commit or push failed: $git_dir"
+            else
+                msg_passed "$git_dir no changed!"
+            fi
         fi
     done
 

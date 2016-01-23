@@ -418,7 +418,9 @@ let g:sneak#s_next = 1
   " make vim yank cross vim-sessions
   "vmap <leader>y   "+y
   "vnoremap <leader>p "_dP
-  vmap <leader>y :w! /tmp/vim.yank<CR>
+  "vmap <leader>y :'<,'>w! <CR>
+  "vmap <leader>y :"ay<CR>:redir "/tmp/vim.yank"<CR>:echo @a<CR>:redir END<CR>
+  vmap <leader>y :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nmap <silent> <leader>y  :<c-u>call vimuxscript#Copy() <CR>
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
