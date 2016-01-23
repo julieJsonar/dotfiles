@@ -109,7 +109,7 @@ Run ()
 Main ()
 {
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
-    printf "$NOTE: dry=$dryrun action=$action msg=$commitmsg\n"
+    printf "$NOTE: dry=$dryrun action=$action msg=$commitmsg\n\n"
 
     for git_dir in "${git_repos[@]}"
     do
@@ -137,7 +137,7 @@ Main ()
 }
 
 # footer {{{1
-old_dir=$(pwd) 2> /dev/null
+old_dir=$(pwd) &> /dev/null
 DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx
