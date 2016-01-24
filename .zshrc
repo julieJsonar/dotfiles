@@ -79,40 +79,27 @@ setopt NO_HIST_BEEP         # Don't beep
 setopt SHARE_HISTORY        # Share history between session/terminals
 
 # Our local dir: data, tools, home
-source ~/.localrc
-# remap caps to ESC
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+if [ -f "/tmp/zsh_init_flag" ]; then
+  # remap caps to ESC
+  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+  echo "have init" > "/tmp/zsh_init_flag"
+fi
 
-alias dict='$mydata/tools/dict'
-alias makeimage='rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $mydata/script/image.exp'
-alias mywad='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && strip -s /var/lib/tftpboot/init'
-alias mywadfull='make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && chmod 777 /var/lib/tftpboot/init'
-alias mycrash='$mydata/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog'
-alias eclipse='nohup $mydata/tools/eclipse/eclipse > /dev/null 2>&1 &'
-alias meld='nohup $mydata/tools/meld/bin/meld > /dev/null 2>&1 &'
-alias xnview='nohup $mydata/tools/XnView/XnView > /dev/null 2>&1 &'
-alias tmuxkill='tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}'
+alias dict="$HOME/tools/dict"
+alias makeimage="rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $HOME/script/image.exp"
+alias mywad="make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && strip -s /var/lib/tftpboot/init"
+alias mywadfull="make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && chmod 777 /var/lib/tftpboot/init"
+alias mycrash="$HOME/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog"
+alias eclipse="nohup $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
+alias meld="nohup $HOME/tools/meld/bin/meld > /dev/null 2>&1 &"
+alias xnview="nohup $HOME/tools/XnView/XnView > /dev/null 2>&1 &"
+alias tmuxkill="tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}"
 
 # export MYTYPESCRIPT=~/script/`date +%Y%m%d`
 # exec /usr/bin/script -q -a -f -t 2>${MYTYPESCRIPT}.time ${MYTYPESCRIPT}.lst
 
 unsetopt correct_all
 unsetopt nomatch
-
-##
-## GREP
-##
-#GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=TAGS --exclude=tags --exclude=cscope.\* "
-#function _mygrep()
-#{
-#  if [ -t 0 ]; then
-#    /bin/grep "$@" $GREP_OPTIONS
-#  else
-#    /bin/grep $@
-#  fi
-#};
-#alias grep='_mygrep'
-#unset GREP_OPTIONS
 
 function _mytail()
 {
@@ -192,16 +179,15 @@ all-panes-bg_()
 
 
 # Customize to your needs...
-export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:$myhome/bin:/usr/local/sbin:/usr/sbin
-export PATH="$myhome/perl5/bin:$myhome/script:$myhome/script/git-scripts:$PATH";
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$myhome/perl5";
-export PERL_MB_OPT="--install_base $myhome/perl5";
-export PERL_MM_OPT="INSTALL_BASE=$myhome/perl5";
-export PERL5LIB="$myhome/perl5/lib/perl5:$PERL5LIB";
-export PYTHONPATH="$myhome/work/autotest-robot/library"
-export AWKPATH="$myhome/script/awk:$myhome/script/awk/awk-libs";
+export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:$HOME/bin:/usr/local/sbin:/usr/sbin
+export PATH="$HOME/perl5/bin:$HOME/script:$HOME/script/git-scripts:$PATH";
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5";
+export PERL_MB_OPT="--install_base $HOME/perl5";
+export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
+export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
+export PYTHONPATH="$HOME/work/autotest-robot/library"
+export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
 export TERM=xterm-256color
 export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
-
