@@ -79,7 +79,7 @@ setopt NO_HIST_BEEP         # Don't beep
 setopt SHARE_HISTORY        # Share history between session/terminals
 
 # Our local dir: data, tools, home
-if [ -f "/tmp/zsh_init_flag" ]; then
+if [ ! -f "/tmp/zsh_init_flag" ]; then
   # remap caps to ESC
   xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
   echo "have init" > "/tmp/zsh_init_flag"
