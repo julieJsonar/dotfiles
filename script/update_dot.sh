@@ -166,7 +166,8 @@ Main ()
         ##Run "ln -s ~/.vimrc ~/.config/nvim/init.vim"
     elif [ $action == 'push' ]; then
         diff_num=$(git diff | wc -l)
-        if [ $diff_num -gt 0 ]; then
+        file_num=$(git status --short | wc -l)
+        if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
             Run "git commit -am \"$commitmsg\" &> /dev/null" \
                 && Run "git push origin master &> /dev/null" \
                 && msg_success "$phy_dotfiles_dir push $diff_num lines patch." \

@@ -122,7 +122,8 @@ Main ()
             Run "cd $git_dir"
 
             diff_num=$(git diff | wc -l)
-            if [ $diff_num -gt 0 ]; then
+            file_num=$(git status --short | wc -l)
+            if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
                 Run "git commit -am \"$commitmsg\" &> /dev/null" \
                     && Run "git push origin master &> /dev/null" \
                     && msg_success "$git_dir push $diff_num lines patch." \
