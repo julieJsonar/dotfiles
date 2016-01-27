@@ -484,10 +484,10 @@ let g:sneak#s_next = 1
   nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
 
   " Merge with cscope's map
-  nmap <leader>ft :<C-\>e utilquickfix#Function(0) <CR>
-  vmap <leader>ft :<C-\>e utilquickfix#Function(1) <CR>
-  nmap <leader>fe :call utilcscope#CscopeSymbol() <CR>
   nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <leader>fe :<C-\>e utilquickfix#Function(0) <CR>
+  vmap <leader>fe :<C-\>e utilquickfix#Function(1) <CR>
+  nmap <leader>ft :call utilcscope#CscopeSymbol() <CR>
 
   " Voom
   nmap <silent> <leader>;o :VoomToggle<CR>
