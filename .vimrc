@@ -456,12 +456,6 @@ let g:sneak#s_next = 1
   map <leader>bs :call blame#SvnBlameCurrent() <CR>
   map <leader>bg :call blame#GitBlameCurrent() <CR>
 
-  nmap          <leader>qs :QSave 
-  nmap          <leader>ql :QLoad 
-  nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
-  nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
-  nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
-
   "nmap <silent> <leader>;w :NumbersToggle<CR>
   nmap <silent> <leader>;w :MaximizerToggle<CR>
   nmap <silent> <leader>ww :MaximizerToggle<CR>
@@ -480,9 +474,20 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;t :TagbarToggle<CR>
   vmap          <leader>;h <Plug>CtrlSFVwordPath
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-  nmap <silent> <leader>;s :call utilcscope#CscopeSymbol() <CR>
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
+
+  nmap          <leader>qs :QSave 
+  nmap          <leader>ql :QLoad 
+  nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
+  nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
+  nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
+
+  " Merge with cscope's map
+  nmap <leader>ft :<C-\>e utilquickfix#Function(0) <CR>
+  vmap <leader>ft :<C-\>e utilquickfix#Function(1) <CR>
+  nmap <leader>fe :call utilcscope#CscopeSymbol() <CR>
+  nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
   " Voom
   nmap <silent> <leader>;o :VoomToggle<CR>
@@ -536,9 +541,6 @@ let g:sneak#s_next = 1
 
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
-
-  nmap <leader>vf :<C-\>e utilquickfix#Function(0) <CR>
-  vmap <leader>vf :<C-\>e utilquickfix#Function(1) <CR>
 
   map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
   nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
