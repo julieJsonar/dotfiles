@@ -7,7 +7,7 @@
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
 
 " VimL Debug{{{1
-  let g:decho_enable = 0
+  let g:decho_enable = 1
   function! Decho(...)
     return
   endfunction
@@ -41,8 +41,11 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'file-line'
 Plugin 'Raimondi/delimitMate'
-Plugin 'majutsushi/tagbar'
 Plugin 'millermedeiros/vim-statline'
+
+Plugin 'majutsushi/tagbar'
+"Plugin 'tomtom/ttags_vim'
+"Plugin 'tomtom/tlib_vim'
 
 Plugin 'justinmk/vim-sneak'
 "Plugin 'kien/ctrlp.vim'
@@ -530,6 +533,9 @@ let g:sneak#s_next = 1
 
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
+
+  nmap <leader>vf :<C-\>e utilquickfix#Function(0) <CR>
+  vmap <leader>vf :<C-\>e utilquickfix#Function(1) <CR>
 
   map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
   nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>

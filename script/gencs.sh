@@ -73,6 +73,7 @@ if [ $action_mode == 'wad' ]; then
 	execute "mv cscope.files.sorted cscope.files"
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L ~/script/trace.files"
+	execute "ctags -x -e --c-kinds=+defgpstuxm -L ~/script/trace.files > tags.x"
 elif [ $action_mode == 'daemon' ]; then
 	execute "find daemon cmf migadmin migbase proxy include -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v '^_' | \
@@ -83,6 +84,7 @@ elif [ $action_mode == 'daemon' ]; then
 	execute "mv cscope.files.sorted cscope.files"
 	execute "cscope -kbq"
 	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
+	execute "ctags -x -e --c-kinds=+defgpstuxm -L cscope.files > tags.x"
 elif [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v 'wad/ui/stdin/'        | \
@@ -112,6 +114,7 @@ elif [ $action_mode == 'all' ]; then
 
 	execute "cscope -kbq > /dev/null 2>&1"
 	execute "ctags -L cscope.files > /dev/null 2>&1 &"
+	execute "ctags -xL cscope.files > tags.x"
 #	execute "ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1 &"
 fi
 
