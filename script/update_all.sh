@@ -122,7 +122,7 @@ Main ()
             Run "cd $git_dir"
 
             diff_num=$(git diff | wc -l)
-            file_num=$(git status --short | wc -l)
+            file_num=$(git status --short | grep -v '^?' | wc -l)
             if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
                 Run "git commit -am \"$commitmsg\" &> /dev/null" \
                     && Run "git push origin master &> /dev/null" \
