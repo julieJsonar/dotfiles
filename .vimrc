@@ -7,7 +7,7 @@
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
 
 " VimL Debug{{{1
-  let g:decho_enable = 1
+  let g:decho_enable = 0
   function! Decho(...)
     return
   endfunction
@@ -485,8 +485,8 @@ let g:sneak#s_next = 1
 
   " Merge with cscope's map
   nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  nmap <leader>fe :<C-\>e utilquickfix#Function(0) <CR>
-  vmap <leader>fe :<C-\>e utilquickfix#Function(1) <CR>
+  nmap <leader>fe :<C-\>e utilcscope#Function("function", 0) <CR>
+  vmap <leader>fe :<C-\>e utilcscope#Function("function", 1) <CR>
   nmap <leader>ft :call utilcscope#CscopeSymbol() <CR>
 
   " Voom
