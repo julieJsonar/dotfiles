@@ -328,6 +328,7 @@ let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
 "{ taglist tagbar plugin
+	let g:tagbar_sort = 0
 	let g:tagbar_width = 30
 	let g:tagbar_compact = 1
 	let g:tagbar_indent = 0
@@ -336,7 +337,7 @@ let g:CommandTScanDotDirectories = 0
 
 let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
-
+let g:utilquickfix_file = $HOME."/.vim/vim.quickfix"
 let g:vim_json_syntax_conceal = 0
 
 " sneek motion: conflict with leader ';'
@@ -455,6 +456,8 @@ let g:sneak#s_next = 1
   map <leader>bs :call blame#SvnBlameCurrent() <CR>
   map <leader>bg :call blame#GitBlameCurrent() <CR>
 
+  nmap          <leader>qs :QSave 
+  nmap          <leader>ql :QLoad 
   nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
   nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
