@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -xv
+set -xv
 
 if [ "$#" -eq 2 ]; then
     if [ "$1" == "function" ]; then
