@@ -483,12 +483,6 @@ let g:sneak#s_next = 1
   nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
   nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
 
-  " Merge with cscope's map
-  nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  nmap <leader>fe :<C-\>e utilcscope#Function("function", 0) <CR>
-  vmap <leader>fe :<C-\>e utilcscope#Function("function", 1) <CR>
-  nmap <leader>ft :call utilcscope#CscopeSymbol() <CR>
-
   " Voom
   nmap <silent> <leader>;o :VoomToggle<CR>
   augroup voom_map
