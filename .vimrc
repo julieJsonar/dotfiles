@@ -440,12 +440,12 @@ let g:sneak#s_next = 1
   nmap <c-k> <c-w>k
   nmap <c-l> <c-w>l
 
-  map <silent> <leader>1 :norm! 1gt <CR>
-  map <silent> <leader>2 :norm! 2gt <CR>
-  map <silent> <leader>3 :norm! 3gt <CR>
-  map <silent> <leader>4 :norm! 4gt <CR>
-  map <silent> <leader>5 :norm! 5gt <CR>
-  map <silent> <leader>6 :norm! 6gt <CR>
+  map <silent> <leader>1 :norm! 1gt<CR>
+  map <silent> <leader>2 :norm! 2gt<CR>
+  map <silent> <leader>3 :norm! 3gt<CR>
+  map <silent> <leader>4 :norm! 4gt<CR>
+  map <silent> <leader>5 :norm! 5gt<CR>
+  map <silent> <leader>6 :norm! 6gt<CR>
 
   nmap <buffer> <Enter> <C-W><Enter>
 
