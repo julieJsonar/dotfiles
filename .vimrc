@@ -7,9 +7,9 @@
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
 
 " VimL Debug{{{1
-  " decho to /tmp/vim.debug file
-  "let g:dechomode = 6
-  let g:decho_enable = 0
+  let g:decho_enable = 1
+  " decho to /tmp/vim.debug file, check with 'tail -f /tmp/vim.debug'
+  let g:dechomode = 6
   function! Decho(...)
     return
   endfunction
