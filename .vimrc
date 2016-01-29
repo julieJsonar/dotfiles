@@ -476,6 +476,9 @@ let g:sneak#s_next = 1
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
   nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
       \:cs reset <CR><CR>
+  nmap <silent> <leader>rr :call utils#RefreshWindows() <CR>
+  "nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
+  "vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
   nmap          <leader>qs :QSave 
   nmap          <leader>ql :QLoad 
@@ -514,10 +517,6 @@ let g:sneak#s_next = 1
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
   nmap <silent> <leader>;e  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
   vmap <silent> <leader>;e  :ExecuteSelection <CR>
-
-  " map same key under different mode
-  nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
-  vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
 
   " ctags -R *;  ctags -L cscope.files
   "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
