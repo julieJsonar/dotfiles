@@ -22,6 +22,7 @@ git_repos=( \
   "$HOME/.vim/bundle/vimux-script" \
   "$HOME/.vim/bundle/c-utils.vim" \
   "$HOME/log" \
+  "$HOME/pcap" \
 )
 
 # functions {{{1
