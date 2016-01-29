@@ -7,6 +7,8 @@
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
 
 " VimL Debug{{{1
+  " decho to /tmp/vim.debug file
+  "let g:dechomode = 6
   let g:decho_enable = 0
   function! Decho(...)
     return
@@ -98,6 +100,9 @@ Plugin 'yuratomo/w3m.vim'
 "Plugin 'DrawIt'
 "Plugin 'bruno-/vim-man'
 "Plugin 'vim-scripts/DirDiff.vim'
+
+Plugin 'AD7six/vim-activity-log'
+Plugin 'vim-scripts/LogViewer'
 
 Plugin 'huawenyu/taboo.vim'
 Plugin 'huawenyu/vim-mark'
