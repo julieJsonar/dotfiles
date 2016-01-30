@@ -101,8 +101,9 @@ Plugin 'yuratomo/w3m.vim'
 "Plugin 'bruno-/vim-man'
 "Plugin 'vim-scripts/DirDiff.vim'
 
-Plugin 'AD7six/vim-activity-log'
-Plugin 'vim-scripts/LogViewer'
+"Plugin 'AD7six/vim-activity-log'
+"Plugin 'vim-scripts/LogViewer'
+"Plugin 'stefandtw/quickfix-reflector.vim'
 
 Plugin 'huawenyu/taboo.vim'
 Plugin 'huawenyu/vim-mark'
