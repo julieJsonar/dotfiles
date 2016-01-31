@@ -86,10 +86,6 @@ if [ ! -f "/tmp/zsh_init_flag" ]; then
 fi
 
 alias dict="$HOME/tools/dict"
-alias makeimage="rm -f image-10vd.out; make image -s; cp image-10vd.out /var/lib/tftpboot/image.out && ls -l /var/lib/tftpboot && $HOME/script/image.exp"
-alias mywad="make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && strip -s /var/lib/tftpboot/init"
-alias mywadfull="make -C daemon/wad >/dev/null && make -C sysinit && cp sysinit/init /var/lib/tftpboot/ && ls -l /var/lib/tftpboot && chmod 777 /var/lib/tftpboot/init"
-alias mycrash="$HOME/script/addrmapsearch.rb -f crash -m init.map > crashlog && vi crashlog"
 alias eclipse="nohup $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
 alias meld="nohup $HOME/tools/meld/bin/meld > /dev/null 2>&1 &"
 alias xnview="nohup $HOME/tools/XnView/XnView > /dev/null 2>&1 &"
