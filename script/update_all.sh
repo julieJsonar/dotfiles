@@ -1,5 +1,5 @@
 #!/bin/bash
-set -o nounset     # Treat unset variables as an error
+#set -o nounset     # Treat unset variables as an error
 
 declare -r DIR=$(cd "$(dirname "$0")" && pwd)
 source $DIR/lib_common.sh
