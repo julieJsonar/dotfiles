@@ -31,6 +31,7 @@ git_repos=( \
   "$HOME/.vim/bundle/Decho" \
   "$HOME/log" \
   "$HOME/pcap" \
+  "$HOME/dotwiki" \
 )
 
 # functions {{{1
