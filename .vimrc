@@ -77,6 +77,7 @@ Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 
+Plugin 'yegappan/greplace'
 Plugin 'chrisbra/NrrwRgn'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
@@ -442,6 +443,7 @@ let g:sneak#s_next = 1
   " vim local list
   nmap <silent> gn :silent! lnext <CR>
   nmap <silent> gp :silent! lpre  <CR>
+  nmap <silent><TAB> :wincmd p <CR>
 
   " Open tag in new tab
   nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
@@ -551,7 +553,8 @@ let g:sneak#s_next = 1
   vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
   map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
   "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
-  map  <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <CR>
   nmap <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR>
   vmap <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR>
 
