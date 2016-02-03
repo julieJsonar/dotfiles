@@ -77,7 +77,6 @@ Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 
-Plugin 'yegappan/greplace'
 Plugin 'chrisbra/NrrwRgn'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
@@ -443,7 +442,6 @@ let g:sneak#s_next = 1
   " vim local list
   nmap <silent> gn :silent! lnext <CR>
   nmap <silent> gp :silent! lpre  <CR>
-  nmap <silent><TAB> :wincmd p <CR>
 
   " Open tag in new tab
   nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
