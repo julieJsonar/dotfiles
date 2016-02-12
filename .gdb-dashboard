@@ -319,7 +319,7 @@ class Dashboard(gdb.Command):
             g_vim.remote_send("<ESC>:silent! GdbRefresh " \
                 + g_vim_source_fname + " " \
                 + g_vim_source_fname_line \
-                + "<Enter><Enter>")
+                + "<Enter>")
 
             return ""
         else:
