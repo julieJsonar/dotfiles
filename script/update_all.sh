@@ -25,13 +25,14 @@ cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
 
 git_repos=( \
   "$phy_dotfiles_dir" \
+  "$HOME/pcap" \
+  "$HOME/dotwiki" \
+  "$HOME/algorithm" \
   "$HOME/.vim/bundle/vim-dispatch" \
   "$HOME/.vim/bundle/vimux-script" \
   "$HOME/.vim/bundle/c-utils.vim" \
   "$HOME/.vim/bundle/Decho" \
   "$HOME/log" \
-  "$HOME/pcap" \
-  "$HOME/dotwiki" \
 )
 
 # functions {{{1
