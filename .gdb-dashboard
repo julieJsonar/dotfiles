@@ -796,7 +796,7 @@ instructions constituting the current statement are marked, if available."""
         return 'Assembly'
 
     def default(self):
-        return True
+        return False
 
     def lines(self):
         line_info = None
@@ -910,7 +910,7 @@ location, if available. Optionally list the frame arguments and locals too."""
         return 'Stack'
 
     def default(self):
-        return True
+        return False
 
     def lines(self):
         frames = []
@@ -1243,7 +1243,7 @@ class Registers(Dashboard.Module):
         return 'Registers'
 
     def default(self):
-        return True
+        return False
 
     def vim_lines(self):
         return run('info registers').strip().split('\n')
