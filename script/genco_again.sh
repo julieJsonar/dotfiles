@@ -21,7 +21,7 @@ commitmsg="commit message"
 
 declare old_dir=$(pwd)
 
-git_repos=( \
+ban_words=( \
   "WAD_RUN_TEST_FROM_CLI" \
   "daemon/wad/wad_debug.c" \
   "__FGT_DISK_MGR_DEBUG" \
@@ -123,13 +123,13 @@ Main ()
     fi
 
     have_failed=0
-    for git_dir in "${git_repos[@]}"
+    for ban_word in "${ban_words[@]}"
     do
-        #Run "grep '$git_dir' patch.eco.diff"
-        grep -C3 "$git_dir" patch.eco.diff
+        #Run "grep '$ban_word' patch.eco.diff"
+        grep -C3 "$ban_word" patch.eco.diff
         if [ $? == 0 ]; then
             have_failed=1
-            msg_not_ok "Fail: patch contain bad words '$git_dir'!"
+            msg_not_ok "Fail: patch contain bad words '$ban_word'!"
         fi
     done
 
