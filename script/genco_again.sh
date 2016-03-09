@@ -25,6 +25,7 @@ ban_words=( \
   "WAD_RUN_TEST_FROM_CLI" \
   "daemon/wad/wad_debug.c" \
   "__FGT_DISK_MGR_DEBUG" \
+  "wilson" \
 )
 
 # functions {{{1
@@ -110,6 +111,10 @@ Main ()
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
     printf "$NOTE: dry=$dryrun msg=$commitmsg\n\n"
 
+    Run "rm -f patch.xml"
+    Run "rm -f changeorder-new.xml"
+    Run "rm -f patch.eco.diff"
+
     Run "genco patch.xml -m \"$commitmsg\"" \
         && Run "genco -i patch.xml -r changeorder.xml" \
         && Run "mv changeorder-new.xml changeorder.xml" \
@@ -126,7 +131,7 @@ Main ()
     for ban_word in "${ban_words[@]}"
     do
         #Run "grep '$ban_word' patch.eco.diff"
-        grep -C3 "$ban_word" patch.eco.diff
+        grep "$ban_word" patch.eco.diff
         if [ $? == 0 ]; then
             have_failed=1
             msg_not_ok "Fail: patch contain bad words '$ban_word'!"

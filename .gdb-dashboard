@@ -17,7 +17,7 @@ g_gdb_tmux_id = ""
 g_vim_state = 0
 g_vim = None
 
-g_vim_servername = "GDB.SOURCE"
+g_vim_servername = "GDB.SOURCE1"
 g_vim_source_init_str = ""
 g_vim_gdb_output = "/tmp/gdb/"
 g_vim_source_fname = ""

@@ -11,8 +11,6 @@ daemon/wad/wad_app_tcp.c
 daemon/wad/wad_ftp_proxy.c
 daemon/wad/wad_http_auth.c
 daemon/wad/wad_http_cache.c
-daemon/wad/wad_http_parser.c
-daemon/wad/wad_http_parser.h
 daemon/wad/wad_mapi_proxy.c
 daemon/wad/wad_monitor.c
 daemon/wad/wad_peer.c
