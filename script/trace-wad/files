@@ -25,7 +25,6 @@ daemon/wad/wad_tun_compressor.c
 daemon/wad/wad_tunnel.c
 daemon/wad/wad_tunnel_msg.c
 daemon/wad/wad_fw_policy.c
-daemon/wad/wad_wanopt_profile.c
 daemon/wad/wad_http_replacemsg.c
 daemon/wad/wad_config.c
 daemon/wad/wad_http_auth.c
@@ -46,12 +45,5 @@ daemon/wad/wad_url_filter.c
 daemon/wad/wad_rtmpt.c
 daemon/wad/wad_rtmp_amf.c
 daemon/wad/wad_rtmp_amf_parser.c
-daemon/wad/wad_rtmp.c
-daemon/wad/wad_rtmp_chunk.c
-daemon/wad/wad_rtmp_handshake.c
-daemon/wad/wad_rtmp_helper.c
-daemon/wad/wad_rtmp_live.c
-daemon/wad/wad_rtmp_message.c
-daemon/wad/wad_rtmp_module.c
-daemon/wad/wad_rtmp_profile.c
-daemon/wad/wad_rtmp_send.c
+daemon/wad/wad_rtmp_msg.c
+daemon/wad/wad_rtmp_proxy.c
