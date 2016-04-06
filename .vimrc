@@ -69,7 +69,9 @@ Plugin 'AnsiEsc.vim'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'
 "Plugin 'tpope/vim-speeddating'
+"Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/VOoM'
+Plugin 'scrooloose/nerdtree'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
@@ -277,6 +279,8 @@ endif
  augroup END
 
 "}
+
+let g:vimfiler_as_default_explorer = 1
 
 " Save Session
 let g:session_autoload = 'no'
@@ -509,8 +513,9 @@ let g:sneak#s_next = 1
   nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
   " :on[ly][!]  close all other windows, but keep buffer
-  nmap <silent> <leader>;n :silent! cnewer <CR>
-  nmap <silent> <leader>;p :silent! colder <CR>
+  "nmap <silent> <leader>;n :silent! cnewer <CR>
+  "nmap <silent> <leader>;p :silent! colder <CR>
+  nmap <silent> <leader>;n :silent! NERDTreeToggle<CR>
 
   nmap <silent> <c-n> :cn<cr>
   nmap <silent> <c-p> :cp<cr>
