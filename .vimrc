@@ -363,10 +363,6 @@ let g:tracelog_default_dir = $HOME . "/script/trace-wad/"
 
 set grepprg=grep
 
-command! -nargs=1 Silent
-  \ | execute ':silent !'.<q-args>
-  \ | execute ':redraw!'
-
 " vimdiff output to html ignore the same line
 let g:html_ignore_folding = 1
 let g:html_use_css = 0
@@ -424,6 +420,13 @@ let g:sneak#s_next = 1
       vmap <leader>a: :Tabularize /:\zs<CR>
     endif
 "}}}
+
+" Commands {{{1}}}
+command! -nargs=* Wrap set wrap linebreak nolist
+
+command! -nargs=1 Silent
+  \ | execute ':silent !'.<q-args>
+  \ | execute ':redraw!'
 
 " Key maps {{{1}}}
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
