@@ -187,3 +187,6 @@ export TERM=xterm-256color
 export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+export JEMALLOC_PATH=$HOME/project/jemalloc
+export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
