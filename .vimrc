@@ -424,6 +424,10 @@ let g:sneak#s_next = 1
 " Commands {{{1}}}
 command! -nargs=* Wrap set wrap linebreak nolist
 
+command! -nargs=* C2 set autoindent cindent noexpandtab shiftwidth=2
+command! -nargs=* C4 set autoindent cindent noexpandtab shiftwidth=4
+command! -nargs=* Cspace set autoindent cindent expandtab shiftwidth=4
+
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
   \ | execute ':redraw!'
@@ -492,8 +496,9 @@ command! -nargs=1 Silent
   nmap <silent> <leader>;t :TagbarToggle<CR>
   vmap          <leader>;h <Plug>CtrlSFVwordPath
   map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-  nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
-      \:cs reset <CR><CR>
+  "nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
+  "    \:cs reset <CR><CR>
+  nmap <silent> <leader>;r :call utils#RefreshWindows() <CR>
   nmap <silent> <leader>rr :call utils#RefreshWindows() <CR>
   "nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
   "vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
