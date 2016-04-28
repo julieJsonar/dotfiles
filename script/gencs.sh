@@ -92,8 +92,8 @@ elif [ $action_mode == 'all' ]; then
 		grep -v 'wad/test/'            | \
 		grep -v 'wad/redirect/socket/' | \
 		grep -v 'kernel/'              | \
-		grep -v 'linux-3.2.16/'        | \
-		grep -v 'linux-2.4.25/'        | \
+		grep -v 'linux/'               | \
+		grep -v 'linux-.*/'            | \
 		grep -v 'compress/'            | \
 		grep -v 'cooked/'              | \
 		grep -v 'fortitest/'           | \
