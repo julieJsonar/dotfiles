@@ -49,6 +49,7 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'file-line'
 Plugin 'Raimondi/delimitMate'
 Plugin 'millermedeiros/vim-statline'
+Plugin 'vivien/vim-linux-coding-style'
 
 Plugin 'majutsushi/tagbar'
 "Plugin 'tomtom/ttags_vim'
