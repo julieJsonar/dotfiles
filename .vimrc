@@ -49,7 +49,7 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'file-line'
 Plugin 'Raimondi/delimitMate'
 Plugin 'millermedeiros/vim-statline'
-Plugin 'vivien/vim-linux-coding-style'
+"Plugin 'vivien/vim-linux-coding-style'
 
 Plugin 'majutsushi/tagbar'
 "Plugin 'tomtom/ttags_vim'
@@ -200,12 +200,15 @@ set noexpandtab
 " indent
 set tabstop=4
 set shiftwidth=4
-set textwidth=160
+set softtabstop=4
+set textwidth=120
+set noexpandtab
 
 " C indent {
-"set autoindent
-"set smartindent
-"set cindent
+set autoindent
+set smartindent
+set cindent
+set cinoptions=:0,l1,t0,g0,(0
 "}
 
 set list
@@ -425,9 +428,10 @@ let g:sneak#s_next = 1
 " Commands {{{1}}}
 command! -nargs=* Wrap set wrap linebreak nolist
 
-command! -nargs=* C2 set autoindent cindent noexpandtab shiftwidth=2
-command! -nargs=* C4 set autoindent cindent noexpandtab shiftwidth=4
-command! -nargs=* Cspace set autoindent cindent expandtab shiftwidth=4
+command! -nargs=* C0 set autoindent cindent expandtab shiftwidth=4
+command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
+command! -nargs=* C4 set autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+command! -nargs=* C8 set autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
