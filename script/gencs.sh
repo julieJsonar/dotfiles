@@ -63,29 +63,7 @@ else
 	set +vx
 fi
 
-if [ $action_mode == 'wad' ]; then
-	execute "find daemon/wad -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | \
-		grep -v 'wad/ui/stdin/' | \
-		grep -v 'wad/test/' | \
-		grep -v 'wad/redirect/socket/' \
-		> cscope.files"
-	execute "sort cscope.files > cscope.files.sorted"
-	execute "mv cscope.files.sorted cscope.files"
-	execute "cscope -kbq"
-	execute "ctags -e --c-kinds=+defgpstuxm -L ~/script/trace.files"
-	execute "ctags -x -e --c-kinds=+defgpstuxm -L ~/script/trace.files > tags.x"
-elif [ $action_mode == 'daemon' ]; then
-	execute "find daemon cmf migadmin migbase proxy include -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
-		grep -v '^_' | \
-		grep -v 'wad/test/' | \
-		grep -v 'wad/redirect/socket/' \
-		> cscope.files"
-	execute "sort cscope.files > cscope.files.sorted"
-	execute "mv cscope.files.sorted cscope.files"
-	execute "cscope -kbq"
-	execute "ctags -e --c-kinds=+defgpstuxm -L cscope.files"
-	execute "ctags -x -e --c-kinds=+defgpstuxm -L cscope.files > tags.x"
-elif [ $action_mode == 'all' ]; then
+#if [ $action_mode == 'all' ]; then
 	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v 'wad/ui/stdin/'        | \
 		grep -v 'wad/ui/stdin/'        | \
@@ -99,6 +77,10 @@ elif [ $action_mode == 'all' ]; then
 		grep -v 'fortitest/'           | \
 		grep -v 'linuxatm/'            | \
 		grep -v 'sysctl/'              | \
+		grep -v 'router/'              | \
+		grep -v 'router/'              | \
+		grep -v 'fortiweb/'            | \
+		grep -v 'fortitest/'            | \
 		grep -v 'tests/gtest/'         | \
 		grep -v 'tools/'               | \
 		grep -v '/_' \
@@ -116,6 +98,6 @@ elif [ $action_mode == 'all' ]; then
 	execute "ctags --extra=+f -L cscope.files > /dev/null 2>&1 &"
 	execute "ctags -xL cscope.files > tags.x"
 #	execute "ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1 &"
-fi
+#fi
 
 # End of file
