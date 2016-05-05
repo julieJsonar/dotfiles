@@ -64,7 +64,7 @@ else
 fi
 
 #if [ $action_mode == 'all' ]; then
-	execute "find . -name '*.c' -o -name '*.h'  -o -name '*.cpp' -o -name '*.hpp' | \
+	execute "find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v 'wad/ui/stdin/'        | \
 		grep -v 'wad/ui/stdin/'        | \
 		grep -v 'wad/test/'            | \

@@ -585,8 +585,8 @@ command! -nargs=1 Silent
 
   "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
   nnoremap <leader>;a :<C-u>execute autoreadfiles#WatchForChanges("*",{'autoread':1}) <CR>
-  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
+  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
   let g:voom_tree_width = 45
