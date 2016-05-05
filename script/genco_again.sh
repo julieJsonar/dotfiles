@@ -139,9 +139,14 @@ Main ()
     done
 
     if [ $have_failed -gt 0 ] ; then
-        msg_failed "Fail: patch contain bad words!"
+        :#msg_failed "Fail: patch contain bad words!"
     else
         msg_success "Patch check passed!"
+
+        grep "CONFIG_DEBUG" .config
+        if [ $? == 0 ]; then
+            msg_alert "Maybe we need build a release version!"
+        fi
     fi
 
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
