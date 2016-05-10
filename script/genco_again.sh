@@ -139,7 +139,7 @@ Main ()
     done
 
     if [ $have_failed -gt 0 ] ; then
-        :#msg_failed "Fail: patch contain bad words!"
+        :
     else
         msg_success "Patch check passed!"
 
