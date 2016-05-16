@@ -473,6 +473,10 @@ command! -nargs=1 Silent
   map <silent> <leader>4 :norm! 4gt<CR>
   map <silent> <leader>5 :norm! 5gt<CR>
   map <silent> <leader>6 :norm! 6gt<CR>
+  map <silent> <leader>7 :norm! 7gt<CR>
+  map <silent> <leader>8 :norm! 8gt<CR>
+  map <silent> <leader>9 :norm! 9gt<CR>
+  map <silent> <leader>0 :norm! 10gt<CR>
 
   nmap <buffer> <Enter> <C-W><Enter>
 
