@@ -270,17 +270,17 @@ else
   set viminfo='30,\"100,:100,n~/.viminfo
 endif
 
- function! ResCur()
-   if line("'\"") <= line("$")
-     normal! g`"
-     return 1
-   endif
- endfunction
-
- augroup resCur
-   autocmd!
-   autocmd BufWinEnter * call ResCur()
- augroup END
+" function! ResCur()
+"   if line("'\"") <= line("$")
+"     normal! g`"
+"     return 1
+"   endif
+" endfunction
+"
+" augroup resCur
+"   autocmd!
+"   autocmd BufWinEnter * call ResCur()
+" augroup END
 
 "}
 
@@ -432,6 +432,7 @@ command! -nargs=* C0 set autoindent cindent expandtab shiftwidth=4
 command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
 command! -nargs=* C4 set autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 command! -nargs=* C8 set autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+execute ':C8'
 
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
