@@ -270,17 +270,17 @@ else
   set viminfo='30,\"100,:100,n~/.viminfo
 endif
 
-" function! ResCur()
-"   if line("'\"") <= line("$")
-"     normal! g`"
-"     return 1
-"   endif
-" endfunction
-"
-" augroup resCur
-"   autocmd!
-"   autocmd BufWinEnter * call ResCur()
-" augroup END
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
 
 "}
 

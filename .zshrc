@@ -86,7 +86,7 @@ if [ ! -f "/tmp/zsh_init_flag" ]; then
 fi
 
 alias dict="$HOME/tools/dict"
-alias eclipse="nohup $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
+alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
 alias meld="nohup $HOME/tools/meld/bin/meld"
 alias xnview="nohup $HOME/tools/XnView/XnView > /dev/null 2>&1 &"
 alias tmuxkill="tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}"
