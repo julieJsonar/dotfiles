@@ -427,6 +427,7 @@ let g:sneak#s_next = 1
 
 " Commands {{{1}}}
 command! -nargs=* Wrap set wrap linebreak nolist
+command! -nargs=* Tree NERDTree | only
 
 command! -nargs=* C0 set autoindent cindent expandtab shiftwidth=4
 command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
