@@ -191,6 +191,7 @@ set noshowmode
 set nomodeline
 set nowrap
 set nowrapscan
+set showbreak=↪ |"⇇
 set noswapfile
 set nostartofline
 set noshowmatch
