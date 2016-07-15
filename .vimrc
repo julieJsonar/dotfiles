@@ -465,10 +465,14 @@ command! -nargs=1 Silent
   " Open tag in new tab
   nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
-  nmap <c-h> <c-w>h
-  nmap <c-j> <c-w>j
-  nmap <c-k> <c-w>k
-  nmap <c-l> <c-w>l
+  nmap <silent> <c-h> <c-w>h
+  nmap <silent> <c-j> <c-w>j
+  nmap <silent> <c-k> <c-w>k
+  nmap <silent> <c-l> <c-w>l
+  nmap <silent> <C-Right> :tabnext<CR>
+  nmap <silent> <C-Left>  :tabprev<CR>
+  nmap <silent> <C-Up>    :cnewer<CR>
+  nmap <silent> <C-Down>  :colder<CR>
 
   map <silent> <leader>1 :norm! 1gt<CR>
   map <silent> <leader>2 :norm! 2gt<CR>
