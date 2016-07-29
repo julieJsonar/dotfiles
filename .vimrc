@@ -67,6 +67,7 @@ Plugin 'szw/vim-maximizer'
 
 Plugin 'klen/python-mode'
 Plugin 'AnsiEsc.vim'
+Plugin 'mfukar/robotframework-vim'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'
 "Plugin 'tpope/vim-speeddating'
