@@ -23,7 +23,7 @@ sudo apt-get install -y tree cscope ctags w3m kbtin
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Develop Env
-sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386
+sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386 manpages-dev
 # Gcc Compile: check header not found error
 # sudo updatedb
 # locate stdio.h
