@@ -26,6 +26,8 @@ ban_words=( \
   "daemon/wad/wad_debug.c" \
   "__FGT_DISK_MGR_DEBUG" \
   "wilson" \
+  "message" \
+  "cooked" \
 )
 
 # functions {{{1
