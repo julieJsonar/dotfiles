@@ -470,6 +470,13 @@ command! -nargs=1 Silent
   nmap <silent> <c-j> <c-w>j
   nmap <silent> <c-k> <c-w>k
   nmap <silent> <c-l> <c-w>l
+
+  " Window resizing mappings /*{{{*/
+  nnoremap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
+  nnoremap <S-Down> :normal <c-r>=Resize('-')<CR><CR>
+  nnoremap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
+  nnoremap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
+
   nmap <silent> <C-Right> :tabnext<CR>
   nmap <silent> <C-Left>  :tabprev<CR>
   nmap <silent> <C-Up>    :cnewer<CR>
