@@ -508,6 +508,7 @@ command! -nargs=1 Silent
   "nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
+  " :Voomhelp
   nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
   vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
   nmap <silent> <leader>;t :TagbarToggle<CR>
