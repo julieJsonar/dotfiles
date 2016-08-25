@@ -18,6 +18,9 @@ wad_fmem_open
 wad_mem_block_pool_alloc
 __wad_mem_block_alloc
 wad_mem_block_pool_free
+__wad_mem_block_free
+wad_mem_pool_release
+__wad_mem_block_free
 wad_mem_block_pool_use
 wad_mem_c_free
 wad_mem_c_malloc
@@ -26,3 +29,14 @@ wad_ssl_port_caps_on_enc_done
 wad_tcp_port_transport_read_block
 wad_tcp_port_out_read_block
 wad_ssl_port_unsupported_ciphers_num
+wad_http_send_http_line
+wad_user_node_stats_put
+wad_http_stream_get_line
+wad_http_client_read_header
+wad_http_client_preparse_header
+wad_http_split_empty_line
+wad_http_client_read_request_line
+wad_http_str_canonicalize
+wad_hauth_user_node_alloc
+wad_user_node_stats_hold
+wad_http_conn_request_classify
