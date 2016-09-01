@@ -60,7 +60,7 @@ Plugin 'justinmk/vim-sneak'
 "Plugin 'myusuf3/numbers.vim'
 "Plugin 'easymotion/vim-easymotion'
 "Plugin 'tpope/vim-repeat'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 "Plugin 'vim-scripts/CmdlineComplete'
 Plugin 'vim-utils/vim-vertical-move'
 Plugin 'szw/vim-maximizer'
@@ -470,6 +470,13 @@ command! -nargs=1 Silent
   nmap <silent> <c-j> <c-w>j
   nmap <silent> <c-k> <c-w>k
   nmap <silent> <c-l> <c-w>l
+
+  " Window resizing mappings /*{{{*/
+  nnoremap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
+  nnoremap <S-Down> :normal <c-r>=Resize('-')<CR><CR>
+  nnoremap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
+  nnoremap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
+
   nmap <silent> <C-Right> :tabnext<CR>
   nmap <silent> <C-Left>  :tabprev<CR>
   nmap <silent> <C-Up>    :cnewer<CR>
@@ -508,6 +515,7 @@ command! -nargs=1 Silent
   "nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
 
   nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
+  " :Voomhelp
   nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
   vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
   nmap <silent> <leader>;t :TagbarToggle<CR>
