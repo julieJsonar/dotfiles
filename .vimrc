@@ -301,6 +301,7 @@ let g:reload_on_write = 0
   autocmd CursorHold * normal! m'
 
   autocmd BufNewFile,BufRead *.json set ft=javascript
+  autocmd BufWritePre [:;'"]* throw 'Forbidden file name: ' . expand('<afile>')
 "}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -624,15 +625,15 @@ command! -nargs=1 Silent
   nnoremap <leader>jj :<C-u>Unite jump <CR>
   nnoremap <leader>jc :<C-u>UniteClose <CR>
 
-  " Custom mappings for the unite buffer
-  autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
-  function! s:unite_settings()
-    " Play nice with supertab
-    let b:SuperTabDisabled=1
-    " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  endfunction
+  "" Custom mappings for the unite buffer
+  "autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
+  "function! s:unite_settings()
+  "  " Play nice with supertab
+  "  let b:SuperTabDisabled=1
+  "  " Enable navigation with control-j and control-k in insert mode
+  "  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  "endfunction
 
 "}
 
