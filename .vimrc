@@ -301,7 +301,7 @@ let g:reload_on_write = 0
   autocmd CursorHold * normal! m'
 
   autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd BufWritePre [:;'"]* throw 'Forbidden file name: ' . expand('<afile>')
+  autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 "}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
