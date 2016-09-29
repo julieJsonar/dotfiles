@@ -77,8 +77,9 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
+Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 
 Plugin 'chrisbra/NrrwRgn'
@@ -329,6 +330,8 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" plasticboy/vim-markdown
+let g:vim_markdown_folding_level = 3
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -429,7 +432,8 @@ let g:sneak#s_next = 1
 "}}}
 
 " Commands {{{1}}}
-command! -nargs=* Wrap set wrap linebreak nolist
+"command! -nargs=* Wrap set wrap linebreak nolist
+command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
 
 command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
