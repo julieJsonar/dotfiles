@@ -331,7 +331,15 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " plasticboy/vim-markdown
+let g:vim_markdown_conceal = 0
+"let g:vim_markdown_toc_autofit = 1
+"let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_fenced_languages = ['C=c', 'c=c', 'Shell=sh', 'Java=java', 'Csharp=cs']
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
