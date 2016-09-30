@@ -77,8 +77,9 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
+Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 
 Plugin 'chrisbra/NrrwRgn'
@@ -301,6 +302,7 @@ let g:reload_on_write = 0
   autocmd CursorHold * normal! m'
 
   autocmd BufNewFile,BufRead *.json set ft=javascript
+  autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 "}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -328,6 +330,16 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" plasticboy/vim-markdown
+let g:vim_markdown_conceal = 0
+"let g:vim_markdown_toc_autofit = 1
+"let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_fenced_languages = ['C=c', 'c=c', 'Shell=sh', 'Java=java', 'Csharp=cs']
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -428,7 +440,8 @@ let g:sneak#s_next = 1
 "}}}
 
 " Commands {{{1}}}
-command! -nargs=* Wrap set wrap linebreak nolist
+"command! -nargs=* Wrap set wrap linebreak nolist
+command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
 
 command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
@@ -624,15 +637,15 @@ command! -nargs=1 Silent
   nnoremap <leader>jj :<C-u>Unite jump <CR>
   nnoremap <leader>jc :<C-u>UniteClose <CR>
 
-  " Custom mappings for the unite buffer
-  autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
-  function! s:unite_settings()
-    " Play nice with supertab
-    let b:SuperTabDisabled=1
-    " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  endfunction
+  "" Custom mappings for the unite buffer
+  "autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
+  "function! s:unite_settings()
+  "  " Play nice with supertab
+  "  let b:SuperTabDisabled=1
+  "  " Enable navigation with control-j and control-k in insert mode
+  "  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  "endfunction
 
 "}
 
