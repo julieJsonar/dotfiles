@@ -440,8 +440,8 @@ let g:sneak#s_next = 1
 "}}}
 
 " Commands {{{1}}}
-"command! -nargs=* Wrap set wrap linebreak nolist
-command! -nargs=* Wrap PencilSoft
+command! -nargs=* Wrap set wrap linebreak nolist
+"command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
 
 command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
