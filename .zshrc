@@ -64,6 +64,12 @@ export LANG=en_US.UTF-8
 export KEYTIMEOUT=0
 export USESUDO=sudo
 
+# Load Antigen
+source ~/.antigen.zsh
+
+antigen bundle "soimort/translate-shell"
+antigen bundle "web-search"
+
 SAVEHIST=10000 # Number of entries
 HISTSIZE=10000
 HISTFILE=~/.zsh_history     # File
