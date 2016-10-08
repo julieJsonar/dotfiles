@@ -81,6 +81,7 @@ Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
+Plugin 'brandonbloom/csearch.vim'
 
 Plugin 'chrisbra/NrrwRgn'
 "Plugin 'SirVer/ultisnips'
