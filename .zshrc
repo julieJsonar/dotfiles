@@ -1,3 +1,30 @@
+# Load Antigen
+source ~/.antigen.zsh
+
+antigen bundle soimort/translate-shell
+antigen bundle web-search
+antigen bundle zsh-users/zsh-completions src
+antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle zsh-users/zsh-history-substring-search
+
+antigen-use oh-my-zsh
+antigen-bundle git
+
+if [ "$OSTYPE"="darwin11.0" ]; then
+  antigen-bundle osx
+fi
+
+antigen-bundle vagrant
+antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle zsh-users/zsh-history-substring-search
+antigen-bundle $ZSHA_BASE/bundles/stv
+
+antigen-theme $ZSHA_BASE/themes/mgdm/mgdm.zsh-theme
+
+antigen-apply
+
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -46,7 +73,8 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search)
+#plugins=(history-substring-search)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,11 +92,6 @@ export LANG=en_US.UTF-8
 export KEYTIMEOUT=0
 export USESUDO=sudo
 
-# Load Antigen
-source ~/.antigen.zsh
-
-antigen bundle "soimort/translate-shell"
-antigen bundle "web-search"
 
 SAVEHIST=10000 # Number of entries
 HISTSIZE=10000
