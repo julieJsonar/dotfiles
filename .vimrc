@@ -671,6 +671,7 @@ command! -nargs=1 Silent
 "       :new|0read !ls -l  # grab cmd output into new window
 "       :cfile log.marks   # view as quickfix
 "       :mks!              # Save to Session.vim
+"       :Tree              # explore dir and use 'o' to open a file into preview windows
 "   Vimgrep:               # Also lvimgrep, short as: vim, lvim
 "       samples
 "       :vim /some/gj **/*.c **/*.h
