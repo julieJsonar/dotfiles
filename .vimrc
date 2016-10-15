@@ -84,8 +84,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'brandonbloom/csearch.vim'
 
 Plugin 'chrisbra/NrrwRgn'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
 "Plugin 'msanders/snipmate.vim'
 
 "Plugin 'tpope/vim-obsession'
