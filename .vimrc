@@ -46,8 +46,8 @@ Plugin 'Lokaltog/vim-distinguished'
 Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'derekwyatt/vim-fswitch'
-Plugin 'file-line'
-Plugin 'Raimondi/delimitMate'
+Plugin 'bogado/file-line'
+"Plugin 'Raimondi/delimitMate'
 Plugin 'millermedeiros/vim-statline'
 "Plugin 'vivien/vim-linux-coding-style'
 
@@ -62,8 +62,8 @@ Plugin 'justinmk/vim-sneak'
 "Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'vim-scripts/CmdlineComplete'
-Plugin 'vim-utils/vim-vertical-move'
-Plugin 'szw/vim-maximizer'
+"Plugin 'vim-utils/vim-vertical-move'
+"Plugin 'szw/vim-maximizer'
 
 Plugin 'klen/python-mode'
 Plugin 'AnsiEsc.vim'
@@ -84,9 +84,14 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'brandonbloom/csearch.vim'
 
 Plugin 'chrisbra/NrrwRgn'
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
+
 "Plugin 'msanders/snipmate.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
+"---
+Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
 
 "Plugin 'tpope/vim-obsession'
 "Plugin 'xolox/vim-misc'
@@ -349,12 +354,6 @@ let g:AutoComplPop_Behavior = {
 \       'repeat' : 0}
 \      ]
 \}
-
-"" Vim-session
-"let g:session_directory = "."
-"let g:session_autoload = "no"
-"let g:session_autosave = "yes"
-"let g:session_command_aliases = 1
 
 " CommandT
 let g:CommandTHighlightColor = 'Ptext'
