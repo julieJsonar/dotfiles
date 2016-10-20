@@ -32,6 +32,7 @@ git_repos=( \
   "$HOME/.vim/bundle/vimux-script" \
   "$HOME/.vim/bundle/c-utils.vim" \
   "$HOME/.vim/bundle/Decho" \
+  "$HOME/.vim/bundle/vim-snippets" \
   "$HOME/log" \
 )
 

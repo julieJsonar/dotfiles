@@ -85,13 +85,14 @@ Plugin 'brandonbloom/csearch.vim'
 
 Plugin 'chrisbra/NrrwRgn'
 
-"Plugin 'msanders/snipmate.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-Plugin 'tomtom/tlib_vim'
+Plugin 'huawenyu/vim-snippets'
 "---
-Plugin 'honza/vim-snippets'
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
+"---
+"Plugin 'msanders/snipmate.vim'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'tomtom/tlib_vim'
 
 "Plugin 'tpope/vim-obsession'
 "Plugin 'xolox/vim-misc'
