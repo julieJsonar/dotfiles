@@ -64,6 +64,7 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'vim-scripts/CmdlineComplete'
 "Plugin 'vim-utils/vim-vertical-move'
 "Plugin 'szw/vim-maximizer'
+Plugin 'junegunn/vim-easy-align'
 
 Plugin 'klen/python-mode'
 Plugin 'AnsiEsc.vim'
@@ -295,6 +296,12 @@ augroup END
 "}
 
 let g:vimfiler_as_default_explorer = 1
+
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Save Session
 let g:session_autoload = 'no'
