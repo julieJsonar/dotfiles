@@ -47,7 +47,7 @@ Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'bogado/file-line'
-"Plugin 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 Plugin 'millermedeiros/vim-statline'
 "Plugin 'vivien/vim-linux-coding-style'
 
