@@ -75,6 +75,7 @@ Plugin 'mfukar/robotframework-vim'
 "Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/VOoM'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
@@ -85,7 +86,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'brandonbloom/csearch.vim'
 
 Plugin 'chrisbra/NrrwRgn'
-
 Plugin 'huawenyu/vim-snippets'
 "---
 Plugin 'SirVer/ultisnips'
@@ -302,6 +302,22 @@ let g:vimfiler_as_default_explorer = 1
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" NerdComment
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 " Save Session
 let g:session_autoload = 'no'
