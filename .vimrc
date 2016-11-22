@@ -95,6 +95,7 @@ Plugin 'SirVer/ultisnips'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'tomtom/tlib_vim'
 
+"Plugin 'lyuts/vim-rtags'
 "Plugin 'tpope/vim-obsession'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
