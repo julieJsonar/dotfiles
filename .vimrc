@@ -400,6 +400,7 @@ let g:vim_json_syntax_conceal = 0
 
 " sneek motion: conflict with leader ';'
 let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 
 " tracelog
 let g:tracelog_default_dir = $HOME . "/script/trace-wad/"
@@ -410,8 +411,6 @@ set grepprg=grep
 let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
-let g:sneak#s_next = 1
-let g:sneak#use_ic_scs = 1
 
 " Python-mode{{{2
   " Activate rope
