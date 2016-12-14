@@ -8,3 +8,4 @@ default.vim
 log.*
 patch.*
 tags*
+migadmin/node_modules/grunt-jscs/*

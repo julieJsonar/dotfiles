@@ -410,6 +410,7 @@ let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
 let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 
 " Python-mode{{{2
   " Activate rope
