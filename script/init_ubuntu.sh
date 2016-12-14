@@ -34,7 +34,7 @@ sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
 sudo apt-get install neovim
 # nvim :help nvim_python
-sudo pip install neovim
+# sudo pip install neovim
 
 # Java JDK
 sudo apt-add-repository ppa:webupd8team/java
