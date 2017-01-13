@@ -118,7 +118,6 @@ Plugin 'mattn/gist-vim'
 "Plugin 'JarrodCTaylor/vim-shell-executor'
 "Plugin 'Shougo/vimshell.vim'
 Plugin 'skywind3000/asyncrun.vim'
-Plugin 'huawenyu/vim-make-background'
 
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/neomru.vim'
