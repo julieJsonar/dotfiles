@@ -64,6 +64,7 @@ else
 fi
 
 #if [ $action_mode == 'all' ]; then
+	echo "Generating tags and cscope database..."
 	execute "find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | \
 		grep -v 'wad/ui/stdin/'        | \
 		grep -v 'wad/ui/stdin/'        | \
@@ -97,6 +98,7 @@ fi
 	execute "cscope -kbq > /dev/null 2>&1"
 	execute "ctags --extra=+f -L cscope.files > /dev/null 2>&1 &"
 	execute "ctags -xL cscope.files > tags.x"
+	echo "Done."
 #	execute "ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1 &"
 #fi
 

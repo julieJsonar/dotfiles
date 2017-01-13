@@ -91,7 +91,7 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'brandonbloom/csearch.vim'
 "Plugin 'devjoe/vim-codequery'
-Plugin 'mhinz/vim-grepper'
+Plugin 'huawenyu/vim-grepper'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'huawenyu/vim-snippets'
 "---
@@ -108,6 +108,8 @@ Plugin 'SirVer/ultisnips'
 "Plugin 'xolox/vim-session'
 "Plugin 'xolox/vim-reload'
 Plugin 'mhinz/vim-startify'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 
 "Plugin 'kana/vim-arpeggio'
 "Plugin 'dyng/ctrlsf.vim'
@@ -116,6 +118,7 @@ Plugin 'mhinz/vim-startify'
 "Plugin 'JarrodCTaylor/vim-shell-executor'
 "Plugin 'Shougo/vimshell.vim'
 Plugin 'skywind3000/asyncrun.vim'
+Plugin 'huawenyu/vim-make-background'
 
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/neomru.vim'
@@ -137,7 +140,7 @@ Plugin 'huawenyu/vim-mark'
 "Plugin 'huawenyu/highlight.vim'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
-Plugin 'huawenyu/vim-dispatch'
+"Plugin 'huawenyu/vim-dispatch'
 Plugin 'huawenyu/c-utils.vim'
 
 " Debug
@@ -329,6 +332,11 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" Gist
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
+let g:gist_get_multiplefile = 1
+
 " Save Session
 "let g:session_autoload = 'no'
 "let g:session_autosave = 'no'
@@ -488,6 +496,7 @@ let g:enable_numbers = 0
 command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
 command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
