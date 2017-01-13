@@ -3,9 +3,11 @@
 " :set ts=4 sts=4 noet   indent tab
 " :set ts=4 sts=4 et     indent space
 
+" Install vim 8.0: sudo add-apt-repository ppa:jonathonf/vim; sudo apt install vim
+"
 "setlocal stl=%t\ (%l\ of\ %L)%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
-
+"
 " VimL Debug{{{1
   "set verbose=9
   ""set verbose=15
@@ -77,6 +79,9 @@ Plugin 'mfukar/robotframework-vim'
 Plugin 'jhidding/VOoM'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'mhinz/vim-signify'
+Plugin 'cohama/agit.vim'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
@@ -84,8 +89,9 @@ Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
-Plugin 'brandonbloom/csearch.vim'
-
+"Plugin 'brandonbloom/csearch.vim'
+"Plugin 'devjoe/vim-codequery'
+Plugin 'mhinz/vim-grepper'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'huawenyu/vim-snippets'
 "---
@@ -101,15 +107,16 @@ Plugin 'SirVer/ultisnips'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
 "Plugin 'xolox/vim-reload'
-"Plugin 'mhinz/vim-startify'
+Plugin 'mhinz/vim-startify'
 
 "Plugin 'kana/vim-arpeggio'
 "Plugin 'dyng/ctrlsf.vim'
 "Plugin 'rking/ag.vim'
 
 "Plugin 'JarrodCTaylor/vim-shell-executor'
-
 "Plugin 'Shougo/vimshell.vim'
+Plugin 'skywind3000/asyncrun.vim'
+
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/neomru.vim'
 "Plugin 'Shougo/neoyank.vim'
@@ -233,8 +240,8 @@ set splitright
 "set autochdir       " if work with shell or cscope, please not change work-dir
 set sessionoptions-=options    " do not store global and local values in a session
 set ssop-=folds      " do not store folds
-set ssop-=curdir     " do not store absolute path
-set ssop+=sesdir     " work under current dir as relative path
+set ssop+=curdir     " do not store absolute path
+set ssop-=sesdir     " work under current dir as relative path
 
 hi CursorLine guibg=Grey40
 hi Visual term=reverse cterm=reverse guibg=Grey
@@ -298,6 +305,7 @@ augroup END
 "}
 
 let g:vimfiler_as_default_explorer = 1
+"let g:signify_vcs_list = [ 'git', 'svn' ]
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -322,10 +330,21 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Save Session
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-let g:session_directory = getcwd()
-let g:reload_on_write = 0
+"let g:session_autoload = 'no'
+"let g:session_autosave = 'no'
+"let g:session_directory = getcwd()
+"let g:reload_on_write = 0
+let g:startify_list_order = ['sessions', 'bookmarks', 'files', 'dir', 'commands']
+let g:startify_change_to_dir = 0
+let g:startify_session_autoload = 1
+let g:startify_session_dir = './.vim'
+let g:startify_session_persistence = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_before_save = [
+	  \ 'echo "Cleaning up before saving.."',
+	  \ 'silent! cclose',
+	  \ 'silent! NERDTreeTabsClose'
+	  \ ]
 
 " Autocmd {
   "autocmd VimLeavePre * cclose | lclose
