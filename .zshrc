@@ -119,10 +119,10 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
 export PYTHONPATH="$HOME/work/autotest-robot/library"
 export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
-export TERM=xterm-256color
+export TERM=screen-256color
 export EDITOR='vi'
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 
-export JEMALLOC_PATH=$HOME/project/jemalloc
-export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
+#export JEMALLOC_PATH=$HOME/project/jemalloc
+#export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"

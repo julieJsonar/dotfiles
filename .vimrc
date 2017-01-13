@@ -125,6 +125,7 @@ Plugin 'skywind3000/asyncrun.vim'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'h1mesuke/unite-outline'
 
+Plugin 'kassio/neoterm'
 Plugin 'yuratomo/w3m.vim'
 "Plugin 'DrawIt'
 "Plugin 'bruno-/vim-man'
