@@ -221,9 +221,9 @@ set nonumber
 set noexpandtab
 
 " indent
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
 set textwidth=120
 set noexpandtab
 
@@ -363,14 +363,13 @@ let g:startify_session_before_save = [
   autocmd BufNewFile,BufRead *.json set ft=javascript
   autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
-  command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
-  command! -nargs=* C4 set autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C8 set autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+  command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C2 setlocal autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
+  command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
-  autocmd BufNewFile,BufRead patch.*,*.diff,*.patch set ft=diff
-  autocmd BufNewFile,BufRead *.c,*.c.rej,*.c.orig,*.h,*.h.rej,*.h.orig set ft=c
-  autocmd Filetype diff,c C8
+  autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
+  "autocmd Filetype c,diff C8
 
 "}
 
@@ -773,3 +772,4 @@ command! -nargs=1 Silent
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
+
