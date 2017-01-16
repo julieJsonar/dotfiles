@@ -362,6 +362,16 @@ let g:startify_session_before_save = [
 
   autocmd BufNewFile,BufRead *.json set ft=javascript
   autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
+
+  command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
+  command! -nargs=* C4 set autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C8 set autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+
+  autocmd BufNewFile,BufRead patch.*,*.diff,*.patch set ft=diff
+  autocmd BufNewFile,BufRead *.c,*.c.rej,*.c.orig,*.h,*.h.rej,*.h.orig set ft=c
+  autocmd Filetype diff,c C8
+
 "}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -497,12 +507,6 @@ command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-
-command! -nargs=* C0 set autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-command! -nargs=* C2 set autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
-command! -nargs=* C4 set autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-command! -nargs=* C8 set autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
-execute ':C8'
 
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
