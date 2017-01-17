@@ -123,6 +123,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'skywind3000/asyncrun.vim'
 
 "Plugin 'Shougo/unite.vim'
+"Plugin 'Shougo/denite.nvim'
 "Plugin 'Shougo/neomru.vim'
 "Plugin 'Shougo/neoyank.vim'
 "Plugin 'Shougo/vimproc.vim'
@@ -233,9 +234,9 @@ set nonumber
 set noexpandtab
 
 " indent
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
 set textwidth=120
 set noexpandtab
 
@@ -694,18 +695,18 @@ command! -nargs=1 Silent
   let g:voom_tree_width = 45
 
   " Unite
-  let g:unite_source_history_yank_enable = 1
-  let g:neoyank#file = $HOME.'/.vim/yankring.txt'
-  "call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
-  nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  "nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-  nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-  nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
-  nnoremap <leader>jj :<C-u>Unite jump <CR>
-  nnoremap <leader>jc :<C-u>UniteClose <CR>
-
+  "let g:unite_source_history_yank_enable = 1
+  "let g:neoyank#file = $HOME.'/.vim/yankring.txt'
+  ""call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  "nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+  "nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
+  "nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+  ""nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+  "nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+  "nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
+  "nnoremap <leader>jj :<C-u>Unite jump <CR>
+  "nnoremap <leader>jc :<C-u>UniteClose <CR>
+  "
   "" Custom mappings for the unite buffer
   "autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
   "function! s:unite_settings()
