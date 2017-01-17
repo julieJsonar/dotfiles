@@ -96,14 +96,6 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'devjoe/vim-codequery'
 Plugin 'huawenyu/vim-grepper'
 Plugin 'chrisbra/NrrwRgn'
-Plugin 'huawenyu/vim-snippets'
-"---
-Plugin 'SirVer/ultisnips'
-"---
-"Plugin 'msanders/snipmate.vim'
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'tomtom/tlib_vim'
 
 "Plugin 'lyuts/vim-rtags'
 "Plugin 'tpope/vim-obsession'
@@ -128,8 +120,19 @@ Plugin 'skywind3000/asyncrun.vim'
 "Plugin 'Shougo/neoyank.vim'
 "Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plugin 'h1mesuke/unite-outline'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'honza/vim-snippets'
+"---
+"Plugin 'SirVer/ultisnips'
+"---
+"Plugin 'msanders/snipmate.vim'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'tomtom/tlib_vim'
 
+" share copy/paste between vim(""p)/tmux
+Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'kassio/neoterm'
 Plugin 'yuratomo/w3m.vim'
 Plugin 'vim-utils/vim-man'
@@ -391,6 +394,8 @@ let g:AutoPairsFlyMode = 1
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " w3m
 let g:w3m#command = '/usr/bin/w3m'
