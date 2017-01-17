@@ -42,10 +42,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'holokai'
-Plugin 'darkspectrum'
-Plugin 'tomasr/molokai'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'nanotech/jellybeans.vim'
+"Plugin 'darkspectrum'
+"Plugin 'sjl/badwolf'
+"Plugin 'tomasr/molokai'
+"Plugin 'Lokaltog/vim-distinguished'
+"Plugin 'nanotech/jellybeans.vim'
+"Plugin 'dracula/vim'
+Plugin 'morhetz/gruvbox'
 
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'bogado/file-line'
@@ -123,10 +126,12 @@ Plugin 'skywind3000/asyncrun.vim'
 "Plugin 'Shougo/neomru.vim'
 "Plugin 'Shougo/neoyank.vim'
 "Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plugin 'h1mesuke/unite-outline'
 
 Plugin 'kassio/neoterm'
 Plugin 'yuratomo/w3m.vim'
+Plugin 'vim-utils/vim-man'
 "Plugin 'DrawIt'
 "Plugin 'bruno-/vim-man'
 "Plugin 'vim-scripts/DirDiff.vim'
@@ -169,7 +174,7 @@ if has("nvim")
   let $NVIM_TUI_ENABLE_TRUE_COLOR=0
   set synmaxcol=2048
 else
- set term=xterm-256color
+  set term=xterm-256color
 endif
 
 set nocompatible
@@ -182,13 +187,20 @@ set hidden
 
 " syntax enable
 syntax on
-"set background=dark
-"set t_Co=256
+set background=dark
+set t_Co=256
 
+colorscheme holokai
+"colorscheme badwolf
 "colorscheme distinguished
 "colorscheme darkspectrum
 "colorscheme molokai
-colorscheme holokai
+"colorscheme dracula
+"
+"let g:gruvbox_italic=1
+"let g:gruvbox_termcolors=16
+"let g:gruvbox_contrast_dark='hard'
+"colorscheme gruvbox
 
 if has('mouse')
 	set mouse=a
@@ -221,9 +233,9 @@ set nonumber
 set noexpandtab
 
 " indent
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set textwidth=120
 set noexpandtab
 
@@ -369,7 +381,7 @@ let g:startify_session_before_save = [
   command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
   autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
-  "autocmd Filetype c,diff C8
+  autocmd Filetype c,diff C8
 
 "}
 
@@ -377,7 +389,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:AutoPairsFlyMode = 1
 
 " Use deoplete.
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 " w3m
 let g:w3m#command = '/usr/bin/w3m'
