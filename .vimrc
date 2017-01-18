@@ -95,7 +95,7 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'brandonbloom/csearch.vim'
 "Plugin 'devjoe/vim-codequery'
-Plugin 'huawenyu/vim-grepper'	| " :Grepper search-text
+Plugin 'huawenyu/vim-grepper'	| " :Grepper text
 Plugin 'chrisbra/NrrwRgn'
 
 "Plugin 'lyuts/vim-rtags'
