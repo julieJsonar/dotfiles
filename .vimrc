@@ -60,7 +60,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'tomtom/ttags_vim'
 "Plugin 'tomtom/tlib_vim'
 
-Plugin 'justinmk/vim-sneak'
+Plugin 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plugin 'kien/ctrlp.vim'
 "Plugin 'myusuf3/numbers.vim'
 "Plugin 'easymotion/vim-easymotion'
@@ -69,7 +69,7 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'vim-scripts/CmdlineComplete'
 "Plugin 'vim-utils/vim-vertical-move'
 "Plugin 'szw/vim-maximizer'
-Plugin 'junegunn/vim-easy-align'
+Plugin 'junegunn/vim-easy-align'	| " selected and ga=
 
 Plugin 'klen/python-mode'
 Plugin 'AnsiEsc.vim'
@@ -79,12 +79,13 @@ Plugin 'mfukar/robotframework-vim'
 "Plugin 'tpope/vim-speeddating'
 "Plugin 'tpope/vim-vinegar'
 "Plugin 'vim-scripts/VOoM'
-Plugin 'jhidding/VOoM'
+Plugin 'jhidding/VOoM'		| " VOom support +python3
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'mhinz/vim-signify'
-Plugin 'cohama/agit.vim'
+
+Plugin 'cohama/agit.vim'	| " :Agit show git log like gitk
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
@@ -94,7 +95,7 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'brandonbloom/csearch.vim'
 "Plugin 'devjoe/vim-codequery'
-Plugin 'huawenyu/vim-grepper'
+Plugin 'huawenyu/vim-grepper'	| " :Grepper search-text
 Plugin 'chrisbra/NrrwRgn'
 
 "Plugin 'lyuts/vim-rtags'
@@ -104,7 +105,7 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'xolox/vim-reload'
 Plugin 'mhinz/vim-startify'
 Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+Plugin 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
 "Plugin 'kana/vim-arpeggio'
 "Plugin 'dyng/ctrlsf.vim'
@@ -112,7 +113,7 @@ Plugin 'mattn/gist-vim'
 
 "Plugin 'JarrodCTaylor/vim-shell-executor'
 "Plugin 'Shougo/vimshell.vim'
-Plugin 'skywind3000/asyncrun.vim'
+Plugin 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
 
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/denite.nvim'
@@ -120,7 +121,7 @@ Plugin 'skywind3000/asyncrun.vim'
 "Plugin 'Shougo/neoyank.vim'
 "Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet.vim'		| " Popup for options snippets
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'honza/vim-snippets'
 "---
@@ -133,11 +134,10 @@ Plugin 'honza/vim-snippets'
 
 " share copy/paste between vim(""p)/tmux
 Plugin 'roxma/vim-tmux-clipboard'
-Plugin 'kassio/neoterm'
+Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls
 Plugin 'yuratomo/w3m.vim'
-Plugin 'vim-utils/vim-man'
+Plugin 'vim-utils/vim-man'	| " :Man printf
 "Plugin 'DrawIt'
-"Plugin 'bruno-/vim-man'
 "Plugin 'vim-scripts/DirDiff.vim'
 
 "Plugin 'AD7six/vim-activity-log'
@@ -816,4 +816,3 @@ command! -nargs=1 Silent
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
-
