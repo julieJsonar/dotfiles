@@ -10,14 +10,14 @@ import os
 import re
 import struct
 import termios
-import vimrunner
+import neovim
 
 # Globals ------------------------------------------------------------
 g_gdb_tmux_id = ""
 g_vim_state = 0
 g_vim = None
 
-g_vim_servername = "GDB.SOURCE1"
+g_vim_servername = "/tmp/nvim.gdb"
 g_vim_source_init_str = ""
 g_vim_gdb_output = "/tmp/gdb/"
 g_vim_source_fname = ""
@@ -258,20 +258,19 @@ class Dashboard(gdb.Command):
         # Check vim server exist
         g_vim_state = 0
         try:
-            g_vim = vimrunner.Server(name=g_vim_servername)
-            if any(g_vim_servername in s for s in g_vim.server_list()):
-                vim_client = g_vim.connect(1)
-                if g_vim.is_running():
-                    g_vim_state = 1
-                    if not g_vim.remote_expr("g:tmux_gdb"):
-                        if not g_vim_source_init_str:
-                            g_vim_source_init_str = "<ESC>:silent! GdbMode " \
-                                + g_gdb_tmux_id + " " \
-                                + g_vim_servername + " " \
-                                + g_vim_gdb_output + " " \
-                                + "<Enter>"
+            g_vim = neovim.attach('socket', path=g_vim_servername)
+            g_vim_state = 1
+            """
+            if not g_vim.eval('g:tmux_gdb'):
+                if not g_vim_source_init_str:
+                    g_vim_source_init_str = "<ESC>:silent! GdbMode " \
+                        + g_gdb_tmux_id + " " \
+                        + g_vim_servername + " " \
+                        + g_vim_gdb_output + " " \
+                        + "<Enter>"
 
-                        g_vim.remote_send(g_vim_source_init_str)
+                g_vim.command(g_vim_source_init_str)
+            """
         except:
             pass
 
@@ -316,10 +315,19 @@ class Dashboard(gdb.Command):
                     lines.extend(module_lines)
 
         if g_vim_state > 0:
-            g_vim.remote_send("<ESC>:silent! GdbRefresh " \
+            """
+            g_vim.command("<ESC>:silent! GdbRefresh " \
                 + g_vim_source_fname + " " \
                 + g_vim_source_fname_line \
                 + "<Enter>")
+            """
+
+            """
+            g_vim.command("e " \
+                + g_vim_source_fname)
+            """
+
+            g_vim.command("e ~/tmp/t1.c")
 
             return ""
         else:
