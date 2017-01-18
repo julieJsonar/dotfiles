@@ -389,7 +389,7 @@ let g:startify_session_before_save = [
    " Maximizes the current window if it is not the quickfix window.
    function! SetIndentTabForCfiletype()
      let my_ft = &filetype
-     if (my_ft == "c" || my_ft == "diff" )
+     if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
         execute ':C8'
      endif
    endfunction
@@ -411,7 +411,7 @@ let g:startify_session_before_save = [
   command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
   autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
-  autocmd Filetype c,diff C8
+  autocmd Filetype c,cpp,diff C8
 
 "}
 
