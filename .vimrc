@@ -55,6 +55,7 @@ Plugin 'bogado/file-line'
 Plugin 'Raimondi/delimitMate'
 Plugin 'millermedeiros/vim-statline'
 "Plugin 'vivien/vim-linux-coding-style'
+Plugin 'MattesGroeger/vim-bookmarks'
 
 Plugin 'majutsushi/tagbar'
 "Plugin 'tomtom/ttags_vim'
@@ -134,7 +135,7 @@ Plugin 'honza/vim-snippets'
 
 " share copy/paste between vim(""p)/tmux
 Plugin 'roxma/vim-tmux-clipboard'
-Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls
+Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
 Plugin 'yuratomo/w3m.vim'
 Plugin 'vim-utils/vim-man'	| " :Man printf
 "Plugin 'DrawIt'
@@ -325,6 +326,14 @@ augroup END
 
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
+
+" Bookmark: MattesGroeger/vim-bookmarks
+let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_highlight_lines = 1
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 0
+let g:bookmark_show_warning = 0
+"let g:bookmark_location_list = 1
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -816,3 +825,22 @@ command! -nargs=1 Silent
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
+  function! WilsonNext1()
+      let src = 0
+      let currentWinNr = winnr()
+      for nr in range(1, winnr('$'))
+          if getwinvar(nr, "&buftype") == "terminal"
+              echoerr "wilson"
+              silent exec nr . "wincmd w"
+              exec ":norm next"
+          endif
+          silent exec currentWinNr . 'wincmd w'
+      endfor
+  endfunction
+
+  function! WilsonNext()
+      pyfile ~/my.py
+  endfunc
+
+  map <F5> :call WilsonNext()<CR>
+
