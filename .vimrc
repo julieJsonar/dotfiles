@@ -397,13 +397,22 @@ let g:startify_session_before_save = [
 
    " Maximizes the current window if it is not the quickfix window.
    function! SetIndentTabForCfiletype()
-     let my_ft = &filetype
-     if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
-        execute ':C8'
-     endif
+       " auto into terminal-mode
+       if &buftype == 'terminal'
+           startinsert
+           return
+       elseif &buftype == 'quickfix'
+           call AdjustWindowHeight(3, 10)
+           return
+       endif
+
+       let my_ft = &filetype
+       if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
+           execute ':C8'
+       endif
    endfunction
 
-  autocmd WinEnter * call SetIndentTabForCfiletype()
+  autocmd BufEnter * call SetIndentTabForCfiletype()
   autocmd FileType qf call AdjustWindowHeight(3, 10)
 
   "autocmd VimLeavePre * cclose | lclose
@@ -593,6 +602,14 @@ command! -nargs=1 Silent
   nmap <silent> <c-j> <c-w>j
   nmap <silent> <c-k> <c-w>k
   nmap <silent> <c-l> <c-w>l
+if has("nvim")
+  let b:terminal_scrollback_buffer_size = 10000
+  let g:terminal_scrollback_buffer_size = 10000
+  tnoremap <c-h> <C-\><C-n><C-w>h
+  tnoremap <c-j> <C-\><C-n><C-w>j
+  tnoremap <c-k> <C-\><C-n><C-w>k
+  tnoremap <c-l> <C-\><C-n><C-w>
+endif
 
   " Window resizing mappings /*{{{*/
   nnoremap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
@@ -825,22 +842,3 @@ command! -nargs=1 Silent
 "       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
 "   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
 "======================================================================
-  function! WilsonNext1()
-      let src = 0
-      let currentWinNr = winnr()
-      for nr in range(1, winnr('$'))
-          if getwinvar(nr, "&buftype") == "terminal"
-              echoerr "wilson"
-              silent exec nr . "wincmd w"
-              exec ":norm next"
-          endif
-          silent exec currentWinNr . 'wincmd w'
-      endfor
-  endfunction
-
-  function! WilsonNext()
-      pyfile ~/my.py
-  endfunc
-
-  map <F5> :call WilsonNext()<CR>
-
