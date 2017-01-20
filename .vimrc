@@ -237,7 +237,8 @@ set noshowmatch
 set nonumber
 set noexpandtab
 
-" indent
+" Check which script change the config value
+"   :verbose set tabstop sw softtabstop expandtab ?
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
