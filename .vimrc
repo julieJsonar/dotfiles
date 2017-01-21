@@ -425,7 +425,7 @@ let g:startify_session_before_save = [
   autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
   command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C2 setlocal autoindent cindent noexpandtab tabstop=2 shiftwidth=2 softtabstop=2
+  command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
   command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
   command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
