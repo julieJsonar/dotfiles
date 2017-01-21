@@ -4,6 +4,7 @@
 " :set ts=4 sts=4 et     indent space
 
 " Install vim 8.0: sudo add-apt-repository ppa:jonathonf/vim; sudo apt install vim
+" vimscript-OOP: http://bling.github.io/blog/2013/08/16/modularizing-vimscript/
 "
 "setlocal stl=%t\ (%l\ of\ %L)%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
@@ -78,10 +79,10 @@ Plugin 'mfukar/robotframework-vim'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'
 "Plugin 'tpope/vim-speeddating'
-"Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'	| " '-' open explore
 "Plugin 'vim-scripts/VOoM'
 Plugin 'jhidding/VOoM'		| " VOom support +python3
-Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'mhinz/vim-signify'
@@ -122,7 +123,7 @@ Plugin 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
 "Plugin 'Shougo/neoyank.vim'
 "Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'Shougo/neosnippet.vim'		| " Popup for options snippets
+Plugin 'Shougo/neosnippet.vim'		| " c-k apply code, c-n next, c-p previous
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'honza/vim-snippets'
 "---
@@ -152,6 +153,7 @@ Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
 "Plugin 'huawenyu/vim-dispatch'
 Plugin 'huawenyu/c-utils.vim'
+Plugin 'huawenyu/neogdb.vim'
 
 " Debug
 Plugin 'tpope/vim-scriptease'
@@ -320,7 +322,7 @@ endfunction
 
 augroup resCur
   autocmd!
-  autocmd BufWinEnter * call ResCur()
+  autocmd BufWinEnter * silent! call ResCur()
 augroup END
 
 "}
@@ -341,6 +343,22 @@ let g:bookmark_show_warning = 0
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"" netrw
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 16
+
+" NerdTree
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeRespectWildIgnore = 1
+"let NERDTreeShowBookmarks = 1
+let NERDTreeWinSize = 25
 
 " NerdComment
 " Add spaces after comment delimiters by default
@@ -441,6 +459,9 @@ let g:AutoPairsFlyMode = 1
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " w3m
 let g:w3m#command = '/usr/bin/w3m'
@@ -451,9 +472,10 @@ set wildignorecase
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*
-set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rbc,*.class,.svn,coverage/*,vendor
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
+set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
+set wildignore+=*.d
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -593,8 +615,8 @@ command! -nargs=1 Silent
   nmap <leader>p :r! cat /tmp/vim.yank<CR>
 
   " vim local list
-  nmap <silent> gn :silent! lnext <CR>
-  nmap <silent> gp :silent! lpre  <CR>
+  nmap <silent> <a-n> :silent! lnext <CR>
+  nmap <silent> <a-p> :silent! lpre <CR>
 
   " Open tag in new tab
   nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
@@ -622,6 +644,19 @@ endif
   nmap <silent> <C-Left>  :tabprev<CR>
   nmap <silent> <C-Up>    :cnewer<CR>
   nmap <silent> <C-Down>  :colder<CR>
+
+  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
+  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
+
+  " :on[ly][!]  close all other windows, but keep buffer
+  "nmap <silent> <leader>;n :silent! cnewer <CR>
+  "nmap <silent> <leader>;p :silent! colder <CR>
+
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
+
+  nnoremap <silent> <leader>;e :NERDTreeToggle<Enter>
+  nnoremap <silent> <leader>;f :NERDTreeFind<CR>
 
   map <silent> <leader>1 :norm! 1gt<CR>
   map <silent> <leader>2 :norm! 2gt<CR>
@@ -683,17 +718,6 @@ endif
     autocmd filetype python   nnoremap <buffer> <leader>;o :VoomToggle python<CR>
   augroup END
 
-  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
-  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
-
-  " :on[ly][!]  close all other windows, but keep buffer
-  "nmap <silent> <leader>;n :silent! cnewer <CR>
-  "nmap <silent> <leader>;p :silent! colder <CR>
-  nmap <silent> <leader>;n :silent! NERDTreeToggle<CR>
-
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
-
   " Execute selected text as shell
   nmap          <leader>ex  :tabclose<CR>
   nmap          <leader>et  :TabooOpen 
@@ -705,8 +729,8 @@ endif
   nmap <silent> <leader>ee  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
   nmap <silent> <leader>eg  :<c-u>call vimuxscript#ExecuteGroup()<CR>
   nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
-  nmap <silent> <leader>;e  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
-  vmap <silent> <leader>;e  :ExecuteSelection <CR>
+  "nmap <silent> <leader>;e  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
+  "vmap <silent> <leader>;e  :ExecuteSelection <CR>
 
   " ctags -R *;  ctags -L cscope.files
   "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
