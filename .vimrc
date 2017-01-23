@@ -632,7 +632,7 @@ command! -nargs=1 Silent
 
 
 " Key maps {{{1}}}
-  nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
+  nmap <silent> <space> :call utils#Declaration()<CR>
 
   " when wrap, move by virtual row
   nmap j gj
