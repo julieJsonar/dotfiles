@@ -87,7 +87,7 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'mhinz/vim-signify'
 
-Plugin 'wesleyche/SrcExpl'
+"Plugin 'wesleyche/SrcExpl'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'yegappan/mru'
 
@@ -382,20 +382,20 @@ let NERDTreeRespectWildIgnore = 1
 "let NERDTreeShowBookmarks = 1
 let NERDTreeWinSize = 25
 
-" SrcExpl {{{2}}}
-  let g:SrcExpl_winHeight = 8
-  let g:SrcExpl_refreshTime = 99999     | " for back from the definition context
-  let g:SrcExpl_searchLocalDef = 1
-
-  let g:SrcExpl_jumpKey = "<F2>"   | " jump into the exact definition context
-  let g:SrcExpl_gobackKey = "<F3>"
-  let g:SrcExpl_prevDefKey = "<F4>"
-  let g:SrcExpl_nextDefKey = "<F5>"
-
-  let g:SrcExpl_isUpdateTags = 0
-  let g:SrcExpl_updateTagsCmd = "gencs.sh -a all"
-  let g:SrcExpl_updateTagsKey = "<F6>"
-
+" SrcExpl {{{2
+"  let g:SrcExpl_winHeight = 8
+"  let g:SrcExpl_refreshTime = 100     | " for back from the definition context
+"  let g:SrcExpl_searchLocalDef = 0
+"
+"  let g:SrcExpl_jumpKey = "<F2>"   | " jump into the exact definition context
+"  let g:SrcExpl_gobackKey = "<F3>"
+"  let g:SrcExpl_prevDefKey = "<F4>"
+"  let g:SrcExpl_nextDefKey = "<F5>"
+"
+"  let g:SrcExpl_isUpdateTags = 0
+"  let g:SrcExpl_updateTagsCmd = "gencs.sh -a all"
+"  let g:SrcExpl_updateTagsKey = "<F6>"
+"}}}
 
 " NerdComment {{{2}}}
 " Add spaces after comment delimiters by default
@@ -691,7 +691,7 @@ command! -nargs=1 Silent
   nmap <silent> <leader>;e :NERDTreeToggle<CR>
   nmap <silent> <leader>;f :NERDTreeFind<CR>
   nmap <silent> <leader>;t :TlistToggle<CR>
-  nmap <silent> <leader>;s :SrcExplToggle<CR>
+  "nmap <silent> <leader>;s :SrcExplToggle<CR>
   nmap <silent> <leader>;r :MRU<CR>
   nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
   nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
