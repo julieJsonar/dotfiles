@@ -87,6 +87,10 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'mhinz/vim-signify'
 
+Plugin 'wesleyche/SrcExpl'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'yegappan/mru'
+
 Plugin 'cohama/agit.vim'	| " :Agit show git log like gitk
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
@@ -267,6 +271,7 @@ set ssop+=curdir     " do not store absolute path
 set ssop-=sesdir     " work under current dir as relative path
 
 hi CursorLine guibg=Grey40
+"hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi Visual term=reverse cterm=reverse guibg=Grey
 
 "hi MatchParen cterm=bold ctermfg=cyan
@@ -296,7 +301,22 @@ set listchars=tab:»\ ,trail:~,extends:<,nbsp:.
 "set listchars=tab:> ,trail:~,extends:<,nbsp:.
 
 " Plugins Configure {{{1}}}
-" Restore cursor to file {
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:AutoPairsFlyMode = 1
+
+" wildignore {{{2}}}
+set wildignorecase
+if exists("g:ctrl_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
+set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,coverage/*,vendor
+set wildignore+=*.gif,*.png,*.map
+set wildignore+=*.d
+
+" Restore cursor {{{2}}}
+"{
 
  " Tell vim to remember certain things when we exit
  "  !    :  The uppercase global VARIABLE will saved
@@ -327,10 +347,11 @@ augroup END
 
 "}
 
+" vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 
-" Bookmark: MattesGroeger/vim-bookmarks
+" vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_highlight_lines = 1
 let g:bookmark_save_per_working_dir = 1
@@ -338,20 +359,21 @@ let g:bookmark_auto_save = 0
 let g:bookmark_show_warning = 0
 "let g:bookmark_location_list = 1
 
-" EasyAlign
+" EasyAlign {{{2}}}
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-"" netrw
+" netrw {{{2}}}
 "let g:netrw_banner = 0
 "let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
 "let g:netrw_altv = 1
 "let g:netrw_winsize = 16
 
-" NerdTree
+" NerdTree {{{2}}}
+let NERDTreeMouseMode = 3
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -360,7 +382,22 @@ let NERDTreeRespectWildIgnore = 1
 "let NERDTreeShowBookmarks = 1
 let NERDTreeWinSize = 25
 
-" NerdComment
+" SrcExpl {{{2}}}
+  let g:SrcExpl_winHeight = 8
+  let g:SrcExpl_refreshTime = 99999     | " for back from the definition context
+  let g:SrcExpl_searchLocalDef = 1
+
+  let g:SrcExpl_jumpKey = "<F2>"   | " jump into the exact definition context
+  let g:SrcExpl_gobackKey = "<F3>"
+  let g:SrcExpl_prevDefKey = "<F4>"
+  let g:SrcExpl_nextDefKey = "<F5>"
+
+  let g:SrcExpl_isUpdateTags = 0
+  let g:SrcExpl_updateTagsCmd = "gencs.sh -a all"
+  let g:SrcExpl_updateTagsKey = "<F6>"
+
+
+" NerdComment {{{2}}}
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -376,12 +413,12 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Gist
+" Gist {{{2}}}
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 let g:gist_get_multiplefile = 1
 
-" Save Session
+" startify&Session {{{2}}}
 "let g:session_autoload = 'no'
 "let g:session_autosave = 'no'
 "let g:session_directory = getcwd()
@@ -398,64 +435,7 @@ let g:startify_session_before_save = [
 	  \ 'silent! NERDTreeTabsClose'
 	  \ ]
 
-" Autocmd {
-
-   function! AdjustWindowHeight(minheight, maxheight)
-       let l = 1
-       let n_lines = 0
-       let w_width = winwidth(0)
-       while l <= line('$')
-           " number to float for division
-           let l_len = strlen(getline(l)) + 0.0
-           let line_width = l_len/w_width
-           let n_lines += float2nr(ceil(line_width))
-           let l += 1
-       endw
-       exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
-   endfunction
-
-   " Maximizes the current window if it is not the quickfix window.
-   function! SetIndentTabForCfiletype()
-       " auto into terminal-mode
-       if &buftype == 'terminal'
-           startinsert
-           return
-       elseif &buftype == 'quickfix'
-           call AdjustWindowHeight(3, 10)
-           return
-       endif
-
-       let my_ft = &filetype
-       if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
-           execute ':C8'
-       endif
-   endfunction
-
-  autocmd BufEnter * call SetIndentTabForCfiletype()
-  autocmd FileType qf call AdjustWindowHeight(3, 10)
-
-  "autocmd VimLeavePre * cclose | lclose
-  autocmd InsertEnter,InsertLeave * set cul!
-  " current position in jumplist
-  autocmd CursorHold * normal! m'
-
-  autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
-
-  command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
-  command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
-
-  autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
-  autocmd Filetype c,cpp,diff C8
-
-"}
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let g:AutoPairsFlyMode = 1
-
-" Use deoplete.
+" Deoplete {{{2}}}
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -463,27 +443,11 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" w3m
+" w3m {{{2}}}
 let g:w3m#command = '/usr/bin/w3m'
 let g:w3m#lang = 'en_US'
 
-" vimgrep, ctrlp exclude dir
-set wildignorecase
-if exists("g:ctrl_user_command")
-  unlet g:ctrlp_user_command
-endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
-set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,coverage/*,vendor
-set wildignore+=*.gif,*.png,*.map
-set wildignore+=*.d
-
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-
-" plasticboy/vim-markdown
+" plasticboy/vim-markdown {{{2}}}
 let g:vim_markdown_conceal = 0
 "let g:vim_markdown_toc_autofit = 1
 "let g:vim_markdown_folding_disabled = 1
@@ -502,25 +466,34 @@ let g:AutoComplPop_Behavior = {
 \      ]
 \}
 
-" CommandT
+" CommandT {{{2}}}
 let g:CommandTHighlightColor = 'Ptext'
 let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
-"{ taglist tagbar plugin
-	let g:tagbar_sort = 0
-	let g:tagbar_width = 30
-	let g:tagbar_compact = 1
-	let g:tagbar_indent = 0
-	let g:tagbar_iconchars = ['+', '-']
-"}
+" taglist tagbar plugin {{{2
+  let g:tagbar_sort = 0
+  let g:tagbar_width = 30
+  let g:tagbar_compact = 1
+  let g:tagbar_indent = 0
+  let g:tagbar_iconchars = ['+', '-']
+
+  "let Tlist_GainFocus_On_ToggleOpen = 1
+  let Tlist_Show_Menu = 0
+  let Tlist_Use_Right_Window = 1
+  let Tlist_WinWidth = 40
+  let Tlist_File_Fold_Auto_Close = 1
+  let Tlist_Show_One_File = 1
+  let Tlist_Use_SingleClick = 1
+  let Tlist_Enable_Fold_Column = 0
+"}}}
 
 let g:miniBufExplSplitToEdge = 1
 let g:miniBufExplorerAutoStart = 1
 let g:utilquickfix_file = $HOME."/.vim/vim.quickfix"
 let g:vim_json_syntax_conceal = 0
 
-" sneek motion: conflict with leader ';'
+" sneek motion {{{2}}}
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
 
@@ -586,7 +559,8 @@ let g:enable_numbers = 0
     endif
 "}}}
 
-" Commands {{{1}}}
+" Commands {{{1
+
 command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
@@ -595,6 +569,67 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
   \ | execute ':redraw!'
+
+" Autocmd {{{2
+
+   function! AdjustWindowHeight(minheight, maxheight)
+       let l = 1
+       let n_lines = 0
+       let w_width = winwidth(0)
+       while l <= line('$')
+           " number to float for division
+           let l_len = strlen(getline(l)) + 0.0
+           let line_width = l_len/w_width
+           let n_lines += float2nr(ceil(line_width))
+           let l += 1
+       endw
+       exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+   endfunction
+
+   " Maximizes the current window if it is not the quickfix window.
+   function! SetIndentTabForCfiletype()
+       " auto into terminal-mode
+       if &buftype == 'terminal'
+           startinsert
+           return
+       elseif &buftype == 'quickfix'
+           call AdjustWindowHeight(3, 10)
+           return
+       endif
+
+       let my_ft = &filetype
+       if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
+           execute ':C8'
+       endif
+   endfunction
+
+  autocmd BufEnter * call SetIndentTabForCfiletype()
+  autocmd FileType qf call AdjustWindowHeight(3, 10)
+
+  "autocmd VimLeavePre * cclose | lclose
+  autocmd InsertEnter,InsertLeave * set cul!
+  " current position in jumplist
+  autocmd CursorHold * normal! m'
+
+  autocmd BufNewFile,BufRead *.json set ft=javascript
+  autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
+
+  command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
+  command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+
+  autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
+  autocmd Filetype c,cpp,diff C8
+
+  augroup voom_map
+    autocmd!
+    autocmd filetype markdown nnoremap <buffer> <leader>;o :VoomToggle markdown<CR>
+    autocmd filetype python   nnoremap <buffer> <leader>;o :VoomToggle python<CR>
+  augroup END
+"}}}
+"}}}
+
 
 " Key maps {{{1}}}
   nmap <silent> <space> :call utils#ColumnlineOrDeclaration()<CR>
@@ -625,28 +660,25 @@ command! -nargs=1 Silent
   nmap <silent> <c-j> <c-w>j
   nmap <silent> <c-k> <c-w>k
   nmap <silent> <c-l> <c-w>l
-if has("nvim")
-  let b:terminal_scrollback_buffer_size = 10000
-  let g:terminal_scrollback_buffer_size = 10000
-  tnoremap <c-h> <C-\><C-n><C-w>h
-  tnoremap <c-j> <C-\><C-n><C-w>j
-  tnoremap <c-k> <C-\><C-n><C-w>k
-  tnoremap <c-l> <C-\><C-n><C-w>
-endif
+  if has("nvim")
+    let b:terminal_scrollback_buffer_size = 10000
+    let g:terminal_scrollback_buffer_size = 10000
+    tmap <c-h> <C-\><C-n><C-w>h
+    tmap <c-j> <C-\><C-n><C-w>j
+    tmap <c-k> <C-\><C-n><C-w>k
+    tmap <c-l> <C-\><C-n><C-w>l
+  endif
 
   " Window resizing mappings /*{{{*/
-  nnoremap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
-  nnoremap <S-Down> :normal <c-r>=Resize('-')<CR><CR>
-  nnoremap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
-  nnoremap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
+  nmap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
+  nmap <S-Down> :normal <c-r>=Resize('-')<CR><CR>
+  nmap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
+  nmap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
 
   nmap <silent> <C-Right> :tabnext<CR>
   nmap <silent> <C-Left>  :tabprev<CR>
-  nmap <silent> <C-Up>    :cnewer<CR>
-  nmap <silent> <C-Down>  :colder<CR>
-
-  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
-  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
+  "nmap <silent> <C-Up>    :cnewer<CR>
+  "nmap <silent> <C-Down>  :colder<CR>
 
   " :on[ly][!]  close all other windows, but keep buffer
   "nmap <silent> <leader>;n :silent! cnewer <CR>
@@ -655,9 +687,33 @@ endif
   nmap <silent> <c-n> :cn<cr>
   nmap <silent> <c-p> :cp<cr>
 
-  nnoremap <silent> <leader>;e :NERDTreeToggle<Enter>
-  nnoremap <silent> <leader>;f :NERDTreeFind<CR>
+  " <leader>;* {{{2}}}
+  nmap <silent> <leader>;e :NERDTreeToggle<CR>
+  nmap <silent> <leader>;f :NERDTreeFind<CR>
+  nmap <silent> <leader>;t :TlistToggle<CR>
+  nmap <silent> <leader>;s :SrcExplToggle<CR>
+  nmap <silent> <leader>;r :MRU<CR>
+  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
+  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
+  " config voom {{{3}}}
+  let g:voom_tree_width = 45
+  let g:voom_tree_placement = 'right'
+  " Voom
+  nmap <silent> <leader>;o :VoomToggle<CR>
+
+  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
+  let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
+
+  nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
+  vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
+  vmap          <leader>;h <Plug>CtrlSFVwordPath
+  map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
+  "nmap <silent> <leader>;r :call utils#RefreshWindows() <CR>
+  "nmap <silent> <leader>rr :call utils#RefreshWindows() <CR>
+
+
+  " <leader>number {{{2}}}
   map <silent> <leader>1 :norm! 1gt<CR>
   map <silent> <leader>2 :norm! 2gt<CR>
   map <silent> <leader>3 :norm! 3gt<CR>
@@ -685,38 +741,11 @@ endif
   nmap          <leader>dd :g/<C-R><C-w>/ norm dd
   nmap          <leader>de  :g/.\{200,\}/d
 
-  let g:voom_tree_placement = 'right'
-  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
-  "nmap          <leader>;t :<C-u>Ag -inr --ignore='vim.*' 'TODO @*wilson' .
-
-  nmap <silent> <leader>;l :call layout#DefaultLayout() <CR><CR>
-  " :Voomhelp
-  nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
-  vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
-  nmap <silent> <leader>;t :TagbarToggle<CR>
-  vmap          <leader>;h <Plug>CtrlSFVwordPath
-  map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-  "nmap <silent> <leader>;r :!/bin/bash gencs.sh -a all <CR>
-  "    \:cs reset <CR><CR>
-  nmap <silent> <leader>;r :call utils#RefreshWindows() <CR>
-  nmap <silent> <leader>rr :call utils#RefreshWindows() <CR>
-  "nmap <leader>rr  <ESC>0y$0:<c-u>R !sh -c '<c-r>0'<CR><CR>
-  "vmap <leader>rr  :<c-u>R !sh -c '<c-r>*'
-
   nmap          <leader>qs :QSave 
   nmap          <leader>ql :QLoad 
   nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
   nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
-
-  " Voom
-  nmap <silent> <leader>;o :VoomToggle<CR>
-  augroup voom_map
-    autocmd!
-    autocmd filetype markdown nnoremap <buffer> <leader>;o :VoomToggle markdown<CR>
-    autocmd filetype python   nnoremap <buffer> <leader>;o :VoomToggle python<CR>
-  augroup END
 
   " Execute selected text as shell
   nmap          <leader>ex  :tabclose<CR>
@@ -732,10 +761,6 @@ endif
   "nmap <silent> <leader>;e  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
   "vmap <silent> <leader>;e  :ExecuteSelection <CR>
 
-  " ctags -R *;  ctags -L cscope.files
-  "nmap <leader>g :ptag <C-R>=expand("<cword>")<CR><CR>
-  "nmap <silent> <leader>, :ptnext<cr>
-  "nmap <silent> <leader>. :ptprevious<cr>
 
   " TAB conflict with ctrl-i
   "nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
@@ -743,8 +768,8 @@ endif
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
-  			\| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
-  			\| r <args>
+              \| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
+              \| r <args>
 
   " Cause command 'w' delay
   "cmap w!! w !sudo tee % >/dev/null
@@ -774,9 +799,8 @@ endif
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
-  let g:voom_tree_width = 45
 
-  " Unite
+  " Unite {{{2
   "let g:unite_source_history_yank_enable = 1
   "let g:neoyank#file = $HOME.'/.vim/yankring.txt'
   ""call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -798,10 +822,11 @@ endif
   "  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   "  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   "endfunction
+  "}}}
 
 "}
 
-" Installation & Helper {{{1}}}
+" Documentation {{{1}}}
 " ============================
 " 1. Vundle.vim
 "    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
@@ -859,7 +884,7 @@ endif
 "       <backspace>        # Back page
 "       <enter>            # Open link under the cursor
 "
-" Self: {{{2}}}
+" My: {{{2}}}
 " =====
 "   Function:
 "       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
