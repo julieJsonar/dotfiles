@@ -68,6 +68,8 @@ Plugin 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plugin 'easymotion/vim-easymotion'
 "Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
+Plugin 'radenling/vim-dispatch-neovim'
 "Plugin 'vim-scripts/CmdlineComplete'
 "Plugin 'vim-utils/vim-vertical-move'
 "Plugin 'szw/vim-maximizer'
@@ -86,6 +88,7 @@ Plugin 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'mhinz/vim-signify'
+Plugin 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
 
 "Plugin 'wesleyche/SrcExpl'
 Plugin 'vim-scripts/taglist.vim'
@@ -350,6 +353,9 @@ augroup END
 " vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
+
+" autotag {{{2}}}
+let g:autotagTagsFile = ".tags"
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
@@ -693,8 +699,8 @@ command! -nargs=1 Silent
   nmap <silent> <leader>;t :TlistToggle<CR>
   "nmap <silent> <leader>;s :SrcExplToggle<CR>
   nmap <silent> <leader>;r :MRU<CR>
-  nmap <silent> <leader>;. :call verticalmove#VerticalMoveDown(1)<CR>
-  nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
+  nmap <silent> <leader>;. :Start! gencs.sh -a all<CR>
+  "nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
   " config voom {{{3}}}
   let g:voom_tree_width = 45
