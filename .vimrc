@@ -145,7 +145,6 @@ Plugin 'honza/vim-snippets'
 Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
 Plugin 'yuratomo/w3m.vim'
-Plugin 'nhooyr/neoman.vim'	| " :NMan printf
 "Plugin 'DrawIt'
 "Plugin 'vim-scripts/DirDiff.vim'
 
