@@ -68,7 +68,7 @@ Plugin 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plugin 'easymotion/vim-easymotion'
 "Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-dispatch'
+"Plugin 'tpope/vim-dispatch'
 Plugin 'radenling/vim-dispatch-neovim'
 "Plugin 'vim-scripts/CmdlineComplete'
 "Plugin 'vim-utils/vim-vertical-move'
@@ -158,7 +158,7 @@ Plugin 'huawenyu/vim-mark'
 "Plugin 'huawenyu/highlight.vim'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
-"Plugin 'huawenyu/vim-dispatch'
+Plugin 'huawenyu/vim-dispatch'
 Plugin 'huawenyu/c-utils.vim'
 Plugin 'huawenyu/neogdb.vim'
 
@@ -570,7 +570,7 @@ let g:enable_numbers = 0
 command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
 command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+"command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
@@ -698,8 +698,8 @@ command! -nargs=1 Silent
   nmap <silent> <leader>;f :NERDTreeFind<CR>
   nmap <silent> <leader>;t :TlistToggle<CR>
   "nmap <silent> <leader>;s :SrcExplToggle<CR>
-  nmap <silent> <leader>;r :MRU<CR>
-  nmap <silent> <leader>;. :Start! gencs.sh -a all<CR>
+  "nmap <silent> <leader>;r :MRU<CR>
+  nmap <silent> <leader>;r :Dispatch! gencs.sh -a all<CR>
   "nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
 
   " config voom {{{3}}}
