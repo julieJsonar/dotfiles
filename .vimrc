@@ -569,7 +569,6 @@ let g:enable_numbers = 0
 
 command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
-command! -nargs=* Tree NERDTree | only                |" fix nerdtree and use 'o' to preview file
 "command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 command! -nargs=1 Silent
@@ -701,6 +700,10 @@ command! -nargs=1 Silent
   "nmap <silent> <leader>;r :MRU<CR>
   nmap <silent> <leader>;r :Dispatch! gencs.sh -a all<CR>
   "nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
+  "
+  " execute file that I'm editing in Vi(m) and get output in split window
+  nmap <silent> <leader>;x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
+              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
   " config voom {{{3}}}
   let g:voom_tree_width = 45
