@@ -92,7 +92,7 @@ Plugin 'craigemery/vim-autotag' | " First should exist tagfile which tell autota
 
 "Plugin 'wesleyche/SrcExpl'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'yegappan/mru'
+"Plugin 'yegappan/mru'
 
 Plugin 'cohama/agit.vim'	| " :Agit show git log like gitk
 "Plugin 'vimwiki/vimwiki'
@@ -145,7 +145,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
 Plugin 'yuratomo/w3m.vim'
-Plugin 'vim-utils/vim-man'	| " :Man printf
+Plugin 'nhooyr/neoman.vim'	| " :NMan printf
 "Plugin 'DrawIt'
 "Plugin 'vim-scripts/DirDiff.vim'
 
