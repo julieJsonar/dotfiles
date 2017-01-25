@@ -122,7 +122,7 @@ Plugin 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
 "Plugin 'JarrodCTaylor/vim-shell-executor'
 "Plugin 'Shougo/vimshell.vim'
-Plugin 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
+"Plugin 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
 
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/denite.nvim'
