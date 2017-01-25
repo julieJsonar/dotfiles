@@ -157,7 +157,7 @@ Plugin 'huawenyu/vim-mark'
 "Plugin 'huawenyu/highlight.vim'
 Plugin 'huawenyu/vim-log-syntax'
 Plugin 'huawenyu/vimux-script'
-Plugin 'huawenyu/vim-dispatch'
+Plugin 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
 Plugin 'huawenyu/c-utils.vim'
 Plugin 'huawenyu/neogdb.vim'
 
