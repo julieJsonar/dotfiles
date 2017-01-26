@@ -95,6 +95,7 @@ Plugin 'vim-scripts/taglist.vim'
 "Plugin 'yegappan/mru'
 
 Plugin 'cohama/agit.vim'	| " :Agit show git log like gitk
+Plugin 'juneedahamed/svnj.vim'
 "Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/bash-support.vim'
 " Markdown
@@ -355,6 +356,9 @@ let g:vimfiler_as_default_explorer = 1
 
 " autotag {{{2}}}
 let g:autotagTagsFile = ".tags"
+
+" svnj {{{2}}}
+let g:svnj_browse_cache_all = 1
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
