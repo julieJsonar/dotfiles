@@ -76,7 +76,8 @@ Plugin 'radenling/vim-dispatch-neovim'
 Plugin 'junegunn/vim-easy-align'	| " selected and ga=
 
 Plugin 'klen/python-mode'
-Plugin 'AnsiEsc.vim'
+"Plugin 'AnsiEsc.vim'
+Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'mfukar/robotframework-vim'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jceb/vim-orgmode'
@@ -146,6 +147,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
 Plugin 'yuratomo/w3m.vim'
+Plugin 'nhooyr/neoman.vim'	| " :Nman printf, :Nman printf(3)
 "Plugin 'DrawIt'
 "Plugin 'vim-scripts/DirDiff.vim'
 
@@ -684,10 +686,10 @@ command! -nargs=1 Silent
   nmap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
 
   " tabpage {{{3}}}
-  noremap <silent><tab>j :tabnew<cr>
-  noremap <silent><tab>k :tabclose<cr>
-  noremap <silent><tab>n :tabn<cr>
-  noremap <silent><tab>p :tabp<cr>
+  nmap <silent><tab>j :tabnew<cr>
+  nmap <silent><tab>k :tabclose<cr>
+  nmap <silent><tab>n :tabn<cr>
+  nmap <silent><tab>p :tabp<cr>
 
   "nmap <silent> <C-Right> :tabnext<CR>
   "nmap <silent> <C-Left>  :tabprev<CR>
