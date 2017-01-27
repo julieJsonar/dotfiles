@@ -679,8 +679,14 @@ command! -nargs=1 Silent
   nmap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
   nmap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
 
-  nmap <silent> <C-Right> :tabnext<CR>
-  nmap <silent> <C-Left>  :tabprev<CR>
+  " tabpage {{{3}}}
+  noremap <silent><tab>j :tabnew<cr>
+  noremap <silent><tab>k :tabclose<cr>
+  noremap <silent><tab>n :tabn<cr>
+  noremap <silent><tab>p :tabp<cr>
+
+  "nmap <silent> <C-Right> :tabnext<CR>
+  "nmap <silent> <C-Left>  :tabprev<CR>
   "nmap <silent> <C-Up>    :cnewer<CR>
   "nmap <silent> <C-Down>  :colder<CR>
 
