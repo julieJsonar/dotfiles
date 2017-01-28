@@ -1,11 +1,4 @@
 " <leader>         ";"
-" <leader>;*       my shortkey
-" :set ts=4 sts=4 noet   indent tab
-" :set ts=4 sts=4 et     indent space
-
-"setlocal stl=%t\ (%l\ of\ %L)%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
-"autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
-"
 " VimL Debug{{{1
   "set verbose=9
   ""set verbose=15
@@ -29,144 +22,137 @@ if has("unix")
 endif
 
 " Plugins {{{1}}}
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
+Plug 'holokai'
+"Plug 'darkspectrum'
+"Plug 'sjl/badwolf'
+"Plug 'tomasr/molokai'
+"Plug 'Lokaltog/vim-distinguished'
+"Plug 'nanotech/jellybeans.vim'
+"Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'VundleVim/Vundle.vim'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'bogado/file-line'
+Plug 'Raimondi/delimitMate'
+Plug 'millermedeiros/vim-statline'
+"Plug 'vivien/vim-linux-coding-style'
+Plug 'MattesGroeger/vim-bookmarks'
 
-Plugin 'holokai'
-"Plugin 'darkspectrum'
-"Plugin 'sjl/badwolf'
-"Plugin 'tomasr/molokai'
-"Plugin 'Lokaltog/vim-distinguished'
-"Plugin 'nanotech/jellybeans.vim'
-"Plugin 'dracula/vim'
-Plugin 'morhetz/gruvbox'
+Plug 'majutsushi/tagbar'
+"Plug 'tomtom/ttags_vim'
+"Plug 'tomtom/tlib_vim'
 
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'bogado/file-line'
-Plugin 'Raimondi/delimitMate'
-Plugin 'millermedeiros/vim-statline'
-"Plugin 'vivien/vim-linux-coding-style'
-Plugin 'MattesGroeger/vim-bookmarks'
+Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
+"Plug 'kien/ctrlp.vim'
+"Plug 'myusuf3/numbers.vim'
+"Plug 'easymotion/vim-easymotion'
+"Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'cloudhead/neovim-fuzzy', Cond(has('nvim'))
+Plug 'Dkendal/fzy-vim'
+"Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
+"Plug 'vim-scripts/CmdlineComplete'
+"Plug 'vim-utils/vim-vertical-move'
+"Plug 'szw/vim-maximizer'
+Plug 'junegunn/vim-easy-align'	| " selected and ga=
 
-Plugin 'majutsushi/tagbar'
-"Plugin 'tomtom/ttags_vim'
-"Plugin 'tomtom/tlib_vim'
+Plug 'klen/python-mode'
+"Plug 'AnsiEsc.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'mfukar/robotframework-vim'
+"Plug 'pangloss/vim-javascript'
+"Plug 'jceb/vim-orgmode'
+"Plug 'tpope/vim-speeddating'
+"Plug 'tpope/vim-vinegar'	| " '-' open explore
+"Plug 'vim-scripts/VOoM'
+Plug 'jhidding/VOoM'		| " VOom support +python3
+Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
+Plug 'scrooloose/nerdcommenter'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'mhinz/vim-signify'
+Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
 
-Plugin 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'myusuf3/numbers.vim'
-"Plugin 'easymotion/vim-easymotion'
-"Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-dispatch'
-Plugin 'radenling/vim-dispatch-neovim'
-"Plugin 'vim-scripts/CmdlineComplete'
-"Plugin 'vim-utils/vim-vertical-move'
-"Plugin 'szw/vim-maximizer'
-Plugin 'junegunn/vim-easy-align'	| " selected and ga=
+"Plug 'wesleyche/SrcExpl'
+Plug 'vim-scripts/taglist.vim'
+"Plug 'yegappan/mru'
 
-Plugin 'klen/python-mode'
-"Plugin 'AnsiEsc.vim'
-Plugin 'powerman/vim-plugin-AnsiEsc'
-Plugin 'mfukar/robotframework-vim'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'jceb/vim-orgmode'
-"Plugin 'tpope/vim-speeddating'
-"Plugin 'tpope/vim-vinegar'	| " '-' open explore
-"Plugin 'vim-scripts/VOoM'
-Plugin 'jhidding/VOoM'		| " VOom support +python3
-Plugin 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
-Plugin 'scrooloose/nerdcommenter'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'mhinz/vim-signify'
-Plugin 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
-
-"Plugin 'wesleyche/SrcExpl'
-Plugin 'vim-scripts/taglist.vim'
-"Plugin 'yegappan/mru'
-
-Plugin 'cohama/agit.vim'	| " :Agit show git log like gitk
-Plugin 'juneedahamed/svnj.vim'
-"Plugin 'vimwiki/vimwiki'
-Plugin 'vim-scripts/bash-support.vim'
+Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
+Plug 'juneedahamed/svnj.vim'
+"Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/bash-support.vim'
 " Markdown
-Plugin 'reedes/vim-pencil'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'tpope/vim-markdown'
-"Plugin 'brandonbloom/csearch.vim'
-"Plugin 'devjoe/vim-codequery'
-Plugin 'huawenyu/vim-grepper'	| " :Grepper text
-Plugin 'chrisbra/NrrwRgn'
+Plug 'reedes/vim-pencil'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+"Plug 'tpope/vim-markdown'
+"Plug 'brandonbloom/csearch.vim'
+"Plug 'devjoe/vim-codequery'
+Plug 'huawenyu/vim-grepper'	| " :Grepper text
+Plug 'chrisbra/NrrwRgn'
 
-"Plugin 'lyuts/vim-rtags'
-"Plugin 'tpope/vim-obsession'
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-session'
-"Plugin 'xolox/vim-reload'
-Plugin 'mhinz/vim-startify'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
+"Plug 'lyuts/vim-rtags'
+"Plug 'tpope/vim-obsession'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"Plug 'xolox/vim-reload'
+Plug 'mhinz/vim-startify'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
-"Plugin 'kana/vim-arpeggio'
-"Plugin 'dyng/ctrlsf.vim'
-"Plugin 'rking/ag.vim'
+"Plug 'kana/vim-arpeggio'
+"Plug 'dyng/ctrlsf.vim'
+"Plug 'rking/ag.vim'
 
-"Plugin 'JarrodCTaylor/vim-shell-executor'
-"Plugin 'Shougo/vimshell.vim'
-"Plugin 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
+"Plug 'JarrodCTaylor/vim-shell-executor'
+"Plug 'Shougo/vimshell.vim'
+"Plug 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
 
-"Plugin 'Shougo/unite.vim'
-"Plugin 'Shougo/denite.nvim'
-"Plugin 'Shougo/neomru.vim'
-"Plugin 'Shougo/neoyank.vim'
-"Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'Shougo/neosnippet.vim'		| " c-k apply code, c-n next, c-p previous
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'honza/vim-snippets'
+"Plug 'Shougo/unite.vim'
+"Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/neomru.vim', Cond(has('nvim'))
+"Plug 'Shougo/neoyank.vim', Cond(has('nvim'))
+"Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
+Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
+Plug 'honza/vim-snippets'
 "---
-"Plugin 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 "---
-"Plugin 'msanders/snipmate.vim'
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'tomtom/tlib_vim'
+"Plug 'msanders/snipmate.vim'
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'garbas/vim-snipmate'
+"Plug 'tomtom/tlib_vim'
 
 " share copy/paste between vim(""p)/tmux
-Plugin 'roxma/vim-tmux-clipboard'
-Plugin 'kassio/neoterm'		| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
-Plugin 'yuratomo/w3m.vim'
-Plugin 'nhooyr/neoman.vim'	| " :Nman printf, :Nman printf(3)
-"Plugin 'DrawIt'
-"Plugin 'vim-scripts/DirDiff.vim'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'kassio/neoterm', Cond(has('nvim'))	| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
+Plug 'yuratomo/w3m.vim'
+Plug 'nhooyr/neoman.vim', Cond(has('nvim'))	| " :Nman printf, :Nman printf(3)
+"Plug 'DrawIt'
+"Plug 'vim-scripts/DirDiff.vim'
 
-"Plugin 'AD7six/vim-activity-log'
-"Plugin 'vim-scripts/LogViewer'
-"Plugin 'stefandtw/quickfix-reflector.vim'
+"Plug 'AD7six/vim-activity-log'
+"Plug 'vim-scripts/LogViewer'
+"Plug 'stefandtw/quickfix-reflector.vim'
 
-Plugin 'huawenyu/taboo.vim'
-Plugin 'huawenyu/vim-mark'
-"Plugin 'huawenyu/highlight.vim'
-Plugin 'huawenyu/vim-log-syntax'
-Plugin 'huawenyu/vimux-script'
-Plugin 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
-Plugin 'huawenyu/c-utils.vim'
-Plugin 'huawenyu/neogdb.vim'
+Plug 'huawenyu/taboo.vim'
+Plug 'huawenyu/vim-mark'
+"Plug 'huawenyu/highlight.vim'
+Plug 'huawenyu/vim-log-syntax'
+Plug 'huawenyu/vimux-script'
+Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
+Plug 'huawenyu/c-utils.vim'
+Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
 
 " Debug
-Plugin 'tpope/vim-scriptease'
-Plugin 'huawenyu/Decho'
+Plug 'tpope/vim-scriptease'
+Plug 'huawenyu/Decho'
+call plug#end()
 
-call vundle#end()
-filetype plugin indent on
 
 " Configure {{{1}}}
 let mapleader = ";"
@@ -182,6 +168,7 @@ set wildmenu
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 
+filetype plugin indent on
 if has("nvim")
   let base16colorspace=256
   let $NVIM_TUI_ENABLE_TRUE_COLOR=0
@@ -816,45 +803,14 @@ command! -nargs=1 Silent
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
-
-  " Unite {{{2
-  "let g:unite_source_history_yank_enable = 1
-  "let g:neoyank#file = $HOME.'/.vim/yankring.txt'
-  ""call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  "nnoremap <leader>jt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  "nnoremap <leader>jf :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
-  "nnoremap <leader>jr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  ""nnoremap <leader>jo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-  "nnoremap <leader>jy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-  "nnoremap <leader>jb :<C-u>Unite -no-split -buffer-name=buffer bookmark -start-insert buffer<cr>
-  "nnoremap <leader>jj :<C-u>Unite jump <CR>
-  "nnoremap <leader>jc :<C-u>UniteClose <CR>
-  "
-  "" Custom mappings for the unite buffer
-  "autocmd FileType unite call s:unite_settings() | imap <buffer> <ESC> <Plug>(unite_exit)
-  "function! s:unite_settings()
-  "  " Play nice with supertab
-  "  let b:SuperTabDisabled=1
-  "  " Enable navigation with control-j and control-k in insert mode
-  "  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  "  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  "endfunction
-  "}}}
-
 "}
 
 " Documentation {{{1}}}
 " ============================
-" 1. Vundle.vim
-"    $ mv .vim vim-bak; mv .vimrc vimrc-bak;
-"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"    $ vi -c 'PluginInstall'
-"
 " Usage: {{{2}}}
 " ======
 "  gd <or> D       goto declare <or> global declare
 "  [I              list all occurence
-"  g; <or> g,      navigate changelist
 " :g/regex/t$      copy match lines append to tail
 " s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
 "
@@ -878,34 +834,6 @@ command! -nargs=1 Silent
 "       /fred\_s*joe/      # any whitespace including newline [C]
 "       /^\n\{3}/          # find 3 empty lines
 "
-"   Grep:                  # grepprg=grep, using outer grep tool
-"       samples
-"       :grep -Iinr 'string' --include='*.[ch]' dirs
-"       :grep -w 'word1\|word2' files
-"       :grep '[a-z]\{5\}' files
-"       :grep '^POST /\(idle\|send\)/CzHmd' log
-"       ‘\w’ matches a character within a word
-"       ‘\W’ matches a character which is not within a word
-"       ‘\<’ matches the beginning of a word
-"       ‘\>’ matches the end of a word
-"       ‘\b’ matches a word boundary
-"       ‘\B’ matches characters which are not a word boundary
-"       ‘\`’ matches the beginning of the whole input
-"       ‘\'’ matches the end of the whole input
-"
 " Tools: {{{2}}}
 " ======
 "   DrawIt:                # use \di to start (\ds to stop)
-"   W3m:
-"       :W3m :W3mTab :W3mReload (local) [url or keyword], keyword include: google, wikipedia, man
-"       <backspace>        # Back page
-"       <enter>            # Open link under the cursor
-"
-" My: {{{2}}}
-" =====
-"   Function:
-"       :<C-\>e YourFunc() <CR>       # put YourFunc()'s result here
-"   Batchfiles:
-"       :TraceAdd,TraceAdjust,TraceClear()     # _WAD_TRACE_
-"   CrashLog:              # mark 'a, 'b, then :call Tracecrash()    resolve fgt's crashlog
-"======================================================================
