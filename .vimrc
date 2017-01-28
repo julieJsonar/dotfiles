@@ -3,9 +3,6 @@
 " :set ts=4 sts=4 noet   indent tab
 " :set ts=4 sts=4 et     indent space
 
-" Install vim 8.0: sudo add-apt-repository ppa:jonathonf/vim; sudo apt install vim
-" vimscript-OOP: http://bling.github.io/blog/2013/08/16/modularizing-vimscript/
-"
 "setlocal stl=%t\ (%l\ of\ %L)%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 "autocmd Filetype qf setlocal statusline=\ %n\ \ %f%=%L\ lines\ 
 "
