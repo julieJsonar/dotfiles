@@ -1,8 +1,8 @@
-" <leader>         ";"
+" the <leader> is <space>
 " VimL Debug{{{1
-  "set verbose=9
-  ""set verbose=15
-  "set verbosefile=/tmp/vim.verbose
+
+  set verbose=1
+  set verbosefile=/tmp/vim.log
 
   let g:decho_enable = 0
   " decho to /tmp/vim.debug file, check with 'tail -f /tmp/vim.debug'
@@ -43,26 +43,26 @@ Plug 'Raimondi/delimitMate'
 Plug 'millermedeiros/vim-statline'
 "Plug 'vivien/vim-linux-coding-style'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'szw/vim-maximizer'
 
 Plug 'majutsushi/tagbar'
 "Plug 'tomtom/ttags_vim'
 "Plug 'tomtom/tlib_vim'
 
+Plug 'megaannum/self'
+Plug 'megaannum/forms'
+
 Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
-"Plug 'kien/ctrlp.vim'
-"Plug 'myusuf3/numbers.vim'
-"Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'cloudhead/neovim-fuzzy', Cond(has('nvim'))
 Plug 'Dkendal/fzy-vim'
 "Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
 "Plug 'vim-scripts/CmdlineComplete'
 "Plug 'vim-utils/vim-vertical-move'
-"Plug 'szw/vim-maximizer'
 Plug 'junegunn/vim-easy-align'	| " selected and ga=
+Plug 'terryma/vim-expand-region'
 
 Plug 'klen/python-mode'
 "Plug 'AnsiEsc.vim'
@@ -72,17 +72,12 @@ Plug 'mfukar/robotframework-vim'
 "Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 "Plug 'tpope/vim-vinegar'	| " '-' open explore
-"Plug 'vim-scripts/VOoM'
 Plug 'jhidding/VOoM'		| " VOom support +python3
 Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'mhinz/vim-signify'
 Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
-
-"Plug 'wesleyche/SrcExpl'
 Plug 'vim-scripts/taglist.vim'
-"Plug 'yegappan/mru'
 
 Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
 Plug 'juneedahamed/svnj.vim'
@@ -92,45 +87,17 @@ Plug 'vim-scripts/bash-support.vim'
 Plug 'reedes/vim-pencil'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-"Plug 'tpope/vim-markdown'
-"Plug 'brandonbloom/csearch.vim'
-"Plug 'devjoe/vim-codequery'
 Plug 'huawenyu/vim-grepper'	| " :Grepper text
 Plug 'chrisbra/NrrwRgn'
 
-"Plug 'lyuts/vim-rtags'
-"Plug 'tpope/vim-obsession'
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-session'
-"Plug 'xolox/vim-reload'
 Plug 'mhinz/vim-startify'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
-"Plug 'kana/vim-arpeggio'
-"Plug 'dyng/ctrlsf.vim'
-"Plug 'rking/ag.vim'
-
-"Plug 'JarrodCTaylor/vim-shell-executor'
-"Plug 'Shougo/vimshell.vim'
-"Plug 'skywind3000/asyncrun.vim'	| " :asyncrun grep text
-
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/denite.nvim'
-"Plug 'Shougo/neomru.vim', Cond(has('nvim'))
-"Plug 'Shougo/neoyank.vim', Cond(has('nvim'))
-"Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
 Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
 Plug 'honza/vim-snippets'
-"---
-"Plug 'SirVer/ultisnips'
-"---
-"Plug 'msanders/snipmate.vim'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'garbas/vim-snipmate'
-"Plug 'tomtom/tlib_vim'
 
 " share copy/paste between vim(""p)/tmux
 Plug 'roxma/vim-tmux-clipboard'
@@ -160,11 +127,6 @@ call plug#end()
 
 
 " Configure {{{1}}}
-let mapleader = ";"
-" diable Ex mode
-map Q <Nop>
-nnoremap <C-c> <silent> <C-c>
-
 " Vim status bar prediction/completion
 "set wildmode=longest,list,full
 set wildmode=longest:full,full
@@ -189,6 +151,8 @@ set guifont=Liberation\ Mono\ 13
 set t_md=
 set t_vb=
 set hidden
+set ttyfast
+"set autoread
 
 " syntax enable
 syntax on
@@ -214,6 +178,7 @@ endif
 set foldmethod=manual
 
 set backspace=indent,eol,start
+set esckeys         " Allow cursor keys in insert mode
 set ignorecase
 set smartcase
 set hlsearch
@@ -225,13 +190,14 @@ set scrolloff=1
 
 set visualbell
 set noerrorbells
+set nowrap
 set nobackup
+set noswapfile
+set nowritebackup
 set noshowmode
 set nomodeline
-set nowrap
 set nowrapscan
 set showbreak=↪ |"⇇
-set noswapfile
 set nostartofline
 set noshowmatch
 set nonumber
@@ -340,6 +306,9 @@ augroup resCur
 augroup END
 
 "}
+  " Enter to go to end of file, Backspace to go to beginning of file.
+  "nnoremap <CR> G
+  "nnoremap <BS> gg
 
 " vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
@@ -382,20 +351,9 @@ let NERDTreeRespectWildIgnore = 1
 "let NERDTreeShowBookmarks = 1
 let NERDTreeWinSize = 25
 
-" SrcExpl {{{2
-"  let g:SrcExpl_winHeight = 8
-"  let g:SrcExpl_refreshTime = 100     | " for back from the definition context
-"  let g:SrcExpl_searchLocalDef = 0
-"
-"  let g:SrcExpl_jumpKey = "<F2>"   | " jump into the exact definition context
-"  let g:SrcExpl_gobackKey = "<F3>"
-"  let g:SrcExpl_prevDefKey = "<F4>"
-"  let g:SrcExpl_nextDefKey = "<F5>"
-"
-"  let g:SrcExpl_isUpdateTags = 0
-"  let g:SrcExpl_updateTagsCmd = "gencs.sh -a all"
-"  let g:SrcExpl_updateTagsKey = "<F6>"
-"}}}
+" voom {{{3}}}
+let g:voom_tree_width = 45
+let g:voom_tree_placement = 'right'
 
 " NerdComment {{{2}}}
 " Add spaces after comment delimiters by default
@@ -417,6 +375,9 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 let g:gist_get_multiplefile = 1
+
+let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
+let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
 
 " startify&Session {{{2}}}
 "let g:session_autoload = 'no'
@@ -631,95 +592,82 @@ command! -nargs=1 Silent
 
 
 " Key maps {{{1}}}
-  nmap <silent> <space> :call utils#Declaration()<CR>
+  let mapleader = "\<Space>"
+  " diable Ex mode
+  map Q <Nop>
+  " Stop that stupid window from popping up
+  map q: :q
+  nnoremap <C-c> <silent> <C-c>
 
   " when wrap, move by virtual row
   nmap j gj
   nmap k gk
-  nmap <leader>i <C-I>
-  nmap <leader>o <C-O>
 
-  " make vim yank cross vim-sessions
-  "vmap <leader>y   "+y
-  "vnoremap <leader>p "_dP
-  "vmap <leader>y :'<,'>w! <CR>
-  "vmap <leader>y :"ay<CR>:redir "/tmp/vim.yank"<CR>:echo @a<CR>:redir END<CR>
-  vmap <leader>y :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
-  nmap <silent> <leader>y  :<c-u>call vimuxscript#Copy() <CR>
-  nmap <leader>p :r! cat /tmp/vim.yank<CR>
+  nmap <a-i> <C-I>
+  nmap <a-o> <C-O>
 
-  " vim local list
-  nmap <silent> <a-n> :silent! lnext <CR>
-  nmap <silent> <a-p> :silent! lpre <CR>
+  nmap <leader>v <c-v>
+  nmap <leader>e :NERDTreeToggle<cr>
+  nmap <leader>l :NERDTreeFind<CR>
+  nmap <leader>t :TlistToggle<CR>
+  nmap <leader>r :Dispatch! gencs.sh -a all<CR>
+  nmap <leader>a :FSHere<cr> |" Switch file *.c/h
+  nmap <leader>o :VoomToggle<cr>
+  nmap <silent> <leader>i :call utils#VoomInsert(0) <CR>
+  vmap <silent> <leader>i :call utils#VoomInsert(1) <CR>
 
-  " Open tag in new tab
-  nmap <silent><Leader><C-]> <C-w><C-]><C-w>T
+  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
+  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
+  vnoremap // y:vim /\<<C-R>"\C/gj %
 
-  nmap <silent> <c-h> <c-w>h
-  nmap <silent> <c-j> <c-w>j
-  nmap <silent> <c-k> <c-w>k
-  nmap <silent> <c-l> <c-w>l
+  " execute file that I'm editing in Vi(m) and get output in split window
+  nmap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
+              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
+
+  nmap <a-w> :MaximizerToggle<CR>
+  nmap <a-f> :FzyLsAg<cr>
+  nmap <a-e> :FzyTag<cr>
+  nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
+  vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
+  nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>
+  vmap <a-s> :<C-\>e utilgrep#Grep(1,1)<cr><cr>
+  nmap <a-m> :call mark#MarkCurrentWord(expand('cword'))<CR>
+
+  nmap <leader>n :silent lnext<cr>
+  nmap <leader>p :silent lpre<cr>
+  nmap <c-n> :silent cn<cr>
+  nmap <c-p> :silent cp<cr>
+
+  nmap <a-h> <c-w>h
+  nmap <a-j> <c-w>j
+  nmap <a-k> <c-w>k
+  nmap <a-l> <c-w>l
+
   if has("nvim")
     let b:terminal_scrollback_buffer_size = 10000
     let g:terminal_scrollback_buffer_size = 10000
-    tmap <c-h> <C-\><C-n><C-w>h
-    tmap <c-j> <C-\><C-n><C-w>j
-    tmap <c-k> <C-\><C-n><C-w>k
-    tmap <c-l> <C-\><C-n><C-w>l
+
+    tmap <a-h> <C-\><C-n><C-w>h
+    tmap <a-j> <C-\><C-n><C-w>j
+    tmap <a-k> <C-\><C-n><C-w>k
+    tmap <a-l> <C-\><C-n><C-w>l
   endif
 
-  " Window resizing mappings /*{{{*/
-  nmap <S-Up> :normal <c-r>=Resize('+')<CR><CR>
-  nmap <S-Down> :normal <c-r>=Resize('-')<CR><CR>
-  nmap <S-Left> :normal <c-r>=Resize('<')<CR><CR>
-  nmap <S-Right> :normal <c-r>=Resize('>')<CR><CR>
+  nmap <silent> <leader>; :silent call utils#Declaration()<CR>
 
-  " tabpage {{{3}}}
-  nmap <silent><tab>j :tabnew<cr>
-  nmap <silent><tab>k :tabclose<cr>
-  nmap <silent><tab>n :tabn<cr>
-  nmap <silent><tab>p :tabp<cr>
+  " Automatically jump to end of text you pasted
+  vnoremap <silent> y y`]
+  vnoremap <silent> p p`]
+  nnoremap <silent> p p`]
 
-  "nmap <silent> <C-Right> :tabnext<CR>
-  "nmap <silent> <C-Left>  :tabprev<CR>
-  "nmap <silent> <C-Up>    :cnewer<CR>
-  "nmap <silent> <C-Down>  :colder<CR>
+  vmap v <Plug>(expand_region_expand)
+  vmap <a-v> <Plug>(expand_region_shrink)
 
-  " :on[ly][!]  close all other windows, but keep buffer
-  "nmap <silent> <leader>;n :silent! cnewer <CR>
-  "nmap <silent> <leader>;p :silent! colder <CR>
-
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
-
-  " <leader>;* {{{2}}}
-  nmap <silent> <leader>;e :NERDTreeToggle<CR>
-  nmap <silent> <leader>;f :NERDTreeFind<CR>
-  nmap <silent> <leader>;t :TlistToggle<CR>
-  "nmap <silent> <leader>;s :SrcExplToggle<CR>
-  "nmap <silent> <leader>;r :MRU<CR>
-  nmap <silent> <leader>;r :Dispatch! gencs.sh -a all<CR>
-  "nmap <silent> <leader>;, :call verticalmove#VerticalMoveDown(0)<CR>
-  "
-  " execute file that I'm editing in Vi(m) and get output in split window
-  nmap <silent> <leader>;x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
-              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
-
-  " config voom {{{3}}}
-  let g:voom_tree_width = 45
-  let g:voom_tree_placement = 'right'
-  " Voom
-  nmap <silent> <leader>;o :VoomToggle<CR>
-
-  let g:tlTokenList = ["FIXME @wilson", "TODO @wilson", "XXX @wilson"]
-  let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
-
-  nmap <silent> <leader>;i :call utils#VoomInsert(0) <CR>
-  vmap <silent> <leader>;i :call utils#VoomInsert(1) <CR>
-  vmap          <leader>;h <Plug>CtrlSFVwordPath
-  map  <silent> <leader>;g :redir @a<CR>:g//<CR>:redir END<CR>:tabnew<CR>:put! a<CR>
-  "nmap <silent> <leader>;r :call utils#RefreshWindows() <CR>
-  "nmap <silent> <leader>rr :call utils#RefreshWindows() <CR>
+  " Search-mode: hit cs, replace first match, and hit <Esc>
+  "   then hit n to review and replace
+  vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+        \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+  omap s :normal vs<CR>
 
 
   " <leader>number {{{2}}}
@@ -743,102 +691,35 @@ command! -nargs=1 Silent
   map <leader>bs :call blame#SvnBlameCurrent() <CR>
   map <leader>bg :call blame#GitBlameCurrent() <CR>
 
-  "nmap <silent> <leader>;w :NumbersToggle<CR>
-  nmap <silent> <leader>;w :MaximizerToggle<CR>
-  nmap <silent> <leader>ww :MaximizerToggle<CR>
+  nmap <leader>dd :g/<C-R><C-w>/ norm dd
+  nmap <leader>de  :g/.\{200,\}/d
 
-  nmap          <leader>dd :g/<C-R><C-w>/ norm dd
-  nmap          <leader>de  :g/.\{200,\}/d
-
-  nmap          <leader>qs :QSave 
-  nmap          <leader>ql :QLoad 
-  nmap          <leader>qf :call utilquickfix#QuickFixFilter() <CR>
-  nmap          <leader>qq :call utilquickfix#QuickFixFunction() <CR>
-  nmap          <leader>;q :call utilquickfix#QuickFixFunction() <CR>
-
-  " Execute selected text as shell
-  nmap          <leader>ex  :tabclose<CR>
-  nmap          <leader>et  :TabooOpen 
-  nmap <silent> <leader>eo  :call VimuxOpenRunner()<CR>
-  nmap <silent> <leader>ec  :VimuxCloseRunner<CR>
-  nmap <silent> <leader>ev  :<c-u>call vimuxscript#StartCopy() <CR>
-  nmap <silent> <leader>ey  :<c-u>call vimuxscript#Copy() <CR>
-  vmap <silent> <leader>ee  :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
-  nmap <silent> <leader>ee  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
-  nmap <silent> <leader>eg  :<c-u>call vimuxscript#ExecuteGroup()<CR>
-  nmap          <leader>ew  :!~/tools/dict <C-R>=expand("<cword>") <CR><CR>
-  "nmap <silent> <leader>;e  :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
-  "vmap <silent> <leader>;e  :ExecuteSelection <CR>
-
-
-  " TAB conflict with ctrl-i
-  "nmap <silent> <leader>j <leader>mmxviw:<c-u>%s/<c-r>*/&/gn<cr>:noh<cr>`x
-  nmap <silent> <leader>a :FSHere<cr> |" Switch file *.c/h
+  nmap <leader>qs :QSave
+  nmap <leader>ql :QLoad
+  nmap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
+  nmap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
               \| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
               \| r <args>
 
-  " Cause command 'w' delay
-  "cmap w!! w !sudo tee % >/dev/null
-
-  map  <leader>va :<C-\>e utilgrep#Grep(0,1) <CR>
-  nmap <leader>vv :<C-\>e utilgrep#Grep(1,0) <CR><CR>
-  vmap <leader>vv :<C-\>e utilgrep#Grep(1,1) <CR><CR>
-  map  <leader>vV :<C-\>e utilgrep#Grep(2,1) <CR>
-  "map <leader>vr :<C-\>e utilgrep#LocalEasyReplace() <CR>
-  vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
-  nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <CR>
-  nmap <leader>;v :<C-\>e utilgrep#Grep(1,0) <CR><CR>
-  vmap <leader>;v :<C-\>e utilgrep#Grep(1,1) <CR><CR>
-
   "bookmark
-  nmap <leader>mo :BookmarkLoad Default
-  nmap <leader>ma :BookmarkShowAll <CR>
-  nmap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nmap <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
-  "nmap <silent> <leader>;m :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nmap <leader>mg :BookmarkGoto <C-R><c-w>
-  nmap <leader>mc :BookmarkDel <C-R><c-w>
-
-  "map <leader>s  :<c-u>R !grep-malloc.sh <c-r>*
-  nnoremap <leader>;a :<C-u>execute autoreadfiles#WatchForChanges("*",{'autoread':1}) <CR>
-  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
-  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
-  vnoremap // y:vim /\<<C-R>"\C/gj %
+  "nmap <leader>mo :BookmarkLoad Default
+  "nmap <leader>ma :BookmarkShowAll <CR>
+  "nmap <leader>mg :BookmarkGoto <C-R><c-w>
+  "nmap <leader>mc :BookmarkDel <C-R><c-w>
 
 "}
 
-" Documentation {{{1}}}
-" ============================
-" Usage: {{{2}}}
-" ======
-"  gd <or> D       goto declare <or> global declare
-"  [I              list all occurence
-" :g/regex/t$      copy match lines append to tail
-" s<char><char>    sneak quick motion: <num>s - next count, `` <OR> <Ctrl-O> - backword original, s<enter> repeat search
-"
-" Howtos: {{{2}}}
-" =======
-"       :R !ls -l           # grab shell cmd output into new tab/buffer
-"       :new|0read !ls -l  # grab cmd output into new window
-"       :cfile log.marks   # view as quickfix
-"       :mks!              # Save to Session.vim
-"       :Tree              # explore dir and use 'o' to open a file into preview windows
-"   Vimgrep:               # Also lvimgrep, short as: vim, lvim
-"       samples
-"       :vim /some/gj **/*.c **/*.h
-"       :vim /^POST \/\(idle\|send\)\/CzHmd/gj %
-"
-"       /^joe.*fred.*bill/ # AND
-"       /fred\|joe/        # OR
-"       /.*fred\&.*joe/    # AND no-order
-"       /\<fred\>/         # whole word
-"       /begin\_.*end/     # search over possible multiple lines
-"       /fred\_s*joe/      # any whitespace including newline [C]
-"       /^\n\{3}/          # find 3 empty lines
-"
-" Tools: {{{2}}}
-" ======
-"   DrawIt:                # use \di to start (\ds to stop)
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
