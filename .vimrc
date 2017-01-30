@@ -42,7 +42,7 @@ Plug 'bogado/file-line'
 Plug 'Raimondi/delimitMate'
 Plug 'millermedeiros/vim-statline'
 "Plug 'vivien/vim-linux-coding-style'
-Plug 'MattesGroeger/vim-bookmarks'
+"Plug 'MattesGroeger/vim-bookmarks'
 Plug 'szw/vim-maximizer'
 
 Plug 'majutsushi/tagbar'
