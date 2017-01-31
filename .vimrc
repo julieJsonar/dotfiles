@@ -49,13 +49,14 @@ Plug 'majutsushi/tagbar'
 "Plug 'tomtom/ttags_vim'
 "Plug 'tomtom/tlib_vim'
 
-Plug 'megaannum/self'
-Plug 'megaannum/forms'
+" vim's GUI
+"Plug 'megaannum/self'
+"Plug 'megaannum/forms'
 
 Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-"Plug 'cloudhead/neovim-fuzzy', Cond(has('nvim'))
+Plug 'cloudhead/neovim-fuzzy', Cond(has('nvim'))
 Plug 'Dkendal/fzy-vim'
 "Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
@@ -616,6 +617,10 @@ command! -nargs=1 Silent
   nmap <silent> <leader>i :call utils#VoomInsert(0) <CR>
   vmap <silent> <leader>i :call utils#VoomInsert(1) <CR>
 
+  vmap <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
+  nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
+  nmap <leader>yp :r! cat /tmp/vim.yank<CR>
+
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
@@ -625,16 +630,16 @@ command! -nargs=1 Silent
               \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
   nmap <a-w> :MaximizerToggle<CR>
-  nmap <a-f> :FzyLsAg<cr>
+  nmap <a-f> :FuzzyOpen<cr>
   nmap <a-e> :FzyTag<cr>
   nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
   nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vmap <a-s> :<C-\>e utilgrep#Grep(1,1)<cr><cr>
-  nmap <a-m> :call mark#MarkCurrentWord(expand('cword'))<CR>
 
   nmap <leader>n :silent lnext<cr>
   nmap <leader>p :silent lpre<cr>
+
   nmap <c-n> :silent cn<cr>
   nmap <c-p> :silent cp<cr>
 
@@ -705,6 +710,7 @@ command! -nargs=1 Silent
               \| r <args>
 
   "bookmark
+  nmap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
   "nmap <leader>mo :BookmarkLoad Default
   "nmap <leader>ma :BookmarkShowAll <CR>
   "nmap <leader>mg :BookmarkGoto <C-R><c-w>
