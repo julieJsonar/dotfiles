@@ -56,8 +56,8 @@ Plug 'majutsushi/tagbar'
 Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'cloudhead/neovim-fuzzy', Cond(has('nvim'))
-Plug 'Dkendal/fzy-vim'
+Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
+"Plug 'Dkendal/fzy-vim'
 "Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
 "Plug 'vim-scripts/CmdlineComplete'
@@ -314,6 +314,10 @@ augroup END
 " vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
+
+" fuzzy
+"let g:fuzzy_file_list = ["cscope.files"]
+"let g:fuzzy_file_tag = ["tags.x", "tags", ".tags.x", ".tags"]
 
 " autotag {{{2}}}
 let g:autotagTagsFile = ".tags"
@@ -631,7 +635,8 @@ command! -nargs=1 Silent
 
   nmap <a-w> :MaximizerToggle<CR>
   nmap <a-f> :FuzzyOpen<cr>
-  nmap <a-e> :FzyTag<cr>
+  nmap <a-d> :FuzzyFunc<cr>
+  nmap <a-e> :FuzzySymb<cr>
   nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
   nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>

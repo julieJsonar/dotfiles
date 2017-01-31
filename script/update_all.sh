@@ -28,12 +28,16 @@ git_repos=( \
   "$HOME/pcap" \
   "$HOME/dotwiki" \
   "$HOME/algorithm" \
-  "$HOME/.vim/bundle/vim-dispatch" \
+  "$HOME/.vim/bundle/neovim-fuzzy" \
+  "$HOME/.vim/bundle/vim-grepper" \
+  "$HOME/.vim/bundle/taboo.vim" \
+  "$HOME/.vim/bundle/vim-mark" \
+  "$HOME/.vim/bundle/vim-log-syntax" \
   "$HOME/.vim/bundle/vimux-script" \
+  "$HOME/.vim/bundle/vim-dispatch" \
   "$HOME/.vim/bundle/c-utils.vim" \
-  "$HOME/.vim/bundle/Decho" \
-  "$HOME/.vim/bundle/vim-snippets" \
   "$HOME/.vim/bundle/neogdb.vim" \
+  "$HOME/.vim/bundle/Decho" \
   "$HOME/log" \
 )
 
