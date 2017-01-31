@@ -634,9 +634,10 @@ command! -nargs=1 Silent
               \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
   nmap <a-w> :MaximizerToggle<CR>
+  " Must install fzy tool(https://github.com/jhawthorn/fzy)
   nmap <a-f> :FuzzyOpen<cr>
-  nmap <a-d> :FuzzyFunc<cr>
-  nmap <a-e> :FuzzySymb<cr>
+  nmap <a-d> :FuzzyFunc <C-R>=expand('<cword>') <cr>
+  nmap <a-e> :FuzzySymb <C-R>=expand('<cword>') <cr>
   nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
   nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>
