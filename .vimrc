@@ -705,6 +705,7 @@ command! -nargs=1 Silent
   nmap <leader>dd :g/<C-R><C-w>/ norm dd
   nmap <leader>de  :g/.\{200,\}/d
 
+  nmap <leader>qw :Start ~/tools/dict <C-R>=expand('<cword>') <cr>
   nmap <leader>qs :QSave
   nmap <leader>ql :QLoad
   nmap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
