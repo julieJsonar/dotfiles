@@ -663,9 +663,9 @@ command! -nargs=1 Silent
   nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
+  vmap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
   nmap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
   nmap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
-  vmap <silent> <leader>ve :ExecuteSelection <CR>
 
   vmap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
