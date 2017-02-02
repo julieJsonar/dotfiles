@@ -81,12 +81,13 @@ setopt NO_HIST_BEEP         # Don't beep
 setopt SHARE_HISTORY        # Share history between session/terminals
 
 # Our local dir: data, tools, home
-if [ ! -f "/tmp/zsh_init_flag" ]; then
-  # remap caps to ESC
-  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-  echo "have init" > "/tmp/zsh_init_flag"
-fi
+#if [ ! -f "/tmp/zsh_init_flag" ]; then
+#  # remap caps to ESC
+#  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+#  echo "have init" > "/tmp/zsh_init_flag"
+#fi
 
+alias emacs='emacs -nw'
 alias dict="$HOME/tools/dict"
 alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
 alias meld="nohup $HOME/tools/meld/bin/meld"
@@ -126,3 +127,4 @@ export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 
 #export JEMALLOC_PATH=$HOME/project/jemalloc
 #export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
+

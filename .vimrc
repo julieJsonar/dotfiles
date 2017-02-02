@@ -1,7 +1,7 @@
 " the <leader> is <space>
 " VimL Debug{{{1
 
-  set verbose=1
+  set verbose=0
   set verbosefile=/tmp/vim.log
 
   let g:decho_enable = 0
@@ -65,6 +65,7 @@ Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
 Plug 'junegunn/vim-easy-align'	| " selected and ga=
 Plug 'terryma/vim-expand-region'
 
+Plug 'kovisoft/slimv'
 Plug 'klen/python-mode'
 "Plug 'AnsiEsc.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
@@ -173,8 +174,8 @@ colorscheme holokai
 "colorscheme gruvbox
 
 if has('mouse')
-	set mouse=a
-	set mousefocus
+  set mouse=a
+  set mousefocus
 endif
 set foldmethod=manual
 
@@ -610,6 +611,8 @@ command! -nargs=1 Silent
 
   nmap <a-i> <C-I>
   nmap <a-o> <C-O>
+  nmap <leader>i <C-I>
+  nmap <leader>o <C-O>
 
   nmap <leader>v <c-v>
   nmap <leader>e :NERDTreeToggle<cr>
@@ -636,32 +639,34 @@ command! -nargs=1 Silent
   nmap <a-w> :MaximizerToggle<CR>
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
   nmap <a-f> :FuzzyOpen<cr>
-  nmap <a-d> :FuzzyFunc <C-R>=expand('<cword>') <cr>
-  nmap <a-e> :FuzzySymb <C-R>=expand('<cword>') <cr>
+  nmap <a-d> :FuzzyFunc<cr>
+  nmap <a-e> :FuzzySymb<cr>
   nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
   nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vmap <a-s> :<C-\>e utilgrep#Grep(1,1)<cr><cr>
 
-  nmap <leader>n :silent lnext<cr>
-  nmap <leader>p :silent lpre<cr>
+  nmap <silent> <leader>n :lnext<cr>
+  nmap <silent> <leader>p :lpre<cr>
 
-  nmap <c-n> :silent cn<cr>
-  nmap <c-p> :silent cp<cr>
+  nmap <silent> <a-n> :lnext<cr>
+  nmap <silent> <a-p> :lpre<cr>
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
 
-  nmap <a-h> <c-w>h
-  nmap <a-j> <c-w>j
-  nmap <a-k> <c-w>k
-  nmap <a-l> <c-w>l
+  nmap <c-h> <c-w>h
+  nmap <c-j> <c-w>j
+  nmap <c-k> <c-w>k
+  nmap <c-l> <c-w>l
 
   if has("nvim")
     let b:terminal_scrollback_buffer_size = 10000
     let g:terminal_scrollback_buffer_size = 10000
 
-    tmap <a-h> <C-\><C-n><C-w>h
-    tmap <a-j> <C-\><C-n><C-w>j
-    tmap <a-k> <C-\><C-n><C-w>k
-    tmap <a-l> <C-\><C-n><C-w>l
+    tmap <c-h> <C-\><C-n><C-w>h
+    tmap <c-j> <C-\><C-n><C-w>j
+    tmap <c-k> <C-\><C-n><C-w>k
+    tmap <c-l> <C-\><C-n><C-w>l
   endif
 
   nmap <silent> <leader>; :silent call utils#Declaration()<CR>
