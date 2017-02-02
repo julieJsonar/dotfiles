@@ -609,51 +609,6 @@ command! -nargs=1 Silent
   nmap j gj
   nmap k gk
 
-  nmap <a-i> <C-I>
-  nmap <a-o> <C-O>
-  nmap <leader>i <C-I>
-  nmap <leader>o <C-O>
-
-  nmap <leader>v <c-v>
-  nmap <leader>e :NERDTreeToggle<cr>
-  nmap <leader>l :NERDTreeFind<CR>
-  nmap <leader>t :TlistToggle<CR>
-  nmap <leader>r :Dispatch! gencs.sh -a all<CR>
-  nmap <leader>a :FSHere<cr> |" Switch file *.c/h
-  nmap <leader>o :VoomToggle<cr>
-  nmap <silent> <leader>i :call utils#VoomInsert(0) <CR>
-  vmap <silent> <leader>i :call utils#VoomInsert(1) <CR>
-
-  vmap <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
-  nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
-  nmap <leader>yp :r! cat /tmp/vim.yank<CR>
-
-  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
-  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
-  vnoremap // y:vim /\<<C-R>"\C/gj %
-
-  " execute file that I'm editing in Vi(m) and get output in split window
-  nmap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
-              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
-
-  nmap <a-w> :MaximizerToggle<CR>
-  " Must install fzy tool(https://github.com/jhawthorn/fzy)
-  nmap <a-f> :FuzzyOpen<cr>
-  nmap <a-d> :FuzzyFunc<cr>
-  nmap <a-e> :FuzzySymb<cr>
-  nmap <a-r> :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
-  vmap <a-r> :<C-\>e tmp#CurrentReplace() <CR>
-  nmap <a-s> :<C-\>e utilgrep#Grep(1,0)<cr><cr>
-  vmap <a-s> :<C-\>e utilgrep#Grep(1,1)<cr><cr>
-
-  nmap <silent> <leader>n :lnext<cr>
-  nmap <silent> <leader>p :lpre<cr>
-
-  nmap <silent> <a-n> :lnext<cr>
-  nmap <silent> <a-p> :lpre<cr>
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
-
   nmap <c-h> <c-w>h
   nmap <c-j> <c-w>j
   nmap <c-k> <c-w>k
@@ -669,12 +624,56 @@ command! -nargs=1 Silent
     tmap <c-l> <C-\><C-n><C-w>l
   endif
 
-  nmap <silent> <leader>; :silent call utils#Declaration()<CR>
-
   " Automatically jump to end of text you pasted
   vnoremap <silent> y y`]
   vnoremap <silent> p p`]
   nnoremap <silent> p p`]
+
+  nmap <a-i> :TlistToggle<CR>
+  nmap <a-o> :VoomToggle<cr>
+  nmap <a-w> :MaximizerToggle<CR>
+  nmap <a-e> :NERDTreeToggle<cr>
+  nmap <a-f> :NERDTreeFind<cr>
+
+  nmap <silent> <a-n> :lnext<cr>
+  nmap <silent> <a-p> :lpre<cr>
+  nmap <silent> <c-n> :cn<cr>
+  nmap <silent> <c-p> :cp<cr>
+
+  nmap <silent> <leader>n :lnext<cr>
+  nmap <silent> <leader>p :lpre<cr>
+
+  nmap <silent> <leader>; :silent call utils#Declaration()<CR>
+
+  " Must install fzy tool(https://github.com/jhawthorn/fzy)
+  nmap <silent> <leader>o  :FuzzyOpen<cr>
+  vmap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>i  :FuzzyFunc<cr>
+  vmap          <leader>i  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>e  :FuzzySymb<cr>
+  vmap          <leader>e  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  "nmap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
+  nmap          <leader>a  :FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
+  nmap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
+  nmap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
+  vmap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
+
+  nmap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
+  vmap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
+  nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
+  vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+
+  vmap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
+  nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
+  nmap <silent> <leader>yp :r! cat /tmp/vim.yank<CR>
+
+  xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
+  xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
+  vnoremap // y:vim /\<<C-R>"\C/gj %
+
+  " execute file that I'm editing in Vi(m) and get output in split window
+  nmap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
+              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
   vmap v <Plug>(expand_region_expand)
   vmap <a-v> <Plug>(expand_region_shrink)
@@ -684,7 +683,6 @@ command! -nargs=1 Silent
   vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
         \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
   omap s :normal vs<CR>
-
 
   " <leader>number {{{2}}}
   map <silent> <leader>1 :norm! 1gt<CR>
@@ -704,8 +702,8 @@ command! -nargs=1 Silent
   map gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
 
   "map <leader>ds :call Asm() <CR>
-  map <leader>bs :call blame#SvnBlameCurrent() <CR>
-  map <leader>bg :call blame#GitBlameCurrent() <CR>
+  nmap <leader>bs :call blame#SvnBlameCurrent() <CR>
+  nmap <leader>bg :call blame#GitBlameCurrent() <CR>
 
   nmap <leader>dd :g/<C-R><C-w>/ norm dd
   nmap <leader>de  :g/.\{200,\}/d
