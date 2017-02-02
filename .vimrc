@@ -650,8 +650,8 @@ command! -nargs=1 Silent
   vmap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
   nmap <silent> <leader>i  :FuzzyFunc<cr>
   vmap          <leader>i  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
-  nmap <silent> <leader>e  :FuzzySymb<cr>
-  vmap          <leader>e  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>w  :FuzzySymb<cr>
+  vmap          <leader>w  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nmap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
   nmap          <leader>a  :FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
   nmap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
@@ -662,6 +662,10 @@ command! -nargs=1 Silent
   vmap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
   nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+
+  nmap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
+  nmap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
+  vmap <silent> <leader>ve :ExecuteSelection <CR>
 
   vmap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
