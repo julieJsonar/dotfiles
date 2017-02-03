@@ -37,8 +37,8 @@ Plug 'holokai'
 "Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 
-Plug 'derekwyatt/vim-fswitch'
-Plug 'bogado/file-line'
+"Plug 'derekwyatt/vim-fswitch'
+Plug 'kopischke/vim-fetch'
 Plug 'Raimondi/delimitMate'
 Plug 'millermedeiros/vim-statline'
 "Plug 'vivien/vim-linux-coding-style'
@@ -646,14 +646,14 @@ command! -nargs=1 Silent
   nmap <silent> <leader>; :silent call utils#Declaration()<CR>
 
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
-  nmap <silent> <leader>o  :FuzzyOpen<cr>
-  vmap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
-  nmap <silent> <leader>i  :FuzzyFunc<cr>
-  vmap          <leader>i  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
-  nmap <silent> <leader>w  :FuzzySymb<cr>
-  vmap          <leader>w  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>j  :FuzzyOpen<cr>
+  vmap          <leader>j  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>k  :FuzzyFunc<cr>
+  vmap          <leader>k  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
+  nmap <silent> <leader>l  :FuzzySymb<cr>
+  vmap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nmap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
-  nmap          <leader>a  :FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
+  nmap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
   nmap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
   nmap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vmap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
