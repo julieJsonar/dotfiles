@@ -1,4 +1,8 @@
-" the <leader> is <space>
+" <leader> is <space>
+" Doc {{{1
+"   http://stevelosh.com/blog/2011/09/writing-vim-plugins/
+" }}}
+"
 " VimL Debug{{{1
 
   set verbose=0
@@ -31,14 +35,20 @@ call plug#begin('~/.vim/bundle')
 "
 "Plug 'flazz/vim-colorschemes'
 Plug 'holokai'
-"Plug 'darkspectrum'
-"Plug 'sjl/badwolf'
+Plug 'darkspectrum'
+Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
-Plug 'chriskempson/base16-vim'
+Plug 'jnurmine/Zenburn'
+Plug 'joshdick/onedark.vim'
+Plug 'ryu-blacknd/vim-nucolors'
+"Plug 'chriskempson/base16-vim'
 "Plug 'Lokaltog/vim-distinguished'
 Plug 'nanotech/jellybeans.vim'
-"Plug 'dracula/vim'
+Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
+
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'justinmk/vim-syntax-extra'
 
 "Plug 'derekwyatt/vim-fswitch'
 Plug 'kopischke/vim-fetch'
@@ -56,6 +66,7 @@ Plug 'majutsushi/tagbar'
 "Plug 'megaannum/self'
 "Plug 'megaannum/forms'
 
+Plug 'sjl/gundo.vim'
 Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -83,11 +94,16 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'mhinz/vim-signify'
 Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
 Plug 'vim-scripts/taglist.vim'
+Plug 'ervandew/supertab'
 
 Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
 Plug 'juneedahamed/svnj.vim'
 "Plug 'vimwiki/vimwiki'
-Plug 'vim-scripts/bash-support.vim'
+"
+" http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
+"Plug 'vim-scripts/bash-support.vim'
+Plug 'WolfgangMehner/bash-support'
+
 " Markdown
 Plug 'reedes/vim-pencil'
 Plug 'godlygeek/tabular'
@@ -324,6 +340,9 @@ let g:vimfiler_as_default_explorer = 1
 "let g:fuzzy_file_list = ["cscope.files"]
 "let g:fuzzy_file_tag = ["tags.x", "tags", ".tags.x", ".tags"]
 
+" supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " autotag {{{2}}}
 let g:autotagTagsFile = ".tags"
 
@@ -342,7 +361,7 @@ let g:bookmark_show_warning = 0
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
 " netrw {{{2}}}
 "let g:netrw_banner = 0
@@ -523,9 +542,9 @@ let g:enable_numbers = 0
 "======================================================================
 " Tabularize{{{2
     if exists(":Tabularize")
-      nmap <leader>a= :Tabularize /=<CR>
+      nnoremap <leader>a= :Tabularize /=<CR>
       vmap <leader>a= :Tabularize /=<CR>
-      nmap <leader>a: :Tabularize /:\zs<CR>
+      nnoremap <leader>a: :Tabularize /:\zs<CR>
       vmap <leader>a: :Tabularize /:\zs<CR>
     endif
 "}}}
@@ -610,22 +629,22 @@ command! -nargs=1 Silent
   nnoremap <C-c> <silent> <C-c>
 
   " when wrap, move by virtual row
-  nmap j gj
-  nmap k gk
+  nnoremap j gj
+  nnoremap k gk
 
-  nmap <c-h> <c-w>h
-  nmap <c-j> <c-w>j
-  nmap <c-k> <c-w>k
-  nmap <c-l> <c-w>l
+  nnoremap <c-h> <c-w>h
+  nnoremap <c-j> <c-w>j
+  nnoremap <c-k> <c-w>k
+  nnoremap <c-l> <c-w>l
 
   if has("nvim")
     let b:terminal_scrollback_buffer_size = 10000
     let g:terminal_scrollback_buffer_size = 10000
 
-    tmap <c-h> <C-\><C-n><C-w>h
-    tmap <c-j> <C-\><C-n><C-w>j
-    tmap <c-k> <C-\><C-n><C-w>k
-    tmap <c-l> <C-\><C-n><C-w>l
+    tnoremap <c-h> <C-\><C-n><C-w>h
+    tnoremap <c-j> <C-\><C-n><C-w>j
+    tnoremap <c-k> <C-\><C-n><C-w>k
+    tnoremap <c-l> <C-\><C-n><C-w>l
   endif
 
   " Automatically jump to end of text you pasted
@@ -633,94 +652,95 @@ command! -nargs=1 Silent
   vnoremap <silent> p p`]
   nnoremap <silent> p p`]
 
-  nmap <a-i> :TlistToggle<CR>
-  nmap <a-o> :VoomToggle<cr>
-  nmap <a-w> :MaximizerToggle<CR>
-  nmap <a-e> :NERDTreeToggle<cr>
-  nmap <a-f> :NERDTreeFind<cr>
+  nnoremap <a-i> :TlistToggle<CR>
+  nnoremap <a-o> :VoomToggle<cr>
+  nnoremap <a-w> :MaximizerToggle<CR>
+  nnoremap <a-e> :NERDTreeToggle<cr>
+  nnoremap <a-f> :NERDTreeFind<cr>
+  nnoremap <silent> <a-u> :GundoToggle<CR>
 
-  nmap <silent> <a-n> :lnext<cr>
-  nmap <silent> <a-p> :lpre<cr>
-  nmap <silent> <c-n> :cn<cr>
-  nmap <silent> <c-p> :cp<cr>
+  nnoremap <silent> <a-n> :lnext<cr>
+  nnoremap <silent> <a-p> :lpre<cr>
+  nnoremap <silent> <c-n> :cn<cr>
+  nnoremap <silent> <c-p> :cp<cr>
 
-  nmap <silent> <leader>n :lnext<cr>
-  nmap <silent> <leader>p :lpre<cr>
+  nnoremap <silent> <leader>n :lnext<cr>
+  nnoremap <silent> <leader>p :lpre<cr>
 
-  nmap <silent> <leader>; :silent call utils#Declaration()<CR>
+  nnoremap <silent> <leader>; :silent call utils#Declaration()<CR>
 
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
-  nmap <silent> <leader>j  :FuzzyOpen<cr>
-  vmap          <leader>j  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
-  nmap <silent> <leader>k  :FuzzyFunc<cr>
-  vmap          <leader>k  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
-  nmap <silent> <leader>l  :FuzzySymb<cr>
-  vmap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
-  "nmap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
-  nmap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
-  nmap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
-  nmap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
-  vmap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
+  nnoremap <silent> <leader>j  :FuzzyOpen<cr>
+  vnoremap          <leader>j  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>k  :FuzzyFunc<cr>
+  vnoremap          <leader>k  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>l  :FuzzySymb<cr>
+  vnoremap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
+  nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
+  nnoremap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
+  nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
+  vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
 
-  nmap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
-  vmap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
-  nmap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
-  vmap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  nnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
+  vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
+  nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
+  vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
-  vmap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
-  nmap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
-  nmap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
+  vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
+  nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
+  nnoremap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
 
-  vmap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
-  nmap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
-  nmap <silent> <leader>yp :r! cat /tmp/vim.yank<CR>
+  vnoremap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
+  nnoremap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
+  nnoremap <silent> <leader>yp :r! cat /tmp/vim.yank<CR>
 
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
 
   " execute file that I'm editing in Vi(m) and get output in split window
-  nmap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
+  nnoremap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
               \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
-  vmap v <Plug>(expand_region_expand)
-  vmap <a-v> <Plug>(expand_region_shrink)
+  vnoremap v <Plug>(expand_region_expand)
+  vnoremap <a-v> <Plug>(expand_region_shrink)
 
   " Search-mode: hit cs, replace first match, and hit <Esc>
   "   then hit n to review and replace
   vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
         \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-  omap s :normal vs<CR>
+  onoremap s :normal vs<CR>
 
   " <leader>number {{{2}}}
-  map <silent> <leader>1 :norm! 1gt<CR>
-  map <silent> <leader>2 :norm! 2gt<CR>
-  map <silent> <leader>3 :norm! 3gt<CR>
-  map <silent> <leader>4 :norm! 4gt<CR>
-  map <silent> <leader>5 :norm! 5gt<CR>
-  map <silent> <leader>6 :norm! 6gt<CR>
-  map <silent> <leader>7 :norm! 7gt<CR>
-  map <silent> <leader>8 :norm! 8gt<CR>
-  map <silent> <leader>9 :norm! 9gt<CR>
-  map <silent> <leader>0 :norm! 10gt<CR>
+  nnoremap <silent> <leader>1 :norm! 1gt<CR>
+  nnoremap <silent> <leader>2 :norm! 2gt<CR>
+  nnoremap <silent> <leader>3 :norm! 3gt<CR>
+  nnoremap <silent> <leader>4 :norm! 4gt<CR>
+  nnoremap <silent> <leader>5 :norm! 5gt<CR>
+  nnoremap <silent> <leader>6 :norm! 6gt<CR>
+  nnoremap <silent> <leader>7 :norm! 7gt<CR>
+  nnoremap <silent> <leader>8 :norm! 8gt<CR>
+  nnoremap <silent> <leader>9 :norm! 9gt<CR>
+  nnoremap <silent> <leader>0 :norm! 10gt<CR>
 
-  nmap <buffer> <Enter> <C-W><Enter>
+  nnoremap <buffer> <Enter> <C-W><Enter>
 
-  map gf :call utils#GotoFileWithLineNum()<CR>
-  map gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
+  nnoremap gf :call utils#GotoFileWithLineNum()<CR>
+  nnoremap gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
 
   "map <leader>ds :call Asm() <CR>
-  nmap <leader>bs :call blame#SvnBlameCurrent() <CR>
-  nmap <leader>bg :call blame#GitBlameCurrent() <CR>
+  nnoremap <leader>bs :call blame#SvnBlameCurrent() <CR>
+  nnoremap <leader>bg :call blame#GitBlameCurrent() <CR>
 
-  nmap <leader>dd :g/<C-R><C-w>/ norm dd
-  nmap <leader>de  :g/.\{200,\}/d
+  nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
+  nnoremap <leader>de  :g/.\{200,\}/d
 
-  nmap <leader>qw :Start ~/tools/dict <C-R>=expand('<cword>') <cr>
-  nmap <leader>qs :QSave
-  nmap <leader>ql :QLoad
-  nmap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
-  nmap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
+  nnoremap <leader>qw :Start ~/tools/dict <C-R>=expand('<cword>') <cr>
+  nnoremap <leader>qs :QSave
+  nnoremap <leader>ql :QLoad
+  nnoremap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
+  nnoremap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
 
   " :R !ls -l   grab command output int new buffer
   command! -nargs=* -complete=shellcmd R tabnew
@@ -728,11 +748,11 @@ command! -nargs=1 Silent
               \| r <args>
 
   "bookmark
-  nmap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
-  "nmap <leader>mo :BookmarkLoad Default
-  "nmap <leader>ma :BookmarkShowAll <CR>
-  "nmap <leader>mg :BookmarkGoto <C-R><c-w>
-  "nmap <leader>mc :BookmarkDel <C-R><c-w>
+  nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
+  "nnoremap <leader>mo :BookmarkLoad Default
+  "nnoremap <leader>ma :BookmarkShowAll <CR>
+  "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
+  "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
 
 "}
 
@@ -745,5 +765,5 @@ function! s:Repl()
   let s:restore_reg = @"
   return "p@=RestoreRegister()\<cr>"
 endfunction
-vmap <silent> <expr> p <sid>Repl()
+vnoremap <silent> <expr> p <sid>Repl()
 
