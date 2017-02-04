@@ -28,12 +28,15 @@ endif
 
 " Plugins {{{1}}}
 call plug#begin('~/.vim/bundle')
+"
+"Plug 'flazz/vim-colorschemes'
 Plug 'holokai'
 "Plug 'darkspectrum'
 "Plug 'sjl/badwolf'
-"Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
 "Plug 'Lokaltog/vim-distinguished'
-"Plug 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim'
 "Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 
@@ -166,6 +169,7 @@ colorscheme holokai
 "colorscheme distinguished
 "colorscheme darkspectrum
 "colorscheme molokai
+"colorscheme jellybeans
 "colorscheme dracula
 "
 "let g:gruvbox_italic=1
