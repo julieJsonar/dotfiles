@@ -681,6 +681,7 @@ command! -nargs=1 Silent
   nnoremap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
+  nnoremap <silent> <leader>vl :call log#Search(expand('%')) <CR>
 
   nnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
