@@ -338,13 +338,13 @@ let g:vimfiler_as_default_explorer = 1
 
 " fuzzy
 "let g:fuzzy_file_list = ["cscope.files"]
-"let g:fuzzy_file_tag = ["tags.x", "tags", ".tags.x", ".tags"]
+"let g:fuzzy_file_tag = ['tags.x', '.tags.x']
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " autotag {{{2}}}
-let g:autotagTagsFile = ".tags"
+let g:autotagTagsFile = ".tagx"
 
 " svnj {{{2}}}
 let g:svnj_browse_cache_all = 1
@@ -678,7 +678,7 @@ command! -nargs=1 Silent
   vnoremap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
-  nnoremap <silent> <leader>v] :Dispatch! gencs.sh -a all<CR>
+  nnoremap <silent> <leader>v] :Dispatch! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
   nnoremap <silent> <leader>vl :call log#Search(expand('%')) <CR>

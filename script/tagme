@@ -1,0 +1,60 @@
+#!/bin/bash
+
+#echo "Generating tags and cscope database..."
+SECONDS=0
+if [ -f ./cscope.files ]; then
+	filecnt_c=1024
+else
+	filecnt_c=$(ls -1 **/*.c 2>/dev/null | wc -l)
+fi
+
+if [ $filecnt_c -ge 1024 ]; then
+	find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+	wad_c=$(grep 'daemon/wad' /tmp/cscope.f1 | wc -l)
+	if [ $wad_c -ge 10 ]; then
+		cat /tmp/cscope.f1                 | \
+			grep -v 'wad/ui/stdin/'        | \
+			grep -v 'wad/ui/stdin/'        | \
+			grep -v 'wad/test/'            | \
+			grep -v 'wad/redirect/socket/' | \
+			grep -v 'kernel/'              | \
+			grep -v 'linux/'               | \
+			grep -v 'linux-.*/'            | \
+			grep -v 'compress/'            | \
+			grep -v 'cooked/'              | \
+			grep -v 'fortitest/'           | \
+			grep -v 'linuxatm/'            | \
+			grep -v 'sysctl/'              | \
+			grep -v 'router/'              | \
+			grep -v 'router/'              | \
+			grep -v 'fortiweb/'            | \
+			grep -v 'fortitest/'           | \
+			grep -v 'tests/gtest/'         | \
+			grep -v 'tools/'               | \
+			grep -v '/_' \
+			> /tmp/cscope.f2
+	else
+		mv /tmp/cscope.f1 /tmp/cscope.f2
+	fi
+
+	sort /tmp/cscope.f2 > /tmp/cscope.f3
+	mv /tmp/cscope.f3 cscope.files
+	#    /usr/bin/time gtags -f cscope.files
+	#    /usr/bin/time global -u -L cscope.files
+
+#	LC_COLLATE=C ctags --extra=+f -L cscope.files -f .tags > /dev/null 2>&1
+	LC_COLLATE=C ctags -xL cscope.files > .tagx 2>/dev/null
+	cscope -kbq -i cscope.files > /dev/null 2>&1
+
+	duration=$SECONDS
+	notify-send "Done tags files $(($duration / 60)):$(($duration % 60))."
+else
+#	LC_COLLATE=C ctags --extra=+f -f .tags -R . > /dev/null 2>&1
+	LC_COLLATE=C ctags -xR . > .tagx 2>/dev/null
+	cscope -bcqR > /dev/null 2>&1
+
+	duration=$SECONDS
+	notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
+fi
+#ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1
+
