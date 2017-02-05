@@ -47,8 +47,9 @@ values."
      html
      javascript
      org
+     gnus
+     colors
      ;; auto-completion
-     ;; colors
      ;; semantic
      ;; smex
      ;; dash
@@ -314,26 +315,63 @@ before packages are loaded. If you are unsure, you should try in setting them in
     explicitly specified that a variable should be set before a package is loaded,
     you should place your code here.
 
+    ;; https://simpletutorials.com/c/3034/Spacemacs+(Vim+mode)+Cheatsheet
     ;; http://spacemacs.org/doc/FAQ.html#orgheadline14
     ;; Org-Mode: http://www.cnblogs.com/holbrook/archive/2012/04/12/2444992.html
 
-    <SPC f e d> load config and edit
-    <SPC f e R> (Vim style)
-    or <M-m f e R> (Emacs style) reload
+    SPC f e d   Load config and edit
+    SPC f e R   Reload config (Vim style)
+    M-m f e R   Reload config (Emacs style)
 
     ;; File
+    SPC q q     Quit
+    SPC z x     Increase/decrease font size
+
     SPC f f     Open/new file
+    SPC f s     Save
+    SPC b b     Jump switch-file
     SPC p f     Fuzzy-search for files
     SPC f t     Opens the sidebar in the directory
-    SPC p t
+    SPC p t     Open directory tree
 
-    ;; switch c/h
+    ;; Find/Search/Jump
+    /           Type text search in buffer
+    *           Find next word the cursor over
+    #           Find previous word the cursor over
+    SPC /       Type text search in project
+    SPC *       Find next word the cursor over in project
+    SPC s l     Resume last search
+    SPC z x     Increase/decrease font size
+    :.,$s/<old>/<new>/gc    Find and replace text in buffer, from current line
+
+    SPC SPC <fuzzy>    Jump to any word
+    Ctrl o/i    Jump back/forward
+    SPC h b     Create/jump to a named bookmark
+    zz          Center the buffer around your cursor
+
+
+    ;; Window/Layout
+    SPC l ?     Show/hide layout help
+    SPC w S     Split window vertically
+    SPC <#>     Switch to other window
+    SPC w c     Close a window
+    SPC l l     Create a named layout
+    SPC l S     Save a layout by name
+    SPC l <#>   Switch to layout
+
+    ;; Comment
+    g c c       Comment out a line
+    g c         Comment out highlighted text
+    SPC r y     Show previous things you’ve copied (yanked)
+    SPC t w     Show whitespace
+
+    ;; Switch c/h
     SPC m g a   open matching file (e.g. switch between .cpp and .h)
     SPC m g A   open matching file in another window (e.g. switch between .cpp and .h)
     SPC m D     disaster: disassemble c/c++ code
     SPC m r     srefactor: refactor thing at point.
 
-    ;;cscope
+    ;; Cscope
     SPC m g c	find which functions are called by a function
     SPC m g C	find where a function is called
     SPC m g d	find global definition of a symbol
