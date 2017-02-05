@@ -87,7 +87,7 @@ setopt SHARE_HISTORY        # Share history between session/terminals
 #  echo "have init" > "/tmp/zsh_init_flag"
 #fi
 
-alias emacs='emacs -nw'
+#alias emacs='emacs -nw'
 alias dict="$HOME/tools/dict"
 alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
 alias meld="nohup $HOME/tools/meld/bin/meld"

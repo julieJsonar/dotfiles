@@ -33,20 +33,25 @@ values."
    '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
+     ;; Uncomment some layer names and reload it.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
      better-defaults
      emacs-lisp
      git
      markdown
+     ycmd
      c-c++
+     cscope
      haskell
      html
      javascript
      org
+     ;; auto-completion
+     ;; colors
+     ;; semantic
+     ;; smex
+     ;; dash
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -105,7 +110,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -165,7 +170,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -296,16 +301,123 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (set gc-cons-threshold 50000000)
+  (setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+    This function is called at the very end of Spacemacs initialization after
+    layers configuration.
+    This is the place where most of your configurations should be done. Unless it is
+    explicitly specified that a variable should be set before a package is loaded,
+    you should place your code here.
+
+    ;; http://spacemacs.org/doc/FAQ.html#orgheadline14
+    ;; Org-Mode: http://www.cnblogs.com/holbrook/archive/2012/04/12/2444992.html
+
+    <SPC f e d> load config and edit
+    <SPC f e R> (Vim style)
+    or <M-m f e R> (Emacs style) reload
+
+    ;; File
+    SPC f f     Open/new file
+    SPC p f     Fuzzy-search for files
+    SPC f t     Opens the sidebar in the directory
+    SPC p t
+
+    ;; switch c/h
+    SPC m g a   open matching file (e.g. switch between .cpp and .h)
+    SPC m g A   open matching file in another window (e.g. switch between .cpp and .h)
+    SPC m D     disaster: disassemble c/c++ code
+    SPC m r     srefactor: refactor thing at point.
+
+    ;;cscope
+    SPC m g c	find which functions are called by a function
+    SPC m g C	find where a function is called
+    SPC m g d	find global definition of a symbol
+    SPC m g e	search regular expression
+    SPC m g f	find a file
+    SPC m g F	find which files include a file
+    SPC m g i	create Cscope index
+    SPC m g r	find references of a symbol
+    SPC m g x	search text
+
+    ;; Magit
+    SPC g d     diff of the current file
+    SPC g s     Look at the overall project git-status
+        TAB     open/close diffs of files under git-status
+        s/u     stage/unstage a file (or hunk)
+        c       bring up the commit menu
+        ?       show what else you can do (pulling, pushing, tagging, reverting, bisecting
+    C-c C-c     Commit once you’ve settled on a commit message
+        q       Close magit windows.
+
+
+    "
+  (set-face-attribute 'default nil :height 130)
+	(set-default 'truncate-lines t)
   (global-hl-line-mode -1) ; Disable current line highlight
+  (setq-default indent-tabs-mode t) ;; 用空格替代TAB(nil) or not(t).
+  (setq-default default-tab-width 8)
+  (setq c-basic-offset 8)
+  (setq-default c-default-style "linux")
+  (eval-after-load "cc-mode"
+    '(define-key c-mode-map (kbd "TAB") 'self-insert-command))
+  (global-set-key (kbd "DEL") 'backward-delete-char)
+  (setq c-backspace-function 'backward-delete-char)
+
+  ;; search
+  ;; (setq isearch-wrap-function '(lambda nil))
+  (defadvice isearch-repeat (after isearch-no-fail activate)
+    (unless isearch-success
+      (ad-disable-advice 'isearch-repeat 'after 'isearch-no-fail)
+      (ad-activate 'isearch-repeat)
+      (isearch-repeat (if isearch-forward 'forward))
+      (ad-enable-advice 'isearch-repeat 'after 'isearch-no-fail)
+      (ad-activate 'isearch-repeat)))
+
+  ;; scroll one line at a time (less "jumpy" than defaults)
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+  ;; Changing windows like vim (ctrl + hjkl)
+  (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
+
+  (setq powerline-default-separator 'utf-8)
+  (spaceline-compile)
+
+  (define-key evil-motion-state-map [C-i] 'evil-jump-forward)
+  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+     (global-set-key (kbd "C-i") 'evil-jump-forward)
+
+  (add-hook 'find-file-hook
+     (lambda ()
+        (setq default-directory command-line-default-directory)))
+  (setq-default tags-file-name "./.tage")
+
+  ; Get rid of the startup message
+  (setq inhibit-startup-message t)
+  ; Show file full path in title bar
+  (setq-default frame-title-format
+     (list '((buffer-file-name " %f"
+        (dired-directory
+         dired-directory
+         (revert-buffer-function " %b"
+         ("%b - Dir:  " default-directory)))))))
+  ; Change default colors
+  ;(set-background-color "grey10")
+  ;(set-foreground-color "white")
+  ;(set-cursor-color "white")
+	;(add-to-list 'default-frame-alist '(background-color . "lightgray"))
+	(add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
+	;(add-to-list 'default-frame-alist '(background-color . "#102372"))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -317,7 +429,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (zeal-at-point xterm-color smex shell-pop rainbow-mode rainbow-identifiers multi-term helm-dash git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter flyspell-correct-helm flyspell-correct flycheck-ycmd flycheck-pos-tip pos-tip flycheck-haskell eshell-z eshell-prompt-extras esh-help diff-hl color-identifiers-mode auto-dictionary ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

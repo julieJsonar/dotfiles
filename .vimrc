@@ -94,7 +94,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'mhinz/vim-signify'
 Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
 Plug 'vim-scripts/taglist.vim'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
 Plug 'juneedahamed/svnj.vim'
@@ -309,10 +309,10 @@ set wildignore+=*.d
  "  n... :  where to save the viminfo files,
  "            here save to /tmp means we have another viminfo manager 'workspace'
 if has("nvim")
-  set viminfo=!,'30,\"300,:30,%,n~/.nviminfo
+  set viminfo=!,'30,\"30,:30,%,n~/.nviminfo
 else
   "set viminfo=!,'30,\"300,:30,%,n/tmp/viminfo
-  set viminfo='30,\"100,:100,n~/.viminfo
+  set viminfo='30,\"30,:30,n~/.viminfo
 endif
 
 function! ResCur()
@@ -670,10 +670,10 @@ command! -nargs=1 Silent
   nnoremap <silent> <leader>; :silent call utils#Declaration()<CR>
 
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
-  nnoremap <silent> <leader>j  :FuzzyOpen<cr>
-  vnoremap          <leader>j  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
-  nnoremap <silent> <leader>k  :FuzzyFunc<cr>
-  vnoremap          <leader>k  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>o  :FuzzyOpen<cr>
+  vnoremap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>j  :FuzzyFunc<cr>
+  vnoremap          <leader>j  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
   nnoremap <silent> <leader>l  :FuzzySymb<cr>
   vnoremap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
