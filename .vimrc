@@ -353,8 +353,8 @@ let g:rooter_patterns = ['Rakefile', '.git', '.git/', '.svn', '.svn/']
 " neomake
 let g:neomake_open_list = 1
 let g:neomake_place_signs = 1
-let g:neomake_verbose = 3
-let g:neomake_logfile = './log.make'
+"let g:neomake_verbose = 3
+"let g:neomake_logfile = './log.make'
 let g:neomake_warning_sign = {
   \ 'text': 'W',
   \ 'texthl': 'WarningMsg',
