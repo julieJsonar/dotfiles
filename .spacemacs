@@ -47,12 +47,12 @@ values."
      haskell
      html
      javascript
-     org-contrib-plus
+     org
      gnus
      colors
-     ;; auto-completion
+     smex
+     auto-completion
      ;; semantic
-     ;; smex
      ;; dash
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -327,6 +327,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     '(define-key c-mode-map (kbd "TAB") 'self-insert-command))
   (global-set-key (kbd "DEL") 'backward-delete-char)
   (setq c-backspace-function 'backward-delete-char)
+  (global-company-mode t) 
 
   ;; search
   ;; (setq isearch-wrap-function '(lambda nil))
@@ -349,8 +350,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
 
-  (setq powerline-default-separator 'utf-8)
-  (spaceline-compile)
+  ;; (setq powerline-default-separator 'utf-8)
+  ;; (spaceline-compile)
 
   (define-key evil-motion-state-map [C-i] 'evil-jump-forward)
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))

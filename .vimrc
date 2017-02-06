@@ -49,6 +49,7 @@ Plug 'morhetz/gruvbox'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'justinmk/vim-syntax-extra'
+"Plug 'justinmk/vim-dirvish'
 
 "Plug 'derekwyatt/vim-fswitch'
 Plug 'kopischke/vim-fetch'
@@ -57,6 +58,7 @@ Plug 'millermedeiros/vim-statline'
 "Plug 'vivien/vim-linux-coding-style'
 "Plug 'MattesGroeger/vim-bookmarks'
 Plug 'szw/vim-maximizer'
+Plug 'hecal3/vim-leader-guide'
 
 Plug 'majutsushi/tagbar'
 "Plug 'tomtom/ttags_vim'
@@ -65,7 +67,6 @@ Plug 'majutsushi/tagbar'
 " vim's GUI
 "Plug 'megaannum/self'
 "Plug 'megaannum/forms'
-
 Plug 'sjl/gundo.vim'
 Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
 "Plug 'tpope/vim-repeat'
@@ -73,19 +74,25 @@ Plug 'tpope/vim-fugitive'
 Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
 "Plug 'Dkendal/fzy-vim'
 "Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
+"Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
 "Plug 'vim-scripts/CmdlineComplete'
 "Plug 'vim-utils/vim-vertical-move'
 Plug 'junegunn/vim-easy-align'	| " selected and ga=
 Plug 'terryma/vim-expand-region'
 
-Plug 'kovisoft/slimv'
+" Python
+" auto-complete
+" https://github.com/neovim/python-client
+" Install https://github.com/davidhalter/jedi
+" https://github.com/zchee/deoplete-jedi
 Plug 'klen/python-mode'
+
+Plug 'kovisoft/slimv'
 "Plug 'AnsiEsc.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'mfukar/robotframework-vim'
 "Plug 'pangloss/vim-javascript'
-"Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 "Plug 'tpope/vim-vinegar'	| " '-' open explore
 Plug 'jhidding/VOoM'		| " VOom support +python3
@@ -115,6 +122,7 @@ Plug 'mhinz/vim-startify'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
+" AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
 Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
@@ -135,10 +143,12 @@ Plug 'nhooyr/neoman.vim', Cond(has('nvim'))	| " :Nman printf, :Nman printf(3)
 Plug 'huawenyu/taboo.vim'
 Plug 'huawenyu/vim-mark'
 "Plug 'huawenyu/highlight.vim'
+Plug 'huawenyu/vim-rooter'  | " Get or change current dir
 Plug 'huawenyu/vim-log-syntax'
 Plug 'huawenyu/vimux-script'
-Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
+"Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
 Plug 'huawenyu/c-utils.vim'
+Plug 'huawenyu/neomake', Cond(has('nvim'))
 Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
 
 " Debug
@@ -336,6 +346,24 @@ augroup END
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 
+" vim-rooter
+let g:rooter_manual_only = 1
+let g:rooter_patterns = ['Rakefile', '.git', '.git/', '.svn', '.svn/']
+
+" neomake
+let g:neomake_open_list = 1
+let g:neomake_place_signs = 1
+let g:neomake_verbose = 3
+let g:neomake_logfile = './log.make'
+let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
+
 " fuzzy
 "let g:fuzzy_file_list = ["cscope.files"]
 "let g:fuzzy_file_tag = ['tags.x', '.tags.x']
@@ -344,7 +372,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " autotag {{{2}}}
-let g:autotagTagsFile = ".tagx"
+let g:autotagTagsFile = ".tags"
 
 " svnj {{{2}}}
 let g:svnj_browse_cache_all = 1
@@ -554,6 +582,8 @@ let g:enable_numbers = 0
 command! -nargs=* Wrap set wrap linebreak nolist
 "command! -nargs=* Wrap PencilSoft
 "command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+command! -nargs=+ -bang -complete=shellcmd
+      \ Make execute ':NeomakeCmd make '. <q-args>
 
 command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
@@ -572,7 +602,10 @@ command! -nargs=1 Silent
            let n_lines += float2nr(ceil(line_width))
            let l += 1
        endw
-       exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+       let exp_height = max([min([n_lines, a:maxheight]), a:minheight])
+       if (abs(winheight(0) - exp_height)) > 2
+           exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+       endif
    endfunction
 
    " Maximizes the current window if it is not the quickfix window.
@@ -678,7 +711,7 @@ command! -nargs=1 Silent
   vnoremap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
-  nnoremap <silent> <leader>v] :Dispatch! tagme<CR>
+  nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
   nnoremap <silent> <leader>vl :call log#Search(expand('%')) <CR>
@@ -737,7 +770,7 @@ command! -nargs=1 Silent
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
   nnoremap <leader>de  :g/.\{200,\}/d
 
-  nnoremap <leader>qw :Start ~/tools/dict <C-R>=expand('<cword>') <cr>
+  nnoremap <leader>qw :NeomakeRun ~/tools/dict <C-R>=expand('<cword>') <cr>
   nnoremap <leader>qs :QSave
   nnoremap <leader>ql :QLoad
   nnoremap <leader>qf :call utilquickfix#QuickFixFilter() <CR>

@@ -38,6 +38,8 @@ git_repos=( \
   "$HOME/.vim/bundle/c-utils.vim" \
   "$HOME/.vim/bundle/neogdb.vim" \
   "$HOME/.vim/bundle/Decho" \
+  "$HOME/.vim/bundle/vim-rooter" \
+  "$HOME/.vim/bundle/neomake" \
   "$HOME/log" \
 )
 

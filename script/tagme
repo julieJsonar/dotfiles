@@ -42,14 +42,18 @@ if [ $filecnt_c -ge 1024 ]; then
 	#    /usr/bin/time gtags -f cscope.files
 	#    /usr/bin/time global -u -L cscope.files
 
-	LC_COLLATE=C ctags -e --extra=+f -L cscope.files -f .tage > /dev/null 2>&1
+# tage-emacs, tags-vim, tagx-fuzzy
+#	LC_COLLATE=C ctags -e --extra=+f -L cscope.files -f .tage > /dev/null 2>&1
+	LC_COLLATE=C ctags --extra=+f -L cscope.files -f .tags > /dev/null 2>&1
 	LC_COLLATE=C ctags -xL cscope.files > .tagx 2>/dev/null
 	cscope -kbq -i cscope.files > /dev/null 2>&1
 
 	duration=$SECONDS
 	notify-send "Done tags files $(($duration / 60)):$(($duration % 60))."
 else
-	LC_COLLATE=C ctags -e --extra=+f -f .tage -R . > /dev/null 2>&1
+# tage-emacs, tags-vim, tagx-fuzzy
+#	LC_COLLATE=C ctags -e --extra=+f -f .tage -R . > /dev/null 2>&1
+	LC_COLLATE=C ctags --extra=+f -f .tags -R . > /dev/null 2>&1
 	LC_COLLATE=C ctags -xR . > .tagx 2>/dev/null
 	cscope -bcqR > /dev/null 2>&1
 
