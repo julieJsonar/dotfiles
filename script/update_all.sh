@@ -25,6 +25,8 @@ cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
 
 git_repos=( \
   "$phy_dotfiles_dir" \
+  "$HOME/log" \
+  "$HOME/wiki" \
   "$HOME/pcap" \
   "$HOME/dotwiki" \
   "$HOME/algorithm" \
@@ -40,7 +42,6 @@ git_repos=( \
   "$HOME/.vim/bundle/Decho" \
   "$HOME/.vim/bundle/vim-rooter" \
   "$HOME/.vim/bundle/neomake" \
-  "$HOME/log" \
 )
 
 # functions {{{1
