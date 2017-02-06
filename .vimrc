@@ -350,7 +350,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:rooter_manual_only = 1
 let g:rooter_patterns = ['Rakefile', '.git', '.git/', '.svn', '.svn/']
 
-" neomake: make & asynrun in background
+" neomake: make & asynrun
 let g:neomake_open_list = 1
 let g:neomake_place_signs = 1
 "let g:neomake_verbose = 3
