@@ -58,7 +58,7 @@ Plug 'millermedeiros/vim-statline'
 "Plug 'vivien/vim-linux-coding-style'
 "Plug 'MattesGroeger/vim-bookmarks'
 Plug 'szw/vim-maximizer'
-Plug 'hecal3/vim-leader-guide'
+"Plug 'hecal3/vim-leader-guide'
 
 Plug 'majutsushi/tagbar'
 "Plug 'tomtom/ttags_vim'
