@@ -68,7 +68,8 @@ Plug 'majutsushi/tagbar'
 "Plug 'megaannum/self'
 "Plug 'megaannum/forms'
 Plug 'sjl/gundo.vim'
-Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
+"Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
+Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
@@ -93,11 +94,13 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'mfukar/robotframework-vim'
 "Plug 'pangloss/vim-javascript'
 Plug 'jceb/vim-orgmode'
-"Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 "Plug 'tpope/vim-vinegar'	| " '-' open explore
 Plug 'jhidding/VOoM'		| " VOom support +python3
+Plug 'vim-voom/VOoM_extras'
 Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
 Plug 'scrooloose/nerdcommenter'
+Plug 'jeetsukumaran/vim-buffergator'
 "Plug 'mhinz/vim-signify'
 Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
 Plug 'vim-scripts/taglist.vim'
@@ -371,6 +374,19 @@ let g:neomake_error_sign = {
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" easymotion {{{2
+  let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+  " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+  " `s{char}{label}`
+  nmap s <Plug>(easymotion-overwin-f)
+
+  " or
+  " `s{char}{char}{label}`
+  " Need one more keystroke, but on average, it may be more comfortable.
+  "nmap s <Plug>(easymotion-overwin-f2)
+"}}}
+
 " autotag {{{2}}}
 let g:autotagTagsFile = ".tags"
 
@@ -407,6 +423,20 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeRespectWildIgnore = 1
 "let NERDTreeShowBookmarks = 1
 let NERDTreeWinSize = 25
+
+" Buffergator
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_suppress_mru_switch_into_splits_keymaps = 1
+let g:buffergator_autoupdate = 1
+let g:buffergator_autodismiss_on_select = 0
+let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_vsplit_size = 25
+"let g:buffergator_viewport_split_policy = 'L'   |" L, R, T, B, n/N
+let g:buffergator_show_full_directory_path = 0
+let g:buffergator_mru_cycle_loop = 0
+let g:buffergator_mru_cycle_local_to_window = 1
+let g:buffergator_sort_regime = 'filepath'
+"let g:buffergator_display_regime = 'basename'
 
 " voom {{{3}}}
 let g:voom_tree_width = 45
@@ -465,16 +495,24 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:w3m#command = '/usr/bin/w3m'
 let g:w3m#lang = 'en_US'
 
-" plasticboy/vim-markdown {{{2}}}
-let g:vim_markdown_conceal = 0
-"let g:vim_markdown_toc_autofit = 1
-"let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_folding_level = 3
-let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_emphasis_multiline = 0
-let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_fenced_languages = ['C=c', 'c=c', 'Shell=sh', 'Java=java', 'Csharp=cs']
+" plasticboy/vim-markdown {{{2
+  "set conceallevel=0
+  "let g:vim_markdown_conceal = 1
+  "let g:vim_markdown_toc_autofit = 1
+  "
+  "let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_folding_style_pythonic = 1
+  let g:vim_markdown_override_foldtext = 0
+  let g:vim_markdown_folding_level = 6
+  let g:vim_markdown_folding_style_pythonic = 1
+  "
+  let g:vim_markdown_emphasis_multiline = 0
+  let g:vim_markdown_new_list_item_indent = 2
+  let g:vim_markdown_no_default_key_mappings = 1
+  let g:vim_markdown_json_frontmatter = 1
+  let g:vim_markdown_fenced_languages = ['C=c', 'c=c', 'Shell=sh', 'Java=java'
+        \ , 'Csharp=cs', 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
+"}}}
 
 let g:AutoComplPop_CompleteoptPreview = 1
 let g:AutoComplPop_Behavior = {
@@ -645,9 +683,13 @@ command! -nargs=1 Silent
   autocmd Filetype c,cpp,diff C8
 
   augroup voom_map
-    autocmd!
-    autocmd filetype markdown nnoremap <buffer> <leader>;o :VoomToggle markdown<CR>
-    autocmd filetype python   nnoremap <buffer> <leader>;o :VoomToggle python<CR>
+      " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
+      " <Tab>               cycles between Tree and Body windows without selecting node.
+      " <C-Up>, <C-Down>    move node or a range of sibling nodes Up/Down.
+      " <C-Left>, <C-Right> move nodes Left/Right (promote/demote).
+      autocmd!
+      autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
+      autocmd filetype python   nnoremap <buffer> <alt-o> :VoomToggle python<CR>
   augroup END
 "}}}
 "}}}
@@ -685,11 +727,12 @@ command! -nargs=1 Silent
   vnoremap <silent> p p`]
   nnoremap <silent> p p`]
 
-  nnoremap <a-i> :TlistToggle<CR>
-  nnoremap <a-o> :VoomToggle<cr>
-  nnoremap <a-w> :MaximizerToggle<CR>
-  nnoremap <a-e> :NERDTreeToggle<cr>
-  nnoremap <a-f> :NERDTreeFind<cr>
+  nnoremap <silent> <a-o> :VoomToggle<cr>
+  nnoremap <silent> <a-w> :MaximizerToggle<CR>
+  nnoremap <silent> <a-e> :NERDTreeToggle<cr>
+  nnoremap <silent> <a-f> :NERDTreeFind<cr>
+  nnoremap <silent> <a-t> :TlistToggle<CR>
+  nnoremap <silent> <a-i> :BuffergatorToggle<cr>
   nnoremap <silent> <a-u> :GundoToggle<CR>
 
   nnoremap <silent> <a-n> :lnext<cr>
@@ -792,12 +835,12 @@ command! -nargs=1 Silent
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
+    let @" = s:restore_reg
+    return ''
 endfunction
 function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<cr>"
 endfunction
 vnoremap <silent> <expr> p <sid>Repl()
 
