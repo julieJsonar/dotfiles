@@ -141,16 +141,16 @@ Main ()
         elif [ "$action" == "push" ]; then
             Run "cd $git_dir"
 
-            diff_num=$(git diff | wc -l)
-            file_num=$(git status --short | grep -v '^?' | wc -l)
-            if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
+            #diff_num=$(git diff | wc -l)
+            #file_num=$(git status --short | grep -v '^?' | wc -l)
+            #if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
                 Run "git commit -am \"$commitmsg\" &> /dev/null" \
                     && Run "git push origin master &> /dev/null" \
                     && msg_success "$git_dir push $diff_num lines patch." \
                     || Die "Git commit or push failed: $git_dir"
-            else
-                msg_passed "$git_dir no changed!"
-            fi
+            #else
+            #    msg_passed "$git_dir no changed!"
+            #fi
         fi
     done
 
