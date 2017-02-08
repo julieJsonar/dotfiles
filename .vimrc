@@ -32,132 +32,154 @@ endif
 
 " Plugins {{{1}}}
 call plug#begin('~/.vim/bundle')
-"
-"Plug 'flazz/vim-colorschemes'
-"Plug 'holokai'
-Plug 'huawenyu/color-scheme-holokai-for-vim'
-"Plug 'darkspectrum'
-"Plug 'sjl/badwolf'
-"Plug 'tomasr/molokai'
-"Plug 'jnurmine/Zenburn'
-"Plug 'joshdick/onedark.vim'
-"Plug 'ryu-blacknd/vim-nucolors'
-"Plug 'chriskempson/base16-vim'
-"Plug 'Lokaltog/vim-distinguished'
-"Plug 'nanotech/jellybeans.vim'
-"Plug 'dracula/vim'
-"Plug 'morhetz/gruvbox'
+" ColorTheme {{{2
+    "Plug 'holokai'
+    "Plug 'tomasr/molokai'
+    "Plug 'darkspectrum'
+    "Plug 'dracula/vim'
+    "Plug 'morhetz/gruvbox'
+    "Plug 'sjl/badwolf'
+    "Plug 'jnurmine/Zenburn'
+    "Plug 'joshdick/onedark.vim'
+    "Plug 'ryu-blacknd/vim-nucolors'
+    "Plug 'chriskempson/base16-vim'
+    "Plug 'Lokaltog/vim-distinguished'
+    "Plug 'flazz/vim-colorschemes'
+    "Plug 'nanotech/jellybeans.vim'
+	Plug 'huawenyu/color-scheme-holokai-for-vim'
+"}}}
 
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'justinmk/vim-syntax-extra'
-"Plug 'justinmk/vim-dirvish'
+" Mode {{{2
+	" Python {{{3
+		" auto-complete
+		" https://github.com/neovim/python-client
+		" Install https://github.com/davidhalter/jedi
+		" https://github.com/zchee/deoplete-jedi
+		Plug 'klen/python-mode'
+	"}}}
+	
+	Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
+	"Plug 'vimwiki/vimwiki'
+	Plug 'jceb/vim-orgmode'
+	Plug 'tpope/vim-speeddating'
+"}}}
 
-"Plug 'derekwyatt/vim-fswitch'
-Plug 'kopischke/vim-fetch'
-Plug 'Raimondi/delimitMate'
-Plug 'millermedeiros/vim-statline'
-"Plug 'vivien/vim-linux-coding-style'
-"Plug 'MattesGroeger/vim-bookmarks'
-Plug 'szw/vim-maximizer'
-"Plug 'hecal3/vim-leader-guide'
+" Facade {{{2
+	Plug 'Raimondi/delimitMate'
+	Plug 'millermedeiros/vim-statline'
+	"Plug 'vivien/vim-linux-coding-style'
+	"Plug 'MattesGroeger/vim-bookmarks'
+	"Plug 'hecal3/vim-leader-guide'
+	"Plug 'megaannum/self'
+	"Plug 'megaannum/forms'
+	Plug 'mhinz/vim-startify'
+"}}}
 
-Plug 'majutsushi/tagbar'
-"Plug 'tomtom/ttags_vim'
-"Plug 'tomtom/tlib_vim'
+" Syntax/Language {{{2
+	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'justinmk/vim-syntax-extra'
+	"Plug 'justinmk/vim-dirvish'
+	"Plug 'kovisoft/slimv'
+	"Plug 'AnsiEsc.vim'
+	Plug 'powerman/vim-plugin-AnsiEsc'
+	Plug 'mfukar/robotframework-vim'
+	Plug 'plasticboy/vim-markdown'
+	"Plug 'pangloss/vim-javascript'
+	" http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
+	"Plug 'vim-scripts/bash-support.vim'
+	Plug 'WolfgangMehner/bash-support'
+	"Plug 'vim-scripts/DirDiff.vim'
+	Plug 'huawenyu/vim-log-syntax'
+"}}}
 
-" vim's GUI
-"Plug 'megaannum/self'
-"Plug 'megaannum/forms'
-Plug 'sjl/gundo.vim'
-"Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
-Plug 'easymotion/vim-easymotion'
-"Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
-Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
-"Plug 'Dkendal/fzy-vim'
-"Plug 'tpope/vim-dispatch'
-"Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
-"Plug 'vim-scripts/CmdlineComplete'
-"Plug 'vim-utils/vim-vertical-move'
-Plug 'junegunn/vim-easy-align'	| " selected and ga=
-Plug 'terryma/vim-expand-region'
+" Improve {{{2
+	"Plug 'derekwyatt/vim-fswitch'
+	Plug 'kopischke/vim-fetch'
+	Plug 'terryma/vim-expand-region'
+	Plug 'szw/vim-maximizer'
+	Plug 'huawenyu/vim-mark'
+	"Plug 'huawenyu/highlight.vim'
 
-" Python
-" auto-complete
-" https://github.com/neovim/python-client
-" Install https://github.com/davidhalter/jedi
-" https://github.com/zchee/deoplete-jedi
-Plug 'klen/python-mode'
 
-Plug 'kovisoft/slimv'
-"Plug 'AnsiEsc.vim'
-Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'mfukar/robotframework-vim'
-"Plug 'pangloss/vim-javascript'
-Plug 'jceb/vim-orgmode'
-Plug 'tpope/vim-speeddating'
-"Plug 'tpope/vim-vinegar'	| " '-' open explore
-Plug 'jhidding/VOoM'		| " VOom support +python3
-Plug 'vim-voom/VOoM_extras'
-Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
-Plug 'scrooloose/nerdcommenter'
-Plug 'jeetsukumaran/vim-buffergator'
-"Plug 'mhinz/vim-signify'
-Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
-Plug 'vim-scripts/taglist.vim'
-"Plug 'ervandew/supertab'
+	" Motion {{{3
+		"Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
+		Plug 'easymotion/vim-easymotion'
+		"Plug 'tpope/vim-repeat'
+		"Plug 'vim-utils/vim-vertical-move'
+	"}}}
 
-Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
-Plug 'juneedahamed/svnj.vim'
-"Plug 'vimwiki/vimwiki'
-"
-" http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
-"Plug 'vim-scripts/bash-support.vim'
-Plug 'WolfgangMehner/bash-support'
+	" Search {{{3
+		Plug 'tpope/vim-fugitive'
+		Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
+		"Plug 'Dkendal/fzy-vim'
+	"}}}
 
-" Markdown
-Plug 'reedes/vim-pencil'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'huawenyu/vim-grepper'	| " :Grepper text
-"Plug 'chrisbra/NrrwRgn'
+	" Async {{{3
+		"Plug 'tpope/vim-dispatch'
+		"Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
+		"Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
+		Plug 'huawenyu/neomake', Cond(has('nvim'))
+	"}}}
 
-Plug 'mhinz/vim-startify'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
+	" View/Outline {{{3
+		Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
+		Plug 'scrooloose/nerdcommenter'
+		Plug 'jeetsukumaran/vim-buffergator'
+		Plug 'huawenyu/vim-rooter'  | " Get or change current dir
 
-" AutoComplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
-Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
-Plug 'honza/vim-snippets'
+		"Plug 'tpope/vim-vinegar'	| " '-' open explore
+		Plug 'jhidding/VOoM'		| " VOom support +python3
+		Plug 'vim-voom/VOoM_extras'
+		"Plug 'mhinz/vim-signify'
+		Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
+		Plug 'vim-scripts/taglist.vim'
+		Plug 'majutsushi/tagbar'
+		"Plug 'tomtom/ttags_vim'
+		"Plug 'tomtom/tlib_vim'
+	"}}}
 
-" share copy/paste between vim(""p)/tmux
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'kassio/neoterm', Cond(has('nvim'))	| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
-Plug 'yuratomo/w3m.vim'
-Plug 'nhooyr/neoman.vim', Cond(has('nvim'))	| " :Nman printf, :Nman printf(3)
-"Plug 'DrawIt'
-"Plug 'vim-scripts/DirDiff.vim'
+	" Tools {{{3
+		"Plug 'DrawIt'
+		Plug 'reedes/vim-pencil'
+		Plug 'godlygeek/tabular'
+		Plug 'huawenyu/vim-grepper'	| " :Grepper text
+		"Plug 'chrisbra/NrrwRgn'
+		"Plug 'stefandtw/quickfix-reflector.vim'
+		Plug 'kassio/neoterm', Cond(has('nvim'))	| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
+		Plug 'junegunn/vim-easy-align'	| " selected and ga=
+		Plug 'huawenyu/c-utils.vim'
+		Plug 'huawenyu/taboo.vim'
+	"}}}
+"}}}
 
-"Plug 'AD7six/vim-activity-log'
-"Plug 'vim-scripts/LogViewer'
-"Plug 'stefandtw/quickfix-reflector.vim'
+" Integration {{{2
+	Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
+	Plug 'juneedahamed/svnj.vim'
+	Plug 'sjl/gundo.vim'
+	Plug 'mattn/webapi-vim'
+	Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
 
-Plug 'huawenyu/taboo.vim'
-Plug 'huawenyu/vim-mark'
-"Plug 'huawenyu/highlight.vim'
-Plug 'huawenyu/vim-rooter'  | " Get or change current dir
-Plug 'huawenyu/vim-log-syntax'
-Plug 'huawenyu/vimux-script'
-"Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
-Plug 'huawenyu/c-utils.vim'
-Plug 'huawenyu/neomake', Cond(has('nvim'))
-Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
+	" share copy/paste between vim(""p)/tmux
+	Plug 'roxma/vim-tmux-clipboard'
+	Plug 'huawenyu/vimux-script'
+	Plug 'yuratomo/w3m.vim'
+	Plug 'nhooyr/neoman.vim', Cond(has('nvim'))	| " :Nman printf, :Nman printf(3)
+"}}}
 
-" Debug
-Plug 'tpope/vim-scriptease'
-Plug 'huawenyu/Decho'
+" AutoComplete {{{2
+	"Plug 'ervandew/supertab'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
+	Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
+	Plug 'honza/vim-snippets'
+	"Plug 'vim-scripts/CmdlineComplete'
+"}}}
+
+
+" Debug {{{2
+	Plug 'tpope/vim-scriptease'
+	Plug 'huawenyu/Decho'
+"}}}
 call plug#end()
 
 
@@ -254,7 +276,7 @@ set cindent
 set cinoptions=:0,l1,t0,g0,(0
 "}
 
-set list
+set nolist
 "set paste           " conflict with auto-pairs, delimitmate, auto-close plugin
 "set showcmd
 set splitbelow
@@ -828,16 +850,24 @@ command! -nargs=1 Silent
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
   nnoremap <leader>de  :g/.\{200,\}/d
 
-  nnoremap <leader>qw :NeomakeRun ~/tools/dict <C-R>=expand('<cword>') <cr>
+  nnoremap <leader>qw :R! ~/tools/dict <C-R>=expand('<cword>') <cr>
   nnoremap <leader>qs :QSave
   nnoremap <leader>ql :QLoad
   nnoremap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nnoremap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
 
-  " :R !ls -l   grab command output int new buffer
-  command! -nargs=* -complete=shellcmd R tabnew
-              \| setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
-              \| r <args>
+  function! s:R(cap, ...)
+	  if a:cap
+		  tabnew
+          setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
+          exec ":r !". join(a:000)
+	  else
+		  tabnew | enew | exec ":term ". join(a:000)
+	  endif
+  endfunction
+  " :R ls -l   grab command output int new buffer
+  " :R! ls -l   only show output in another tab
+  command! -nargs=+ -bang -complete=shellcmd R call s:R(<bang>1, <q-args>)
 
   "bookmark
   nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
