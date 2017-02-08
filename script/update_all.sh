@@ -133,6 +133,10 @@ Main ()
 
     for git_dir in "${git_repos[@]}"
     do
+		if [ ! -d $git_dir ]; then
+			continue
+		fi
+
         if [ "$action" == "pull" ]; then
             Run "cd $git_dir"
             Run "git pull --all" \
