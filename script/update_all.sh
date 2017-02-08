@@ -133,9 +133,9 @@ Main ()
 
     for git_dir in "${git_repos[@]}"
     do
-		if [ ! -d $git_dir ]; then
-			continue
-		fi
+        if [ ! -d $git_dir ]; then
+            continue
+        fi
 
         if [ "$action" == "pull" ]; then
             Run "cd $git_dir"
@@ -148,13 +148,18 @@ Main ()
             #diff_num=$(git diff | wc -l)
             #file_num=$(git status --short | grep -v '^?' | wc -l)
             #if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
-                Run "git commit -am \"$commitmsg\" &> /dev/null" \
-                    && Run "git push origin master &> /dev/null" \
-                    && msg_success "$git_dir push $diff_num lines patch." \
-                    || Die "Git commit or push failed: $git_dir"
+            #    Run "git commit -am \"$commitmsg\" &> /dev/null" \
+            #        && Run "git push origin master &> /dev/null" \
+            #        && msg_success "$git_dir push $diff_num lines patch." \
+            #        || Die "Git commit or push failed: $git_dir"
             #else
             #    msg_passed "$git_dir no changed!"
             #fi
+
+            diff_num=$(git diff | wc -l)
+            Run "git commit -am \"$commitmsg\" &> /dev/null"
+            Run "git push origin master &> /dev/null"
+            msg_success "$git_dir push $diff_num lines patch."
         fi
     done
 
