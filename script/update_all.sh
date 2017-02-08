@@ -157,9 +157,14 @@ Main ()
             #fi
 
             diff_num=$(git diff | wc -l)
+            file_num=$(git status --short | grep -v '^?' | wc -l)
             Run "git commit -am \"$commitmsg\" &> /dev/null"
             Run "git push origin master &> /dev/null"
-            msg_success "$git_dir push $diff_num lines patch."
+            if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
+                msg_success "push f:$file_num l:$diff_num $git_dir "
+            else
+                msg_passed "push f:$file_num l:$diff_num $git_dir "
+            fi
         fi
     done
 
