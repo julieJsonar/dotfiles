@@ -34,18 +34,19 @@ endif
 call plug#begin('~/.vim/bundle')
 "
 "Plug 'flazz/vim-colorschemes'
-Plug 'holokai'
-Plug 'darkspectrum'
-Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
-Plug 'jnurmine/Zenburn'
-Plug 'joshdick/onedark.vim'
-Plug 'ryu-blacknd/vim-nucolors'
+"Plug 'holokai'
+Plug 'huawenyu/color-scheme-holokai-for-vim'
+"Plug 'darkspectrum'
+"Plug 'sjl/badwolf'
+"Plug 'tomasr/molokai'
+"Plug 'jnurmine/Zenburn'
+"Plug 'joshdick/onedark.vim'
+"Plug 'ryu-blacknd/vim-nucolors'
 "Plug 'chriskempson/base16-vim'
 "Plug 'Lokaltog/vim-distinguished'
-Plug 'nanotech/jellybeans.vim'
-Plug 'dracula/vim'
-Plug 'morhetz/gruvbox'
+"Plug 'nanotech/jellybeans.vim'
+"Plug 'dracula/vim'
+"Plug 'morhetz/gruvbox'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'justinmk/vim-syntax-extra'
@@ -682,15 +683,23 @@ command! -nargs=1 Silent
   autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
   autocmd Filetype c,cpp,diff C8
 
-  augroup voom_map
+  augroup fieltype_automap
+      " Voom:
       " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
       " <Tab>               cycles between Tree and Body windows without selecting node.
       " <C-Up>, <C-Down>    move node or a range of sibling nodes Up/Down.
       " <C-Left>, <C-Right> move nodes Left/Right (promote/demote).
+      "
       autocmd!
       autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
-      autocmd filetype python   nnoremap <buffer> <alt-o> :VoomToggle python<CR>
+      autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
+
+      autocmd filetype log nnoremap <buffer> <leader>l0 :call log#Ignore(0)<CR>
+      autocmd filetype log nnoremap <buffer> <leader>l1 :call log#Ignore(1)<CR>
+      autocmd filetype log nnoremap <buffer> <leader>l2 :call log#Ignore(2)<CR>
+      autocmd filetype log nnoremap <buffer> <leader>l3 :call log#Ignore(3)<CR>
   augroup END
+
 "}}}
 "}}}
 
@@ -750,19 +759,21 @@ command! -nargs=1 Silent
   vnoremap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
   nnoremap <silent> <leader>j  :FuzzyFunc<cr>
   vnoremap          <leader>j  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
-  nnoremap <silent> <leader>l  :FuzzySymb<cr>
-  vnoremap          <leader>l  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>i  :FuzzySymb<cr>
+  vnoremap          <leader>i  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
   "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
+
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
-  nnoremap <silent> <leader>vl :call log#Search(expand('%')) <CR>
 
   nnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
   nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+
+  nnoremap <silent> <leader>ll :call log#log(expand('%')) <CR>
 
   vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
   nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
