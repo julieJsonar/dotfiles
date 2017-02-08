@@ -698,6 +698,10 @@ command! -nargs=1 Silent
       autocmd filetype log nnoremap <buffer> <leader>l1 :call log#Ignore(1)<CR>
       autocmd filetype log nnoremap <buffer> <leader>l2 :call log#Ignore(2)<CR>
       autocmd filetype log nnoremap <buffer> <leader>l3 :call log#Ignore(3)<CR>
+      autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
+      autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
+      autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
+      autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
   augroup END
 
 "}}}
