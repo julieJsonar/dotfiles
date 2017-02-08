@@ -119,7 +119,7 @@ Plug 'reedes/vim-pencil'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'huawenyu/vim-grepper'	| " :Grepper text
-Plug 'chrisbra/NrrwRgn'
+"Plug 'chrisbra/NrrwRgn'
 
 Plug 'mhinz/vim-startify'
 Plug 'mattn/webapi-vim'
@@ -740,8 +740,8 @@ command! -nargs=1 Silent
   nnoremap <silent> <c-n> :cn<cr>
   nnoremap <silent> <c-p> :cp<cr>
 
-  nnoremap <silent> <leader>n :lnext<cr>
-  nnoremap <silent> <leader>p :lpre<cr>
+  nnoremap <silent> <leader>n :cn<cr>
+  nnoremap <silent> <leader>p :cp<cr>
 
   nnoremap <silent> <leader>; :silent call utils#Declaration()<CR>
 

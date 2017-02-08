@@ -110,6 +110,16 @@ function _mytail()
 };
 alias tail='_mytail'
 
+function _myftp()
+{
+  if [ -z ${dir+x} ]; then
+    echo "dir is unset"
+  else
+    genco patch.xml -m "fix huawenyu"
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $dir; cd $dir; put image.out; put patch.xml; put fgtcoveragebuild.tar.xz; ls; quit;"
+  fi
+};
+alias ftpme='_myftp'
 
 # Customize to your needs...
 export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:$HOME/bin:/usr/local/sbin:/usr/sbin
