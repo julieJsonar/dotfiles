@@ -681,7 +681,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
            startinsert
            return
        elseif &buftype == 'quickfix'
-           call AdjustWindowHeight(3, 10)
+           call AdjustWindowHeight(2, 10)
            return
        endif
 
@@ -716,7 +716,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
 
        autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
        autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
-       autocmd FileType qf call AdjustWindowHeight(3, 10)
+       autocmd FileType qf call AdjustWindowHeight(2, 10)
        autocmd Filetype c,cpp,diff C8
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
@@ -783,15 +783,23 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
 
   nnoremap <silent> <leader>; :silent call utils#Declaration()<CR>
 
+  function! s:Jump()
+      if v:count == 0
+          FuzzyFunc
+      else
+          exec 'normal! '. v:count. 'gt'
+      endif
+  endfunction
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
   nnoremap <silent> <leader>o  :FuzzyOpen<cr>
   vnoremap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
-  nnoremap <silent> <leader>j  :FuzzyFunc<cr>
+  nnoremap <silent> <leader>j  :<c-u>call <SID>Jump()<cr>
   vnoremap          <leader>j  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
   nnoremap <silent> <leader>i  :FuzzySymb<cr>
   vnoremap          <leader>i  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
-  "nnoremap <silent> <leader>a  :FSHere<cr> | " Switch file *.c/h
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
+  nnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
+  vnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
 
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
@@ -802,11 +810,6 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
-  nnoremap <silent> <leader>ll :call log#log(expand('%'))<CR>
-  nnoremap <silent> <leader>l0 :call log#Ignore(0)<CR>
-  nnoremap <silent> <leader>l1 :call log#Ignore(1)<CR>
-  nnoremap <silent> <leader>l2 :call log#Ignore(2)<CR>
-  nnoremap <silent> <leader>l3 :call log#Ignore(3)<CR>
 
   vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
   nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
@@ -834,16 +837,16 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   onoremap s :normal vs<CR>
 
   " <leader>number {{{2}}}
-  nnoremap <silent> <leader>1 :norm! 1gt<CR>
-  nnoremap <silent> <leader>2 :norm! 2gt<CR>
-  nnoremap <silent> <leader>3 :norm! 3gt<CR>
-  nnoremap <silent> <leader>4 :norm! 4gt<CR>
-  nnoremap <silent> <leader>5 :norm! 5gt<CR>
-  nnoremap <silent> <leader>6 :norm! 6gt<CR>
-  nnoremap <silent> <leader>7 :norm! 7gt<CR>
-  nnoremap <silent> <leader>8 :norm! 8gt<CR>
-  nnoremap <silent> <leader>9 :norm! 9gt<CR>
-  nnoremap <silent> <leader>0 :norm! 10gt<CR>
+  nnoremap <silent> <leader>1 :exec 'silent! '. 1. 'wincmd w'<CR>
+  nnoremap <silent> <leader>2 :exec 'silent! '. 2. 'wincmd w'<CR>
+  nnoremap <silent> <leader>3 :exec 'silent! '. 3. 'wincmd w'<CR>
+  nnoremap <silent> <leader>4 :exec 'silent! '. 4. 'wincmd w'<CR>
+  nnoremap <silent> <leader>5 :exec 'silent! '. 5. 'wincmd w'<CR>
+  nnoremap <silent> <leader>6 :exec 'silent! '. 6. 'wincmd w'<CR>
+  nnoremap <silent> <leader>7 :exec 'silent! '. 7. 'wincmd w'<CR>
+  nnoremap <silent> <leader>8 :exec 'silent! '. 8. 'wincmd w'<CR>
+  nnoremap <silent> <leader>9 :exec 'silent! '. 9. 'wincmd w'<CR>
+  nnoremap <silent> <leader>0 :silent! wincmd p<CR>
 
   nnoremap <buffer> <Enter> <C-W><Enter>
 
@@ -864,13 +867,13 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
 
   function! s:R(cap, ...)
-	  if a:cap
-		  tabnew
+      if a:cap
+          tabnew
           setlocal buftype=nofile bufhidden=hide syn=diff noswapfile
           exec ":r !". join(a:000)
-	  else
-		  tabnew | enew | exec ":term ". join(a:000)
-	  endif
+      else
+          tabnew | enew | exec ":term ". join(a:000)
+      endif
   endfunction
   " :R ls -l   grab command output int new buffer
   " :R! ls -l   only show output in another tab
