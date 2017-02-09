@@ -131,20 +131,28 @@ Main ()
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
     printf "$NOTE: dry=$dryrun action=$action msg=$commitmsg\n\n"
 
+    if [ "$action" == "pull" ]; then
+        Run "rm -fr /tmp/git.tmp"
+    fi
+
     for git_dir in "${git_repos[@]}"
     do
         if [ ! -d $git_dir ]; then
             continue
+        else
+            Run "cd $git_dir"
         fi
 
         if [ "$action" == "pull" ]; then
-            Run "cd $git_dir"
-            Run "git pull --all" \
-                && msg_success "$git_dir pull." \
+            #Run "echo ' '$git_dir >> /tmp/git.tmp"
+            #Run "git pull --all &>> /tmp/git.tmp" \
+            #    && msg_success "pull $git_dir" \
+            #    || Die "Git pull $git_dir failed!"
+
+            Run "git pull --all &>> /tmp/git.tmp" \
+                && Run "echo ' pull '$git_dir >> /tmp/git.tmp" \
                 || Die "Git pull $git_dir failed!"
         elif [ "$action" == "push" ]; then
-            Run "cd $git_dir"
-
             #diff_num=$(git diff | wc -l)
             #file_num=$(git status --short | grep -v '^?' | wc -l)
             #if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
@@ -167,6 +175,11 @@ Main ()
             fi
         fi
     done
+
+    if [ "$action" == "pull" ]; then
+        Run "grep --color=none '^ \S' /tmp/git.tmp"
+        Run "rm -fr /tmp/git.tmp"
+    fi
 
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }

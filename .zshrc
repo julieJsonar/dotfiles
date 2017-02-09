@@ -89,9 +89,9 @@ setopt SHARE_HISTORY        # Share history between session/terminals
 
 #alias emacs='emacs -nw'
 alias dict="$HOME/tools/dict"
-alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse > /dev/null 2>&1 &"
+alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse &> /dev/null &"
 alias meld="nohup $HOME/tools/meld/bin/meld"
-alias xnview="nohup $HOME/tools/XnView/XnView > /dev/null 2>&1 &"
+alias xnview="nohup $HOME/tools/XnView/XnView &> /dev/null &"
 alias tmuxkill="tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}"
 
 # export MYTYPESCRIPT=~/script/`date +%Y%m%d`
