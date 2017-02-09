@@ -740,6 +740,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   " Stop that stupid window from popping up
   map q: :q
   nnoremap <C-c> <silent> <C-c>
+  nnoremap <buffer> <Enter> <C-W><Enter>
 
   " when wrap, move by virtual row
   nnoremap j gj
@@ -751,8 +752,8 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <c-l> <c-w>l
 
   if has("nvim")
-    let b:terminal_scrollback_buffer_size = 10000
-    let g:terminal_scrollback_buffer_size = 10000
+    let b:terminal_scrollback_buffer_size = 2000
+    let g:terminal_scrollback_buffer_size = 2000
 
     tnoremap <c-h> <C-\><C-n><C-w>h
     tnoremap <c-j> <C-\><C-n><C-w>j
@@ -781,22 +782,70 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <silent> <leader>n :cn<cr>
   nnoremap <silent> <leader>p :cp<cr>
 
-  nnoremap <silent> <leader>; :silent call utils#Declaration()<CR>
-
-  function! s:Jump()
+  function! s:JumpI(mode)
       if v:count == 0
-          FuzzyFunc
+          if a:mode
+              let ans = input("FuzzySymbol ", utils#GetSelected(''))
+              exec 'FuzzySymb '. ans
+          else
+              FuzzySymb
+          endif
+      else
+      endif
+  endfunction
+  function! s:JumpO(mode)
+      if v:count == 0
+          if a:mode
+              let ans = input("FuzzyOpen ", utils#GetSelected(''))
+              exec 'FuzzyOpen '. ans
+          else
+              FuzzyOpen
+          endif
+      else
+          exec ':silent! b'. v:count
+      endif
+  endfunction
+  function! s:JumpH(mode)
+  endfunction
+  function! s:JumpJ(mode)
+      if v:count == 0
+          if a:mode
+              let ans = input("FuzzyFunction ", utils#GetSelected(''))
+              exec 'FuzzyFunc '. ans
+          else
+              FuzzyFunc
+          endif
+      else
+          exec 'silent! '. v:count. 'wincmd w'
+      endif
+  endfunction
+  function! s:JumpK(mode)
+      if v:count == 0
       else
           exec 'normal! '. v:count. 'gt'
       endif
   endfunction
+  function! s:JumpComma(mode)
+      if v:count == 0
+          silent call utils#Declaration()
+      else
+      endif
+  endfunction
+
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
-  nnoremap <silent> <leader>o  :FuzzyOpen<cr>
-  vnoremap          <leader>o  :<c-u>FuzzyOpen <C-R>=utils#GetSelected("")<cr>
-  nnoremap <silent> <leader>j  :<c-u>call <SID>Jump()<cr>
-  vnoremap          <leader>j  :<c-u>FuzzyFunc <C-R>=utils#GetSelected("")<cr>
-  nnoremap <silent> <leader>i  :FuzzySymb<cr>
-  vnoremap          <leader>i  :<c-u>FuzzySymb <C-R>=utils#GetSelected("")<cr>
+  nnoremap <silent> <leader>i  :<c-u>call <SID>JumpI(0)<cr>
+  vnoremap          <leader>i  :<c-u>call <SID>JumpI(1)<cr>
+  nnoremap <silent> <leader>o  :<c-u>call <SID>JumpO(0)<cr>
+  vnoremap          <leader>o  :<c-u>call <SID>JumpO(1)<cr>
+  nnoremap <silent> <leader>h  :<c-u>call <SID>JumpH(0)<cr>
+  vnoremap          <leader>h  :<c-u>call <SID>JumpH(1)<cr>
+  nnoremap <silent> <leader>j  :<c-u>call <SID>JumpJ(0)<cr>
+  vnoremap          <leader>j  :<c-u>call <SID>JumpJ(1)<cr>
+  nnoremap <silent> <leader>k  :<c-u>call <SID>JumpK(0)<cr>
+  vnoremap          <leader>k  :<c-u>call <SID>JumpK(1)<cr>
+  nnoremap <silent> <leader>;  :<c-u>call <SID>JumpComma(0)<cr>
+  vnoremap          <leader>;  :<c-u>call <SID>JumpComma(1)<cr>
+
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
   nnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
   vnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
@@ -835,20 +884,6 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
         \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
   onoremap s :normal vs<CR>
-
-  " <leader>number {{{2}}}
-  nnoremap <silent> <leader>1 :exec 'silent! '. 1. 'wincmd w'<CR>
-  nnoremap <silent> <leader>2 :exec 'silent! '. 2. 'wincmd w'<CR>
-  nnoremap <silent> <leader>3 :exec 'silent! '. 3. 'wincmd w'<CR>
-  nnoremap <silent> <leader>4 :exec 'silent! '. 4. 'wincmd w'<CR>
-  nnoremap <silent> <leader>5 :exec 'silent! '. 5. 'wincmd w'<CR>
-  nnoremap <silent> <leader>6 :exec 'silent! '. 6. 'wincmd w'<CR>
-  nnoremap <silent> <leader>7 :exec 'silent! '. 7. 'wincmd w'<CR>
-  nnoremap <silent> <leader>8 :exec 'silent! '. 8. 'wincmd w'<CR>
-  nnoremap <silent> <leader>9 :exec 'silent! '. 9. 'wincmd w'<CR>
-  nnoremap <silent> <leader>0 :silent! wincmd p<CR>
-
-  nnoremap <buffer> <Enter> <C-W><Enter>
 
   nnoremap gf :call utils#GotoFileWithLineNum()<CR>
   nnoremap gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
