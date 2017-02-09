@@ -169,7 +169,7 @@ Main ()
             Run "git commit -am \"$commitmsg\" &> /dev/null"
             Run "git push origin master &> /dev/null"
             if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
-                msg_success "push $file_num:$diff_num $git_dir"
+                msg_emergency "push $file_num:$diff_num $git_dir"
             else
                 msg_passed "push $file_num:$diff_num $git_dir"
             fi
