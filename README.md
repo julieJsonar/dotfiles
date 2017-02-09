@@ -99,6 +99,6 @@ $ ./bashdb header.sh . .
  $2 - The directory where temporary files are stored
  $3 - The directory where bashdb.pre and bashdb.fns are stored
 ```
-bashdb will read off the first parameter as the script you want to debug and forward any other parameters to that script when it calls it. The script will then return a prompt for you to enter commands and step through debugging.
-
-You can enter h or ? at the prompt for a full listing of available commands.
+  - bashdb will read off the first parameter as the script you want to debug 
+  - and forward any other parameters to that script when it calls it. 
+  - The script will then return a prompt for you to enter commands and step through debugging. You can enter h or ? at the prompt for a full listing of available commands.
