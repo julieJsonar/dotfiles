@@ -153,19 +153,4 @@ On Fedora based distros:
 `dnf install ShellCheck`
 
 ### bsfl: shell script library
-
-## plugin
-
-### eclipse dark theme
-
-[eclipse-moonrise-theme](https://github.com/guari/eclipse-ui-theme)
-  - Modify the active view should click two times: 1st focus, 2nd click item.  
-  - If sometimes the plugin invalid (Examp: update a plugin just make the `moonrise` theme disappear), we can install directly from:
-    * [update-site](https://raw.github.com/guari/eclipse-ui-theme/master/com.github.eclipseuitheme.themes.updatesite)
-  - If install succ, please replaced it by our modified version.
-  - Please choose the moonrise, not moonrise(standalone)
-```Shell
-$ cd eclipse-moonrise-theme
-$ jar cf com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar *
-$ mv com.github.eclipseuitheme.themes.moonrise-ui_0.8.9.201404052318.jar  <your-install-dir>/eclipse/plugins/.
 ```
