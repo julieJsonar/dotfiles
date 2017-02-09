@@ -836,14 +836,13 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   vnoremap          <leader>h  :<c-u>call <SID>JumpH(1)<cr>
   nnoremap <silent> <leader>j  :<c-u>call <SID>JumpJ(0)<cr>
   vnoremap          <leader>j  :<c-u>call <SID>JumpJ(1)<cr>
-  nnoremap <silent> <leader>k  :<c-u>call <SID>JumpK(0)<cr>
-  vnoremap          <leader>k  :<c-u>call <SID>JumpK(1)<cr>
+  nnoremap          <leader>k  :ls<cr>:b<Space>
   nnoremap <silent> <leader>;  :<c-u>call <SID>JumpComma(0)<cr>
   vnoremap          <leader>;  :<c-u>call <SID>JumpComma(1)<cr>
 
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
-  nnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
-  vnoremap <silent> <leader>l :<c-u>call log#log(expand('%'))<CR>
+  nnoremap <silent> <leader>l  :<c-u>call log#log(expand('%'))<CR>
+  vnoremap <silent> <leader>l  :<c-u>call log#log(expand('%'))<CR>
 
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
