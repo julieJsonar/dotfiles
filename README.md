@@ -104,17 +104,3 @@ bashdb will read off the first parameter as the script you want to debug and for
 You can enter h or ? at the prompt for a full listing of available commands.
 
 This is an extension of an example from the book "Learning The Bash Shell" by O'Reilly
-
-### ShellCheck: a static analysis tool for shell scripts
-
-- [code](https://github.com/koalaman/shellcheck)
-- [doc](http://www.shellcheck.net)
-
-On Debian based distros:
-`apt-get install shellcheck`
-
-On Fedora based distros:
-`dnf install ShellCheck`
-
-### bsfl: shell script library
-`
