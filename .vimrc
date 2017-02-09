@@ -57,7 +57,7 @@ call plug#begin('~/.vim/bundle')
         " https://github.com/zchee/deoplete-jedi
         Plug 'klen/python-mode'
     "}}}
-    
+
     Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
     "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
@@ -333,9 +333,7 @@ set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,
 set wildignore+=*.gif,*.png,*.map
 set wildignore+=*.d
 
-" Restore cursor {{{2}}}
-"{
-
+" viminfo {{{2}}}
  " Tell vim to remember certain things when we exit
  "  !    :  The uppercase global VARIABLE will saved
  "  '30  :  marks will be remembered for up to 10 previously edited files
@@ -351,6 +349,7 @@ else
   set viminfo='30,\"30,:30,n~/.viminfo
 endif
 
+" Restore cursor {{{2}}}
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -723,10 +722,6 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
        autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
        autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
-       "autocmd filetype log nnoremap <buffer> <leader>l0 :call log#Ignore(0)<CR>
-       "autocmd filetype log nnoremap <buffer> <leader>l1 :call log#Ignore(1)<CR>
-       "autocmd filetype log nnoremap <buffer> <leader>l2 :call log#Ignore(2)<CR>
-       "autocmd filetype log nnoremap <buffer> <leader>l3 :call log#Ignore(3)<CR>
    augroup END
 
 "}}}
