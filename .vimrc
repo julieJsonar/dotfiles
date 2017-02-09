@@ -9,6 +9,7 @@
   set verbosefile=/tmp/vim.log
 
   let g:decho_enable = 0
+  let g:bg_color = 233 | " current background's color value, use by log to invisible
   " decho to /tmp/vim.debug file, check with 'tail -f /tmp/vim.debug'
   "let g:dechomode = 6
 
@@ -757,9 +758,21 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   endif
 
   " Automatically jump to end of text you pasted
-  vnoremap <silent> y y`]
+  "vnoremap <silent> y y`]
   vnoremap <silent> p p`]
   nnoremap <silent> p p`]
+
+  " vp doesn't replace paste buffer
+  function! RestoreRegister()
+      let @" = s:restore_reg
+      let @+ = s:restore_reg | " sometime other plug use this register as paste-buffer
+      return ''
+  endfunction
+  function! s:Repl()
+      let s:restore_reg = @"
+      return "p@=RestoreRegister()\<cr>"
+  endfunction
+  vnoremap <silent> <expr> p <sid>Repl()
 
   nnoremap <silent> <a-o> :VoomToggle<cr>
   nnoremap <silent> <a-w> :MaximizerToggle<CR>
@@ -916,15 +929,4 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
 
 "}
-
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-    let @" = s:restore_reg
-    return ''
-endfunction
-function! s:Repl()
-    let s:restore_reg = @"
-    return "p@=RestoreRegister()\<cr>"
-endfunction
-vnoremap <silent> <expr> p <sid>Repl()
 
