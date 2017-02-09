@@ -33,7 +33,7 @@ endif
 " Plugins {{{1}}}
 call plug#begin('~/.vim/bundle')
 " ColorTheme {{{2
-    "Plug 'holokai'
+    Plug 'holokai'
     "Plug 'tomasr/molokai'
     "Plug 'darkspectrum'
     "Plug 'dracula/vim'
@@ -46,139 +46,139 @@ call plug#begin('~/.vim/bundle')
     "Plug 'Lokaltog/vim-distinguished'
     "Plug 'flazz/vim-colorschemes'
     "Plug 'nanotech/jellybeans.vim'
-	Plug 'huawenyu/color-scheme-holokai-for-vim'
+    "Plug 'huawenyu/color-scheme-holokai-for-vim'
 "}}}
 
 " Mode {{{2
-	" Python {{{3
-		" auto-complete
-		" https://github.com/neovim/python-client
-		" Install https://github.com/davidhalter/jedi
-		" https://github.com/zchee/deoplete-jedi
-		Plug 'klen/python-mode'
-	"}}}
-	
-	Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
-	"Plug 'vimwiki/vimwiki'
-	Plug 'jceb/vim-orgmode'
-	Plug 'tpope/vim-speeddating'
+    " Python {{{3
+        " auto-complete
+        " https://github.com/neovim/python-client
+        " Install https://github.com/davidhalter/jedi
+        " https://github.com/zchee/deoplete-jedi
+        Plug 'klen/python-mode'
+    "}}}
+    
+    Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
+    "Plug 'vimwiki/vimwiki'
+    Plug 'jceb/vim-orgmode'
+    Plug 'tpope/vim-speeddating'
 "}}}
 
 " Facade {{{2
-	Plug 'Raimondi/delimitMate'
-	Plug 'millermedeiros/vim-statline'
-	"Plug 'vivien/vim-linux-coding-style'
-	"Plug 'MattesGroeger/vim-bookmarks'
-	"Plug 'hecal3/vim-leader-guide'
-	"Plug 'megaannum/self'
-	"Plug 'megaannum/forms'
-	Plug 'mhinz/vim-startify'
+    Plug 'Raimondi/delimitMate'
+    Plug 'millermedeiros/vim-statline'
+    "Plug 'vivien/vim-linux-coding-style'
+    "Plug 'MattesGroeger/vim-bookmarks'
+    "Plug 'hecal3/vim-leader-guide'
+    "Plug 'megaannum/self'
+    "Plug 'megaannum/forms'
+    Plug 'mhinz/vim-startify'
 "}}}
 
 " Syntax/Language {{{2
-	Plug 'octol/vim-cpp-enhanced-highlight'
-	Plug 'justinmk/vim-syntax-extra'
-	"Plug 'justinmk/vim-dirvish'
-	"Plug 'kovisoft/slimv'
-	"Plug 'AnsiEsc.vim'
-	Plug 'powerman/vim-plugin-AnsiEsc'
-	Plug 'mfukar/robotframework-vim'
-	Plug 'plasticboy/vim-markdown'
-	"Plug 'pangloss/vim-javascript'
-	" http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
-	"Plug 'vim-scripts/bash-support.vim'
-	Plug 'WolfgangMehner/bash-support'
-	"Plug 'vim-scripts/DirDiff.vim'
-	Plug 'huawenyu/vim-log-syntax'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'justinmk/vim-syntax-extra'
+    "Plug 'justinmk/vim-dirvish'
+    "Plug 'kovisoft/slimv'
+    "Plug 'AnsiEsc.vim'
+    Plug 'powerman/vim-plugin-AnsiEsc'
+    Plug 'mfukar/robotframework-vim'
+    Plug 'plasticboy/vim-markdown'
+    "Plug 'pangloss/vim-javascript'
+    " http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
+    "Plug 'vim-scripts/bash-support.vim'
+    Plug 'WolfgangMehner/bash-support'
+    "Plug 'vim-scripts/DirDiff.vim'
+    Plug 'huawenyu/vim-log-syntax'
 "}}}
 
 " Improve {{{2
-	"Plug 'derekwyatt/vim-fswitch'
-	Plug 'kopischke/vim-fetch'
-	Plug 'terryma/vim-expand-region'
-	Plug 'szw/vim-maximizer'
-	Plug 'huawenyu/vim-mark'
-	"Plug 'huawenyu/highlight.vim'
+    "Plug 'derekwyatt/vim-fswitch'
+    Plug 'kopischke/vim-fetch'
+    Plug 'terryma/vim-expand-region'
+    Plug 'szw/vim-maximizer'
+    Plug 'huawenyu/vim-mark'
+    "Plug 'huawenyu/highlight.vim'
 
 
-	" Motion {{{3
-		"Plug 'justinmk/vim-sneak'	| " s + prefix-2-char to choose the words
-		Plug 'easymotion/vim-easymotion'
-		"Plug 'tpope/vim-repeat'
-		"Plug 'vim-utils/vim-vertical-move'
-	"}}}
+    " Motion {{{3
+        "Plug 'justinmk/vim-sneak'    | " s + prefix-2-char to choose the words
+        Plug 'easymotion/vim-easymotion'
+        "Plug 'tpope/vim-repeat'
+        "Plug 'vim-utils/vim-vertical-move'
+    "}}}
 
-	" Search {{{3
-		Plug 'tpope/vim-fugitive'
-		Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
-		"Plug 'Dkendal/fzy-vim'
-	"}}}
+    " Search {{{3
+        Plug 'tpope/vim-fugitive'
+        Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
+        "Plug 'Dkendal/fzy-vim'
+    "}}}
 
-	" Async {{{3
-		"Plug 'tpope/vim-dispatch'
-		"Plug 'huawenyu/vim-dispatch'		| " Run every thing. :Dispatch :Make :Start man 3 printf
-		"Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
-		Plug 'huawenyu/neomake', Cond(has('nvim'))
-	"}}}
+    " Async {{{3
+        "Plug 'tpope/vim-dispatch'
+        "Plug 'huawenyu/vim-dispatch'        | " Run every thing. :Dispatch :Make :Start man 3 printf
+        "Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
+        Plug 'huawenyu/neomake', Cond(has('nvim'))
+    "}}}
 
-	" View/Outline {{{3
-		Plug 'scrooloose/nerdtree'	| " ;;e toggle, <enter> open-file
-		Plug 'scrooloose/nerdcommenter'
-		Plug 'jeetsukumaran/vim-buffergator'
-		Plug 'huawenyu/vim-rooter'  | " Get or change current dir
+    " View/Outline {{{3
+        Plug 'scrooloose/nerdtree'    | " ;;e toggle, <enter> open-file
+        Plug 'scrooloose/nerdcommenter'
+        Plug 'jeetsukumaran/vim-buffergator'
+        Plug 'huawenyu/vim-rooter'  | " Get or change current dir
 
-		"Plug 'tpope/vim-vinegar'	| " '-' open explore
-		Plug 'jhidding/VOoM'		| " VOom support +python3
-		Plug 'vim-voom/VOoM_extras'
-		"Plug 'mhinz/vim-signify'
-		Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
-		Plug 'vim-scripts/taglist.vim'
-		Plug 'majutsushi/tagbar'
-		"Plug 'tomtom/ttags_vim'
-		"Plug 'tomtom/tlib_vim'
-	"}}}
+        "Plug 'tpope/vim-vinegar'    | " '-' open explore
+        Plug 'jhidding/VOoM'        | " VOom support +python3
+        Plug 'vim-voom/VOoM_extras'
+        "Plug 'mhinz/vim-signify'
+        Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
+        Plug 'vim-scripts/taglist.vim'
+        Plug 'majutsushi/tagbar'
+        "Plug 'tomtom/ttags_vim'
+        "Plug 'tomtom/tlib_vim'
+    "}}}
 
-	" Tools {{{3
-		"Plug 'DrawIt'
-		Plug 'reedes/vim-pencil'
-		Plug 'godlygeek/tabular'
-		Plug 'huawenyu/vim-grepper'	| " :Grepper text
-		"Plug 'chrisbra/NrrwRgn'
-		"Plug 'stefandtw/quickfix-reflector.vim'
-		Plug 'kassio/neoterm', Cond(has('nvim'))	| " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
-		Plug 'junegunn/vim-easy-align'	| " selected and ga=
-		Plug 'huawenyu/c-utils.vim'
-		Plug 'huawenyu/taboo.vim'
-	"}}}
+    " Tools {{{3
+        "Plug 'DrawIt'
+        Plug 'reedes/vim-pencil'
+        Plug 'godlygeek/tabular'
+        Plug 'huawenyu/vim-grepper'    | " :Grepper text
+        "Plug 'chrisbra/NrrwRgn'
+        "Plug 'stefandtw/quickfix-reflector.vim'
+        Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
+        Plug 'junegunn/vim-easy-align'    | " selected and ga=
+        Plug 'huawenyu/c-utils.vim'
+        Plug 'huawenyu/taboo.vim'
+    "}}}
 "}}}
 
 " Integration {{{2
-	Plug 'cohama/agit.vim'	| " :Agit show git log like gitk
-	Plug 'juneedahamed/svnj.vim'
-	Plug 'sjl/gundo.vim'
-	Plug 'mattn/webapi-vim'
-	Plug 'mattn/gist-vim'		| " :'<,'>Gist -e 'list-sample'
+    Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
+    Plug 'juneedahamed/svnj.vim'
+    Plug 'sjl/gundo.vim'
+    Plug 'mattn/webapi-vim'
+    Plug 'mattn/gist-vim'        | " :'<,'>Gist -e 'list-sample'
 
-	" share copy/paste between vim(""p)/tmux
-	Plug 'roxma/vim-tmux-clipboard'
-	Plug 'huawenyu/vimux-script'
-	Plug 'yuratomo/w3m.vim'
-	Plug 'nhooyr/neoman.vim', Cond(has('nvim'))	| " :Nman printf, :Nman printf(3)
+    " share copy/paste between vim(""p)/tmux
+    Plug 'roxma/vim-tmux-clipboard'
+    Plug 'huawenyu/vimux-script'
+    Plug 'yuratomo/w3m.vim'
+    Plug 'nhooyr/neoman.vim', Cond(has('nvim'))    | " :Nman printf, :Nman printf(3)
 "}}}
 
 " AutoComplete {{{2
-	"Plug 'ervandew/supertab'
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
-	Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
-	Plug 'honza/vim-snippets'
-	"Plug 'vim-scripts/CmdlineComplete'
+    "Plug 'ervandew/supertab'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
+    Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
+    Plug 'honza/vim-snippets'
+    "Plug 'vim-scripts/CmdlineComplete'
 "}}}
 
 
 " Debug {{{2
-	Plug 'tpope/vim-scriptease'
-	Plug 'huawenyu/Decho'
+    Plug 'tpope/vim-scriptease'
+    Plug 'huawenyu/Decho'
 "}}}
 call plug#end()
 
@@ -276,7 +276,7 @@ set cindent
 set cinoptions=:0,l1,t0,g0,(0
 "}
 
-set nolist
+set list
 "set paste           " conflict with auto-pairs, delimitmate, auto-close plugin
 "set showcmd
 set splitbelow
@@ -650,6 +650,11 @@ command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
   \ | execute ':redraw!'
 
+command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
+command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
+command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+
 " Autocmd {{{2
 
    function! AdjustWindowHeight(minheight, maxheight)
@@ -683,48 +688,46 @@ command! -nargs=1 Silent
        let my_ft = &filetype
        if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
            execute ':C8'
+
+           " The 'NonText' highlighting will be used for 'eol', 'extends' and 'precedes'  
+           " The 'SpecialKey' for 'nbsp', 'tab' and 'trail'.
+           hi NonText          ctermfg=238
+           hi SpecialKey       ctermfg=238
        endif
    endfunction
 
-  autocmd BufEnter * call SetIndentTabForCfiletype()
-  autocmd FileType qf call AdjustWindowHeight(3, 10)
+   augroup fieltype_automap
+       " Voom:
+       " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
+       " <Tab>               cycles between Tree and Body windows without selecting node.
+       " <C-Up>, <C-Down>    move node or a range of sibling nodes Up/Down.
+       " <C-Left>, <C-Right> move nodes Left/Right (promote/demote).
+       "
+       autocmd!
+       "autocmd VimLeavePre * cclose | lclose
+       autocmd InsertEnter,InsertLeave * set cul!
+       " current position in jumplist
+       autocmd CursorHold * normal! m'
 
-  "autocmd VimLeavePre * cclose | lclose
-  autocmd InsertEnter,InsertLeave * set cul!
-  " current position in jumplist
-  autocmd CursorHold * normal! m'
+       autocmd BufEnter * call SetIndentTabForCfiletype()
+       autocmd BufNewFile,BufRead *.json set ft=javascript
+       autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
+       autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
-  autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
+       autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
+       autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
+       autocmd FileType qf call AdjustWindowHeight(3, 10)
+       autocmd Filetype c,cpp,diff C8
 
-  command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
-  command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-  command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
-
-  autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
-  autocmd Filetype c,cpp,diff C8
-
-  augroup fieltype_automap
-      " Voom:
-      " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
-      " <Tab>               cycles between Tree and Body windows without selecting node.
-      " <C-Up>, <C-Down>    move node or a range of sibling nodes Up/Down.
-      " <C-Left>, <C-Right> move nodes Left/Right (promote/demote).
-      "
-      autocmd!
-      autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
-      autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
-
-      autocmd filetype log nnoremap <buffer> <leader>l0 :call log#Ignore(0)<CR>
-      autocmd filetype log nnoremap <buffer> <leader>l1 :call log#Ignore(1)<CR>
-      autocmd filetype log nnoremap <buffer> <leader>l2 :call log#Ignore(2)<CR>
-      autocmd filetype log nnoremap <buffer> <leader>l3 :call log#Ignore(3)<CR>
-      autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
-      autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
-      autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
-      autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
-  augroup END
+       autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
+       autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
+       autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
+       autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>l0 :call log#Ignore(0)<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>l1 :call log#Ignore(1)<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>l2 :call log#Ignore(2)<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>l3 :call log#Ignore(3)<CR>
+   augroup END
 
 "}}}
 "}}}
@@ -799,7 +802,11 @@ command! -nargs=1 Silent
   nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
   vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
 
-  nnoremap <silent> <leader>ll :call log#log(expand('%')) <CR>
+  nnoremap <silent> <leader>ll :call log#log(expand('%'))<CR>
+  nnoremap <silent> <leader>l0 :call log#Ignore(0)<CR>
+  nnoremap <silent> <leader>l1 :call log#Ignore(1)<CR>
+  nnoremap <silent> <leader>l2 :call log#Ignore(2)<CR>
+  nnoremap <silent> <leader>l3 :call log#Ignore(3)<CR>
 
   vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
   nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
