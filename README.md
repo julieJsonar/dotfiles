@@ -75,42 +75,6 @@ Rollback
   git push -f origin branch  
 ```
 ## Tools
-### vim server
-```Shell
-<terminal-1> $ vim --servername foo                           <<< start vim-server named 'foo'
-<terminal-2> $ vim --servername foo --remote-silent bar.hs    <<< open current dir's file 'bar.hs' but display on the vim-server
-<terminal-3> $ vim --servername foo --remote-tab file2.txt file3.txt   <<< open these files into new tabs on the vim-server
-<terminal-4> $ vim --servername foo --remote-send '<Esc>:mksession ~/sessionFile.vim<CR>:wqa<CR>'    <<< save session and used by another vim-server
-<terminal-5> $ vim --servername bar -S ~/sessionFile.vim
-```
-### gdb-dashboard
-https://github.com/cyrus-and/gdb-dashboard
-
-using gdb's python interface, if use ubuntu 14.04, the gdb using python3 interface, so if some python module need, please `sudo pip3 install <module>`
-
-  - start GDB in one terminal: enter python mode by `(gdb) source ~/.gdb-dashboard`, or if want do it automatic, please `ln -s ~/.gdb-dashboard ~/.gdbinit`
-    * config show model: `dashboard -layout !registers source !assembly !stack !threads`
-    * debug as usual, the only different is python prompt `>>> `, not `(gdb) `, but we can change by `dashboard -style prompt '(gdb)'`
-  - Use vim as source viewer:
-    * In another terminal (e.g. tmux pane), start vim (+clientserver): `vim --servername "GDB.SOURCE"`
-  - Output to another terminal by tty:
-    * In another terminal (e.g. tmux pane) and get its TTY with the tty command (e.g. /dev/ttys001, the name may be different for a variety of reasons);
-    * Issue the command gdb-python mode '>>> dashboard -output /dev/ttys001` to redirect the dashboard output to the newly created terminal;
-  - Or output to another terminal by tail:
-    * In another terminal (e.g. tmux pane): `tail -f /tmp/gdb.output`, if you hate the tail's `file truncated` message:
-
-```Shell
-function _mytail()
-{
-  if [ -t 0 ]; then
-    tail "$@" 2> >(grep -v truncated >&2)
-  else
-    tail "$@" 2> >(grep -v truncated >&2)
-  fi
-};
-alias tail='_mytail'
-```
-## script
 
 ### sample: script template
 
@@ -153,4 +117,4 @@ On Fedora based distros:
 `dnf install ShellCheck`
 
 ### bsfl: shell script library
-```
+`
