@@ -4,7 +4,7 @@ linux config files: zsh, tmux, vim, script, ...
 
 ## Install
 
-### If first time
+### Only once at first time
 You can git download dotfiles to any where
 ```Shell
 $ cd ~
