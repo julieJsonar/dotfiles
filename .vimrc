@@ -900,7 +900,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
 
   "map <leader>ds :call Asm() <CR>
   nnoremap <leader>bs :call blame#SvnBlameCurrent() <CR>
-  nnoremap <leader>bg :call blame#GitBlameCurrent() <CR>
+  nnoremap <leader>bg :Gblame <CR>
 
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
   nnoremap <leader>de  :g/.\{200,\}/d
