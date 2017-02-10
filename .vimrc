@@ -111,9 +111,9 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " Search {{{3
-        Plug 'tpope/vim-fugitive'
         Plug 'huawenyu/neovim-fuzzy', Cond(has('nvim'))
         "Plug 'Dkendal/fzy-vim'
+        Plug 'huawenyu/vim-grepper'    | " :Grepper text
     "}}}
 
     " Async {{{3
@@ -144,7 +144,6 @@ call plug#begin('~/.vim/bundle')
         "Plug 'DrawIt'
         Plug 'reedes/vim-pencil'
         Plug 'godlygeek/tabular'
-        Plug 'huawenyu/vim-grepper'    | " :Grepper text
         "Plug 'chrisbra/NrrwRgn'
         "Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
@@ -156,7 +155,9 @@ call plug#begin('~/.vim/bundle')
 
 " Integration {{{2
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
-    Plug 'juneedahamed/svnj.vim'
+    Plug 'tpope/vim-fugitive' | " Awesome git wrapper
+    "Plug 'juneedahamed/svnj.vim'
+    Plug 'juneedahamed/vc.vim'| " Support git, svn, ...
     Plug 'sjl/gundo.vim'
     Plug 'mattn/webapi-vim'
     Plug 'mattn/gist-vim'        | " :'<,'>Gist -e 'list-sample'
@@ -860,6 +861,8 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
   vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
 
+  nnoremap          <leader>bb :VCBlame<cr>
+
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
@@ -899,9 +902,6 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
 
   "map <leader>ds :call Asm() <CR>
-  nnoremap <leader>bs :call blame#SvnBlameCurrent() <CR>
-  nnoremap <leader>bg :Gblame <CR>
-
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
   nnoremap <leader>de  :g/.\{200,\}/d
 
