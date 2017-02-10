@@ -6,7 +6,8 @@
 " VimL Debug{{{1
 
   set verbose=0
-  set verbosefile=/tmp/vim.log
+  "set verbose=8
+  "set verbosefile=/tmp/vim.log
 
   let g:decho_enable = 0
   let g:bg_color = 233 | " current background's color value, use by log to invisible
@@ -718,6 +719,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
        autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
        autocmd FileType qf call AdjustWindowHeight(2, 10)
        autocmd Filetype c,cpp,diff C8
+       autocmd Filetype vim C0
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
@@ -854,8 +856,9 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   vnoremap          <leader>;  :<c-u>call <SID>JumpComma(1)<cr>
 
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
-  nnoremap <silent> <leader>l  :<c-u>call log#log(expand('%'))<CR>
-  vnoremap <silent> <leader>l  :<c-u>call log#log(expand('%'))<CR>
+
+  nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
+  vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
 
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
