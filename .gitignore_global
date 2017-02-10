@@ -7,5 +7,13 @@ Default.vim
 default.vim
 log.*
 patch.*
-tags*
+tage
+tags
+tagx
+.tage
+.tags
+.tagx
+*.orig
+*.rej
+.gdb_history
 migadmin/node_modules/grunt-jscs/*

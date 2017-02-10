@@ -57,7 +57,7 @@ Options:
   -v  verbose
   -d  debug
   -n  dry-run
-  -*a [push|pull]
+  -*a [push|pull|status|diff]
   -*m "some note"
 
 Samples:
@@ -105,10 +105,15 @@ GetOpts ()
     shift "$((OPTIND-1))"
 
     # Check options
-    if [ -z "${commitmsg}" ] || [ -z "${action}" ] \
-        || [ "${action}" != "push" -a  "${action}" != "pull" ] ; then
-        Help
-    fi
+    if [ -z "${commitmsg}" ] \
+        || [ -z "${action}" ] \
+        || [ "${action}" != "push" \
+            -a  "${action}" != "pull" \
+            -a  "${action}" != "status" \
+            -a  "${action}" != "diff" ]
+    then
+    Help
+fi
 }
 
 DEBUG() { [ "$_DEBUG" == "on" ] && $@; }
@@ -140,21 +145,27 @@ Main ()
         fi
 
         if [ "$action" == "pull" ]; then
-            #Run "echo ' '$git_dir >> /tmp/git.tmp"
-            #Run "git pull --all &>> /tmp/git.tmp" \
-            #    && msg_success "pull $git_dir" \
-            #    || Die "Git pull $git_dir failed!"
-
             Run "git pull --all &> /tmp/git.tmp" \
-                || Die "Git pull $git_dir failed!"
+                || Die "$action $git_dir failed!"
 
             diff_num=$(grep --color=none '^ \S' /tmp/git.tmp | wc -l)
             if [ $diff_num -gt 0 ]; then
-                msg_notice "pull :$diff_num $git_dir"
+                msg_notice "$action :$diff_num $git_dir"
                 grep --color=none '^ \S' /tmp/git.tmp
             else
-                msg_ok "pull $git_dir"
+                msg_ok "$action $git_dir"
             fi
+        elif [ "$action" == "status" ]; then
+            file_num=$(git status --short | wc -l)
+            if [ $file_num -gt 0 ]; then
+                msg_notice "$action $git_dir"
+                Run "git status --short"
+            else
+                msg_ok "$action $git_dir"
+            fi
+        elif [ "$action" == "diff" ]; then
+            msg_ok "$action $git_dir"
+            Run "git --no-pager diff"
         elif [ "$action" == "push" ]; then
             #diff_num=$(git diff | wc -l)
             #file_num=$(git status --short | grep -v '^?' | wc -l)
@@ -172,9 +183,9 @@ Main ()
             Run "git commit -am \"$commitmsg\" &> /dev/null"
             Run "git push origin master &> /dev/null"
             if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
-                msg_notice "push $file_num:$diff_num $git_dir"
+                msg_notice "$action $file_num:$diff_num $git_dir"
             else
-                msg_ok "push $file_num:$diff_num $git_dir"
+                msg_ok "$action $file_num:$diff_num $git_dir"
             fi
         fi
     done
@@ -183,7 +194,7 @@ Main ()
 }
 
 # footer {{{1
-old_dir=$(pwd) > /dev/null 2>&1
+#old_dir=$(pwd) > /dev/null 2>&1
 DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 GetOpts "$@"
 DEBUG set -vx
