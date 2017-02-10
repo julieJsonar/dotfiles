@@ -113,10 +113,22 @@ alias tail='_mytail'
 function _myftp()
 {
   if [ -z ${dir+x} ]; then
-    echo "dir is unset"
-  else
+    echo "dir is not set"
+    return 1
+  fi
+
+  if [ -f image.out ]; then
+    file=image.out
     genco patch.xml -m "fix huawenyu"
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $dir; cd $dir; put image.out; put patch.xml; put fgtcoveragebuild.tar.xz; ls; quit;"
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $dir; cd $dir; put $file; put patch.xml; put fgtcoveragebuild.tar.xz; ls; quit;"
+  else
+    if [ -z "$1" ]; then
+      echo "File not found!"
+      return 1
+    else
+      file=$1
+      lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $dir; cd $dir; put $file; ls; quit;"
+    fi
   fi
 };
 alias ftpme='_myftp'

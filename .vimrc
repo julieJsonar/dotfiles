@@ -167,6 +167,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'huawenyu/vimux-script'
     Plug 'yuratomo/w3m.vim'
     Plug 'nhooyr/neoman.vim', Cond(has('nvim'))    | " :Nman printf, :Nman printf(3)
+    Plug 'szw/vim-dict'
 "}}}
 
 " AutoComplete {{{2
@@ -374,6 +375,13 @@ augroup END
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 
+" neocomplcache
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
 " vim-rooter
 let g:rooter_manual_only = 1
 let g:rooter_patterns = ['Rakefile', '.git', '.git/', '.svn', '.svn/']
@@ -414,9 +422,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " autotag {{{2}}}
 let g:autotagTagsFile = ".tags"
-
-" svnj {{{2}}}
-let g:svnj_browse_cache_all = 1
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
@@ -720,6 +725,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
        autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
        autocmd FileType qf call AdjustWindowHeight(2, 10)
        autocmd Filetype c,cpp,diff C8
+       autocmd Filetype zsh,bash C2
        autocmd Filetype vim C0
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
@@ -745,6 +751,9 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap j gj
   nnoremap k gk
 
+  " Substitue for MaboXterm diable <c-h>
+  nnoremap <leader>h <c-w>h
+
   nnoremap <c-h> <c-w>h
   nnoremap <c-j> <c-w>j
   nnoremap <c-k> <c-w>k
@@ -764,6 +773,8 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   "vnoremap <silent> y y`]
   vnoremap <silent> p p`]
   nnoremap <silent> p p`]
+  " Paste in insert mode
+  inoremap <silent> <a-p> <c-r>"
 
   " vp doesn't replace paste buffer
   function! RestoreRegister()
@@ -848,8 +859,8 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   vnoremap          <leader>i  :<c-u>call <SID>JumpI(1)<cr>
   nnoremap <silent> <leader>o  :<c-u>call <SID>JumpO(0)<cr>
   vnoremap          <leader>o  :<c-u>call <SID>JumpO(1)<cr>
-  nnoremap <silent> <leader>h  :<c-u>call <SID>JumpH(0)<cr>
-  vnoremap          <leader>h  :<c-u>call <SID>JumpH(1)<cr>
+  "nnoremap <silent> <leader>h  :<c-u>call <SID>JumpH(0)<cr>
+  "vnoremap          <leader>h  :<c-u>call <SID>JumpH(1)<cr>
   nnoremap <silent> <leader>j  :<c-u>call <SID>JumpJ(0)<cr>
   vnoremap          <leader>j  :<c-u>call <SID>JumpJ(1)<cr>
   nnoremap          <leader>k  :ls<cr>:b<Space>
