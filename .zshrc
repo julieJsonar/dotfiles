@@ -76,7 +76,8 @@ setopt APPEND_HISTORY       # Don't erase history
 setopt EXTENDED_HISTORY     # Add additional data to history like timestamp
 setopt INC_APPEND_HISTORY   # Add immediately
 unsetopt HIST_FIND_NO_DUPS    # Don't show duplicates in search
-unsetopt HIST_IGNORE_SPACE    # Don't preserve spaces. You may want to turn it off
+setopt HIST_IGNORE_SPACE    # Don't into history if have space pre-command.
+setopt histignorespace
 setopt NO_HIST_BEEP         # Don't beep
 setopt SHARE_HISTORY        # Share history between session/terminals
 
@@ -88,14 +89,34 @@ setopt SHARE_HISTORY        # Share history between session/terminals
 #fi
 
 #alias emacs='emacs -nw'
+alias ls=' ls'
+alias cd=' cd'
+alias pwd=' pwd'
+alias man=' man'
 alias dict="$HOME/tools/dict"
 alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse &> /dev/null &"
 alias meld="nohup $HOME/tools/meld/bin/meld"
 alias xnview="nohup $HOME/tools/XnView/XnView &> /dev/null &"
 alias tmuxkill="tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}"
 
-# export MYTYPESCRIPT=~/script/`date +%Y%m%d`
-# exec /usr/bin/script -q -a -f -t 2>${MYTYPESCRIPT}.time ${MYTYPESCRIPT}.lst
+# Use these lines to enable search by globs, e.g. gcc*foo.c
+bindkey "^R" history-incremental-pattern-search-backward
+bindkey "^S" history-incremental-pattern-search-forward
+
+# This will make C-z on the command line resume vi again, so you can toggle between them easily
+foreground-vi() {
+  fg %vi
+}
+zle -N foreground-vi
+bindkey '^Z' foreground-vi
+
+# Try zman fc or zman HIST_IGNORE_SPACE! (Use n if the first match is not what you were looking for.)
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+# cd -<TAB>                 use dirs to display the dirstack,
+# zmv '(*).lis' '$1.txt'    dry-run mode -n
 
 unsetopt correct_all
 unsetopt nomatch
