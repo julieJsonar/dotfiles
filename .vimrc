@@ -66,6 +66,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-speeddating'
 "}}}
 
+
+
 " Facade {{{2
     Plug 'Raimondi/delimitMate'
     Plug 'millermedeiros/vim-statline'
@@ -92,6 +94,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'WolfgangMehner/bash-support'
     "Plug 'vim-scripts/DirDiff.vim'
     Plug 'huawenyu/vim-log-syntax'
+    Plug 'Shougo/vinarise.vim' | " Hex viewer
 "}}}
 
 " Improve {{{2
@@ -150,6 +153,9 @@ call plug#begin('~/.vim/bundle')
         Plug 'junegunn/vim-easy-align'    | " selected and ga=
         Plug 'huawenyu/c-utils.vim'
         Plug 'huawenyu/taboo.vim'
+        Plug 'thinca/vim-quickrun'
+        Plug 'wsdjeg/SourceCounter.vim'
+        "Plug 'junegunn/goyo.vim'
     "}}}
 "}}}
 
@@ -182,7 +188,8 @@ call plug#begin('~/.vim/bundle')
 
 " Debug {{{2
     Plug 'tpope/vim-scriptease'
-    Plug 'huawenyu/Decho'
+    Plug 'huawenyu/vimlogger'
+    "Plug 'huawenyu/Decho'
 "}}}
 call plug#end()
 
@@ -746,6 +753,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   map q: :q
   nnoremap <C-c> <silent> <C-c>
   nnoremap <buffer> <Enter> <C-W><Enter>
+  nnoremap <C-q> :<c-u>qa!<cr>
 
   " when wrap, move by virtual row
   nnoremap j gj
@@ -943,4 +951,16 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
 
 "}
+
+" VimL Debug{{{1
+  silent! call logger#init('ALL', ['/tmp/vim.log'])
+  "   " in .vimrc
+  "   call logger#init('ALL', ['/dev/stdout', '~/.vim/log.txt'])
+  "
+  "   " in script
+  "   silent! let s:log = logger#getLogger(expand('<sfile>:t'))
+  "
+  "   " start logger
+  "   silent! call s:log.info('hello world')
+"}}}
 
