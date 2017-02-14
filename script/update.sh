@@ -42,7 +42,7 @@ git_repos=( \
   "$HOME/.vim/bundle/Decho" \
   "$HOME/.vim/bundle/vim-rooter" \
   "$HOME/.vim/bundle/neomake" \
-  "$HOME/.vim/bundle/color-scheme-holokai-for-vim" \
+  "$HOME/.vim/bundle/vimlogger" \
 )
 
 # functions {{{1
