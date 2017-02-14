@@ -954,6 +954,8 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
 
 " VimL Debug{{{1
   silent! call logger#init('ALL', ['/tmp/vim.log'])
+  "silent! call logger#init('ERROR', ['/tmp/vim.log'])
+
   "   " in .vimrc
   "   call logger#init('ALL', ['/dev/stdout', '~/.vim/log.txt'])
   "
