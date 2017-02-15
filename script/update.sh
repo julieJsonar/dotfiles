@@ -26,8 +26,8 @@ cd -P $DIR && cd .. && phy_dotfiles_dir=$(pwd)
 git_repos=( \
   "$phy_dotfiles_dir" \
   "$HOME/log" \
-  "$HOME/wiki" \
   "$HOME/pcap" \
+  "$HOME/wiki" \
   "$HOME/dotwiki" \
   "$HOME/algorithm" \
   "$HOME/.vim/bundle/neovim-fuzzy" \
