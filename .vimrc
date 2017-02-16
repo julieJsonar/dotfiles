@@ -178,7 +178,7 @@ call plug#begin('~/.vim/bundle')
 
 " AutoComplete {{{2
     "Plug 'ervandew/supertab'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))         | "{ 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
     Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
     Plug 'honza/vim-snippets'
@@ -339,7 +339,7 @@ set wildignorecase
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
+set wildignore+=*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
 set wildignore+=*.d

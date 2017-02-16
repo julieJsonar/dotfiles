@@ -45,3 +45,39 @@ wad_http_str_canonicalize
 wad_hauth_user_node_alloc
 wad_user_node_stats_hold
 wad_http_conn_request_classify
+wad_waf_keyword_matched
+__wad_waf_sig_line_should_match
+wad_http_scan_append_region
+wad_http_ipsscan__append_region
+wad_http_ipsscan_send_pending_data
+wad_auth_grp_member_match
+wad_http_avscan__append_region
+wad_http_ipsscan__update_content_encoding
+wad_http_ipsscan__handle_response
+wad_http_scan_handle_body_size
+wad_waf_sig_filter_proc_enable
+wad_waf_match_regex
+wad_waf_sig_filter_proc_enable
+wad_waf_sig_match_request
+wad_http_ipsscan_unblock
+wad_http_scanner__on_released_data
+wad_http_scan_handle_released
+wad_http_ipsscan_handle_result__
+wad_http_scanner__on_scan_done
+wad_ssl_sock_port_in_ops_sync
+wad_ips_stream_port_send_pending
+wad_ssl_port_caps_on_keys
+wad_ssl_port_caps_on_mskb
+wad_ssl_proxy_session_id_match
+wad_ssl_sock_port_in_ops_read
+wad_ssl_port_caps_on_dec_start
+wad_ssl_port_caps_on_dec_done
+wad_ssl_sock_port_fts_in_write
+wad_ssl_sock_port_out_ops_sync
+\Vipsapp ses \d\+ queue message 0x
+\Vipsapp ses \d\+ message 0x
+\Vipsapp ses \d\+ send 
+\Vipsapp ses \d\+ msg \d\+ 
+\Vipsapp us \d\+ read 
+\Vipsapp us \d\+ write 
+\Vipsapp ses \d\+ close
