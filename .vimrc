@@ -537,8 +537,7 @@ let g:w3m#lang = 'en_US'
   "let g:vim_markdown_conceal = 1
   "let g:vim_markdown_toc_autofit = 1
   "
-  "let g:vim_markdown_folding_disabled = 1
-  let g:vim_markdown_folding_style_pythonic = 1
+  let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_override_foldtext = 0
   let g:vim_markdown_folding_level = 6
   let g:vim_markdown_folding_style_pythonic = 1
@@ -664,10 +663,11 @@ command! -nargs=1 Silent
   \ | execute ':silent !'.<q-args>
   \ | execute ':redraw!'
 
-command! -nargs=* C0 setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
-command! -nargs=* C2 setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
-command! -nargs=* C4 setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+command! -nargs=* C0  setlocal autoindent cindent expandtab   tabstop=4 shiftwidth=4 softtabstop=4
+command! -nargs=* C08 setlocal autoindent cindent expandtab   tabstop=8 shiftwidth=2 softtabstop=8
+command! -nargs=* C2  setlocal autoindent cindent expandtab   tabstop=2 shiftwidth=2 softtabstop=2
+command! -nargs=* C4  setlocal autoindent cindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 
 " Autocmd {{{2
 
@@ -733,7 +733,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
        autocmd FileType qf call AdjustWindowHeight(2, 10)
        autocmd Filetype c,cpp,diff C8
        autocmd Filetype zsh,bash C2
-       autocmd Filetype vim C0
+       autocmd Filetype vim,markdown C08
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
@@ -754,6 +754,7 @@ command! -nargs=* C8 setlocal autoindent cindent noexpandtab tabstop=8 shiftwidt
   nnoremap <C-c> <silent> <C-c>
   nnoremap <buffer> <Enter> <C-W><Enter>
   nnoremap <C-q> :<c-u>qa!<cr>
+  inoremap <S-Tab> <C-V><Tab>
 
   " when wrap, move by virtual row
   nnoremap j gj
