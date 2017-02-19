@@ -144,9 +144,10 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " Tools {{{3
-        "Plug 'DrawIt'
+        Plug 'DrawIt'
         Plug 'reedes/vim-pencil'
-        Plug 'godlygeek/tabular'
+        "Plug 'godlygeek/tabular'
+        "Plug 'dhruvasagar/vim-table-mode'
         "Plug 'chrisbra/NrrwRgn'
         "Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
@@ -339,6 +340,8 @@ set wildignorecase
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
+
+" which will cause vimgrep ignore
 set wildignore+=*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,objd/**,obj/**,*.tmp
 set wildignore+=*.o,*.obj,.hg,*.pyc,.git,*.rej,*.orig,*.gcno,*.rbc,*.class,.svn,coverage/*,vendor
 set wildignore+=*.gif,*.png,*.map
@@ -382,7 +385,9 @@ augroup END
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 
-" neocomplcache
+" tabular {{{2}}}
+
+" neocomplcache {{{2}}}
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
