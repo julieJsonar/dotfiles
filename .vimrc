@@ -60,13 +60,14 @@ call plug#begin('~/.vim/bundle')
         Plug 'klen/python-mode'
     "}}}
 
-    Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
+    " Golang {{{3
+        Plug 'fatih/vim-go'
+    "}}}
+
     "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
 "}}}
-
-
 
 " Facade {{{2
     Plug 'Raimondi/delimitMate'
@@ -161,6 +162,8 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " Integration {{{2
+    Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
+
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
     Plug 'tpope/vim-fugitive' | " Awesome git wrapper
     "Plug 'juneedahamed/svnj.vim'
@@ -648,6 +651,31 @@ let g:enable_numbers = 0
   " Don't autofold code
   let g:pymode_folding = 0
 "}}}
+
+" Golang-mode{{{2
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_types = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+
+  let g:go_fmt_command = "goimports"
+  let g:go_term_enabled = 1
+  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+  let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+  let g:go_list_type = "quickfix"
+
+  au FileType go nmap <leader>gr <Plug>(go-run)
+  au FileType go nmap <leader>gb <Plug>(go-build)
+  au FileType go nmap <leader>gt <Plug>(go-test)
+  au FileType go nmap <leader>gc <Plug>(go-coverage)
+  au FileType go nmap <leader>gd <Plug>(go-doc)<Paste>
+  au FileType go nmap <leader>gi <Plug>(go-info)
+  au FileType go nmap <leader>ge <Plug>(go-rename)
+  au FileType go nmap <leader>gg <Plug>(go-def-vertical)
+"}}}
+
 
 "======================================================================
 " Tabularize{{{2

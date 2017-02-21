@@ -155,18 +155,25 @@ function _myftp()
 alias ftpme='_myftp'
 
 # Customize to your needs...
+export TERM=screen-256color
+export EDITOR='vi'
+
 export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:$HOME/bin:/usr/local/sbin:/usr/sbin
 export PATH="$HOME/perl5/bin:$HOME/script:$HOME/script/git-scripts:$PATH";
+
 export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5";
 export PERL_MB_OPT="--install_base $HOME/perl5";
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
+
 export PYTHONPATH="$HOME/work/autotest-robot/library"
 export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
-export TERM=screen-256color
-export EDITOR='vi'
+
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #export JEMALLOC_PATH=$HOME/project/jemalloc
 #export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
