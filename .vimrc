@@ -184,6 +184,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
     Plug 'honza/vim-snippets'
     "Plug 'vim-scripts/CmdlineComplete'
+    Plug 'reedes/vim-wordy'
 "}}}
 
 
@@ -380,6 +381,8 @@ augroup END
   " Enter to go to end of file, Backspace to go to beginning of file.
   "nnoremap <CR> G
   "nnoremap <BS> gg
+
+"set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
 
 " vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
