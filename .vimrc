@@ -816,8 +816,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
   " Automatically jump to end of text you pasted
   "vnoremap <silent> y y`]
-  vnoremap <silent> p "*p`]
-  nnoremap <silent> p "*p`]
+  vnoremap <silent> p p`]
+  nnoremap <silent> p p`]
   " Paste in insert mode
   inoremap <silent> <a-p> <c-r>"
 
