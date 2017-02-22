@@ -43,6 +43,7 @@ git_repos=( \
   "$HOME/.vim/bundle/vim-rooter" \
   "$HOME/.vim/bundle/neomake" \
   "$HOME/.vim/bundle/vimlogger" \
+  "$HOME/.vim/bundle/vim-autotag" \
 )
 
 # functions {{{1

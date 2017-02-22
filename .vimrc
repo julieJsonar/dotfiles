@@ -137,7 +137,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'jhidding/VOoM'        | " VOom support +python3
         Plug 'vim-voom/VOoM_extras'
         "Plug 'mhinz/vim-signify'
-        Plug 'craigemery/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
+        Plug 'huawenyu/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
         Plug 'vim-scripts/taglist.vim'
         Plug 'majutsushi/tagbar'
         "Plug 'tomtom/ttags_vim'
@@ -439,7 +439,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "}}}
 
 " autotag {{{2}}}
+let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
+let g:autotagTagsSrcList = "cscope.files"
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
