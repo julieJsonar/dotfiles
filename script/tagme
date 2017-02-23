@@ -2,6 +2,21 @@
 
 #echo "Generating tags and cscope database..."
 SECONDS=0
+
+# Rebuild one file: used by auto update tag
+if [ ! -z "$1" ]; then
+	if [ -f ./.tags ]; then
+		# only rebuild tags when the file belong curr dir
+		if [[ "$1" == "$PWD/"* ]]; then
+			LC_COLLATE=C ctags --extra=+f -f .tags -a  "$1"
+			#duration=$SECONDS
+			#notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
+		fi
+	fi
+	exit 0
+fi
+
+# Rebuild All
 if [ -f ./cscope.files ]; then
 	filecnt_c=1024
 else

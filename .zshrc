@@ -89,7 +89,6 @@ setopt SHARE_HISTORY        # Share history between session/terminals
 #fi
 
 #alias emacs='emacs -nw'
-alias ls=' ls --color=auto'
 alias cd=' cd'
 alias pwd=' pwd'
 alias man=' man'

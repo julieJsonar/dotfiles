@@ -137,7 +137,9 @@ call plug#begin('~/.vim/bundle')
         Plug 'jhidding/VOoM'        | " VOom support +python3
         Plug 'vim-voom/VOoM_extras'
         "Plug 'mhinz/vim-signify'
-        Plug 'huawenyu/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
+        " Why search tags from the current file path:
+        "   consider in new-dir open old-dir's file, bang!
+        "Plug 'huawenyu/vim-autotag' | " First should exist tagfile which tell autotag auto-refresh: ctags -f .tags -R .
         Plug 'vim-scripts/taglist.vim'
         Plug 'majutsushi/tagbar'
         "Plug 'tomtom/ttags_vim'
@@ -455,9 +457,11 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "}}}
 
 " autotag {{{2}}}
+" Logfile: /tmp/vim-autotag.log
+let g:autotagVerbosityLevel = 10
+let g:autotagmaxTagsFileSize = 50 * 1024 * 1024
 let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
-let g:autotagTagsSrcList = "cscope.files"
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
@@ -764,6 +768,11 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        endif
    endfunction
 
+   " Easier and better than plugin 'autotag'
+   function! RetagFile()
+     execute ":NeomakeSh! tagme ". expand('%:p')
+   endfunction
+
    augroup fieltype_automap
        " Voom:
        " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
@@ -774,6 +783,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd!
        "autocmd VimLeavePre * cclose | lclose
        autocmd InsertEnter,InsertLeave * set cul!
+       autocmd BufWritePost,FileWritePost * call RetagFile()
+
        " current position in jumplist
        autocmd CursorHold * normal! m'
 
@@ -937,7 +948,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
   nnoremap          <leader>bb :VCBlame<cr>
 
-  nnoremap <silent> <leader>v] :NeomakeSh! tagme<CR>
+  nnoremap <silent> <leader>v] :NeomakeSh! tagme<cr>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
   vnoremap <silent> <leader>vi :call utils#VoomInsert(1) <CR>
 
