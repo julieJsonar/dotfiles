@@ -438,6 +438,20 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
   "nmap s <Plug>(easymotion-overwin-f2)
 "}}}
 
+" tags {{{2
+
+  " ver1/tags
+  " ver2/tags
+  " cd ver2; vi -c 'ptag func'		# which will open the file in 'ver1' dir
+  " Disable the above error
+  set notagrelative
+
+  " http://arjanvandergaag.nl/blog/combining-vim-and-ctags.html
+  "set tags=tags;/
+  "set tags=./tagx,tagx,./.tagx,.tagx,./tags,tags,./.tags,.tags;$HOME
+  set tags=./tags,tags,./.tags,.tags;$HOME
+"}}}
+
 " autotag {{{2}}}
 let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
