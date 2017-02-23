@@ -440,15 +440,17 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " tags {{{2
 
-  " ver1/tags
-  " ver2/tags
-  " cd ver2; vi -c 'ptag func'		# which will open the file in 'ver1' dir
-  " Disable the above error
+  " # If using tags:
+  "   ver1/tags
+  "   ver2/tags
+  "   cd ver2; vi -c 'ptag func'		# which will open the file in 'ver1' dir
+  "   Disable the above error
+  " # If using 'set cscopetag', so we don't need the folloing config
+  " But we can autotag auto-update the tags file, so when we fix on tags, we need disable 'cscopetag'
   set notagrelative
 
   " http://arjanvandergaag.nl/blog/combining-vim-and-ctags.html
   "set tags=tags;/
-  "set tags=./tagx,tagx,./.tagx,.tagx,./tags,tags,./.tags,.tags;$HOME
   set tags=./tags,tags,./.tags,.tags;$HOME
 "}}}
 
