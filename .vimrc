@@ -442,13 +442,13 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " tags {{{2
 
-  " # If using tags:
-  "   ver1/tags
-  "   ver2/tags
-  "   cd ver2; vi -c 'ptag func'		# which will open the file in 'ver1' dir
-  "   Disable the above error
-  " # If using 'set cscopetag', so we don't need the folloing config
-  " But we can autotag auto-update the tags file, so when we fix on tags, we need disable 'cscopetag'
+  " # Issue using tags:
+  "   olddir/tags
+  "   newdir/tags
+  "   cd newdir; vi ../olddir/file1 and 'ptag func'		# which will open the file in olddir
+  " # If using 'set cscopetag', this issue not exist.
+  " But if auto-update the tags with current file, we must using tags not 'set cscopetag'.
+  " And the follow one-line can fix the issue.
   set notagrelative
 
   " http://arjanvandergaag.nl/blog/combining-vim-and-ctags.html
@@ -462,6 +462,7 @@ let g:autotagVerbosityLevel = 10
 let g:autotagmaxTagsFileSize = 50 * 1024 * 1024
 let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
+let g:autotagExcSuff = ['tml', 'xml', 'text', 'txt', 'md', 'mk', 'conf', 'html', 'yml', 'css', 'scss']
 
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
@@ -770,7 +771,10 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
    " Easier and better than plugin 'autotag'
    function! RetagFile()
-     execute ":NeomakeSh! tagme ". expand('%:p')
+        let ext = expand('%:e')
+        if (!empty(ext)) && index(g:autotagExcSuff, ext) < 0
+            execute ":NeomakeSh! tagme ". expand('%:p')
+        endif
    endfunction
 
    augroup fieltype_automap

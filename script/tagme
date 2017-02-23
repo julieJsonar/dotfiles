@@ -5,7 +5,7 @@ SECONDS=0
 
 # Rebuild one file: used by auto update tag
 if [ ! -z "$1" ]; then
-	if [ -f ./.tags ]; then
+	if [ -f ./.tags ] && [ -f $1 ]; then
 		# only rebuild tags when the file belong curr dir
 		if [[ "$1" == "$PWD/"* ]]; then
 			LC_COLLATE=C ctags --extra=+f -f .tags -a  "$1"
