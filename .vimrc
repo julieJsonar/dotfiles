@@ -779,7 +779,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
         let file = expand('%:p')
         let ext = expand('%:e')
 
-        if empty(ext) || file !~ cdir. '/'
+        if g:asyncrun_status =~ 'running' || empty(ext) || file !~ cdir. '/'
             return
         elseif index(g:autotagExcSuff, ext) < 0
             execute ":AsyncRun tagme ". expand('%:p')

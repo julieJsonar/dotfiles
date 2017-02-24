@@ -12,8 +12,8 @@ if [ ! -z "$1" ]; then
 			file=$1
 			pwdlen=${#PWD}
 			LC_COLLATE=C ctags --extra=+f -f .tags -a "./${file:$pwdlen}"
-			duration=$SECONDS
-			notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
+			#duration=$SECONDS
+			#notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
 		#fi
 	fi
 	exit 0
