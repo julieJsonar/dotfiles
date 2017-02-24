@@ -3,12 +3,15 @@
 #echo "Generating tags and cscope database..."
 SECONDS=0
 
-# Rebuild one file: used by auto update tag
+# Rebuild one file: used by auto update tag come from vim
+#   - file should be full-path
 if [ ! -z "$1" ]; then
 	if [ -f ./.tags ] && [ -f $1 ]; then
 		# only rebuild tags when the file belong curr dir
 		if [[ "$1" == "$PWD/"* ]]; then
-			LC_COLLATE=C ctags --extra=+f -f .tags -a  "$1"
+			file=$1
+			pwdlen=${#PWD}
+			LC_COLLATE=C ctags --extra=+f -f .tags -a "./${file:$pwdlen}"
 			#duration=$SECONDS
 			#notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
 		fi
