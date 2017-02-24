@@ -124,6 +124,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'tpope/vim-dispatch'
         "Plug 'huawenyu/vim-dispatch'        | " Run every thing. :Dispatch :Make :Start man 3 printf
         "Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
+        Plug 'huawenyu/asyncrun.vim'
         Plug 'huawenyu/neomake', Cond(has('nvim'))
     "}}}
 
@@ -464,6 +465,9 @@ let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
 let g:autotagExcSuff = ['tml', 'xml', 'text', 'txt', 'md', 'mk', 'conf', 'html', 'yml', 'css', 'scss']
 
+" AsyncRun {{{2}}}
+let g:asyncrun_silent = 1
+
 " vim-bookmarks {{{2}}}
 let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_highlight_lines = 1
@@ -771,9 +775,14 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
    " Easier and better than plugin 'autotag'
    function! RetagFile()
+        let cdir = getcwd()
+        let file = expand('%:p')
         let ext = expand('%:e')
-        if (!empty(ext)) && index(g:autotagExcSuff, ext) < 0
-            execute ":NeomakeSh! tagme ". expand('%:p')
+
+        if empty(ext) || file !~ cdir. '/'
+            return
+        elseif index(g:autotagExcSuff, ext) < 0
+            execute ":AsyncRun tagme ". expand('%:p')
         endif
    endfunction
 
