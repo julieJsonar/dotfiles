@@ -463,6 +463,7 @@ let g:autotagVerbosityLevel = 10
 let g:autotagmaxTagsFileSize = 50 * 1024 * 1024
 let g:autotagCtagsCmd = "LC_COLLATE=C ctags --extra=+f"
 let g:autotagTagsFile = ".tags"
+let s:autotag_inter = 10
 let g:autotagExcSuff = ['tml', 'xml', 'text', 'txt', 'md', 'mk', 'conf', 'html', 'yml', 'css', 'scss']
 
 " AsyncRun {{{2}}}
@@ -774,16 +775,21 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
    endfunction
 
    " Easier and better than plugin 'autotag'
+   let s:retag_time = localtime()
    function! RetagFile()
-        let cdir = getcwd()
-        let file = expand('%:p')
-        let ext = expand('%:e')
+       if   (!filereadable(g:autotagTagsFile))
+          \ || (localtime() - s:retag_time) < s:autotag_inter
+           return
+       endif
 
-        if g:asyncrun_status =~ 'running' || empty(ext) || file !~ cdir. '/'
-            return
-        elseif index(g:autotagExcSuff, ext) < 0
-            execute ":AsyncRun tagme ". expand('%:p')
-        endif
+       let cdir = getcwd()
+       let file = expand('%:p')
+       let ext = expand('%:e')
+       if g:asyncrun_status =~ 'running' || empty(ext) || file !~ cdir. '/'
+           return
+       elseif index(g:autotagExcSuff, ext) < 0
+           execute ":AsyncRun tagme ". expand('%:p')
+       endif
    endfunction
 
    augroup fieltype_automap
