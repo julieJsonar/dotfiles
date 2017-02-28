@@ -64,6 +64,13 @@ call plug#begin('~/.vim/bundle')
         Plug 'fatih/vim-go'
     "}}}
 
+    " Haskell {{{3
+        Plug 'lukerandall/haskellmode-vim'
+        Plug 'eagletmt/ghcmod-vim'
+        Plug 'ujihisa/neco-ghc'
+        Plug 'neovimhaskell/haskell-vim'
+    "}}}
+
     "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
@@ -121,6 +128,7 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " Async {{{3
+        Plug 'Shougo/vimproc.vim', {'do' : 'make'}
         "Plug 'tpope/vim-dispatch'
         "Plug 'huawenyu/vim-dispatch'        | " Run every thing. :Dispatch :Make :Start man 3 printf
         "Plug 'radenling/vim-dispatch-neovim', Cond(has('nvim'))
@@ -704,6 +712,35 @@ let g:enable_numbers = 0
   au FileType go nmap <leader>gg <Plug>(go-def-vertical)
 "}}}
 
+" Haskell-mode{{{2
+  let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+
+  " Configure browser for haskell_doc.vim
+  let g:haddock_browser = "open"
+  let g:haddock_browser_callformat = "%s %s"
+  " First sudo apt install ghc-doc
+  let g:haddock_docdir = "/usr/share/doc/ghc-doc/html/"
+
+  let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+  let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+  let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+  let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+  let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+  let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+  let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+  "autocmd BufWritePost *.hs call s:check_and_lint()
+  autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+  function! s:check_and_lint()
+    let l:qflist = ghcmod#make('check')
+    call extend(l:qflist, ghcmod#make('lint'))
+    call setqflist(l:qflist)
+    cwindow
+    if empty(l:qflist)
+      echo "No errors found"
+    endif
+  endfunction
+"}}}
 
 "======================================================================
 " Tabularize{{{2
