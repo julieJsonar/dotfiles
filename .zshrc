@@ -94,7 +94,7 @@ alias pwd=' pwd'
 alias man=' man'
 alias dict="$HOME/tools/dict"
 alias eclipse="env SWT_GTK3=0 $HOME/tools/eclipse/eclipse &> /dev/null &"
-alias meld="nohup $HOME/tools/meld/bin/meld"
+#alias meld="nohup $HOME/tools/meld/bin/meld"
 alias xnview="nohup $HOME/tools/XnView/XnView &> /dev/null &"
 alias tmuxkill="tmux ls | grep -v attached | cut -d: -f1 | xargs -I{} tmux kill-session -t {}"
 
