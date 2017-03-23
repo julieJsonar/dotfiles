@@ -174,6 +174,7 @@ export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+export FORTIPKG=$HOME/fortipkg
 #export JEMALLOC_PATH=$HOME/project/jemalloc
 #export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
 
