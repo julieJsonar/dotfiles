@@ -15,8 +15,8 @@ if [ ! -z "$1" ]; then
 			#duration=$SECONDS
 			#notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
 		#fi
+		exit 0
 	fi
-	exit 0
 fi
 
 # Rebuild All
@@ -27,7 +27,27 @@ else
 fi
 
 if [ $filecnt_c -ge 1024 ]; then
-	find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+	if [ ! -z "$1" ]; then
+		tagscope=$1
+	else
+		tagscope="default"
+	fi
+
+	case "$tagscope" in
+	   "all")
+		   echo "tag all"
+		   find -L . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+	   ;;
+	   "wad")
+		   echo "tag wad"
+		   find daemon/wad -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+	   ;;
+	   *)
+		   echo "tag default"
+		   find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+	   ;;
+	esac
+
 	wad_c=$(grep 'daemon/wad' /tmp/cscope.f1 | wc -l)
 	if [ $wad_c -ge 10 ]; then
 		cat /tmp/cscope.f1                 | \
