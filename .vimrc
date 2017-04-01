@@ -161,7 +161,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
         "Plug 'chrisbra/NrrwRgn'
-        "Plug 'stefandtw/quickfix-reflector.vim'
+        Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'    | " selected and ga=
         Plug 'huawenyu/c-utils.vim'
