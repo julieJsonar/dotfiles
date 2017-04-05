@@ -38,8 +38,9 @@ URxvt.keysym.C-minus:     perl:font-size:decrease
 
 !URxvt.font        : xft:Liberation Mono:pixelsize=18:antialias=true:hinting=true
 !URxvt.boldfont    : xft:Liberation Mono:bold:pixelsize=18:antialias=true:hinting=true
-URxvt.font        : xft:DejaVu Sans Mono:pixelsize=18
-URxvt.boldFont    : xft:DejaVu Sans Mono:pixelsize=18:weight=bold
+!! we can offer multiple-font here: chinese font append tail
+URxvt.font        : xft:DejaVu Sans Mono:pixelsize=18,xft:WenQuanYi Micro Hei Mono:style=Regular:pixelsize=18:antialias=true
+URxvt.boldFont    : xft:DejaVu Sans Mono:pixelsize=18:weight=bold,xft:WenQuanYi Micro Hei Mono:pixelsize=18:style=Bold:antialias=true
 URxvt.termName    : screen-256color
 URxvt.iso14755    : false
 URxvt.letterSpace : -1
