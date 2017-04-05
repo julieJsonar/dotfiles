@@ -63,8 +63,12 @@ Xft.rgba      : rgb
 !URxvt.fading    : 50
 !URxvt.fadeColor : #29303a
 
-! Themes
-URxvt*cursorColor:    #d0d0d0
+!! Themes
+!! grey
+!URxvt*cursorColor:    #d0d0d0
+!! color yellow
+URxvt*cursorColor:    #ffff00
+
 URxvt*colorMode:      on
 URxvt*dynamicColors:  on
 URxvt*colorULMode:    on
