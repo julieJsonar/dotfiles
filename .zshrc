@@ -178,3 +178,5 @@ export FORTIPKG=$HOME/fortipkg
 #export JEMALLOC_PATH=$HOME/project/jemalloc
 #export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
 
+# minicom line wrap: sudo -E minicom
+export MINICOM="-w"

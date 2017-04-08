@@ -7,7 +7,7 @@
 URxvt*transparent : false
 
 !URxvt.perl-ext-common : default,keyboard-select,url-select,clipboard,selection-to-clipboard,font-size
-URxvt.perl-ext-common : default,keyboard-select,selection-to-clipboard
+URxvt.perl-ext-common : default,keyboard-select,clipboard,selection-to-clipboard
 
 
 !!! Change font size on Control-Plus/Minus
@@ -23,15 +23,15 @@ URxvt.perl-ext-common : default,keyboard-select,selection-to-clipboard
 !urxvt.keysym.Control-Right: \033[1;5C
 
 
-URxvt.keysym.M-x           : perl:keyboard-select:activate
-URxvt.keysym.M-u           : perl:url-select:select_next
-URxvt.keysym.M-c           : perl:clipboard:copy
-URxvt.keysym.M-v           : perl:clipboard:paste
-URxvt.keysym.M-s           : perl:keyboard-select:search
-URxvt.keysym.M-C-v         : perl:clipboard:paste_escaped
-URxvt.url-select.launcher  : firefox
-URxvt.url-select.autocopy  : true
-URxvt.url-select.underline : true
+!URxvt.keysym.M-x           : perl:keyboard-select:activate
+!URxvt.keysym.M-u           : perl:url-select:select_next
+!URxvt.keysym.M-c           : perl:clipboard:copy
+!URxvt.keysym.M-v           : perl:clipboard:paste
+!URxvt.keysym.M-s           : perl:keyboard-select:search
+!URxvt.keysym.M-C-v         : perl:clipboard:paste_escaped
+!URxvt.url-select.launcher  : firefox
+!URxvt.url-select.autocopy  : true
+!URxvt.url-select.underline : true
 
 ! https://github.com/majutsushi/urxvt-font-size
 URxvt.keysym.C-equal:     perl:font-size:increase
