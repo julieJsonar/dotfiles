@@ -557,6 +557,7 @@ let g:ctrlsf_mapping = { "next": "n", "prev": "N", }
 "let g:session_directory = getcwd()
 "let g:reload_on_write = 0
 let g:startify_list_order = ['sessions', 'bookmarks', 'files', 'dir', 'commands']
+let g:startify_relative_path = 1
 let g:startify_change_to_dir = 0
 let g:startify_session_autoload = 1
 let g:startify_session_dir = './.vim'
