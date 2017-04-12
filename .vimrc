@@ -264,7 +264,6 @@ endif
 set foldmethod=manual
 
 set backspace=indent,eol,start
-set esckeys         " Allow cursor keys in insert mode
 set ignorecase
 set smartcase
 set hlsearch
