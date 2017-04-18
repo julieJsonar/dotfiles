@@ -180,3 +180,7 @@ export FORTIPKG=$HOME/fortipkg
 
 # minicom line wrap: sudo -E minicom
 export MINICOM="-w"
+
+# Disable warning messsage:
+#   WARNING: gnome-keyring:: couldn't connect to: /run/user/1000/keyring-s99rSr/pkcs11: Connection refused
+unset GNOME_KEYRING_CONTROL
