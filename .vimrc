@@ -1,6 +1,7 @@
 " <leader> is <space>
 " Doc {{{1
 "   http://stevelosh.com/blog/2011/09/writing-vim-plugins/
+"   'K': man document
 " }}}
 "
 " VimL Debug{{{1
