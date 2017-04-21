@@ -98,8 +98,14 @@ call plug#begin('~/.vim/bundle')
     Plug 'mfukar/robotframework-vim'
     Plug 'plasticboy/vim-markdown'
     "Plug 'pangloss/vim-javascript'
+    "
     " http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
-    "Plug 'vim-scripts/bash-support.vim'
+    " Must config to avoid annoy popup message:
+    "   $ cat ~/.vim/templates/bash.templates
+    "       SetMacro( 'AUTHOR',      'Huawen Yu' )
+    "       SetMacro( 'AUTHORREF',   'hyu' )
+    "       SetMacro( 'EMAIL',       'wilson.yuu@gmail.com' )
+    "       SetMacro( 'COPYRIGHT',   'Copyright (c) |YEAR|, |AUTHOR|' )
     Plug 'WolfgangMehner/bash-support'
     "Plug 'vim-scripts/DirDiff.vim'
     Plug 'rickhowe/diffchar.vim'
