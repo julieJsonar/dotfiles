@@ -7,7 +7,7 @@
 URxvt*transparent : false
 
 !URxvt.perl-ext-common : default,keyboard-select,url-select,clipboard,selection-to-clipboard,font-size
-URxvt.perl-ext-common : default,keyboard-select,clipboard,selection-to-clipboard
+URxvt.perl-ext-common : default,confirm-paste,clipboard,selection-to-clipboard
 
 
 !!! Change font size on Control-Plus/Minus
