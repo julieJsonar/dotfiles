@@ -11,7 +11,6 @@ sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
 sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag traceroute smbclient openssh-server minicom lftp meld
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo apt-get install -y git subversion
 # vim (+clientserver)
@@ -79,6 +78,8 @@ sudo service xinetd restart
 
 # If laptop, install battery
 #sudo apt-get install indicator-power
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Startup.sh
 crontab -l > /tmp/my-crontab

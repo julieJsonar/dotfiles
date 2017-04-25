@@ -1,7 +1,15 @@
 " <leader> is <space>
 " Doc {{{1
-"   http://stevelosh.com/blog/2011/09/writing-vim-plugins/
-"   'K': man document
+"   Using Plugin-Manage: https://github.com/junegunn/vim-plug
+"   :help nvim-from-vim
+"      mkdir ~/.config
+"      ln -s ~/.vim ~/.config/nvim
+"      ln -s ~/.vimrc ~/.config/nvim/init.vim
+"
+"   - Plugins: http://stevelosh.com/blog/2011/09/writing-vim-plugins/
+"   - Install neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
+"
+"   - 'K': man document
 " }}}
 "
 " VimL Debug{{{1
