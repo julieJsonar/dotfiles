@@ -1055,8 +1055,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
         \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
   onoremap s :normal vs<CR>
 
-  nnoremap gf :call utils#GotoFileWithLineNum()<CR>
-  nnoremap gsf :sp<CR>:call utils#GotoFileWithLineNum()<CR>
+  nnoremap gf :<c-u>call utils#GotoFileWithLineNum()<CR>
+  nnoremap <silent> <leader>gf :<c-u>call utils#GotoFileWithPreview()<CR>
 
   "map <leader>ds :call Asm() <CR>
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
