@@ -125,8 +125,8 @@ Main ()
         Die
     else
         lines=$(wc -l < patch.eco.diff)
-        if [ $lines -eq 0 ]; then
-            msg_fail "Fail: local ./patch.eco.diff file is empty"
+        if [ $lines -lt 6 ]; then
+            msg_fail "Fail: local ./patch.eco.diff file is empty: $lines lines"
             Die
         else
             msg_ok "($me) ./patch.eco.diff $lines lines"
