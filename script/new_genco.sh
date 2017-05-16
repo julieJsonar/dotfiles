@@ -117,10 +117,26 @@ Main ()
     Run "rm -f patch.eco.diff 2> /dev/null"
     Run "rm -f $HOME/.rb_genco/.rb_genco 2> /dev/null"
 
+
+    # patch.eco.diff
+    Run "rb_genco.py diff -o patch.eco.diff"
+    if [ ! -f "patch.eco.diff" ] ; then
+        msg_fail "Fail: local ./patch.eco.diff file not exists"
+        Die
+    else
+        lines=$(wc -l < patch.eco.diff)
+        if [ $lines -eq 0 ]; then
+            msg_fail "Fail: local ./patch.eco.diff file is empty"
+            Die
+        else
+            msg_ok "($me) ./patch.eco.diff $lines lines"
+        fi
+    fi
+
+
     if [ ! -f "rb_genco" ] ; then
         # new post
         Run "rm -f rb_genco 2> /dev/null"
-        Run "rb_genco.py diff -o patch.eco.diff"
         Run "rb_genco.py post"
         Run "cp $HOME/.rb_genco/.rb_genco rb_genco"
         RB_ID="$(awk -F'=' '{print $2}' rb_genco)"
@@ -130,7 +146,6 @@ Main ()
     else
         # update existed id
         RB_ID="$(awk -F'=' '{print $2}' rb_genco)"
-        Run "rb_genco.py diff -o patch.eco.diff"
         Run "rb_genco.py update $RB_ID"
         msg_ok "===================================================="
         msg_ok "($me) rb_genco.py update ./rb_genco $RB_ID"
@@ -142,6 +157,7 @@ Main ()
         Die
     fi
 
+    # Sanity code check
     have_failed=0
     for ban_word in "${ban_words[@]}"
     do
