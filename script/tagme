@@ -78,6 +78,8 @@ if [ $filecnt_c -ge 1024 ]; then
 	mv /tmp/cscope.f3 cscope.files
 	#    /usr/bin/time gtags -f cscope.files
 	#    /usr/bin/time global -u -L cscope.files
+    rm -f .tags 2> /dev/null
+    rm -f .tagx 2> /dev/null
 
 # tage-emacs, tags-vim, tagx-fuzzy
 	#LC_COLLATE=C ctags -e --extra=+f -L cscope.files -f .tage > /dev/null 2>&1
@@ -88,6 +90,9 @@ if [ $filecnt_c -ge 1024 ]; then
 	duration=$SECONDS
 	notify-send "Done tags files $(($duration / 60)):$(($duration % 60))."
 else
+    rm -f .tags 2> /dev/null
+    rm -f .tagx 2> /dev/null
+
 # tage-emacs, tags-vim, tagx-fuzzy
 	#LC_COLLATE=C ctags -e --extra=+f -f .tage -R . > /dev/null 2>&1
 	LC_COLLATE=C ctags --extra=+f -f .tags -R . > /dev/null 2>&1
