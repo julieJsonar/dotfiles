@@ -628,12 +628,15 @@ let g:CommandTScanDotDirectories = 0
 
 " taglist tagbar plugin {{{2
   let g:tagbar_sort = 0
-  let g:tagbar_width = 30
+  let g:tagbar_width = 40
   let g:tagbar_compact = 1
-  let g:tagbar_indent = 0
+  let g:tagbar_silent = 1
+  let g:tagbar_indent = 2
+  let g:tagbar_foldlevel = 4
   let g:tagbar_iconchars = ['+', '-']
 
   "let Tlist_GainFocus_On_ToggleOpen = 1
+  let Tlist_Auto_Update = 0
   let Tlist_Show_Menu = 0
   let Tlist_Use_Right_Window = 1
   let Tlist_WinWidth = 40
@@ -938,7 +941,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <a-w> :MaximizerToggle<CR>
   nnoremap <silent> <a-e> :NERDTreeToggle<cr>
   nnoremap <silent> <a-f> :NERDTreeFind<cr>
-  nnoremap <silent> <a-t> :TlistToggle<CR>
+  "nnoremap <silent> <a-t> :TlistToggle<CR>
+  nnoremap <silent> <a-t> :TagbarToggle<CR>
   nnoremap <silent> <a-i> :BuffergatorToggle<cr>
   nnoremap <silent> <a-u> :GundoToggle<CR>
 

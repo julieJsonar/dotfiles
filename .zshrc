@@ -63,7 +63,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 # By default 0.4 second delay after hit the <ESC>
 export KEYTIMEOUT=0
-export USESUDO=sudo
 
 
 SAVEHIST=10000 # Number of entries
@@ -174,6 +173,7 @@ export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+export USESUDO=$(which sudo)
 export FORTIPKG=$HOME/fortipkg
 #export JEMALLOC_PATH=$HOME/project/jemalloc
 #export MALLOC_CONF="prof:true,prof_prefix:jeprof.out"
