@@ -133,6 +133,7 @@ call plug#begin('~/.vim/bundle')
     " Motion {{{3
         "Plug 'justinmk/vim-sneak'    | " s + prefix-2-char to choose the words
         Plug 'easymotion/vim-easymotion'
+        Plug 'tpope/vim-abolish'      | " :Subvert/child{,ren}/adult{,s}/g
         "Plug 'tpope/vim-repeat'
         "Plug 'vim-utils/vim-vertical-move'
     "}}}

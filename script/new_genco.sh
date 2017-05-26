@@ -29,6 +29,8 @@ ban_words=( \
   "wilson" \
   "message" \
   "cooked" \
+  "licVM_IsRegistere" \
+  "gsLicense.m_model" \
 )
 
 # functions {{{1
