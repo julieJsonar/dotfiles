@@ -52,8 +52,6 @@ if [ $filecnt_c -ge 1024 ]; then
 	if [ $wad_c -ge 10 ]; then
 		cat /tmp/cscope.f1                 | \
 			grep -v 'wad/ui/stdin/'        | \
-			grep -v 'wad/ui/stdin/'        | \
-			grep -v 'wad/test/'            | \
 			grep -v 'wad/redirect/socket/' | \
 			grep -v 'linux/'               | \
 			grep -v 'linux-.*/'            | \
@@ -62,7 +60,6 @@ if [ $filecnt_c -ge 1024 ]; then
 			grep -v 'fortitest/'           | \
 			grep -v 'linuxatm/'            | \
 			grep -v 'sysctl/'              | \
-			grep -v 'router/'              | \
 			grep -v 'router/'              | \
 			grep -v 'fortiweb/'            | \
 			grep -v 'fortitest/'           | \
