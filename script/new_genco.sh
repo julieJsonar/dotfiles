@@ -31,6 +31,7 @@ ban_words=( \
   "cooked" \
   "licVM_IsRegistere" \
   "gsLicense.m_model" \
+  "HAVE_NOVMLICENSE" \
 )
 
 # functions {{{1
