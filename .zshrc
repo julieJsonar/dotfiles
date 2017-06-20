@@ -139,7 +139,7 @@ function _myftp()
   if [ -f image.out ]; then
     file=image.out
     genco patch.xml -m "fix huawenyu"
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; mkdir $dir; cd $dir; put $file; put patch.diff; put patch.eco.diff; put patch.xml; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; ls; quit;"
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; mkdir $dir; cd $dir; put $file; put patch.diff; put patch.eco.diff; put patch.xml; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; put image.out.vmware.zip; put image.out.ovf.zip; lpwd; pwd; ls; quit;"
   else
     if [ -z "$1" ]; then
       echo "File not found!"
