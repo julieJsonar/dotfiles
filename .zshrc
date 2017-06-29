@@ -46,7 +46,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search)
+
+# git clone https://github.com/zdharma/history-search-multi-word ~/.oh-my-zsh/custom/plugins/history-search-multi-word
+# git clone https://github.com/tymm/zsh-directory-history ~/.oh-my-zsh/custom/plugins/zsh-directory-history
+# git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+# git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+#plugins=(lighthouse history-search-multi-word zsh-directory-history history-substring-search zsh-completions zsh-autosuggestions)
+plugins=(history-substring-search zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
