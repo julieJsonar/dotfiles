@@ -6,10 +6,17 @@
 "      ln -s ~/.vim ~/.config/nvim
 "      ln -s ~/.vimrc ~/.config/nvim/init.vim
 "
+"      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
+"      vi .vimrc
+"      :PlugInstall
+"
 "   - Plugins: http://stevelosh.com/blog/2011/09/writing-vim-plugins/
 "   - Install neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
 "
 "   - 'K': man document
+"   - outline: :VoomToggle markdown
 " }}}
 "
 " VimL Debug{{{1
@@ -44,7 +51,7 @@ endif
 " Plugins {{{1}}}
 call plug#begin('~/.vim/bundle')
 " ColorTheme {{{2
-    Plug 'holokai'
+    Plug 'vim-scripts/holokai'
     "Plug 'tomasr/molokai'
     "Plug 'darkspectrum'
     "Plug 'dracula/vim'
@@ -173,7 +180,7 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " Tools {{{3
-        Plug 'DrawIt'
+        Plug 'vim-scripts/DrawIt'
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
