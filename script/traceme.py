@@ -54,7 +54,9 @@ try:
         # Create a python API session attached to unix domain socket created above:
         nvim = attach('socket', path='/tmp/nvim.trace')
     except Exception, e:
-        raise type(e)(e.message + ' Should existed neovim instance by \nNVIM_LISTEN_ADDRESS=/tmp/nvim.trace nvim')
+        raise type(e)(e.message + ' Should existed neovim instance by' \
+                      '\n    NVIM_PYTHON_LOG_FILE=logfile NVIM_PYTHON_LOG_LEVEL=DEBUG nvim'\
+                      '\n    NVIM_LISTEN_ADDRESS=/tmp/nvim.trace nvim')
 
     # only function name
     #os.system("awk '($2 == \"function\" && $4~/daemon\/wad.*\.c){print $1}' .tagx > /tmp/vim.taglist")
