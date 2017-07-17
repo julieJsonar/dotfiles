@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
-from neovim import attach
+import neovim
 from collections import Counter
 import stat, sys, os, string, commands, time
+import ConfigParser
+import argparse
+import re
 
 class NormalReturn(Exception):
    """Base class for other exceptions"""
@@ -42,34 +45,124 @@ def query_yes_no(question, default="yes"):
 
 
 try:
+    parser = argparse.ArgumentParser(description='Usage of ' + __file__)
+    parser.add_argument('-a','--action', help='Action: add|clear', required=False)
+    parser.add_argument('-f','--file',   help='File name match regex', required=False)
+    parser.add_argument('-s','--symbol', help='Symbol function name match regex', required=False)
+    parser.add_argument('-c','--client', help='Neovim client listen address', required=False)
+    parser.add_argument('-t','--target', help='Target config dir name', required=False)
+    args = vars(parser.parse_args())
+
+    arg_action = 'add'
+    if 'action' in args and args['action'] is not None:
+        arg_action = args['action']
+
+    arg_file_regex = 'daemon\/wad.*\.c'
+    if 'file' in args and args['file'] is not None:
+        arg_file_regex = args['file']
+
+    arg_func_regex = ''
+    if 'symbol' in args and args['symbol'] is not None:
+        arg_func_regex = args['symbol'];
+
+    arg_client_addr = 'trace'
+    if 'client' in args and args['client'] is not None:
+        arg_client_addr = args['client'];
+
+    arg_target_conf = 'trace-wad'
+    if 'target' in args and args['target'] is not None:
+        arg_target_conf = args['target'];
+
     question = "Are you sure the tag is lasted by 'tagme'?"
     choice = query_yes_no(question, default="yes")
     if not choice:
         raise NormalReturn
 
+    start_time = time.time()
     try:
         # Embed neovim into your python application instead of binding to a running neovim instance.
-        #nvim = attach('child', argv=["/bin/env", "nvim", "--embed"])
+        #nvim = neovim.attach('child', argv=["/bin/env", "nvim", "--embed"])
 
         # Create a python API session attached to unix domain socket created above:
-        nvim = attach('socket', path='/tmp/nvim.trace')
+        nvim = neovim.attach('socket', path='/tmp/nvim.' + arg_client_addr)
     except Exception, e:
         raise type(e)(e.message + ' Should existed neovim instance by' \
-                      '\n    NVIM_PYTHON_LOG_FILE=logfile NVIM_PYTHON_LOG_LEVEL=DEBUG nvim'\
-                      '\n    NVIM_LISTEN_ADDRESS=/tmp/nvim.trace nvim')
+                      '\n    NVIM_PYTHON_LOG_FILE=/tmp/nvim.log NVIM_PYTHON_LOG_LEVEL=DEBUG nvim'\
+                      '\n    NVIM_LISTEN_ADDRESS=/tmp/nvim.' + arg_client_addr + ' nvim')
 
-    # only function name
-    #os.system("awk '($2 == \"function\" && $4~/daemon\/wad.*\.c){print $1}' .tagx > /tmp/vim.taglist")
-    # only file:line
-    os.system("awk '($2 == \"function\" && $4~/daemon\/wad.*\.c/){print $4\":\"$3}' .tagx > /tmp/vim.taglist")
+    matcher = '$2 == "function"'
+    if arg_func_regex:
+        matcher += ' && $2~/' + arg_func_regex + '/'
+    if arg_file_regex:
+        matcher += ' && $4~/' + arg_file_regex + '/'
 
+    # Generate config type function file
+    os.system("echo '[function]' > /tmp/vim.taglist")
+    # function = file:line
+    awk_cmdstr = "awk '(" + matcher + "){print $4\"+\"$3\" = \"$1}' .tagx >> /tmp/vim.taglist"
+    print awk_cmdstr
+    os.system(awk_cmdstr)
     if not os.path.isfile('/tmp/vim.taglist'):
         raise("No taglist /tmp/vim.taglist")
-    tagcount = {}
-    with open('/tmp/vim.taglist') as f:
-        tagcount = Counter(f.read().split())
 
-    sum = len(tagcount)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    # skip files
+    ign_files = {}
+    f_ign_files = dir_path + '/' + arg_target_conf + '/file'
+    print("Load {} and filter-out the ignore files ...".format(f_ign_files))
+    if os.path.isfile(f_ign_files):
+        with open(f_ign_files) as f:
+            ign_files = Counter(f.read().split())
+
+    # skip functions
+    ign_functions = {}
+    f_ign_funs = dir_path + '/' + arg_target_conf + '/function'
+    print("Load {} and filter-out the ignore functions ...".format(f_ign_funs))
+    if os.path.isfile(f_ign_funs):
+        with open(f_ign_funs) as f:
+            ign_functions = Counter(f.read().split())
+
+    # {file:{line:function, }, }
+    dict_result = {}
+    filterout_files = {}
+    item_cnt = 0
+    file_cnt = 0
+    with open('/tmp/vim.taglist') as fp:
+        config = ConfigParser.RawConfigParser(allow_no_value=True)
+        config.readfp(fp)
+        for sec in config.sections():
+            for (k, v) in config.items(sec):
+                if arg_action == 'add' and v in ign_functions:
+                    continue
+                file_line = k.split("+")
+                if len(file_line) < 2:
+                    print("len not enough: str={} len={}".format(str(file_line), len(file_line)))
+                    continue
+
+                is_ign_file = False
+                if arg_action == 'add':
+                    for (ign_file, ign_v) in ign_files.iteritems():
+                        if ign_file.startswith('#'):
+                            continue
+                        if re.search(ign_file, file_line[0]):
+                            if file_line[0] not in filterout_files:
+                                filterout_files[file_line[0]] = 1
+                                print("ign_files: pattern={} file={}".format(ign_file, file_line[0]))
+                            is_ign_file = True
+                            continue
+                if is_ign_file:
+                    continue
+
+                if file_line[0] not in dict_result:
+                    dict_result[file_line[0]] = {}
+                    file_cnt += 1
+                line_func = dict_result[file_line[0]]
+                line_func[file_line[1]] = v
+                item_cnt += 1
+
+    print("Add trace functions number {} ...".format(item_cnt))
+
     toolbar_width = 80
     # setup toolbar
     sys.stdout.write("[%s]" % (" " * toolbar_width))
@@ -78,28 +171,57 @@ try:
 
     i = 0
     ibar = 0
-    for k,v in tagcount.items():
-        #print("{}.{}\t{}:{}".format(i, ibar, toolbar_width * i / sum, k))
+    have_repstr = False
+    for (k_file, v_line_func) in dict_result.iteritems():
+        nvim.command('e ' + k_file)
+        nvim.command("w")
+        if arg_action == 'add':
+            for (k_line, v_func) in v_line_func.iteritems():
+                nvim.command(k_line)
+                nvim.command("call search('{', 'cW')")
+                if not have_repstr:
+                    nvim.command("s/{/{__TRACEME__;/e")
+                else:
+                    nvim.command("&")
+                    #nvim.command("s/{/{__TRACEME__;/")
 
-        #nvim.command('tag ' + k)
-        nvim.command('e ' + k)
-        #nvim.command("call search('{', 'cW', (line('.')+100))")
-        nvim.command("call search('{', 'cW')")
-        nvim.command("s/{/{_WAD_TRACE_;/")
+                # update the bar
+                i += 1
+                #print("{}.{}\t{}".format(i, ibar, toolbar_width * i / sum))
+                if toolbar_width * i / item_cnt > ibar:
+                    sys.stdout.write("-")
+                    sys.stdout.flush()
+                    ibar = toolbar_width * i / item_cnt
+        elif arg_action == 'clear':
+            nvim.command("%s/{__TRACEME__;/{/ge")
+
+            # update the bar
+            i += 1
+            #print("{}.{}\t{}".format(i, ibar, toolbar_width * i / sum))
+            if toolbar_width * i / file_cnt > ibar:
+                sys.stdout.write("-")
+                sys.stdout.flush()
+                ibar = toolbar_width * i / file_cnt
+
         nvim.command("w")
 
-        # update the bar
-        i += 1
-        #print("{}.{}\t{}".format(i, ibar, toolbar_width * i / sum))
-        if toolbar_width * i / sum > ibar:
-            sys.stdout.write("-")
-            sys.stdout.flush()
-            ibar = toolbar_width * i / sum
-
     sys.stdout.write("\n")
+    end_time = time.time()
+
+    f_patch = dir_path + '/' + arg_target_conf + '/patch.diff'
+    cmdstr = 'if ! patch -R -p0 --dry-run < ' + f_patch + '; then ' \
+            'patch -p0 < ' + f_patch + '; fi'
+    print cmdstr
+    os.system(cmdstr)
+
+    print("seconds: {}".format(end_time - start_time))
 
 except NormalReturn:
     print "Done!"
 
-except Exception, e:
-    print "There was a problem - " + str(e)
+except Exception as e:
+    exc_type, exc_obj, exc_tb = sys.exc_info()
+    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+    print(exc_type, fname, exc_tb.tb_lineno)
+    print "  : " + str(e)
+

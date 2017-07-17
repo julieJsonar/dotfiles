@@ -25,6 +25,7 @@ declare old_dir=$(pwd)
 ban_words=( \
   "WAD_RUN_TEST_FROM_CLI" \
   "daemon/wad/wad_debug.c" \
+  "wad_debug_impl.h" \
   "__FGT_DISK_MGR_DEBUG" \
   "wilson" \
   "message" \

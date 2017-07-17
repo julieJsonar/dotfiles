@@ -1,3 +1,7 @@
+wad_http_scan_proc_fwd_hstrm
+wad_http_client_cancel_task
+wad_http_update_repmsg_ovrd_group
+
 __wad_dump_http_response
 __wad_http_session_task_end
 __wad_tcp_port_write_region
