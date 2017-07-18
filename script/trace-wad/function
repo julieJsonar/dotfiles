@@ -2,6 +2,21 @@ wad_http_scan_proc_fwd_hstrm
 wad_http_client_cancel_task
 wad_http_update_repmsg_ovrd_group
 
+wad_ui_on_config_poll_alarm
+wad_fd_count_check_on_alarm
+wad_check_fd_watermark
+wad_update_fd_conserve_mode
+wad_config_learn_config
+wad_urc_on_alarm
+wad_bank_on_alarm
+wad_bank_flush
+wad_vd_iter
+
+malloc__
+free__
+overhead_size__
+
+wad_unix_msg_output_buff_get
 __wad_dump_http_response
 __wad_http_session_task_end
 __wad_tcp_port_write_region
@@ -22,6 +37,7 @@ wad_hc_handle_http_lines
 wad_hist_stats_hold
 wad_hist_stats_http_wan_update_write
 wad_hist_stats_put
+wad_http_header_compare
 wad_http_check_stream_quota
 wad_http_clone_headers
 wad_http_clt_fwd_resp_proc_region
@@ -29,13 +45,6 @@ wad_http_date_check_format
 wad_http_date_to_str
 wad_http_header_is_hop_by_hop
 wad_http_is_comma
-wad_http_line_alloc
-wad_http_line_clone
-wad_http_line_clone_with_filter
-wad_http_line_deep_clone
-wad_http_line_free
-wad_http_line_make
-wad_http_line_str_make
 wad_http_parse_a_line
 wad_http_parse_conn_hline
 wad_http_parse_conn_line

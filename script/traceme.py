@@ -109,19 +109,27 @@ try:
 
     # skip files
     ign_files = {}
-    f_ign_files = dir_path + '/' + arg_target_conf + '/file'
-    print("Load {} and filter-out the ignore files ...".format(f_ign_files))
-    if os.path.isfile(f_ign_files):
-        with open(f_ign_files) as f:
+    fn = dir_path + '/' + arg_target_conf + '/file'
+    print("Load {} and filter-out the ignore files ...".format(fn))
+    if os.path.isfile(fn):
+        with open(fn) as f:
             ign_files = Counter(f.read().split())
 
     # skip functions
     ign_functions = {}
-    f_ign_funs = dir_path + '/' + arg_target_conf + '/function'
-    print("Load {} and filter-out the ignore functions ...".format(f_ign_funs))
-    if os.path.isfile(f_ign_funs):
-        with open(f_ign_funs) as f:
+    fn = dir_path + '/' + arg_target_conf + '/function'
+    print("Load {} and filter-out the ignore functions ...".format(fn))
+    if os.path.isfile(fn):
+        with open(fn) as f:
             ign_functions = Counter(f.read().split())
+
+    # skip functions
+    ign_funcregs = {}
+    fn = dir_path + '/' + arg_target_conf + '/funcregex'
+    print("Load {} and filter-out the ignore function regex ...".format(fn))
+    if os.path.isfile(fn):
+        with open(fn) as f:
+            ign_funcregs = Counter(f.read().split())
 
     # {file:{line:function, }, }
     dict_result = {}
@@ -132,9 +140,21 @@ try:
         config = ConfigParser.RawConfigParser(allow_no_value=True)
         config.readfp(fp)
         for sec in config.sections():
-            for (k, v) in config.items(sec):
-                if arg_action == 'add' and v in ign_functions:
+            for (k, func_name) in config.items(sec):
+                if arg_action == 'add' and func_name in ign_functions:
+                     continue
+
+                is_ign_func = False
+                if arg_action == 'add':
+                    for (ign_func, ign_v) in ign_funcregs.iteritems():
+                        if ign_func.startswith('#'):
+                            continue
+                        if re.search(ign_func, func_name):
+                            is_ign_func = True
+                            continue
+                if is_ign_func:
                     continue
+
                 file_line = k.split("+")
                 if len(file_line) < 2:
                     print("len not enough: str={} len={}".format(str(file_line), len(file_line)))
@@ -158,12 +178,12 @@ try:
                     dict_result[file_line[0]] = {}
                     file_cnt += 1
                 line_func = dict_result[file_line[0]]
-                line_func[file_line[1]] = v
+                line_func[file_line[1]] = func_name
                 item_cnt += 1
 
     print("Add trace functions number {} ...".format(item_cnt))
 
-    toolbar_width = 80
+    toolbar_width = 40
     # setup toolbar
     sys.stdout.write("[%s]" % (" " * toolbar_width))
     sys.stdout.flush()
