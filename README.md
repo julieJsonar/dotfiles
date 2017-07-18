@@ -15,6 +15,7 @@ $ ./update_dot.sh -a pull
 ```
 
 ### Apply dotfiles
+
 - All your old dotfiles will backup to `$HOME/dotfiles_bak` if it's not softlink
 - The script will create softlink of all dotfile into your `$HOME`, includes: `config for vim, tmux, zshrc, xterm, git, ag, ...`
   * script, include the update_dot.sh, update_all.sh, init_ubuntu.sh, ...
@@ -40,7 +41,7 @@ $ ./init_ubuntu.sh
 
 There have two script under dotfiles/script:
 - update_dot.sh: use to sync the dotfile under dotfiles
-- update_all.sh: use to sync all git dirs which list at `array git_repos`
+- update.sh: use to sync all git dirs which list at `array git_repos`
 
 For your convenience, please add the `<your-download-dir>/dotfiles/script` to `$PATH` by
 `export PATH=$HOME/dotfiles/script:$PATH` to our `.bashrc` or `.zshrc`
@@ -75,6 +76,15 @@ Rollback
   git push -f origin branch  
 ```
 ## Tools
+
+### tagme: create ctags
+
+### traceme.py -c trace : create ctags
+
+    $ traceme.py -a add -c trace
+    $ traceme.py -a clear-c trace
+
+### new_genco.sh
 
 ### sample: script template
 
