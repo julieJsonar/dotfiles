@@ -13,6 +13,7 @@ arg_file_regex = 'daemon\/wad.*\.c'
 arg_func_regex = ''
 arg_client_addr = 'trace'
 arg_target_conf = 'trace-wad'
+arg_new_tag = '  __TRACEME__;'
 
 ign_files = {}
 ign_functions = {}
@@ -210,6 +211,7 @@ def get_nvim_instance(client_addr):
 def add_trace_nvim(file_cnt, item_cnt, dict_result):
     global arg_action
     global arg_client_addr
+    global arg_new_tag
 
     path, nvim = get_nvim_instance(arg_client_addr)
     if nvim is None:
@@ -235,10 +237,10 @@ def add_trace_nvim(file_cnt, item_cnt, dict_result):
                 nvim.command(k_line)
                 nvim.command("call search('{', 'cW')")
                 if not have_repstr:
-                    nvim.command("s/{/{__TRACEME__;/e")
+                    nvim.command("s/{/{" + arg_new_tag + "/e")
                 else:
                     nvim.command("&")
-                    #nvim.command("s/{/{__TRACEME__;/")
+                    #nvim.command("s/{/{" + arg_new_tag + "/")
 
                 # update the bar
                 i += 1
@@ -248,7 +250,7 @@ def add_trace_nvim(file_cnt, item_cnt, dict_result):
                     sys.stdout.flush()
                     ibar = toolbar_width * i / item_cnt
         elif arg_action == 'clear':
-            nvim.command("%s/{__TRACEME__;/{/ge")
+            nvim.command("%s/{" + arg_new_tag + "/{/ge")
 
             # update the bar
             i += 1
@@ -261,21 +263,26 @@ def add_trace_nvim(file_cnt, item_cnt, dict_result):
         nvim.command("w")
     sys.stdout.write("\n")
 
-def patch_trace_implement():
+def patch_trace_implement(reverse):
     global arg_target_conf
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     f_patch = dir_path + '/' + arg_target_conf + '/patch.diff'
-    cmdstr = 'if ! patch -R -p0 --dry-run < ' + f_patch + '; then ' \
-        'patch -p0 < ' + f_patch + '; fi'
-    print cmdstr
-    os.system(cmdstr)
+    if reverse:
+        os.system('patch -R -p0 < ' + f_patch)
+    else:
+        cmdstr = 'if ! patch -R -p0 --dry-run < ' + f_patch + '; then ' \
+            'patch -p0 < ' + f_patch + '; fi'
+        print cmdstr
+        os.system(cmdstr)
 
 def main():
     global arg_client_addr
+    global arg_action
 
     try:
         parse_args()
+        patch_trace_implement(arg_action == 'clear')
 
         question = "Are you sure the tag is lasted by 'tagme'?"
         choice = query_yes_no(question, default="yes")
@@ -295,7 +302,6 @@ def main():
         add_trace_nvim(file_cnt, item_cnt, dict_result)
 
         end_time = time.time()
-        patch_trace_implement()
         print("seconds: {}".format(end_time - start_time))
 
     except NormalReturn:

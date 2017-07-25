@@ -13,6 +13,7 @@ daemon/wad/wad_str.c
 daemon/wad/wad_watchdog.c
 daemon/wad/wad_dispatcher.c
 daemon/wad/ftpparse.c
+daemon/wad/wad_http_parser.c
 daemon/wad/wad_ftp_parser.c
 daemon/wad/acsm.c
 daemon/wad/rfc2617_digest.c
@@ -20,3 +21,4 @@ daemon/wad/rfc2617_digest.c
 daemon/wad/wad_mem_
 daemon/wad/test/
 daemon/wad/scheduler/
+daemon/wad/cache/
