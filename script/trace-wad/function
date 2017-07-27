@@ -213,3 +213,10 @@ __wad_rtmpt_port_write_region
 wad_scan_on_alarm
 netlink_on_event
 wad_wanopt_profile_config_proto
+wad_fts_count_pair_dec
+wad_sso_group_tokenize
+wad_ui_ssl_crypto_get
+wad_fts_ciphers_have
+wad_fts_count_pair_inc
+wad_fts_count_pair_dec
+wad_cookie_reader_learn_para
