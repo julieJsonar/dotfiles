@@ -1,6 +1,7 @@
 daemon/wad/ui/fg/wad_debug_impl.c
 daemon/wad/wad_debug.c
 
+daemon/wad/ui/fg/wad_intf.c
 daemon/wad/wad_auth.c
 daemon/wad/wad_buff.c
 daemon/wad/wad_fts_mem.c
