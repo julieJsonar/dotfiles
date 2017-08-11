@@ -831,10 +831,11 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        if (my_ft == "c" || my_ft == "cpp" || my_ft == "diff" )
            execute ':C8'
 
-           " The 'NonText' highlighting will be used for 'eol', 'extends' and 'precedes'  
-           " The 'SpecialKey' for 'nbsp', 'tab' and 'trail'.
-           hi NonText          ctermfg=238
-           hi SpecialKey       ctermfg=238
+           " If logfile reset NonText bright, this will override it.
+           "" The 'NonText' highlighting will be used for 'eol', 'extends' and 'precedes'  
+           "" The 'SpecialKey' for 'nbsp', 'tab' and 'trail'.
+           "hi NonText          ctermfg=238
+           "hi SpecialKey       ctermfg=238
        endif
    endfunction
 
