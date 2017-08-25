@@ -208,7 +208,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'mattn/gist-vim'        | " :'<,'>Gist -e 'list-sample'
 
     " share copy/paste between vim(""p)/tmux
-    Plug 'roxma/vim-tmux-clipboard'
     Plug 'huawenyu/vimux-script'
     Plug 'yuratomo/w3m.vim'
     Plug 'nhooyr/neoman.vim', Cond(has('nvim'))    | " :Nman printf, :Nman printf(3)
