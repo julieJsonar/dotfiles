@@ -137,8 +137,10 @@ Main ()
         fi;
 
         if [ $? -eq 0 ]; then
-            git pull --all
-            tagme > /dev/null &
+            diff_num=$(git pull --all | wc -l)
+            if [ $diff_num -gt 2 ]; then
+                tagme > /dev/null &
+            fi
         fi;
 
         # svn repo
@@ -149,8 +151,10 @@ Main ()
         fi;
 
         if [ $? -eq 0 ]; then
-            svn up
-            tagme > /dev/null &
+            diff_num=$(svn update | wc -l)
+            if [ $diff_num -gt 2 ]; then
+                tagme > /dev/null &
+            fi
         fi;
 
         msg_ok "update $git_dir"
