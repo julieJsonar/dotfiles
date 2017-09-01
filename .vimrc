@@ -838,23 +838,22 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        endif
    endfunction
 
-   " Easier and better than plugin 'autotag'
-   let s:retag_time = localtime()
-   function! RetagFile()
-       if   (!filereadable(g:autotagTagsFile))
-          \ || (localtime() - s:retag_time) < s:autotag_inter
-           return
-       endif
-
-       let cdir = getcwd()
-       let file = expand('%:p')
-       let ext = expand('%:e')
-       if g:asyncrun_status =~ 'running' || empty(ext) || file !~ cdir. '/'
-           return
-       elseif index(g:autotagExcSuff, ext) < 0
-           execute ":AsyncRun tagme ". expand('%:p')
-       endif
-   endfunction
+   "" Easier and better than plugin 'autotag'
+   "let s:retag_time = localtime()
+   "function! RetagFile()
+   "    if   (!filereadable(g:autotagTagsFile))
+   "       \ || (localtime() - s:retag_time) < s:autotag_inter
+   "        return
+   "    endif
+   "    let cdir = getcwd()
+   "    let file = expand('%:p')
+   "    let ext = expand('%:e')
+   "    if g:asyncrun_status =~ 'running' || empty(ext) || file !~ cdir. '/'
+   "        return
+   "    elseif index(g:autotagExcSuff, ext) < 0
+   "        execute ":AsyncRun tagme ". expand('%:p')
+   "    endif
+   "endfunction
 
    augroup fieltype_automap
        " Voom:
@@ -866,7 +865,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd!
        "autocmd VimLeavePre * cclose | lclose
        autocmd InsertEnter,InsertLeave * set cul!
-       autocmd BufWritePost,FileWritePost * call RetagFile()
+       " Sometime crack the tag file
+       "autocmd BufWritePost,FileWritePost * call RetagFile()
 
        " current position in jumplist
        autocmd CursorHold * normal! m'
