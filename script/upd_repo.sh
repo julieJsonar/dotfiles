@@ -157,7 +157,7 @@ Main ()
             fi
         fi;
 
-        msg_ok "update $git_dir"
+        msg_ok "update $git_dir changed $diff_num"
     done
 
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
