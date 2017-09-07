@@ -1101,6 +1101,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
 
+  "check clean: -i ignore-error and continue, -s --silent --quiet
+  nnoremap <leader>mk :Make -C daemon/wad -i -s -j6<CR>
+
 "}
 
 " VimL Debug{{{1
