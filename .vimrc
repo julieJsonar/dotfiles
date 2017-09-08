@@ -1031,7 +1031,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   " Set log
   "nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
   "vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
-  " Check clean: -i ignore-error and continue, -s --silent --quiet
+  " Lint: -i ignore-error and continue, -s --silent --quiet
   nnoremap <silent> <leader>ll :Make -C daemon/wad -i -s -j6<CR>
   vnoremap <silent> <leader>ll :Make -C daemon/wad -i -s -j6<CR>
 
