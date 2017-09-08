@@ -1028,8 +1028,12 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
   nnoremap <silent> <leader>a  :<c-u>FuzzyOpen <C-R>=printf("%s\\.", expand('%:t:r'))<cr><cr>
 
-  nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
-  vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
+  " Set log
+  #nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
+  #vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
+  "check clean: -i ignore-error and continue, -s --silent --quiet
+  nnoremap <silent> <leader>ll :Make -C daemon/wad -i -s -j6<CR>
+  vnoremap <silent> <leader>ll :Make -C daemon/wad -i -s -j6<CR>
 
   nnoremap          <leader>bb :VCBlame<cr>
 
@@ -1100,9 +1104,6 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "nnoremap <leader>ma :BookmarkShowAll <CR>
   "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
-
-  "check clean: -i ignore-error and continue, -s --silent --quiet
-  nnoremap <leader>mk :Make -C daemon/wad -i -s -j6<CR>
 
 "}
 
