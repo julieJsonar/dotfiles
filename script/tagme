@@ -53,6 +53,8 @@ if [ $filecnt_c -ge 1024 ]; then
 		cat /tmp/cscope.f1                 | \
 			grep -v 'wad/ui/stdin/'        | \
 			grep -v 'wad/redirect/socket/' | \
+			grep -v 'wad/test/'            | \
+			grep -v 'wad/cache/test/'      | \
 			grep -v 'linux/'               | \
 			grep -v 'linux-.*/'            | \
 			grep -v 'compress/'            | \
