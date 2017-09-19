@@ -38,15 +38,17 @@ git_repos=( \
   "$HOME/.vim/bundle/vim-mark" \
   "$HOME/.vim/bundle/vim-log-syntax" \
   "$HOME/.vim/bundle/vimux-script" \
-  "$HOME/.vim/bundle/vim-dispatch" \
   "$HOME/.vim/bundle/c-utils.vim" \
   "$HOME/.vim/bundle/neogdb.vim" \
-  "$HOME/.vim/bundle/Decho" \
   "$HOME/.vim/bundle/vim-rooter" \
   "$HOME/.vim/bundle/neomake" \
   "$HOME/.vim/bundle/vimlogger" \
   "$HOME/.vim/bundle/asyncrun.vim" \
 )
+
+## removed
+#  "$HOME/.vim/bundle/Decho" \
+#  "$HOME/.vim/bundle/vim-dispatch" \
 
 # functions {{{1
 # help {{{2
