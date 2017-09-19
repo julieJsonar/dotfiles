@@ -142,7 +142,7 @@ Main ()
     for git_dir in "${git_repos[@]}"
     do
         if [ ! -d $git_dir ]; then
-            msg_warn "Directory $git_dir not existed."
+            msg_failed "Directory $git_dir not existed."
             continue
         else
             Run "cd $git_dir"
