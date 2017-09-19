@@ -31,6 +31,7 @@ git_repos=( \
   "$HOME/dotwiki" \
   "$HOME/algorithm" \
   "$HOME/proj/cocti" \
+  "$HOME/proj/libevent-book" \
   "$HOME/.vim/bundle/neovim-fuzzy" \
   "$HOME/.vim/bundle/vim-grepper" \
   "$HOME/.vim/bundle/taboo.vim" \
