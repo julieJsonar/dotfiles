@@ -3,8 +3,8 @@
 	email = hyu@fortinet.com
 [core]
 	excludesfile = /home/wilson/.gitignore_global
-[format]
-	pretty = format:%h %ad %s(%an)
+#[format]
+#	pretty = format:%h %ad %s(%an)
 [log]
 	date = short
 [github]
