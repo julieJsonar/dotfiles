@@ -27,7 +27,7 @@ git_repos=( \
   "$HOME/workref/fos-git" \
   "$HOME/workref/fos-5.4" \
   "$HOME/workref/fos-5.6" \
-  "$HOME/workref/fos-5.x" \
+  "$HOME/workref/fos-trunk" \
 )
 
 # functions {{{1
