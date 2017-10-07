@@ -125,12 +125,12 @@ Main ()
     # patch.eco.diff
     Run "rb_genco.py diff -o patch.eco.diff"
     if [ ! -f "patch.eco.diff" ] ; then
-        msg_fail "Fail: local ./patch.eco.diff file not exists"
+        msg_failed "Fail: local ./patch.eco.diff file not exists"
         Die
     else
         lines=$(wc -l < patch.eco.diff)
         if [ $lines -lt 6 ]; then
-            msg_fail "Fail: local ./patch.eco.diff file is empty: $lines lines"
+            msg_failed "Fail: local ./patch.eco.diff file is empty: $lines lines"
             Die
         else
             msg_ok "($me) ./patch.eco.diff $lines lines"
@@ -157,7 +157,7 @@ Main ()
     fi
 
     if [ ! -f "rb_genco" ] ; then
-        msg_fail "Fail: local ./rb_genco file not exists"
+        msg_failed "Fail: local ./rb_genco file not exists"
         Die
     fi
 
