@@ -1037,7 +1037,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <leader>la :Make init -i -s -j6<CR>
   nnoremap <silent> <leader>lc :Make -C cmf -i -s -j6<CR>
 
-  nnoremap          <leader>bb :VCBlame<cr>
+  "nnoremap          <leader>bb :VCBlame<cr>
+  nnoremap          <leader>bb :Gblame<cr>
 
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<cr>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
