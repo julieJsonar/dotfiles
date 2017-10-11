@@ -118,9 +118,42 @@ Main ()
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
     printf "$NOTE: dry=$dryrun msg=$commitmsg\n\n"
 
+    # Sanity check: diff exists or not
+    ## git repo: must have no un-staged diff
+    if [ -d .git ]; then
+        echo .git > /dev/null;
+    else
+        git rev-parse --git-dir 2> /dev/null;
+    fi;
+
+    if [ $? -eq 0 ]; then
+        diff_num=$(git diff | wc -l)
+        if [ $diff_num -gt 2 ]; then
+            msg_failed "Git directory have un-committed changed."
+            Die
+        fi
+    else
+        # svn repo: must have diff existed
+        if [ -d .svn ]; then
+            echo .svn > /dev/null;
+        else
+            svn info 2> /dev/null;
+        fi;
+
+        if [ $? -eq 0 ]; then
+            diff_num=$(svn diff | wc -l)
+            if [ $diff_num -lt 2 ]; then
+                msg_failed "Svn directory have no changed."
+                Die
+            fi
+        else
+            msg_failed "Current directory not Svn & Git."
+            Die
+        fi;
+    fi;
+
     Run "rm -f patch.eco.diff 2> /dev/null"
     Run "rm -f $HOME/.rb_genco/.rb_genco 2> /dev/null"
-
 
     # patch.eco.diff
     Run "rb_genco.py diff -o patch.eco.diff"
@@ -169,7 +202,9 @@ Main ()
         grep "$ban_word" patch.eco.diff
         if [ $? == 0 ]; then
             have_failed=1
+            msg_not_ok "===================================================="
             msg_not_ok "Fail: patch contain bad words '$ban_word'!"
+            msg_not_ok "===================================================="
         fi
     done
 
@@ -180,7 +215,9 @@ Main ()
 
         grep "CONFIG_DEBUG" .config
         if [ $? == 0 ]; then
-            msg_alert "Maybe we need build a release version!"
+            msg_alert "===================================================="
+            msg_alert "Please build a release ver to do compile sanity check!"
+            msg_alert "===================================================="
         fi
     fi
 
