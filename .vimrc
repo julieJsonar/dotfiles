@@ -201,6 +201,7 @@ call plug#begin('~/.vim/bundle')
 
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
     Plug 'tpope/vim-fugitive' | " Awesome git wrapper
+    Plug 'codeindulgence/vim-tig' | " Using tig in neovim
     "Plug 'juneedahamed/svnj.vim'
     Plug 'juneedahamed/vc.vim'| " Support git, svn, ...
     Plug 'sjl/gundo.vim'
