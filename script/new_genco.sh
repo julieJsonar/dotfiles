@@ -216,8 +216,10 @@ Main ()
         grep "CONFIG_DEBUG" .config
         if [ $? == 0 ]; then
             msg_alert "===================================================="
-            msg_alert "Please build a release ver to do compile sanity check!"
-            msg_alert "===================================================="
+            msg_alert "****************************************************"
+            msg_alert "Please build a release version for compiling sanity check!"
+            msg_alert "####################################################"
+            msg_alert "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         fi
     fi
 
