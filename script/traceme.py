@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+"""
+Usage, need two terminal:
+    term1 $ rm -f /tmp/nvim.trace; NVIM_LISTEN_ADDRESS=/tmp/nvim.trace nvim
+    term2 $ traceme.py
+"""
+
 import neovim
 from collections import Counter
 import stat, sys, os, string, commands, time
