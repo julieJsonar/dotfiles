@@ -30,6 +30,9 @@ git_repos=( \
   "$HOME/wiki" \
   "$HOME/dotwiki" \
   "$HOME/algorithm" \
+  "$HOME/proj/pcap" \
+  "$HOME/proj/log" \
+  "$HOME/proj/algorithm" \
   "$HOME/proj/cocti" \
   "$HOME/proj/libevent-book" \
   "$HOME/.vim/bundle/neovim-fuzzy" \
