@@ -121,7 +121,7 @@ call plug#begin('~/.vim/bundle')
     "       SetMacro( 'AUTHORREF',   'hyu' )
     "       SetMacro( 'EMAIL',       'wilson.yuu@gmail.com' )
     "       SetMacro( 'COPYRIGHT',   'Copyright (c) |YEAR|, |AUTHOR|' )
-    Plug 'WolfgangMehner/bash-support'
+    "Plug 'WolfgangMehner/bash-support'
     "Plug 'vim-scripts/DirDiff.vim'
     Plug 'rickhowe/diffchar.vim'
     Plug 'huawenyu/vim-log-syntax'
