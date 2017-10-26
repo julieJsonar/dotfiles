@@ -27,9 +27,9 @@ git_repos=( \
   "$phy_dotfiles_dir" \
   "$HOME/log" \
   "$HOME/pcap" \
+  "$HOME/algorithm" \
   "$HOME/wiki" \
   "$HOME/dotwiki" \
-  "$HOME/algorithm" \
   "$HOME/proj/pcap" \
   "$HOME/proj/log" \
   "$HOME/proj/algorithm" \
