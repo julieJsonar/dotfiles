@@ -180,6 +180,10 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " Tools {{{3
+        "Plug 'neovim/python-client'
+        "Plug 'bbchung/Clamp' | " support C-family code powered by libclang
+        "Plug 'apalmer1377/factorus'
+
         Plug 'vim-scripts/DrawIt'
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
@@ -1048,8 +1052,14 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
 
-  nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
-  vnoremap <leader>vr ""y:%s/<C-R>=escape(@", '/\')<CR>/<C-R>=escape(@", '/\')<CR>/g<Left><Left>
+  " For local replace
+  nnoremap <leader>vr gd[{V%::s/<C-R>///g<left><left>
+  " For global replace
+  nnoremap <leader>vR gD:%s/<C-R>///g<left><left>
+  "
+  "nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
+  "vnoremap <leader>vr ""y:%s/<C-R>=escape(@", '/\')<CR>/<C-R>=escape(@", '/\')<CR>/g<Left><Left>
+  "
   "vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
   "nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
 
