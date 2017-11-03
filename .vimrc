@@ -1053,7 +1053,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
 
   " For local replace
-  nnoremap <leader>vr gd[{V%::s/<C-R>///g<left><left>
+  nnoremap <leader>vr viw"xygd[{V%::s/<C-R>//<C-R>x/g<left><left>
   " For global replace
   nnoremap <leader>vR gD:%s/<C-R>///g<left><left>
   "
