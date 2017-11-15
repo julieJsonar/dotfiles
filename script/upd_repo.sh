@@ -138,6 +138,7 @@ Main ()
 
         if [ $? -eq 0 ]; then
             if [[ "$git_dir" == *git ]]; then
+                git add -A .; git stash
                 git checkout master;
                 diff_num=$(git pull --all | wc -l)
 
@@ -147,6 +148,7 @@ Main ()
                 git checkout 5-0; git pull --all;
                 git checkout master
             else
+                git add -A .; git stash
                 diff_num=$(git pull --all | wc -l)
             fi
 

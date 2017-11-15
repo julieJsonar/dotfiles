@@ -135,23 +135,44 @@ function _mytail()
 };
 alias tail='_mytail'
 
+function _myftpls()
+{
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; quit;"
+};
+alias ftpls='_myftpls'
+
+function _myftprm()
+{
+  if [ -z ${1} ]; then
+    echo "parameter dir must be set"
+    return 1
+  fi
+
+  for var in "$@"
+  do
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; rm -fr $var; quit;"
+  done
+  lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; quit;"
+};
+alias ftprm='_myftprm'
+
 function _myftp()
 {
-  if [ -z ${dir+x} ]; then
-    echo "dir is not set"
+  if [ -z ${1} ]; then
+    echo "parameter dir must be set"
     return 1
   fi
 
   if [ -f image.out ]; then
     file=image.out
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; mkdir $dir; cd $dir; put $file; put patch.diff; put patch.eco.diff; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; put image.out.vmware.zip; put image.out.ovf.zip; lpwd; pwd; ls; quit;"
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; mkdir $1; cd $1; put $file; put patch.diff; put patch.eco.diff; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; put image.out.vmware.zip; put image.out.ovf.zip; lpwd; pwd; ls; quit;"
   else
     if [ -z "$1" ]; then
       echo "File not found!"
       return 1
     else
       file=$1
-      lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $dir; cd $dir; put $file; ls; quit;"
+      lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $1; cd $1; put $file; ls; quit;"
     fi
   fi
 };
