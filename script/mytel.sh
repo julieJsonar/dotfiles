@@ -3,7 +3,7 @@
 #If it all goes pear shaped the script will timeout after 20 seconds.
 
 set timeout 20
-log_file log.exp
+log_file -noappend log.exp
 set argsCount [llength $argv]
 
 if { $argsCount < 0} {

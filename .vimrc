@@ -263,11 +263,17 @@ set guifont=Liberation\ Mono\ 13
 set t_md=
 set t_vb=
 set hidden
-set ttyfast
+set ttyfast  " u got a fast terminal
+set lazyredraw " to avoid scrolling problems
 "set autoread
 
 " syntax enable
 syntax on
+" Vim slow reading very long lines
+set synmaxcol=200
+syntax on
+set synmaxcol=200
+
 set background=dark
 set t_Co=256
 

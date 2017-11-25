@@ -147,9 +147,11 @@ Main ()
                 git checkout 5-2; git pull --all;
                 git checkout 5-0; git pull --all;
                 git checkout master
+                git prune
             else
                 git add -A .; git stash
                 diff_num=$(git pull --all | wc -l)
+                git prune
             fi
 
             if [ $diff_num -gt 2 ]; then

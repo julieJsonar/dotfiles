@@ -24,6 +24,8 @@ daemon/wad/wad_ftp_parser.c
 daemon/wad/wad_async_queue.c
 daemon/wad/acsm.c
 daemon/wad/rfc2617_digest.c
+daemon/wad/wad_asn1.c
+daemon/wad/wad_waf_sig.c
 
 daemon/wad/wad_mem
 daemon/wad/test/
