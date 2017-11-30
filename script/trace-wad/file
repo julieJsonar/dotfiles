@@ -26,6 +26,7 @@ daemon/wad/acsm.c
 daemon/wad/rfc2617_digest.c
 daemon/wad/wad_asn1.c
 daemon/wad/wad_waf_sig.c
+daemon/wad/wad_internet_service.c
 
 daemon/wad/wad_mem
 daemon/wad/test/
