@@ -36,7 +36,7 @@ send "diag wad debug enable level verbose\r"
 send "diag wad debug enable cat all\r"
 send "diag wad debug display pid enable\r"
 send "diag debug console no enable\r"
-send "diag debug console timestamp enable\r"
+#send "diag debug console timestamp enable\r"
 send "diag debug enable\r"
 
 interact
