@@ -154,6 +154,8 @@ Main ()
                 Run "rm -fr $home_f 2> /dev/null"
             fi
 
+                    Run "mv $home_f $home_bak/$file"
+                Run "rm -fr $home_f 2> /dev/null"
             Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
 
         done
