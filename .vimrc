@@ -11,6 +11,12 @@
 "
 "      vi .vimrc
 "      :PlugInstall
+"      :CheckHealth   ### check deplete's health
+"
+"          $ sudo pip2 install neovim
+"          $ sudo pip3 install neovim
+"          $ sudo pip2 install --upgrade neovim
+"          $ sudo pip3 install --upgrade neovim
 "
 "   - Plugins: http://stevelosh.com/blog/2011/09/writing-vim-plugins/
 "   - Install neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
@@ -474,12 +480,12 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
   " Jump to anywhere you want with minimal keystrokes, with just one key binding.
   " `s{char}{label}`
-  nmap s <Plug>(easymotion-overwin-f)
+  "nmap s <Plug>(easymotion-overwin-f)
 
   " or
   " `s{char}{char}{label}`
   " Need one more keystroke, but on average, it may be more comfortable.
-  "nmap s <Plug>(easymotion-overwin-f2)
+  nmap s <Plug>(easymotion-overwin-f2)
 "}}}
 
 " tags {{{2

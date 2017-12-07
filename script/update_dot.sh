@@ -144,6 +144,17 @@ Main ()
             array_contains ignore_files "$file"  && echo "Skipping $file" && continue
 
             home_f=$HOME/$file
+            # the softlink existed, but real file not exist, rm the softlink
+            if [[ -L "$home_f" ]]; then
+                if [[ -f "$home_f" || -d "$home_f" ]]; then
+                    true
+                else
+                    Run "rm -fr $home_f 2> /dev/null"
+                fi
+            else
+                true
+            fi
+
             if [[ -f "$home_f" || -d "$home_f" ]]; then
                 if [[ -L "$home_f" ]]; then
                     true
@@ -154,8 +165,6 @@ Main ()
                 Run "rm -fr $home_f 2> /dev/null"
             fi
 
-                    Run "mv $home_f $home_bak/$file"
-                Run "rm -fr $home_f 2> /dev/null"
             Run "ln -s $phy_dotfiles_dir/$file $home_f" || Die "Create softlink $home_f failed!"
 
         done
