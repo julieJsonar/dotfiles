@@ -202,7 +202,7 @@ Main ()
         fi
     done
 
-    Run "cd ~/grive; grive -s ./gitme"
+    Run "cd ~/grive; grive -V -s ./gitme"
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
