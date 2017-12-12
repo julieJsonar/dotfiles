@@ -141,6 +141,20 @@ function _myftpls()
 };
 alias ftpls='_myftpls'
 
+function _myftpget()
+{
+  if [ -z ${1} ]; then
+    echo "parameter dir must be set"
+    return 1
+  fi
+
+  for var in "$@"
+  do
+    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; get $var; quit;"
+  done
+};
+alias ftpget='_myftpget'
+
 function _myftprm()
 {
   if [ -z ${1} ]; then

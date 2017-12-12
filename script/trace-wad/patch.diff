@@ -1,0 +1,97 @@
+Index: migbase/libsegfault/segfault.c
+===================================================================
+--- migbase/libsegfault/segfault.c	(revision 186690)
++++ migbase/libsegfault/segfault.c	(working copy)
+@@ -951,6 +951,30 @@
+     printf("\n");
+ }
+ 
++
++int get_trace_depth(void)
++{
++    struct layout *current;
++    void *__unbounded top_frame;
++    void *__unbounded top_stack;
++    int cnt;
++
++    top_frame = __builtin_frame_address (0);
++    top_stack = CURRENT_STACK_FRAME;
++
++    /* First count how many entries we'll have.  */
++    cnt = 0;
++    current = BOUNDED_1 ((struct layout *) top_frame);
++    while (!((void *) current INNER_THAN top_stack
++           || !((void *) current INNER_THAN __libc_stack_end)))
++    {
++        ++cnt;
++
++        current = ADVANCE_STACK_FRAME (current->next);
++    }
++    return cnt;
++}
++
+ void print_trace2(void (*log_func)(const char *fmt, ...))
+ {
+     struct layout *current;
+Index: daemon/wad/ui/fg/wad_debug_impl.h
+===================================================================
+--- daemon/wad/ui/fg/wad_debug_impl.h	(revision 186690)
++++ daemon/wad/ui/fg/wad_debug_impl.h	(working copy)
+@@ -162,6 +162,41 @@
+ 			__WAD_DUMP("%s(%d): "format, __FUNCTION__, __LINE__, ##args);			\
+ 	} } while(0)
+ 
++
++/*
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wreturn-type"
++intptr_t get_ebp(void)
++{
++	// 32
++	// __asm__ __volatile__("mov %ebp, %eax");
++	// 64
++	__asm__ __volatile__("mov %rbp, %rax");
++}
++#pragma GCC diagnostic pop
++
++int get_stack_depth(void)
++{
++	intptr_t ebp = get_ebp();
++	int stack_depth = 0;
++	while (ebp != gtop_ebp) {
++		ebp = *(intptr_t *)ebp;
++		stack_depth++;
++	}
++	return stack_depth;
++}
++*/
++
++int get_trace_depth(void);
++#define __TRACEME__	do {						\
++	if (WAD_DEBUG_CHECK3(wad_debug_level_verbose, WAD_DEBUG_SESSION)) {						\
++		if (WAD_DEBUG_CHECK_PID())								\
++			__WAD_DUMP("T@ %u-%*s%s(%d)\n", g_wad.pid, 3*(get_trace_depth()-6), " ", __FUNCTION__, __LINE__);	\
++		else											\
++			__WAD_DUMP("T@ %*s%s(%d)\n", 3*(get_trace_depth()-6), " ", __FUNCTION__, __LINE__);			\
++	} } while(0)
++
++
+ #ifdef CONFIG_DEBUG
+ #define WAD_DBG_ASSERT(a)	WAD_ASSERT(a)
+ #else
+Index: daemon/wad/cache/test/stubs/wct_stub_wad_debug.c
+===================================================================
+--- daemon/wad/cache/test/stubs/wct_stub_wad_debug.c	(revision 188638)
++++ daemon/wad/cache/test/stubs/wct_stub_wad_debug.c	(working copy)
+@@ -141,6 +141,11 @@
+ {
+ }
+ 
++int get_trace_depth(void)
++{
++	return 6;
++}
++
+ int wad_dump_on_input(struct wad_str *b,
+ 		      unsigned int start,
+ 		      unsigned int len)
