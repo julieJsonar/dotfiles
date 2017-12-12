@@ -95,3 +95,15 @@ Index: daemon/wad/cache/test/stubs/wct_stub_wad_debug.c
  int wad_dump_on_input(struct wad_str *b,
  		      unsigned int start,
  		      unsigned int len)
+Index: daemon/wad/wad_memtrack.c
+===================================================================
+--- daemon/wad/wad_memtrack.c
++++ daemon/wad/wad_memtrack.c
+@@ -169,6 +169,7 @@ void *wad_memtrack_realloc(struct wad_memtrack_call_point * mtcp, struct wad_mem
+ 
+ void wad_memtrack_free(struct wad_memtrack_call_point * mtcp, struct wad_mem * mem, void * ptr, unsigned int size)
+ {
++	memset(prt, 0, size); // wilson must rm, also add to our trace patch
+ 	return (*wad_memtrack_module->ops->free)(wad_memtrack_module, mtcp, &wad_mem_free, mem, ptr, size);
+ }
+ 
