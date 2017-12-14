@@ -95,6 +95,25 @@ Index: daemon/wad/cache/test/stubs/wct_stub_wad_debug.c
  int wad_dump_on_input(struct wad_str *b,
  		      unsigned int start,
  		      unsigned int len)
+Index: daemon/wad/cache/test/Rules.mk
+===================================================================
+--- daemon/wad/cache/test/Rules.mk
++++ daemon/wad/cache/test/Rules.mk
+@@ -177,14 +177,3 @@ else
+ WCTRUNCMD = @echo 'Not running $< when cross compiling' > /dev/null
+ endif
+ 
+-wct_cs_run := wct_cs_phony
+-$(wct_cs_run)_DEPS = $(wct_cs_link)
+-$(wct_cs_run)_CMD = $(WCTRUNCMD)
+-
+-wct_db_run := wct_db_phony
+-$(wct_db_run)_DEPS = $(wct_db_link)
+-$(wct_db_run)_CMD = $(WCTRUNCMD)
+-
+-.PHONY: $(wct_cs_run) $(wct_db_run)
+-
+-TARGETS = $(wct_cs) $(wct_db) $(wct_cs_link) $(wct_db_link) $(wct_cs_run) $(wct_db_run)
 Index: daemon/wad/wad_memtrack.c
 ===================================================================
 --- daemon/wad/wad_memtrack.c
@@ -103,7 +122,7 @@ Index: daemon/wad/wad_memtrack.c
  
  void wad_memtrack_free(struct wad_memtrack_call_point * mtcp, struct wad_mem * mem, void * ptr, unsigned int size)
  {
-+	memset(prt, 0, size); // wilson must rm, also add to our trace patch
++	memset(ptr, 0, size); // wilson must rm, also add to our trace patch
  	return (*wad_memtrack_module->ops->free)(wad_memtrack_module, mtcp, &wad_mem_free, mem, ptr, size);
  }
  

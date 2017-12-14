@@ -37,7 +37,10 @@ send "diag wad debug enable cat all\r"
 send "diag wad debug display pid enable\r"
 send "diag debug console no enable\r"
 #send "diag debug console timestamp enable\r"
+send "diag debug crash read\r"
 send "diag debug enable\r"
+send "diag test app wad 2300\r"
+send "diag test app wad 110\r"
 
 interact
 
