@@ -106,7 +106,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'hecal3/vim-leader-guide'
     "Plug 'megaannum/self'
     "Plug 'megaannum/forms'
-    Plug 'mhinz/vim-startify'
+    "Plug 'mhinz/vim-startify'
 "}}}
 
 " Syntax/Language {{{2
