@@ -245,3 +245,4 @@ wad_route_netlink_on_event
 wad_ui_ca_name_cmp
 wad_timer_list_on_alarm
 wad_timer_list_flush
+wad_fast_intf_find_cmp
