@@ -12,6 +12,14 @@ sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
 sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag traceroute smbclient openssh-server minicom lftp meld
 
+# tmuxinator
+mkdir ~/.tmuxinator
+sudo gem install tmuxinator
+ln -s ~/dotfiles/tmuxinator_work.yml ~/.tmuxinator/work.yml
+
+# tig
+ln -s ~/dotfiles/tigrc ~/tigrc
+
 sudo apt-get install -y git subversion
 # vim (+clientserver)
 sudo apt-get install -y vim-gnome
@@ -29,7 +37,8 @@ sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386 manpages-dev
 
 # neovim:
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get install software-properties-common
 sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get update
 sudo apt-get install neovim
