@@ -41,10 +41,21 @@ root: ~/
 # startup_window: logs
 
 windows:
-  - editor:
+  - minicom:
       layout: main-vertical
       panes:
-        - vim
-        - guard
-  - server: bundle exec rails s
-  - logs: tail -f log/development.log
+        - echo
+        - sudo minicom
+  - zsh: echo
+  - zsh: echo
+  - zsh: echo
+  - zsh: echo
+  - zsh: echo
+  - zsh: echo
+  - zsh: echo
+  - zsh: cd ~/workref
+  - wiki:
+      layout: main-vertical
+      panes:
+        - cd ~/dotwiki
+        - cd ~/wiki
