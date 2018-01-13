@@ -147,6 +147,10 @@ Main ()
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
     printf "$NOTE: dry=$dryrun action=$action msg=$commitmsg\n\n"
 
+    if [ "$action" == "pull" ]; then
+      Run "cd ~/grive; grive"
+    fi
+
     for git_dir in "${git_repos[@]}"
     do
         if [ ! -d $git_dir ]; then
@@ -202,7 +206,10 @@ Main ()
         fi
     done
 
-    Run "cd ~/grive; grive -V -s ./gitme"
+    if [ "$action" == "push" ]; then
+      Run "cd ~/grive; grive"
+    fi
+
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 
