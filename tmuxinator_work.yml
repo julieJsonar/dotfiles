@@ -42,7 +42,7 @@ root: ~/
 
 windows:
   - minicom:
-      layout: main-vertical
+      layout: even-vertical
       panes:
         - echo
         - sudo minicom
@@ -55,7 +55,7 @@ windows:
   - zsh: echo
   - zsh: cd ~/workref
   - wiki:
-      layout: main-vertical
+      layout: even-vertical
       panes:
         - cd ~/dotwiki
         - cd ~/wiki
