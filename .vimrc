@@ -207,6 +207,7 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " Integration {{{2
+    Plug 'idanarye/vim-vebugger'
     Plug 'huawenyu/neogdb.vim', Cond(has('nvim'))
 
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
@@ -441,7 +442,8 @@ augroup END
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 
-" tabular {{{2}}}
+" vebugger {{{2}}}
+"let g:vebugger_leader = ';'
 
 " neocomplcache {{{2}}}
 let g:acp_enableAtStartup = 0
@@ -1029,6 +1031,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
       else
       endif
   endfunction
+
+  " vebugger {{{2}}}
+  let g:vebugger_leader = ';'
 
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
   nnoremap <silent> <leader>i  :<c-u>call <SID>JumpI(0)<cr>
