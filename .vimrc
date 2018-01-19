@@ -167,7 +167,7 @@ call plug#begin('~/.vim/bundle')
     "}}}
 
     " View/Outline {{{3
-        Plug 'scrooloose/nerdtree'    | " ;;e toggle, <enter> open-file
+        Plug 'scrooloose/nerdtree'    | " :NERDTreeToggle; <Enter> open-file; '?' Help
         Plug 'scrooloose/nerdcommenter'
         Plug 'jeetsukumaran/vim-buffergator'
         Plug 'huawenyu/vim-rooter'  | " Get or change current dir
