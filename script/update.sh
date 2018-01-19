@@ -166,7 +166,7 @@ Main ()
 
             diff_num=$(grep --color=none '^ \S' /tmp/git.tmp | wc -l)
             if [ $diff_num -gt 0 ]; then
-                msg_success "$action :$diff_num $git_dir"
+                msg_ok "$action :$diff_num $git_dir"
                 grep --color=none '^ \S' /tmp/git.tmp
             else
                 msg_passed "$action $git_dir"
@@ -174,7 +174,7 @@ Main ()
         elif [ "$action" == "status" ]; then
             file_num=$(git status --short | wc -l)
             if [ $file_num -gt 0 ]; then
-                msg_success "$action $git_dir"
+                msg_ok "$action $git_dir"
                 Run "git status --short"
             else
                 msg_passed "$action $git_dir"
@@ -188,7 +188,7 @@ Main ()
             #if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
             #    Run "git commit -am \"$commitmsg\" &> /dev/null" \
             #        && Run "git push origin master &> /dev/null" \
-            #        && msg_success "$git_dir push $diff_num lines patch." \
+            #        && msg_ok "$git_dir push $diff_num lines patch." \
             #        || Die "Git commit or push failed: $git_dir"
             #else
             #    msg_passed "$git_dir no changed!"
@@ -199,7 +199,7 @@ Main ()
             Run "git commit -am \"$commitmsg\" &> /dev/null"
             Run "git push origin master &> /dev/null"
             if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
-                msg_success "$action $file_num:$diff_num $git_dir"
+                msg_ok "$action $file_num:$diff_num $git_dir"
             else
                 msg_passed "$action $file_num:$diff_num $git_dir"
             fi
