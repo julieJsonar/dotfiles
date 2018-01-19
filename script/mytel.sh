@@ -31,16 +31,25 @@ if { $argsCount < 0} {
 
 set output [open "log.1" "w"]
 
-send "c g\r"
+#send "diag debug console timestamp enable\r"
+send "diag ips debug disable all\r"
+send "diag wad debug clear\r"
+
+# wad
+#send "c g\r"
 send "diag wad debug enable level verbose\r"
 send "diag wad debug enable cat all\r"
 send "diag wad debug display pid enable\r"
 send "diag debug console no enable\r"
-#send "diag debug console timestamp enable\r"
 send "diag debug crash read\r"
 send "diag debug enable\r"
-send "diag test app wad 2300\r"
-send "diag test app wad 110\r"
+#send "diag test app wad 2300\r"
+#send "diag test app wad 110\r"
+
+## ips
+#send "diag debug crash read\r"
+#send "diag ips debug enable all\r"
+#send "diag debug enable\r"
 
 interact
 
