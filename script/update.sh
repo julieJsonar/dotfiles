@@ -166,21 +166,21 @@ Main ()
 
             diff_num=$(grep --color=none '^ \S' /tmp/git.tmp | wc -l)
             if [ $diff_num -gt 0 ]; then
-                msg_notice "$action :$diff_num $git_dir"
+                msg_success "$action :$diff_num $git_dir"
                 grep --color=none '^ \S' /tmp/git.tmp
             else
-                msg_ok "$action $git_dir"
+                msg_passed "$action $git_dir"
             fi
         elif [ "$action" == "status" ]; then
             file_num=$(git status --short | wc -l)
             if [ $file_num -gt 0 ]; then
-                msg_notice "$action $git_dir"
+                msg_success "$action $git_dir"
                 Run "git status --short"
             else
-                msg_ok "$action $git_dir"
+                msg_passed "$action $git_dir"
             fi
         elif [ "$action" == "diff" ]; then
-            msg_ok "$action $git_dir"
+            msg_passed "$action $git_dir"
             Run "git --no-pager diff"
         elif [ "$action" == "push" ]; then
             #diff_num=$(git diff | wc -l)
@@ -199,9 +199,9 @@ Main ()
             Run "git commit -am \"$commitmsg\" &> /dev/null"
             Run "git push origin master &> /dev/null"
             if [ $diff_num -gt 0 ] || [ $file_num -gt 0 ]; then
-                msg_notice "$action $file_num:$diff_num $git_dir"
+                msg_success "$action $file_num:$diff_num $git_dir"
             else
-                msg_ok "$action $file_num:$diff_num $git_dir"
+                msg_passed "$action $file_num:$diff_num $git_dir"
             fi
         fi
     done
