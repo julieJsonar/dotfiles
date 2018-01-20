@@ -1,0 +1,113 @@
+#!/usr/bin/expect
+
+# config
+log_user 1
+set timeout 20
+set telnet_log "log.exp"
+
+
+# Functions
+## Functions - Usage
+proc Usage { dummy } {
+    puts stderr "Usage:"
+    puts stderr "  sample: script telnet 10.1.1.2 'admin' ''"
+    puts stderr "  sample: script gdb 10.1.1.2 'admin' ''"
+    puts stderr "  - mode: telnet host user pass \[submode=\[wad\|ips\]\]"
+    puts stderr "  - mode: gdb"
+    exit 1
+}
+
+
+## Functions - Telnet
+set hostid "null"
+proc Telnet { host user password } {
+    global hostid
+
+    spawn telnet $host
+    set hostid $spawn_id
+
+    set count 0;
+    while {$count < 10 } {
+        set count [expr $count+1];
+        send_user "\|expect=$count\|"
+
+        expect {
+        "elcome" {
+            send "\n"
+        }
+        "> " { return "ok" }
+        "$ " { return "ok" }
+        "# " { return "ok" }
+        "ogin: " {
+            send "$user\n"
+        }
+        "assword: " {
+            send "$password\n"
+        }
+        "(yes/no)? " {
+            send "yes\n"
+        }
+        default {
+            send_user "Login failed\n"
+            return "fail"
+            exit
+        }
+        }
+    }
+}
+
+
+# main script
+set arg_count [llength $argv]
+if { $arg_count < 2 } {
+    set call [Usage ""]
+}
+
+set arg_mode [lindex $argv 0];
+if { $arg_mode == "telnet"} {
+    if { $arg_count < 4 } {
+        set running [Usage ""]
+    }
+    set host [lindex $argv 1]
+    set user [lindex $argv 2]
+    set password [lindex $argv 3]
+
+    set arg_submode "null"
+    if { $arg_count > 4 } {
+        set arg_submode [lindex $argv 4]
+    }
+
+    log_file -noappend $telnet_log
+
+    #set hostid $spawn_id
+    set call [Telnet $host $user $password]
+
+    send -i $hostid "diag debug dis\r"
+    send -i $hostid "diag ips debug disable all\r"
+    send -i $hostid "diag wad debug clear\r"
+
+    if { $arg_submode == "wad"} {
+        #send "c g\r"
+        send -i $hostid "diag wad debug enable level verbose\r"
+        send -i $hostid "diag wad debug enable cat all\r"
+        send -i $hostid "diag wad debug display pid enable\r"
+        send -i $hostid "diag debug console no enable\r"
+        send -i $hostid "diag debug crash read\r"
+        send -i $hostid "diag debug en\r"
+        #send -i $hostid "diag test app wad 2300\r"
+        #send -i $hostid "diag test app wad 110\r"
+    } elseif { $arg_submode == "ips" } {
+        send -i $hostid "diag debug crash read\r"
+        send -i $hostid "diag ips debug enable all\r"
+        send -i $hostid "diag debug en\r"
+    }
+
+} elseif { $arg_mode == "gdb" } {
+}
+
+
+# Interact
+if { $hostid != "null" } {
+    interact -u $hostid
+}
+
