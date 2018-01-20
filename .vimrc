@@ -96,6 +96,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
+    Plug 'vim-scripts/tcl.vim'
 "}}}
 
 " Facade {{{2

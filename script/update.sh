@@ -36,6 +36,7 @@ git_repos=( \
   "$HOME/proj/algorithm" \
   "$HOME/proj/algorithm-doc" \
   "$HOME/proj/c-algorithms" \
+  "$HOME/proj/Design-Patterns-in-C" \
   "$HOME/proj/Boost-Cookbook" \
   "$HOME/proj/libevent-book" \
   "$HOME/.vim/bundle/neovim-fuzzy" \

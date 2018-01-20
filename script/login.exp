@@ -1,15 +1,24 @@
 #!/usr/bin/expect
+#
+# info: Expect script login the server via telnet
+#
+# author: huawen.yu@gmail.com
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
 
 # config
 log_user 1
-set timeout 20
+set timeout 3
 set telnet_log "log.exp"
 
 
 # Functions
 ## Functions - Usage
-proc Usage { dummy } {
-    puts stderr "Usage:"
+proc Usage { msg } {
+    puts stderr "Usage: ($msg)"
     puts stderr "  sample: script telnet 10.1.1.2 'admin' ''"
     puts stderr "  sample: script gdb 10.1.1.2 'admin' ''"
     puts stderr "  - mode: telnet host user pass \[submode=\[wad\|ips\]\]"
@@ -57,16 +66,107 @@ proc Telnet { host user password } {
 }
 
 
+set conf_vdom_status "null"
+set conf_oper_mode   "null"
+set conf_ha_mode     "null"
+set conf_log_disk    "null"
+
+proc dut_status { dummy } {
+    global hostid
+
+    global conf_vdom_status
+    global conf_oper_mode
+    global conf_ha_mode
+    global conf_log_disk
+
+    set spawn_id $hostid
+    send -i $hostid "get system status\n"
+
+#    expect {
+#        -re "Log hard disk: (.*?)\n" {
+#            # take some action with expect_out and continue
+#            set conf_log_disk $expect_out(1,string)
+#            exp_continue
+#        }
+#        -re "Operation Mode: (.*?)\n" {
+#            # take some action with expect_out and continue
+#            set conf_oper_mode $expect_out(1,string)
+#            exp_continue
+#        }
+#        -re "Virtual domain configuration: (.*?)\n" {
+#            # take some action with expect_out and continue
+#            set conf_vdom_status $expect_out(1,string)
+#            exp_continue
+#        }
+#        -re "Current HA mode: (.*?)\n" {
+#            # take some action with expect_out and continue
+#            set conf_ha_mode $expect_out(1,string)
+#            exp_continue
+#        }
+#        -ex " #" {
+#            # end of list, fall through to next command
+#        }
+#    }
+
+# non-greed match by appending '?' to '*':
+    expect -re "Log hard disk: (.*?)\n" {set conf_log_disk $expect_out(1,string)}
+    expect -re "Operation Mode: (.*?)\n" {set conf_oper_mode $expect_out(1,string)}
+    expect -re "Virtual domain configuration: (.*?)\n" {set conf_vdom_status $expect_out(1,string)}
+    expect -re "Current HA mode: (.*?)\n" {set conf_ha_mode $expect_out(1,string)}
+    expect -re "System time: (.*?)\n" {send "\n"}
+
+    send_user "\n========STATUS========\n"
+    send_user "conf_oper_mode = $conf_oper_mode\n"
+    send_user "conf_vdom_status = $conf_vdom_status\n"
+    send_user "conf_log_disk = $conf_log_disk\n"
+    send_user "conf_ha_mode = $conf_ha_mode\n"
+    send_user "=========END==========\n"
+}
+
+
+proc dut_debug_init { dummy } {
+    global hostid
+
+    send -i $hostid "diag debug dis\r"
+    send -i $hostid "diag ips debug disable all\r"
+    send -i $hostid "diag wad debug clear\r"
+}
+
+
+proc debug_wad { dummy } {
+    global hostid
+
+    #send "c g\r"
+    send -i $hostid "diag wad debug enable level verbose\r"
+    send -i $hostid "diag wad debug enable cat all\r"
+    send -i $hostid "diag wad debug display pid enable\r"
+    send -i $hostid "diag debug console no enable\r"
+    send -i $hostid "diag debug crash read\r"
+    send -i $hostid "diag debug en\r"
+    #send -i $hostid "diag test app wad 2300\r"
+    #send -i $hostid "diag test app wad 110\r"
+}
+
+
+proc debug_ips { dummy } {
+    global hostid
+
+    send -i $hostid "diag debug crash read\r"
+    send -i $hostid "diag ips debug enable all\r"
+    send -i $hostid "diag debug en\r"
+}
+
+
 # main script
 set arg_count [llength $argv]
 if { $arg_count < 2 } {
-    set call [Usage ""]
+    set call [Usage "Argument not enough."]
 }
 
 set arg_mode [lindex $argv 0];
 if { $arg_mode == "telnet"} {
     if { $arg_count < 4 } {
-        set running [Usage ""]
+        set running [Usage "Argument host,user,passwd"]
     }
     set host [lindex $argv 1]
     set user [lindex $argv 2]
@@ -81,28 +181,18 @@ if { $arg_mode == "telnet"} {
 
     #set hostid $spawn_id
     set call [Telnet $host $user $password]
-
-    send -i $hostid "diag debug dis\r"
-    send -i $hostid "diag ips debug disable all\r"
-    send -i $hostid "diag wad debug clear\r"
+    set call [dut_debug_init ""]
+    set call [dut_status ""]
 
     if { $arg_submode == "wad"} {
-        #send "c g\r"
-        send -i $hostid "diag wad debug enable level verbose\r"
-        send -i $hostid "diag wad debug enable cat all\r"
-        send -i $hostid "diag wad debug display pid enable\r"
-        send -i $hostid "diag debug console no enable\r"
-        send -i $hostid "diag debug crash read\r"
-        send -i $hostid "diag debug en\r"
-        #send -i $hostid "diag test app wad 2300\r"
-        #send -i $hostid "diag test app wad 110\r"
+        set call [debug_wad ""]
     } elseif { $arg_submode == "ips" } {
-        send -i $hostid "diag debug crash read\r"
-        send -i $hostid "diag ips debug enable all\r"
-        send -i $hostid "diag debug en\r"
+        set call [debug_ips ""]
     }
 
 } elseif { $arg_mode == "gdb" } {
+} else {
+    set running [Usage "No correct mode \[telnet,gdb,.\]"]
 }
 
 
