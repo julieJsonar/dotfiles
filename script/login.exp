@@ -66,6 +66,11 @@ proc Telnet { host user password } {
 }
 
 
+set conf_version "null"
+set conf_build_num "null"
+set conf_build_date "null"
+set conf_model_type "null"
+set conf_model_sn "null"
 set conf_vdom_status "null"
 set conf_oper_mode   "null"
 set conf_ha_mode     "null"
@@ -74,6 +79,11 @@ set conf_log_disk    "null"
 proc dut_status { dummy } {
     global hostid
 
+    global conf_version
+    global conf_build_num
+    global conf_build_date
+    global conf_model_type
+    global conf_model_sn
     global conf_vdom_status
     global conf_oper_mode
     global conf_ha_mode
@@ -109,27 +119,59 @@ proc dut_status { dummy } {
 #    }
 
 # non-greed match by appending '?' to '*':
-    expect -re "Log hard disk: (.*?)\n" {set conf_log_disk $expect_out(1,string)}
-    expect -re "Operation Mode: (.*?)\n" {set conf_oper_mode $expect_out(1,string)}
-    expect -re "Virtual domain configuration: (.*?)\n" {set conf_vdom_status $expect_out(1,string)}
-    expect -re "Current HA mode: (.*?)\n" {set conf_ha_mode $expect_out(1,string)}
-    expect -re "System time: (.*?)\n" {send "\n"}
+    expect -re "Version: (.*?)\r" {set model_info $expect_out(1,string)}
+
+    expect -re "Serial-Number: (.*?)\r" {set conf_model_sn $expect_out(1,string)}
+    expect -re "Log hard disk: (.*?)\r" {set conf_log_disk $expect_out(1,string)}
+    expect -re "Operation Mode: (.*?)\r" {set conf_oper_mode $expect_out(1,string)}
+    expect -re "Virtual domain configuration: (.*?)\r" {set conf_vdom_status $expect_out(1,string)}
+    expect -re "Current HA mode: (.*?)\r" {set conf_ha_mode $expect_out(1,string)}
+    expect -re "System time: (.*?)\r" {send "\r"}
 
     send_user "\n========STATUS========\n"
-    send_user "conf_oper_mode = $conf_oper_mode\n"
-    send_user "conf_vdom_status = $conf_vdom_status\n"
-    send_user "conf_log_disk = $conf_log_disk\n"
-    send_user "conf_ha_mode = $conf_ha_mode\n"
+    send_user "conf_oper_mode = ($conf_oper_mode)\n"
+    send_user "conf_vdom_status = ($conf_vdom_status)\n"
+    send_user "conf_log_disk = ($conf_log_disk)\n"
+    send_user "conf_ha_mode = ($conf_ha_mode)\n"
+
+    send_user "conf_version=($conf_version)\n"
+    send_user "conf_build_num=($conf_build_num)\n"
+    send_user "conf_build_date=($conf_build_date)\n"
+    send_user "conf_model_type=($conf_model_type)\n"
+    send_user "conf_model_sn=($conf_model_sn)\n"
+    send_user "conf_vdom_status=($conf_vdom_status)\n"
+    send_user "conf_oper_mode=($conf_oper_mode)\n"
+    send_user "conf_ha_mode=($conf_ha_mode)\n"
+    send_user "conf_log_disk=($conf_log_disk)\n"
     send_user "=========END==========\n"
+}
+
+
+
+proc dut_sync_once { anchor } {
+    global hostid
+    global conf_model_sn
+
+    send -i $hostid "sysctl echo \"$conf_model_sn echo $anchor\"\r"
+    expect "$conf_model_sn echo $anchor"
 }
 
 
 proc dut_debug_init { dummy } {
     global hostid
+    global conf_vdom_status
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
 
     send -i $hostid "diag debug dis\r"
     send -i $hostid "diag ips debug disable all\r"
     send -i $hostid "diag wad debug clear\r"
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "end\r"
+    }
 }
 
 
@@ -157,14 +199,14 @@ proc debug_ips { dummy } {
 }
 
 
-# main script
-set arg_count [llength $argv]
-if { $arg_count < 2 } {
-    set call [Usage "Argument not enough."]
-}
+set arg_submode "null"
+proc start_common { dummy } {
+    global argv
+    global hostid
+    global telnet_log
+    global arg_count
+    global arg_submode
 
-set arg_mode [lindex $argv 0];
-if { $arg_mode == "telnet"} {
     if { $arg_count < 4 } {
         set running [Usage "Argument host,user,passwd"]
     }
@@ -172,7 +214,6 @@ if { $arg_mode == "telnet"} {
     set user [lindex $argv 2]
     set password [lindex $argv 3]
 
-    set arg_submode "null"
     if { $arg_count > 4 } {
         set arg_submode [lindex $argv 4]
     }
@@ -181,18 +222,47 @@ if { $arg_mode == "telnet"} {
 
     #set hostid $spawn_id
     set call [Telnet $host $user $password]
-    set call [dut_debug_init ""]
     set call [dut_status ""]
+    set call [dut_debug_init ""]
+}
+
+
+# main script
+set arg_count [llength $argv]
+if { $arg_count < 2 } {
+    set call [Usage "Argument not enough."]
+}
+
+set arg_mode [lindex $argv 0]
+
+if { $arg_mode == "telnet"} {
+    set call [start_common ""]
 
     if { $arg_submode == "wad"} {
         set call [debug_wad ""]
     } elseif { $arg_submode == "ips" } {
         set call [debug_ips ""]
+    } else {
+        send -i $hostid "$arg_submode\r"
+    }
+} elseif { $arg_mode == "gdb" } {
+    send_user "\nmode=gdb\n"
+
+    set call [start_common ""]
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
     }
 
-} elseif { $arg_mode == "gdb" } {
+    send -i $hostid "diag debug en\r"
+    send -i $hostid "diag test app wad 1000\r"
+
+    expect -i $hostid -re "Process.*?: type=(wanopt|worker).*? index=.*? pid=(.*?) state=.*?\r" {set gdb_worker_pid $expect_out(2,string)}
+    send_user "\ngdb_worker_pid=$gdb_worker_pid\n"
+
+    send -i $hostid "sys sh\r"
+    send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"
 } else {
-    set running [Usage "No correct mode \[telnet,gdb,.\]"]
+    set call [Usage "No correct mode \[telnet,gdb,.\]"]
 }
 
 
