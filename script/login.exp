@@ -11,7 +11,7 @@
 
 # config
 log_user 1
-set timeout 10
+set timeout 3
 # the default logfile name only existed when 'mode=telnet'
 #log_file -noappend "log.exp"
 
@@ -98,20 +98,33 @@ proc dut_status { dummy } {
     }
 
     send -i $hostid "get system status\n"
-
     # non-greed match by appending '?' to '*':
     expect -i $hostid -re "Version: (.*?) v(.*?),build(.*?),(.*?)\r" {
         set conf_model_type $expect_out(1,string)
         set conf_version $expect_out(2,string)
         set conf_build_num $expect_out(3,string)
+        exp_continue
+    } -re "Serial-Number: (.*?)\r" {
+        set conf_model_sn $expect_out(1,string)
+        exp_continue
+    } -re "Log hard disk: (.*?)\r" {
+        set conf_log_disk $expect_out(1,string)
+        exp_continue
+    } -re "Operation Mode: (.*?)\r" {
+        set conf_oper_mode $expect_out(1,string)
+        exp_continue
+    } -re "Virtual domain configuration: (.*?)\r" {
+        set conf_vdom_status $expect_out(1,string)
+        exp_continue
+    } -re "Current HA mode: (.*?)\r" {
+        set conf_ha_mode $expect_out(1,string)
+        exp_continue
+    } -re "System time: (.*?)\r" {
+        send "\r"
+    } -ex "--More--" {
+        send -i $hostid -- " "
+        exp_continue
     }
-
-    expect -i $hostid -re "Serial-Number: (.*?)\r" {set conf_model_sn $expect_out(1,string)} -ex "--More--" { send -- " " }
-    expect -i $hostid -re "Log hard disk: (.*?)\r" {set conf_log_disk $expect_out(1,string)} -ex "--More--" { send -- " " }
-    expect -i $hostid -re "Operation Mode: (.*?)\r" {set conf_oper_mode $expect_out(1,string)} -ex "--More--" { send -- " " }
-    expect -i $hostid -re "Virtual domain configuration: (.*?)\r" {set conf_vdom_status $expect_out(1,string)} -ex "--More--" { send -- " " }
-    expect -i $hostid -re "Current HA mode: (.*?)\r" {set conf_ha_mode $expect_out(1,string)} -ex "--More--" { send -- " " }
-    expect -i $hostid -re "System time: (.*?)\r" {send "\r"} -ex "--More--" { send -- " " }
 
     send_user "\n========STATUS========\n"
     send_user "conf_debug=($conf_debug)\n"
