@@ -11,17 +11,17 @@
 
 # config
 log_user 1
-set timeout 3
-set telnet_log "log.exp"
-
+set timeout 10
+# the default logfile name only existed when 'mode=telnet'
+#log_file -noappend "log.exp"
 
 # Functions
 ## Functions - Usage
 proc Usage { msg } {
     puts stderr "Usage: ($msg)"
-    puts stderr "  sample: script telnet 10.1.1.2 'admin' ''"
-    puts stderr "  sample: script gdb 10.1.1.2 'admin' ''"
-    puts stderr "  - mode: telnet host user pass \[submode=\[wad\|ips\]\]"
+    puts stderr "  sample: script 10.1.1.2 'admin' '' telnet "
+    puts stderr "  sample: script 10.1.1.2 'admin' '' gdb"
+    puts stderr "  - mode: host user pass \[mode=\[telnet\|gdb\|wad\|ips\]\]"
     puts stderr "  - mode: gdb"
     exit 1
 }
@@ -58,23 +58,23 @@ proc Telnet { host user password } {
         }
         default {
             send_user "Login failed\n"
-            return "fail"
-            exit
+            exit 1
         }
         }
     }
 }
 
 
-set conf_version "null"
-set conf_build_num "null"
-set conf_build_date "null"
-set conf_model_type "null"
-set conf_model_sn "null"
+set conf_version     "null"
+set conf_build_num   "null"
+set conf_build_date  "null"
+set conf_model_type  "null"
+set conf_model_sn    "null"
 set conf_vdom_status "null"
 set conf_oper_mode   "null"
 set conf_ha_mode     "null"
 set conf_log_disk    "null"
+set conf_debug       "null"
 
 proc dut_status { dummy } {
     global hostid
@@ -88,52 +88,33 @@ proc dut_status { dummy } {
     global conf_oper_mode
     global conf_ha_mode
     global conf_log_disk
+    global conf_debug
 
-    set spawn_id $hostid
+    send -i $hostid "sysctl echo hello\r"
+    expect -i $hostid -re "Unknown action(.*) # " {
+        set conf_debug "no"
+    } -re "hello(.*) # " {
+        set conf_debug "yes"
+    }
+
     send -i $hostid "get system status\n"
 
-#    expect {
-#        -re "Log hard disk: (.*?)\n" {
-#            # take some action with expect_out and continue
-#            set conf_log_disk $expect_out(1,string)
-#            exp_continue
-#        }
-#        -re "Operation Mode: (.*?)\n" {
-#            # take some action with expect_out and continue
-#            set conf_oper_mode $expect_out(1,string)
-#            exp_continue
-#        }
-#        -re "Virtual domain configuration: (.*?)\n" {
-#            # take some action with expect_out and continue
-#            set conf_vdom_status $expect_out(1,string)
-#            exp_continue
-#        }
-#        -re "Current HA mode: (.*?)\n" {
-#            # take some action with expect_out and continue
-#            set conf_ha_mode $expect_out(1,string)
-#            exp_continue
-#        }
-#        -ex " #" {
-#            # end of list, fall through to next command
-#        }
-#    }
+    # non-greed match by appending '?' to '*':
+    expect -i $hostid -re "Version: (.*?) v(.*?),build(.*?),(.*?)\r" {
+        set conf_model_type $expect_out(1,string)
+        set conf_version $expect_out(2,string)
+        set conf_build_num $expect_out(3,string)
+    }
 
-# non-greed match by appending '?' to '*':
-    expect -re "Version: (.*?)\r" {set model_info $expect_out(1,string)}
-
-    expect -re "Serial-Number: (.*?)\r" {set conf_model_sn $expect_out(1,string)}
-    expect -re "Log hard disk: (.*?)\r" {set conf_log_disk $expect_out(1,string)}
-    expect -re "Operation Mode: (.*?)\r" {set conf_oper_mode $expect_out(1,string)}
-    expect -re "Virtual domain configuration: (.*?)\r" {set conf_vdom_status $expect_out(1,string)}
-    expect -re "Current HA mode: (.*?)\r" {set conf_ha_mode $expect_out(1,string)}
-    expect -re "System time: (.*?)\r" {send "\r"}
+    expect -i $hostid -re "Serial-Number: (.*?)\r" {set conf_model_sn $expect_out(1,string)} -ex "--More--" { send -- " " }
+    expect -i $hostid -re "Log hard disk: (.*?)\r" {set conf_log_disk $expect_out(1,string)} -ex "--More--" { send -- " " }
+    expect -i $hostid -re "Operation Mode: (.*?)\r" {set conf_oper_mode $expect_out(1,string)} -ex "--More--" { send -- " " }
+    expect -i $hostid -re "Virtual domain configuration: (.*?)\r" {set conf_vdom_status $expect_out(1,string)} -ex "--More--" { send -- " " }
+    expect -i $hostid -re "Current HA mode: (.*?)\r" {set conf_ha_mode $expect_out(1,string)} -ex "--More--" { send -- " " }
+    expect -i $hostid -re "System time: (.*?)\r" {send "\r"} -ex "--More--" { send -- " " }
 
     send_user "\n========STATUS========\n"
-    send_user "conf_oper_mode = ($conf_oper_mode)\n"
-    send_user "conf_vdom_status = ($conf_vdom_status)\n"
-    send_user "conf_log_disk = ($conf_log_disk)\n"
-    send_user "conf_ha_mode = ($conf_ha_mode)\n"
-
+    send_user "conf_debug=($conf_debug)\n"
     send_user "conf_version=($conf_version)\n"
     send_user "conf_build_num=($conf_build_num)\n"
     send_user "conf_build_date=($conf_build_date)\n"
@@ -177,8 +158,12 @@ proc dut_debug_init { dummy } {
 
 proc debug_wad { dummy } {
     global hostid
+    global conf_vdom_status
 
-    #send "c g\r"
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
+
     send -i $hostid "diag wad debug enable level verbose\r"
     send -i $hostid "diag wad debug enable cat all\r"
     send -i $hostid "diag wad debug display pid enable\r"
@@ -187,38 +172,37 @@ proc debug_wad { dummy } {
     send -i $hostid "diag debug en\r"
     #send -i $hostid "diag test app wad 2300\r"
     #send -i $hostid "diag test app wad 110\r"
+
 }
 
 
 proc debug_ips { dummy } {
     global hostid
 
+    global conf_vdom_status
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
+
     send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag ips debug enable all\r"
+    send -i $hostid "diag ips debug disable timeout\r"
     send -i $hostid "diag debug en\r"
 }
 
 
-set arg_submode "null"
 proc start_common { dummy } {
     global argv
     global hostid
-    global telnet_log
     global arg_count
-    global arg_submode
+    global host
+    global user
+    global password
 
-    if { $arg_count < 4 } {
+    if { $arg_count < 3 } {
         set running [Usage "Argument host,user,passwd"]
     }
-    set host [lindex $argv 1]
-    set user [lindex $argv 2]
-    set password [lindex $argv 3]
-
-    if { $arg_count > 4 } {
-        set arg_submode [lindex $argv 4]
-    }
-
-    log_file -noappend $telnet_log
 
     #set hostid $spawn_id
     set call [Telnet $host $user $password]
@@ -233,21 +217,27 @@ if { $arg_count < 2 } {
     set call [Usage "Argument not enough."]
 }
 
-set arg_mode [lindex $argv 0]
+set host [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+if { $arg_count > 3 } {
+    set arg_mode [lindex $argv 3]
+} else {
+    set arg_mode "telnet"
+}
 
 if { $arg_mode == "telnet"} {
+    log_file -noappend "log.exp"
     set call [start_common ""]
-
-    if { $arg_submode == "wad"} {
-        set call [debug_wad ""]
-    } elseif { $arg_submode == "ips" } {
-        set call [debug_ips ""]
-    } else {
-        send -i $hostid "$arg_submode\r"
-    }
+} elseif { $arg_mode == "wad" } {
+    log_file -noappend "log.exp"
+    set call [start_common ""]
+    set call [debug_wad ""]
+} elseif { $arg_mode == "ips" } {
+    log_file -noappend "log.exp"
+    set call [start_common ""]
+    set call [debug_ips ""]
 } elseif { $arg_mode == "gdb" } {
-    send_user "\nmode=gdb\n"
-
     set call [start_common ""]
     if { $conf_vdom_status == "enable"} {
         send -i $hostid "c g\r"
@@ -259,8 +249,16 @@ if { $arg_mode == "telnet"} {
     expect -i $hostid -re "Process.*?: type=(wanopt|worker).*? index=.*? pid=(.*?) state=.*?\r" {set gdb_worker_pid $expect_out(2,string)}
     send_user "\ngdb_worker_pid=$gdb_worker_pid\n"
 
-    send -i $hostid "sys sh\r"
-    send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"
+    # release version cannot debug
+    send -i $hostid "sysctl echo hello\r"
+    expect -i $hostid -re "Unknown action(.*) # " {
+        send_user "Release version cannot start gdb debug!\n"
+        exit 1
+    } -re "hello(.*) # " {
+        send -i $hostid "sys sh\r"
+    }
+
+    expect -i $hostid -re " # " { send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"}
 } else {
     set call [Usage "No correct mode \[telnet,gdb,.\]"]
 }
