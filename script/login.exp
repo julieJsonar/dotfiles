@@ -160,6 +160,7 @@ proc dut_debug_init { dummy } {
     }
 
     send -i $hostid "diag debug dis\r"
+    #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag ips debug disable all\r"
     send -i $hostid "diag wad debug clear\r"
 
@@ -172,6 +173,7 @@ proc dut_debug_init { dummy } {
 proc debug_wad { dummy } {
     global hostid
     global conf_vdom_status
+    global arg_mode
 
     if { $conf_vdom_status == "enable"} {
         send -i $hostid "c g\r"
@@ -180,19 +182,19 @@ proc debug_wad { dummy } {
     send -i $hostid "diag wad debug enable level verbose\r"
     send -i $hostid "diag wad debug enable cat all\r"
     send -i $hostid "diag wad debug display pid enable\r"
-    send -i $hostid "diag debug console no enable\r"
+    #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag debug en\r"
     #send -i $hostid "diag test app wad 2300\r"
     #send -i $hostid "diag test app wad 110\r"
-
+    send_user "mode=$arg_mode, enable wad debug\n"
 }
 
 
 proc debug_ips { dummy } {
     global hostid
-
     global conf_vdom_status
+    global arg_mode
 
     if { $conf_vdom_status == "enable"} {
         send -i $hostid "c g\r"
@@ -201,7 +203,9 @@ proc debug_ips { dummy } {
     send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag ips debug enable all\r"
     send -i $hostid "diag ips debug disable timeout\r"
+    #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag debug en\r"
+    send_user "mode=$arg_mode, enable ips debug\n"
 }
 
 
@@ -242,14 +246,6 @@ if { $arg_count > 3 } {
 if { $arg_mode == "telnet"} {
     log_file -noappend "log.exp"
     set call [start_common ""]
-} elseif { $arg_mode == "wad" } {
-    log_file -noappend "log.exp"
-    set call [start_common ""]
-    set call [debug_wad ""]
-} elseif { $arg_mode == "ips" } {
-    log_file -noappend "log.exp"
-    set call [start_common ""]
-    set call [debug_ips ""]
 } elseif { $arg_mode == "gdb" } {
     set call [start_common ""]
     if { $conf_vdom_status == "enable"} {
@@ -273,7 +269,17 @@ if { $arg_mode == "telnet"} {
 
     expect -i $hostid -re " # " { send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"}
 } else {
-    set call [Usage "No correct mode \[telnet,gdb,.\]"]
+    log_file -noappend "log.exp"
+    set call [start_common ""]
+
+    send_user "arg_mode=$arg_mode\n"
+    if {[regexp "wad" $arg_mode]} {
+        set call [debug_wad ""]
+    }
+
+    if {[regexp "ips" $arg_mode]} {
+        set call [debug_ips ""]
+    }
 }
 
 
