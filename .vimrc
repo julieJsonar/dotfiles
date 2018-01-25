@@ -32,10 +32,36 @@
   "set verbosefile=/tmp/vim.log
 
   let g:decho_enable = 0
-  let g:bg_color = 233 | " current background's color value, use by log to invisible
-  " decho to /tmp/vim.debug file, check with 'tail -f /tmp/vim.debug'
-  "let g:dechomode = 6
+  let g:bg_color = 233 | " current background's color value, used by mylog.syntax
 
+  "=====================================================================
+  "   " in .vimrc
+  "       silent! call logger#init('ALL', ['/dev/stdout', '/tmp/vim.log'])
+  "
+  "   " At begin of every our vimscript file
+  "       silent! let s:log = logger#getLogger(expand('<sfile>:t'))
+  "   " Or guard avoid multi-load
+  "       if !exists("s:init")
+  "           let s:init = 1
+  "           silent! let s:log = logger#getLogger(expand('<sfile>:t'))
+  "       endif
+  "     "
+  "
+  "   " Use it
+  "       silent! call s:log.info('hello world')
+  "
+  "   " Support current function-name like C's __FUNCTION__
+  "       function! ourfile#foobar()
+  "           let l:__func__ = substitute(expand('<sfile>'), '.*\(\.\.\|\s\)', '', '')
+  "           silent! call s:log.info(l:__func__, " args=", string(g:gdb.args))
+  "       endfunction
+  "
+  "   " Check log
+  "       $ tail -f /tmp/vim.log
+  "=====================================================================
+
+
+  " Old echo type, abandon
   function! Decho(...)
     return
   endfunction
@@ -1150,10 +1176,12 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "   " in .vimrc
   "   call logger#init('ALL', ['/dev/stdout', '~/.vim/log.txt'])
   "
-  "   " in script
+  "   " in every script
   "   silent! let s:log = logger#getLogger(expand('<sfile>:t'))
   "
   "   " start logger
   "   silent! call s:log.info('hello world')
+  "   " Check log
+  "   $ tail -f /tmp/vim.log
 "}}}
 
