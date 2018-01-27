@@ -1,28 +1,42 @@
-" <leader> is <space>
-" Doc {{{1
-"   Using Plugin-Manage: https://github.com/junegunn/vim-plug
-"   :help nvim-from-vim
-"      mkdir ~/.config
-"      ln -s ~/.vim ~/.config/nvim
-"      ln -s ~/.vimrc ~/.config/nvim/init.vim
+" Hi, the <leader> is <space> :)
 "
-"      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+" Doc {{{1
+"   Install neovim {{{2
+"   -------------------
+"   [doc]("https://github.com/neovim/neovim/wiki/Installing-Neovim)
+"
+"   Using Plugin-Manage {{{2
+"   ------------------------
+"   [code](https://github.com/junegunn/vim-plug)
+"
+"   :help nvim-from-vim
+"      $ mkdir ~/.config
+"      $ ln -s ~/.vim ~/.config/nvim
+"      $ ln -s ~/.vimrc ~/.config/nvim/init.vim
+"
+"      $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 "         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
-"      vi .vimrc
-"      :PlugInstall
-"      :CheckHealth   ### check deplete's health
+"      $ vi .vimrc
+"        :PlugInstall
+"        :CheckHealth   ### check deplete's health
 "
-"          $ sudo pip2 install neovim
-"          $ sudo pip3 install neovim
-"          $ sudo pip2 install --upgrade neovim
-"          $ sudo pip3 install --upgrade neovim
+"            $ sudo pip2 install neovim
+"            $ sudo pip3 install neovim
+"            $ sudo pip2 install --upgrade neovim
+"            $ sudo pip3 install --upgrade neovim
 "
-"   - Plugins: http://stevelosh.com/blog/2011/09/writing-vim-plugins/
-"   - Install neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
+"   Documentation {{{2
+"   -------------------
+"   [Writing Plugin](http://stevelosh.com/blog/2011/09/writing-vim-plugins/)
+"   [Scripting the Vim editor](https://www.ibm.com/developerworks/library/l-vim-script-4/index.html)
 "
-"   - 'K': man document
-"   - outline: :VoomToggle markdown
+"   Usage {{{2
+"   ----------
+"   - 'K' on c-function: open man document
+"   - :Nman find                ' Open man document of `find`
+"   - :VoomToggle markdown      ' outline as markdown
+"
 " }}}
 "
 " VimL Debug{{{1
@@ -209,7 +223,6 @@ call plug#begin('~/.vim/bundle')
         Plug 'vim-scripts/taglist.vim'
         Plug 'majutsushi/tagbar'
         "Plug 'tomtom/ttags_vim'
-        "Plug 'tomtom/tlib_vim'
     "}}}
 
     " Tools {{{3
@@ -222,6 +235,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
         "Plug 'chrisbra/NrrwRgn'
+        Plug 'amiorin/vim-eval'
         Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'    | " selected and ga=
@@ -263,6 +277,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'reedes/vim-wordy'
 "}}}
 
+" ThirdpartLibrary {{{2
+        "Plug 'tomtom/tlib_vim'
+"}}}
 
 " Debug {{{2
     Plug 'tpope/vim-scriptease'
@@ -1112,6 +1129,11 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
   nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
   nnoremap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
+
+  " vim-eval
+  let g:eval_viml_map_keys = 0
+  nmap <silent> <leader>ec <Plug>eval_viml
+  vmap <silent> <leader>ec <Plug>eval_viml_region
 
   vnoremap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nnoremap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
