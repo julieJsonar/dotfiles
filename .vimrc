@@ -697,6 +697,7 @@ let g:CommandTNeverShowDotFiles = 1
 let g:CommandTScanDotDirectories = 0
 
 " taglist tagbar plugin {{{2
+  "let g:tagbar_autoclose = 1
   let g:tagbar_sort = 0
   let g:tagbar_width = 40
   let g:tagbar_compact = 1
@@ -1014,7 +1015,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <a-e> :NERDTreeToggle<cr>
   nnoremap <silent> <a-f> :NERDTreeFind<cr>
   "nnoremap <silent> <a-t> :TlistToggle<CR>
-  nnoremap <silent> <a-t> :TagbarToggle<CR>
+  "nnoremap <silent> <a-t> :TagbarToggle<CR>
   nnoremap <silent> <a-i> :BuffergatorToggle<cr>
   nnoremap <silent> <a-u> :GundoToggle<CR>
 
@@ -1168,6 +1169,46 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <leader>ql :QLoad
   nnoremap <leader>qf :call utilquickfix#QuickFixFilter() <CR>
   nnoremap <leader>qq :call utilquickfix#QuickFixFunction() <CR>
+
+
+  function! s:ToggleTagbar()
+    " Detect which plugins are open
+    if exists('t:NERDTreeBufName')
+      let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
+    else
+      let nerdtree_open = 0
+    endif
+
+    if nerdtree_open
+      let g:tagbar_left = 0
+      "let g:tagbar_vertical = 25
+      "let NERDTreeWinPos = 'left'
+    else
+      let g:tagbar_left = 1
+      "let g:tagbar_vertical = 0
+    endif
+
+    TagbarToggle
+    "let tagbar_open = bufwinnr('__Tagbar__') != -1
+    "if tagbar_open
+    "  TagbarClose
+    "else
+    "  TagbarOpen
+    "endif
+
+    "" Jump back to the original window
+    "let w:jumpbacktohere = 1
+    "for window in range(1, winnr('$'))
+    "  execute window . 'wincmd w'
+    "  if exists('w:jumpbacktohere')
+    "    unlet w:jumpbacktohere
+    "    break
+    "  endif
+    "endfor
+  endfunction
+
+  "autocmd WinEnter * if !utils#IsLeftMostWindow() | let g:tagbar_left = 0 | else | let g:tagbar_left = 1 | endif
+  nnoremap <silent> <a-t> :<c-u>call <SID>ToggleTagbar()<CR>
 
   function! s:R(cap, ...)
       if a:cap

@@ -41,21 +41,16 @@ root: ~/
 # startup_window: logs
 
 windows:
-  - minicom:
-      layout: even-vertical
+  - zsh:
+      layout: main-vertical
       panes:
         - echo
-        - sudo minicom
-  - zsh: echo
-  - zsh: echo
-  - zsh: echo
-  - zsh: echo
-  - zsh: echo
-  - zsh: echo
-  - zsh: echo
-  - zsh: cd ~/workref
+        - echo
+  - neogdb: cd ~/.vim/bundle/neogdb.vim
+  - vebugger: cd ~/Downloads/vim-vebugger
+  - gdbserver: cd ~/work/fos-git
   - wiki:
-      layout: even-vertical
+      layout: main-vertical
       panes:
         - cd ~/dotwiki
         - cd ~/wiki

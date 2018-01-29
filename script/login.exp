@@ -159,6 +159,11 @@ proc dut_debug_init { dummy } {
         send -i $hostid "c g\r"
     }
 
+    send -i $hostid "config system global\r"
+    send -i $hostid     "set admin-scp enable\r"
+    send -i $hostid     "set admintimeout 480\r"
+    send -i $hostid "end\r"
+
     send -i $hostid "diag debug dis\r"
     #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag ips debug disable all\r"
