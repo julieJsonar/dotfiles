@@ -1077,9 +1077,6 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
       endif
   endfunction
 
-  " vebugger {{{2}}}
-  let g:vebugger_leader = ';'
-
   " Must install fzy tool(https://github.com/jhawthorn/fzy)
   nnoremap <silent> <leader>i  :<c-u>call <SID>JumpI(0)<cr>
   vnoremap          <leader>i  :<c-u>call <SID>JumpI(1)<cr>
