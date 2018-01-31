@@ -11,7 +11,7 @@
 
 # config
 log_user 1
-set timeout 3
+set timeout 6
 # the default logfile name only existed when 'mode=telnet'
 #log_file -noappend "log.exp"
 
@@ -93,6 +93,8 @@ proc dut_status { dummy } {
     send -i $hostid "sysctl echo hello\r"
     expect -i $hostid -re "Unknown action(.*) # " {
         set conf_debug "no"
+    } -re "Command fail." {
+        set conf_debug "no"
     } -re "hello(.*) # " {
         set conf_debug "yes"
     }
@@ -142,12 +144,12 @@ proc dut_status { dummy } {
 
 
 
-proc dut_sync_once { anchor } {
+proc dut_sync_point { anchor } {
     global hostid
     global conf_model_sn
 
     send -i $hostid "sysctl echo \"$conf_model_sn echo $anchor\"\r"
-    expect "$conf_model_sn echo $anchor"
+    expect -i $hostid "$conf_model_sn echo $anchor"
 }
 
 
@@ -165,7 +167,7 @@ proc dut_debug_init { dummy } {
     send -i $hostid "end\r"
 
     send -i $hostid "diag debug dis\r"
-    #send -i $hostid "diag debug console no enable\r"
+    send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag ips debug disable all\r"
     send -i $hostid "diag wad debug clear\r"
 
@@ -187,7 +189,6 @@ proc debug_wad { dummy } {
     send -i $hostid "diag wad debug enable level verbose\r"
     send -i $hostid "diag wad debug enable cat all\r"
     send -i $hostid "diag wad debug display pid enable\r"
-    #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag debug en\r"
     #send -i $hostid "diag test app wad 2300\r"
@@ -208,9 +209,75 @@ proc debug_ips { dummy } {
     send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag ips debug enable all\r"
     send -i $hostid "diag ips debug disable timeout\r"
-    #send -i $hostid "diag debug console no enable\r"
     send -i $hostid "diag debug en\r"
     send_user "mode=$arg_mode, enable ips debug\n"
+}
+
+
+proc debug_user { dummy } {
+    global hostid
+    global conf_vdom_status
+    global arg_mode
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
+
+    send -i $hostid "diag debug en\r"
+    set call [dut_sync_point "debuguser"]
+
+    send -i $hostid "diag test app wad 1000\r"
+
+    expect -i $hostid -re "^Process.*?: type=wanopt\((.*?)\) index=.*? pid=(.*?) state=.*?\r" {
+        set gdb_wanopt_type $expect_out(1,string)
+        send -i $hostid "wilson1\r"
+        exp_continue
+    } -re "^Process(.*)\r" {
+        set gdb_worker_type $expect_out(1,string)
+        send -i $hostid "wilson2\r"
+        exp_continue
+    } -re "^Process.*?: type=informer\((.*?)\) index=.*? pid=(.*?) state=.*?\r" {
+        set gdb_informer_type $expect_out(1,string)
+        send -i $hostid "wilson3\r"
+        exp_continue
+    } -re " # " {
+        send -i $hostid "wilson4\r"
+    } -ex "--More--" {
+        send -i $hostid -- " "
+        exp_continue
+    }
+
+    if {[info exists gdb_wanopt_type]} {
+        send_user "\ngdb_wanopt_type=$gdb_wanopt_type\n"
+        set cmdstr [format "diag test app wad 2%s00" $gdb_wanopt_type]
+        send -i $hostid "$cmdstr\r"
+        send -i $hostid "diag test app wad 110\r"
+    }
+    if {[info exists gdb_worker_type]} {
+        send_user "\ngdb_worker_type=$gdb_worker_type\n"
+        set cmdstr [format "diag test app wad 2%s00" $gdb_worker_type]
+        send -i $hostid "$cmdstr\r"
+        send -i $hostid "diag test app wad 110\r"
+    }
+    if {[info exists gdb_informer_type]} {
+        send_user "\ngdb_informer_type=$gdb_informer_type\n"
+        set cmdstr [format "diag test app wad 2%s00" $gdb_informer_type]
+        send -i $hostid "$cmdstr\r"
+        send -i $hostid "diag test app wad 110\r"
+    }
+
+    puts "==============worker user dump==================="
+    send -i $hostid "diag test app wad 2200\r"
+    send -i $hostid "diag test app wad 110\r"
+    puts "================================="
+
+    puts "==============informer user dump==================="
+    send -i $hostid "diag test app wad 2400\r"
+    send -i $hostid "diag test app wad 110\r"
+    puts "================================="
+
+    send -i $hostid "diag wad debug display pid enable\r"
+    send -i $hostid "diag wad debug enable category auth\r"
 }
 
 
@@ -276,10 +343,14 @@ if { $arg_mode == "telnet"} {
 } else {
     log_file -noappend "log.exp"
     set call [start_common ""]
-
     send_user "arg_mode=$arg_mode\n"
+
     if {[regexp "wad" $arg_mode]} {
         set call [debug_wad ""]
+    }
+
+    if {[regexp "user" $arg_mode]} {
+        set call [debug_user ""]
     }
 
     if {[regexp "ips" $arg_mode]} {
