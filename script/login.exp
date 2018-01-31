@@ -1,6 +1,7 @@
 #!/usr/bin/expect
 #
 # info: Expect script login the server via telnet
+# [Doc](https://www.pantz.org/software/expect/expect_examples_and_tips.html)
 #
 # author: huawen.yu@gmail.com
 #
@@ -227,54 +228,33 @@ proc debug_user { dummy } {
     set call [dut_sync_point "debuguser"]
 
     send -i $hostid "diag test app wad 1000\r"
-
-    expect -i $hostid -re "^Process.*?: type=wanopt\((.*?)\) index=.*? pid=(.*?) state=.*?\r" {
-        set gdb_wanopt_type $expect_out(1,string)
-        send -i $hostid "wilson1\r"
+    expect -i $hostid -re "Process.*?: type=(wanopt|worker)\\\((.*?)\\\) index=.*? pid=(.*?) state=.*?\r" {
+        set gdb_wanopt_type $expect_out(2,string)
         exp_continue
-    } -re "^Process(.*)\r" {
-        set gdb_worker_type $expect_out(1,string)
-        send -i $hostid "wilson2\r"
-        exp_continue
-    } -re "^Process.*?: type=informer\((.*?)\) index=.*? pid=(.*?) state=.*?\r" {
+    } -re "Process.*?: type=informer\\\((.*?)\\\) index=.*? pid=(.*?) state=.*?\r" {
         set gdb_informer_type $expect_out(1,string)
-        send -i $hostid "wilson3\r"
         exp_continue
     } -re " # " {
-        send -i $hostid "wilson4\r"
     } -ex "--More--" {
         send -i $hostid -- " "
         exp_continue
     }
 
     if {[info exists gdb_wanopt_type]} {
-        send_user "\ngdb_wanopt_type=$gdb_wanopt_type\n"
         set cmdstr [format "diag test app wad 2%s00" $gdb_wanopt_type]
         send -i $hostid "$cmdstr\r"
         send -i $hostid "diag test app wad 110\r"
     }
     if {[info exists gdb_worker_type]} {
-        send_user "\ngdb_worker_type=$gdb_worker_type\n"
         set cmdstr [format "diag test app wad 2%s00" $gdb_worker_type]
         send -i $hostid "$cmdstr\r"
         send -i $hostid "diag test app wad 110\r"
     }
     if {[info exists gdb_informer_type]} {
-        send_user "\ngdb_informer_type=$gdb_informer_type\n"
         set cmdstr [format "diag test app wad 2%s00" $gdb_informer_type]
         send -i $hostid "$cmdstr\r"
         send -i $hostid "diag test app wad 110\r"
     }
-
-    puts "==============worker user dump==================="
-    send -i $hostid "diag test app wad 2200\r"
-    send -i $hostid "diag test app wad 110\r"
-    puts "================================="
-
-    puts "==============informer user dump==================="
-    send -i $hostid "diag test app wad 2400\r"
-    send -i $hostid "diag test app wad 110\r"
-    puts "================================="
 
     send -i $hostid "diag wad debug display pid enable\r"
     send -i $hostid "diag wad debug enable category auth\r"
