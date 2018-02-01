@@ -39,7 +39,7 @@ proc Telnet { host user password } {
     set count 0;
     while {$count < 10 } {
         set count [expr $count+1];
-        send_user "\|expect=$count\|"
+        send_log "\|expect=$count\|"
 
         expect {
         "elcome" {
@@ -58,7 +58,7 @@ proc Telnet { host user password } {
             send "yes\n"
         }
         default {
-            send_user "Login failed\n"
+            send_log "Login failed\n"
             exit 1
         }
         }
@@ -129,18 +129,18 @@ proc dut_status { dummy } {
         exp_continue
     }
 
-    send_user "\n========STATUS========\n"
-    send_user "conf_debug=($conf_debug)\n"
-    send_user "conf_version=($conf_version)\n"
-    send_user "conf_build_num=($conf_build_num)\n"
-    send_user "conf_build_date=($conf_build_date)\n"
-    send_user "conf_model_type=($conf_model_type)\n"
-    send_user "conf_model_sn=($conf_model_sn)\n"
-    send_user "conf_vdom_status=($conf_vdom_status)\n"
-    send_user "conf_oper_mode=($conf_oper_mode)\n"
-    send_user "conf_ha_mode=($conf_ha_mode)\n"
-    send_user "conf_log_disk=($conf_log_disk)\n"
-    send_user "=========END==========\n"
+    send_log "\n========STATUS========\n"
+    send_log "conf_debug=($conf_debug)\n"
+    send_log "conf_version=($conf_version)\n"
+    send_log "conf_build_num=($conf_build_num)\n"
+    send_log "conf_build_date=($conf_build_date)\n"
+    send_log "conf_model_type=($conf_model_type)\n"
+    send_log "conf_model_sn=($conf_model_sn)\n"
+    send_log "conf_vdom_status=($conf_vdom_status)\n"
+    send_log "conf_oper_mode=($conf_oper_mode)\n"
+    send_log "conf_ha_mode=($conf_ha_mode)\n"
+    send_log "conf_log_disk=($conf_log_disk)\n"
+    send_log "=========END==========\n"
 }
 
 
@@ -194,7 +194,7 @@ proc debug_wad { dummy } {
     send -i $hostid "diag debug en\r"
     #send -i $hostid "diag test app wad 2300\r"
     #send -i $hostid "diag test app wad 110\r"
-    send_user "mode=$arg_mode, enable wad debug\n"
+    send_log "mode=$arg_mode, enable wad debug\n"
 }
 
 
@@ -211,7 +211,7 @@ proc debug_ips { dummy } {
     send -i $hostid "diag ips debug enable all\r"
     send -i $hostid "diag ips debug disable timeout\r"
     send -i $hostid "diag debug en\r"
-    send_user "mode=$arg_mode, enable ips debug\n"
+    send_log "mode=$arg_mode, enable ips debug\n"
 }
 
 
@@ -229,7 +229,7 @@ proc debug_user { dummy } {
 
     send -i $hostid "diag test app wad 1000\r"
     expect -i $hostid -re "Process.*?: type=(wanopt|worker)\\\((.*?)\\\) index=.*? pid=(.*?) state=.*?\r" {
-        set gdb_wanopt_type $expect_out(2,string)
+        set gdb_worker_type $expect_out(2,string)
         exp_continue
     } -re "Process.*?: type=informer\\\((.*?)\\\) index=.*? pid=(.*?) state=.*?\r" {
         set gdb_informer_type $expect_out(1,string)
@@ -239,6 +239,15 @@ proc debug_user { dummy } {
         send -i $hostid -- " "
         exp_continue
     }
+
+    send_log "\n========STATUS========\n"
+    if {[info exists gdb_worker_type]} {
+    send_log "gdb_worker_type=($gdb_worker_type)\n"
+    }
+    if {[info exists gdb_informer_type]} {
+    send_log "gdb_informer_type=($gdb_informer_type)\n"
+    }
+    send_log "========END========\n"
 
     if {[info exists gdb_wanopt_type]} {
         set cmdstr [format "diag test app wad 2%s00" $gdb_wanopt_type]
@@ -308,12 +317,12 @@ if { $arg_mode == "telnet"} {
     send -i $hostid "diag test app wad 1000\r"
 
     expect -i $hostid -re "Process.*?: type=(wanopt|worker).*? index=.*? pid=(.*?) state=.*?\r" {set gdb_worker_pid $expect_out(2,string)}
-    send_user "\ngdb_worker_pid=$gdb_worker_pid\n"
+    send_log "\ngdb_worker_pid=$gdb_worker_pid\n"
 
     # release version cannot debug
     send -i $hostid "sysctl echo hello\r"
     expect -i $hostid -re "Unknown action(.*) # " {
-        send_user "Release version cannot start gdb debug!\n"
+        send_log "Release version cannot start gdb debug!\n"
         exit 1
     } -re "hello(.*) # " {
         send -i $hostid "sys sh\r"
@@ -323,7 +332,7 @@ if { $arg_mode == "telnet"} {
 } else {
     log_file -noappend "log.exp"
     set call [start_common ""]
-    send_user "arg_mode=$arg_mode\n"
+    send_log "arg_mode=$arg_mode\n"
 
     if {[regexp "wad" $arg_mode]} {
         set call [debug_wad ""]
