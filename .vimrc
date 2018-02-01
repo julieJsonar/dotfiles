@@ -126,6 +126,10 @@ call plug#begin('~/.vim/bundle')
         Plug 'fatih/vim-go'
     "}}}
 
+    " Tcl {{{3
+        "Plug 'LStinson/TclShell-Vim'
+    "}}}
+
     " Haskell {{{3
         Plug 'lukerandall/haskellmode-vim'
         Plug 'eagletmt/ghcmod-vim'
