@@ -496,6 +496,9 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
+" tcl.vim
+let tcl_extended_syntax=1
+
 " vim-rooter
 let g:rooter_manual_only = 1
 let g:rooter_patterns = ['Rakefile', '.git', '.git/', '.svn', '.svn/']
