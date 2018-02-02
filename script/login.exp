@@ -350,16 +350,20 @@ if { $arg_mode == "telnet"} {
 
 # Interact
 if { $hostid != "null" } {
-    interact -u $hostid {
-        timeout 3 { send "\n"; }
-        -reset $CTRLZ {exec kill -STOP [pid]}
-        \001   {send_user "you typed a control-A\n";
-                exp_send "\001"
+
+    set spawn_id $hostid
+    set time_out 3
+    while {1} {
+        puts "\[Timeout is: $time_out\]"
+        interact {
+            timeout $time_out { send -i $hostid "\r" }
+            policy { send -i $hostid "show firewall policy\r" }
+            net { send -i $hostid "show system interface\r" }
+            -o eof {
+                puts "We're done here"
+                break
+            }
         }
-        $      {send_user "The date is [exec date]."}
-        \003   exit
-        foo    {send_user "bar"}
-        ~~
     }
 }
 
