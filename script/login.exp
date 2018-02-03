@@ -351,19 +351,20 @@ if { $arg_mode == "telnet"} {
 # Interact
 if { $hostid != "null" } {
 
-    set spawn_id $hostid
-    set time_out 3
-    while {1} {
-        puts "\[Timeout is: $time_out\]"
-        interact {
-            timeout $time_out { send -i $hostid "\r" }
-            policy { send -i $hostid "show firewall policy\r" }
-            net { send -i $hostid "show system interface\r" }
-            -o eof {
-                puts "We're done here"
-                break
-            }
-        }
-    }
+    interact -u $hostid
+    #set spawn_id $hostid
+    #set time_out 3
+    #while {1} {
+    #    puts "\[Timeout is: $time_out\]"
+    #    interact {
+    #        timeout $time_out { send -i $hostid "\r" }
+    #        policy { send -i $hostid "show firewall policy\r" }
+    #        net { send -i $hostid "show system interface\r" }
+    #        -o eof {
+    #            puts "We're done here"
+    #            break
+    #        }
+    #    }
+    #}
 }
 

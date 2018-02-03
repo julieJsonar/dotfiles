@@ -140,7 +140,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
-    Plug 'vim-scripts/tcl.vim'
+    "Plug 'vim-scripts/tcl.vim'
 "}}}
 
 " Facade {{{2
@@ -1188,7 +1188,11 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
       "let g:tagbar_vertical = 25
       "let NERDTreeWinPos = 'left'
     else
-      let g:tagbar_left = 1
+      if utils#IsLeftMostWindow()
+        let g:tagbar_left = 1
+      else
+        let g:tagbar_left = 0
+      endif
       "let g:tagbar_vertical = 0
     endif
 
