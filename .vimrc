@@ -493,6 +493,13 @@ let g:vimfiler_as_default_explorer = 1
 " vebugger {{{2}}}
 "let g:vebugger_leader = ';'
 
+" neogdb.vim {{{2}}}
+if exists("$NBG_ATTACH_REMOTE_STR")
+  let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
+else
+  let g:neogdb_attach_remote_str = 'sysinit/init 192.168.0.180:444'
+endif
+
 " neocomplcache {{{2}}}
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1

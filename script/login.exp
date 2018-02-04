@@ -11,10 +11,18 @@
 #
 
 # config
-log_user 1
+log_user 0
+#log_user 1
+#stty -echo
+#stty echo
+
 set timeout 6
-# the default logfile name only existed when 'mode=telnet'
-#log_file -noappend "log.exp"
+# The default logfile name only existed when 'mode=telnet'
+#   -a flag forces output to be logged that was suppressed by the  log_user command.
+#log_file -a -noappend "log.exp"
+
+# Detailed log so we can debug (uncomment to enable)
+# exp_internal -f /tmp/expect.log 0
 
 # Functions
 ## Functions - Usage
@@ -34,6 +42,7 @@ proc Telnet { host user password } {
     global hostid
 
     spawn telnet $host
+    log_user 0
     set hostid $spawn_id
 
     set count 0;
@@ -305,7 +314,8 @@ if { $arg_count > 3 } {
 }
 
 if { $arg_mode == "telnet"} {
-    log_file -noappend "log.exp"
+    log_user 1
+    log_file -a -noappend "log.exp"
     set call [start_common ""]
 } elseif { $arg_mode == "gdb" } {
     set call [start_common ""]
@@ -330,7 +340,8 @@ if { $arg_mode == "telnet"} {
 
     expect -i $hostid -re " # " { send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"}
 } else {
-    log_file -noappend "log.exp"
+    log_user 1
+    log_file -a -noappend "log.exp"
     set call [start_common ""]
     send_log "arg_mode=$arg_mode\n"
 
@@ -351,20 +362,30 @@ if { $arg_mode == "telnet"} {
 # Interact
 if { $hostid != "null" } {
 
-    interact -u $hostid
-    #set spawn_id $hostid
-    #set time_out 3
-    #while {1} {
-    #    puts "\[Timeout is: $time_out\]"
-    #    interact {
-    #        timeout $time_out { send -i $hostid "\r" }
-    #        policy { send -i $hostid "show firewall policy\r" }
-    #        net { send -i $hostid "show system interface\r" }
-    #        -o eof {
-    #            puts "We're done here"
-    #            break
-    #        }
-    #    }
-    #}
+    set spawn_id $hostid
+    set time_out 3
+    while {1} {
+        puts "wildon before interact"
+
+        interact {
+            timeout $time_out {}
+            +++ { return }
+            -o eof {
+                puts "We're done here"
+                break
+            }
+        }
+
+        puts "What you want to do? wad,ips,user,gdb";
+        log_user 0;
+        set timeout -1;
+        set choice "";
+        while {$choice eq ""} {
+            expect_user -re "(.*)\n";
+            set choice $expect_out(1,string);
+        }
+
+        puts "your choice is $choice, backto interact";
+    }
 }
 
