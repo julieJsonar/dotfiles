@@ -186,6 +186,22 @@ proc dut_debug_init { dummy } {
     }
 }
 
+proc execute_image { model_dir } {
+    global hostid
+    global conf_vdom_status
+    global arg_mode
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
+
+    if { $model_dir == ""} {
+        set model_dir "100D"
+    }
+    puts "exec restore image ftp upload/hyu/$model_dir/image.out 172.18.2.169"
+    send -i $hostid "exec restore image ftp upload/hyu/$model_dir/image.out 172.18.2.169\r"
+    send -i $hostid "y\r"
+}
 
 proc debug_wad { dummy } {
     global hostid
@@ -312,6 +328,11 @@ if { $arg_count > 3 } {
 } else {
     set arg_mode "telnet"
 }
+if { $arg_count > 4 } {
+    set arg_param1 [lindex $argv 4]
+} else {
+    set arg_param1 ""
+}
 
 if { $arg_mode == "telnet"} {
     log_user 1
@@ -339,6 +360,8 @@ if { $arg_mode == "telnet"} {
     }
 
     expect -i $hostid -re " # " { send -i $hostid "gdbserver :444 --attach $gdb_worker_pid\r"}
+} elseif { $arg_mode == "image" } {
+    set call [execute_image $arg_param1]
 } else {
     log_user 1
     log_file -a -noappend "log.exp"

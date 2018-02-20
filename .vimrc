@@ -244,6 +244,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'    | " selected and ga=
         Plug 'huawenyu/c-utils.vim'
+        "Plug 'hari-rangarajan/CCTree'
         Plug 'huawenyu/taboo.vim'
         Plug 'thinca/vim-quickrun'
         Plug 'wsdjeg/SourceCounter.vim'
@@ -498,7 +499,7 @@ let g:vimfiler_as_default_explorer = 1
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
-  let g:neogdb_attach_remote_str = 'sysinit/init 192.168.0.180:444'
+  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 admin "" gdb'
 endif
 
 " neocomplcache {{{2}}}
