@@ -29,6 +29,7 @@ ban_words=( \
   "__FGT_DISK_MGR_DEBUG" \
   "wilson" \
   "message" \
+  "172.18." \
   "cooked" \
   "licVM_IsRegistere" \
   "gsLicense.m_model" \
