@@ -185,6 +185,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'terryma/vim-expand-region'
     Plug 'szw/vim-maximizer'
     Plug 'huawenyu/vim-mark'
+    "Plug 'tomtom/tmarks_vim'
+    "Plug 'tomtom/quickfixsigns_vim'
+    "Plug 'tomtom/vikibase_vim'
+    Plug 'vimwiki/vimwiki'
     "Plug 'huawenyu/highlight.vim'
 
 
@@ -283,7 +287,7 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " ThirdpartLibrary {{{2
-        "Plug 'tomtom/tlib_vim'
+        Plug 'tomtom/tlib_vim'
 "}}}
 
 " Debug {{{2
