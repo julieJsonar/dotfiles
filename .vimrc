@@ -137,7 +137,6 @@ call plug#begin('~/.vim/bundle')
         Plug 'neovimhaskell/haskell-vim'
     "}}}
 
-    "Plug 'vimwiki/vimwiki'
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
     "Plug 'vim-scripts/tcl.vim'
@@ -179,6 +178,98 @@ call plug#begin('~/.vim/bundle')
     Plug 'Shougo/vinarise.vim' | " Hex viewer
 "}}}
 
+" Vimwiki {{{2
+    " Conf:
+    "   <Path>: g:vimwiki_list
+    " [Usage:](http://thedarnedestthing.com/vimwiki%20cheatsheet)
+    "   ==Wiki==
+    "   <leader> ws                     List all wikis
+    "   <leader>ww                      Create a new wiki
+    "   [number]<leader>ww              Choose a existed defined wiki
+    "   <leader> wd                     delete wiki page
+    "   <leader> wr                     rename wiki page
+    "   :VimwikiTOC                     Insert contents index at wiki's top
+    "
+    "   ==Search==
+    "   :VWS /blog/
+    "   :lopen
+    "
+    "   ==List & Task: todo lists==
+    "   <C-Space>                       toggle list item on/off
+    "
+    "   ==editing==
+    "   =                               add header level
+    "   -                               remove header level
+    "   +                               create/decorate links
+    "   glm                             increase indent of list item
+    "   gll                             decrease indent of list item
+    "   gl* or gl8                      switch or insert '*' symbol
+    "   gl# or gl3                      switch or insert '#' symbol
+    "   gl-                             switch or insert '-' symbol
+    "   gl1                             switch or insert '1.' symbol
+    "
+    "   ==Diary==
+    "   <leader>w<leader>w              open diary index file for wiki
+    "   [number]<leader>wi              open diary index file for wiki
+    "   <leader>w<leader>i              update current diary index
+    "   [number]<leader>w<leader>w      open today’s diary file for wiki
+    "   [number]<leader>w<leader>t      open today’s diary file for wiki in new tab
+    "   <C-Up>                          open previous day’s diary
+    "   <C-Down>                        open next day’s diary
+    "
+    "   ==navigation==
+    "   <Enter>                         follow/create wiki link
+    "   <Backspace>                     go back to previous wiki page
+    "   <C-S-CR>                        follow/create wiki link in new tab
+    "   <Tab>                           go to next link on current page
+    "   <S-Tab>                         go to previous link on current page
+    "
+    "   ==Anchor navigation== :help vimwiki-anchors
+    "   Every header, tag, and bold text can be used as an anchor.
+    "   To jump to it, use a wikilink: [[file#anchor]], [[#pay rise]]
+    "
+    "             = My tasks =
+    "             :todo-lists:
+    "             == Home ==
+    "               - [ ] bathe my dog
+    "             == Work ==
+    "               - [ ] beg for *pay rise*
+    "             == Knitting club ==
+    "             === Knitting projects ===
+    "               - [ ] a *funny pig*
+    "               - [ ] a *scary dog*
+    "
+    "
+    "   ==Table==
+    "   :VimwikiTable                   create table
+    "   gqq                             reformat t able
+    "
+    "   <A-Left>                        move column left
+    "   <A-right>                       move column right
+    "   <CR>                            (insert mode) go down/create cell
+    "   <Tab>                           (insert mode) go next/create cell
+    "   gqq or gww                      reformat table
+    "
+    "   ==text objects==
+    "   ah                              section between 2 headings including empty trailing lines
+    "   ih                              section between 2 headings excluding empty trailing lines
+    "   a\                              table cell
+    "   i\                              inner table cell
+    "   ac                              table column
+    "   ic                              inner table column
+    "
+
+    Plug 'vimwiki/vimwiki'              | " Another choice is [Gollum](https://github.com/gollum/gollum)
+    "Plug 'tomtom/vikibase_vim'
+    Plug 'mattn/calendar-vim' | " :Calendar
+
+    " Require vimwiki, tasklib, [taskwarrior](https://taskwarrior.org/download/)
+    " taskwarrior: a command line task management tool, config by ~/.taskrc
+    Plug 'tbabej/taskwiki'
+    Plug 'powerman/vim-plugin-AnsiEsc'
+    Plug 'blindFS/vim-taskwarrior'
+"}}}
+
 " Improve {{{2
     "Plug 'derekwyatt/vim-fswitch'
     Plug 'kopischke/vim-fetch'
@@ -187,8 +278,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
     "Plug 'tomtom/quickfixsigns_vim'
-    "Plug 'tomtom/vikibase_vim'
-    Plug 'vimwiki/vimwiki'
     "Plug 'huawenyu/highlight.vim'
 
 
@@ -245,14 +334,15 @@ call plug#begin('~/.vim/bundle')
         "Plug 'chrisbra/NrrwRgn'
         Plug 'amiorin/vim-eval'
         Plug 'stefandtw/quickfix-reflector.vim'
-        Plug 'kassio/neoterm', Cond(has('nvim'))    | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
-        Plug 'junegunn/vim-easy-align'    | " selected and ga=
+        Plug 'kassio/neoterm', Cond(has('nvim'))        | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
+        Plug 'junegunn/vim-easy-align'                  | " selected and ga=
         Plug 'huawenyu/c-utils.vim'
         "Plug 'hari-rangarajan/CCTree'
         Plug 'huawenyu/taboo.vim'
         Plug 'thinca/vim-quickrun'
         Plug 'wsdjeg/SourceCounter.vim'
-        "Plug 'junegunn/goyo.vim'
+        Plug 'junegunn/goyo.vim'                        | " :Goyo 80
+        "Plug 'junegunn/limelight.vim'                  | " Unsupport colorscheme
     "}}}
 "}}}
 
@@ -363,7 +453,10 @@ set hlsearch
 set incsearch
 set history=1000
 set undolevels=1000
-set shortmess+=a
+"set shortmess+=a
+"set shortmess=atI
+"set shortmess-=oO
+set shortmess=aoOtTI
 set scrolloff=1
 
 set visualbell
@@ -532,6 +625,10 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " tcl.vim
 let tcl_extended_syntax=1
+
+" vim-taskwarrior
+let g:task_rc_override = 'rc.defaultwidth=0'
+let g:task_rc_override = 'rc.defaultheight=0'
 
 " vim-rooter
 let g:rooter_manual_only = 1
@@ -773,6 +870,15 @@ let g:html_ignore_folding = 1
 let g:html_use_css = 0
 let g:enable_numbers = 0
 
+" vimwiki
+" {'path': '$HOME/wiki', 'auto_toc': 1, 'syntax': 'markdown', 'ext': '.md', 'maxhi': 1, 'auto_tags': 1},
+let g:vimwiki_list = [
+      \{'path': '$HOME/wiki', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
+      \{'path': '$HOME/dotwiki', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
+      \]
+"let g:vimwiki_url_maxsave = 0
+"let g:vimwiki_conceallevel = 0
+
 " Python-mode{{{2
   " Activate rope
   " Keys:
@@ -956,6 +1062,21 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
    "    endif
    "endfunction
 
+    function! ToggleCalendar()
+      execute ":Calendar"
+      if exists("g:calendar_open")
+        if g:calendar_open == 1
+          execute "q"
+          unlet g:calendar_open
+        else
+          g:calendar_open = 1
+        end
+      else
+        let g:calendar_open = 1
+      end
+    endfunction
+
+
    augroup fieltype_automap
        " Voom:
        " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
@@ -978,13 +1099,18 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd BufNewFile,BufRead *.c,*.c,*.h,*.cpp,*.C,*.CXX,*.CPP set ft=c
        autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
-       autocmd filetype vimwiki   nnoremap <buffer> <a-o> :VoomToggle vimwiki<CR>
+       autocmd filetype vimwiki  nnoremap <buffer> <a-o> :VoomToggle vimwiki<CR>
+       autocmd filetype vimwiki  nnoremap <a-n> :VimwikiMakeDiaryNote<CR>
+       autocmd filetype vimwiki  nnoremap <a-i> :VimwikiDiaryGenerateLinks<CR>
+       autocmd filetype vimwiki  nnoremap <a-c> :call ToggleCalendar()<CR>
+
        autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
        autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
-       autocmd FileType qf call AdjustWindowHeight(2, 10)
-       autocmd Filetype c,cpp,diff C8
-       autocmd Filetype zsh,bash C2
-       autocmd Filetype vim,markdown C08
+
+       autocmd filetype qf call AdjustWindowHeight(2, 10)
+       autocmd filetype c,cpp,diff C8
+       autocmd filetype zsh,bash C2
+       autocmd filetype vim,markdown C08
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
