@@ -978,6 +978,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd BufNewFile,BufRead *.c,*.c,*.h,*.cpp,*.C,*.CXX,*.CPP set ft=c
        autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
+       autocmd filetype vimwiki   nnoremap <buffer> <a-o> :VoomToggle vimwiki<CR>
        autocmd filetype markdown nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
        autocmd filetype python   nnoremap <buffer> <a-o> :VoomToggle python<CR>
        autocmd FileType qf call AdjustWindowHeight(2, 10)
