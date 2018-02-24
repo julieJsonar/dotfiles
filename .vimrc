@@ -179,6 +179,12 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " Vimwiki {{{2
+    " Install:
+    "   sudo apt-get install uuid-dev
+    "   sudo apt-get install libgnutls-dev
+    "   ## Download v2.5 version, not current v2.6 which require the newer g++ compiler.
+    "   cd taskwarrior; cmake -DCMAKE_BUILD_TYPE=release .; make; sudo make install
+    "   sudo pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop
     " Conf:
     "   <Path>: g:vimwiki_list
     " [Usage:](http://thedarnedestthing.com/vimwiki%20cheatsheet)
@@ -873,11 +879,13 @@ let g:enable_numbers = 0
 " vimwiki
 " {'path': '$HOME/wiki', 'auto_toc': 1, 'syntax': 'markdown', 'ext': '.md', 'maxhi': 1, 'auto_tags': 1},
 let g:vimwiki_list = [
-      \{'path': '$HOME/wiki', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
-      \{'path': '$HOME/dotwiki', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
+      \{'name': 'work', 'path': '$HOME/dotwiki', 'syntax': 'markdown', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
+      \{'name': 'linux', 'path': '$HOME/wiki', 'syntax': 'markdown', 'auto_toc': 1, 'maxhi': 1, 'auto_tags': 1},
       \]
+
+let g:vimwiki_menu = ""         | "Disable error msg: No menu 'Vimwiki'
 "let g:vimwiki_url_maxsave = 0
-"let g:vimwiki_conceallevel = 0
+let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
 
 " Python-mode{{{2
   " Activate rope
@@ -1042,6 +1050,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
            "" The 'SpecialKey' for 'nbsp', 'tab' and 'trail'.
            "hi NonText          ctermfg=238
            "hi SpecialKey       ctermfg=238
+       elseif (my_ft == 'vimwiki')
+           execute ':C0'
        endif
    endfunction
 
@@ -1099,7 +1109,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd BufNewFile,BufRead *.c,*.c,*.h,*.cpp,*.C,*.CXX,*.CPP set ft=c
        autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
 
-       autocmd filetype vimwiki  nnoremap <buffer> <a-o> :VoomToggle vimwiki<CR>
+       "autocmd filetype vimwiki  nnoremap <buffer> <a-o> :VoomToggle vimwiki<CR>
+       autocmd filetype vimwiki  nnoremap <buffer> <a-o> :VoomToggle markdown<CR>
        autocmd filetype vimwiki  nnoremap <a-n> :VimwikiMakeDiaryNote<CR>
        autocmd filetype vimwiki  nnoremap <a-i> :VimwikiDiaryGenerateLinks<CR>
        autocmd filetype vimwiki  nnoremap <a-c> :call ToggleCalendar()<CR>
@@ -1111,6 +1122,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd filetype c,cpp,diff C8
        autocmd filetype zsh,bash C2
        autocmd filetype vim,markdown C08
+       autocmd filetype vimwiki C0
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
