@@ -284,6 +284,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
     "Plug 'tomtom/quickfixsigns_vim'
+    Plug 'jceb/vim-editqf'              | " notes when review source
     "Plug 'huawenyu/highlight.vim'
 
 
@@ -660,6 +661,11 @@ let g:neomake_error_sign = {
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" vim-editqf
+let g:editqf_no_mappings = 1
+let g:editqf_saveqf_filename  = "vim.qf"
+let g:editqf_saveloc_filename = "vim.qflocal"
 
 " easymotion {{{2
   let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -1402,6 +1408,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
   "bookmark
   nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
+  nnoremap <leader>mn :QFAddNote note: 
+  nnoremap <leader>ms :QFSave! 
+  nnoremap <leader>ml :QFLoad 
   "nnoremap <leader>mo :BookmarkLoad Default
   "nnoremap <leader>ma :BookmarkShowAll <CR>
   "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
