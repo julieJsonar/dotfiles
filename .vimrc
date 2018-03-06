@@ -284,6 +284,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
     "Plug 'tomtom/quickfixsigns_vim'
+    Plug 'tomtom/vimform_vim'
     Plug 'jceb/vim-editqf'              | " notes when review source
     "Plug 'huawenyu/highlight.vim'
 
