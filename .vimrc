@@ -601,6 +601,8 @@ let g:vimfiler_as_default_explorer = 1
 
 " neogdb.vim {{{2}}}
 "let g:neogdb_window = ['backtrace', 'breakpoint']
+let g:gdb_require_enter_after_toggling_breakpoint = 0
+
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
