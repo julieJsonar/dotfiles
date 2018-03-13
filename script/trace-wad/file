@@ -5,7 +5,9 @@ daemon/wad/wad.c
 daemon/wad/wad_mem.c
 daemon/wad/wad_fmem.c
 daemon/wad/wad_str.c
+daemon/wad/wad_addr.c
 daemon/wad/wad_buff.c
+daemon/wad/wad_buff2.c
 daemon/wad/wad_input_buff.c
 daemon/wad/ui/fg/wad_intf.c
 daemon/wad/wad_auth.c
@@ -27,7 +29,10 @@ daemon/wad/rfc2617_digest.c
 daemon/wad/wad_asn1.c
 daemon/wad/wad_waf_sig.c
 daemon/wad/wad_internet_service.c
+daemon/wad/wad_img_resize.c
+daemon/wad/wad_png.c
 
+daemon/wad/ssh
 daemon/wad/wad_mem
 daemon/wad/test/
 daemon/wad/scheduler/

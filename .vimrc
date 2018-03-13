@@ -36,6 +36,8 @@
 "   - 'K' on c-function: open man document
 "   - :Nman find                ' Open man document of `find`
 "   - :VoomToggle markdown      ' outline as markdown
+"   - :VoomToggle markdown      ' outline as markdown
+"   - <l>ec                     ' eval viml selected
 "
 " }}}
 "
@@ -287,6 +289,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tomtom/vimform_vim'
     Plug 'jceb/vim-editqf'              | " notes when review source
     "Plug 'huawenyu/highlight.vim'
+    Plug 'kshenoy/vim-signature'        | " place, toggle and display marks
 
 
     " Motion {{{3
@@ -1284,10 +1287,19 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,0)<cr><cr>
   vnoremap <silent> <leader>vv :<C-\>e utilgrep#Grep(1,1)<cr><cr>
 
+  function! SelectedReplace()
+      let sel_str = utils#GetSelected('')
+      normal [[ma%mb
+      call signature#sign#Refresh(1)
+      redraw
+      return "'a,'bs/\<". sel_str. '\>/'. sel_str. '/gI'
+  endfunction
+
   " For local replace
-  nnoremap <leader>vr viwy[[V%:s/\<<C-R>"\>/<C-R>"/g<left><left>
-  "nnoremap <leader>vr viw"xygd[{V%::s/<C-R>//<C-R>x/g<left><left>
-  vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
+  "nnoremap <leader>vm [[ma%mb:call signature#sign#Refresh(1) <CR>
+  nnoremap <leader>vr :<C-\>e SelectedReplace()<CR><left><left><left>
+  vnoremap <leader>vr :<C-\>e SelectedReplace()<CR><left><left><left>
+
   " For global replace
   nnoremap <leader>vR gD:%s/<C-R>///g<left><left>
   "

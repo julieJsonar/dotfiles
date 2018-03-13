@@ -178,6 +178,7 @@ proc dut_debug_init { dummy } {
 
     send -i $hostid "diag debug dis\r"
     send -i $hostid "diag debug console no enable\r"
+    send -i $hostid "diag debug console timestamp disable\r"
     send -i $hostid "diag ips debug disable all\r"
     send -i $hostid "diag wad debug clear\r"
 
