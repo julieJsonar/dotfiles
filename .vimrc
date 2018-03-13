@@ -614,18 +614,6 @@ let g:neogdb_vars = {
       \ 'struct my_str *' : ['{}->val', '{}->len'],
       \ }
 
-function! NeogdbvimVarCallback(varname, vartype)
-  let l:plist = []
-  if has_key(g:neogdb_vars, a:vartype)
-    let l:attrs = get(g:neogdb_vars, a:vartype, [])
-    for l:attr in l:attrs
-      let l:print = 'p '. substitute(l:attr, '{}', a:varname, "g")
-      call add(l:plist, l:print)
-    endfor
-  endif
-  return l:plist
-endfunction
-
 " neocomplcache {{{2}}}
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
