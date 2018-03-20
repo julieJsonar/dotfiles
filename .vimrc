@@ -289,7 +289,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tomtom/vimform_vim'
     Plug 'jceb/vim-editqf'              | " notes when review source
     "Plug 'huawenyu/highlight.vim'
-    Plug 'kshenoy/vim-signature'        | " place, toggle and display marks
+    Plug 'huawenyu/vim-signature'        | " place, toggle and display marks
 
 
     " Motion {{{3
