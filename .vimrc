@@ -267,7 +267,7 @@ call plug#begin('~/.vim/bundle')
     "   ic                              inner table column
     "
 
-    Plug 'vimwiki/vimwiki'              | " Another choice is [Gollum](https://github.com/gollum/gollum)
+    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }  | " Another choice is [Gollum](https://github.com/gollum/gollum)
     "Plug 'tomtom/vikibase_vim'
     Plug 'mattn/calendar-vim' | " :Calendar
 
@@ -1418,7 +1418,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "nnoremap <leader>ma :BookmarkShowAll <CR>
   "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
+  "
 
+  nnoremap <f3> :VimwikiFollowLink
 "}
 
 " VimL Debug{{{1

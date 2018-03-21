@@ -382,34 +382,36 @@ if { $arg_mode == "telnet"} {
     }
 }
 
+set spawn_id $hostid
+interact
 
-# Interact
-if { $hostid != "null" } {
-
-    set spawn_id $hostid
-    set time_out 3
-    while {1} {
-        puts "wildon before interact"
-
-        interact {
-            timeout $time_out {}
-            +++ { return }
-            -o eof {
-                puts "We're done here"
-                break
-            }
-        }
-
-        puts "What you want to do? wad,ips,user,gdb";
-        log_user 0;
-        set timeout -1;
-        set choice "";
-        while {$choice eq ""} {
-            expect_user -re "(.*)\n";
-            set choice $expect_out(1,string);
-        }
-
-        puts "your choice is $choice, backto interact";
-    }
-}
+## Add interact layout to capture user input
+#if { $hostid != "null" } {
+#
+#    set spawn_id $hostid
+#    set time_out 3
+#    while {1} {
+#        puts "wildon before interact"
+#
+#        interact {
+#            timeout $time_out {}
+#            +++ { return }
+#            -o eof {
+#                puts "We're done here"
+#                break
+#            }
+#        }
+#
+#        puts "What you want to do? wad,ips,user,gdb";
+#        log_user 0;
+#        set timeout -1;
+#        set choice "";
+#        while {$choice eq ""} {
+#            expect_user -re "(.*)\n";
+#            set choice $expect_out(1,string);
+#        }
+#
+#        puts "your choice is $choice, backto interact";
+#    }
+#}
 
