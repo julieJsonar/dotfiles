@@ -233,13 +233,27 @@ proc debug_ips { dummy } {
         send -i $hostid "c g\r"
     }
 
-    send -i $hostid "diag debug crash read\r"
     send -i $hostid "diag ips debug enable all\r"
     send -i $hostid "diag ips debug disable timeout\r"
     send -i $hostid "diag debug en\r"
     send_log "mode=$arg_mode, enable ips debug\n"
 }
 
+
+proc debug_urlfilter { dummy } {
+    global hostid
+    global conf_vdom_status
+    global arg_mode
+
+    if { $conf_vdom_status == "enable"} {
+        send -i $hostid "c g\r"
+    }
+
+    send -i $hostid "diag debug app urlfilter -1\r"
+    send -i $hostid "diag debug en\r"
+    send -i $hostid "diagnose test application urlfilter 21\r"
+    send_log "mode=$arg_mode, enable urlfilter debug\n"
+}
 
 proc debug_user { dummy } {
     global hostid
@@ -379,6 +393,10 @@ if { $arg_mode == "telnet"} {
 
     if {[regexp "ips" $arg_mode]} {
         set call [debug_ips ""]
+    }
+
+    if {[regexp "url" $arg_mode]} {
+        set call [debug_urlfilter ""]
     }
 }
 
