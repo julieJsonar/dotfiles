@@ -1104,6 +1104,10 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd CursorHold * normal! m'
 
        autocmd BufEnter * call SetIndentTabForCfiletype()
+       " Always show sign column
+       autocmd BufEnter * sign define dummy
+       autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+
        autocmd BufNewFile,BufRead *.json set ft=javascript
        autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
        autocmd BufNewFile,BufRead *.c,*.c,*.h,*.cpp,*.C,*.CXX,*.CPP set ft=c
@@ -1292,7 +1296,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
       normal [[ma%mb
       call signature#sign#Refresh(1)
       redraw
-      return "'a,'bs/\<". sel_str. '\>/'. sel_str. '/gI'
+      return "'a,'bs/\\<". sel_str. '\>/'. sel_str. '/gI'
   endfunction
 
   " For local replace

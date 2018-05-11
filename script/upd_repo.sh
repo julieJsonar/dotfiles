@@ -27,6 +27,7 @@ git_repos=( \
   "$HOME/workref/fos-git" \
   "$HOME/workref/fos-5.4" \
   "$HOME/workref/fos-5.6" \
+  "$HOME/workref/fos-6.0" \
   "$HOME/workref/fos-trunk" \
 )
 
@@ -146,6 +147,7 @@ Main ()
                 git checkout 5-4; git pull --all;
                 git checkout 5-2; git pull --all;
                 git checkout 5-0; git pull --all;
+                git checkout 6.0; git pull --all;
                 git checkout master
                 git prune
             else
