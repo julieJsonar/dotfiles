@@ -220,6 +220,7 @@ proc debug_wad { dummy } {
     send -i $hostid "diag debug en\r"
     #send -i $hostid "diag test app wad 2300\r"
     #send -i $hostid "diag test app wad 110\r"
+    #send -i $hostid "diag debug console timestamp enable\r"
     send_log "mode=$arg_mode, enable wad debug\n"
 }
 
