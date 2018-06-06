@@ -20,6 +20,8 @@ if [ ! -z "$1" ]; then
 fi
 
 # Rebuild All
+mkdir -p ./.tagme
+
 if [ -f ./cscope.files ]; then
 	filecnt_c=1024
 else
@@ -36,21 +38,21 @@ if [ $filecnt_c -ge 1024 ]; then
 	case "$tagscope" in
 	   "all")
 		   echo "tag all"
-		   find -L . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+		   find -L . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > ./.tagme/cscope.f1
 	   ;;
 	   "wad")
 		   echo "tag wad"
-		   find daemon/wad -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+		   find daemon/wad -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > ./.tagme/cscope.f1
 	   ;;
 	   *)
 		   echo "tag default"
-		   find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > /tmp/cscope.f1
+		   find . -name '*.c' -o -name '*.cc' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' > ./.tagme/cscope.f1
 	   ;;
 	esac
 
-	wad_c=$(grep 'daemon/wad' /tmp/cscope.f1 | wc -l)
+	wad_c=$(grep 'daemon/wad' ./.tagme/cscope.f1 | wc -l)
 	if [ $wad_c -ge 10 ]; then
-		cat /tmp/cscope.f1                 | \
+		cat ./.tagme/cscope.f1                 | \
 			grep -v 'wad/ui/stdin/'        | \
 			grep -v 'wad/redirect/socket/' | \
 			grep -v 'wad/test/'            | \
@@ -68,13 +70,13 @@ if [ $filecnt_c -ge 1024 ]; then
 			grep -v 'tests/gtest/'         | \
 			grep -v 'tools/'               | \
 			grep -v '/_' \
-			> /tmp/cscope.f2
+			> ./.tagme/cscope.f2
 	else
-		mv /tmp/cscope.f1 /tmp/cscope.f2
+		mv ./.tagme/cscope.f1 ./.tagme/cscope.f2
 	fi
 
-	sort /tmp/cscope.f2 > /tmp/cscope.f3
-	mv /tmp/cscope.f3 cscope.files
+	sort ./.tagme/cscope.f2 > ./.tagme/cscope.f3
+	mv ./.tagme/cscope.f3 cscope.files
 	#    /usr/bin/time gtags -f cscope.files
 	#    /usr/bin/time global -u -L cscope.files
     rm -f .tags 2> /dev/null
@@ -102,4 +104,6 @@ else
 	notify-send "Done tags R $(($duration / 60)):$(($duration % 60))."
 fi
 #ctags -e --c-kinds=+defgstum -L cscope.files > /dev/null 2>&1
+
+rm -fr ./.tagme
 
