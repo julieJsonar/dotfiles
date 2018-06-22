@@ -35,7 +35,7 @@ sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386 manpages-dev
 # sudo updatedb
 # locate stdio.h
 
-# brew: substitute for apt-get install
+# [brew](http://http://linuxbrew.sh/): substitute for apt-get install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 brew install neovim
 
