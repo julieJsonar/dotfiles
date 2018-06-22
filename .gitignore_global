@@ -16,4 +16,5 @@ tagx
 *.orig
 *.rej
 .gdb_history
+fgtcoveragebuild.tar.xz
 migadmin/node_modules/grunt-jscs/*
