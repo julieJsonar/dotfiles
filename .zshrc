@@ -212,6 +212,7 @@ export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 export USESUDO=$(which sudo)
 export FORTIPKG=$HOME/fortipkg

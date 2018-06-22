@@ -35,21 +35,25 @@ sudo apt-get install -y build-essential ia32-libs libc6-dbg:i386 manpages-dev
 # sudo updatedb
 # locate stdio.h
 
+# brew: substitute for apt-get install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+brew install neovim
+
 # neovim:
-# https://github.com/neovim/neovim/wiki/Installing-Neovim
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt-get install software-properties-common
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-sudo apt-get update
-sudo apt-get install neovim
-# nvim :help nvim_python
-sudo pip install neovim
-#sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-#sudo update-alternatives --config vi
-#sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-#sudo update-alternatives --config vim
-#sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-#sudo update-alternatives --config editor
+## https://github.com/neovim/neovim/wiki/Installing-Neovim
+#sudo add-apt-repository ppa:neovim-ppa/stable
+#sudo apt-get install software-properties-common
+#sudo apt-get install python-dev python-pip python3-dev python3-pip
+#sudo apt-get update
+#sudo apt-get install neovim
+## nvim :help nvim_python
+#sudo pip install neovim
+##sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+##sudo update-alternatives --config vi
+##sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+##sudo update-alternatives --config vim
+##sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+##sudo update-alternatives --config editor
 mkdir ~/.config
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
