@@ -204,7 +204,7 @@ export PERL_MB_OPT="--install_base $HOME/perl5";
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
 
-export PYTHONPATH="$HOME/work/autotest-robot/library"
+export PYTHONPATH="$HOME/dotwiki/lib/python"
 export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
 
 # export JAVA_HOME="/usr/java/latest"
@@ -213,6 +213,8 @@ export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/opt/ActiveTcl-8.6/bin:$PATH"
+export PATH="/home/hyu/Komodo-Edit-11/bin:$PATH"
 
 export USESUDO=$(which sudo)
 export FORTIPKG=$HOME/fortipkg
