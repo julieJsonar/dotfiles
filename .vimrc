@@ -121,7 +121,7 @@ call plug#begin('~/.vim/bundle')
         " https://github.com/neovim/python-client
         " Install https://github.com/davidhalter/jedi
         " https://github.com/zchee/deoplete-jedi
-        Plug 'klen/python-mode'
+        Plug 'python-mode/python-mode'
     "}}}
 
     " Golang {{{3
@@ -901,13 +901,15 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
   " [M            Jump on previous class or method (normal, visual, operator modes)
   " ]M            Jump on next class or method (normal, visual, operator modes)
   let g:pymode_rope = 0
+  let g:pymode_run = 1
+  let g:pymode_run_bind = '<leader>rr'
 
   " Documentation
   let g:pymode_doc = 1
   let g:pymode_doc_key = 'K'
 
   "Linting
-  let g:pymode_lint = 0
+  let g:pymode_lint = 1
   let g:pymode_lint_checker = "pyflakes,pep8"
   " Auto check on save
   let g:pymode_lint_write = 1
