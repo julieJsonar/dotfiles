@@ -123,7 +123,6 @@ call plug#begin('~/.vim/bundle')
         " https://github.com/zchee/deoplete-jedi
         Plug 'python-mode/python-mode'
         Plug 'davidhalter/jedi-vim'
-        "Plug 'gu-fan/doctest.vim'     | " doctest for language vimscript
     "}}}
 
     " Golang {{{3
@@ -288,7 +287,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
     "Plug 'tomtom/quickfixsigns_vim'
-    Plug 'tomtom/vimform_vim'
+    "Plug 'tomtom/vimform_vim'
     Plug 'jceb/vim-editqf'              | " notes when review source
     "Plug 'huawenyu/highlight.vim'
     Plug 'huawenyu/vim-signature'        | " place, toggle and display marks
@@ -394,6 +393,7 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " Debug {{{2
+    Plug 'gu-fan/doctest.vim'     | " doctest for language vimscript
     Plug 'tpope/vim-scriptease'
     Plug 'huawenyu/vimlogger'
     "Plug 'huawenyu/Decho'
