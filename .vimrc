@@ -1320,6 +1320,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "nnoremap <leader>vm [[ma%mb:call signature#sign#Refresh(1) <CR>
   nnoremap <leader>vr :<C-\>e SelectedReplace()<CR><left><left><left>
   vnoremap <leader>vr :<C-\>e SelectedReplace()<CR><left><left><left>
+  " remove space from emptyline
+  nnoremap <leader>v<space> :%s/^\s\s*$//<CR>
+  vnoremap <leader>v<space> :s/^\s\s*$//<cr>
 
   " For global replace
   nnoremap <leader>vR gD:%s/<C-R>///g<left><left>
