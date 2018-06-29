@@ -122,6 +122,8 @@ call plug#begin('~/.vim/bundle')
         " Install https://github.com/davidhalter/jedi
         " https://github.com/zchee/deoplete-jedi
         Plug 'python-mode/python-mode'
+        Plug 'davidhalter/jedi-vim'
+        "Plug 'gu-fan/doctest.vim'     | " doctest for language vimscript
     "}}}
 
     " Golang {{{3
@@ -909,7 +911,7 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
   let g:pymode_doc_key = 'K'
 
   "Linting
-  let g:pymode_lint = 1
+  let g:pymode_lint = 0
   let g:pymode_lint_checker = "pyflakes,pep8"
   " Auto check on save
   let g:pymode_lint_write = 1
@@ -930,6 +932,18 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
   " Don't autofold code
   let g:pymode_folding = 0
 "}}}
+
+
+" Jedi-vim{{{2
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#goto_command = "<leader>gg"
+let g:jedi#goto_assignments_command = "<leader>gd"
+let g:jedi#goto_definitions_command = "<C-]>"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>u"
+let g:jedi#rename_command = ""
+"}}}
+
 
 " Golang-mode{{{2
   let g:go_highlight_functions = 1
@@ -1324,6 +1338,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nmap <silent> <leader>ec <Plug>eval_viml
   vmap <silent> <leader>ec <Plug>eval_viml_region
 
+  " Test
+  nnoremap <silent> <leader>t :<c-u>R <C-R>=printf("python -m doctest %s", expand('%:p'))<cr><cr>
+
   vnoremap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nnoremap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
   nnoremap <silent> <leader>yp :r! cat /tmp/vim.yank<CR>
@@ -1413,7 +1430,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   endfunction
   " :R ls -l   grab command output int new buffer
   " :R! ls -l   only show output in another tab
-  command! -nargs=+ -bang -complete=shellcmd R call s:R(<bang>1, <q-args>)
+  "command! -nargs=+ -bang -complete=shellcmd R call s:R(<bang>1, <q-args>)
+  command! -nargs=+ -bang -complete=shellcmd R execute ':NeomakeRun! '.<q-args>
 
   "bookmark
   nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
