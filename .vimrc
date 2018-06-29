@@ -935,13 +935,14 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
 
 
 " Jedi-vim{{{2
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#goto_command = "<leader>gg"
-let g:jedi#goto_assignments_command = "<leader>gd"
-let g:jedi#goto_definitions_command = "<C-]>"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>u"
-let g:jedi#rename_command = ""
+  " leader+t:   doctest
+  let g:jedi#completions_command = "<C-Space>"
+  let g:jedi#goto_command = "<leader>gg"
+  let g:jedi#goto_assignments_command = "<leader>gd"
+  let g:jedi#goto_definitions_command = "<C-]>"
+  let g:jedi#documentation_command = "<leader>k"
+  let g:jedi#usages_command = "<leader>u"
+  let g:jedi#rename_command = ""
 "}}}
 
 
