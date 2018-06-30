@@ -39,7 +39,7 @@ git_repos=( \
   "$HOME/proj/Design-Patterns-in-C" \
   "$HOME/proj/Boost-Cookbook" \
   "$HOME/proj/libevent-book" \
-  "$HOME/proj/robotframework-sample" \
+  "$HOME/proj/robot-fortios" \
   "$HOME/.vim/bundle/neovim-fuzzy" \
   "$HOME/.vim/bundle/vim-grepper" \
   "$HOME/.vim/bundle/taboo.vim" \
