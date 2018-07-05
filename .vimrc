@@ -1343,7 +1343,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   vmap <silent> <leader>ec <Plug>eval_viml_region
 
   " Test
-  nnoremap <silent> <leader>t :<c-u>R <C-R>=printf("python -m doctest %s", expand('%:p'))<cr><cr>
+  "nnoremap <silent> <leader>t :<c-u>R <C-R>=printf("python -m doctest -m trace --listfuncs --trackcalls %s \| tee log.test", expand('%:p'))<cr><cr>
+  nnoremap <silent> <leader>t :<c-u>R <C-R>=printf("python -m doctest %s \| tee log.test", expand('%:p'))<cr><cr>
 
   vnoremap <silent> <leader>yy :<c-u>call utils#GetSelected("/tmp/vim.yank")<CR>
   nnoremap <silent> <leader>yy  :<c-u>call vimuxscript#Copy() <CR>
