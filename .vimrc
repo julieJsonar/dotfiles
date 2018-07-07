@@ -1182,6 +1182,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
     let b:terminal_scrollback_buffer_size = 2000
     let g:terminal_scrollback_buffer_size = 2000
 
+    " i: enter interact-mode, 'esc' exit interact-mode and enter vi-mode
+    tnoremap <Esc> <C-\><C-n>
     tnoremap <c-h> <C-\><C-n><C-w>h
     tnoremap <c-j> <C-\><C-n><C-w>j
     tnoremap <c-k> <C-\><C-n><C-w>k
