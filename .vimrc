@@ -611,7 +611,7 @@ let g:gdb_require_enter_after_toggling_breakpoint = 0
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
-  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 admin "" gdb'
+  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 -u admin -p "" -m gdb'
 endif
 
 " neogdb.vim: Get more detail variable data
@@ -1183,7 +1183,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
     let g:terminal_scrollback_buffer_size = 2000
 
     " i: enter interact-mode, 'esc' exit interact-mode and enter vi-mode
-    tnoremap <Esc> <C-\><C-n>
+    " But so far conflict with gdb mode
+    "tnoremap <Esc> <C-\><C-n>
     tnoremap <c-h> <C-\><C-n><C-w>h
     tnoremap <c-j> <C-\><C-n><C-w>j
     tnoremap <c-k> <C-\><C-n><C-w>k
