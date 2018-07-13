@@ -6,6 +6,7 @@ from dut_control import *
 
 # [getopt](https://pymotw.com/2/getopt/)
 g_dut = None
+dut = None
 log = logger.GetLogger(__name__)
 
 def usage():
@@ -26,7 +27,7 @@ def act_common():
         """
     g_dut.sendline(strSend)
 
-def act_debug_wad():
+def act_log_wad():
     strSend = """
         diag wad debug enable level verbose
         diag wad debug enable cat all
@@ -39,7 +40,7 @@ def act_debug_wad():
     # "diag debug console timestamp enable\r"
     g_dut.sendline(strSend)
 
-def act_debug_ips():
+def act_log_ips():
     strSend = """
         diag ips debug enable all
         diag ips debug disable timeout
@@ -47,7 +48,7 @@ def act_debug_ips():
         """
     g_dut.sendline(strSend)
 
-def act_debug_urlfilter():
+def act_log_urlfilter():
     strSend = """
         diag debug app urlfilter -1
         diag debug en
@@ -76,6 +77,14 @@ def act_gdb_wad():
         g_dut.sendline("sys sh")
         g_dut.sendline("gdbserver :444 --attach %s" % (wad_worker_pid))
 
+def act_debug_wad():
+    strSend = """
+        diag debug app urlfilter -1
+        diag debug en
+        diagnose test application urlfilter 21
+        """
+    g_dut.sendline(strSend)
+
 def main():
     """
     #dut = DutControl("Linux122")
@@ -88,6 +97,7 @@ def main():
     hello0
     """
     global g_dut
+    global dut
 
     name = "tmpDut"
     cmdconnect = "ssh"
@@ -101,14 +111,14 @@ def main():
     version = '1.0'
 
     options, remainder = getopt.getopt(sys.argv[1:],
-                                       'c:n:h:u:p:l:m:a:v',
+                                       'c:n:h:u:p:l:m:a:v:f',
                                        ['cmd=', 'name=', 'host=', 'user=', 'pass=',
                                         'log=', "mode=", "arg=", "verbose=",
-                                        "version="])
+                                        "version=", "file="])
     for opt, arg in options:
         if opt in ('-n', '--name'):
             name = arg
-        elif opt in ('-n', '--name'):
+        elif opt in ('-c', '--cmd'):
             cmdconnect = arg
         elif opt in ('-h', '--host'):
             host = arg
@@ -130,10 +140,37 @@ def main():
     if not host:
         usage()
 
-    g_dut = DutControl(name)
+    g_dut = DutControl(name, logfile)
     if not g_dut.login(cmdconnect, host, username, password):
         print("Exit: login fail.")
         return
+
+    # import pexpect
+    # g_dut = pexpect.spawn('ssh -qo "StrictHostKeyChecking=no" admin@10.1.1.123')
+    # g_dut.setwinsize(0, 0)
+    # g_dut.logfile_read = open("log.global", "w")
+    # g_dut.setecho(False)
+    # g_dut.delaybeforesend = None
+
+    # dut = pexpect.spawn('ssh -qo "StrictHostKeyChecking=no" admin@10.1.1.125')
+    # dut.setwinsize(0, 0)
+    # dut.logfile_read = open("log.local", "w")
+    # dut.setecho(False)
+    # dut.delaybeforesend = None
+
+
+    # dut.sendline("get system status")
+    # dut.expect(r".*")
+    # g_dut.sendline("get system status")
+    # g_dut.expect(r".*")
+
+    # g_dut.sendline("sysctl echo fromglobal2")
+    # g_dut.expect(r".*")
+    # dut.sendline("sysctl echo fromlobalwilson2")
+    # dut.expect(r".*")
+
+    # dut.interact()
+    # return;
 
     print("Running mode=%s" % (mode))
     if mode == "clear":
@@ -148,6 +185,21 @@ def main():
     elif mode == "log":
         if g_dut.has_vdom():
             g_dut.sendline("config global")
+
+        act_common()
+        if "wad" in mode_arg:
+            act_log_wad()
+        if "ips" in mode_arg:
+            act_log_ips()
+        if "url" in mode_arg:
+            act_log_urlfilter()
+
+        if g_dut.has_vdom():
+            g_dut.sendline("end")
+    # @todo wilson: add wad debug
+    elif mode == "debug":
+        if g_dut.has_vdom():
+            g_dut.sendline("config global")
         act_common()
         if "wad" in mode_arg:
             act_debug_wad()
@@ -155,6 +207,8 @@ def main():
             act_debug_ips()
         if "url" in mode_arg:
             act_debug_urlfilter()
+        if g_dut.has_vdom():
+            g_dut.sendline("end")
 
     g_dut.interact()
 
