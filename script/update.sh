@@ -52,6 +52,8 @@ git_repos=( \
   "$HOME/.vim/bundle/neomake" \
   "$HOME/.vim/bundle/vimlogger" \
   "$HOME/.vim/bundle/asyncrun.vim" \
+  "$HOME/.vim/bundle/VOoM" \
+  "$HOME/.vim/bundle/robotframework-vim" \
 )
 
 ## removed

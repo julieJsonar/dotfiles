@@ -143,6 +143,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
     "Plug 'vim-scripts/tcl.vim'
+    "Plug 'vim-syntastic/syntastic'
 "}}}
 
 " Facade {{{2
@@ -163,7 +164,7 @@ call plug#begin('~/.vim/bundle')
     "Plug 'kovisoft/slimv'
     "Plug 'AnsiEsc.vim'
     Plug 'powerman/vim-plugin-AnsiEsc'
-    Plug 'mfukar/robotframework-vim'
+    Plug 'huawenyu/robotframework-vim'
     Plug 'plasticboy/vim-markdown'
     "Plug 'pangloss/vim-javascript'
     "
@@ -485,14 +486,13 @@ set showbreak=↪ |"⇇
 set nostartofline
 set noshowmatch
 set nonumber
-set noexpandtab
 
 " Check which script change the config value
 "   :verbose set tabstop sw softtabstop expandtab ?
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set textwidth=120
+set textwidth=180
 set noexpandtab
 
 " C indent {
@@ -1143,7 +1143,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd filetype c,cpp,diff C8
        autocmd filetype zsh,bash C2
        autocmd filetype vim,markdown C08
-       autocmd filetype vimwiki C0
+       autocmd filetype vimwiki,txt C0
 
        autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
        autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
