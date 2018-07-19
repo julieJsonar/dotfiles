@@ -324,7 +324,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'huawenyu/vim-rooter'  | " Get or change current dir
 
         "Plug 'tpope/vim-vinegar'    | " '-' open explore
-        Plug 'jhidding/VOoM'        | " VOom support +python3
+        Plug 'huawenyu/VOoM'        | " VOom support +python3
         Plug 'vim-voom/VOoM_extras'
         "Plug 'mhinz/vim-signify'
         " Why search tags from the current file path:

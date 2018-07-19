@@ -1,5 +1,7 @@
 #!/usr/bin/env python
+
 import getopt
+import os
 import sys
 import logger
 from dut_control import *
@@ -9,13 +11,39 @@ g_dut = None
 dut = None
 log = logger.GetLogger(__name__)
 
+observShow = None       # show daemon&runtime info & detail
+observLog = None        # trace log
+observDebug = None      # troubleshooting
+
+
 def usage():
     print "Usage:"
-    print "  script -h 10.1.1.2 -u 'admin' -p '' "
-    print "  script -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp' "
-    print "  script -v -h 10.1.1.2 -u 'admin' -p '' "
-    print "  script -h 10.1.1.2 -u 'admin' -p '' -m log -a wad.ips.urlfilter"
-    print "  script -h 10.1.1.2 -u 'admin' -p '' -m gdb "
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' " % os.path.basename(sys.argv[0])
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp' " % os.path.basename(sys.argv[0])
+    print "  %s -v -h 10.1.1.2 -u 'admin' -p '' " % os.path.basename(sys.argv[0])
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -m log -a wad.ips.urlfilter" % os.path.basename(sys.argv[0])
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -m gdb " % os.path.basename(sys.argv[0])
+
+class Event(object):
+    pass
+
+
+
+# Your Job class can subclass `Observable`.
+# When something of interest happens, call `self.fire(type="progress", percent=50)` or the like.
+class Observable(object):
+    def __init__(self):
+        self.callbacks = []
+    def subscribe(self, callback):
+        self.callbacks.append(callback)
+    def fire(self, **attrs):
+        e = Event()
+        e.source = self
+        for k, v in attrs.iteritems():
+            setattr(e, k, v)
+        for fn in self.callbacks:
+            fn(e)
+
 
 def act_common():
     strSend = """
@@ -26,6 +54,7 @@ def act_common():
         diag wad debug clear
         """
     g_dut.sendline(strSend)
+
 
 def act_log_wad():
     strSend = """
@@ -85,6 +114,14 @@ def act_debug_wad():
         """
     g_dut.sendline(strSend)
 
+def act_show_log():
+    strSend = """
+        exec log filter cate 3
+        exec log filter device memory
+        exec log display
+        """
+    g_dut.sendline(strSend)
+
 def main():
     """
     #dut = DutControl("Linux122")
@@ -98,6 +135,13 @@ def main():
     """
     global g_dut
     global dut
+    global observShow
+    global observLog
+    global observDebug
+
+    observShow = None       # show daemon&runtime info & detail
+    observLog = None        # trace log
+    observDebug = None      # troubleshooting
 
     name = "tmpDut"
     cmdconnect = "ssh"
@@ -106,14 +150,15 @@ def main():
     password = ""
     mode = None
     mode_arg = "wad"
+    mode_sec_arg = ""
     verbose = False
     logfile = "log.exp"
     version = '1.0'
 
     options, remainder = getopt.getopt(sys.argv[1:],
-                                       'c:n:h:u:p:l:m:a:v:f',
+                                       'c:n:h:u:p:l:m:a:s:v:f',
                                        ['cmd=', 'name=', 'host=', 'user=', 'pass=',
-                                        'log=', "mode=", "arg=", "verbose=",
+                                        'log=', "mode=", "arg=", "sec=","verbose=",
                                         "version=", "file="])
     for opt, arg in options:
         if opt in ('-n', '--name'):
@@ -132,6 +177,8 @@ def main():
             mode = arg
         elif opt in ('-a', '--arg'):
             mode_arg = arg
+        elif opt in ('-s', '--sec'):
+            mode_sec_arg = arg
         elif opt in ('-v', '--verbose'):
             verbose = True
         elif opt == '--version':
@@ -196,7 +243,14 @@ def main():
 
         if g_dut.has_vdom():
             g_dut.sendline("end")
-    # @todo wilson: add wad debug
+    elif mode == "show":
+        if g_dut.has_vdom():
+            g_dut.sendline("config global")
+
+        act_common()
+        if "log" in mode_arg:
+            act_show_log()
+    # @todo wilson: add troubleshooting
     elif mode == "debug":
         if g_dut.has_vdom():
             g_dut.sendline("config global")
