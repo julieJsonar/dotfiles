@@ -3,16 +3,23 @@ BEGIN {
     exitState = 0
 }
 {
-    if ($0 ~ /Exit suddenly reason:/) {
+    if ($0 ~ /#Exit suddenly start#/) {
         exitState = 1
+        next
     }
-    else {
-        if ($0 ~ /Exit suddenly without teardown/) {
-            exitState = 3
-        }
-        if ($0 ~ /PleaseExitSudden/) {
-            exitState = 2
-        }
+    if (exitState == 1 && $0 ~ /\| FAIL \|/) {
+        next
+    }
+    if (exitState == 1 && $0 ~ /etup failed:/) {
+        next
+    }
+    if (exitState == 1 && $0 ~ /eardown failed:/) {
+        next
+    }
+    if ($0 ~ /ArExitSudden:/) {
+        exitState = 2
+        print $0
+        next
     }
 
     if (exitState < 2) {
