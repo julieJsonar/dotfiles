@@ -27,7 +27,7 @@ def usage():
     print "  %s -h 10.1.1.2 -u 'admin' -p '' " % sname
     print "  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname
     print "  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t log=wad;ips;urlfilter" % sname
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t log=wad,ips,urlfilter;show=wad" % sname
     print "  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb=wad" % sname
 
 
