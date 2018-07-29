@@ -63,11 +63,18 @@ def main():
     logfile = "log.exp"
     version = '1.0'
 
-    options, remainder = getopt.getopt(sys.argv[1:],
-                                       'c:n:h:u:p:l:t:v:f',
-                                       ['cmd=', 'dryrun=', 'host=', 'user=', 'pass=',
-                                        'log=', "tag=",
-                                        "verbose=", "version=", "file="])
+    try:
+        options, remainder = getopt.getopt(sys.argv[1:],
+                                           'c:nh:u:p:l:t:vf',
+                                           ['cmd=', 'dryrun', 'host=', 'user=', 'pass=',
+                                            'log=', "tag=",
+                                            "verbose", "version=", "file="])
+    except getopt.GetoptError as err:
+        # print help information and exit:
+        print str(err)  # will print something like "option -a not recognized"
+        usage()
+        sys.exit(2)
+
     for opt, arg in options:
         if opt in ('-n', '--dryrun'):
             dryrun = True
@@ -87,14 +94,19 @@ def main():
             verbose = True
         elif opt == '--version':
             version = arg
+        else:
+            assert False, "unhandled option"
 
-    if not host:
+    if not host and not dryrun:
         usage()
 
-    g_dut = DutControl(name, logfile)
-    if not g_dut.login(cmdconnect, host, username, password):
-        print("Exit: login fail.")
-        return
+    if dryrun:
+        g_dut = DutControl.getInstance("log.dummy", True)
+    else:
+        g_dut = DutControl(name, logfile)
+        if not g_dut.login(cmdconnect, host, username, password):
+            print("Exit: login fail.")
+            return
 
     me = ActParser.getInstance()
     if tag:
