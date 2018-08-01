@@ -27,8 +27,8 @@ def usage():
     print "  %s -h 10.1.1.2 -u 'admin' -p '' " % sname
     print "  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname
     print "  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t log=wad,ips,urlfilter;show=wad" % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb=wad" % sname
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname
+    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname
 
 
 def main():
@@ -53,7 +53,7 @@ def main():
     observDebug = None      # troubleshooting
 
     name = "tmpDut"
-    dryrun = "tmpDut"
+    dryrun = False
     cmdconnect = "ssh"
     host = None
     username = "admin"
@@ -111,6 +111,7 @@ def main():
     me = ActParser.getInstance()
     if tag:
         me.action_execute(g_dut, [tag])
+    g_dut.sendline("")
     g_dut.interact()
 
 if __name__ == '__main__':

@@ -611,7 +611,7 @@ let g:gdb_require_enter_after_toggling_breakpoint = 0
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
-  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 -u admin -p "" -m gdb'
+  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 -u admin -p "" -t "gdb:wad"'
 endif
 
 " neogdb.vim: Get more detail variable data
