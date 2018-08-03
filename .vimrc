@@ -365,6 +365,13 @@ call plug#begin('~/.vim/bundle')
 
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
     Plug 'tpope/vim-fugitive' | " Awesome git wrapper
+      " Doc of Gblame: Show help in blame window and input 'g?'
+      "   o     open commit in horizontal split
+      "   O     open commit in new tab
+      "   ~     reblame at [count]th first grandparent
+      "
+      "   -     reblame at commit
+      "   P     reblame at [count]th parent (like HEAD^[count])
     Plug 'codeindulgence/vim-tig' | " Using tig in neovim
     "Plug 'juneedahamed/svnj.vim'
     Plug 'juneedahamed/vc.vim'| " Support git, svn, ...
@@ -1301,8 +1308,8 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <silent> <leader>la :Make init -i -s -j6<CR>
   nnoremap <silent> <leader>lc :Make -C cmf -i -s -j6<CR>
 
-  "nnoremap          <leader>bb :VCBlame<cr>
-  nnoremap          <leader>bb :Gblame<cr>
+  "nnoremap         <leader>bb :VCBlame<cr>
+  nnoremap         <leader>bb :Gblame<cr>
 
   nnoremap <silent> <leader>v] :NeomakeSh! tagme<cr>
   nnoremap <silent> <leader>vi :call utils#VoomInsert(0) <CR>
