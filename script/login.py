@@ -23,12 +23,12 @@ def usage():
     @debug=wad.user:ovrd
     """
     sname = os.path.basename(sys.argv[0])
-    print "Usage:"
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' " % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname
-    print "  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname
-    print "  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname
+    print("Usage:")
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
+    print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname)
 
 
 def main():
@@ -71,7 +71,7 @@ def main():
                                             "verbose", "version=", "file="])
     except getopt.GetoptError as err:
         # print help information and exit:
-        print str(err)  # will print something like "option -a not recognized"
+        print(str(err))  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
 
