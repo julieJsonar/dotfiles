@@ -8,7 +8,52 @@ import cmd
 from dut_control import *
 from act_parser import *
 
+try:
+    raw_input
+except NameError:
+    raw_input = input
+
+#
+#import thread
+#from pynput.keyboard import Key, Listener
+#def on_release(key):
+#    'Key check the release wilson'
+#    if key == Key.tab:
+#        print('{0} release from {0}'.format(key, help(on_release)))
+#    # Stop listener
+#    if key == Key.esc:
+#        return False
+#
+#def monitor_key(name, delay):
+#    # Collect events until released
+#    with Listener(on_release=on_release) as listener:
+#        listener.join()
+#
+## Create two threads as follows
+#try:
+#   thread.start_new_thread( monitor_key, ("Thread-1", 2, ) )
+#except:
+#   print "Error: Unable to start thread"
+#
+
 log = logger.GetLogger(__name__)
+
+CMD_HELP='''
+?, command:?
+    Get commands help
+
+Ctrl + ]
+    Exit dut's interact.
+
+exit
+    This will exit the shell.
+
+example:
+    show:log
+    show:network
+
+'''
+
 
 class Duts(cmd.Cmd):
     """Simple command processor example."""
@@ -130,10 +175,29 @@ def main():
     #    duts = Duts()
     #    duts.set_dut(dut)
     #    duts.cmdloop()
-    if tag:
-        me.action_execute(dut, [tag])
-    dut.sendline("")
-    dut.interact()
+
+    print(CMD_HELP)
+    while True:
+        if tag:
+            cmd = tag
+            tag = ''
+        else:
+            cmd = raw_input('\nCMD (?,exit,ctrl+]) $ ')
+        cmd = cmd.strip()
+        if not cmd:
+            print(CMD_HELP)
+            continue
+        elif cmd == 'exit' or cmd == 'quit':
+            break
+        else:
+            if me.action_execute(dut, [cmd]):
+                #print("wilson return true")
+                dut.sendline("")
+                dut.interact()
+            else:
+                pass
+                #print("wilson return false")
+            #print('#' * 79)
 
 
 if __name__ == '__main__':
