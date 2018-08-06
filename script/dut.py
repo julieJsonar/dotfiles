@@ -184,7 +184,7 @@ def main():
             cmd = tag
             tag = ''
         else:
-            cmd = raw_input('\nCMD (?,exit,ctrl+]) $ ')
+            cmd = raw_input('\nCMD (?, ctrl+]) $ ')
         cmd = cmd.strip()
         if not cmd:
             print(CMD_HELP)
@@ -192,14 +192,11 @@ def main():
         elif cmd == 'exit' or cmd == 'quit':
             break
         else:
-            if me.action_execute(dut, [cmd]):
-                #print("wilson return true")
+            ret = me.action_execute(dut, [cmd])
+            log.info("dut execute %s return %s.", cmd, ret)
+            if ret:
                 dut.sendline("")
                 dut.interact()
-            else:
-                pass
-                #print("wilson return false")
-            #print('#' * 79)
 
 
 if __name__ == '__main__':
