@@ -57,58 +57,18 @@ example:
 '''
 
 
-class Duts(cmd.Cmd):
-    """Simple command processor example."""
-
-    def __init__(self, dut=None):
-        cmd.Cmd.__init__(self)
-        self.dut = dut
-
-    def set_dut(self, dut):
-        self.dut = dut
-
-    @staticmethod
-    def usage():
-        """
-        @log=wad:urlfilter
-        @debug=wad.user:ovrd
-        """
-        sname = os.path.basename(sys.argv[0])
-        print("Usage:")
-        print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
-        print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
-        print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)
-        print("  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname)
-        print("  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname)
-
-    LOG_HELP = [ 'wad', 'url', 'ips', ]
-    def do_log(self, person):
-        "Greet the person"
-        if person and person in self.LOG_HELP:
-            greeting = 'hi, %s!' % person
-        elif person:
-            greeting = "hello, " + person
-        else:
-            greeting = 'hello'
-        print greeting
-
-    def complete_greet(self, text, line, begidx, endidx):
-        if not text:
-            completions = self.LOG_HELP[:]
-        else:
-            completions = [ f
-                            for f in self.LOG_HELP
-                            if f.startswith(text)
-                            ]
-        return completions
-
-    def do_show(self, person):
-        "Greet the person"
-        pass
-
-    def do_EOF(self, line):
-        return True
-
+def usage():
+    """
+    @log=wad:urlfilter
+    @debug=wad.user:ovrd
+    """
+    sname = os.path.basename(sys.argv[0])
+    print("Usage:")
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
+    print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname)
+    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname)
 
 def main():
     # [getopt](https://pymotw.com/2/getopt/)
@@ -121,7 +81,7 @@ def main():
     except getopt.GetoptError as err:
         # print help information and exit:
         print(str(err))  # will print something like "option -a not recognized"
-        Duts.usage()
+        usage()
         sys.exit(2)
 
     name = "tmpDut"
@@ -158,7 +118,7 @@ def main():
             assert False, "unhandled option"
 
     if not host and not dryrun:
-        Duts.usage()
+        usage()
 
     if dryrun:
         dut = DutControl.getInstance("log.dummy", True)
@@ -169,15 +129,6 @@ def main():
             return
 
     me = ActParser.getInstance()
-    #if tag:
-    #    me.action_execute(dut, [tag])
-    #    dut.sendline("")
-    #    dut.interact()
-    #else:
-    #    duts = Duts()
-    #    duts.set_dut(dut)
-    #    duts.cmdloop()
-
     print(CMD_HELP)
     while True:
         if tag:
@@ -197,9 +148,17 @@ def main():
             if ret:
                 dut.sendline("")
                 dut.interact()
+            if not dut.child or not dut.child.isalive():
+                print("Login again for disconnect.")
+                if dryrun:
+                    dut = DutControl.getInstance("log.dummy", True)
+                else:
+                    dut = DutControl(name, logfile)
+                    if not dut.login(cmdconnect, host, username, password):
+                        print("Exit: login fail.")
+                        return
 
 
 if __name__ == '__main__':
     main()
-    #Duts().cmdloop()
 
