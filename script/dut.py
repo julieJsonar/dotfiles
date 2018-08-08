@@ -57,108 +57,124 @@ example:
 '''
 
 
-def usage():
-    """
-    @log=wad:urlfilter
-    @debug=wad.user:ovrd
-    """
-    sname = os.path.basename(sys.argv[0])
-    print("Usage:")
-    print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
-    print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
-    print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)
-    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname)
-    print("  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname)
+class Duts(object):
+    def __init__(self, name):
+        self.dut = None
+        self.name = name
+        self.dryrun = False
+        self.cmdconnect = "ssh"
+        self.host = None
+        self.username = "admin"
+        self.password = ""
+        self.tag = None
+        self.verbose = False
+        self.logfile = "log.exp"
+        self.version = '1.0'
 
-def main():
-    # [getopt](https://pymotw.com/2/getopt/)
-    try:
-        options, remainder = getopt.getopt(sys.argv[1:],
-                                           'c:nh:u:p:l:t:vf',
-                                           ['cmd=', 'dryrun', 'host=', 'user=', 'pass=',
-                                            'log=', "tag=",
-                                            "verbose", "version=", "file="])
-    except getopt.GetoptError as err:
-        # print help information and exit:
-        print(str(err))  # will print something like "option -a not recognized"
-        usage()
-        sys.exit(2)
+    def usage(self):
+        """
+        @log=wad:urlfilter
+        @debug=wad.user:ovrd
+        """
+        sname = os.path.basename(sys.argv[0])
+        print("Usage:")
+        print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
+        print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
+        print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)
+        print("  %s -h 10.1.1.2 -u 'admin' -p '' -t log:wad,ips,urlfilter;show:wad" % sname)
+        print("  %s -h 10.1.1.2 -u 'admin' -p '' -t gdb:wad" % sname)
 
-    name = "tmpDut"
-    dryrun = False
-    cmdconnect = "ssh"
-    host = None
-    username = "admin"
-    password = ""
-    tag = None
-    verbose = False
-    logfile = "log.exp"
-    version = '1.0'
+    def parseArgs(self):
+        # [getopt](https://pymotw.com/2/getopt/)
+        try:
+            options, remainder = getopt.getopt(sys.argv[1:],
+                                            'c:nh:u:p:l:t:vf',
+                                            ['cmd=', 'dryrun', 'host=', 'user=', 'pass=',
+                                                'log=', "tag=",
+                                                "verbose", "version=", "file="])
+        except getopt.GetoptError as err:
+            # print help information and exit:
+            print(str(err))  # will print something like "option -a not recognized"
+            self.usage()
+            sys.exit(2)
 
-    for opt, arg in options:
-        if opt in ('-n', '--dryrun'):
-            dryrun = True
-        elif opt in ('-c', '--cmd'):
-            cmdconnect = arg
-        elif opt in ('-h', '--host'):
-            host = arg
-        elif opt in ('-u', '--user'):
-            username = arg
-        elif opt in ('-p', '--pass'):
-            password = arg
-        elif opt in ('-l', '--log'):
-            logfile = arg
-        elif opt in ('-t', '--tag'):
-            tag = arg
-        elif opt in ('-v', '--verbose'):
-            verbose = True
-        elif opt == '--version':
-            version = arg
-        else:
-            assert False, "unhandled option"
+        for opt, arg in options:
+            if opt in ('-n', '--dryrun'):
+                self.dryrun = True
+            elif opt in ('-c', '--cmd'):
+                self.cmdconnect = arg
+            elif opt in ('-h', '--host'):
+                self.host = arg
+            elif opt in ('-u', '--user'):
+                self.username = arg
+            elif opt in ('-p', '--pass'):
+                self.password = arg
+            elif opt in ('-l', '--log'):
+                self.logfile = arg
+            elif opt in ('-t', '--tag'):
+                self.tag = arg
+            elif opt in ('-v', '--verbose'):
+                self.verbose = True
+            elif opt == '--version':
+                self.version = arg
+            else:
+                assert False, "unhandled option"
 
-    if not host and not dryrun:
-        usage()
+        if not self.host and not self.dryrun:
+            self.usage()
 
-    if dryrun:
-        dut = DutControl.getInstance("log.dummy", True)
-    else:
-        dut = DutControl(name, logfile)
-        if not dut.login(cmdconnect, host, username, password):
-            print("Exit: login fail.")
-            return
+    def is_connect(self):
+        if not self.dut or not self.dut.child or not self.dut.child.isalive():
+            return False
+        return True
 
-    me = ActParser.getInstance()
-    print(CMD_HELP)
-    while True:
-        if tag:
-            cmd = tag
-            tag = ''
-        else:
-            cmd = raw_input('\nCMD (?, ctrl+]) $ ')
-        cmd = cmd.strip()
-        if not cmd:
-            print(CMD_HELP)
-            continue
-        elif cmd == 'exit' or cmd == 'quit':
-            break
-        else:
-            ret = me.action_execute(dut, [cmd])
-            log.info("dut execute %s return %s.", cmd, ret)
-            if ret:
-                dut.sendline("")
-                dut.interact()
-            if not dut.child or not dut.child.isalive():
-                print("Login again for disconnect.")
-                if dryrun:
-                    dut = DutControl.getInstance("log.dummy", True)
-                else:
-                    dut = DutControl(name, logfile)
-                    if not dut.login(cmdconnect, host, username, password):
-                        print("Exit: login fail.")
-                        return
+    def login(self, reason):
+        if not self.is_connect():
+            print("Login {0}.".format(reason))
+            if self.dryrun:
+                self.dut = DutControl.getInstance("log.dummy", True, True)
+            else:
+                self.dut = DutControl(self.name, self.logfile, True, True)
+                if not self.dut.login(self.cmdconnect, self.host, self.username, self.password):
+                    print("Exit: login fail.")
+                    return False
+        return True
+
+    def run(self):
+        self.parseArgs()
+        self.login("init")
+
+        me = ActParser.getInstance()
+        print(CMD_HELP)
+        while True:
+            if self.tag:
+                cmd = self.tag
+                self.tag = ''
+            else:
+                cmd = raw_input('\nCMD (?, ctrl+]) $ ')
+            cmd = cmd.strip()
+            if not cmd:
+                print(CMD_HELP)
+                if not self.is_connect():
+                    self.login("again for disconnect")
+                if self.is_connect():
+                    self.dut.sendline("")
+                    self.dut.interact()
+                continue
+            elif cmd == 'exit' or cmd == 'quit':
+                break
+            else:
+                if not self.is_connect():
+                    self.login("again for disconnect")
+                ret = me.action_execute(self.dut, [cmd])
+                log.info("dut execute %s return %s.", cmd, ret)
+                if ret and self.is_connect():
+                    self.dut.sendline("")
+                    self.dut.interact()
+                continue
 
 
 if __name__ == '__main__':
-    main()
+    dut = Duts("tmpDut")
+    dut.run()
 

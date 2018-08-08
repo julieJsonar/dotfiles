@@ -8,7 +8,7 @@ BEGIN {
 }
 {
     if (exitState == 0 && $0 ~ /#Exit suddenly start#/) {
-        print "robot.awk debug: change state from ", exitState, " to 1: exit start";
+        #print "robot.awk debug: change state from ", exitState, " to 1: exit start";
         exitState = 1
         next
     }
@@ -25,7 +25,7 @@ BEGIN {
         next
     }
     if ($0 ~ /ArExitSudden:/) {
-        print "robot.awk debug: change state from ", exitState, " to 2, skip all follower";
+        #print "robot.awk debug: change state from ", exitState, " to 2, skip all follower";
         exitState = 2
         print $0
         next
