@@ -300,6 +300,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'tpope/vim-abolish'      | " :Subvert/child{,ren}/adult{,s}/g
         "Plug 'tpope/vim-repeat'
         "Plug 'vim-utils/vim-vertical-move'
+        Plug 'rhysd/accelerated-jk'
     "}}}
 
     " Search {{{3
@@ -1174,8 +1175,14 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   inoremap <S-Tab> <C-V><Tab>
 
   " when wrap, move by virtual row
-  nnoremap j gj
-  nnoremap k gk
+  let g:accelerated_jk_enable_deceleration = 1
+  "nnoremap j gj
+  "nnoremap k gk
+  " Accelerated_jk
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+  "nmap j <Plug>(accelerated_jk_gj_position)
+  "nmap k <Plug>(accelerated_jk_gk_position)
 
   " Substitue for MaboXterm diable <c-h>
   nnoremap <leader>h <c-w>h
