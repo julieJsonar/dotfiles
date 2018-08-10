@@ -5,6 +5,7 @@ import os
 import sys
 import logger
 import cmd
+import thread
 from dut_control import *
 from act_parser import *
 
@@ -140,6 +141,16 @@ class Duts(object):
                     return False
         return True
 
+    @staticmethod
+    def run_interact(name, dut):
+        dut.interact()
+
+    def thread_interact(self):
+        try:
+            thread.start_new_thread(Duts.run_interact, ("ThreadInteract", self.dut))
+        except:
+            print("Error: Unable to start thread")
+
     def run(self):
         self.parseArgs()
         self.login("init")
@@ -159,7 +170,8 @@ class Duts(object):
                     self.login("again for disconnect")
                 if self.is_connect():
                     self.dut.sendline("")
-                    self.dut.interact()
+                    #self.dut.interact()
+                    self.thread_interact()
                 continue
             elif cmd == 'exit' or cmd == 'quit':
                 break
@@ -170,7 +182,8 @@ class Duts(object):
                 log.info("dut execute %s return %s.", cmd, ret)
                 if ret and self.is_connect():
                     self.dut.sendline("")
-                    self.dut.interact()
+                    #self.dut.interact()
+                    self.thread_interact()
                 continue
 
 
