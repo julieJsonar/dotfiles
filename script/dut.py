@@ -170,11 +170,14 @@ class Duts(object):
                     self.login("again for disconnect")
                 if self.is_connect():
                     self.dut.sendline("")
-                    #self.dut.interact()
-                    self.thread_interact()
+                    self.dut.interact()
+                    #self.thread_interact()
                 continue
             elif cmd == 'exit' or cmd == 'quit':
                 break
+            elif cmd == 'test':
+                self.dut.parse_log(3)
+                continue
             else:
                 if not self.is_connect():
                     self.login("again for disconnect")
@@ -182,8 +185,8 @@ class Duts(object):
                 log.info("dut execute %s return %s.", cmd, ret)
                 if ret and self.is_connect():
                     self.dut.sendline("")
-                    #self.dut.interact()
-                    self.thread_interact()
+                    self.dut.interact()
+                    #self.thread_interact()
                 continue
 
 

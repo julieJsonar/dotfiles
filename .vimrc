@@ -300,7 +300,8 @@ call plug#begin('~/.vim/bundle')
         Plug 'tpope/vim-abolish'      | " :Subvert/child{,ren}/adult{,s}/g
         "Plug 'tpope/vim-repeat'
         "Plug 'vim-utils/vim-vertical-move'
-        "Plug 'rhysd/accelerated-jk'
+        Plug 'rhysd/accelerated-jk'
+        "Plug 'unblevable/quick-scope'
     "}}}
 
     " Search {{{3
@@ -676,12 +677,12 @@ let g:editqf_saveloc_filename = "vim.qflocal"
 
   " Jump to anywhere you want with minimal keystrokes, with just one key binding.
   " `s{char}{label}`
-  "nmap s <Plug>(easymotion-overwin-f)
+  nmap s <Plug>(easymotion-overwin-f)
 
   " or
   " `s{char}{char}{label}`
   " Need one more keystroke, but on average, it may be more comfortable.
-  nmap s <Plug>(easymotion-overwin-f2)
+  "nmap s <Plug>(easymotion-overwin-f2)
 "}}}
 
 " tags {{{2
@@ -1174,18 +1175,18 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <C-q> :<c-u>qa!<cr>
   inoremap <S-Tab> <C-V><Tab>
 
-  nnoremap j gj
-  nnoremap k gk
+  "nnoremap j gj
+  "nnoremap k gk
   "
-  "" Accelerated_jk
-  "" when wrap, move by virtual row
+  " Accelerated_jk
+  " when wrap, move by virtual row
   "let g:accelerated_jk_enable_deceleration = 1
-  "let g:accelerated_jk_acceleration_table = [1,2,3]
+  let g:accelerated_jk_acceleration_table = [1,2,3,4]
 
-  "nmap j <Plug>(accelerated_jk_gj)
-  "nmap k <Plug>(accelerated_jk_gk)
-  ""nmap j <Plug>(accelerated_jk_gj_position)
-  ""nmap k <Plug>(accelerated_jk_gk_position)
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+  "nmap j <Plug>(accelerated_jk_gj_position)
+  "nmap k <Plug>(accelerated_jk_gk_position)
 
   " Substitue for MaboXterm diable <c-h>
   nnoremap <leader>h <c-w>h
