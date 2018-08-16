@@ -1181,7 +1181,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   " Accelerated_jk
   " when wrap, move by virtual row
   "let g:accelerated_jk_enable_deceleration = 1
-  let g:accelerated_jk_acceleration_table = [1,2,3,4]
+  let g:accelerated_jk_acceleration_table = [1,2,3]
 
   nmap j <Plug>(accelerated_jk_gj)
   nmap k <Plug>(accelerated_jk_gk)

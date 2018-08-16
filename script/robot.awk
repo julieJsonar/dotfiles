@@ -31,6 +31,13 @@ BEGIN {
         next
     }
 
+    if ($0 ~ /Critical failure occurred and exit-on-failure mode is in use./) {
+        #print "robot.awk debug: change state from ", exitState, " to 2, skip all follower";
+        exitState = 2
+        print $0
+        next
+    }
+
     if (ARGC > 1) {
         if ($0 ~ /stopCase/) {
             stopState = 1
