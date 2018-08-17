@@ -246,3 +246,6 @@ wad_ui_ca_name_cmp
 wad_timer_list_on_alarm
 wad_timer_list_flush
 wad_fast_intf_find_cmp
+wad_ui_ssl_dynamic_crypto_get
+wad_ui_ssl_is_kxp_asymmetric
+wad_ui_ssl_is_optssl

@@ -54,6 +54,7 @@ git_repos=( \
   "$HOME/.vim/bundle/asyncrun.vim" \
   "$HOME/.vim/bundle/VOoM" \
   "$HOME/.vim/bundle/robotframework-vim" \
+  "$HOME/.vim/bundle/vim-indentwise" \
 )
 
 ## removed

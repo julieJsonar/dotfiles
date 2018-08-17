@@ -302,6 +302,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'vim-utils/vim-vertical-move'
         Plug 'rhysd/accelerated-jk'
         "Plug 'unblevable/quick-scope'
+        Plug 'huawenyu/vim-indentwise'
     "}}}
 
     " Search {{{3
@@ -609,6 +610,10 @@ augroup END
 " vimfiler {{{2}}}
 let g:vimfiler_as_default_explorer = 1
 "let g:signify_vcs_list = [ 'git', 'svn' ]
+
+" indentwise: 'T@ 193-'
+let g:indentwise_skip_prefix = 7
+let g:indentwise_preserve_col_pos = 1
 
 " vebugger {{{2}}}
 "let g:vebugger_leader = ';'

@@ -7,3 +7,5 @@ wad_input_buff_
 wad_vd_
 wad_serialize_
 wad_url_list_entry_
+wad_ssl_crypto_
+wad_fts_crypto_
