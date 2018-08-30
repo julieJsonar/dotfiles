@@ -178,6 +178,12 @@ Main ()
         msg_ok "update $git_dir changed $diff_num"
     done
 
+    cd "$HOME/workref/fpx-1.0"
+    git svn rebase
+
+    cd "$HOME/workref/fpx-trunk"
+    git svn rebase
+
     DEBUG printf "###$(basename $0):${BASH_LINENO[0]}: ${FUNCNAME[0]} {{{${#FUNCNAME[@]}\n"
 }
 

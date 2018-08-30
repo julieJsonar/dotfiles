@@ -79,6 +79,7 @@ class Duts(object):
         """
         sname = os.path.basename(sys.argv[0])
         print("Usage:")
+        print("  %s -n " % sname)
         print("  %s -h 10.1.1.2 -u 'admin' -p '' " % sname)
         print("  %s -h 10.1.1.2 -u 'admin' -p '' -l 'log.exp'" % sname)
         print("  %s -v -h 10.1.1.2 -u 'admin' -p ''" % sname)

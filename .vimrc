@@ -34,6 +34,7 @@
 "   Usage {{{2
 "   ----------
 "   - 'K' on c-function: open man document
+"   - Well, `gn` re-select the next match.
 "   - :Nman find                ' Open man document of `find`
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
@@ -378,6 +379,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'codeindulgence/vim-tig' | " Using tig in neovim
     "Plug 'juneedahamed/svnj.vim'
     Plug 'juneedahamed/vc.vim'| " Support git, svn, ...
+    Plug 'vim-scripts/vcscommand.vim' | " CVS, SVN, SVK, git, bzr, and hg within VIM
     Plug 'sjl/gundo.vim'
     Plug 'mattn/webapi-vim'
     Plug 'mattn/gist-vim'        | " :'<,'>Gist -e 'list-sample'
@@ -625,7 +627,7 @@ let g:gdb_require_enter_after_toggling_breakpoint = 0
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
-  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.123:444 -u admin -p "" -t "gdb:wad"'
+  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.125:444 -u admin -p "" -t "gdb:wad"'
 endif
 
 " neogdb.vim: Get more detail variable data
@@ -1159,10 +1161,10 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd filetype vim,markdown C08
        autocmd filetype vimwiki,txt C0
 
-       autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
-       autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
-       autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
-       autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>la :call log#filter(expand('%'), 'all')<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>le :call log#filter(expand('%'), 'error')<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>lf :call log#filter(expand('%'), 'flow')<CR>
+       "autocmd filetype log nnoremap <buffer> <leader>lt :call log#filter(expand('%'), 'tcp')<CR>
    augroup END
 
 "}}}
@@ -1180,9 +1182,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nnoremap <C-q> :<c-u>qa!<cr>
   inoremap <S-Tab> <C-V><Tab>
 
-  "nnoremap j gj
-  "nnoremap k gk
-  "
+if exists('g:loaded_accelerated')
   " Accelerated_jk
   " when wrap, move by virtual row
   "let g:accelerated_jk_enable_deceleration = 1
@@ -1192,9 +1192,16 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   nmap k <Plug>(accelerated_jk_gk)
   "nmap j <Plug>(accelerated_jk_gj_position)
   "nmap k <Plug>(accelerated_jk_gk_position)
+else
+  nnoremap j gj
+  nnoremap k gk
+endif
 
   " Substitue for MaboXterm diable <c-h>
   nnoremap <leader>h <c-w>h
+  nnoremap <leader>j <c-w>j
+  nnoremap <leader>k <c-w>k
+  nnoremap <leader>l <c-w>l
 
   nnoremap <c-h> <c-w>h
   nnoremap <c-j> <c-w>j
@@ -1307,9 +1314,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   vnoremap          <leader>o  :<c-u>call <SID>JumpO(1)<cr>
   "nnoremap <silent> <leader>h  :<c-u>call <SID>JumpH(0)<cr>
   "vnoremap          <leader>h  :<c-u>call <SID>JumpH(1)<cr>
-  nnoremap <silent> <leader>j  :<c-u>call <SID>JumpJ(0)<cr>
-  vnoremap          <leader>j  :<c-u>call <SID>JumpJ(1)<cr>
-  nnoremap          <leader>k  :ls<cr>:b<Space>
+  "nnoremap <silent> <leader>j  :<c-u>call <SID>JumpJ(0)<cr>
+  "vnoremap          <leader>j  :<c-u>call <SID>JumpJ(1)<cr>
+  nnoremap          <leader>f  :ls<cr>:b<Space>
   nnoremap <silent> <leader>;  :<c-u>call <SID>JumpComma(0)<cr>
   vnoremap          <leader>;  :<c-u>call <SID>JumpComma(1)<cr>
 
@@ -1319,10 +1326,21 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   "nnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
   "vnoremap <silent> <leader>ll :<c-u>call log#log(expand('%'))<CR>
   " Lint: -i ignore-error and continue, -s --silent --quiet
-  nnoremap <silent> <leader>ll :Make -C daemon/wad -i -s -j6<CR>
-  nnoremap <silent> <leader>lw :Make -C daemon/wad -i -s -j6<CR>
-  nnoremap <silent> <leader>la :Make init -i -s -j6<CR>
-  nnoremap <silent> <leader>lc :Make -C cmf -i -s -j6<CR>
+  nnoremap <leader>mk :Make -C daemon/wad -i -s -j6<CR>
+  nnoremap <leader>mi :Make -C ips -i -s -j6<CR>
+  nnoremap <leader>mc :Make -C cmf -i -s -j6<CR>
+  nnoremap <leader>ma :Make init -i -s -j6<CR>
+
+  "bookmark
+  nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
+  nnoremap <leader>mn :QFAddNote note: 
+  nnoremap <leader>ms :QFSave! 
+  nnoremap <leader>ml :QFLoad 
+  "nnoremap <leader>mo :BookmarkLoad Default
+  "nnoremap <leader>ma :BookmarkShowAll <CR>
+  "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
+  "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
+  "
 
   "nnoremap         <leader>bb :VCBlame<cr>
   nnoremap         <leader>bb :Gblame<cr>
@@ -1464,17 +1482,6 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   " :R! ls -l   only show output in another tab
   "command! -nargs=+ -bang -complete=shellcmd R call s:R(<bang>1, <q-args>)
   command! -nargs=+ -bang -complete=shellcmd R execute ':NeomakeRun! '.<q-args>
-
-  "bookmark
-  nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
-  nnoremap <leader>mn :QFAddNote note: 
-  nnoremap <leader>ms :QFSave! 
-  nnoremap <leader>ml :QFLoad 
-  "nnoremap <leader>mo :BookmarkLoad Default
-  "nnoremap <leader>ma :BookmarkShowAll <CR>
-  "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
-  "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
-  "
 
   nnoremap <f3> :VimwikiFollowLink
 "}
