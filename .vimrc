@@ -33,8 +33,11 @@
 "
 "   Usage {{{2
 "   ----------
-"   - 'K' on c-function: open man document
-"   - Well, `gn` re-select the next match.
+"   - 'K' on c-function         ' open man document
+"   - gn                        ' re-select the next match.
+"   - :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
+"   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
+"   -                           ' :%s/^\s\+//e    remove from begin
 "   - :Nman find                ' Open man document of `find`
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
