@@ -54,6 +54,10 @@ exit
 example:
     show:log
     show:network
+    config proxy
+    config auth
+    config network
+    config policy.proxy
 
 '''
 
