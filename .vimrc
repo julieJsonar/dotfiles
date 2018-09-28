@@ -963,6 +963,7 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
 
 
 " Golang-mode{{{2
+  let g:go_version_warning = 0
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
   let g:go_highlight_fields = 1
