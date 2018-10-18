@@ -42,6 +42,11 @@
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
 "   - <l>ec                     ' eval viml selected
+"   - folding:
+"   -     'zc' (close), 'zo' (open), and 'za' (toggle) operate on one level of folding
+"   -     'zC',  'zO' and 'zA' are similar, but operate on all folding levels
+"   -     'zr' reduces folding by one more level of folds, 'zR' to open all folds.
+"   -     'zm' gives more folding by closing one more level, 'zM' to close all folds.
 "
 " }}}
 "
@@ -1181,6 +1186,9 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   map Q <Nop>
   " Stop that stupid window from popping up
   map q: :q
+  " Disable F1 built-in help key
+  map <F1> <Esc>
+  imap <F1> <Esc>
   nnoremap <C-c> <silent> <C-c>
   nnoremap <buffer> <Enter> <C-W><Enter>
   nnoremap <C-q> :<c-u>qa!<cr>

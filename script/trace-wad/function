@@ -264,3 +264,5 @@ wad_req_stats_update_server_write
 wad_ssl_fstr_factory_get
 wad_ssl_port_check_preferred_cipher_suite
 wad_ssl_proxy_is_key_exchange_compatible
+get_ext_resource_ver_no
+wad_fast_intf_upd_dev
