@@ -57,6 +57,7 @@ if [ $filecnt_c -ge 1024 ]; then
 			grep -v 'wad/redirect/socket/' | \
 			grep -v 'wad/test/'            | \
 			grep -v 'wad/cache/test/'      | \
+			grep -v 'daemon/sslvpnd/'      | \
 			grep -v 'linux/'               | \
 			grep -v 'linux-.*/'            | \
 			grep -v 'compress/'            | \
