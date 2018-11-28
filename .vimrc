@@ -35,6 +35,7 @@
 "   ----------
 "   - 'K' on c-function         ' open man document
 "   - gn                        ' re-select the next match.
+"   - :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
 "   - :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
 "   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
 "   -                           ' :%s/^\s\+//e    remove from begin
@@ -635,7 +636,7 @@ let g:gdb_require_enter_after_toggling_breakpoint = 0
 if exists("$NBG_ATTACH_REMOTE_STR")
   let g:neogdb_attach_remote_str = $NBG_ATTACH_REMOTE_STR
 else
-  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.125:444 -u admin -p "" -t "gdb:wad"'
+  let g:neogdb_attach_remote_str = 'sysinit/init 10.1.1.127:444 -u admin -p "" -t "gdb:wad"'
 endif
 
 " neogdb.vim: Get more detail variable data

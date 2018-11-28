@@ -21,6 +21,24 @@ arg_client_addr = 'trace'
 arg_target_conf = 'trace-wad'
 arg_new_tag = '  __TRACEME__;'
 
+# modules
+pre_config = { \
+              'wad': {
+                  'action': 'add',
+                  'file': 'daemon\/wad.*\.c',
+                  'symbol': '',
+                  'client': 'trace',
+                  'target': 'trace-wad',
+              },
+              'proxy': {
+                  'action': 'add',
+                  'file': 'daemon\/wad.*\.c',
+                  'symbol': '',
+                  'client': 'trace',
+                  'target': 'trace-wad',
+              },
+}
+
 ign_files = {}
 ign_functions = {}
 ign_funcregs = {}
@@ -74,6 +92,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description='Usage of ' + __file__)
     parser.add_argument('-a','--action', help='Action: add|clear', required=False)
+    parser.add_argument('-m','--module', help='Module: wad|proxy', required=False)
     parser.add_argument('-f','--file',   help='File name match regex', required=False)
     parser.add_argument('-s','--symbol', help='Symbol function name match regex', required=False)
     parser.add_argument('-c','--client', help='Neovim client listen address', required=False)

@@ -2,13 +2,15 @@
 !
 ! Ubuntu: solve vim 256 color
 ! sudo apt-get install rxvt-unicode-256color
-!
+! Ref: https://github.com/sickill/dotfiles/blob/master/.Xdefaults
 
 URxvt*transparent : false
+URxvt.cursorBlink : false
 
-!URxvt.perl-ext-common : default,keyboard-select,url-select,confirm-paste,clipboard,selection-to-clipboard,font-size
-URxvt.perl-ext-common : default,clipboard,selection-to-clipboard
-
+URxvt*perl-ext:
+!URxvt.perl-ext-common: default,keyboard-select,url-select,confirm-paste,clipboard,selection-to-clipboard,font-size
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
+URxvt*cutchars: "`^&,;=?@<>()[]{}\│\|\'\"\\"
 
 !!! Change font size on Control-Plus/Minus
 !URxvt.keysym.Control-0x2b: perl:font-size:increase
@@ -32,6 +34,7 @@ URxvt.perl-ext-common : default,clipboard,selection-to-clipboard
 !URxvt.url-select.launcher  : firefox
 !URxvt.url-select.autocopy  : true
 !URxvt.url-select.underline : true
+URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
 
 ! https://github.com/majutsushi/urxvt-font-size
 URxvt.keysym.C-equal:     perl:font-size:increase
@@ -49,21 +52,35 @@ URxvt.letterSpace : -1
 URxvt.urgentOnBell: true
 
 !! Using tmux as history
-!URxvt.saveLines   : 12000
-URxvt.saveLines   : 1000
+!URxvt.saveLines  : 12000
+URxvt.saveLines   : 0
 URxvt.scrollBar   : false
 URxvt.scrollstyle : rxvt
 
 ! XFT
+Xft.dpi: 96
 Xft.lcdfilter : lcddefault
 Xft.hintstyle : hintslight
 Xft.hinting   : true
 Xft.antialias : true
 Xft.rgba      : rgb
+Xft.autohint  : 0
+
+xpdf*antialias: yes
+xpdf*background: white
+xpdf*enableFreetype: yes
+xpdf*foreground: black
+xpdf*urlCommand: chromium %s
 
 !Fading
 !URxvt.fading    : 50
 !URxvt.fadeColor : #29303a
+!URxvt.fading: 15
+URxvt.intensityStyles: true
+URxvt.jumpScroll: True
+!URxvt.shading: 20
+URxvt.skipBuiltinGlyphs: true
+URxvt.xftAntialias: true
 
 !! Themes
 !! grey

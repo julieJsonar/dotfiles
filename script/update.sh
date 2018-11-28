@@ -31,6 +31,7 @@ git_repos=( \
   "$HOME/wiki" \
   "$HOME/dotwiki" \
   "$HOME/proj/pcap" \
+  "$HOME/proj/apue2e" \
   "$HOME/proj/log" \
   "$HOME/proj/cocti" \
   "$HOME/proj/algorithm" \
