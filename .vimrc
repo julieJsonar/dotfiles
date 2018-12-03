@@ -353,7 +353,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'bbchung/Clamp' | " support C-family code powered by libclang
         "Plug 'apalmer1377/factorus'
 
-        Plug 'vim-scripts/DrawIt'
+        Plug 'vim-scripts/DrawIt'                       | " \di \ds: start/stop;  draw by direction-key
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
@@ -1131,7 +1131,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
 
 
    augroup fieltype_automap
-       " Voom:
+       " Voom/VOom:
        " <Enter>             selects node the cursor is on and then cycles between Tree and Body.
        " <Tab>               cycles between Tree and Body windows without selecting node.
        " <C-Up>, <C-Down>    move node or a range of sibling nodes Up/Down.
