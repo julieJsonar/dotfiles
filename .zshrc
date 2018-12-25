@@ -203,9 +203,16 @@ export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5";
 export PERL_MB_OPT="--install_base $HOME/perl5";
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
+export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
 
 export PYTHONPATH="$HOME/dotwiki/lib/python"
-export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
+export PYENV_ROOT="${HOME}/.pyenv"
+
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init -)"
+fi
+
 
 # export JAVA_HOME="/usr/java/latest"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"

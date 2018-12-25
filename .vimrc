@@ -104,6 +104,16 @@ if has("unix")
     if s:uname == "Darwin\n"
         let g:python_host_prog='/usr/bin/python'
     endif
+
+    " [Using-pyenv](https://github.com/tweekmonster/nvim-python-doctor/wiki/Advanced:-Using-pyenv)
+    "   pyenv install 3.6.7
+    "   pyenv virtualenv 3.6.7 neovim3
+    "   pyenv activate neovim3
+    "   pip install neovim
+    if !empty(glob($HOME.'/.pyenv/versions/neovim2'))
+        let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+        let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+    endif
 endif
 
 " Plugins {{{1}}}
@@ -285,7 +295,7 @@ call plug#begin('~/.vim/bundle')
 
     " Require vimwiki, tasklib, [taskwarrior](https://taskwarrior.org/download/)
     " taskwarrior: a command line task management tool, config by ~/.taskrc
-    Plug 'tbabej/taskwiki'
+    "Plug 'tbabej/taskwiki'          | " comment reason: have python3 call error
     Plug 'powerman/vim-plugin-AnsiEsc'
     Plug 'blindFS/vim-taskwarrior'
 "}}}
@@ -402,6 +412,7 @@ call plug#begin('~/.vim/bundle')
 
 " AutoComplete {{{2
     "Plug 'ervandew/supertab'
+    "Plug 'Shougo/denite.nvim'
     Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))         | "{ 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neosnippet.vim', Cond(has('nvim'))        | " c-k apply code, c-n next, c-p previous
     Plug 'Shougo/neosnippet-snippets', Cond(has('nvim'))
@@ -1429,8 +1440,9 @@ endif
   nnoremap <silent> <leader>gf :<c-u>call utils#GotoFileWithPreview()<CR>
 
   "map <leader>ds :call Asm() <CR>
+  nnoremap <leader>df :%s/\s\+$//g
   nnoremap <leader>dd :g/<C-R><C-w>/ norm dd
-  nnoremap <leader>de  :g/.\{200,\}/d
+  nnoremap <leader>de :g/.\{200,\}/d
 
   nnoremap <leader>qw :R! ~/tools/dict <C-R>=expand('<cword>') <cr>
   nnoremap <leader>qs :QSave
