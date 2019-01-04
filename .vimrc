@@ -145,6 +145,10 @@ call plug#begin('~/.vim/bundle')
         Plug 'davidhalter/jedi-vim'
     "}}}
 
+    " Perl {{{3
+        Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+    "}}}
+
     " Golang {{{3
         Plug 'fatih/vim-go'
     "}}}
@@ -363,6 +367,11 @@ call plug#begin('~/.vim/bundle')
         "Plug 'bbchung/Clamp' | " support C-family code powered by libclang
         "Plug 'apalmer1377/factorus'
 
+        " Execute eval script: using singlecompile
+        Plug 'thinca/vim-quickrun'                      | " :QuickRun
+        Plug 'fboender/bexec'                           | " :Bexec
+        Plug 'xuhdev/SingleCompile'                     | " :SingleCompile, SingleCompileRun
+
         Plug 'vim-scripts/DrawIt'                       | " \di \ds: start/stop;  draw by direction-key
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
@@ -375,7 +384,6 @@ call plug#begin('~/.vim/bundle')
         Plug 'huawenyu/c-utils.vim'
         "Plug 'hari-rangarajan/CCTree'
         Plug 'huawenyu/taboo.vim'
-        Plug 'thinca/vim-quickrun'
         Plug 'wsdjeg/SourceCounter.vim'
         Plug 'junegunn/goyo.vim'                        | " :Goyo 80
         "Plug 'junegunn/limelight.vim'                  | " Unsupport colorscheme
@@ -981,6 +989,9 @@ let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
   let g:jedi#rename_command = ""
 "}}}
 
+" SingleCompile{{{2
+  let g:SingleCompile_usequickfix=1
+"}}}
 
 " Golang-mode{{{2
   let g:go_version_warning = 0
@@ -1401,9 +1412,26 @@ endif
   "vnoremap <leader>vr :<C-\>e tmp#CurrentReplace() <CR>
   "nnoremap <leader>vr :Replace <C-R>=expand('<cword>') <CR> <C-R>=expand('<cword>') <cr>
 
-  vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
-  nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
-  nnoremap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
+  " script-eval
+  "vnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(1)<CR>
+  "nnoremap <silent> <leader>ee :<c-u>call vimuxscript#ExecuteSelection(0)<CR>
+  "nnoremap <silent> <leader>eg :<c-u>call vimuxscript#ExecuteGroup()<CR>
+
+  "" execute file that I'm editing in Vi(m) and get output in split window
+  "nnoremap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
+  "            \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
+  nnoremap <silent> <leader>ee :call SingleCompileSplit() \| SCCompileRun<CR>
+  nnoremap <silent> <leader>eo :SCViewResult<CR>
+  function! SingleCompileSplit()
+    if winwidth(0) > 200
+       let g:SingleCompile_split = "vsplit"
+       let g:SingleCompile_resultsize = winwidth(0)/2
+    else
+       let g:SingleCompile_split = "split"
+       let g:SingleCompile_resultsize = winheight(0)/3
+    endif
+  endfunction
+
 
   " vim-eval
   let g:eval_viml_map_keys = 0
@@ -1422,10 +1450,6 @@ endif
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
-
-  " execute file that I'm editing in Vi(m) and get output in split window
-  nnoremap <silent> <leader>x :w<CR>:silent !chmod 755 %<CR>:silent !./% > /tmp/vim.tmpx<CR>
-              \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
 
   vnoremap v <Plug>(expand_region_expand)
   vnoremap <a-v> <Plug>(expand_region_shrink)
