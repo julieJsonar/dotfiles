@@ -147,6 +147,7 @@ call plug#begin('~/.vim/bundle')
 
     " Perl {{{3
         Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+        Plug 'tpope/vim-cucumber'       | " Auto test framework base on Behaviour Drive Development(BDD)
     "}}}
 
     " Golang {{{3
@@ -307,7 +308,9 @@ call plug#begin('~/.vim/bundle')
 " Improve {{{2
     "Plug 'derekwyatt/vim-fswitch'
     Plug 'kopischke/vim-fetch'
-    Plug 'terryma/vim-expand-region'
+    Plug 'terryma/vim-expand-region'   | "   W - select region expand; B - shrink
+
+    Plug 'tpope/vim-surround'           | " ds - remove surround; cs - change surround; yss - surround the whole line; ysiw - surround the current word
     Plug 'szw/vim-maximizer'
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
@@ -322,7 +325,7 @@ call plug#begin('~/.vim/bundle')
         "Plug 'justinmk/vim-sneak'    | " s + prefix-2-char to choose the words
         Plug 'easymotion/vim-easymotion'
         Plug 'tpope/vim-abolish'      | " :Subvert/child{,ren}/adult{,s}/g
-        "Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-repeat'
         "Plug 'vim-utils/vim-vertical-move'
         Plug 'rhysd/accelerated-jk'
         "Plug 'unblevable/quick-scope'
@@ -371,13 +374,14 @@ call plug#begin('~/.vim/bundle')
         Plug 'thinca/vim-quickrun'                      | " :QuickRun
         Plug 'fboender/bexec'                           | " :Bexec
         Plug 'xuhdev/SingleCompile'                     | " :SingleCompile, SingleCompileRun
+        Plug 'amiorin/vim-eval'
+        Plug 'tpope/vim-eunuch'  | " Support unix shell cmd: Delete,Unlink,Move,Rename,Chmod,Mkdir,Cfind,Clocate,Lfind,Wall,SudoWrite,SudoEdit
 
         Plug 'vim-scripts/DrawIt'                       | " \di \ds: start/stop;  draw by direction-key
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
         "Plug 'chrisbra/NrrwRgn'
-        Plug 'amiorin/vim-eval'
         Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))        | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'                  | " selected and ga=
@@ -1368,6 +1372,7 @@ endif
 
   "bookmark
   nnoremap <leader>mm :call mark#MarkCurrentWord(expand('cword'))<CR>
+  "nnoremap <leader>mf :echo(statusline#GetFuncName())<CR>
   nnoremap <leader>mn :QFAddNote note: 
   nnoremap <leader>ms :QFSave! 
   nnoremap <leader>ml :QFLoad 
@@ -1376,6 +1381,8 @@ endif
   "nnoremap <leader>mg :BookmarkGoto <C-R><c-w>
   "nnoremap <leader>mc :BookmarkDel <C-R><c-w>
   "
+  map W <Plug>(expand_region_expand)
+  map B <Plug>(expand_region_shrink)
 
   "nnoremap         <leader>bb :VCBlame<cr>
   nnoremap         <leader>bb :Gblame<cr>
@@ -1450,9 +1457,6 @@ endif
   xnoremap * :<C-u>call utils#VSetSearch('/')<CR>/<C-R>=@/<CR>
   xnoremap # :<C-u>call utils#VSetSearch('?')<CR>?<C-R>=@/<CR>
   vnoremap // y:vim /\<<C-R>"\C/gj %
-
-  vnoremap v <Plug>(expand_region_expand)
-  vnoremap <a-v> <Plug>(expand_region_shrink)
 
   " Search-mode: hit cs, replace first match, and hit <Esc>
   "   then hit n to review and replace

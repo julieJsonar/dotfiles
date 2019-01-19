@@ -284,4 +284,4 @@ wad_key_cert_alloc
 wad_key_cert_hold
 wad_ui_ssl_get_cert_path
 wad_ssl_cert_get_private_key_type
-
+wad_ssl_intercept_type_to_string
