@@ -935,7 +935,7 @@ let g:vimwiki_list = [
 
 let g:vimwiki_menu = ""         | "Disable error msg: No menu 'Vimwiki'
 "let g:vimwiki_url_maxsave = 0
-let g:vimwiki_conceallevel = -1 | "Default=2, -1 Disable conceal
+let g:vimwiki_conceallevel = 0 | "Default=2, -1 Disable conceal
 
 " Python-mode{{{2
   " Activate rope
