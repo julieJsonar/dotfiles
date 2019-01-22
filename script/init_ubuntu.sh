@@ -10,7 +10,7 @@ sudo update-rc.d cron defaults
 sudo apt-get remove mono-runtime-common
 sudo apt-get install -y audacious gnome-mplayer xfce4-notes
 
-sudo apt-get install -y curl zsh xterm tmux ruby silversearcher-ag traceroute smbclient openssh-server minicom lftp meld
+sudo apt-get install -y curl zsh rxvt-unicode tmux ruby silversearcher-ag traceroute smbclient openssh-server minicom lftp meld taskwarrior
 
 # tmuxinator
 mkdir ~/.tmuxinator
@@ -47,7 +47,8 @@ brew install neovim
 #sudo apt-get update
 #sudo apt-get install neovim
 ## nvim :help nvim_python
-#sudo pip install neovim
+sudo pip install neovim
+sudo pip3 install neovim
 ##sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
 ##sudo update-alternatives --config vi
 ##sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
