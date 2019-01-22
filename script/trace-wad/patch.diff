@@ -95,25 +95,29 @@ Index: daemon/wad/cache/test/stubs/wct_stub_wad_debug.c
  int wad_dump_on_input(struct wad_str *b,
  		      unsigned int start,
  		      unsigned int len)
-Index: daemon/wad/cache/test/Rules.mk
+Index: daemon/wad/Rules.mk
 ===================================================================
---- daemon/wad/cache/test/Rules.mk
-+++ daemon/wad/cache/test/Rules.mk
-@@ -177,14 +177,3 @@ else
- WCTRUNCMD = @echo 'Not running $< when cross compiling' > /dev/null
+--- a/daemon/wad/Rules.mk
++++ b/daemon/wad/Rules.mk
+@@ -405,12 +405,12 @@ $(wad)_DEPS = \
+ $(wad)_LIBS = -lcrypt -lresolv -lfips_crypt -lz -lssl -lcmdbstd -lrt
+ 
+ ifdef HAVE_WANOPT
+-WCT_DIR := cache/test
+-$(WCT_DIR)_DEPS = $(LIB_WAD)
+-.PHONY: $(WCT_DIR)
+-
+-SUBDIRS += \
+-	$(WCT_DIR)
++#WCT_DIR := cache/test
++#$(WCT_DIR)_DEPS = $(LIB_WAD)
++#.PHONY: $(WCT_DIR)
++#
++#SUBDIRS += \
++#	$(WCT_DIR)
  endif
  
--wct_cs_run := wct_cs_phony
--$(wct_cs_run)_DEPS = $(wct_cs_link)
--$(wct_cs_run)_CMD = $(WCTRUNCMD)
--
--wct_db_run := wct_db_phony
--$(wct_db_run)_DEPS = $(wct_db_link)
--$(wct_db_run)_CMD = $(WCTRUNCMD)
--
--.PHONY: $(wct_cs_run) $(wct_db_run)
--
--TARGETS = $(wct_cs) $(wct_db) $(wct_cs_link) $(wct_db_link) $(wct_cs_run) $(wct_db_run)
+ wad_link := $(d)/wad
 Index: daemon/wad/wad_memtrack.c
 ===================================================================
 --- daemon/wad/wad_memtrack.c

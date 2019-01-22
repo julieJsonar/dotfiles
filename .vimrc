@@ -48,6 +48,10 @@
 "   -     'zC',  'zO' and 'zA' are similar, but operate on all folding levels
 "   -     'zr' reduces folding by one more level of folds, 'zR' to open all folds.
 "   -     'zm' gives more folding by closing one more level, 'zM' to close all folds.
+"   Terminal-mode:
+"       - enter terminal mode   i
+"       - exit terminal mode    <C-\><C-n>
+"       - :help terminal-emulator
 "
 " }}}
 "
@@ -400,13 +404,15 @@ call plug#begin('~/.vim/bundle')
 
     Plug 'cohama/agit.vim'    | " :Agit show git log like gitk
     Plug 'tpope/vim-fugitive' | " Awesome git wrapper
-      " Doc of Gblame: Show help in blame window and input 'g?'
-      "   o     open commit in horizontal split
-      "   O     open commit in new tab
-      "   ~     reblame at [count]th first grandparent
+      " :Gblame   Show help in blame window and input 'g?'
+      "     o     open commit in horizontal split
+      "     O     open commit in new tab
+      "     ~     reblame at [count]th first grandparent
       "
-      "   -     reblame at commit
-      "   P     reblame at [count]th parent (like HEAD^[count])
+      "     -     reblame at commit
+      "     P     reblame at [count]th parent (like HEAD^[count])
+      " :Glog     Show current file's all history version
+      " :Git      Execute git command
     Plug 'codeindulgence/vim-tig' | " Using tig in neovim
     "Plug 'juneedahamed/svnj.vim'
     Plug 'juneedahamed/vc.vim'| " Support git, svn, ...
