@@ -385,7 +385,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'reedes/vim-pencil'
         "Plug 'godlygeek/tabular'
         "Plug 'dhruvasagar/vim-table-mode'
-        "Plug 'chrisbra/NrrwRgn'
+        Plug 'chrisbra/NrrwRgn'                         | " focus on a selected region. <leader>nr :NR - Open selected into new window; :w - (in the new window) write the changes back
         Plug 'stefandtw/quickfix-reflector.vim'
         Plug 'kassio/neoterm', Cond(has('nvim'))        | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'                  | " selected and ga=
@@ -1435,6 +1435,7 @@ endif
   "            \ :tabnew<CR>:r /tmp/vim.tmpx<CR>:silent !rm /tmp/vim.tmpx<CR>:redraw!<CR>
   nnoremap <silent> <leader>ee :call SingleCompileSplit() \| SCCompileRun<CR>
   nnoremap <silent> <leader>eo :SCViewResult<CR>
+  "vnoremap <silent> <unique> <leader>ee :NR<CR> \| :w! /tmp/1.c<cr> \| :e /tmp/1.c<cr>
   function! SingleCompileSplit()
     if winwidth(0) > 200
        let g:SingleCompile_split = "vsplit"
@@ -1444,7 +1445,6 @@ endif
        let g:SingleCompile_resultsize = winheight(0)/3
     endif
   endfunction
-
 
   " vim-eval
   let g:eval_viml_map_keys = 0
