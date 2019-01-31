@@ -97,8 +97,8 @@ Index: daemon/wad/cache/test/stubs/wct_stub_wad_debug.c
  		      unsigned int len)
 Index: daemon/wad/Rules.mk
 ===================================================================
---- a/daemon/wad/Rules.mk
-+++ b/daemon/wad/Rules.mk
+--- daemon/wad/Rules.mk
++++ daemon/wad/Rules.mk
 @@ -405,12 +405,12 @@ $(wad)_DEPS = \
  $(wad)_LIBS = -lcrypt -lresolv -lfips_crypt -lz -lssl -lcmdbstd -lrt
  
