@@ -37,6 +37,7 @@
 "   - gn                        ' re-select the next match.
 "   - :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
 "   - :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
+"   - :g/^$/d                   ' delete blank lines
 "   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
 "   -                           ' :%s/^\s\+//e    remove from begin
 "   - :Nman find                ' Open man document of `find`
