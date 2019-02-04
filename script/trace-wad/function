@@ -11,6 +11,9 @@ wad_urc_on_alarm
 wad_bank_on_alarm
 wad_bank_flush
 wad_vd_iter
+wad_sysmem_refresh
+wad_systmem_query_status
+wad_sysmem_get_delay
 
 malloc__
 free__
