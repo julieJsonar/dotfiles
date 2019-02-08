@@ -34,13 +34,14 @@
 "   Usage {{{2
 "   ----------
 "   - 'K' on c-function         ' open man document
+"   - :man key-word             ' Open man document of `find`
+"   - Vselect then 'g Ctrl-G'   ' Show the number of lines, words and bytes selected.
 "   - gn                        ' re-select the next match.
 "   - :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
 "   - :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
 "   - :g/^$/d                   ' delete blank lines
 "   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
 "   -                           ' :%s/^\s\+//e    remove from begin
-"   - :Nman find                ' Open man document of `find`
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
 "   - <l>ec                     ' eval viml selected
