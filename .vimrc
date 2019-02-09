@@ -316,7 +316,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'kopischke/vim-fetch'
     Plug 'terryma/vim-expand-region'   | "   W - select region expand; B - shrink
 
-    Plug 'tpope/vim-surround'           | " ds - remove surround; cs - change surround; yss - surround the whole line; ysiw - surround the current word
+    Plug 'tpope/vim-surround'           | " ds - remove surround; cs - change surround; yss - surround the whole line; ysiw' - surround the current word
     Plug 'szw/vim-maximizer'
     Plug 'huawenyu/vim-mark'
     "Plug 'tomtom/tmarks_vim'
