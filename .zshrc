@@ -135,58 +135,65 @@ function _mytail()
 };
 alias tail='_mytail'
 
+export LFTP_CMD='lftp -u test,test 172.18.2.169 -e '
+
 function _myftpls()
 {
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; quit;"
+    eval "$LFTP_CMD 'cd upload/hyu; ls; quit;'"
 };
 alias ftpls='_myftpls'
 
 function _myftpget()
 {
   if [ -z ${1} ]; then
-    echo "parameter dir must be set"
-    return 1
+    dname=${PWD##*/}
+  else
+    dname=${1}
   fi
 
   for var in "$@"
   do
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; get $var; quit;"
+    eval "$LFTP_CMD 'cd upload/hyu; get $var; quit;'"
   done
 };
 alias ftpget='_myftpget'
 
 function _myftprm()
 {
-  if [ -z ${1} ]; then
-    echo "parameter dir must be set"
-    return 1
-  fi
+    if [ -z ${1} ]; then
+        dname=${PWD##*/}
+        echo "  Removing '$dname'!"
+        eval "$LFTP_CMD 'cd upload/hyu; rm -fr $dname; quit;'"
+    else
+        for var in "$@"
+        do
+            echo "  Removing '$var'!"
+            eval "$LFTP_CMD 'cd upload/hyu; rm -fr $var; quit;'"
+        done
+    fi
 
-  for var in "$@"
-  do
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; rm -fr $var; quit;"
-  done
-  lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; quit;"
+    eval "$LFTP_CMD 'cd upload/hyu; ls; quit;'"
 };
 alias ftprm='_myftprm'
 
 function _myftp()
 {
   if [ -z ${1} ]; then
-    echo "parameter dir must be set"
-    return 1
+    dname=${PWD##*/}
+  else
+    dname=${1}
   fi
 
   if [ -f image.out ]; then
     file=image.out
-    lftp -u test,test 172.18.2.169 -e "cd upload/hyu; ls; mkdir $1; cd $1; put $file; put patch.diff; put patch.eco.diff; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; put fortiproxy.qcow2; put image.out.vmware.zip; put image.out.ovf.zip; put image.out.hyperv.zip; put image.out.gcp.tar.gz;put image.out.kvm.zip; put image.out.gcp.tar.gz;lpwd; pwd; ls; quit;"
+    eval "$LFTP_CMD 'cd upload/hyu; ls; mkdir $dname; cd $dname; put $file; put patch.diff; put patch.eco.diff; put fgtcoveragebuild.tar.xz; put fgtcoveragebuild.tar.bz2; put checklist.txt; put fortios.qcow2; put fortiproxy.qcow2; put image.out.vmware.zip; put image.out.ovf.zip; put image.out.hyperv.zip; put image.out.gcp.tar.gz;put image.out.kvm.zip; put image.out.gcp.tar.gz;lpwd; pwd; ls; quit;'"
   else
     if [ -z "$1" ]; then
-      echo "File not found!"
+      echo "File $1 not found!"
       return 1
     else
       file=$1
-      lftp -u test,test 172.18.2.169 -e "cd upload/hyu; mkdir $1; cd $1; put $file; ls; quit;"
+      eval "$LFTP_CMD 'cd upload/hyu; mkdir $dname; cd $dname; put $file; ls; quit;'"
     fi
   fi
 };
@@ -203,6 +210,8 @@ export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5";
 export PERL_MB_OPT="--install_base $HOME/perl5";
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="./lib:$HOME/perl5/lib:$PERL5LIB";
+alias  perldoctest='perl -MTest::Doctest -e run'
+
 export AWKPATH="$HOME/script/awk:$HOME/script/awk/awk-libs";
 
 export PYTHONPATH="$HOME/dotwiki/lib/python"

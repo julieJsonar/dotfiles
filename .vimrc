@@ -50,6 +50,10 @@
 "   -     'zC',  'zO' and 'zA' are similar, but operate on all folding levels
 "   -     'zr' reduces folding by one more level of folds, 'zR' to open all folds.
 "   -     'zm' gives more folding by closing one more level, 'zM' to close all folds.
+"   Command line move:
+"       CTRL-B          move to the begin
+"       CTRL-E          move to the end
+"       CTRL-R          paste from vim register
 "   Terminal-mode:
 "       - enter terminal mode   i
 "       - exit terminal mode    <C-\><C-n>
@@ -142,6 +146,10 @@ call plug#begin('~/.vim/bundle')
 "}}}
 
 " Mode {{{2
+    " Base Engine {{{3
+        "Plug 'w0rp/ale'   | "Asynchronous Lint Engine
+    "}}}
+
     " Python {{{3
         " auto-complete
         " https://github.com/neovim/python-client
@@ -154,6 +162,14 @@ call plug#begin('~/.vim/bundle')
     " Perl {{{3
         Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
         Plug 'tpope/vim-cucumber'       | " Auto test framework base on Behaviour Drive Development(BDD)
+    "}}}
+
+    " Javascript {{{3
+        Plug 'pangloss/vim-javascript'
+    "}}}
+
+    " Database {{{3
+        Plug 'tpope/vim-dadbod'       | " :DB mongodb:///test < big_query.js
     "}}}
 
     " Golang {{{3
@@ -197,7 +213,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'powerman/vim-plugin-AnsiEsc'
     Plug 'huawenyu/robotframework-vim'
     Plug 'plasticboy/vim-markdown'
-    "Plug 'pangloss/vim-javascript'
     "
     " http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
     " Must config to avoid annoy popup message:
@@ -382,6 +397,11 @@ call plug#begin('~/.vim/bundle')
         Plug 'xuhdev/SingleCompile'                     | " :SingleCompile, SingleCompileRun
         Plug 'amiorin/vim-eval'
         Plug 'tpope/vim-eunuch'  | " Support unix shell cmd: Delete,Unlink,Move,Rename,Chmod,Mkdir,Cfind,Clocate,Lfind,Wall,SudoWrite,SudoEdit
+        Plug 'kassio/neoterm'    | " Wrapper of some vim/neovim's terminal: 
+
+        "Plug 'webdevel/tabulous'
+        Plug 'huawenyu/taboo.vim'
+        "Plug 'hari-rangarajan/CCTree'
 
         Plug 'vim-scripts/DrawIt'                       | " \di \ds: start/stop;  draw by direction-key
         Plug 'reedes/vim-pencil'
@@ -392,8 +412,6 @@ call plug#begin('~/.vim/bundle')
         Plug 'kassio/neoterm', Cond(has('nvim'))        | " a terminal for neovim; :T ls, # exit terminal mode by <c-\\><c-n>
         Plug 'junegunn/vim-easy-align'                  | " selected and ga=
         Plug 'huawenyu/c-utils.vim'
-        "Plug 'hari-rangarajan/CCTree'
-        Plug 'huawenyu/taboo.vim'
         Plug 'wsdjeg/SourceCounter.vim'
         Plug 'junegunn/goyo.vim'                        | " :Goyo 80
         "Plug 'junegunn/limelight.vim'                  | " Unsupport colorscheme
@@ -713,6 +731,9 @@ let g:neomake_error_sign = {
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" neoterm
+let g:neoterm_default_mod = 'vertical'
 
 " vim-editqf
 let g:editqf_no_mappings = 1
