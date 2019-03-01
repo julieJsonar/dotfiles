@@ -1466,7 +1466,7 @@ endif
   "vnoremap <silent> <unique> <leader>ee :NR<CR> \| :w! /tmp/1.c<cr> \| :e /tmp/1.c<cr>
 
   autocmd FileType javascript nnoremap <buffer> <leader>ee  :DB mongodb:///test < %
-  autocmd FileType javascript vnoremap <buffer> :NR<CR> \| :w! /tmp/1.c<cr> \| :e /tmp/1.c<cr>
+  autocmd FileType javascript vnoremap <buffer> <leader>ee  :'<,'>w! /tmp/vim.js<cr><cr> \| :DB mongodb:///test < /tmp/vim.js<cr><cr>
 
   function! SingleCompileSplit()
     if winwidth(0) > 200
