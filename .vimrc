@@ -42,6 +42,7 @@
 "   - :g/^$/d                   ' delete blank lines
 "   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
 "   -                           ' :%s/^\s\+//e    remove from begin
+"   - :%s/^M//g                 ' remove windows's CTRL-M characters: type CTRL-V, then CTRL-M
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
 "   - <l>ec                     ' eval viml selected
@@ -50,6 +51,9 @@
 "   -     'zC',  'zO' and 'zA' are similar, but operate on all folding levels
 "   -     'zr' reduces folding by one more level of folds, 'zR' to open all folds.
 "   -     'zm' gives more folding by closing one more level, 'zM' to close all folds.
+"   Runtime:
+"       - :set all              ' Check all options values
+"       - :set filetype?        ' Check this option value
 "   Command line move:
 "       CTRL-B          move to the begin
 "       CTRL-E          move to the end
@@ -166,6 +170,7 @@ call plug#begin('~/.vim/bundle')
 
     " Javascript {{{3
         Plug 'pangloss/vim-javascript'
+        Plug 'elzr/vim-json'
     "}}}
 
     " Database {{{3
@@ -1206,7 +1211,6 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
        autocmd BufEnter * sign define dummy
        autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 
-       autocmd BufNewFile,BufRead *.json set ft=javascript
        autocmd BufNewFile,BufRead *.c.rej,*.c.orig,h.rej,*.h.orig,patch.*,*.diff,*.patch set ft=diff
        autocmd BufNewFile,BufRead *.c,*.c,*.h,*.cpp,*.C,*.CXX,*.CPP set ft=c
        autocmd BufWritePre [\,:;'"\]\)\}]* throw 'Forbidden file name: ' . expand('<afile>')
@@ -1244,6 +1248,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   map q: :q
   " Disable F1 built-in help key
   map <F1> <Esc>
+  map <leader><Esc> :AnsiEsc<cr>
   imap <F1> <Esc>
   nnoremap <C-c> <silent> <C-c>
   nnoremap <buffer> <Enter> <C-W><Enter>
@@ -1459,6 +1464,10 @@ endif
   nnoremap <silent> <leader>ee :call SingleCompileSplit() \| SCCompileRun<CR>
   nnoremap <silent> <leader>eo :SCViewResult<CR>
   "vnoremap <silent> <unique> <leader>ee :NR<CR> \| :w! /tmp/1.c<cr> \| :e /tmp/1.c<cr>
+
+  autocmd FileType javascript nnoremap <buffer> <leader>ee  :DB mongodb:///test < %
+  autocmd FileType javascript vnoremap <buffer> :NR<CR> \| :w! /tmp/1.c<cr> \| :e /tmp/1.c<cr>
+
   function! SingleCompileSplit()
     if winwidth(0) > 200
        let g:SingleCompile_split = "vsplit"
@@ -1471,8 +1480,8 @@ endif
 
   " vim-eval
   let g:eval_viml_map_keys = 0
-  nmap <silent> <leader>ec <Plug>eval_viml
-  vmap <silent> <leader>ec <Plug>eval_viml_region
+  autocmd FileType vim nnoremap <buffer> <leader>ec  <Plug>eval_viml
+  autocmd FileType vim vnoremap <buffer> <leader>ec <Plug>eval_viml_region
 
   " Test
   "nnoremap <silent> <leader>t :<c-u>R <C-R>=printf("python -m doctest -m trace --listfuncs --trackcalls %s \| tee log.test", expand('%:p'))<cr><cr>
