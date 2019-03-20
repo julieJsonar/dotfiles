@@ -51,6 +51,9 @@
 "   -     'zC',  'zO' and 'zA' are similar, but operate on all folding levels
 "   -     'zr' reduces folding by one more level of folds, 'zR' to open all folds.
 "   -     'zm' gives more folding by closing one more level, 'zM' to close all folds.
+"   - Search:
+"         /patt1\|patt2
+"         /some_\(hold\|put\), <or>  /\vsome(hold|put)
 "   Runtime:
 "       - :set all              ' Check all options values
 "       - :set filetype?        ' Check this option value
@@ -1248,7 +1251,7 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
   map q: :q
   " Disable F1 built-in help key
   map <F1> <Esc>
-  map <leader><Esc> :AnsiEsc<cr>
+  " map <leader><Esc> :AnsiEsc<cr>
   imap <F1> <Esc>
   nnoremap <C-c> <silent> <C-c>
   nnoremap <buffer> <Enter> <C-W><Enter>

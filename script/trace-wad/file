@@ -8,6 +8,7 @@ daemon/wad/wad_str.c
 daemon/wad/wad_addr.c
 daemon/wad/wad_buff.c
 daemon/wad/wad_buff2.c
+daemon/wad/wad_buf_reader.c
 daemon/wad/wad_input_buff.c
 daemon/wad/ui/fg/wad_intf.c
 daemon/wad/wad_auth.c
@@ -25,6 +26,7 @@ daemon/wad/wad_http_parser.c
 daemon/wad/wad_ftp_parser.c
 daemon/wad/wad_async_queue.c
 daemon/wad/acsm.c
+daemon/wad/wad_acsm.c
 daemon/wad/rfc2617_digest.c
 daemon/wad/wad_asn1.c
 daemon/wad/wad_waf_sig.c
