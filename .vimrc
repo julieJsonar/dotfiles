@@ -37,12 +37,16 @@
 "   - :man key-word             ' Open man document of `find`
 "   - Vselect then 'g Ctrl-G'   ' Show the number of lines, words and bytes selected.
 "   - gn                        ' re-select the next match.
-"   - :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
-"   - :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
-"   - :g/^$/d                   ' delete blank lines
-"   - :%s/\s\+$//e              ' remove unwanted whitespace from line end
-"   -                           ' :%s/^\s\+//e    remove from begin
-"   - :%s/^M//g                 ' remove windows's CTRL-M characters: type CTRL-V, then CTRL-M
+"   - search/replace:
+"   -     :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
+"   -     :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
+"   -     :g/^$/d                   ' delete blank lines
+"   -     :%s/\s\+$//e              ' remove unwanted whitespace from line end
+"   -     :%s/^\s\+//e              '   remove from begin
+"   -     :%s/^M//g                 ' remove windows's CTRL-M characters: type CTRL-V, then CTRL-M
+"   -     :s/x/X/g 5                ' substitute 'x' by 'X' in the current line and four following lines
+"   -     :23d 4                    ' delete lines 23, 24, 25 and 26
+"
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
 "   - <l>ec                     ' eval viml selected
@@ -58,9 +62,14 @@
 "       - :set all              ' Check all options values
 "       - :set filetype?        ' Check this option value
 "   Command line move:
-"       CTRL-B          move to the begin
-"       CTRL-E          move to the end
-"       CTRL-R          paste from vim register
+"       ctrl-c          quit command mode
+"       ctrl-r          paste from vim register
+"       ctrl-d          command-line completion
+"       ctrl-b          move to the begin
+"       ctrl-e          move to the end
+"       ctrl-h          delete one letter
+"       ctrl-u          delete to begin
+"       ctrl-w          delete one word
 "   Terminal-mode:
 "       - enter terminal mode   i
 "       - exit terminal mode    <C-\><C-n>
