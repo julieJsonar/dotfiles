@@ -38,14 +38,15 @@
 "   - Vselect then 'g Ctrl-G'   ' Show the number of lines, words and bytes selected.
 "   - gn                        ' re-select the next match.
 "   - search/replace:
-"   -     :%s///gc                  ' replaces occurrences of the last search pattern with confirmation
-"   -     :%s/\n\{3,}/\r\r/e        ' replace three or more consecutive line endings with two line endings (a single blank line)
-"   -     :g/^$/d                   ' delete blank lines
-"   -     :%s/\s\+$//e              ' remove unwanted whitespace from line end
-"   -     :%s/^\s\+//e              '   remove from begin
-"   -     :%s/^M//g                 ' remove windows's CTRL-M characters: type CTRL-V, then CTRL-M
-"   -     :s/x/X/g 5                ' substitute 'x' by 'X' in the current line and four following lines
-"   -     :23d 4                    ' delete lines 23, 24, 25 and 26
+"   -     :%s///gc              ' replaces occurrences of the last search pattern with confirmation
+"   -     :%s/pattern//gn       ' count the number of occurrences of a word
+"   -     :%s/\n\{3,}/\r\r/e    ' replace three or more consecutive line endings with two line endings (a single blank line)
+"   -     :g/^$/d               ' delete blank lines
+"   -     :%s/\s\+$//e          ' remove unwanted whitespace from line end
+"   -     :%s/^\s\+//e          '   remove from begin
+"   -     :%s/^M//g             ' remove windows's CTRL-M characters: type CTRL-V, then CTRL-M
+"   -     :s/x/X/g 5            ' substitute 'x' by 'X' in the current line and four following lines
+"   -     :23d 4                ' delete lines 23, 24, 25 and 26
 "
 "   - :VoomToggle markdown      ' outline as markdown
 "   - :VoomToggle markdown      ' outline as markdown
@@ -1455,6 +1456,9 @@ endif
   " remove space from emptyline
   nnoremap <leader>v<space> :%s/^\s\s*$//<CR>
   vnoremap <leader>v<space> :s/^\s\s*$//<cr>
+
+  " count the number of occurrences of a word
+  nnoremap <leader>vc :%s/<C-R>=expand('<cword>')<cr>//gn<cr>
 
   " For global replace
   nnoremap <leader>vR gD:%s/<C-R>///g<left><left>

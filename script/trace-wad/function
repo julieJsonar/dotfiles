@@ -309,3 +309,11 @@ wad_ui_webf_black_on_event
 wad_ui_webf_white_checker
 wad_ui_webf_white_on_event
 wad_cat_desc_cache_getidx
+
+wad_sscan_str_make
+wad_sscan_av_sync
+wad_sscan_av_br_append
+wad_lscan_av_br_append
+wad_sscan_fg_mem_malloc
+wad_sscan_fg_mem_free
+

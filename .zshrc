@@ -64,9 +64,14 @@ function git_prompt_info() {
 
 # Customize to your needs...
 # wilson
-export LC_ALL=en_US.UTF-8
+# fix issue:
+#    "perl: warning: Please check that your locale settings:"
+#
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # By default 0.4 second delay after hit the <ESC>
 export KEYTIMEOUT=0
 
@@ -157,6 +162,21 @@ function _myftpget()
   done
 };
 alias ftpget='_myftpget'
+
+function _myftpput()
+{
+  if [ -z ${1} ]; then
+    dname=${PWD##*/}
+  else
+    dname=${1}
+  fi
+
+  for var in "$@"
+  do
+    eval "$LFTP_CMD 'cd upload/hyu; put $var; quit;'"
+  done
+};
+alias ftpput='_myftpput'
 
 function _myftprm()
 {
