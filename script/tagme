@@ -70,6 +70,7 @@ if [ $filecnt_c -ge 1024 ]; then
 			grep -v 'fortiweb/'            | \
 			grep -v 'fortitest/'           | \
 			grep -v 'tests/gtest/'         | \
+			grep -v 'tests/'               | \
 			grep -v 'tools/'               | \
 			grep -v '/_' \
 			> ./.tagme/cscope.f2
