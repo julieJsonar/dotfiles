@@ -59,9 +59,12 @@
 "   - Search:
 "         /patt1\|patt2
 "         /some_\(hold\|put\), <or>  /\vsome(hold|put)
+"   Plug:
+"       vip             select the same indent block
+"       ]l, [l          jump next/prev same indent line
 "   Runtime:
-"       - :set all              ' Check all options values
-"       - :set filetype?        ' Check this option value
+"       :set all              ' Check all options values
+"       :set filetype?        ' Check this option value
 "   Command line move:
 "       ctrl-c          quit command mode
 "       ctrl-r          paste from vim register
@@ -1145,6 +1148,74 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
            exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
        endif
    endfunction
+
+   " Jump to the next or previous line that has the same level or a lower
+   " level of indentation than the current line.
+   "
+   " exclusive (bool): true: Motion is exclusive
+   " false: Motion is inclusive
+   " fwd (bool): true: Go to next line
+   " false: Go to previous line
+   " lowerlevel (bool): true: Go to line with lower indentation level
+   " false: Go to line with the same indentation level
+   " skipblanks (bool): true: Skip blank lines
+   " false: Don't skip blank lines
+   function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
+     let line = line('.')
+     let column = col('.')
+     let lastline = line('$')
+     let indent = indent(line)
+     let stepvalue = a:fwd ? 1 : -1
+     while (line > 0 && line <= lastline)
+       let line = line + stepvalue
+       if ( ! a:lowerlevel && indent(line) == indent ||
+             \ a:lowerlevel && indent(line) < indent)
+         if (! a:skipblanks || strlen(getline(line)) > 0)
+           if (a:exclusive)
+             let line = line - stepvalue
+           endif
+           exe line
+           exe "normal " column . "|"
+           return
+         endif
+       endif
+     endwhile
+   endfunction
+
+   " Moving back and forth between lines of same or lower indentation.
+   nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+   nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+   nnoremap <silent> [L :call NextIndent(0, 0, 1, 1)<CR>
+   nnoremap <silent> ]L :call NextIndent(0, 1, 1, 1)<CR>
+   vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+   vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+   vnoremap <silent> [L <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
+   vnoremap <silent> ]L <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
+   onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+   onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+   onoremap <silent> [L :call NextIndent(1, 0, 1, 1)<CR>
+   onoremap <silent> ]L :call NextIndent(1, 1, 1, 1)<CR>
+
+   function SelectIndent()
+     let cur_line = line(".")
+     let cur_ind = indent(cur_line)
+     let line = cur_line
+     while indent(line - 1) >= cur_ind
+       let line = line - 1
+     endw
+     " Select above line
+     let line = line - 1
+     exe "normal " . line . "G"
+     exe "normal V"
+     let line = cur_line
+     while indent(line + 1) >= cur_ind
+       let line = line + 1
+     endw
+     " Select below line
+     let line = line + 1
+     exe "normal " . line . "G"
+   endfunction
+   nnoremap vip :call SelectIndent()<CR>
 
    " Maximizes the current window if it is not the quickfix window.
    function! SetIndentTabForCfiletype()
