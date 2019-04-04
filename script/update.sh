@@ -41,6 +41,7 @@ git_repos=( \
   "$HOME/proj/Boost-Cookbook" \
   "$HOME/proj/libevent-book" \
   "$HOME/proj/robot-fortios" \
+  "$HOME/proj/linux-0.11" \
   "$HOME/.vim/bundle/neovim-fuzzy" \
   "$HOME/.vim/bundle/vim-grepper" \
   "$HOME/.vim/bundle/taboo.vim" \
