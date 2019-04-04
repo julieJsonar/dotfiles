@@ -392,6 +392,8 @@ call plug#begin('~/.vim/bundle')
     " View/Outline {{{3
         Plug 'scrooloose/nerdtree'    | " :NERDTreeToggle; <Enter> open-file; '?' Help
         Plug 'scrooloose/nerdcommenter'
+        Plug 'jistr/vim-nerdtree-tabs' | " :NERDTreeTabsToggle, Just one NERDTree, always and ever. It will always look the same in all tabs, including expanded/collapsed nodes, scroll position etc.
+        Plug 'kien/tabman.vim'         | " Tab management for Vim
         Plug 'jeetsukumaran/vim-buffergator'
         Plug 'huawenyu/vim-rooter'  | " Get or change current dir
 
@@ -713,6 +715,10 @@ endif
 let g:neogdb_vars = {
       \ 'struct my_str *' : ['{}->val', '{}->len'],
       \ }
+
+" tabman {{{2}}}: disable old config
+let g:tabman_toggle = '<leader>xt'
+let g:tabman_focus  = '<leader>xf'
 
 " neocomplcache {{{2}}}
 let g:acp_enableAtStartup = 0
@@ -1399,10 +1405,10 @@ endif
 
   nnoremap <silent> <a-o> :VoomToggle<cr>
   nnoremap <silent> <a-w> :MaximizerToggle<CR>
-  nnoremap <silent> <a-e> :NERDTreeToggle<cr>
+  nnoremap <silent> <a-e> :NERDTreeTabsToggle<cr>
   nnoremap <silent> <a-f> :NERDTreeFind<cr>
-  "nnoremap <silent> <a-t> :TlistToggle<CR>
-  "nnoremap <silent> <a-t> :TagbarToggle<CR>
+  "nnoremap <silent> <a-,> :TagbarToggle<CR>
+  nnoremap <silent> <a-.> :TMToggle<CR>
   nnoremap <silent> <a-i> :BuffergatorToggle<cr>
   nnoremap <silent> <a-u> :GundoToggle<CR>
 
@@ -1645,7 +1651,7 @@ endif
   endfunction
 
   "autocmd WinEnter * if !utils#IsLeftMostWindow() | let g:tagbar_left = 0 | else | let g:tagbar_left = 1 | endif
-  nnoremap <silent> <a-t> :<c-u>call <SID>ToggleTagbar()<CR>
+  nnoremap <silent> <a-,> :<c-u>call <SID>ToggleTagbar()<CR>
 
   function! s:R(cap, ...)
       if a:cap
