@@ -372,6 +372,8 @@ call plug#begin('~/.vim/bundle')
         Plug 'rhysd/accelerated-jk'
         "Plug 'unblevable/quick-scope'
         Plug 'huawenyu/vim-indentwise'
+        "Plug 'dbakker/vim-paragraph-motion' | " treat whitespace only lines as paragraph breaks so { and } will jump to them
+        "Plug 'vim-scripts/Improved-paragraph-motion'
     "}}}
 
     " Search {{{3
@@ -1180,8 +1182,11 @@ command! -nargs=* C8  setlocal autoindent cindent noexpandtab tabstop=8 shiftwid
            if (a:exclusive)
              let line = line - stepvalue
            endif
-           exe line
-           exe "normal " column . "|"
+           "exe line
+           " column different when tabs
+           "   exe "normal " column . "|"
+           "exe "normal " column . "l"
+           call cursor(line, column)
            return
          endif
        endif
