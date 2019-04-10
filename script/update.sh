@@ -38,6 +38,7 @@ git_repos=( \
   "$HOME/proj/algorithm-doc" \
   "$HOME/proj/c-algorithms" \
   "$HOME/proj/Design-Patterns-in-C" \
+  "$HOME/proj/Object-Oriented-in-C" \
   "$HOME/proj/Boost-Cookbook" \
   "$HOME/proj/libevent-book" \
   "$HOME/proj/robot-fortios" \
