@@ -1,14 +1,14 @@
 [user]
-	name = Huawen Yu
-	email = hyu@fortinet.com
+	name = Hang Shao
+	email = hang.shao@imperva.com
 [core]
-	excludesfile = /home/wilson/.gitignore_global
+	excludesfile = /home/hang/.gitignore_global
 #[format]
 #	pretty = format:%h %ad %s(%an)
 [log]
 	date = short
 [github]
-	user = huawenyu
+	user = julieJsonar
 [alias]
 	log0 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	log1 = log --graph --abbrev-commit --decorate --date=short --format=format:'%C(bold blue)%h%C(reset) %ad %C(white)%s%C(reset) %C(dim white)%C(cyan)(%an)%C(reset)%C(reset)%C(bold yellow)%d%C(reset)' --all
